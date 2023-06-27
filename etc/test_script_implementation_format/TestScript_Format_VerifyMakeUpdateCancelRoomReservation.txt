@@ -1,0 +1,104 @@
+package com
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+################### This is sample Test Script to show format of Test Script. Below classed or methods may not be available in current implementation.
+
+/*  ALM Test Case: 'TestId#1111_Make Room Reservation'
+    ALM Test Case: 'TestId#2222_Update Room Reservation'
+    ALM Test Case: 'TestId#3333_Cancel Room Reservation'
+
+    PreConditions:
+    --------------
+    1. Inventory available
+
+    Verification CheckPoints:
+    -------------------------
+    1. Verify the reservation booked
+    2. Verify the reservation modified
+	3. Verify the reservation canceled
+*/
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+@Preamble(author = "Mahendra", date = "06/10/2019", summary = "VerifyMakeUpdateCancelRoomRes", almTestPlanID = {})
+public class VerifyMakeUpdateCancelRoomRes extends BaseRestTest {
+    @DataProvider(name = "scenario", parallel = true)
+
+    public Object[][] bookScenario() {
+        return CSVDataProvider.getData(
+                "/datasheets/api/VerifyMakeUpdateCancelRoomRes.csv");
+    }
+
+    @Test(groups = { "Edit Room Config", "VerifyMakeUpdateCancelRoomRes" }, dataProvider = "scenario")
+    public void verifyMakeUpdateCancelRoomRes(String testScenario,String propertyID, String programID.......) {
+
+        String testName = "VerifyMakeUpdateCancelRoomRes";
+        TestReporter.logScenario(testScenario);
+        testStart(testName);
+
+        // Instantiating/declaring variable for Test Case: 'TestId#1111
+		int numOfGuests=2;
+        .....
+		
+		// Instantiating/declaring variable for Test Case: 'TestId#2222 and 'TestId#3333
+		.....
+		
+		
+        //Validating Test Case: 'TestId#1111		
+		......		
+		response=iICERoom.checkAvailablity(int numOfGuests, .....);
+		validateStatusCode(restResponse.getStatusCode(), HttpStatusCodeConstants.OK, "room availability", response.getResponse().toString());
+		response=iICERoom.makeRoomRservation(int numOfGuests,...);
+		
+		response=iDMPRoom.checkAvailablity(int numOfGuests, .....);
+		validateStatusCode(restResponse.getStatusCode(), HttpStatusCodeConstants.OK, "room availability", response.getResponse().toString());
+		response=iDMPRoom.makeRoomRservation(int numOfGuests,...);
+		
+		response=iBorgataRoom.checkAvailablity(int numOfGuests, .....);
+		validateStatusCode(restResponse.getStatusCode(), HttpStatusCodeConstants.OK, "room availability", response.getResponse().toString());
+		response=iBorgata.Room.makeRoomRservation(int numOfGuests,...);	
+
+				
+		......
+		//validation points
+		TestReporter.assertTrue()
+		TestReporter.assertTrue()
+		TestReporter.assertTrue()
+		TestReporter.assertTrue()
+		
+		
+		
+		//Validating Test Case: 'TestId#2222
+		
+		......		
+		response=iICERoom.modifyRoomRservation(String...);	
+		response=iDMPRoom.modifyRoomRservation(String...);	
+		response=iBorgata.modifyRoomRservation(String...);			
+		.......
+		//validation points
+		
+		TestReporter.assertTrue()
+		TestReporter.assertTrue()
+		TestReporter.assertTrue()
+		TestReporter.assertTrue()
+		
+			
+		
+		//Validating Test Case: 'TestId#3333
+		
+		......		
+		response=iICERoom.cancelRoomRservation(String...);	
+		response=iDMPRoom.cancelRoomRservation(String...);	
+		response=iBorgata.cancelRoomRservation(String...);	
+		.......
+		//validation points
+		TestReporter.assertTrue()
+		TestReporter.assertTrue()
+		TestReporter.assertTrue()
+		
+		//Any tearDown actions
+
+    }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test_Suite_HID_Automation_Android_iOS">
+
+    <!-- systemPort and chromeDriverPort must be unique for Parallel execution -->
+    <listeners>
+        <listener class-name="com.appium.listeners.ListenerClass"></listener>
+        <listener class-name="com.appium.listeners.AnnotationTransformer"></listener>
+        <listener class-name="com.appium.listeners.MethodInterceptor"></listener>
+    </listeners>
+
+    <parameter name="runLocation" value="local"></parameter>
+
+    <test name="Tests_on_iOS_15">
+        <parameter name="simulator" value="false"></parameter>
+        <parameter name="platformName" value="iOS"></parameter>
+        <parameter name="platformVersion" value="15"></parameter>
+        <parameter name="udid" value="00008110-0010455A3A47801E"></parameter>
+        <parameter name="installApp" value="false"></parameter>
+        <parameter name="deviceName" value="TestPhone-IOS"></parameter>
+        <parameter name="systemPort" value="10031"/>
+        <parameter name="chromeDriverPort" value="11032"/>
+        <parameter name="wdaLocalPort" value="10003"/>
+        <parameter name="webkitDebugProxyPort" value="10013"/>
+        <parameter name="comPort" value=""/>
+        <classes>
+            <class name="com.appium.runners.iOS.iOS_RevE_TwistAndGo_Runner"></class>
+        </classes>
+    </test>
+</suite>
