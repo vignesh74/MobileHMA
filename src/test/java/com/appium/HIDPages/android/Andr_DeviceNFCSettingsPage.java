@@ -28,6 +28,16 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
     private MobileElement btnOnOff;
 
     /**
+     * These mobile elements are used for validating NFC Warning Banners
+     */
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='NFC Disabled']")
+    private MobileElement nfcDisabled;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Enable NFC to use your Mobile ID by presenting your phone to the reader.']")
+    private MobileElement nfcDisabledText;
+
+
+    /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
      */
     public MobileElement getTxtSwitchOnOff() {
@@ -49,6 +59,32 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
             String strNFCStatusValue = getElementText(appPrefencesScreenPage.getTxtNFCStatusValue());
             if (!strNFCStatus.equalsIgnoreCase(strNFCStatusValue)) {
                 appPrefencesScreenPage.clickOnNFCTab();
+                waitForVisibility(btnOnOff);
+                click(btnOnOff);
+                waitForGivenTime(1);
+                if (isDisplayed(txtSwitchOnOff)) {
+                    String strActualNFCStatus = getElementText(txtSwitchOnOff);
+                    TestUtils.log().info("NFC has been set as {}",strActualNFCStatus);
+                    Assert.assertTrue(strNFCStatus.equalsIgnoreCase(strActualNFCStatus), "NFC status set as" + strActualNFCStatus);
+                    TestUtils.log().info("NFC as: {}",strActualNFCStatus);
+                }
+                loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), "navigateBack", 10);
+                waitForGivenTime(1);
+                Assert.assertTrue(strNFCStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtNFCStatusValue().getText()));
+                TestUtils.log().info("NFC has been set as {}",appPrefencesScreenPage.getTxtNFCStatusValue().getText());
+            } else {
+                TestUtils.log().info("NFC is already set as {}",strNFCStatus);
+            }
+
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while setting the NFC status...{}",e.getMessage());
+        }
+
+    }
+    public void setNFCStatusWb(String strNFCStatus) {
+        try {
+            if(isDisplayed(nfcDisabled)){
+               click(nfcDisabled);
                 waitForVisibility(btnOnOff);
                 click(btnOnOff);
                 waitForGivenTime(1);

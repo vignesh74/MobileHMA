@@ -32,4 +32,14 @@ public class MessageConstants {
 
     public static final String INITIALPOPUPSHANDLING= "initialPopupsHandling";
     public static final String ENDTESTPOPUPSHANDLING= "endTestPopupsHandling";
+
+    public static final String BLEWARNINGBANNERTEXT="Enable Bluetooth to find readers nearby and use your Mobile ID over Bluetooth.";
+
+    public static final String NFCWARNINGBANNERTEXT="Enable NFC to use your Mobile ID by presenting your phone to the reader.";
+
+    public static final String GPSWARNINGBANNERTEXT="We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.";
+
+    public static final String LOCATIONPERMISSIONWARNINGBANNERTEXT="We do not track your location. Enable Location to use your Mobile ID over Bluetooth.";
+
+    public static final String NEARBYPERMISSIONWARNINGBANNERTEXT="We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.";
 }

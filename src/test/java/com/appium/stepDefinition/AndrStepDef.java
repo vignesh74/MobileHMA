@@ -14,13 +14,16 @@ import io.cucumber.java.en.When;
 import jssc.SerialPortException;
 import org.testng.Assert;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 
+
 public class AndrStepDef {
     String strInvitationCode = "";
-    Andr_HIDConvenientScreenPage convenientScreen = new Andr_HIDConvenientScreenPage();
+    Andr_HIDOnboardingScreenPage OnboardingScreen = new Andr_HIDOnboardingScreenPage();
+    Andr_HIDMobileAccessTermsOfUse termsOfUseScreen=new Andr_HIDMobileAccessTermsOfUse();
     Andr_HIDInvitationCodeScreenPage invitationScreen = new Andr_HIDInvitationCodeScreenPage();
     Andr_HIDMobileIDScreenPage mobileIDScreen = new Andr_HIDMobileIDScreenPage();
     Andr_HIDSettingsScreenPage settingsScreen = new Andr_HIDSettingsScreenPage();
@@ -36,17 +39,40 @@ public class AndrStepDef {
     Andr_HIDSettingsReportIssueScreenPage settingsReportIssueScreenPage = new Andr_HIDSettingsReportIssueScreenPage();
     Andr_HIDSettingLegalScreenPage settingLegalScreenPage = new Andr_HIDSettingLegalScreenPage();
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
+    Andr_WarningBanners warningBanners = new Andr_WarningBanners();
+
     String strUDID = "";
     String armLogs;
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
-        if (convenientScreen.checkVisibilityOfConvenientPage()) {
-            DriverManager.getDriver().closeApp();
-            TestUtils.log().info("Application closed.....");
+      /*      OnboardingScreen.checkVisibilityOfConvenientPage();
+            OnboardingScreen.checkDescriptionConvScreen();
+            OnboardingScreen.skipConvenientPage();
+            DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
+            TestUtils.log().info("Application removed.....");
+            DriverManager.getDriver().installApp("/Users/Mobileprogramming/hma-automation-roboticarm/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
+            TestUtils.log().info("Application installed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
-        }
+
+            OnboardingScreen.checkVisibilityOfTwistAndGoPage() ;
+            OnboardingScreen.checkDescriptionTwistAndGoScreen();
+            OnboardingScreen.skipTwistAndGoPage();
+            DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
+            TestUtils.log().info("Application removed.....");
+            */DriverManager.getDriver().installApp("/Users/Mobileprogramming/hma-automation-roboticarm/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
+            TestUtils.log().info("Application installed.....");
+            DriverManager.getDriver().launchApp();
+            TestUtils.log().info("Application launched.....");
+
+            OnboardingScreen.checkVisibilityOfBannersPage();
+            OnboardingScreen.checkDescriptionBannersScreen();
+            OnboardingScreen.GetStartedBannersPage();
+            //OnboardingScreen.checkVisibilityOfFavoriteReaderPage();
+            //OnboardingScreen.checkDescriptionFavoriteReaderScreen();
+            //OnboardingScreen.GetStartedFavoriteReaderPage();
+
     }
 
     @Given("Get Invitation Code using Rest API when credential are {}")
@@ -58,7 +84,47 @@ public class AndrStepDef {
 
     @When("Swipe EULA screen to left in android device")
     public void swipeEulaScreen_Andr() {
-        convenientScreen.closeConvenientPage();
+
+        termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
+        termsOfUseScreen.checkVisibilityOfTermsOfUsePageImage();
+        termsOfUseScreen.checkTermsOfUseTxt();
+        termsOfUseScreen.cancelTermsOfUsePage();
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
+
+        OnboardingScreen.skipConvenientPage();
+       // termsOfUseScreen.checkEulaPageLink();
+       // termsOfUseScreen.checkVisibilityOfEulaPage();
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
+
+        OnboardingScreen.skipConvenientPage();
+       // termsOfUseScreen.checkEulaPageLink();
+      //  termsOfUseScreen.backButtonEula();
+      //  termsOfUseScreen.checkPrivacyPageLink();
+      //  termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
+
+        OnboardingScreen.skipConvenientPage();
+       // termsOfUseScreen.checkPrivacyPageLink();
+      //  termsOfUseScreen.backButtonPrivacyNoticePage();
+        termsOfUseScreen.checkCheckBoxTxt();
+        termsOfUseScreen.agreeCheckBox();
+        termsOfUseScreen.continueTermsOfUsePage();
+      //  termsOfUseScreen.acceptTermsOfUsePage();
+
+        invitationScreen.checkVisibilityOfInvitationPage();
+        invitationScreen.checkDescriptionInvitationPage();
+        //OnboardingScreen.skipConvenientPage();
+      //  termsOfUseScreen.acceptTermsOfUsePage();
+        //invitationScreen.clickScanQRButton();
+        //invitationScreen.checkScanQrCodeButton();
+        invitationScreen.checkAboutInfo();
+        invitationScreen.toastMessageAboutScreen();
+
+
+
     }
 
     @When("Enter invitation code on HID mobile Application in android device")
@@ -75,11 +141,30 @@ public class AndrStepDef {
         mobileIDScreen.clickOnGotItButton();
     }
 
+    @Then("Tap on the Mobile ID to check back of the card details")
+    public void backOfTheCardDetailsIsDisplayed_Andr() {
+        mobileIDScreen.clickOnMobileID();
+        mobileIDScreen.checkHeaderMobileIdHeader();
+        mobileIDScreen.checkNickname();
+        mobileIDScreen.checkName();
+        mobileIDScreen.checkMobileKeySet();
+        mobileIDScreen.checkOrganization();
+        mobileIDScreen.checkIssuedOn();
+        mobileIDScreen.checkExpiresOn();
+        mobileIDScreen.checkID();
+        mobileIDScreen.checkVisibilityOfEditNicknamePencilIcon();
+        mobileIDScreen.checkVisibilityOfEditNicknamePopup();
+        mobileIDScreen.validateNicknameDialogBox();
+        mobileIDScreen.enterNickname();
+    }
+
     @Then("Notification screen is displayed with message {string} in android device")
     public void notificationScreenIsDisplayed_Andr(String strMessage) {
         mobileIDScreen.clickOnNotificationTab();
         notificationScreen.verifyNotification(strMessage);
     }
+
+
 
     @When("Navigate to Settings and App Preferences screen in android device")
     public void navigateToAppPreferencesScreen_Andr() {
@@ -157,8 +242,7 @@ public class AndrStepDef {
 
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
-        TestUtils.log().info("Robotic arms: "+armLogs+" is Equal to "+strRoboticLog);
-        Assert.assertTrue(armLogs.toLowerCase().contains(strRoboticLog.toLowerCase()));
+        Assert.assertEquals(armLogs, strRoboticLog);
 
     }
 
@@ -241,7 +325,7 @@ public class AndrStepDef {
         deviceLocationSettingsPage.setLocationStatusForSettingFeature(strLocationStatus, strUDID);
     }
 
-   @When("Set {string} permission status as {string} in android device")
+    @When("Set {string} permission status as {string} in android device")
      public void set_permission_status_as_in_android_device(String strLocationOrNearBy, String strLocationOrNearByPermission) {
         nearbyPermissionSettingsPage.setNearByOrLocationPerm(strLocationOrNearBy, strLocationOrNearByPermission);
     }
@@ -251,5 +335,46 @@ public class AndrStepDef {
         nearbyPermissionSettingsPage.setNearByOrLocationPerm(strLocationOrNearBy,strLocationOrNearByPermission);
         appPreferencesScreen.toVerifyNearByOrLocationPermissionStatus(strLocationOrNearByPermission);
 
+    }
+
+    @Then("Mobile IDs screen is displayed in android device with card and popup")
+    public void mobileIDScreenAlongWithPopupIsDisplayed_Andr() {
+        mobileIDScreen.toVerifyMobileID();
+        mobileIDScreen.clickOnNextButton();
+        mobileIDScreen.clickOnGotItButton();
+    }
+
+    @And("Warning BannersWF1 are displayed  in android device as {string},{string},{string},{string},{string}")
+    public void warningBanners1(String status1,String status2,String strLocationStatus,String strLocationOrNearBy, String strLocOrNearByPerm){
+        warningBanners.warningBannersWF1(status1,status2,strLocationStatus,strLocationOrNearBy,strLocOrNearByPerm);
+    }
+    @Then("Bluetooth status for Warning Banners is displayed as {string} in android device")
+    public void setBLE(String bleStatusWb) {
+        bleSettingsPage.setBLEStatusWb(bleStatusWb);
+    }
+
+    @And("NFC status for Warning Banners is displayed as {string} in android device")
+    public void setNFC(String nfcStatusWb){
+        nfcSettingsPage.setNFCStatusWb(nfcStatusWb);
+    }
+
+    @And("Location Status for Warning Banners is displayed as {string} in android device")
+    public void setLocation(String locationStatusWb,String strUDID){
+        deviceLocationSettingsPage.setLocationStatusWb(locationStatusWb,strUDID);
+    }
+
+    @And("{string} Permission status for Warning Banners is displayed as {string} in android device")
+    public void setLocationPerm(String strLocationOrNearBy,String strLocationOrNearByPermission){
+      nearbyPermissionSettingsPage.setNearByOrLocationPermWb(strLocationOrNearBy,strLocationOrNearByPermission);
+    }
+
+    @And("Warning BannersWF2 are displayed in android device")
+    public void warningBanners2(String strLocationStatus, String strUDID ,String strBLEStatus,String strNFCStatus,String strLocationOrNearBy,String strLocationOrNearByPermission){
+        warningBanners.warningBannersWF2(strLocationStatus, strUDID,strBLEStatus,strNFCStatus,strLocationOrNearBy,strLocationOrNearByPermission);
+    }
+
+    @Then("Warning Banners are displayed  in android device")
+     public void WarningBanners3(){
+        warningBanners.warningBanners();
     }
 }

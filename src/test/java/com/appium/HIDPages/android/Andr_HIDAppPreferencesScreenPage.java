@@ -246,6 +246,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     }
 
+
     /**
      * clickOnNFCTab- This method is used to click on the NFC tab Date- 25/01/2023
      */
@@ -281,12 +282,29 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         boolean flag = false;
         try {
             String strBLEStatusValue = txtBluetoothStatusValue.getText();
-            if (strBLEStatusValue.equalsIgnoreCase("On")) {
+            if (strBLEStatusValue.equalsIgnoreCase("Off")) {
                 flag = true;
             }
         } catch (Exception e) {
             
             TestUtils.log().debug("Exception occurred while checking on BLE status...");
+        }
+        return flag;
+    }
+
+    /**
+     * checkNFCStatus- This method is used to check NFC status Date- 30/06/2023
+     */
+    public boolean checkNFCStatus() {
+        boolean flag = false;
+        try {
+            String strNFCStatusValue = txtNFCStatusValue.getText();
+            if (strNFCStatusValue.equalsIgnoreCase("Off")) {
+                flag = true;
+            }
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while checking on NFC status...");
         }
         return flag;
     }
@@ -298,7 +316,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         boolean flag = false;
         try {
             String strLocationStatusValue = txtLocationStatusValue.getText();
-            if (strLocationStatusValue.equalsIgnoreCase("On")) {
+            if (strLocationStatusValue.equalsIgnoreCase("Off")) {
                 flag = true;
             }
         } catch (Exception e) {
@@ -380,7 +398,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 if (strPermissionStatus.equalsIgnoreCase("Allow") || strPermissionStatus.equalsIgnoreCase("Allow all the time") || strPermissionStatus.equalsIgnoreCase("Allow only while using app") || strPermissionStatus.equalsIgnoreCase(" Allow only while using the app")) {
                     Assert.assertEquals(getTxtLocationPermStatusValue().getText(), MessageConstants.ALWAYS_STRING);
                 } else if (strPermissionStatus.equalsIgnoreCase("Don't allow") || strPermissionStatus.equalsIgnoreCase("Deny")) {
-                    Assert.assertEquals(getTxtLocationPermStatusValue().getText(), "Denied");
+                    Assert.assertEquals(getTxtLocationPermStatusValue().getText(), "We do not track your location. Enable Location to use your Mobile ID over Bluetooth.");
                 } else
                     TestUtils.log().info("Please provide correct input");
             }

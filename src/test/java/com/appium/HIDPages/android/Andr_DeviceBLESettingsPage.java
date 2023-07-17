@@ -31,6 +31,21 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
     private MobileElement tglBtnBLE;
 
     /**
+     * These mobile elements are used for validating BLE Warning Banners
+     */
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bluetooth Disabled']")
+    private MobileElement bleDisabled;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Enable Bluetooth to find readers nearby and use your Mobile ID over Bluetooth.']")
+    private MobileElement bleDisabledText;
+
+    @AndroidFindBy(id="android:id/message")
+    private MobileElement message;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Deny']")
+    private MobileElement permDeny;
+
+    /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
      */
     public MobileElement getTglBtnBLE() {
@@ -62,6 +77,52 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
             if (!strBLEStatus.equalsIgnoreCase(strBLEStatusValue)) {
                 appPrefencesScreenPage.clickOnBLETab();
                 if (isDisplayed(txtConnectionRef)) {
+                    txtConnectionRef.click();
+                    waitForVisibility(appPrefencesScreenPage.getTxtBluetooth());
+                    appPrefencesScreenPage.clickOnBLETab();
+                    waitForVisibility(btnOnOff);
+                    click(btnOnOff);
+                    String strActualBLEStatus = getElementText(txtSwitchOnOff);
+                    TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
+                    loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
+                    Assert.assertTrue(strActualBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
+                } else {
+                    switch (strPlatformVersion) {
+                        case "9","00" -> {
+                            click(tglBtnBLE);
+                            String strAttr = getElementAttribute(tglBtnBLE, "Checked");
+                            if (strAttr.equalsIgnoreCase("false")) {
+                                TestUtils.log().info("BLE Status set as {}",strBLEStatus);
+                            }
+                            loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
+                        }
+                        default -> {
+                            click(btnOnOff);
+                            String strActualBLEStatus = getElementText(txtSwitchOnOff);
+                            TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
+                            Assert.assertTrue(strBLEStatus.equalsIgnoreCase(strActualBLEStatus));
+                            loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
+                            Assert.assertTrue(strActualBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
+                        }
+                    }
+                }
+            } else {
+                TestUtils.log().info("BLE  is  already set as {}",strBLEStatus);
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while setting the BLE status...");
+        }
+    }
+    public void setBLEStatusWb(String strBLEStatus) {
+        try {
+            String strBLEStatusValue = getElementText(appPrefencesScreenPage.getTxtBluetoothStatusValue());
+            String strPlatformVersion = DriverManager.getPlatformVersion();
+            if (!strBLEStatus.equalsIgnoreCase(strBLEStatusValue)) {
+               click(bleDisabled);
+               waitForGivenTime(2);
+                if(isDisplayed(message))
+                    click(permDeny);
+                else if (isDisplayed(txtConnectionRef)) {
                     txtConnectionRef.click();
                     waitForVisibility(appPrefencesScreenPage.getTxtBluetooth());
                     appPrefencesScreenPage.clickOnBLETab();

@@ -2,6 +2,7 @@ package com.appium.stepDefinition;
 
 import com.appium.HIDPages.android.Andr_HIDSettingsScreenPage;
 import com.appium.HIDPages.android.Andr_HandlePopUps;
+import com.appium.HIDPages.android.Andr_WarningBanners;
 import com.appium.base.BasePage;
 import com.appium.constants.MessageConstants;
 import com.appium.enums.AuthorType;
@@ -25,6 +26,7 @@ import static com.appium.constants.FrameworkConstants.YES;
 
 public class Hooks {
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
+    Andr_WarningBanners handleWb= new Andr_WarningBanners();
 
     /**
      * addScreenshotForScenario - This method is used to add screenshots whenever scenario got passed ,failed or skipped
@@ -88,7 +90,7 @@ public class Hooks {
     /**
      * unRegisterDevice- This method is used to unregister device after each scenario execution Date-06/03/2023
      */
-    @After
+  /*  @After
     public void unRegisterDevice() {
         BasePage basePage = new BasePage();
         Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
@@ -100,5 +102,18 @@ public class Hooks {
             settingsScreenPage.unRegisterThisDevice();
             basePage.waitForGivenTime(2);
         }
+
+    }
+    */
+    @After
+    public void unRegisterDeviceWb() {
+        BasePage basePage = new BasePage();
+        Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
+        if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
+            settingsScreenPage.traverseToSettingsPage();
+            settingsScreenPage.unRegisterThisDevice();
+            basePage.waitForGivenTime(2);
+        }
+
     }
 }
