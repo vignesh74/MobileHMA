@@ -11,22 +11,22 @@
 
     <parameter name="runLocation" value="local"></parameter>
 
-<!--    <test name="Tests_on_iOS_14">-->
-<!--        <parameter name="simulator" value="false"></parameter>-->
-<!--        <parameter name="platformName" value="iOS"></parameter>-->
-<!--        <parameter name="platformVersion" value="14"></parameter>-->
-<!--        <parameter name="udid" value="00008020-000328CE14A3002E"></parameter>-->
-<!--        <parameter name="installApp" value="false"></parameter>-->
-<!--        <parameter name="deviceName" value="TestPhone-IOS"></parameter>-->
-<!--        <parameter name="systemPort" value="10031"/>-->
-<!--        <parameter name="chromeDriverPort" value="11032"/>-->
-<!--        <parameter name="wdaLocalPort" value="10003"/>-->
-<!--        <parameter name="webkitDebugProxyPort" value="10013"/>-->
-<!--        <parameter name="comPort" value=""/>-->
-<!--        <classes>-->
-<!--            <class name="com.appium.runners.iOS.iOS_Settings_Runner"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Tests_on_iOS_16">
+        <parameter name="simulator" value="false"></parameter>
+        <parameter name="platformName" value="iOS"></parameter>
+        <parameter name="platformVersion" value="16"></parameter>
+        <parameter name="udid" value="00008020-001A656C1105002E"></parameter>
+        <parameter name="installApp" value="false"></parameter>
+        <parameter name="deviceName" value="TestPhone-IOS"></parameter>
+        <parameter name="systemPort" value="10031"/>
+        <parameter name="chromeDriverPort" value="11032"/>
+        <parameter name="wdaLocalPort" value="10003"/>
+        <parameter name="webkitDebugProxyPort" value="10013"/>
+        <parameter name="comPort" value=""/>
+        <classes>
+            <class name="com.appium.runners.iOS.iOS_Settings_Runner"></class>
+        </classes>
+    </test>
 
     <test name="Tests_on_Android_12">
         <parameter name="emulator" value="false"></parameter>
