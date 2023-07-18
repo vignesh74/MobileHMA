@@ -51,7 +51,7 @@ public class AndrStepDef {
             OnboardingScreen.skipConvenientPage();
             DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
             TestUtils.log().info("Application removed.....");
-            DriverManager.getDriver().installApp("/Users/Mobileprogramming/hma-automation-roboticarm/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
+            DriverManager.getDriver().installApp("/Users/Mobileprogramming/Documents/hma-automation-roboticarm-bdd4.1.2/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
             TestUtils.log().info("Application installed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
@@ -61,7 +61,7 @@ public class AndrStepDef {
             OnboardingScreen.skipTwistAndGoPage();
             DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
             TestUtils.log().info("Application removed.....");
-            */DriverManager.getDriver().installApp("/Users/Mobileprogramming/hma-automation-roboticarm/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
+            */DriverManager.getDriver().installApp("/Users/Mobileprogramming/Documents/hma-automation-roboticarm-bdd4.1.2/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
             TestUtils.log().info("Application installed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");

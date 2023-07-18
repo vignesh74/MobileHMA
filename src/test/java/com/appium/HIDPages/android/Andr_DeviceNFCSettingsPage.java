@@ -27,6 +27,9 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
     @AndroidFindBy(id = "android:id/switch_widget", priority = 1)
     private MobileElement btnOnOff;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='NFC']")
+    private MobileElement nfcTab;
+
     /**
      * These mobile elements are used for validating NFC Warning Banners
      */
@@ -59,6 +62,8 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
             String strNFCStatusValue = getElementText(appPrefencesScreenPage.getTxtNFCStatusValue());
             if (!strNFCStatus.equalsIgnoreCase(strNFCStatusValue)) {
                 appPrefencesScreenPage.clickOnNFCTab();
+                waitForVisibility(nfcTab);
+                click(nfcTab);
                 waitForVisibility(btnOnOff);
                 click(btnOnOff);
                 waitForGivenTime(1);
@@ -85,6 +90,8 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
         try {
             if(isDisplayed(nfcDisabled)){
                click(nfcDisabled);
+               waitForVisibility(nfcTab);
+               click(nfcTab);
                 waitForVisibility(btnOnOff);
                 click(btnOnOff);
                 waitForGivenTime(1);

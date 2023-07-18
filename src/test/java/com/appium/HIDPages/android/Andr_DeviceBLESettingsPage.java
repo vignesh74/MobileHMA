@@ -44,6 +44,17 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Deny']")
     private MobileElement permDeny;
+    @AndroidFindBy(id = "//android.widget.Button[@text='Allow']")
+    private MobileElement allow;
+
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_message")
+    private MobileElement permMsg;
+
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private MobileElement permAllow;
+
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_deny_button")
+    private MobileElement permDontAllow;
 
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
@@ -117,12 +128,32 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
         try {
             String strBLEStatusValue = getElementText(appPrefencesScreenPage.getTxtBluetoothStatusValue());
             String strPlatformVersion = DriverManager.getPlatformVersion();
-            if (!strBLEStatus.equalsIgnoreCase(strBLEStatusValue)) {
+            if (strBLEStatus.equalsIgnoreCase(strBLEStatusValue)) {
                click(bleDisabled);
                waitForGivenTime(2);
                 if(isDisplayed(message))
-                    click(permDeny);
-                else if (isDisplayed(txtConnectionRef)) {
+                {
+                    if (strBLEStatusValue.equals("On"))
+                    {
+                        click(allow);
+                    }
+                    else
+                    {
+                        click(permDeny);
+                    }
+                }
+              else if(isDisplayed(permMsg))
+                {
+                    if (strBLEStatusValue.equals("On"))
+                    {
+                        click(permAllow);
+                    }
+                    else
+                    {
+                        click(permDontAllow);
+                    }
+                }
+              else if (isDisplayed(txtConnectionRef)) {
                     txtConnectionRef.click();
                     waitForVisibility(appPrefencesScreenPage.getTxtBluetooth());
                     appPrefencesScreenPage.clickOnBLETab();
@@ -132,7 +163,9 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                     TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
                     loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
                     Assert.assertTrue(strActualBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
-                } else {
+                }
+              else
+                {
                     switch (strPlatformVersion) {
                         case "9","00" -> {
                             click(tglBtnBLE);
@@ -152,10 +185,13 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                         }
                     }
                 }
-            } else {
+            }
+            else
+            {
                 TestUtils.log().info("BLE  is  already set as {}",strBLEStatus);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             TestUtils.log().info("Exception occurred while setting the BLE status...");
         }
     }

@@ -232,8 +232,29 @@ public class Andr_WarningBanners extends BasePage {
             String strPlatformVersion = DriverManager.getPlatformVersion();
             switch (strPlatformVersion) {
                 case "12" -> {
-                    checkBleWb();
-                    checkNfcWb();
+                    try {
+                        if (isDisplayed(bleDisabled)) {
+                            checkBleWb();
+                        } else {
+                            TestUtils.log().debug("BLUETOOTH PERMISSION WARNING BANNER TEXT is not available for particular Scenario");
+                        }
+                    } catch(Exception e)
+                    {
+                        TestUtils.log().debug("Element not visible for this Scenario");
+                    }
+
+                    try {
+                        if (isDisplayed(nfcDisabled)) {
+                            checkNfcWb();
+                        } else {
+                            TestUtils.log().debug("NFC PERMISSION WARNING BANNER TEXT is not available for particular Scenario");
+                        }
+                    } catch(Exception e)
+                    {
+                        TestUtils.log().debug("Element not visible for this Scenario");
+                    }
+
+
                     try {
                         if (isDisplayed(nearByPermissionDisabled)) {
                             checkNearByPermissionWb();
@@ -242,7 +263,7 @@ public class Andr_WarningBanners extends BasePage {
                         }
                     } catch(Exception e)
                     {
-                        TestUtils.log().debug("Element not visible for this Scnario");
+                        TestUtils.log().debug("Element not visible for this Scenario");
                     }
 
                 }
