@@ -4,6 +4,7 @@ import com.appium.base.BasePage;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.testng.Assert;
 
 public class Andr_HIDInvitationCodeScreenPage extends BasePage {
 
@@ -110,7 +111,13 @@ public class Andr_HIDInvitationCodeScreenPage extends BasePage {
             if(InvitationPageTxt.equals(txtInviteCodeMessage.getText()))
 
             {
+                Assert.assertTrue(true, "The description in  Invitation page is  correct...");
                 TestUtils.log().debug(" The description in  Invitation page is  correct...");
+            }
+            else
+            {
+                Assert.assertTrue(false, "The description in  Invitation page is  incorrect...");
+                TestUtils.log().debug(" The description in  Invitation page is  incorrect...");
             }
 
         } catch (Exception e) {

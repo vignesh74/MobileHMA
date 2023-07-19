@@ -46,7 +46,7 @@ public class AndrStepDef {
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
-      /*      OnboardingScreen.checkVisibilityOfConvenientPage();
+            OnboardingScreen.checkVisibilityOfConvenientPage();
             OnboardingScreen.checkDescriptionConvScreen();
             OnboardingScreen.skipConvenientPage();
             DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
@@ -61,7 +61,7 @@ public class AndrStepDef {
             OnboardingScreen.skipTwistAndGoPage();
             DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
             TestUtils.log().info("Application removed.....");
-            */DriverManager.getDriver().installApp("/Users/Mobileprogramming/Documents/hma-automation-roboticarm-bdd4.1.2/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
+            DriverManager.getDriver().installApp("/Users/Mobileprogramming/Documents/hma-automation-roboticarm-bdd4.1.2/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
             TestUtils.log().info("Application installed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
@@ -93,22 +93,22 @@ public class AndrStepDef {
         TestUtils.log().info("Application launched.....");
 
         OnboardingScreen.skipConvenientPage();
-       // termsOfUseScreen.checkEulaPageLink();
-       // termsOfUseScreen.checkVisibilityOfEulaPage();
+        termsOfUseScreen.checkEulaPageLink();
+        termsOfUseScreen.checkVisibilityOfEulaPage();
         DriverManager.getDriver().launchApp();
         TestUtils.log().info("Application launched.....");
 
         OnboardingScreen.skipConvenientPage();
-       // termsOfUseScreen.checkEulaPageLink();
-      //  termsOfUseScreen.backButtonEula();
-      //  termsOfUseScreen.checkPrivacyPageLink();
-      //  termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
+        termsOfUseScreen.checkEulaPageLink();
+        termsOfUseScreen.backButtonEula();
+        termsOfUseScreen.checkPrivacyPageLink();
+        termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
         DriverManager.getDriver().launchApp();
         TestUtils.log().info("Application launched.....");
 
         OnboardingScreen.skipConvenientPage();
-       // termsOfUseScreen.checkPrivacyPageLink();
-      //  termsOfUseScreen.backButtonPrivacyNoticePage();
+        termsOfUseScreen.checkPrivacyPageLink();
+        termsOfUseScreen.backButtonPrivacyNoticePage();
         termsOfUseScreen.checkCheckBoxTxt();
         termsOfUseScreen.agreeCheckBox();
         termsOfUseScreen.continueTermsOfUsePage();

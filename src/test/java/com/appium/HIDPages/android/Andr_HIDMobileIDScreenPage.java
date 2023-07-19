@@ -504,6 +504,11 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
             if(!(checkHeader.equals(txtMobileIdDetails.getText())))
             {
+                Assert.assertTrue(true, "The Header is  correct...");
+                TestUtils.log().debug(" The Header is  correct...");
+            }
+            else{
+                Assert.assertTrue(false, "The Header is  incorrect...");
                 TestUtils.log().debug(" The Header is  incorrect...");
             }
 
@@ -519,6 +524,11 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
             if(!(checkNickname.equals(txtNickName.getText())))
             {
+                Assert.assertTrue(true, "The Nickname text is  correct...");
+                TestUtils.log().debug(" The Nickname text is  incorrect...");
+            }
+            else{
+                Assert.assertTrue(false, "The Nickname text is  incorrect...");
                 TestUtils.log().debug(" The Nickname text is  incorrect...");
             }
 
@@ -534,6 +544,12 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
             if(!(checkName.equals(txtName.getText())))
             {
+                Assert.assertTrue(true, "The Name text is  correct...");
+                TestUtils.log().debug(" The name text is  correct...");
+
+            }
+            else {
+                Assert.assertTrue(false, "The Name text is  incorrect...");
                 TestUtils.log().debug(" The name text is  incorrect...");
             }
 
@@ -550,6 +566,12 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
             if(!(checkMobileKeySet.equals(txtMobileKeySetName.getText())))
             {
+                Assert.assertTrue(true, "The mobile keyset  text is correct...");
+                TestUtils.log().debug(" The mobile keyset  text is  correct...");
+
+            }
+            else {
+                Assert.assertTrue(false, "The mobile keyset  text is incorrect...");
                 TestUtils.log().debug(" The mobile keyset  text is  incorrect...");
             }
 
@@ -565,6 +587,12 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
             if(!(checkOrganization.equals(txtCompany.getText())))
             {
+                Assert.assertTrue(true, "The organisation  text is  correct...");
+                TestUtils.log().debug(" The organisation  text is  correct...");
+
+            }
+            else {
+                Assert.assertTrue(false, "The organisation  text is  incorrect...");
                 TestUtils.log().debug(" The organisation  text is  incorrect...");
             }
 
@@ -580,6 +608,12 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
             if(!(checkIssuedOnDate.equals(txtIssued.getText())))
             {
+                Assert.assertTrue(true, "The IssuedOn  text is  correct...");
+                TestUtils.log().debug(" The IssuedOn  text is  correct...");
+            }
+            else
+            {
+                Assert.assertTrue(false, "The IssuedOn  text is  incorrect...");
                 TestUtils.log().debug(" The IssuedOn  text is  incorrect...");
             }
 
@@ -595,6 +629,12 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
             if(!(checkExpiresOn.equals(txtExpires.getText())))
             {
+                Assert.assertTrue(true, "The ExpiresOn  text is  correct...");
+                TestUtils.log().debug(" The ExpiresOn  text is  correct...");
+            }
+
+            else {
+                Assert.assertTrue(false, "The ExpiresOn  text is  incorrect...");
                 TestUtils.log().debug(" The ExpiresOn  text is  incorrect...");
             }
 
@@ -610,6 +650,11 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
             if(!(checkID.equals(txtIdNo.getText())))
             {
+                Assert.assertTrue(true, "The ID#  text is  correct...");
+                TestUtils.log().debug(" The ID#  text is  correct...");
+            }
+            else {
+                Assert.assertTrue(false, "The ID#  text is  incorrect...");
                 TestUtils.log().debug(" The ID#  text is  incorrect...");
             }
 
@@ -629,7 +674,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             }
 
             else
-                click(pencilEditIcon);
+            {click(pencilEditIcon);}
 
         } catch (Exception e) {
 

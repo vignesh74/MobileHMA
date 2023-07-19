@@ -4,6 +4,7 @@ import com.appium.base.BasePage;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.testng.Assert;
 
 
 public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
@@ -88,7 +89,12 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
             if(messageTermsOfUse.equals(txtTermsOfUse.getText()))
             {
+                Assert.assertTrue(true, "The description in  TermsOfUse page is  correct...");
                 TestUtils.log().debug(" The description in  TermsOfUse page is  correct...");
+            }
+            else {
+                Assert.assertTrue(false, "The description in  TermsOfUse page is  incorrect...");
+                TestUtils.log().debug(" The description in  TermsOfUse page is  incorrect...");
             }
 
         } catch (Exception e) {
@@ -112,12 +118,11 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
     public void checkEulaPageLink()
     {
         try {
-
             click(eulaBtn);
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while cancelling TermsOfUse page...");
+            TestUtils.log().debug("Exception occurred while clicking on Eula page link...");
         }
     }
 
@@ -129,7 +134,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while cancelling TermsOfUse page...");
+            TestUtils.log().debug("Exception occurred while clicking on Privacy  page link...");
         }
     }
 
@@ -161,10 +166,8 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         try {
 
             if (!isDisplayed(privacyHeaderTxt)) {
-                TestUtils.log().info("Eula Page is not displayed");
+                TestUtils.log().info("Privacy Notice Page is not displayed");
                 flag = true;
-
-
             }
 
            // scrollDownTillElement(25,0.00);
@@ -174,7 +177,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while checking visibility of Eula page...");
+            TestUtils.log().debug("Exception occurred while checking visibility of Privacy Notice page...");
         }
         return flag;
     }
@@ -208,7 +211,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while cancelling TermsOfUse page...");
+            TestUtils.log().debug("Exception occurred while navigating back from Eula page to TermsOfUse page...");
         }
     }
 
@@ -219,7 +222,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while cancelling TermsOfUse page...");
+            TestUtils.log().debug("Exception occurred while navigating back from Privacy Notice Page to TermsOfUse page...");
         }
     }
 
@@ -230,7 +233,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while cancelling TermsOfUse page...");
+            TestUtils.log().debug("Exception occurred while clicking on Checkbox in TermsOfUse page...");
         }
     }
 
@@ -240,7 +243,13 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
             if(messageCheckBox.equals(termsOfUseMessage.getText()))
             {
+                Assert.assertTrue(true, "The checkbox description in  TermsOfUse page is  correct...");
                 TestUtils.log().debug(" The checkbox description in  TermsOfUse page is  correct...");
+
+            }
+            else {
+                Assert.assertTrue(false, "The checkbox description in  TermsOfUse page is  incorrect...");
+                TestUtils.log().debug(" The checkbox description in  TermsOfUse page is  incorrect...");
             }
 
         } catch (Exception e) {

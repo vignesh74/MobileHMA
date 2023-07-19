@@ -4,6 +4,7 @@ import com.appium.base.BasePage;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.testng.Assert;
 
 public class Andr_HIDOnboardingScreenPage extends BasePage {
 
@@ -240,7 +241,12 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
             if(twistAndGoDescTxt.equals(twistAndGoDesc.getText()))
             {
+                Assert.assertTrue(true, "The description in  Twist&Go page is  correct...");
                 TestUtils.log().debug(" The description in  Twist&Go page is  correct...");
+            }
+            else{
+                Assert.assertTrue(false, "The description in  Twist&Go page is  incorrect...");
+                TestUtils.log().debug(" The description in  Twist&Go page is  incorrect...");
             }
 
         } catch (Exception e) {
@@ -256,7 +262,13 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
             if(convDescTxt.equals(convDesc.getText()))
 
             {
+                Assert.assertTrue(true, "The description in  Convenient page is  correct...");
                 TestUtils.log().debug(" The description in  Convenient page is  correct...");
+
+            }
+            else {
+                Assert.assertTrue(false, "The description in  Convenient page is  incorrect...");
+                TestUtils.log().debug(" The description in  Convenient page is  incorrect...");
             }
 
         } catch (Exception e) {
@@ -271,7 +283,13 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
             if(favReaderDescTxt.equals(favReaderDesc.getText()))
             {
+                Assert.assertTrue(true, "The description in  FavoriteReader Screen is correct...");
                 TestUtils.log().debug(" The description in  FavoriteReader Screen is correct...");
+            }
+            else {
+
+                Assert.assertTrue(false, "The description in  FavoriteReader Screen is incorrect...");
+                TestUtils.log().debug(" The description in  FavoriteReader Screen is incorrect...");
             }
 
         } catch (Exception e) {
@@ -286,7 +304,13 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
             if(bannersDescTxt.equals(bannerScreenDesc.getText()))
             {
+                Assert.assertTrue(true, "The description in  Banners Screen is correct...");
                 TestUtils.log().debug(" The description in  Banners Screen is correct...");
+
+            }
+            else {
+                Assert.assertTrue(false, "The description in  Banners Screen is incorrect...");
+                TestUtils.log().debug(" The description in  Banners Screen is incorrect...");
             }
 
         } catch (Exception e) {

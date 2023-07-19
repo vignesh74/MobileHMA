@@ -133,6 +133,7 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                waitForGivenTime(2);
                 if(isDisplayed(message))
                 {
+                    Assert.assertTrue(true, "The message is visible...");
                     if (strBLEStatusValue.equals("On"))
                     {
                         click(allow);
@@ -144,6 +145,7 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                 }
               else if(isDisplayed(permMsg))
                 {
+                    Assert.assertTrue(true, "The message is visible...");
                     if (strBLEStatusValue.equals("On"))
                     {
                         click(permAllow);

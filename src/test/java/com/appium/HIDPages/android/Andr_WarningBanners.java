@@ -3,6 +3,7 @@ package com.appium.HIDPages.android;
 import com.appium.base.BasePage;
 import com.appium.manager.DriverManager;
 import com.appium.utils.TestUtils;
+import com.mongodb.client.model.Facet;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
@@ -74,6 +75,16 @@ public class Andr_WarningBanners extends BasePage {
 
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_deny_button")
     private MobileElement permission_deny;
+    @AndroidFindBy(id = "com.android.settings:id/switch_text")
+    private MobileElement txtSwitchOnOffBle;
+
+    @AndroidFindBy(id = "//android.widget.TextView[@text='Denied']")
+    private MobileElement nearByStatusText;
+
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(id = "com.android.settings:id/switch_text", priority = 0)
+    @AndroidFindBy(id = "android:id/switch_text", priority = 1)
+    private MobileElement txtSwitchOnOffNfc;
 
 
     public boolean checkBleWb(){
@@ -83,18 +94,28 @@ public class Andr_WarningBanners extends BasePage {
 
             if(!(isDisplayed(bleDisabled)))
             {
-                TestUtils.log().debug("BLE WARNING BANNER TEXT is not visible for this particular Scenario");
+                TestUtils.log().debug("BLE WARNING BANNER TEXT is not visible ");
                 flag=true;
             }
             else
             {
-                MessageConstants.BLEWARNINGBANNERTEXT.equalsIgnoreCase(str);
-                TestUtils.log().debug("BLE WARNING BANNER TEXT is visible");
+
+                if(MessageConstants.BLEWARNINGBANNERTEXT.equalsIgnoreCase(str))
+                {
+                    Assert.assertTrue(true, "BLE WARNING BANNER TEXT is visible and is correct...");
+                    TestUtils.log().debug(" BLE WARNING BANNER TEXT is visible and is correct");
+                }
+                else {
+                    Assert.assertTrue(false, "BLE WARNING BANNER TEXT is incorrect...");
+                    TestUtils.log().debug(" BLE WARNING BANNER TEXT is incorrect");
+                }
+
+
             }
         }
         catch(Exception e)
         {
-            TestUtils.log().debug("Exception occurred while checking on Location Disabled Warning Banner tab...");
+            TestUtils.log().debug("Exception occurred while checking on BLE Disabled Warning Banner tab...");
         }
         return flag;
     }
@@ -107,18 +128,26 @@ public class Andr_WarningBanners extends BasePage {
 
             if(!(isDisplayed(nfcDisabled)))
             {
-                TestUtils.log().debug("NFC WARNING BANNER TEXT is not visible for this particular Scenario");
+                TestUtils.log().debug("NFC WARNING BANNER TEXT is not visible ");
                flag=true;
             }
             else
             {
-                MessageConstants.NFCWARNINGBANNERTEXT.equalsIgnoreCase(str);
-                TestUtils.log().debug("NFC WARNING BANNER TEXT is visible");
+
+                if(MessageConstants.NFCWARNINGBANNERTEXT.equalsIgnoreCase(str))
+                {
+                Assert.assertTrue(true, "NFC WARNING BANNER TEXT is visible and is correct...");
+                TestUtils.log().debug(" NFC WARNING BANNER TEXT is visible and is correct");
+                }
+                else {
+                    Assert.assertTrue(false, "NFC WARNING BANNER TEXT is incorrect...");
+                    TestUtils.log().debug(" NFC WARNING BANNER TEXT is incorrect");
+                }
             }
         }
         catch(Exception e)
         {
-            TestUtils.log().debug("Exception occurred while checking on Location Disabled Warning Banner tab...");
+            TestUtils.log().debug("Exception occurred while checking on NFC Disabled Warning Banner tab...");
         }
         return flag;
     }
@@ -136,13 +165,20 @@ public class Andr_WarningBanners extends BasePage {
             }
             else
             {
-                MessageConstants.GPSWARNINGBANNERTEXT.equalsIgnoreCase(str);
-                TestUtils.log().debug("GPS WARNING BANNER TEXT is  visible ");
+                if(MessageConstants.GPSWARNINGBANNERTEXT.equalsIgnoreCase(str))
+                {
+                    Assert.assertTrue(true, "GPS WARNING BANNER TEXT is visible and is correct...");
+                    TestUtils.log().debug("GPS WARNING BANNER TEXT is  visible and is correct");
+                }
+                else {
+                    Assert.assertTrue(false, "GPS WARNING BANNER TEXT is incorrect...");
+                    TestUtils.log().debug("GPS WARNING BANNER TEXT is incorrect");
+                }
             }
         }
         catch(Exception e)
         {
-            TestUtils.log().debug("Exception occurred while checking on Location Disabled Warning Banner tab...");
+            TestUtils.log().debug("Exception occurred while checking on GPS Disabled Warning Banner tab...");
         }
         return flag;
     }
@@ -155,13 +191,20 @@ public class Andr_WarningBanners extends BasePage {
             if(!(isDisplayed(locationPermissionDisabled)))
             {
 
-                TestUtils.log().debug("LOCATION PERMISSION WARNING BANNER TEXT is not visible for this particular Scenario");
+                TestUtils.log().debug("LOCATION PERMISSION WARNING BANNER TEXT is not visible ");
                 flag=true;
             }
             else
             {
-                MessageConstants.LOCATIONPERMISSIONWARNINGBANNERTEXT.equalsIgnoreCase(str);
-                TestUtils.log().debug("LOCATION PERMISSION WARNING BANNER TEXT is visible");
+                if(MessageConstants.LOCATIONPERMISSIONWARNINGBANNERTEXT.equalsIgnoreCase(str))
+                {
+                    Assert.assertTrue(true, "LOCATION PERMISSION WARNING BANNER TEXT is visible and is correct...");
+                    TestUtils.log().debug("LOCATION PERMISSION WARNING BANNER TEXT is visible and is correct");
+                }
+                else {
+                    Assert.assertTrue(false, "LOCATION PERMISSION WARNING BANNER TEXT is incorrect...");
+                    TestUtils.log().debug("LOCATION PERMISSION WARNING BANNER TEXT is incorrect");
+                }
             }
         }
         catch(Exception e)
@@ -174,10 +217,16 @@ public class Andr_WarningBanners extends BasePage {
     public void checkNearByPermissionWb(){
         String str=nearByPermissionDisabledText.getText();
         try{
-
-                MessageConstants.NEARBYPERMISSIONWARNINGBANNERTEXT.equalsIgnoreCase(str);
-                TestUtils.log().debug("NEARBY PERMISSION WARNING BANNER TEXT is visible ");
-
+            if(MessageConstants.NEARBYPERMISSIONWARNINGBANNERTEXT.equalsIgnoreCase(str))
+            {
+            Assert.assertTrue(true, "NEARBY PERMISSION WARNING BANNER TEXT is visible and is correct");
+            TestUtils.log().debug(" NEARBY PERMISSION WARNING BANNER TEXT is visible and is correct");
+            }
+            else
+            {
+                Assert.assertTrue(false, "NEARBY PERMISSION WARNING BANNER TEXT is incorrect");
+                TestUtils.log().debug(" NEARBY PERMISSION WARNING BANNER TEXT is is incorrect");
+            }
         }
         catch(Exception e)
         {
@@ -234,9 +283,22 @@ public class Andr_WarningBanners extends BasePage {
                 case "12" -> {
                     try {
                         if (isDisplayed(bleDisabled)) {
+                            Assert.assertTrue(true, "The BLE Disabled Banner is visible...");
+                            TestUtils.log().debug(" The BLE Disabled Banner is visible...");
                             checkBleWb();
-                        } else {
-                            TestUtils.log().debug("BLUETOOTH PERMISSION WARNING BANNER TEXT is not available for particular Scenario");
+                        }
+                        else
+                        {
+                            if(deviceBLESettingsPage.getElementText(txtSwitchOnOffBle).equalsIgnoreCase("On"))
+                            {
+                                Assert.assertTrue(true, "The BLE Disabled Banner is not available for particular Scenario...");
+                                TestUtils.log().debug("BLUETOOTH PERMISSION DISABLED WARNING BANNER  is not available for particular Scenario...");
+                            }
+                            else
+                            {
+                                Assert.assertTrue(false, "The BLE Disabled Banner is not visible....");
+                                TestUtils.log().debug("BLUETOOTH PERMISSION DISABLED WARNING BANNER  is not visible....");
+                            }
                         }
                     } catch(Exception e)
                     {
@@ -245,9 +307,20 @@ public class Andr_WarningBanners extends BasePage {
 
                     try {
                         if (isDisplayed(nfcDisabled)) {
+                            Assert.assertTrue(true, "The NFC Disabled Banner is visible...");
+                            TestUtils.log().debug(" The NFC Disabled Banner is visible...");
                             checkNfcWb();
-                        } else {
-                            TestUtils.log().debug("NFC PERMISSION WARNING BANNER TEXT is not available for particular Scenario");
+                        } else
+                        {
+                            if(deviceNFCSettingsPage.getElementText(txtSwitchOnOffNfc).equalsIgnoreCase("On"))
+                            {
+                                Assert.assertTrue(true, "The NFC Disabled Banner is not available for particular Scenario...");
+                                TestUtils.log().debug("NFC PERMISSION DISABLED WARNING BANNER  is not available for particular Scenario...");
+                            }
+                            else {
+                                Assert.assertTrue(false, "The NFC Disabled Banner is not visible...");
+                                TestUtils.log().debug("NFC PERMISSION DISABLED WARNING BANNER  is not visible...");
+                            }
                         }
                     } catch(Exception e)
                     {
@@ -257,9 +330,21 @@ public class Andr_WarningBanners extends BasePage {
 
                     try {
                         if (isDisplayed(nearByPermissionDisabled)) {
+                            Assert.assertTrue(true, "The Nearby Permission Disabled Banner is visible...");
+                            TestUtils.log().debug(" The Nearby Permission Disabled Banner is visible...");
                             checkNearByPermissionWb();
                         } else {
-                            TestUtils.log().debug("NEARBY PERMISSION WARNING BANNER TEXT is not available for particular Scenario");
+                            if(getElementText(nearByStatusText).equalsIgnoreCase("Granted"))
+                            {
+                                Assert.assertTrue(true, "The Nearby Permission Disabled Banner is not available for particular Scenario...");
+                                TestUtils.log().debug("NEARBY PERMISSION WARNING BANNER TEXT is not available for particular Scenario");
+                            }
+                            else
+                            {
+                                Assert.assertTrue(false, "The Nearby Permission Disabled Banner is not visible...");
+                                TestUtils.log().debug("NEARBY PERMISSION WARNING BANNER TEXT is not visible");
+                            }
+
                         }
                     } catch(Exception e)
                     {

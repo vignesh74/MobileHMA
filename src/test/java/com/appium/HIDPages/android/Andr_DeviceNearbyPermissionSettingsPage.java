@@ -7,6 +7,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
+import org.testng.Assert;
 
 import static com.appium.constants.MessageConstants.*;
 
@@ -412,35 +413,43 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     //click(locTab);
                     if(isDisplayed(permMsg))
                     {
-                        if(strLocationOrNearBy.equals("Allow"))
-                        {
-                            click(permAllow);
-                        }
-                        else
-                        {
-                            click(permDeny);
-                        }
+                        Assert.assertTrue(true, "The permission message is visible...");
+                        TestUtils.log().debug(" The permission message is visible...");
+                            if(strLocationOrNearBy.equals("Allow"))
+                            {
+                                click(permAllow);
+                            }
+                            else
+                            {
+                             click(permDeny);
+                            }
                     }
                     else if (isDisplayed(msg))
                     {
-                        if(strLocationOrNearBy.equals("Allow"))
-                        {
-                            click(allow);
-                        }
+                        Assert.assertTrue(true, "The  message popup is visible...");
+                        TestUtils.log().debug(" The  message popup is visible...");
+                         if(strLocationOrNearBy.equals("Allow"))
+                         {
+                                click(allow);
+                         }
 
-                        else
-                        {
+                         else
+                         {
                             click(deny);
-                        }
+                         }
                     }
                     else
                     {
                       if(isDisplayed(nearByPermissionDisabled))
                       {
+                          Assert.assertTrue(true, "The Nearby Permission Warning Banner is visible...");
+                          TestUtils.log().debug(" The Nearby Permission Warning Banner is visible...");
                           click(nearByPermissionDisabled);
                       }
                       else
                       {
+                          Assert.assertTrue(true, "The Nearby Permission Warning Banner is not visible for this Scenario...");
+                          TestUtils.log().debug(" The Nearby Permission Warning Banner is not visible for this Scenario...");
                           appPrefencesScreenPage.clickOnNearByPermission();
                       }
 
