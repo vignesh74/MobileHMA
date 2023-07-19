@@ -78,7 +78,7 @@ public class Andr_WarningBanners extends BasePage {
     @AndroidFindBy(id = "com.android.settings:id/switch_text")
     private MobileElement txtSwitchOnOffBle;
 
-    @AndroidFindBy(id = "//android.widget.TextView[@text='Denied']")
+    @AndroidFindBy(id = "//android.widget.TextView[@text='Granted always']")
     private MobileElement nearByStatusText;
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
