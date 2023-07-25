@@ -363,7 +363,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
         try {
             String strDevicePlatformVersion = DriverManager.getPlatformVersion();
             String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
-
+            String txtNearByPermStatusValue=getElementText(appPrefencesScreenPage.getTxtNearByPermissionStatusValue());
             switch (strDevicePlatformVersion) {
                 case "9" -> {
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
@@ -411,40 +411,41 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                    // handlePermissionMsg();
                     //clickOnPermissionTab();
                     //click(locTab);
-                    if(isDisplayed(permMsg))
-                    {
-                        Assert.assertTrue(true, "The permission message is visible...");
-                        TestUtils.log().debug(" The permission message is visible...");
-                            if(strLocationOrNearBy.equals("Allow"))
-                            {
-                                click(permAllow);
-                            }
-                            else
-                            {
-                             click(permDeny);
-                            }
-                    }
-                    else if (isDisplayed(msg))
-                    {
-                        Assert.assertTrue(true, "The  message popup is visible...");
-                        TestUtils.log().debug(" The  message popup is visible...");
-                         if(strLocationOrNearBy.equals("Allow"))
-                         {
-                                click(allow);
-                         }
 
-                         else
-                         {
-                            click(deny);
-                         }
-                    }
-                    else
-                    {
+                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtNearByPermStatusValue))
                       if(isDisplayed(nearByPermissionDisabled))
                       {
                           Assert.assertTrue(true, "The Nearby Permission Warning Banner is visible...");
                           TestUtils.log().debug(" The Nearby Permission Warning Banner is visible...");
                           click(nearByPermissionDisabled);
+                          if(isDisplayed(permMsg))
+                          {
+                              Assert.assertTrue(true, "The permission message is visible...");
+                              TestUtils.log().debug(" The permission message is visible...");
+                              if(strLocationOrNearBy.equals("Allow"))
+                              {
+                                  click(permAllow);
+                              }
+                              else
+                              {
+                                  click(permDeny);
+                              }
+                          }
+                          else if (isDisplayed(msg))
+                          {
+                              Assert.assertTrue(true, "The  message popup is visible...");
+                              TestUtils.log().debug(" The  message popup is visible...");
+                              if(strLocationOrNearBy.equals("Allow"))
+                              {
+                                  click(allow);
+                              }
+
+                              else
+                              {
+                                  click(deny);
+                              }
+                          }
+
                       }
                       else
                       {
@@ -488,7 +489,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         }
                     }
                 }
-            }
+
             loopHandle(txtAppPreferences, NAVIGATE_BACK, 10);
         } catch (Exception e) {
             TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE,e.getMessage());

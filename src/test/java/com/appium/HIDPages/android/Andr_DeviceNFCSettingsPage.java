@@ -2,6 +2,7 @@ package com.appium.HIDPages.android;
 
 import com.appium.base.BasePage;
 
+import com.appium.manager.DriverManager;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -88,25 +89,28 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
     }
     public void setNFCStatusWb(String strNFCStatus) {
         try {
+            String strNFCStatusValue = getElementText(appPrefencesScreenPage.getTxtNFCStatusValue());
 
-            if (isDisplayed(nfcDisabled)) {
-            click(nfcDisabled);
-            waitForVisibility(nfcTab);
-            click(nfcTab);
-            waitForVisibility(btnOnOff);
-            click(btnOnOff);
-            waitForGivenTime(1);
-            if (isDisplayed(txtSwitchOnOff)) {
-                String strActualNFCStatus = getElementText(txtSwitchOnOff);
-                TestUtils.log().info("NFC has been set as {}", strActualNFCStatus);
-                Assert.assertTrue(strNFCStatus.equalsIgnoreCase(strActualNFCStatus), "NFC status set as" + strActualNFCStatus);
-                TestUtils.log().info("NFC as: {}", strActualNFCStatus);
+            if (!strNFCStatus.equalsIgnoreCase(strNFCStatusValue)) {
+                {
+                    click(nfcDisabled);
+                    waitForVisibility(nfcTab);
+                    click(nfcTab);
+                    waitForVisibility(btnOnOff);
+                    click(btnOnOff);
+                    waitForGivenTime(1);
+                    if (isDisplayed(txtSwitchOnOff)) {
+                        String strActualNFCStatus = getElementText(txtSwitchOnOff);
+                        TestUtils.log().info("NFC has been set as {}", strActualNFCStatus);
+                        Assert.assertTrue(strNFCStatus.equalsIgnoreCase(strActualNFCStatus), "NFC status set as" + strActualNFCStatus);
+                        TestUtils.log().info("NFC as: {}", strActualNFCStatus);
+                    }
+                    loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), "navigateBack", 10);
+                    waitForGivenTime(1);
+                    Assert.assertTrue(strNFCStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtNFCStatusValue().getText()));
+                    TestUtils.log().info("NFC has been set as {}", appPrefencesScreenPage.getTxtNFCStatusValue().getText());
+                }
             }
-            loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), "navigateBack", 10);
-            waitForGivenTime(1);
-            Assert.assertTrue(strNFCStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtNFCStatusValue().getText()));
-            TestUtils.log().info("NFC has been set as {}", appPrefencesScreenPage.getTxtNFCStatusValue().getText());
-        }
             else
             {
                 TestUtils.log().info("NFC is already set as {}",strNFCStatus);

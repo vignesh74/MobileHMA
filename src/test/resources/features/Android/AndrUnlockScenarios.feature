@@ -803,7 +803,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     @Android9_8_7_RevE_Tap_WF_3 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                          | robotic_arm_log |
-     | RevE        | _Tap_WF3_TC-09 | Unlocked    | On         | Off        | Always                      | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
+      | RevE        | _Tap_WF3_TC-09 | Unlocked    | On         | Off        | Always                      | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
       | RevE        | _Tap_WF3_TC-10 | Unlocked    | On         | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
       | RevE        | _Tap_WF3_TC-11 | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
       | RevE        | _Tap_WF3_TC-12 | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |

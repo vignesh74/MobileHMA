@@ -69,9 +69,9 @@ public class AndrStepDef {
             OnboardingScreen.checkVisibilityOfBannersPage();
             OnboardingScreen.checkDescriptionBannersScreen();
             OnboardingScreen.GetStartedBannersPage();
-            //OnboardingScreen.checkVisibilityOfFavoriteReaderPage();
-            //OnboardingScreen.checkDescriptionFavoriteReaderScreen();
-            //OnboardingScreen.GetStartedFavoriteReaderPage();
+            OnboardingScreen.checkVisibilityOfFavoriteReaderPage();
+            OnboardingScreen.checkDescriptionFavoriteReaderScreen();
+            OnboardingScreen.GetStartedFavoriteReaderPage();
 
     }
 
@@ -104,7 +104,7 @@ public class AndrStepDef {
         termsOfUseScreen.checkPrivacyPageLink();
         termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
         DriverManager.getDriver().launchApp();
-        TestUtils.log().info("Application launched.....");
+       TestUtils.log().info("Application launched.....");
 
         OnboardingScreen.skipConvenientPage();
         termsOfUseScreen.checkPrivacyPageLink();
@@ -116,10 +116,10 @@ public class AndrStepDef {
 
         invitationScreen.checkVisibilityOfInvitationPage();
         invitationScreen.checkDescriptionInvitationPage();
-        //OnboardingScreen.skipConvenientPage();
-      //  termsOfUseScreen.acceptTermsOfUsePage();
-        //invitationScreen.clickScanQRButton();
-        //invitationScreen.checkScanQrCodeButton();
+        OnboardingScreen.skipConvenientPage();
+     //   termsOfUseScreen.acceptTermsOfUsePage();
+       // invitationScreen.clickScanQRButton();
+       // invitationScreen.checkScanQrCodeButton();
         invitationScreen.checkAboutInfo();
         invitationScreen.toastMessageAboutScreen();
 
