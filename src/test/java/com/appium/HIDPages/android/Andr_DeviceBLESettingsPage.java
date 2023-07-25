@@ -6,6 +6,8 @@ import com.appium.manager.DriverManager;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.HowToUseLocators;
+import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import org.testng.Assert;
 
 import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
@@ -21,10 +23,15 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
      */
     @AndroidFindBy(id = "com.android.settings:id/switch_text")
     private MobileElement txtSwitchOnOff;
-    @AndroidFindBy(id = "com.android.settings:id/switch_widget")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(id = "android:id/switch_widget",priority = 0)
+    @AndroidFindBy(id = "com.android.settings:id/switch_widget",priority = 1)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Use Bluetooth']",priority = 2)
     private MobileElement btnOnOff;
 
-    @AndroidFindBy(xpath = "//*[@text='Connection preferences']")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(xpath = "//*[@text='Connection preferences']",priority = 1)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Connection preferences']",priority = 0)
     private MobileElement txtConnectionRef;
 
     @AndroidFindBy(id = "android:id/checkbox")
@@ -44,7 +51,7 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Deny']")
     private MobileElement permDeny;
-    @AndroidFindBy(id = "//android.widget.Button[@text='Allow']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Allow']")
     private MobileElement allow;
 
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_message")
@@ -128,35 +135,34 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
         try {
             String strBLEStatusValue = getElementText(appPrefencesScreenPage.getTxtBluetoothStatusValue());
             String strPlatformVersion = DriverManager.getPlatformVersion();
-            if (strBLEStatus.equalsIgnoreCase(strBLEStatusValue)) {
-               click(bleDisabled);
-               waitForGivenTime(2);
-                if(isDisplayed(message))
-                {
-                    Assert.assertTrue(true, "The message is visible...");
-                    if (strBLEStatusValue.equals("On"))
-                    {
-                        click(allow);
-                    }
-                    else
-                    {
-                        click(permDeny);
-                    }
-                }
-              else if(isDisplayed(permMsg))
-                {
-                    Assert.assertTrue(true, "The message is visible...");
-                    if (strBLEStatusValue.equals("On"))
-                    {
-                        click(permAllow);
-                    }
-                    else
-                    {
-                        click(permDontAllow);
+            if (!strBLEStatus.equalsIgnoreCase(strBLEStatusValue)) {
+                if (strBLEStatusValue.equalsIgnoreCase("Off")) {
+                    click(bleDisabled);
+                    waitForGivenTime(2);
+                    if (isDisplayed(message)) {
+                        Assert.assertTrue(true, "The message is visible...");
+                        if (strBLEStatus.equalsIgnoreCase("Off")) {
+
+                            click(permDeny);
+                        } else {
+                            click(allow);
+                        }
+                    } else if (isDisplayed(permMsg)) {
+                        Assert.assertTrue(true, "The message is visible...");
+                        if (strBLEStatus.equalsIgnoreCase("Off")) {
+                            click(permDontAllow);
+                        } else {
+                            click(permAllow);
+                        }
                     }
                 }
-              else if (isDisplayed(txtConnectionRef)) {
-                    txtConnectionRef.click();
+
+              else if(strBLEStatusValue.equalsIgnoreCase("On"))
+              {
+                  Assert.assertTrue(true, "The pop up messages are not visible...");
+                  appPrefencesScreenPage.clickOnBLETab();
+
+                    click(txtConnectionRef);
                     waitForVisibility(appPrefencesScreenPage.getTxtBluetooth());
                     appPrefencesScreenPage.clickOnBLETab();
                     waitForVisibility(btnOnOff);

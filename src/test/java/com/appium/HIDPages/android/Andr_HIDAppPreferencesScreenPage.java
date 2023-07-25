@@ -15,7 +15,11 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     /**
      * mobile elements - These are mobile elements which is present in app preferences page Date-25/01/2023
      */
-    @AndroidFindBy(xpath = "//*[@text='Bluetooth']")
+
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(xpath = "//*[@text='Bluetooth']",priority = 2)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bluetooth']",priority = 0)
+    @AndroidFindBy(xpath = "android.widget.TextView[@text='Use Bluetooth']",priority = 1)
     private MobileElement txtBluetooth;
 
     @AndroidFindBy(xpath = "//*[@text='NFC']")

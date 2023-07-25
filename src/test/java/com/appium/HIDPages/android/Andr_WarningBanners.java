@@ -86,6 +86,12 @@ public class Andr_WarningBanners extends BasePage {
     @AndroidFindBy(id = "android:id/switch_text", priority = 1)
     private MobileElement txtSwitchOnOffNfc;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.hidglobal.mobilekeys.android.v3:id/statusDevices']")
+    private MobileElement nfcStatusOn;
+
+    @AndroidFindBy(xpath ="//android.widget.TextView[@text='Off']")
+    private MobileElement nfcStatusOff;
+
 
     public boolean checkBleWb(){
         boolean flag = false;
@@ -312,7 +318,7 @@ public class Andr_WarningBanners extends BasePage {
                             checkNfcWb();
                         } else
                         {
-                            if(deviceNFCSettingsPage.getElementText(txtSwitchOnOffNfc).equalsIgnoreCase("On"))
+                            if(deviceNFCSettingsPage.getElementText(nfcStatusOn).equalsIgnoreCase("On"))
                             {
                                 Assert.assertTrue(true, "The NFC Disabled Banner is not available for particular Scenario...");
                                 TestUtils.log().debug("NFC PERMISSION DISABLED WARNING BANNER  is not available for particular Scenario...");

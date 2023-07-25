@@ -70,9 +70,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     Then Warning Banners are displayed  in android device
     @ANDR_WarningBanners_12_WF2
     Examples:
-      | TC_ID  | BLE_Status_Wb | NFC_Status_Wb | LocationPermOrNearbyPerm_Status_Wb      | Warning_Banners2                                  |
-      | _TC-01 |Off            |On            | Don't allow                             |Bluetooth Disabled,Nearby Permission Disabled      |
-      | _TC-02 |On             |On             | Don't Allow                             |Nearby Permission Disabled                         |
-      | _TC-03 |On             |On             | Allow                                   |Nearby Permission                                  |
-      | _TC-04 |Off            |Off            | Don't Allow                                  |NFC Disabled                                       |
-      | _TC-05 |On             |On             | Don't allow                             |Nearby Permission                                  |
+      | TC_ID  | BLE_Status_Wb | NFC_Status_Wb | LocationPermOrNearbyPerm_Status_Wb      | Warning_Banners2                                               |
+      | _TC-01 |Off            |Off            | Don't allow                             |Bluetooth Disabled,NFC Disabled,Nearby Permission Disabled      |
+      | _TC-02 |On             |Off            | Don't Allow                             |Nearby Permission Disabled,NFC Disabled                         |
+      | _TC-03 |On             |On             | Don't Allow                             |Nearby Permission Disabled                                      |

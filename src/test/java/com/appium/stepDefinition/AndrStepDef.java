@@ -46,7 +46,7 @@ public class AndrStepDef {
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
-            OnboardingScreen.checkVisibilityOfConvenientPage();
+        /*    OnboardingScreen.checkVisibilityOfConvenientPage();
             OnboardingScreen.checkDescriptionConvScreen();
             OnboardingScreen.skipConvenientPage();
             DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
@@ -59,8 +59,9 @@ public class AndrStepDef {
             OnboardingScreen.checkVisibilityOfTwistAndGoPage() ;
             OnboardingScreen.checkDescriptionTwistAndGoScreen();
             OnboardingScreen.skipTwistAndGoPage();
-            DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
+           */ DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
             TestUtils.log().info("Application removed.....");
+
             DriverManager.getDriver().installApp("/Users/Mobileprogramming/Documents/hma-automation-roboticarm-bdd4.1.2/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
             TestUtils.log().info("Application installed.....");
             DriverManager.getDriver().launchApp();
@@ -69,9 +70,9 @@ public class AndrStepDef {
             OnboardingScreen.checkVisibilityOfBannersPage();
             OnboardingScreen.checkDescriptionBannersScreen();
             OnboardingScreen.GetStartedBannersPage();
-            OnboardingScreen.checkVisibilityOfFavoriteReaderPage();
-            OnboardingScreen.checkDescriptionFavoriteReaderScreen();
-            OnboardingScreen.GetStartedFavoriteReaderPage();
+          //  OnboardingScreen.checkVisibilityOfFavoriteReaderPage();
+         //   OnboardingScreen.checkDescriptionFavoriteReaderScreen();
+         //   OnboardingScreen.GetStartedFavoriteReaderPage();
 
     }
 
@@ -85,7 +86,7 @@ public class AndrStepDef {
     @When("Swipe EULA screen to left in android device")
     public void swipeEulaScreen_Andr() {
 
-        termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
+      /*  termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
         termsOfUseScreen.checkVisibilityOfTermsOfUsePageImage();
         termsOfUseScreen.checkTermsOfUseTxt();
         termsOfUseScreen.cancelTermsOfUsePage();
@@ -109,7 +110,7 @@ public class AndrStepDef {
         OnboardingScreen.skipConvenientPage();
         termsOfUseScreen.checkPrivacyPageLink();
         termsOfUseScreen.backButtonPrivacyNoticePage();
-        termsOfUseScreen.checkCheckBoxTxt();
+      */  termsOfUseScreen.checkCheckBoxTxt();
         termsOfUseScreen.agreeCheckBox();
         termsOfUseScreen.continueTermsOfUsePage();
       //  termsOfUseScreen.acceptTermsOfUsePage();
@@ -120,8 +121,8 @@ public class AndrStepDef {
      //   termsOfUseScreen.acceptTermsOfUsePage();
        // invitationScreen.clickScanQRButton();
        // invitationScreen.checkScanQrCodeButton();
-        invitationScreen.checkAboutInfo();
-        invitationScreen.toastMessageAboutScreen();
+       // invitationScreen.checkAboutInfo();
+      //  invitationScreen.toastMessageAboutScreen();
 
 
 

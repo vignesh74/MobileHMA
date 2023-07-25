@@ -379,13 +379,13 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                             }
                         }
                     } else
-                        TestUtils.log().info("Location Permission is already set as {}",strLocOrNearByPerm);
+                        TestUtils.log().info("Location Permission is already set as {}", strLocOrNearByPerm);
 
                     waitForVisibility(tglBtnLocationPermission);
                     click(tglBtnLocationPermission);
                     String strCheckedValue = getElementAttribute(tglBtnLocationPermission, CHECKED_MESSAGE);
                     if (strCheckedValue.equalsIgnoreCase(FALSE_MESSAGE)) {
-                        TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
+                        TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
                     }
                 }
                 case "7", "8" -> {
@@ -402,57 +402,44 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                             TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
                         }
                     } else
-                        TestUtils.log().info("Location Permission is already set as {}",strLocOrNearByPerm);
+                        TestUtils.log().info("Location Permission is already set as {}", strLocOrNearByPerm);
 
                 }
                 default -> {
                     // appPreferencesScreenPage.clickOnLocationPermission();
                     //waitForGivenTime(2);
-                   // handlePermissionMsg();
+                    // handlePermissionMsg();
                     //clickOnPermissionTab();
                     //click(locTab);
 
-                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtNearByPermStatusValue))
-                      if(isDisplayed(nearByPermissionDisabled))
-                      {
-                          Assert.assertTrue(true, "The Nearby Permission Warning Banner is visible...");
-                          TestUtils.log().debug(" The Nearby Permission Warning Banner is visible...");
-                          click(nearByPermissionDisabled);
-                          if(isDisplayed(permMsg))
-                          {
-                              Assert.assertTrue(true, "The permission message is visible...");
-                              TestUtils.log().debug(" The permission message is visible...");
-                              if(strLocationOrNearBy.equals("Allow"))
-                              {
-                                  click(permAllow);
-                              }
-                              else
-                              {
-                                  click(permDeny);
-                              }
-                          }
-                          else if (isDisplayed(msg))
-                          {
-                              Assert.assertTrue(true, "The  message popup is visible...");
-                              TestUtils.log().debug(" The  message popup is visible...");
-                              if(strLocationOrNearBy.equals("Allow"))
-                              {
-                                  click(allow);
-                              }
 
-                              else
-                              {
-                                  click(deny);
-                              }
-                          }
+                        if (isDisplayed(nearByPermissionDisabled)) {
+                            Assert.assertTrue(true, "The Nearby Permission Warning Banner is visible...");
+                            TestUtils.log().debug(" The Nearby Permission Warning Banner is visible...");
+                            click(nearByPermissionDisabled);
+                            if (isDisplayed(permMsg)) {
+                                Assert.assertTrue(true, "The permission message is visible...");
+                                TestUtils.log().debug(" The permission message is visible...");
+                                if (strLocationOrNearBy.equals("Allow")) {
+                                    click(permAllow);
+                                } else {
+                                    click(permDeny);
+                                }
+                            } else if (isDisplayed(msg)) {
+                                Assert.assertTrue(true, "The  message popup is visible...");
+                                TestUtils.log().debug(" The  message popup is visible...");
+                                if (strLocationOrNearBy.equals("Allow")) {
+                                    click(allow);
+                                } else {
+                                    click(deny);
+                                }
+                            }
 
-                      }
-                      else
-                      {
-                          Assert.assertTrue(true, "The Nearby Permission Warning Banner is not visible for this Scenario...");
-                          TestUtils.log().debug(" The Nearby Permission Warning Banner is not visible for this Scenario...");
-                          appPrefencesScreenPage.clickOnNearByPermission();
-                      }
+                        } else {
+                            Assert.assertTrue(true, "The Nearby Permission Warning Banner is not visible for this Scenario...");
+                            TestUtils.log().debug(" The Nearby Permission Warning Banner is not visible for this Scenario...");
+                            appPrefencesScreenPage.clickOnNearByPermission();
+                        }
 
                         clickOnPermissionTab();
                         clickOnNearByDevices();
@@ -487,9 +474,9 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                             }
                             default -> TestUtils.log().info("Please provide correct permission option for execution");
                         }
-                    }
-                }
 
+                }
+            }
             loopHandle(txtAppPreferences, NAVIGATE_BACK, 10);
         } catch (Exception e) {
             TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE,e.getMessage());
