@@ -60,6 +60,10 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
       | TC_ID  | BLE_Status    | NFC_Status     |   LocationPermOrNearbyPerm_Status     | Warning_Banners1                                          |
       | _TC-01 | Off           | Off            |    Allow                              | NFC Disabled_Bluetooth Disabled                           |
       | _TC-02 | Off           | Off            |    Don't allow                        | NFC Disabled_Bluetooth Disabled_Nearby Permission Disabled|
+      | _TC-03 | Off           | On             |    Allow                              | NFC Disabled_Bluetooth Disabled                           |
+      | _TC-04 | On            | Off            |    Don't Allow                        | Nearby Permission Disabled,NFC Disabled                   |
+      | _TC-05 | On            | On             |    Don't allow                        | NFC Disabled_Bluetooth Disabled_Nearby Permission Disabled|
+      | _TC-06 | On            | On             |    Allow                              | NFC Disabled_Bluetooth Disabled_Nearby Permission Disabled|
 
 
   Scenario Outline:ANDR_12_WarningBanners_WF2<TC_ID>: Verify that BLE status is <BLE_Status_Wb>, NFC status is <NFC_Status_Wb>,NearBy Permission is <LocationPermOrNearbyPerm_Status>
@@ -71,6 +75,9 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     @ANDR_WarningBanners_12_WF2
     Examples:
       | TC_ID  | BLE_Status_Wb | NFC_Status_Wb | LocationPermOrNearbyPerm_Status_Wb      | Warning_Banners2                                               |
-      | _TC-01 |Off            |Off            | Don't allow                             |Bluetooth Disabled,NFC Disabled,Nearby Permission Disabled      |
-      | _TC-02 |On             |Off            | Don't Allow                             |Nearby Permission Disabled,NFC Disabled                         |
-      | _TC-03 |On             |On             | Don't Allow                             |Nearby Permission Disabled                                      |
+      | _TC-01 |Off            |Off            | Allow                                   |Nearby Permission Disabled,NFC Disabled                         |
+      | _TC-02 |Off            |Off            | Don't allow                             |Bluetooth Disabled,NFC Disabled,Nearby Permission Disabled      |
+      | _TC-03 |On             |Off            | Don't Allow                             |Nearby Permission Disabled,NFC Disabled                         |
+      | _TC-04 |Off            |On             | Don't Allow                             |Nearby Permission Disabled,NFC Disabled                         |
+      | _TC-05 |On             |On             | Don't Allow                             |Nearby Permission Disabled                                      |
+      | _TC-06 |On             |On             | Allow                                   |                                                                |

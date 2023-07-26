@@ -167,10 +167,12 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                     appPrefencesScreenPage.clickOnBLETab();
                     waitForVisibility(btnOnOff);
                     click(btnOnOff);
-                    String strActualBLEStatus = getElementText(txtSwitchOnOff);
-                    TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
+                  //  String strActualBLEStatus = getElementText(txtSwitchOnOff);
+                  //  System.out.println("Status is"+strActualBLEStatus);
+                  //  TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
                     loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
-                    Assert.assertTrue(strActualBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
+                    System.out.println("Status is "+appPrefencesScreenPage.getTxtBluetoothStatusValue().getText());
+                    Assert.assertTrue(strBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
                 }
               else
                 {

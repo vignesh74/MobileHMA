@@ -93,6 +93,8 @@ public class Andr_WarningBanners extends BasePage {
     private MobileElement nfcStatusOff;
 
 
+
+
     public boolean checkBleWb(){
         boolean flag = false;
         String str=bleDisabledText.getText();
@@ -285,6 +287,7 @@ public class Andr_WarningBanners extends BasePage {
     public void warningBanners(){
         try{
             String strPlatformVersion = DriverManager.getPlatformVersion();
+
             switch (strPlatformVersion) {
                 case "12" -> {
                     try {
@@ -295,7 +298,7 @@ public class Andr_WarningBanners extends BasePage {
                         }
                         else
                         {
-                            if(deviceBLESettingsPage.getElementText(txtSwitchOnOffBle).equalsIgnoreCase("On"))
+                            if(appPreferenceScreenPage.getTxtBluetoothStatusValue().getText().equalsIgnoreCase("On"))
                             {
                                 Assert.assertTrue(true, "The BLE Disabled Banner is not available for particular Scenario...");
                                 TestUtils.log().debug("BLUETOOTH PERMISSION DISABLED WARNING BANNER  is not available for particular Scenario...");
