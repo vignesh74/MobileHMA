@@ -15,7 +15,7 @@
         <parameter name="emulator" value="false"></parameter>
         <parameter name="platformName" value="Android"></parameter>
         <parameter name="platformVersion" value="11"></parameter>
-        <parameter name="udid" value="RZ8MA0C8JEX"></parameter>
+        <parameter name="udid" value="R58N310ZXLR"></parameter>
         <parameter name="installApp" value="true"></parameter>
         <parameter name="deviceName" value="TestPhone-ANDROID"></parameter>
         <parameter name="systemPort" value="10031"/>
