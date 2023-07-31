@@ -14,8 +14,8 @@
     <test name="Tests_on_iOS_15">
         <parameter name="simulator" value="false"></parameter>
         <parameter name="platformName" value="iOS"></parameter>
-        <parameter name="platformVersion" value="15"></parameter>
-        <parameter name="udid" value="00008110-0010455A3A47801E"></parameter>
+        <parameter name="platformVersion" value="16"></parameter>
+        <parameter name="udid" value="00008020-001A656C1105002E"></parameter>
         <parameter name="installApp" value="false"></parameter>
         <parameter name="deviceName" value="TestPhone-IOS"></parameter>
         <parameter name="systemPort" value="10031"/>
