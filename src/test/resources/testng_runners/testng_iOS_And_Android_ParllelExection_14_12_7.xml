@@ -35,7 +35,7 @@
         <parameter name="udid" value="R58N310ZXLR"></parameter>
         <parameter name="installApp" value="true"></parameter>
         <parameter name="deviceName" value="TestPhone-ANDROID"></parameter>
-        <parameter name="systemPort" value="1101"/>
+        <parameter name="systemPort" value="2301"/>
         <parameter name="chromeDriverPort" value="11033"/>
         <parameter name="wdaLocalPort" value=""/>
         <parameter name="webkitDebugProxyPort" value="9228"/>
