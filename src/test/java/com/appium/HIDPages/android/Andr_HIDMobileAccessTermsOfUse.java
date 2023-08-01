@@ -7,6 +7,10 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.testng.Assert;
 
 
+import static com.appium.constants.MessageConstants.MESSAGE_CHECKBOX;
+import static com.appium.constants.MessageConstants.MESSAGE_TERMS_OF_USE;
+
+
 public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 /**
  * mobile elements-These are the mobile elements present in MA_Terms Of Use Screen Date-04/05/2023
@@ -59,27 +63,26 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/btnAccept")
     private MobileElement btnContinue;
 
-    String messageTermsOfUse="By tapping “Accept”, you acknowledge you have reviewed and agreed to the HID Mobile Access End User License Agreement and Privacy Notice.";
-    String messageCheckBox="I have read and agree to the End User License Agreement and Privacy Notice for this application.";
+
+
     /**
      * These are the methods developed for testing MA Terms of Use Screen Page Date-04/05/2023
      * @return
      */
 
-    public boolean checkVisibilityOfTermsOfUsePage()
+    public void checkVisibilityOfTermsOfUsePage()
     {
-        boolean flag = false;
         try {
-
-            if (!isDisplayed(txtTermsOfUse)) {
+            if (!isDisplayed(txtTermsOfUse))
+            {
+                Assert.assertTrue(false, "Terms of Use Page is not displayed...");
                 TestUtils.log().info("Terms of Use Page is not displayed");
-                flag = true;
             }
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of FavoriteReader page...");
         }
-        return flag;
+
     }
 
 
@@ -87,7 +90,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
     {
         try {
 
-            if(messageTermsOfUse.equals(txtTermsOfUse.getText()))
+            if(MESSAGE_TERMS_OF_USE.equals(txtTermsOfUse.getText()))
             {
                 Assert.assertTrue(true, "The description in  TermsOfUse page is  correct...");
                 TestUtils.log().debug(" The description in  TermsOfUse page is  correct...");
@@ -138,14 +141,15 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         }
     }
 
-    public boolean checkVisibilityOfEulaPage()
+    public void checkVisibilityOfEulaPage()
     {
-        boolean flag = false;
+
         try {
 
             if (!isDisplayed(eulaHeaderTxt)) {
+                Assert.assertTrue(false, "Eula Page is not displayed...");
                 TestUtils.log().info("Eula Page is not displayed");
-                flag = true;
+
             }
 
            //scrollDownTillElement(8,0.20);
@@ -157,17 +161,18 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
             TestUtils.log().debug("Exception occurred while checking visibility of Eula page...");
         }
-        return flag;
+
     }
 
-    public boolean checkVisibilityOfPrivacyNoticePage()
+    public void checkVisibilityOfPrivacyNoticePage()
     {
-        boolean flag = false;
+
         try {
 
             if (!isDisplayed(privacyHeaderTxt)) {
+                Assert.assertTrue(false, "Privacy Notice Page is not displayed...");
                 TestUtils.log().info("Privacy Notice Page is not displayed");
-                flag = true;
+
             }
 
            // scrollDownTillElement(25,0.00);
@@ -179,7 +184,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
             TestUtils.log().debug("Exception occurred while checking visibility of Privacy Notice page...");
         }
-        return flag;
+
     }
 
     public void acceptTermsOfUsePage(){
@@ -197,6 +202,17 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         try {
 
             click(btnContinue);
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while clicking on Continue button in TermsOfUse page...");
+        }
+    }
+
+    public  void continueBtnDisabled(){
+        try {
+
+
 
         } catch (Exception e) {
 
@@ -241,7 +257,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
     {
         try {
 
-            if(messageCheckBox.equals(termsOfUseMessage.getText()))
+            if(MESSAGE_CHECKBOX.equals(txtTermsOfUseMessage.getText()))
             {
                 Assert.assertTrue(true, "The checkbox description in  TermsOfUse page is  correct...");
                 TestUtils.log().debug(" The checkbox description in  TermsOfUse page is  correct...");
@@ -258,20 +274,20 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         }
     }
 
-    public boolean checkVisibilityOfTermsOfUsePageImage()
+    public void checkVisibilityOfTermsOfUsePageImage()
     {
-        boolean flag = false;
         try {
 
             if (!isDisplayed(imgTermsOfUse)) {
+                Assert.assertTrue(false, "Terms of Use Page image is not displayed...");
                 TestUtils.log().info("Terms of Use Page image is not displayed");
-                flag = true;
+
             }
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of image in Terms of Use page...");
         }
-        return flag;
+
     }
 
 }

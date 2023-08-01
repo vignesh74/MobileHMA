@@ -46,7 +46,7 @@ public class AndrStepDef {
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
-        /*    OnboardingScreen.checkVisibilityOfConvenientPage();
+            OnboardingScreen.checkVisibilityOfConvenientPage();
             OnboardingScreen.checkDescriptionConvScreen();
             OnboardingScreen.skipConvenientPage();
             DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
@@ -59,7 +59,9 @@ public class AndrStepDef {
             OnboardingScreen.checkVisibilityOfTwistAndGoPage() ;
             OnboardingScreen.checkDescriptionTwistAndGoScreen();
             OnboardingScreen.skipTwistAndGoPage();
-           */ DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
+
+
+            DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
             TestUtils.log().info("Application removed.....");
 
             DriverManager.getDriver().installApp("/Users/Mobileprogramming/Documents/hma-automation-roboticarm-bdd4.1.2/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
@@ -86,7 +88,7 @@ public class AndrStepDef {
     @When("Swipe EULA screen to left in android device")
     public void swipeEulaScreen_Andr() {
 
-      /*  termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
+        termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
         termsOfUseScreen.checkVisibilityOfTermsOfUsePageImage();
         termsOfUseScreen.checkTermsOfUseTxt();
         termsOfUseScreen.cancelTermsOfUsePage();
@@ -110,10 +112,9 @@ public class AndrStepDef {
         OnboardingScreen.skipConvenientPage();
         termsOfUseScreen.checkPrivacyPageLink();
         termsOfUseScreen.backButtonPrivacyNoticePage();
-      */  termsOfUseScreen.checkCheckBoxTxt();
+        termsOfUseScreen.checkCheckBoxTxt();
         termsOfUseScreen.agreeCheckBox();
         termsOfUseScreen.continueTermsOfUsePage();
-      //  termsOfUseScreen.acceptTermsOfUsePage();
 
         invitationScreen.checkVisibilityOfInvitationPage();
         invitationScreen.checkDescriptionInvitationPage();
@@ -157,6 +158,7 @@ public class AndrStepDef {
         mobileIDScreen.checkVisibilityOfEditNicknamePopup();
         mobileIDScreen.validateNicknameDialogBox();
         mobileIDScreen.enterNickname();
+        mobileIDScreen.removeNickname();
     }
 
     @Then("Notification screen is displayed with message {string} in android device")
@@ -344,11 +346,12 @@ public class AndrStepDef {
         mobileIDScreen.clickOnNextButton();
         mobileIDScreen.clickOnGotItButton();
     }
-
+/*
     @And("Warning BannersWF1 are displayed  in android device as {string},{string},{string},{string},{string}")
     public void warningBanners1(String status1,String status2,String strLocationStatus,String strLocationOrNearBy, String strLocOrNearByPerm){
         warningBanners.warningBannersWF1(status1,status2,strLocationStatus,strLocationOrNearBy,strLocOrNearByPerm);
     }
+    */
     @Then("Bluetooth status for Warning Banners is displayed as {string} in android device")
     public void setBLE(String bleStatusWb) {
         bleSettingsPage.setBLEStatusWb(bleStatusWb);
@@ -368,12 +371,12 @@ public class AndrStepDef {
     public void setLocationPerm(String strLocationOrNearBy,String strLocationOrNearByPermission){
       nearbyPermissionSettingsPage.setNearByOrLocationPermWb(strLocationOrNearBy,strLocationOrNearByPermission);
     }
-
+/*
     @And("Warning BannersWF2 are displayed in android device")
     public void warningBanners2(String strLocationStatus, String strUDID ,String strBLEStatus,String strNFCStatus,String strLocationOrNearBy,String strLocationOrNearByPermission){
         warningBanners.warningBannersWF2(strLocationStatus, strUDID,strBLEStatus,strNFCStatus,strLocationOrNearBy,strLocationOrNearByPermission);
     }
-
+*/
     @Then("Warning Banners are displayed  in android device")
      public void WarningBanners3(){
         warningBanners.warningBanners();

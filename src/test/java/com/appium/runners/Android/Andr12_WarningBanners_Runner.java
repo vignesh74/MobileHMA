@@ -15,7 +15,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@ANDR_WarningBanners_12_WF2")
+        , tags = "@ANDR_WarningBanners_12_WF1")
 
 public class Andr12_WarningBanners_Runner extends BaseTest {
 

@@ -727,6 +727,15 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     public void enterNickname(){
         click(txtIssueDescriptionNickname);
         txtIssueDescriptionNickname.sendKeys("HID Employee @ CHENNAI");
+        txtIssueDescriptionNickname.clear();
+        click(doneBtn);
+        waitForGivenTime(5);
+        click(imgBackBtn);
+
+    }
+    public void removeNickname(){
+        click(txtIssueDescriptionNickname);
+        txtIssueDescriptionNickname.clear();
         click(doneBtn);
         waitForGivenTime(5);
         click(imgBackBtn);

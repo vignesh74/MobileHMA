@@ -123,44 +123,47 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     /**
      * checkVisibilityOfConvenientPage- This method is used to check visibility of the convenient page Date- 25/01/2023
      */
-    public boolean checkVisibilityOfConvenientPage() {
-        boolean flag = false;
+    public void checkVisibilityOfConvenientPage() {
+
         try {
 
             if (!isDisplayed(btnSkip)) {
+                Assert.assertTrue(false, "The Convenient page is not displayed...");
                 TestUtils.log().info("Convenient page is not displayed");
-                flag = true;
+
             }
         } catch (Exception e) {
             
             TestUtils.log().debug("Exception occurred while checking visibility of convenient page...");
         }
-        return flag;
+
 
     }
 
     /**
      * checkVisibilityOfTwistAndGoPage- This method is used to check visibility of the TwistAndGo page Date- 02/05/2023
      */
-    public boolean checkVisibilityOfTwistAndGoPage() {
-        boolean flag = false;
+    public void checkVisibilityOfTwistAndGoPage() {
+
         try {
                 checkVisibilityOfConvenientPage();
                 swipeLeft(1);
             if (!isDisplayed(btnSkip)) {
+                Assert.assertTrue(false, "Twist&Go page is not displayed...");
                 TestUtils.log().info("Twist&Go page is not displayed");
-                flag = true;
+
             }
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of Twist&Go page...");
         }
-        return flag;
+
     }
 
     /**
      * checkVisibilityOfFavoriteReaderPage- This method is used to check visibility of the FavoriteReader page Date- 02/05/2023
      */
+
     public boolean checkVisibilityOfFavoriteReaderPage() {
         boolean flag = false;
         try {
@@ -199,22 +202,23 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     /**
      * checkVisibilityOfFavoriteReaderPage- This method is used to check visibility of the FavoriteReader page Date- 02/05/2023
      */
-    public boolean checkVisibilityOfBannersPage() {
-        boolean flag = false;
+    public void checkVisibilityOfBannersPage() {
+
         try {
             checkVisibilityOfConvenientPage();
             swipeLeft(1);
             swipeLeft(1);
 
             if (!isDisplayed(btnGetStarted)) {
+                Assert.assertTrue(false, "Banners page is not displayed...");
                 TestUtils.log().info("Banners page is not displayed");
-                flag = true;
+
             }
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of Banners page...");
         }
-        return flag;
+
     }
 
     /**
@@ -225,7 +229,6 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
         try {
 
             click(btnGetStarted);
-            // click(btnAccept);
 
         } catch (Exception e) {
 

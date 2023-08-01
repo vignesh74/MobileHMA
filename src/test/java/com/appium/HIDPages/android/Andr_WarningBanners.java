@@ -78,15 +78,16 @@ public class Andr_WarningBanners extends BasePage {
     @AndroidFindBy(id = "com.android.settings:id/switch_text")
     private MobileElement txtSwitchOnOffBle;
 
-    @AndroidFindBy(id = "//android.widget.TextView[@text='Granted always']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Granted always']")
     private MobileElement nearByStatusText;
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(id = "com.android.settings:id/switch_text", priority = 0)
     @AndroidFindBy(id = "android:id/switch_text", priority = 1)
     private MobileElement txtSwitchOnOffNfc;
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.hidglobal.mobilekeys.android.v3:id/statusDevices']")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.hidglobal.mobilekeys.android.v3:id/statusDevices']",priority = 1)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='On']",priority = 0)
     private MobileElement nfcStatusOn;
 
     @AndroidFindBy(xpath ="//android.widget.TextView[@text='Off']")
@@ -95,15 +96,15 @@ public class Andr_WarningBanners extends BasePage {
 
 
 
-    public boolean checkBleWb(){
-        boolean flag = false;
+    public void checkBleWb(){
         String str=bleDisabledText.getText();
         try{
 
             if(!(isDisplayed(bleDisabled)))
             {
+                Assert.assertTrue(false, "BLE WARNING BANNER TEXT is invisible...");
                 TestUtils.log().debug("BLE WARNING BANNER TEXT is not visible ");
-                flag=true;
+
             }
             else
             {
@@ -125,19 +126,20 @@ public class Andr_WarningBanners extends BasePage {
         {
             TestUtils.log().debug("Exception occurred while checking on BLE Disabled Warning Banner tab...");
         }
-        return flag;
+
     }
 
 
-    public boolean checkNfcWb(){
-        boolean flag = false;
+    public void checkNfcWb(){
+
         String str=nfcDisabledText.getText();
         try{
 
             if(!(isDisplayed(nfcDisabled)))
             {
-                TestUtils.log().debug("NFC WARNING BANNER TEXT is not visible ");
-               flag=true;
+                Assert.assertTrue(false, "NFC WARNING BANNER is not visible...");
+                TestUtils.log().debug("NFC WARNING BANNER is not visible... ");
+
             }
             else
             {
@@ -157,19 +159,18 @@ public class Andr_WarningBanners extends BasePage {
         {
             TestUtils.log().debug("Exception occurred while checking on NFC Disabled Warning Banner tab...");
         }
-        return flag;
     }
 
-    public boolean checkLocationWb(){
-        boolean flag = false;
+   /* public boolean checkLocationWb(){
+
         String str=gpsDisabledText.getText();
         try{
 
             if(!(isDisplayed(gpsDisabled)))
             {
-
+                Assert.assertTrue(false, "GPS WARNING BANNER is not visible...");
                 TestUtils.log().debug("GPS WARNING BANNER TEXT is not visible in this particular Scenario.It will be visible after changing Permissions to Allow");
-                flag=true;
+
             }
             else
             {
@@ -192,15 +193,14 @@ public class Andr_WarningBanners extends BasePage {
     }
 
     public boolean checkLocationPermissionWb(){
-        boolean flag = false;
         String str=locationPermissionDisabledText.getText();
         try{
 
             if(!(isDisplayed(locationPermissionDisabled)))
             {
-
+                Assert.assertTrue(false, "LOCATION PERMISSION WARNING BANNER is not visible...");
                 TestUtils.log().debug("LOCATION PERMISSION WARNING BANNER TEXT is not visible ");
-                flag=true;
+
             }
             else
             {
@@ -219,9 +219,9 @@ public class Andr_WarningBanners extends BasePage {
         {
             TestUtils.log().debug("Exception occurred while checking on Location Disabled Warning Banner tab...");
         }
-        return flag;
-    }
 
+    }
+*/
     public void checkNearByPermissionWb(){
         String str=nearByPermissionDisabledText.getText();
         try{
@@ -243,7 +243,7 @@ public class Andr_WarningBanners extends BasePage {
 
     }
 
-
+/*
 
     public void warningBannersWF1(String status1,String status2,String strLocationStatus,String strLocationOrNearBy, String strLocOrNearByPerm) {
         try {
@@ -283,7 +283,7 @@ public class Andr_WarningBanners extends BasePage {
 
 
     }
-
+*/
     public void warningBanners(){
         try{
             String strPlatformVersion = DriverManager.getPlatformVersion();
@@ -343,7 +343,7 @@ public class Andr_WarningBanners extends BasePage {
                             TestUtils.log().debug(" The Nearby Permission Disabled Banner is visible...");
                             checkNearByPermissionWb();
                         } else {
-                            if(getElementText(nearByStatusText).equalsIgnoreCase("Granted"))
+                            if(getElementText(nearByStatusText).equalsIgnoreCase("Granted always"))
                             {
                                 Assert.assertTrue(true, "The Nearby Permission Disabled Banner is not available for particular Scenario...");
                                 TestUtils.log().debug("NEARBY PERMISSION WARNING BANNER TEXT is not available for particular Scenario");
@@ -361,13 +361,13 @@ public class Andr_WarningBanners extends BasePage {
                     }
 
                 }
-                case "11" -> {
+               /* case "11" -> {
 
                     checkBleWb();
                     checkNfcWb();
                     checkLocationWb();
                     checkLocationPermissionWb();
-                }
+                }*/
                 default -> {TestUtils.log().debug("Different Android Version");}
             }
 
@@ -377,7 +377,7 @@ public class Andr_WarningBanners extends BasePage {
         }
     }
 
-
+/*
     public void warningBannersWF2(String strLocationStatus, String strUDID ,String strNFCStatus,String strBLEStatus,String strLocationOrNearBy, String strLocOrNearByPerm) {
 
         try {
@@ -436,4 +436,5 @@ public class Andr_WarningBanners extends BasePage {
         }
 
     }
+    */
 }

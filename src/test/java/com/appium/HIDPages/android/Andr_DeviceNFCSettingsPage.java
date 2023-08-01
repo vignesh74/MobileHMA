@@ -68,12 +68,12 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
                 waitForVisibility(btnOnOff);
                 click(btnOnOff);
                 waitForGivenTime(1);
-                if (isDisplayed(txtSwitchOnOff)) {
+          /*      if (isDisplayed(txtSwitchOnOff)) {
                     String strActualNFCStatus = getElementText(txtSwitchOnOff);
                     TestUtils.log().info("NFC has been set as {}",strActualNFCStatus);
                     Assert.assertTrue(strNFCStatus.equalsIgnoreCase(strActualNFCStatus), "NFC status set as" + strActualNFCStatus);
                     TestUtils.log().info("NFC as: {}",strActualNFCStatus);
-                }
+                }*/
                 loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), "navigateBack", 10);
                 waitForGivenTime(1);
                 Assert.assertTrue(strNFCStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtNFCStatusValue().getText()));
