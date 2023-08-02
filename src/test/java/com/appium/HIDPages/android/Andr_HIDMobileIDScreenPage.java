@@ -495,12 +495,13 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(CHECK_HEADER.equals(txtMobileIdDetails.getText())))
+            if((CHECK_HEADER.equals(txtMobileIdDetails.getText())))
             {
                 Assert.assertTrue(true, "The Header is  correct...");
                 TestUtils.log().debug(" The Header is  correct...");
             }
-            else{
+            else
+            {
                 Assert.assertTrue(false, "The Header is  incorrect...");
                 TestUtils.log().debug(" The Header is  incorrect...");
             }
@@ -515,7 +516,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(CHECK_NICKNAME.equals(txtNickName.getText())))
+            if((CHECK_NICKNAME.equals(txtNickName.getText())))
             {
                 Assert.assertTrue(true, "The Nickname text is  correct...");
                 TestUtils.log().debug(" The Nickname text is  incorrect...");
@@ -535,7 +536,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(CHECK_NAME.equals(txtName.getText())))
+            if((CHECK_NAME.equals(txtName.getText())))
             {
                 Assert.assertTrue(true, "The Name text is  correct...");
                 TestUtils.log().debug(" The name text is  correct...");
@@ -557,7 +558,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(CHECK_MOBILE_KEY_SET.equals(txtMobileKeySetName.getText())))
+            if((CHECK_MOBILE_KEY_SET.equals(txtMobileKeySetName.getText())))
             {
                 Assert.assertTrue(true, "The mobile keyset  text is correct...");
                 TestUtils.log().debug(" The mobile keyset  text is  correct...");
@@ -578,7 +579,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(CHECK_ORGANIZATION.equals(txtCompany.getText())))
+            if((CHECK_ORGANIZATION.equals(txtCompany.getText())))
             {
                 Assert.assertTrue(true, "The organisation  text is  correct...");
                 TestUtils.log().debug(" The organisation  text is  correct...");
@@ -599,7 +600,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(CHECK_ISSUED_ON.equals(txtIssued.getText())))
+            if((CHECK_ISSUED_ON.equals(txtIssued.getText())))
             {
                 Assert.assertTrue(true, "The IssuedOn  text is  correct...");
                 TestUtils.log().debug(" The IssuedOn  text is  correct...");
@@ -620,7 +621,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(CHECK_EXPIRES_ON.equals(txtExpires.getText())))
+            if((CHECK_EXPIRES_ON.equals(txtExpires.getText())))
             {
                 Assert.assertTrue(true, "The ExpiresOn  text is  correct...");
                 TestUtils.log().debug(" The ExpiresOn  text is  correct...");
@@ -641,7 +642,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(CHECK_ID.equals(txtIdNo.getText())))
+            if((CHECK_ID.equals(txtIdNo.getText())))
             {
                 Assert.assertTrue(true, "The ID#  text is  correct...");
                 TestUtils.log().debug(" The ID#  text is  correct...");
@@ -690,6 +691,11 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 TestUtils.log().info("Edit Text Dialog Box is not displayed");
 
             }
+            else
+            {
+                Assert.assertTrue(true, "Edit Text Dialog Box is displayed...");
+                TestUtils.log().info("Edit Text Dialog Box is  displayed");
+            }
 
         } catch (Exception e) {
 
@@ -735,6 +741,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     }
     public void removeNickname(){
+        click(pencilEditIcon);
         click(txtIssueDescriptionNickname);
         txtIssueDescriptionNickname.clear();
         click(doneBtn);

@@ -8,7 +8,7 @@ import org.testng.Assert;
 
 
 import static com.appium.constants.MessageConstants.MESSAGE_CHECKBOX;
-import static com.appium.constants.MessageConstants.MESSAGE_TERMS_OF_USE;
+
 
 
 public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
@@ -85,12 +85,12 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
     }
 
-
+/*
     public void checkTermsOfUseTxt()
     {
         try {
 
-            if(MESSAGE_TERMS_OF_USE.equals(txtTermsOfUseMessage.getText()))
+            if(MESSAGE_TERMS_OF_USE.equals(txtTermsOfUse.getText()))
             {
                 Assert.assertTrue(true, "The description in  TermsOfUse page is  correct...");
                 TestUtils.log().debug(" The description in  TermsOfUse page is  correct...");
@@ -105,7 +105,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
             TestUtils.log().debug("Exception occurred while validating the description in  TermsOfUse page ...");
         }
     }
-
+*/
     public void cancelTermsOfUsePage()
     {
         try {

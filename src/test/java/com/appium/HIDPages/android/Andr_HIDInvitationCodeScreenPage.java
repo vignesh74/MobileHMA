@@ -136,6 +136,8 @@ public class Andr_HIDInvitationCodeScreenPage extends BasePage {
                 TestUtils.log().info("About Screen is not displayed");
             }
             click(imgCopyClipIcon);
+            waitForGivenTime(2);
+            click(imgBackAbout);
 
         } catch (Exception e) {
 

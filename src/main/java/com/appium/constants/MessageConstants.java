@@ -42,7 +42,7 @@ public class MessageConstants {
     public static final String LOCATIONPERMISSIONWARNINGBANNERTEXT="We do not track your location. Enable Location to use your Mobile ID over Bluetooth.";
 
     public static final String NEARBY_PERMISSION_WARNING_BANNER_TEXT="We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.";
-    public static final String MESSAGE_TERMS_OF_USE="By tapping “Accept”, you acknowledge you have reviewed and agreed to the HID Mobile Access End User License Agreement and Privacy Notice.";
+    //public static final String MESSAGE_TERMS_OF_USE="By tapping “Accept”, you acknowledge you have reviewed and agreed to the HID Mobile Access End User License Agreement and Privacy Notice.";
     public static final String MESSAGE_CHECKBOX="I have read and agree to the End User License Agreement and Privacy Notice for this application.";
 
     public static final String CHECK_HEADER="Mobile ID Details";

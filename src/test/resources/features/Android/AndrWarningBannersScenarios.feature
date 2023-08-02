@@ -55,7 +55,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     And  NFC status is displayed as "<NFC_Status>" in android device
     And  Set "NearBy" permission status as "<LocationPermOrNearbyPerm_Status>" in android device
     Then Warning Banners are displayed  in android device
-    @ANDR_WarningBanners_12_WF1
+    @ANDR_WarningBanners_12_WF1 @ANDR_WarningBanners_12_WF
     Examples:
       | TC_ID  | BLE_Status    | NFC_Status     |   LocationPermOrNearbyPerm_Status     | Warning_Banners1                                          |
       | _TC-01 | Off           | Off            |    Allow                              | NFC Disabled_Bluetooth Disabled                           |
@@ -72,7 +72,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     And  NFC status for Warning Banners is displayed as "<NFC_Status_Wb>" in android device
     And  "NearBy" Permission status for Warning Banners is displayed as "<LocationPermOrNearbyPerm_Status_Wb>" in android device
     Then Warning Banners are displayed  in android device
-    @ANDR_WarningBanners_12_WF2
+    @ANDR_WarningBanners_12_WF2 @ANDR_WarningBanners_12_WF
     Examples:
       | TC_ID  | BLE_Status_Wb | NFC_Status_Wb | LocationPermOrNearbyPerm_Status_Wb      | Warning_Banners2                                               |
       | _TC-01 |Off            |Off            | Allow                                   |Bluetooth Disabled,NFC Disabled                                 |
