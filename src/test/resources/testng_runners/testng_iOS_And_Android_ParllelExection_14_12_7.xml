@@ -18,10 +18,11 @@
         <parameter name="udid" value="00008020-001A656C1105002E"></parameter>
         <parameter name="installApp" value="false"></parameter>
         <parameter name="deviceName" value="TestPhone-IOS"></parameter>
-        <parameter name="systemPort" value="10031"/>
-        <parameter name="chromeDriverPort" value="11032"/>
-        <parameter name="wdaLocalPort" value="10003"/>
-        <parameter name="webkitDebugProxyPort" value="10013"/>
+        <parameter name="systemPort" value="2301"/>
+        <parameter name="chromeDriverPort" value="11033"/>
+        <parameter name="wdaLocalPort" value=""/>
+        <parameter name="webkitDebugProxyPort" value="9228"/>
+        <parameter name="userId" value="12426306"/>
         <parameter name="comPort" value=""/>
         <parameter name="roboticArmX" value="1600"/>
         <parameter name="roboticArmY" value="300"/>
@@ -41,7 +42,7 @@
         <parameter name="chromeDriverPort" value="11033"/>
         <parameter name="wdaLocalPort" value=""/>
         <parameter name="webkitDebugProxyPort" value="9228"/>
-        <parameter name="userId" value="12001264"/>
+        <parameter name="userId" value="12426306"/>
         <parameter name="comPort" value=""/>
         <parameter name="roboticArmX" value="1600"/>
         <parameter name="roboticArmY" value="300"/>
