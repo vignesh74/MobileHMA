@@ -23,6 +23,8 @@
         <parameter name="wdaLocalPort" value="10003"/>
         <parameter name="webkitDebugProxyPort" value="10013"/>
         <parameter name="comPort" value=""/>
+        <parameter name="roboticArmX" value="1600"/>
+        <parameter name="roboticArmY" value="300"/>
         <classes>
             <class name="com.appium.runners.iOS.iOS_Settings_Runner"></class>
         </classes>
@@ -41,7 +43,7 @@
         <parameter name="webkitDebugProxyPort" value="9228"/>
         <parameter name="userId" value="12001264"/>
         <parameter name="comPort" value=""/>
-        <parameter name="roboticArmX" value="1900"/>
+        <parameter name="roboticArmX" value="1600"/>
         <parameter name="roboticArmY" value="300"/>
 
         <classes>
