@@ -1,8 +1,8 @@
 package com.appium.stepDefinition;
 
 import com.appium.HIDPages.android.Andr_HIDSettingsScreenPage;
+import com.appium.HIDPages.android.Andr_HIDWarningBanners;
 import com.appium.HIDPages.android.Andr_HandlePopUps;
-import com.appium.HIDPages.android.Andr_WarningBanners;
 import com.appium.base.BasePage;
 import com.appium.constants.MessageConstants;
 import com.appium.enums.AuthorType;
@@ -26,7 +26,7 @@ import static com.appium.constants.FrameworkConstants.YES;
 
 public class Hooks {
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
-    Andr_WarningBanners handleWb= new Andr_WarningBanners();
+    Andr_HIDWarningBanners handleWb= new Andr_HIDWarningBanners();
 
     /**
      * addScreenshotForScenario - This method is used to add screenshots whenever scenario got passed ,failed or skipped

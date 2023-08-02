@@ -33,16 +33,27 @@ public class MessageConstants {
     public static final String INITIALPOPUPSHANDLING= "initialPopupsHandling";
     public static final String ENDTESTPOPUPSHANDLING= "endTestPopupsHandling";
 
-    public static final String BLEWARNINGBANNERTEXT="Enable Bluetooth to find readers nearby and use your Mobile ID over Bluetooth.";
+    public static final String BLE_WARNING_BANNER_TEXT="Enable Bluetooth to find readers nearby and use your Mobile ID over Bluetooth.";
 
-    public static final String NFCWARNINGBANNERTEXT="Enable NFC to use your Mobile ID by presenting your phone to the reader.";
+    public static final String NFC_WARNING_BANNER_TEXT="Enable NFC to use your Mobile ID by presenting your phone to the reader.";
 
     public static final String GPSWARNINGBANNERTEXT="We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.";
 
     public static final String LOCATIONPERMISSIONWARNINGBANNERTEXT="We do not track your location. Enable Location to use your Mobile ID over Bluetooth.";
 
-    public static final String NEARBYPERMISSIONWARNINGBANNERTEXT="We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.";
+    public static final String NEARBY_PERMISSION_WARNING_BANNER_TEXT="We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.";
     public static final String MESSAGE_TERMS_OF_USE="By tapping “Accept”, you acknowledge you have reviewed and agreed to the HID Mobile Access End User License Agreement and Privacy Notice.";
     public static final String MESSAGE_CHECKBOX="I have read and agree to the End User License Agreement and Privacy Notice for this application.";
 
+    public static final String CHECK_HEADER="Mobile ID Details";
+    public static final String CHECK_NICKNAME="Nickname";
+    public static final String CHECK_NAME="Name";
+    public static final String CHECK_MOBILE_KEY_SET="Mobile Keyset";
+    public static final String CHECK_ORGANIZATION="Organization";
+
+    public static final String CHECK_ISSUED_ON="Issued On";
+    public static final String CHECK_EXPIRES_ON="Expires On";
+    public static final String CHECK_ID="ID#";
+
+    public static final String INVITATION_PAGE_TEXT = "Enter the 16-digit code from your HID Mobile Access welcome email.";
 }

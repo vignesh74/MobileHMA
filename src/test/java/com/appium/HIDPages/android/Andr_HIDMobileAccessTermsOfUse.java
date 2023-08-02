@@ -90,7 +90,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
     {
         try {
 
-            if(MESSAGE_TERMS_OF_USE.equals(txtTermsOfUse.getText()))
+            if(MESSAGE_TERMS_OF_USE.equals(txtTermsOfUseMessage.getText()))
             {
                 Assert.assertTrue(true, "The description in  TermsOfUse page is  correct...");
                 TestUtils.log().debug(" The description in  TermsOfUse page is  correct...");
@@ -151,10 +151,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
                 TestUtils.log().info("Eula Page is not displayed");
 
             }
-
-           //scrollDownTillElement(8,0.20);
-           // click(emailLegal);
-            swipeDown(17);
+            swipeDown(16);
             click(emailLegal);
 
         } catch (Exception e) {
@@ -175,9 +172,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
             }
 
-           // scrollDownTillElement(25,0.00);
-           // click(emailPrivacy);
-            swipeDown(17);
+            swipeDown(10);
             click(emailPrivacy);
 
         } catch (Exception e) {
@@ -211,8 +206,9 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
     public  void continueBtnDisabled(){
         try {
-
-
+            isElementEnabled(btnContinue);
+            Assert.assertTrue(true, "Continue Button is not enabled...");
+            TestUtils.log().info("Continue Button is not enabled");
 
         } catch (Exception e) {
 

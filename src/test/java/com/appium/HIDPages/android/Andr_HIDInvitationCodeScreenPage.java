@@ -6,6 +6,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.testng.Assert;
 
+import static com.appium.constants.MessageConstants.INVITATION_PAGE_TEXT;
+
 public class Andr_HIDInvitationCodeScreenPage extends BasePage {
 
     /**
@@ -56,7 +58,7 @@ public class Andr_HIDInvitationCodeScreenPage extends BasePage {
     @AndroidFindBy(xpath = "/hierarchy/android.widget.Toast")
     private MobileElement toastMsg;
 
-    String InvitationPageTxt = "Enter the 16-digit code from your HID Mobile Access welcome email.";
+
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
      */
@@ -89,26 +91,26 @@ public class Andr_HIDInvitationCodeScreenPage extends BasePage {
     }
 
 
-    public boolean checkVisibilityOfInvitationPage() {
-        boolean flag = false;
+    public void checkVisibilityOfInvitationPage() {
+
         try {
 
             if (!isDisplayed(invCodePageHeader)) {
+                Assert.assertTrue(false, "Invitation page is not displayed...");
                 TestUtils.log().info("Invitation page is not displayed");
-                flag = true;
+
             }
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of Invitation page...");
         }
-        return flag;
     }
 
     public void checkDescriptionInvitationPage(){
 
         try {
 
-            if(InvitationPageTxt.equals(txtInviteCodeMessage.getText()))
+            if(INVITATION_PAGE_TEXT.equals(txtInviteCodeMessage.getText()))
 
             {
                 Assert.assertTrue(true, "The description in  Invitation page is  correct...");
@@ -125,14 +127,13 @@ public class Andr_HIDInvitationCodeScreenPage extends BasePage {
             TestUtils.log().debug("Exception occurred while validating the description in  Invitation page ...");
         }
     }
-    public boolean checkAboutInfo() {
+    public void checkAboutInfo() {
         click(aboutBtn);
-        boolean flag = false;
         try {
 
             if (!isDisplayed(txtAboutScreenHeader)) {
+                Assert.assertTrue(false, "About Screen is not displayed...");
                 TestUtils.log().info("About Screen is not displayed");
-                flag = true;
             }
             click(imgCopyClipIcon);
 
@@ -140,7 +141,6 @@ public class Andr_HIDInvitationCodeScreenPage extends BasePage {
 
             TestUtils.log().debug("Exception occurred while checking visibility of About Screen ...");
         }
-        return flag;
     }
 
     public void toastMessageAboutScreen() {
@@ -159,29 +159,46 @@ public class Andr_HIDInvitationCodeScreenPage extends BasePage {
        // return flag;
     }
 
-    public boolean checkScanQrCodeButton() {
-
-        boolean flag = false;
+    public void checkScanQrCodeButton() {
 
         try {
 
             if (!isDisplayed(scannerMsg)) {
+                Assert.assertTrue(false, "Scanner message is not displayed...");
                 TestUtils.log().info("Scanner is not displayed");
-                flag = true;
             }
-            click(scanQrCodeBackBtn);
+            else{
+                Assert.assertTrue(true, "Scanner message is  displayed...");
+                TestUtils.log().info("Scanner is  displayed");
+            }
+
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of Scanner QR button ...");
         }
-        return flag;
+
    }
 
-    public void clickScanQRButton() {
+    public void isEnabledScanQRButton() {
         try {
+            if (!isElementEnabled(btnScanQrCode))
+            {
+                Assert.assertTrue(false, "Scan QR Code button is not enabled...");
+                TestUtils.log().info("Scan QR Code button is not enabled");
+            }
 
-            click(btnScanQrCode);
-            click(allowBtn);
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while skipping/validating text in Twist&Go page...");
+        }
+
+    }
+    public void isEnabledGetStartedButton() {
+        try {
+           if(isElementEnabled(btnGetStarted)){
+               Assert.assertTrue(false, "Get Started button should  not be enabled...");
+               TestUtils.log().info("Get Started button should  not be enabled");
+           }
 
         } catch (Exception e) {
 

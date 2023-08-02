@@ -8,9 +8,10 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import org.testng.Assert;
-
+import static com.appium.constants.MessageConstants.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+
 
 public class Andr_HIDMobileIDScreenPage extends BasePage {
     /**
@@ -324,14 +325,6 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         return btnTurnOnPermission;
     }
 
-    String checkHeader="Mobile ID Details";
-    String checkNickname="Nickname";
-    String checkName="Name";
-    String checkMobileKeySet="Mobile Keyset";
-    String checkOrganization="Organization";
-    String checkIssuedOnDate="Issued On";
-    String checkExpiresOn="Expires On";
-    String checkID="ID#";
 
     /**
      * clickOnNextButton- This method is used click on the next button Date- 25/01/2023
@@ -502,7 +495,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(checkHeader.equals(txtMobileIdDetails.getText())))
+            if(!(CHECK_HEADER.equals(txtMobileIdDetails.getText())))
             {
                 Assert.assertTrue(true, "The Header is  correct...");
                 TestUtils.log().debug(" The Header is  correct...");
@@ -522,7 +515,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(checkNickname.equals(txtNickName.getText())))
+            if(!(CHECK_NICKNAME.equals(txtNickName.getText())))
             {
                 Assert.assertTrue(true, "The Nickname text is  correct...");
                 TestUtils.log().debug(" The Nickname text is  incorrect...");
@@ -542,7 +535,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(checkName.equals(txtName.getText())))
+            if(!(CHECK_NAME.equals(txtName.getText())))
             {
                 Assert.assertTrue(true, "The Name text is  correct...");
                 TestUtils.log().debug(" The name text is  correct...");
@@ -564,7 +557,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(checkMobileKeySet.equals(txtMobileKeySetName.getText())))
+            if(!(CHECK_MOBILE_KEY_SET.equals(txtMobileKeySetName.getText())))
             {
                 Assert.assertTrue(true, "The mobile keyset  text is correct...");
                 TestUtils.log().debug(" The mobile keyset  text is  correct...");
@@ -585,7 +578,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(checkOrganization.equals(txtCompany.getText())))
+            if(!(CHECK_ORGANIZATION.equals(txtCompany.getText())))
             {
                 Assert.assertTrue(true, "The organisation  text is  correct...");
                 TestUtils.log().debug(" The organisation  text is  correct...");
@@ -606,7 +599,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(checkIssuedOnDate.equals(txtIssued.getText())))
+            if(!(CHECK_ISSUED_ON.equals(txtIssued.getText())))
             {
                 Assert.assertTrue(true, "The IssuedOn  text is  correct...");
                 TestUtils.log().debug(" The IssuedOn  text is  correct...");
@@ -627,7 +620,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(checkExpiresOn.equals(txtExpires.getText())))
+            if(!(CHECK_EXPIRES_ON.equals(txtExpires.getText())))
             {
                 Assert.assertTrue(true, "The ExpiresOn  text is  correct...");
                 TestUtils.log().debug(" The ExpiresOn  text is  correct...");
@@ -648,7 +641,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if(!(checkID.equals(txtIdNo.getText())))
+            if(!(CHECK_ID.equals(txtIdNo.getText())))
             {
                 Assert.assertTrue(true, "The ID#  text is  correct...");
                 TestUtils.log().debug(" The ID#  text is  correct...");
@@ -664,73 +657,81 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         }
     }
 
-    public boolean checkVisibilityOfEditNicknamePencilIcon() {
-        boolean flag = false;
+    public void checkVisibilityOfEditNicknamePencilIcon() {
+
         try {
 
             if (!isDisplayed(pencilEditIcon)) {
+                Assert.assertTrue(false, "Pencil Edit icon is not displayed...");
                 TestUtils.log().info("Pencil Edit icon is not displayed");
-                flag = true;
+
             }
 
             else
-            {click(pencilEditIcon);}
+            {
+                Assert.assertTrue(true, "Pencil Edit icon is  displayed...");
+                TestUtils.log().info("Pencil Edit icon is displayed");
+                click(pencilEditIcon);
+            }
 
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of Edit Pencil Icon...");
         }
-        return flag;
+
     }
 
-    public boolean checkVisibilityOfEditNicknamePopup() {
-        boolean flag = false;
+    public void checkVisibilityOfEditNicknamePopup() {
+
         try {
 
             if (!isDisplayed(editTextDialogBox)) {
+                Assert.assertTrue(false, "Edit Text Dialog Box is not displayed...");
                 TestUtils.log().info("Edit Text Dialog Box is not displayed");
-                flag = true;
+
             }
 
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of Nickname Dialog Box...");
         }
-        return flag;
+
     }
 
 
-    public boolean validateNicknameDialogBox() {
-        boolean flag = false;
+    public void validateNicknameDialogBox() {
+
         try {
 
             if (!isDisplayed(alertTitle)) {
+                Assert.assertTrue(false, "Nickname Title is not displayed...");
                 TestUtils.log().info("Nickname Title is not displayed");
-                flag = true;
+
+
             }
             else if (!isDisplayed(cancelBtn)) {
+                Assert.assertTrue(false, "Cancel Button is not displayed...");
                 TestUtils.log().info("Cancel Button is not displayed");
-                flag = true;
+
             }
             else if(!isDisplayed(doneBtn)){
+                Assert.assertTrue(false, "Done Button is not displayed...");
                 TestUtils.log().info("Done Button is not displayed");
-                flag = true;
+
             }
 
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while validating Nickname dialog box...");
         }
-        return flag;
+
     }
 
     public void enterNickname(){
         click(txtIssueDescriptionNickname);
         txtIssueDescriptionNickname.sendKeys("HID Employee @ CHENNAI");
-        txtIssueDescriptionNickname.clear();
         click(doneBtn);
         waitForGivenTime(5);
-        click(imgBackBtn);
 
     }
     public void removeNickname(){

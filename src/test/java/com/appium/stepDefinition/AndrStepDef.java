@@ -14,7 +14,6 @@ import io.cucumber.java.en.When;
 import jssc.SerialPortException;
 import org.testng.Assert;
 
-import java.awt.*;
 import java.io.IOException;
 
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
@@ -39,7 +38,7 @@ public class AndrStepDef {
     Andr_HIDSettingsReportIssueScreenPage settingsReportIssueScreenPage = new Andr_HIDSettingsReportIssueScreenPage();
     Andr_HIDSettingLegalScreenPage settingLegalScreenPage = new Andr_HIDSettingLegalScreenPage();
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
-    Andr_WarningBanners warningBanners = new Andr_WarningBanners();
+    Andr_HIDWarningBanners warningBanners = new Andr_HIDWarningBanners();
 
     String strUDID = "";
     String armLogs;
@@ -72,9 +71,6 @@ public class AndrStepDef {
             OnboardingScreen.checkVisibilityOfBannersPage();
             OnboardingScreen.checkDescriptionBannersScreen();
             OnboardingScreen.GetStartedBannersPage();
-          //  OnboardingScreen.checkVisibilityOfFavoriteReaderPage();
-         //   OnboardingScreen.checkDescriptionFavoriteReaderScreen();
-         //   OnboardingScreen.GetStartedFavoriteReaderPage();
 
     }
 
@@ -113,19 +109,18 @@ public class AndrStepDef {
         termsOfUseScreen.checkPrivacyPageLink();
         termsOfUseScreen.backButtonPrivacyNoticePage();
         termsOfUseScreen.checkCheckBoxTxt();
+        termsOfUseScreen.continueBtnDisabled();
         termsOfUseScreen.agreeCheckBox();
         termsOfUseScreen.continueTermsOfUsePage();
 
         invitationScreen.checkVisibilityOfInvitationPage();
         invitationScreen.checkDescriptionInvitationPage();
         OnboardingScreen.skipConvenientPage();
-     //   termsOfUseScreen.acceptTermsOfUsePage();
-       // invitationScreen.clickScanQRButton();
-       // invitationScreen.checkScanQrCodeButton();
-       // invitationScreen.checkAboutInfo();
+        invitationScreen.isEnabledGetStartedButton();
+        invitationScreen.isEnabledScanQRButton();
+        invitationScreen.checkScanQrCodeButton();
+        invitationScreen.checkAboutInfo();
       //  invitationScreen.toastMessageAboutScreen();
-
-
 
     }
 

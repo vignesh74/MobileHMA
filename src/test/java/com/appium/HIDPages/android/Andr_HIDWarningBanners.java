@@ -3,7 +3,6 @@ package com.appium.HIDPages.android;
 import com.appium.base.BasePage;
 import com.appium.manager.DriverManager;
 import com.appium.utils.TestUtils;
-import com.mongodb.client.model.Facet;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
@@ -11,7 +10,7 @@ import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import com.appium.constants.MessageConstants;
 import org.testng.Assert;
 
-public class Andr_WarningBanners extends BasePage {
+public class Andr_HIDWarningBanners extends BasePage {
 
     Andr_HIDAppPreferencesScreenPage appPreferenceScreenPage = new Andr_HIDAppPreferencesScreenPage();
     Andr_DeviceNearbyPermissionSettingsPage deviceNearbyPermissionSettingsPage =new Andr_DeviceNearbyPermissionSettingsPage();
@@ -109,7 +108,7 @@ public class Andr_WarningBanners extends BasePage {
             else
             {
 
-                if(MessageConstants.BLEWARNINGBANNERTEXT.equalsIgnoreCase(str))
+                if(MessageConstants.BLE_WARNING_BANNER_TEXT.equalsIgnoreCase(str))
                 {
                     Assert.assertTrue(true, "BLE WARNING BANNER TEXT is visible and is correct...");
                     TestUtils.log().debug(" BLE WARNING BANNER TEXT is visible and is correct");
@@ -144,7 +143,7 @@ public class Andr_WarningBanners extends BasePage {
             else
             {
 
-                if(MessageConstants.NFCWARNINGBANNERTEXT.equalsIgnoreCase(str))
+                if(MessageConstants.NFC_WARNING_BANNER_TEXT.equalsIgnoreCase(str))
                 {
                 Assert.assertTrue(true, "NFC WARNING BANNER TEXT is visible and is correct...");
                 TestUtils.log().debug(" NFC WARNING BANNER TEXT is visible and is correct");
@@ -225,7 +224,7 @@ public class Andr_WarningBanners extends BasePage {
     public void checkNearByPermissionWb(){
         String str=nearByPermissionDisabledText.getText();
         try{
-            if(MessageConstants.NEARBYPERMISSIONWARNINGBANNERTEXT.equalsIgnoreCase(str))
+            if(MessageConstants.NEARBY_PERMISSION_WARNING_BANNER_TEXT.equalsIgnoreCase(str))
             {
             Assert.assertTrue(true, "NEARBY PERMISSION WARNING BANNER TEXT is visible and is correct");
             TestUtils.log().debug(" NEARBY PERMISSION WARNING BANNER TEXT is visible and is correct");
