@@ -45,7 +45,7 @@
         <parameter name="userId" value="12426306"/>
         <parameter name="comPort" value=""/>
         <parameter name="roboticArmX" value="1350"/>
-        <parameter name="roboticArmY" value="300"/>
+        <parameter name="roboticArmY" value="500"/>
 
         <classes>
             <class name="com.appium.runners.Android.Andr12_RevE_Tap_Runner"></class>
