@@ -6,9 +6,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.testng.Assert;
 
-
-import static com.appium.constants.MessageConstants.MESSAGE_CHECKBOX;
-
+import static com.appium.constants.MessageConstants.*;
 
 
 public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
@@ -106,11 +104,16 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         }
     }
 */
-    public void cancelTermsOfUsePage()
+    public void cancelTermsOfUsePage(String button)
     {
         try {
+            if (!CANCEL.equalsIgnoreCase(button)) {
+                Assert.assertTrue(false, "The Cancel link in TermsOfUse page is not displayed...");
+                TestUtils.log().info("The Cancel link in TermsOfUse page is not displayed");
+            }
+            else{
 
-            click(cancelBtn);
+            click(cancelBtn);}
 
         } catch (Exception e) {
 
@@ -118,9 +121,13 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         }
     }
 
-    public void checkEulaPageLink()
+    public void checkEulaPageLink(String link)
     {
         try {
+            if (!EULA.equalsIgnoreCase(link)) {
+                Assert.assertTrue(false, "The Eula link in TermsOfUse page is not displayed...");
+                TestUtils.log().info("The Eula link in TermsOfUse page is not displayed");
+            }
             click(eulaBtn);
 
         } catch (Exception e) {
@@ -129,9 +136,13 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         }
     }
 
-    public void checkPrivacyPageLink()
+    public void checkPrivacyPageLink(String link)
     {
         try {
+            if (!PRIVACY_NOTICE.equalsIgnoreCase(link)) {
+                Assert.assertTrue(false, "The Privacy Notice link in TermsOfUse page is not displayed...");
+                TestUtils.log().info("The Privacy Notice link in TermsOfUse page is not displayed");
+            }
 
             click(privacyNoticeBtn);
 
@@ -151,7 +162,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
                 TestUtils.log().info("Eula Page is not displayed");
 
             }
-            swipeDown(16);
+            swipeDown(12);
             click(emailLegal);
 
         } catch (Exception e) {
@@ -190,6 +201,23 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while accepting TermsOfUse page...");
+        }
+    }
+
+    public void continueTermsOfUsePageLink(String link){
+        try {
+            if(!CONTINUE.equalsIgnoreCase(link))
+            {
+                Assert.assertTrue(false, "The Continue button in  TermsOfUse page is  not visible...");
+                TestUtils.log().debug(" The Continue button in  TermsOfUse page is  not visible...");
+
+            }
+
+            click(btnContinue);
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while clicking on Continue button in TermsOfUse page...");
         }
     }
 
@@ -242,6 +270,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         try {
 
             click(agreeCheckbox);
+            waitForGivenTime(4);
 
         } catch (Exception e) {
 

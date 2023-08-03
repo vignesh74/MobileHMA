@@ -100,8 +100,11 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                     appPrefencesScreenPage.clickOnBLETab();
                     waitForVisibility(btnOnOff);
                     click(btnOnOff);
-                 //   String strActualBLEStatus = getElementText(txtSwitchOnOff);
+
+                    /**LOCATORS ARE NOT MODIFIED.THE OUTPUT IS NOT AS EXPECTED**/
+                    //   String strActualBLEStatus = getElementText(txtSwitchOnOff);
                    // TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
+
                     loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
                     Assert.assertTrue(strBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
                 } else {
@@ -167,8 +170,12 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                     appPrefencesScreenPage.clickOnBLETab();
                     waitForVisibility(btnOnOff);
                     click(btnOnOff);
+
+                  /**LOCATORS ARE NOT MODIFIED.THE OUTPUT IS NOT AS EXPECTED**/
                   //  String strActualBLEStatus = getElementText(txtSwitchOnOff);
                   //  TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
+
+
                     loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
                     System.out.println("Status is "+appPrefencesScreenPage.getTxtBluetoothStatusValue().getText());
                     Assert.assertTrue(strBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));

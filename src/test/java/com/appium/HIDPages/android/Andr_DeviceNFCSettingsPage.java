@@ -68,6 +68,8 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
                 waitForVisibility(btnOnOff);
                 click(btnOnOff);
                 waitForGivenTime(1);
+                /**LOCATORS ARE NOT MODIFIED.THE OUTPUT IS NOT AS EXPECTED.SEPARATE METHOD HAS BEEN WRITTEN **/
+
           /*      if (isDisplayed(txtSwitchOnOff)) {
                     String strActualNFCStatus = getElementText(txtSwitchOnOff);
                     TestUtils.log().info("NFC has been set as {}",strActualNFCStatus);
@@ -99,6 +101,8 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
                     waitForVisibility(btnOnOff);
                     click(btnOnOff);
                     waitForGivenTime(1);
+
+                    /**LOCATORS ARE NOT MODIFIED.THE OUTPUT IS NOT AS EXPECTED.SEPARATE METHOD HAS BEEN WRITTEN **/
                  /*   if (isDisplayed(txtSwitchOnOff)) {
                         String strActualNFCStatus = getElementText(txtSwitchOnOff);
                         TestUtils.log().info("NFC has been set as {}", strActualNFCStatus);
@@ -117,6 +121,8 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
                     waitForVisibility(btnOnOff);
                     click(btnOnOff);
                     waitForGivenTime(1);
+
+                    /**LOCATORS ARE NOT MODIFIED.THE OUTPUT IS NOT AS EXPECTED.SEPARATE METHOD HAS BEEN WRITTEN **/
                   /*  if (isDisplayed(txtSwitchOnOff)) {
                         String strActualNFCStatus = getElementText(txtSwitchOnOff);
                         TestUtils.log().info("NFC has been set as {}", strActualNFCStatus);

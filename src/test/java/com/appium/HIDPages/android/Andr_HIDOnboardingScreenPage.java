@@ -6,6 +6,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.testng.Assert;
 
+import static com.appium.constants.MessageConstants.*;
+
 public class Andr_HIDOnboardingScreenPage extends BasePage {
 
     /**
@@ -49,11 +51,11 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     private MobileElement favReaderDesc;
 
 
-    String convDescTxt="Your mobile device is your access card - even when you’re offline!";
-    String twistAndGoDescTxt="Simply twist your phone in front of you… and go!";
-    String favReaderDescTxt="Select the reader(s) you want to tag as favorite. When nearby, favorite readers are targeted for door opening.";
 
-    String bannersDescTxt="An intuitive way to provide information about settings that can improve HID Mobile Access experience. Note! We do not track or store your location.";
+
+
+/** THE COMMENTED OUT METHODS BELONGS TO AN OLDER VERSION OF APP **/
+
 
     /*public MobileElement getBtnSkip() {
         return btnSkip;
@@ -90,27 +92,48 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     /**
      * skipConvenientPage- This method is used to close the convenient page Date- 26/04/2023
     **/
-
     public void skipConvenientPage() {
         try {
 
-            click(btnSkip);
+                click(btnSkip);
+            }
 
-        } catch (Exception e) {
+        catch(Exception e){
 
             TestUtils.log().debug("Exception occurred while skipping/validating text in convenient page...");
         }
-
     }
+    public void skipConvenientPageOnboardingScreen(String button) {
+        try {
+            if (!SKIP.equalsIgnoreCase(button)) {
+                Assert.assertTrue(false, "The SKIP link in Convenient page is not displayed...");
+                TestUtils.log().info("The SKIP link in Convenient page is not displayed");
+            }
+            else
+            {
+                click(btnSkip);
+            }
+        }
+         catch(Exception e){
+
+                TestUtils.log().debug("Exception occurred while skipping/validating text in convenient page...");
+            }
+        }
+
 
     /**
      * skipTwistAndGoPage- This method is used to skip the TwistAndGo page Date- 26/04/2023
      **/
 
-    public void skipTwistAndGoPage() {
+    public void skipTwistAndGoPage(String button) {
         try {
+            if (!SKIP.equalsIgnoreCase(button)) {
+                Assert.assertTrue(false, "The SKIP link in Twist&Go page is not displayed...");
+                TestUtils.log().info("The SKIP link in Twist&Go page is not displayed...");
+            }
+            else
 
-            click(btnSkip);
+            { click(btnSkip);}
 
         } catch (Exception e) {
 
@@ -122,22 +145,26 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
     /**
      * checkVisibilityOfConvenientPage- This method is used to check visibility of the convenient page Date- 25/01/2023
+     *
+     * @return
      */
-    public void checkVisibilityOfConvenientPage() {
+    public boolean checkVisibilityOfConvenientPage() {
 
         try {
 
-            if (!isDisplayed(btnSkip)) {
-                Assert.assertTrue(false, "The Convenient page is not displayed...");
-                TestUtils.log().info("Convenient page is not displayed");
+            if (isDisplayed(btnSkip)) {
+                Assert.assertTrue(true, "The Convenient page is  displayed...");
+                TestUtils.log().info("Convenient page is  displayed");
 
             }
+
         } catch (Exception e) {
             
             TestUtils.log().debug("Exception occurred while checking visibility of convenient page...");
         }
 
 
+        return false;
     }
 
     /**
@@ -225,9 +252,13 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
      * GetStartedPageFavoriteReaderPage- This method is used to close the FavoriteReader page Date- 26/04/2023
      **/
 
-    public void GetStartedBannersPage() {
+    public void GetStartedBannersPage(String button) {
         try {
-
+            if (!GET_STARTED.equalsIgnoreCase(button)) {
+                Assert.assertTrue(false, "The Get Started link in Banners page is not displayed...");
+                TestUtils.log().info("The Get Started link in Banners page is not displayed...");
+            }
+            else
             click(btnGetStarted);
 
         } catch (Exception e) {
@@ -242,7 +273,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
         try {
 
-            if(twistAndGoDescTxt.equals(twistAndGoDesc.getText()))
+            if(TWIST_AND_GO_DESCRIPTION_TXT.equals(twistAndGoDesc.getText()))
             {
                 Assert.assertTrue(true, "The description in  Twist&Go page is  correct...");
                 TestUtils.log().debug(" The description in  Twist&Go page is  correct...");
@@ -262,7 +293,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
         try {
 
-            if(convDescTxt.equals(convDesc.getText()))
+            if(CONVENIENT_DESCRIPTION_TXT.equals(convDesc.getText()))
 
             {
                 Assert.assertTrue(true, "The description in  Convenient page is  correct...");
@@ -284,7 +315,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
         try {
 
-            if(favReaderDescTxt.equals(favReaderDesc.getText()))
+            if(FAVORITE_READER_DESCRIPTION_TXT.equals(favReaderDesc.getText()))
             {
                 Assert.assertTrue(true, "The description in  FavoriteReader Screen is correct...");
                 TestUtils.log().debug(" The description in  FavoriteReader Screen is correct...");
@@ -305,7 +336,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
         try {
 
-            if(bannersDescTxt.equals(bannerScreenDesc.getText()))
+            if(BANNERS_DESCRIPTION_TXT.equals(bannerScreenDesc.getText()))
             {
                 Assert.assertTrue(true, "The description in  Banners Screen is correct...");
                 TestUtils.log().debug(" The description in  Banners Screen is correct...");

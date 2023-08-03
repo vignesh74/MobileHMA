@@ -7,6 +7,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     Then  Mobile IDs screen is displayed in android device with card and popup
     And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
+#PLEASE DON'T RUN THE BELOW TESTCASES AS THEY ARE STILL IN DEVELOPMENTAL STAGE========================================================================================
   Scenario Outline:ANDR_11_10_WarningBanners_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status>, Location is <Location_Status>,Location Permission is <Location_Permission>
     When Navigate to Settings and App Preferences screen in android device
     Then Bluetooth status is displayed as "<BLE_Status>" in android device
@@ -48,6 +49,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
        | _TC-13 | On            | On            | On                 | Don't Allow                       | Location Permission                                |
        | _TC-14 | On            | On            | On                 | Ask every time                    | Location Permission                                |
 
+#PLEASE DON'T RUN THE ABOVE TESTCASES AS THEY ARE STILL IN DEVELOPMENTAL STAGE=======================================================================================
 
   Scenario Outline:ANDR_12_WarningBanners_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status>,Location Permission is <LocationPermOrNearbyPerm_Status>
     When Navigate to Settings and App Preferences screen in android device

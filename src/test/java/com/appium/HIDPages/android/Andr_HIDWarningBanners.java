@@ -159,7 +159,7 @@ public class Andr_HIDWarningBanners extends BasePage {
             TestUtils.log().debug("Exception occurred while checking on NFC Disabled Warning Banner tab...");
         }
     }
-
+    /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
    /* public boolean checkLocationWb(){
 
         String str=gpsDisabledText.getText();
@@ -241,7 +241,7 @@ public class Andr_HIDWarningBanners extends BasePage {
         }
 
     }
-
+/** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
 /*
 
     public void warningBannersWF1(String status1,String status2,String strLocationStatus,String strLocationOrNearBy, String strLocOrNearByPerm) {
@@ -360,6 +360,7 @@ public class Andr_HIDWarningBanners extends BasePage {
                     }
 
                 }
+                /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
                /* case "11" -> {
 
                     checkBleWb();
@@ -375,7 +376,7 @@ public class Andr_HIDWarningBanners extends BasePage {
             throw new RuntimeException(e);
         }
     }
-
+    /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
 /*
     public void warningBannersWF2(String strLocationStatus, String strUDID ,String strNFCStatus,String strBLEStatus,String strLocationOrNearBy, String strLocOrNearByPerm) {
 

@@ -1,6 +1,7 @@
 package com.appium.stepDefinition;
 
 import com.appium.HIDPages.android.*;
+import com.appium.constants.FrameworkConstants;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
@@ -11,11 +12,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en_scouse.An;
 import jssc.SerialPortException;
 import org.testng.Assert;
 
 import java.io.IOException;
 
+import static com.appium.constants.MessageConstants.EULA;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 
 
@@ -45,39 +48,72 @@ public class AndrStepDef {
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
-            DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
-            TestUtils.log().info("Application removed.....");
-            DriverManager.getDriver().installApp("/Users/Mobileprogramming/Documents/hma-automation-roboticarm-bdd4.1.2/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
-            TestUtils.log().info("Application installed.....");
+
+        if (OnboardingScreen.checkVisibilityOfConvenientPage()) {
+            DriverManager.getDriver().closeApp();
+            TestUtils.log().info("Application closed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
-            OnboardingScreen.checkVisibilityOfConvenientPage();
-            OnboardingScreen.checkDescriptionConvScreen();
             OnboardingScreen.skipConvenientPage();
-            DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
-            TestUtils.log().info("Application removed.....");
-            DriverManager.getDriver().installApp("/Users/Mobileprogramming/Documents/hma-automation-roboticarm-bdd4.1.2/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
-            TestUtils.log().info("Application installed.....");
+            termsOfUseScreen.agreeCheckBox();
+            termsOfUseScreen.continueTermsOfUsePage();
+        }
+        else{
+            DriverManager.getDriver().closeApp();
+            TestUtils.log().info("Application closed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
+            OnboardingScreen.skipConvenientPage();
+            termsOfUseScreen.agreeCheckBox();
+            termsOfUseScreen.continueTermsOfUsePage();
 
-            OnboardingScreen.checkVisibilityOfTwistAndGoPage() ;
-            OnboardingScreen.checkDescriptionTwistAndGoScreen();
-            OnboardingScreen.skipTwistAndGoPage();
+        }
+    }
 
 
-            DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
-            TestUtils.log().info("Application removed.....");
+    @Given("Launch HID Mobile Access Application Onboarding Screen in Android Device")
+    public void launchOnboardingScreen(){
 
-            DriverManager.getDriver().installApp("/Users/Mobileprogramming/Documents/hma-automation-roboticarm-bdd4.1.2/src/test/resources/app/hid_mobile_access-global-4.1.2.apk");
-            TestUtils.log().info("Application installed.....");
-            DriverManager.getDriver().launchApp();
-            TestUtils.log().info("Application launched.....");
-            OnboardingScreen.checkVisibilityOfBannersPage();
-            OnboardingScreen.checkDescriptionBannersScreen();
-            OnboardingScreen.GetStartedBannersPage();
+        DriverManager.getDriver().closeApp();
+        TestUtils.log().info("Application closed.....");
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
 
     }
+    @When("Header and Description is displayed for Convenient Screen")
+    public void headerConvenientDisplay(){
+        OnboardingScreen.checkVisibilityOfConvenientPage();
+        OnboardingScreen.checkDescriptionConvScreen();
+    }
+    @Then("Terms of Use Page is displayed when {string} is clicked in Convenient Screen")
+    public void skipConvenientPage(String button) {
+            OnboardingScreen.skipConvenientPageOnboardingScreen(button);
+
+    }
+
+    @And("Header and Description  is displayed for Twist&Go")
+    public void headerTwistAndGoDisplay(){
+        OnboardingScreen.checkVisibilityOfTwistAndGoPage() ;
+        OnboardingScreen.checkDescriptionTwistAndGoScreen();
+    }
+    @Then("Terms of Use Page is displayed when {string} is clicked in Twist&Go Screen")
+    public void skipTwistAndGo(String button){
+        OnboardingScreen.skipTwistAndGoPage(button);
+
+    }
+
+    @And("Header and Description is displayed for Banners Screen")
+    public void headerBannersScreen(){
+        OnboardingScreen.checkVisibilityOfBannersPage();
+        OnboardingScreen.checkDescriptionBannersScreen();
+    }
+    @Then("Terms of Use Page is displayed when {string} is clicked in Banners Screen")
+    public void getStartedBanner(String button){
+        OnboardingScreen.GetStartedBannersPage(button);
+
+    }
+
+
 
     @Given("Get Invitation Code using Rest API when credential are {}")
     public void createInvitationCode_Andr(String assigned) throws AutomationException, IOException {
@@ -89,44 +125,72 @@ public class AndrStepDef {
     @When("Swipe EULA screen to left in android device")
     public void swipeEulaScreen_Andr() {
 
+        invitationScreen.checkVisibilityOfInvitationPage();
+        invitationScreen.checkDescriptionInvitationPage();
+        invitationScreen.isEnabledGetStartedButton();
+        invitationScreen.isEnabledScanQRButton();
+        invitationScreen.checkAboutInfo();
+
+    }
+    @And("Skip is clicked")
+    public void skipConvPage(){
+        OnboardingScreen.skipConvenientPage();
+    }
+
+    @And("Terms of Use Page is displayed")
+    public void headerTermsOfUse(){
         termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
         termsOfUseScreen.checkVisibilityOfTermsOfUsePageImage();
-        termsOfUseScreen.cancelTermsOfUsePage();
-        DriverManager.getDriver().launchApp();
-        TestUtils.log().info("Application launched.....");
 
-        OnboardingScreen.skipConvenientPage();
-        termsOfUseScreen.checkEulaPageLink();
-        termsOfUseScreen.checkVisibilityOfEulaPage();
-        DriverManager.getDriver().launchApp();
-        TestUtils.log().info("Application launched.....");
+    }
 
-        OnboardingScreen.skipConvenientPage();
-        termsOfUseScreen.checkEulaPageLink();
-        termsOfUseScreen.backButtonEula();
-        termsOfUseScreen.checkPrivacyPageLink();
+
+    @Then("{string} in Terms Of Use Screen is clicked")
+    public void cancelTermsOfUse(String button)
+    {
+        termsOfUseScreen.cancelTermsOfUsePage(button);
+    }
+    @Then("{string} in Terms Of Use Page is clicked")
+    public void eulaPrivacyLinks(String link){
+        if (link.equalsIgnoreCase(EULA)){
+            termsOfUseScreen.checkEulaPageLink(link);
+            termsOfUseScreen.checkVisibilityOfEulaPage();
+            DriverManager.getDriver().launchApp();
+            TestUtils.log().info("Application launched.....");
+            OnboardingScreen.skipConvenientPage();
+            termsOfUseScreen.checkEulaPageLink(link);
+            termsOfUseScreen.backButtonEula();
+            DriverManager.getDriver().closeApp();
+        }
+        else
+        {
+        termsOfUseScreen.checkPrivacyPageLink(link);
         termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
         DriverManager.getDriver().launchApp();
         TestUtils.log().info("Application launched.....");
-
         OnboardingScreen.skipConvenientPage();
-        termsOfUseScreen.checkPrivacyPageLink();
+        termsOfUseScreen.checkPrivacyPageLink(link);
         termsOfUseScreen.backButtonPrivacyNoticePage();
+
+        }
+
+    }
+    @And("Terms of Use Page Checkbox is checked")
+    public void checkboxCheck(){
         termsOfUseScreen.checkCheckBoxTxt();
         termsOfUseScreen.continueBtnDisabled();
         termsOfUseScreen.agreeCheckBox();
-        termsOfUseScreen.continueTermsOfUsePage();
-
-        invitationScreen.checkVisibilityOfInvitationPage();
-        invitationScreen.checkDescriptionInvitationPage();
-        OnboardingScreen.skipConvenientPage();
-        invitationScreen.isEnabledGetStartedButton();
-        invitationScreen.isEnabledScanQRButton();
-      //  invitationScreen.checkScanQrCodeButton();
-        invitationScreen.checkAboutInfo();
-      //  invitationScreen.toastMessageAboutScreen();
 
     }
+
+    @Then("{string} in Terms Of Use  is clicked")
+    public void continueTermsOfUse(String link){
+
+        termsOfUseScreen.continueTermsOfUsePageLink(link);
+
+    }
+
+
 
     @When("Enter invitation code on HID mobile Application in android device")
     public void enterInvitationCode_Andr() {
@@ -345,6 +409,7 @@ public class AndrStepDef {
         mobileIDScreen.clickOnNextButton();
         mobileIDScreen.clickOnGotItButton();
     }
+    /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
 /*
     @And("Warning BannersWF1 are displayed  in android device as {string},{string},{string},{string},{string}")
     public void warningBanners1(String status1,String status2,String strLocationStatus,String strLocationOrNearBy, String strLocOrNearByPerm){
@@ -370,6 +435,7 @@ public class AndrStepDef {
     public void setLocationPerm(String strLocationOrNearBy,String strLocationOrNearByPermission){
       nearbyPermissionSettingsPage.setNearByOrLocationPermWb(strLocationOrNearBy,strLocationOrNearByPermission);
     }
+    /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
 /*
     @And("Warning BannersWF2 are displayed in android device")
     public void warningBanners2(String strLocationStatus, String strUDID ,String strBLEStatus,String strNFCStatus,String strLocationOrNearBy,String strLocationOrNearByPermission){
@@ -380,4 +446,6 @@ public class AndrStepDef {
      public void WarningBanners3(){
         warningBanners.warningBanners();
     }
+
+
 }

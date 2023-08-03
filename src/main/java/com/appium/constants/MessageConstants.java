@@ -56,4 +56,24 @@ public class MessageConstants {
     public static final String CHECK_ID="ID#";
 
     public static final String INVITATION_PAGE_TEXT = "Enter the 16-digit code from your HID Mobile Access welcome email.";
+
+    public static final String SKIP="Skip";
+
+    public static final String GET_STARTED="Get Started";
+
+    public static final String CANCEL="CANCEL";
+
+    public static final String CONTINUE="CONTINUE";
+
+    public static final String EULA="End User License Agreement";
+
+    public static final String PRIVACY_NOTICE="Privacy Notice";
+
+    public static final String CONVENIENT_DESCRIPTION_TXT="Your mobile device is your access card - even when you’re offline!";
+    public static final String TWIST_AND_GO_DESCRIPTION_TXT="Simply twist your phone in front of you… and go!";
+
+    public static final String BANNERS_DESCRIPTION_TXT="An intuitive way to provide information about settings that can improve HID Mobile Access experience. Note! We do not track or store your location.";
+    public static final String FAVORITE_READER_DESCRIPTION_TXT="Select the reader(s) you want to tag as favorite. When nearby, favorite readers are targeted for door opening.";
+    public static final String TERMS_OF_USE_HEADER="Mobile Access Terms of Use";
+    public static final String INVITATION_SCREEN_HEADER="Invitation code";
 }

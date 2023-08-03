@@ -749,6 +749,8 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         click(imgBackBtn);
 
     }
+
+    /**Note: Robot class implementation is not supported with Ventura OS in Mac.**/
  /*   public void enterNickname() throws AWTException {
         click(txtIssueDescriptionNickname);
         waitForGivenTime(10);
@@ -764,8 +766,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         click(doneBtn);
         click(imgBackBtn);
     }
-Note: Robot class implementation is not supported with Ventura OS in Mac.
-*/
+    */
 
     /**
      * clickOnNotificationTab- This method is used to click on the notification tab Date-25/01/2023

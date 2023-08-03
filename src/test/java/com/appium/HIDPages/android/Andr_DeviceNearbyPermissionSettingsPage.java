@@ -406,6 +406,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
 
                 }
                 default -> {
+                    /**THESE METHODS WILL BE USED WITH ANDROID 10 & 11 WHICH WILL BE TAKEN UP LATER */
                     // appPreferencesScreenPage.clickOnLocationPermission();
                     //waitForGivenTime(2);
                     // handlePermissionMsg();

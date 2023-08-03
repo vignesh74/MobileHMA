@@ -72,5 +72,5 @@ public class Andr_HIDFavoriteReadersPage {
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Default Photo ID\"])[4]")
     private MobileElement lockStatus;
 
-
+/**THIS FEATURE WILL BE TAKEN IN LATER**/
 }
