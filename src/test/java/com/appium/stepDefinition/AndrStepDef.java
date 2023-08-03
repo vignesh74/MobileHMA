@@ -51,7 +51,7 @@ public class AndrStepDef {
             TestUtils.log().info("Application installed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
-   /*         OnboardingScreen.checkVisibilityOfConvenientPage();
+            OnboardingScreen.checkVisibilityOfConvenientPage();
             OnboardingScreen.checkDescriptionConvScreen();
             OnboardingScreen.skipConvenientPage();
             DriverManager.getDriver().removeApp("com.hidglobal.mobilekeys.android.v3");
@@ -73,7 +73,6 @@ public class AndrStepDef {
             TestUtils.log().info("Application installed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
-*/
             OnboardingScreen.checkVisibilityOfBannersPage();
             OnboardingScreen.checkDescriptionBannersScreen();
             OnboardingScreen.GetStartedBannersPage();
@@ -92,11 +91,10 @@ public class AndrStepDef {
 
         termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
         termsOfUseScreen.checkVisibilityOfTermsOfUsePageImage();
-       // termsOfUseScreen.checkTermsOfUseTxt();
         termsOfUseScreen.cancelTermsOfUsePage();
         DriverManager.getDriver().launchApp();
         TestUtils.log().info("Application launched.....");
-/*
+
         OnboardingScreen.skipConvenientPage();
         termsOfUseScreen.checkEulaPageLink();
         termsOfUseScreen.checkVisibilityOfEulaPage();
@@ -110,10 +108,10 @@ public class AndrStepDef {
         termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
         DriverManager.getDriver().launchApp();
         TestUtils.log().info("Application launched.....");
-*/
+
         OnboardingScreen.skipConvenientPage();
-     //   termsOfUseScreen.checkPrivacyPageLink();
-      //  termsOfUseScreen.backButtonPrivacyNoticePage();
+        termsOfUseScreen.checkPrivacyPageLink();
+        termsOfUseScreen.backButtonPrivacyNoticePage();
         termsOfUseScreen.checkCheckBoxTxt();
         termsOfUseScreen.continueBtnDisabled();
         termsOfUseScreen.agreeCheckBox();
@@ -121,7 +119,7 @@ public class AndrStepDef {
 
         invitationScreen.checkVisibilityOfInvitationPage();
         invitationScreen.checkDescriptionInvitationPage();
-      //  OnboardingScreen.skipConvenientPage();
+        OnboardingScreen.skipConvenientPage();
         invitationScreen.isEnabledGetStartedButton();
         invitationScreen.isEnabledScanQRButton();
       //  invitationScreen.checkScanQrCodeButton();
