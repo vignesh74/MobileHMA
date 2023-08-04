@@ -125,7 +125,6 @@ public class Hooks {
 
             BasePage basePage = new BasePage();
             Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
-            Andr_HIDMobileAccessTermsOfUse termsOfUse= new Andr_HIDMobileAccessTermsOfUse();
             if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
                 settingsScreenPage.traverseToSettingsPage();
                 settingsScreenPage.unRegisterThisDevice();

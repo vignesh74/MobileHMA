@@ -54,19 +54,12 @@ public class AndrStepDef {
             TestUtils.log().info("Application closed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
-            OnboardingScreen.skipConvenientPage();
-            termsOfUseScreen.agreeCheckBox();
-            termsOfUseScreen.continueTermsOfUsePage();
         }
         else{
             DriverManager.getDriver().closeApp();
             TestUtils.log().info("Application closed.....");
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
-            OnboardingScreen.skipConvenientPage();
-            termsOfUseScreen.agreeCheckBox();
-            termsOfUseScreen.continueTermsOfUsePage();
-
         }
     }
 
@@ -124,6 +117,9 @@ public class AndrStepDef {
 
     @When("Swipe EULA screen to left in android device")
     public void swipeEulaScreen_Andr() {
+        OnboardingScreen.skipConvenientPage();
+        termsOfUseScreen.agreeCheckBox();
+        termsOfUseScreen.continueTermsOfUsePage();
 
         invitationScreen.checkVisibilityOfInvitationPage();
         invitationScreen.checkDescriptionInvitationPage();
