@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@Android12_RevE_TwistGo_WF_8")
+        , tags = "@Android12_RevE_TwistGoRun")
 
 public class Andr12_RevTwistAndGo_Runner extends BaseTest {
 

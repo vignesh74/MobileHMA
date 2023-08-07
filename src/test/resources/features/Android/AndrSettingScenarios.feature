@@ -9,7 +9,6 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And   Tap on the Mobile ID to check back of the card details
     And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
-
   @ANDR_Settings_12_WF1 @ANDR_Settings_12_WF
   Scenario Outline:ANDR_12_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>
     When Navigate to Settings and App Preferences screen in android device
@@ -125,7 +124,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And  Show Activity State status is displayed as "<Show_Activity_State>" in android device
     And  Debug Logs status is displayed as "<Debug_Logs>" in android device
 
-    @ANDR_Settings_11_WF4 @ANDR_Settings_11_WF @ANDR_Settings_10_WF4 @ANDR_Settings_10_WF
+    @ANDR_Settings_11_WF4 @ANDR_Settings_11_WF @ANDR_Settings_10_WF2 @ANDR_Settings_10_WF
     Examples:
       | TC_ID  | Show_Activity_State | Debug_Logs     |
       | _TC-13 | Enable/Disable      | Enable/Disable |

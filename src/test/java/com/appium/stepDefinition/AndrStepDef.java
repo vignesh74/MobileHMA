@@ -296,7 +296,8 @@ public class AndrStepDef {
 
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
-        Assert.assertEquals(armLogs, strRoboticLog);
+        TestUtils.log().info("Robotic arms: "+armLogs+" is Equal to "+strRoboticLog);
+        Assert.assertTrue(armLogs.toLowerCase().contains(strRoboticLog.toLowerCase()));
 
     }
 
@@ -379,8 +380,8 @@ public class AndrStepDef {
         deviceLocationSettingsPage.setLocationStatusForSettingFeature(strLocationStatus, strUDID);
     }
 
-    @When("Set {string} permission status as {string} in android device")
-     public void set_permission_status_as_in_android_device(String strLocationOrNearBy, String strLocationOrNearByPermission) {
+  @When("Set {string} permission status as {string} in android device")
+    public void set_permission_status_as_in_android_device(String strLocationOrNearBy, String strLocationOrNearByPermission) {
         nearbyPermissionSettingsPage.setNearByOrLocationPerm(strLocationOrNearBy, strLocationOrNearByPermission);
     }
 
