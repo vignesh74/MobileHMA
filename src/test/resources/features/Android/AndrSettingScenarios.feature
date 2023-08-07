@@ -6,6 +6,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And   Get Invitation Code using Rest API when credential are assigned
     And   Enter invitation code on HID mobile Application in android device
     Then  Mobile IDs screen is displayed in android device
+    And   Tap on the Mobile ID to check back of the card details
     And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
   @ANDR_Settings_12_WF1 @ANDR_Settings_12_WF

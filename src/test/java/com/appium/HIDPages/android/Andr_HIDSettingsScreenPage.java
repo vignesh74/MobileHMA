@@ -33,16 +33,16 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/btnSubmit")
     private MobileElement btnSubmit;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Unregister This Device']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Deregister This Device']")
     private MobileElement txtUnRegisterThisDevice;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirm Unregister']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirm Deregister']")
     private MobileElement txtConfirmUnregisterPopUpTitle;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='UNREGISTER']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='DEREGISTER']")
     private MobileElement btnUnRegister;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='You have successfully unregistered from HID Mobile Access. All your Mobile IDs have been deleted.']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='You have successfully Deregistered from HID Mobile Access. All your Mobile IDs have been deleted.']")
     private MobileElement txtDeviceUnRegistredMessage;
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/btnOk")
@@ -173,14 +173,14 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
                     waitForGivenTime(2);
                     if (isDisplayed(txtDeviceUnRegistredMessage)) {
                         click(btnOk);
-                        waitForGivenTime(2);
-                        TestUtils.log().info("Device has been Unregistered");
+                        waitForGivenTime(4);
+                        TestUtils.log().info("Device has been Deregistered");
                     }
                 }
             }
         }catch (Exception e){
             
-            TestUtils.log().info("Getting Exception while performing device unregister.");
+            TestUtils.log().info("Getting Exception while performing device Deregister.");
         }
     }
 

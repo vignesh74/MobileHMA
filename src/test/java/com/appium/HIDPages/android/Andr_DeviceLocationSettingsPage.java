@@ -26,6 +26,15 @@ public class Andr_DeviceLocationSettingsPage extends BasePage {
 
     @AndroidFindBy(id = "com.android.settings:id/switch_text")
     private MobileElement txtLocationOnOff;
+   /**
+    *These mobile elements are required to validate warning Banners
+   */
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='GPS Disabled']")
+    private MobileElement gpsDisabled;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.']")
+    private MobileElement gpsDisabledText;
+
 
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
@@ -113,6 +122,25 @@ public class Andr_DeviceLocationSettingsPage extends BasePage {
             }
         } catch (Exception e) {
             TestUtils.log().debug("Exception occurred while setting the Location status for setting feature...");
+        }
+    }
+
+    public void setLocationStatusWb(String strLocationStatus, String strUDID) {
+        try {
+            if (isDisplayed(gpsDisabled)) {
+                if (getElementText(appPreferencesScreenPage.getTxtLocationStatusValue()).equalsIgnoreCase(strLocationStatus)) {
+                    TestUtils.log().info("Location status is already set as {}",strLocationStatus);
+                } else {
+                    click(gpsDisabled);
+                    waitForGivenTime(1);
+                    click(btnLocationOnOff);
+
+                    loopHandle(appPreferencesScreenPage.getTxtLocationStatusValue(), "navigateBack", 10);
+                    Assert.assertTrue(strLocationStatus.equalsIgnoreCase(appPreferencesScreenPage.getTxtLocationStatusValue().getText()));
+                }
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while setting the Location status...");
         }
     }
 }

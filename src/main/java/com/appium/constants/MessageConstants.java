@@ -32,4 +32,48 @@ public class MessageConstants {
 
     public static final String INITIALPOPUPSHANDLING= "initialPopupsHandling";
     public static final String ENDTESTPOPUPSHANDLING= "endTestPopupsHandling";
+
+    public static final String BLE_WARNING_BANNER_TEXT="Enable Bluetooth to find readers nearby and use your Mobile ID over Bluetooth.";
+
+    public static final String NFC_WARNING_BANNER_TEXT="Enable NFC to use your Mobile ID by presenting your phone to the reader.";
+
+    public static final String GPSWARNINGBANNERTEXT="We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.";
+
+    public static final String LOCATIONPERMISSIONWARNINGBANNERTEXT="We do not track your location. Enable Location to use your Mobile ID over Bluetooth.";
+
+    public static final String NEARBY_PERMISSION_WARNING_BANNER_TEXT="We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.";
+    //public static final String MESSAGE_TERMS_OF_USE="By tapping “Accept”, you acknowledge you have reviewed and agreed to the HID Mobile Access End User License Agreement and Privacy Notice.";
+    public static final String MESSAGE_CHECKBOX="I have read and agree to the End User License Agreement and Privacy Notice for this application.";
+
+    public static final String CHECK_HEADER="Mobile ID Details";
+    public static final String CHECK_NICKNAME="Nickname";
+    public static final String CHECK_NAME="Name";
+    public static final String CHECK_MOBILE_KEY_SET="Mobile Keyset";
+    public static final String CHECK_ORGANIZATION="Organization";
+
+    public static final String CHECK_ISSUED_ON="Issued On";
+    public static final String CHECK_EXPIRES_ON="Expires On";
+    public static final String CHECK_ID="ID#";
+
+    public static final String INVITATION_PAGE_TEXT = "Enter the 16-digit code from your HID Mobile Access welcome email.";
+
+    public static final String SKIP="Skip";
+
+    public static final String GET_STARTED="Get Started";
+
+    public static final String CANCEL="CANCEL";
+
+    public static final String CONTINUE="CONTINUE";
+
+    public static final String EULA="End User License Agreement";
+
+    public static final String PRIVACY_NOTICE="Privacy Notice";
+
+    public static final String CONVENIENT_DESCRIPTION_TXT="Your mobile device is your access card - even when you’re offline!";
+    public static final String TWIST_AND_GO_DESCRIPTION_TXT="Simply twist your phone in front of you… and go!";
+
+    public static final String BANNERS_DESCRIPTION_TXT="An intuitive way to provide information about settings that can improve HID Mobile Access experience. Note! We do not track or store your location.";
+    public static final String FAVORITE_READER_DESCRIPTION_TXT="Select the reader(s) you want to tag as favorite. When nearby, favorite readers are targeted for door opening.";
+    public static final String TERMS_OF_USE_HEADER="Mobile Access Terms of Use";
+    public static final String INVITATION_SCREEN_HEADER="Invitation code";
 }

@@ -1,6 +1,7 @@
 package com.appium.stepDefinition;
 
 import com.appium.HIDPages.android.*;
+import com.appium.constants.FrameworkConstants;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
@@ -11,16 +12,20 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en_scouse.An;
 import jssc.SerialPortException;
 import org.testng.Assert;
 
 import java.io.IOException;
 
+import static com.appium.constants.MessageConstants.EULA;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
+
 
 public class AndrStepDef {
     String strInvitationCode = "";
-    Andr_HIDConvenientScreenPage convenientScreen = new Andr_HIDConvenientScreenPage();
+    Andr_HIDOnboardingScreenPage OnboardingScreen = new Andr_HIDOnboardingScreenPage();
+    Andr_HIDMobileAccessTermsOfUse termsOfUseScreen=new Andr_HIDMobileAccessTermsOfUse();
     Andr_HIDInvitationCodeScreenPage invitationScreen = new Andr_HIDInvitationCodeScreenPage();
     Andr_HIDMobileIDScreenPage mobileIDScreen = new Andr_HIDMobileIDScreenPage();
     Andr_HIDSettingsScreenPage settingsScreen = new Andr_HIDSettingsScreenPage();
@@ -36,18 +41,64 @@ public class AndrStepDef {
     Andr_HIDSettingsReportIssueScreenPage settingsReportIssueScreenPage = new Andr_HIDSettingsReportIssueScreenPage();
     Andr_HIDSettingLegalScreenPage settingLegalScreenPage = new Andr_HIDSettingLegalScreenPage();
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
+    Andr_HIDWarningBanners warningBanners = new Andr_HIDWarningBanners();
+
     String strUDID = "";
     String armLogs;
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
-        if (convenientScreen.checkVisibilityOfConvenientPage()) {
-            DriverManager.getDriver().closeApp();
-            TestUtils.log().info("Application closed.....");
-            DriverManager.getDriver().launchApp();
-            TestUtils.log().info("Application launched.....");
-        }
+
+        DriverManager.getDriver().closeApp();
+        TestUtils.log().info("Application closed.....");
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
     }
+
+
+    @Given("Launch HID Mobile Access Application Onboarding Screen in Android Device")
+    public void launchOnboardingScreen(){
+
+        DriverManager.getDriver().closeApp();
+        TestUtils.log().info("Application closed.....");
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
+
+    }
+    @When("Header and Description is displayed for Convenient Screen")
+    public void headerConvenientDisplay(){
+        OnboardingScreen.checkVisibilityOfConvenientPage();
+        OnboardingScreen.checkDescriptionConvScreen();
+    }
+    @Then("Terms of Use Page is displayed when {string} is clicked in Convenient Screen")
+    public void skipConvenientPage(String button) {
+            OnboardingScreen.skipConvenientPageOnboardingScreen(button);
+
+    }
+
+    @And("Header and Description  is displayed for Twist&Go")
+    public void headerTwistAndGoDisplay(){
+        OnboardingScreen.checkVisibilityOfTwistAndGoPage() ;
+        OnboardingScreen.checkDescriptionTwistAndGoScreen();
+    }
+    @Then("Terms of Use Page is displayed when {string} is clicked in Twist&Go Screen")
+    public void skipTwistAndGo(String button){
+        OnboardingScreen.skipTwistAndGoPage(button);
+
+    }
+
+    @And("Header and Description is displayed for Banners Screen")
+    public void headerBannersScreen(){
+        OnboardingScreen.checkVisibilityOfBannersPage();
+        OnboardingScreen.checkDescriptionBannersScreen();
+    }
+    @Then("Terms of Use Page is displayed when {string} is clicked in Banners Screen")
+    public void getStartedBanner(String button){
+        OnboardingScreen.GetStartedBannersPage(button);
+
+    }
+
+
 
     @Given("Get Invitation Code using Rest API when credential are {}")
     public void createInvitationCode_Andr(String assigned) throws AutomationException, IOException {
@@ -58,8 +109,76 @@ public class AndrStepDef {
 
     @When("Swipe EULA screen to left in android device")
     public void swipeEulaScreen_Andr() {
-        convenientScreen.closeConvenientPage();
+        OnboardingScreen.skipConvenientPage();
+        termsOfUseScreen.agreeCheckBox();
+        termsOfUseScreen.continueTermsOfUsePage();
+
+        invitationScreen.checkVisibilityOfInvitationPage();
+        invitationScreen.checkDescriptionInvitationPage();
+        invitationScreen.isEnabledGetStartedButton();
+        invitationScreen.isEnabledScanQRButton();
+        invitationScreen.checkAboutInfo();
+
     }
+    @And("Skip is clicked")
+    public void skipConvPage(){
+        OnboardingScreen.skipConvenientPage();
+    }
+
+    @And("Terms of Use Page is displayed")
+    public void headerTermsOfUse(){
+        termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
+        termsOfUseScreen.checkVisibilityOfTermsOfUsePageImage();
+
+    }
+
+
+    @Then("{string} in Terms Of Use Screen is clicked")
+    public void cancelTermsOfUse(String button)
+    {
+        termsOfUseScreen.cancelTermsOfUsePage(button);
+    }
+    @Then("{string} in Terms Of Use Page is clicked")
+    public void eulaPrivacyLinks(String link){
+        if (link.equalsIgnoreCase(EULA)){
+            termsOfUseScreen.checkEulaPageLink(link);
+            termsOfUseScreen.checkVisibilityOfEulaPage();
+            DriverManager.getDriver().launchApp();
+            TestUtils.log().info("Application launched.....");
+            OnboardingScreen.skipConvenientPage();
+            termsOfUseScreen.checkEulaPageLink(link);
+            termsOfUseScreen.backButtonEula();
+            DriverManager.getDriver().closeApp();
+        }
+        else
+        {
+        termsOfUseScreen.checkPrivacyPageLink(link);
+        termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
+        OnboardingScreen.skipConvenientPage();
+        termsOfUseScreen.checkPrivacyPageLink(link);
+        termsOfUseScreen.backButtonPrivacyNoticePage();
+
+        }
+
+    }
+    @And("Terms of Use Page Checkbox is checked")
+    public void checkboxCheck(){
+        termsOfUseScreen.checkCheckBoxTxt();
+        termsOfUseScreen.continueBtnDisabled();
+        termsOfUseScreen.agreeCheckBox();
+
+    }
+
+    @Then("{string} in Terms Of Use  is clicked")
+    public void continueTermsOfUse(String link){
+
+        termsOfUseScreen.continueTermsOfUsePageLink(link);
+
+    }
+
+
 
     @When("Enter invitation code on HID mobile Application in android device")
     public void enterInvitationCode_Andr() {
@@ -75,11 +194,31 @@ public class AndrStepDef {
         mobileIDScreen.clickOnGotItButton();
     }
 
+    @Then("Tap on the Mobile ID to check back of the card details")
+    public void backOfTheCardDetailsIsDisplayed_Andr() {
+        mobileIDScreen.clickOnMobileID();
+        mobileIDScreen.checkHeaderMobileIdHeader();
+        mobileIDScreen.checkNickname();
+        mobileIDScreen.checkName();
+        mobileIDScreen.checkMobileKeySet();
+        mobileIDScreen.checkOrganization();
+        mobileIDScreen.checkIssuedOn();
+        mobileIDScreen.checkExpiresOn();
+        mobileIDScreen.checkID();
+        mobileIDScreen.checkVisibilityOfEditNicknamePencilIcon();
+        mobileIDScreen.checkVisibilityOfEditNicknamePopup();
+        mobileIDScreen.validateNicknameDialogBox();
+        mobileIDScreen.enterNickname();
+        mobileIDScreen.removeNickname();
+    }
+
     @Then("Notification screen is displayed with message {string} in android device")
     public void notificationScreenIsDisplayed_Andr(String strMessage) {
         mobileIDScreen.clickOnNotificationTab();
         notificationScreen.verifyNotification(strMessage);
     }
+
+
 
     @When("Navigate to Settings and App Preferences screen in android device")
     public void navigateToAppPreferencesScreen_Andr() {
@@ -241,8 +380,8 @@ public class AndrStepDef {
         deviceLocationSettingsPage.setLocationStatusForSettingFeature(strLocationStatus, strUDID);
     }
 
-   @When("Set {string} permission status as {string} in android device")
-     public void set_permission_status_as_in_android_device(String strLocationOrNearBy, String strLocationOrNearByPermission) {
+  @When("Set {string} permission status as {string} in android device")
+    public void set_permission_status_as_in_android_device(String strLocationOrNearBy, String strLocationOrNearByPermission) {
         nearbyPermissionSettingsPage.setNearByOrLocationPerm(strLocationOrNearBy, strLocationOrNearByPermission);
     }
 
@@ -252,4 +391,50 @@ public class AndrStepDef {
         appPreferencesScreen.toVerifyNearByOrLocationPermissionStatus(strLocationOrNearByPermission);
 
     }
+
+    @Then("Mobile IDs screen is displayed in android device with card and popup")
+    public void mobileIDScreenAlongWithPopupIsDisplayed_Andr() {
+        mobileIDScreen.toVerifyMobileID();
+        mobileIDScreen.clickOnNextButton();
+        mobileIDScreen.clickOnGotItButton();
+    }
+    /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
+/*
+    @And("Warning BannersWF1 are displayed  in android device as {string},{string},{string},{string},{string}")
+    public void warningBanners1(String status1,String status2,String strLocationStatus,String strLocationOrNearBy, String strLocOrNearByPerm){
+        warningBanners.warningBannersWF1(status1,status2,strLocationStatus,strLocationOrNearBy,strLocOrNearByPerm);
+    }
+    */
+    @Then("Bluetooth status for Warning Banners is displayed as {string} in android device")
+    public void setBLE(String bleStatusWb) {
+        bleSettingsPage.setBLEStatusWb(bleStatusWb);
+    }
+
+    @And("NFC status for Warning Banners is displayed as {string} in android device")
+    public void setNFC(String nfcStatusWb){
+        nfcSettingsPage.setNFCStatusWb(nfcStatusWb);
+    }
+
+    @And("Location Status for Warning Banners is displayed as {string} in android device")
+    public void setLocation(String locationStatusWb,String strUDID){
+        deviceLocationSettingsPage.setLocationStatusWb(locationStatusWb,strUDID);
+    }
+
+    @And("{string} Permission status for Warning Banners is displayed as {string} in android device")
+    public void setLocationPerm(String strLocationOrNearBy,String strLocationOrNearByPermission){
+      nearbyPermissionSettingsPage.setNearByOrLocationPermWb(strLocationOrNearBy,strLocationOrNearByPermission);
+    }
+    /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
+/*
+    @And("Warning BannersWF2 are displayed in android device")
+    public void warningBanners2(String strLocationStatus, String strUDID ,String strBLEStatus,String strNFCStatus,String strLocationOrNearBy,String strLocationOrNearByPermission){
+        warningBanners.warningBannersWF2(strLocationStatus, strUDID,strBLEStatus,strNFCStatus,strLocationOrNearBy,strLocationOrNearByPermission);
+    }
+*/
+    @Then("Warning Banners are displayed  in android device")
+     public void WarningBanners3(){
+        warningBanners.warningBanners();
+    }
+
+
 }
