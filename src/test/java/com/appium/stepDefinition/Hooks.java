@@ -30,6 +30,8 @@ import static com.appium.constants.FrameworkConstants.YES;
 
 
 public class Hooks {
+    /** These Locators may be needed in upcoming Sprints
+
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
     Andr_HIDWarningBanners handleWb= new Andr_HIDWarningBanners();
 
@@ -39,7 +41,7 @@ public class Hooks {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtInviteCode")
     private MobileElement invCodePageHeader;
 
-
+*/
 
 
     /**
@@ -105,33 +107,22 @@ public class Hooks {
      * unRegisterDevice- This method is used to unregister device after each scenario execution Date-06/03/2023
      * As this method handles popup before de registering hence a modified method has been written below
      */
-  /*  @After
+    @After
     public void unRegisterDevice() {
         BasePage basePage = new BasePage();
         Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
         if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
             settingsScreenPage.traverseToSettingsPage();
+            /**
+            The following statements have been commented due to its non applicability for the present App Version
             if (!DriverManager.getPopupHandled()) {
                 handlePopUps.enableAllPopUps("endTestPopupsHandling");
             }
+            */
             settingsScreenPage.unRegisterThisDevice();
             basePage.waitForGivenTime(2);
         }
 
     }
-    */
-    @After
-    public void unRegisterDeviceWb() {
 
-            BasePage basePage = new BasePage();
-            Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
-            if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
-                settingsScreenPage.traverseToSettingsPage();
-                settingsScreenPage.unRegisterThisDevice();
-                basePage.waitForGivenTime(2);
-            }
-
-
-
-    }
 }

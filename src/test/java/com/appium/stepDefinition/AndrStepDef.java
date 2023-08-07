@@ -49,18 +49,10 @@ public class AndrStepDef {
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
 
-        if (OnboardingScreen.checkVisibilityOfConvenientPage()) {
-            DriverManager.getDriver().closeApp();
-            TestUtils.log().info("Application closed.....");
-            DriverManager.getDriver().launchApp();
-            TestUtils.log().info("Application launched.....");
-        }
-        else{
-            DriverManager.getDriver().closeApp();
-            TestUtils.log().info("Application closed.....");
-            DriverManager.getDriver().launchApp();
-            TestUtils.log().info("Application launched.....");
-        }
+        DriverManager.getDriver().closeApp();
+        TestUtils.log().info("Application closed.....");
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
     }
 
 

@@ -270,7 +270,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
         try {
 
             click(agreeCheckbox);
-            waitForGivenTime(4);
+            waitForGivenTime(2);
 
         } catch (Exception e) {
 
