@@ -10,6 +10,8 @@ import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import com.appium.constants.MessageConstants;
 import org.testng.Assert;
 
+import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
+
 public class Andr_HIDWarningBanners extends BasePage {
 
     Andr_HIDAppPreferencesScreenPage appPreferenceScreenPage = new Andr_HIDAppPreferencesScreenPage();
@@ -17,6 +19,7 @@ public class Andr_HIDWarningBanners extends BasePage {
     Andr_DeviceBLESettingsPage deviceBLESettingsPage=new Andr_DeviceBLESettingsPage();
     Andr_DeviceLocationSettingsPage deviceLocationSettingsPage=new Andr_DeviceLocationSettingsPage();
     Andr_DeviceNFCSettingsPage deviceNFCSettingsPage=new Andr_DeviceNFCSettingsPage();
+    Andr_HIDMobileIDScreenPage mobileIDScreenPage=new Andr_HIDMobileIDScreenPage();
 
     /**
      * These are the Mobile elements required for validating Warning Banners
@@ -368,6 +371,101 @@ public class Andr_HIDWarningBanners extends BasePage {
                     checkLocationWb();
                     checkLocationPermissionWb();
                 }*/
+                default -> {TestUtils.log().debug("Different Android Version");}
+            }
+
+
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void warningBannersWf3(){
+        try{
+            String strPlatformVersion = DriverManager.getPlatformVersion();
+            loopHandle(mobileIDScreenPage.getTxtMobileIdsTab(), NAVIGATE_BACK, 10);
+
+            switch (strPlatformVersion) {
+                case "12" -> {
+                    try {
+                        if (isDisplayed(bleDisabled)) {
+                            Assert.assertTrue(true, "The BLE Disabled Banner is visible...");
+                            TestUtils.log().debug(" The BLE Disabled Banner is visible...");
+                            checkBleWb();
+                        }
+                        else
+                        {
+                            if(appPreferenceScreenPage.getTxtBluetoothStatusValue().getText().equalsIgnoreCase("On"))
+                            {
+                                Assert.assertTrue(true, "The BLE Disabled Banner is not available for particular Scenario...");
+                                TestUtils.log().debug("BLUETOOTH PERMISSION DISABLED WARNING BANNER  is not available for particular Scenario...");
+                            }
+                            else
+                            {
+                                Assert.assertTrue(false, "The BLE Disabled Banner is not visible....");
+                                TestUtils.log().debug("BLUETOOTH PERMISSION DISABLED WARNING BANNER  is not visible....");
+                            }
+                        }
+                    } catch(Exception e)
+                    {
+                        TestUtils.log().debug("Element not visible for this Scenario");
+                    }
+
+                    try {
+                        if (isDisplayed(nfcDisabled)) {
+                            Assert.assertTrue(true, "The NFC Disabled Banner is visible...");
+                            TestUtils.log().debug(" The NFC Disabled Banner is visible...");
+                            checkNfcWb();
+                        } else
+                        {
+                            if(deviceNFCSettingsPage.getElementText(nfcStatusOn).equalsIgnoreCase("On"))
+                            {
+                                Assert.assertTrue(true, "The NFC Disabled Banner is not available for particular Scenario...");
+                                TestUtils.log().debug("NFC PERMISSION DISABLED WARNING BANNER  is not available for particular Scenario...");
+                            }
+                            else {
+                                Assert.assertTrue(false, "The NFC Disabled Banner is not visible...");
+                                TestUtils.log().debug("NFC PERMISSION DISABLED WARNING BANNER  is not visible...");
+                            }
+                        }
+                    } catch(Exception e)
+                    {
+                        TestUtils.log().debug("Element not visible for this Scenario");
+                    }
+
+
+                    try {
+                        if (isDisplayed(nearByPermissionDisabled)) {
+                            Assert.assertTrue(true, "The Nearby Permission Disabled Banner is visible...");
+                            TestUtils.log().debug(" The Nearby Permission Disabled Banner is visible...");
+                            checkNearByPermissionWb();
+                        } else {
+                            if(getElementText(nearByStatusText).equalsIgnoreCase("Granted always"))
+                            {
+                                Assert.assertTrue(true, "The Nearby Permission Disabled Banner is not available for particular Scenario...");
+                                TestUtils.log().debug("NEARBY PERMISSION WARNING BANNER TEXT is not available for particular Scenario");
+                            }
+                            else
+                            {
+                                Assert.assertTrue(false, "The Nearby Permission Disabled Banner is not visible...");
+                                TestUtils.log().debug("NEARBY PERMISSION WARNING BANNER TEXT is not visible");
+                            }
+
+                        }
+                    } catch(Exception e)
+                    {
+                        TestUtils.log().debug("Element not visible for this Scenario");
+                    }
+
+                }
+                /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
+                 /* case "11" -> {
+
+                 checkBleWb();
+                 checkNfcWb();
+                 checkLocationWb();
+                 checkLocationPermissionWb();
+                 }*/
                 default -> {TestUtils.log().debug("Different Android Version");}
             }
 

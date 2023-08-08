@@ -436,5 +436,24 @@ public class AndrStepDef {
         warningBanners.warningBanners();
     }
 
+    @Then("Bluetooth status for Warning Banners in Wf3 is displayed as {string} in android device")
+    public void setBLE_Wf3(String bleStatusWb) {
+        bleSettingsPage.setBLEStatusWbWf3(bleStatusWb);
+    }
+
+    @And("NFC status for Warning Banners in Wf3  is displayed as {string} in android device")
+    public void setNFC_Wf3(String nfcStatusWb){
+        nfcSettingsPage.setNFCStatusWbWf3(nfcStatusWb);
+    }
+    @And("{string} Permission status for Warning Banners in Wf3  is displayed as {string} in android device")
+    public void setLocationPerm_Wf3(String strLocationOrNearBy,String strLocationOrNearByPermission){
+        nearbyPermissionSettingsPage.setNearByOrLocationPermWbWf3(strLocationOrNearBy,strLocationOrNearByPermission);
+    }
+    @Then("Warning Banners in Wf3  are displayed  in android device")
+    public void WarningBannersWf3(){
+        warningBanners.warningBannersWf3();
+    }
+
+
 
 }
