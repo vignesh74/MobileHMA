@@ -425,7 +425,7 @@ public class AndrStepDef {
       nearbyPermissionSettingsPage.setNearByOrLocationPermWb(strLocationOrNearBy,strLocationOrNearByPermission);
     }
     /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
-/*
+
     @And("Warning BannersWF2 are displayed in android device")
     public void warningBanners2(String strLocationStatus, String strUDID ,String strBLEStatus,String strNFCStatus,String strLocationOrNearBy,String strLocationOrNearByPermission){
         warningBanners.warningBannersWF2(strLocationStatus, strUDID,strBLEStatus,strNFCStatus,strLocationOrNearBy,strLocationOrNearByPermission);
@@ -441,19 +441,17 @@ public class AndrStepDef {
         bleSettingsPage.setBLEStatusWbWf3(bleStatusWb);
     }
 
-    @And("NFC status for Warning Banners in Wf3  is displayed as {string} in android device")
+    @And("NFC status for Warning Banners in Wf3 is displayed as {string} in android device")
     public void setNFC_Wf3(String nfcStatusWb){
         nfcSettingsPage.setNFCStatusWbWf3(nfcStatusWb);
     }
-    @And("{string} Permission status for Warning Banners in Wf3  is displayed as {string} in android device")
+    @And("{string} Permission status for Warning Banners in Wf3 is displayed as {string} in android device")
     public void setLocationPerm_Wf3(String strLocationOrNearBy,String strLocationOrNearByPermission){
         nearbyPermissionSettingsPage.setNearByOrLocationPermWbWf3(strLocationOrNearBy,strLocationOrNearByPermission);
     }
-    @Then("Warning Banners in Wf3  are displayed  in android device")
+    @Then("Warning Banners in Wf3 are displayed  in android device")
     public void WarningBannersWf3(){
         warningBanners.warningBannersWf3();
     }
-
-
 
 }
