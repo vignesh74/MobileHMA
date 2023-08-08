@@ -22,10 +22,10 @@
         <parameter name="chromeDriverPort" value="11033"/>
         <parameter name="wdaLocalPort" value=""/>
         <parameter name="webkitDebugProxyPort" value="9228"/>
-        <parameter name="userId" value="12001264"/>
+        <parameter name="userId" value="12184815"/>
         <parameter name="comPort" value=""/>
-        <parameter name="roboticArmX" value="1900"/>
-        <parameter name="roboticArmY" value="300"/>
+        <parameter name="roboticArmX" value="1350"/>
+        <parameter name="roboticArmY" value="500"/>
 
         <classes>
             <class name="com.appium.runners.Android.Andr12_RevE_Tap_Runner"></class>
