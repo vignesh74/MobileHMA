@@ -16,7 +16,7 @@
         <parameter name="platformName" value="Android"></parameter>
         <parameter name="platformVersion" value="12"></parameter>
         <parameter name="udid" value="R58N310ZXLR"></parameter>
-        <parameter name="installApp" value="true"></parameter>
+        <parameter name="installApp" value="False"></parameter>
         <parameter name="deviceName" value="TestPhone-ANDROID"></parameter>
         <parameter name="systemPort" value="2301"/>
         <parameter name="chromeDriverPort" value="11033"/>

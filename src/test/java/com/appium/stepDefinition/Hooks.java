@@ -18,6 +18,8 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import java.io.IOException;
 
@@ -88,11 +90,13 @@ public class Hooks {
     /**
      * unRegisterDevice- This method is used to unregister device after each scenario execution Date-06/03/2023
      */
+
+    @Parameters({"installApp"})
     @After
-    public void unRegisterDevice() {
+    public void unRegisterDevice(@Optional("AndroidAndiOS") String installApp) {
         BasePage basePage = new BasePage();
         Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
-        if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
+        if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android") && installApp.equalsIgnoreCase("true")) {
             settingsScreenPage.traverseToSettingsPage();
             if (!DriverManager.getPopupHandled()) {
                 handlePopUps.enableAllPopUps("endTestPopupsHandling");
