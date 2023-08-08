@@ -42,7 +42,7 @@
         <parameter name="chromeDriverPort" value="11033"/>
         <parameter name="wdaLocalPort" value=""/>
         <parameter name="webkitDebugProxyPort" value="9228"/>
-        <parameter name="userId" value="12184815"/>
+        <parameter name="userId" value="12443213"/>
         <parameter name="comPort" value=""/>
         <parameter name="roboticArmX" value="1350"/>
         <parameter name="roboticArmY" value="500"/>
