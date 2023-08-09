@@ -29,7 +29,7 @@ public class CreateInvitationAPI {
         } else {
             objURN.put("assignCredential", "N");
         }
-
+        objURN.put("partNumber",EnvironmentProperties.get("part-number"));
         JSONObject payLoad = new JSONObject();
         payLoad.put("schemas", schemas);
         payLoad.put("urn:hid:scim:api:ma:2.1:UserAction", objURN);
