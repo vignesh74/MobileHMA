@@ -91,18 +91,17 @@ public class Hooks {
      * unRegisterDevice- This method is used to unregister device after each scenario execution Date-06/03/2023
      */
 
-    @Parameters({"installApp"})
-    @After
-    public void unRegisterDevice(@Optional("AndroidAndiOS") String installApp) {
-        BasePage basePage = new BasePage();
-        Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
-        if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android") && installApp.equalsIgnoreCase("true")) {
-            settingsScreenPage.traverseToSettingsPage();
-            if (!DriverManager.getPopupHandled()) {
-                handlePopUps.enableAllPopUps("endTestPopupsHandling");
-            }
-            settingsScreenPage.unRegisterThisDevice();
-            basePage.waitForGivenTime(2);
-        }
-    }
+//    @After
+//    public void unRegisterDevice() {
+//        BasePage basePage = new BasePage();
+//        Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
+//        if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
+//            settingsScreenPage.traverseToSettingsPage();
+//            if (!DriverManager.getPopupHandled()) {
+//                handlePopUps.enableAllPopUps("endTestPopupsHandling");
+//            }
+//            settingsScreenPage.unRegisterThisDevice();
+//            basePage.waitForGivenTime(2);
+//        }
+//    }
 }
