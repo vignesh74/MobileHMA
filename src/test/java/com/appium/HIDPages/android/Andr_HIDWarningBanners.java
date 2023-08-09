@@ -20,6 +20,7 @@ public class Andr_HIDWarningBanners extends BasePage {
     Andr_DeviceLocationSettingsPage deviceLocationSettingsPage=new Andr_DeviceLocationSettingsPage();
     Andr_DeviceNFCSettingsPage deviceNFCSettingsPage=new Andr_DeviceNFCSettingsPage();
     Andr_HIDMobileIDScreenPage mobileIDScreenPage=new Andr_HIDMobileIDScreenPage();
+    Andr_HIDSettingsScreenPage settingsScreenPage=new Andr_HIDSettingsScreenPage();
 
     /**
      * These are the Mobile elements required for validating Warning Banners
@@ -395,6 +396,8 @@ public class Andr_HIDWarningBanners extends BasePage {
                         }
                         else
                         {
+                            settingsScreenPage.traverseToSettingsPage();
+                            settingsScreenPage.clickOnAppPreferences();
                             if(appPreferenceScreenPage.getTxtBluetoothStatusValue().getText().equalsIgnoreCase("On"))
                             {
                                 Assert.assertTrue(true, "The BLE Disabled Banner is not available for particular Scenario...");
@@ -416,8 +419,11 @@ public class Andr_HIDWarningBanners extends BasePage {
                             Assert.assertTrue(true, "The NFC Disabled Banner is visible...");
                             TestUtils.log().debug(" The NFC Disabled Banner is visible...");
                             checkNfcWb();
-                        } else
+                        }
+                        else
                         {
+                            settingsScreenPage.traverseToSettingsPage();
+                            settingsScreenPage.clickOnAppPreferences();
                             if(deviceNFCSettingsPage.getElementText(nfcStatusOn).equalsIgnoreCase("On"))
                             {
                                 Assert.assertTrue(true, "The NFC Disabled Banner is not available for particular Scenario...");
@@ -439,7 +445,11 @@ public class Andr_HIDWarningBanners extends BasePage {
                             Assert.assertTrue(true, "The Nearby Permission Disabled Banner is visible...");
                             TestUtils.log().debug(" The Nearby Permission Disabled Banner is visible...");
                             checkNearByPermissionWb();
-                        } else {
+                        }
+                        else
+                        {
+                            settingsScreenPage.traverseToSettingsPage();
+                            settingsScreenPage.clickOnAppPreferences();
                             if(getElementText(nearByStatusText).equalsIgnoreCase("Granted always"))
                             {
                                 Assert.assertTrue(true, "The Nearby Permission Disabled Banner is not available for particular Scenario...");

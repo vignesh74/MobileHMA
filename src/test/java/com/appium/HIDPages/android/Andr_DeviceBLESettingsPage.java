@@ -19,6 +19,7 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
 
     Andr_HIDAppPreferencesScreenPage appPrefencesScreenPage = new Andr_HIDAppPreferencesScreenPage();
     Andr_HIDMobileIDScreenPage mobileIDScreenPage=new Andr_HIDMobileIDScreenPage();
+    Andr_HIDSettingsScreenPage settingsScreenPage=new Andr_HIDSettingsScreenPage();
     /**
      * mobile elements - These are mobile elements which is present in device BLE settings page Date-25/01/2023
      */
@@ -230,7 +231,9 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                         } else {
                             click(allow);
                         }
-                    } else if (isDisplayed(permMsg)) {
+                    }
+                    else if (isDisplayed(permMsg))
+                    {
                         Assert.assertTrue(true, "The message is visible...");
                         if (strBLEStatus.equalsIgnoreCase("Off")) {
                             click(permDontAllow);
@@ -238,6 +241,8 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                             click(permAllow);
                         }
                     }
+                    settingsScreenPage.traverseToSettingsPage();
+                    settingsScreenPage.clickOnAppPreferences();
                 }
 
                 else if(strBLEStatusValue.equalsIgnoreCase("On"))

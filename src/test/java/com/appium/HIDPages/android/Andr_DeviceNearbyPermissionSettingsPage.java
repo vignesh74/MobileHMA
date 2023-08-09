@@ -545,7 +545,8 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         Assert.assertTrue(true, "The Nearby Permission Warning Banner is visible...");
                         TestUtils.log().debug(" The Nearby Permission Warning Banner is visible...");
                         click(nearByPermissionDisabled);
-                        if (isDisplayed(permMsg)) {
+                        if (isDisplayed(permMsg))
+                        {
                             Assert.assertTrue(true, "The permission message is visible...");
                             TestUtils.log().debug(" The permission message is visible...");
                             if (strLocationOrNearBy.equals("Allow")) {
@@ -553,7 +554,9 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                             } else {
                                 click(permDeny);
                             }
-                        } else if (isDisplayed(msg)) {
+                        }
+                        else if (isDisplayed(msg))
+                        {
                             Assert.assertTrue(true, "The  message popup is visible...");
                             TestUtils.log().debug(" The  message popup is visible...");
                             if (strLocationOrNearBy.equals("Allow")) {
@@ -562,8 +565,11 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                                 click(deny);
                             }
                         }
-
-                    } else {
+                        settingsScreenPage.traverseToSettingsPage();
+                        settingsScreenPage.clickOnAppPreferences();
+                    }
+                    else
+                    {
                         Assert.assertTrue(true, "The Nearby Permission Warning Banner is not visible for this Scenario...");
                         TestUtils.log().debug(" The Nearby Permission Warning Banner is not visible for this Scenario...");
                         settingsScreenPage.traverseToSettingsPage();
