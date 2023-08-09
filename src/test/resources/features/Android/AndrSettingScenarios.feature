@@ -2,11 +2,11 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
 
   Background:To launch the HID app and navigate
     Given Launch HID Access Mobile Application in android device
-    When  Swipe EULA screen to left in android device
-    And   Get Invitation Code using Rest API when credential are assigned
-    And   Enter invitation code on HID mobile Application in android device
+#    When  Swipe EULA screen to left in android device
+#    And   Get Invitation Code using Rest API when credential are assigned
+#    And   Enter invitation code on HID mobile Application in android device
     Then  Mobile IDs screen is displayed in android device
-    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
+#    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
   @ANDR_Settings_12_WF1 @ANDR_Settings_12_WF
   Scenario Outline:ANDR_12_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>

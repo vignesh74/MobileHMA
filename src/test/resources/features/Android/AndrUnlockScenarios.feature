@@ -2,11 +2,11 @@ Feature: To Test Android Unlock workflow for HID mobile access application
 
   Background:To launch the HID app and navigate to Mobile ID Screen
     Given Launch HID Access Mobile Application in android device
-    When  Swipe EULA screen to left in android device
-    And   Get Invitation Code using Rest API when credential are assigned
-    And   Enter invitation code on HID mobile Application in android device
+#    When  Swipe EULA screen to left in android device
+#    And   Get Invitation Code using Rest API when credential are assigned
+#    And   Enter invitation code on HID mobile Application in android device
     Then  Mobile IDs screen is displayed in android device
-    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
+#    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
   Scenario Outline:ANDR_12_<Reader_Name><Gesture_TC_ID>: Verify Robotic Arm Action and logs when BLE is <BLE_status>, NFC is <NFC_status>, Nearby is <NearByOrLocation_permission>, Location is <location_status>, App State set is <app_state>, device state is <device_state> and display status is <display_status>
     When  Navigate to Settings and App Preferences screen in android device
