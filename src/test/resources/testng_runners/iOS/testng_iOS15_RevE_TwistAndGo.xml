@@ -14,15 +14,18 @@
     <test name="Tests_on_iOS_15">
         <parameter name="simulator" value="false"></parameter>
         <parameter name="platformName" value="iOS"></parameter>
-        <parameter name="platformVersion" value="15"></parameter>
-        <parameter name="udid" value="00008110-0010455A3A47801E"></parameter>
+        <parameter name="platformVersion" value="16"></parameter>
+        <parameter name="udid" value="00008020-001A656C1105002E"></parameter>
         <parameter name="installApp" value="false"></parameter>
         <parameter name="deviceName" value="TestPhone-IOS"></parameter>
-        <parameter name="systemPort" value="10031"/>
-        <parameter name="chromeDriverPort" value="11032"/>
-        <parameter name="wdaLocalPort" value="10003"/>
-        <parameter name="webkitDebugProxyPort" value="10013"/>
+        <parameter name="systemPort" value="2301"/>
+        <parameter name="chromeDriverPort" value="11033"/>
+        <parameter name="wdaLocalPort" value=""/>
+        <parameter name="webkitDebugProxyPort" value="9228"/>
+        <parameter name="userId" value="12426306"/>
         <parameter name="comPort" value=""/>
+        <parameter name="roboticArmX" value="1350"/>
+        <parameter name="roboticArmY" value="300"/>
         <classes>
             <class name="com.appium.runners.iOS.iOS_RevE_TwistAndGo_Runner"></class>
         </classes>
