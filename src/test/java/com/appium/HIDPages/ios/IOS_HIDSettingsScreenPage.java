@@ -73,10 +73,14 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Location Permissions, Never\"]", priority = 3)
     private MobileElement txtLocationPermission;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Settings\"]")
+    //Raji
+ //   @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Settings\"]")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name=\"Settings\"])[2]")
     private MobileElement btnSettingPopUpLocation;
 
-    @iOSXCUITFindBy(accessibility = "alertTitle")
+    //Raji
+ //   @iOSXCUITFindBy(accessibility = "alertTitle")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[@name=\"We do not track your location. The app will use location services to optimize its ability to find nearby readers.\"]")
     private MobileElement txtPopUpAlertTitle;
 
     //2. MODE
@@ -94,6 +98,10 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//*[contains(@name,'Always, Use your Mobile ID when the app is in foreground or background or when your iPhone is locked')]", priority = 3)
     private MobileElement txtAlways;
 
+    //Always ratio button
+    @iOSXCUITFindBy(xpath = "//*[@name='Always']//following-sibling::XCUIElementTypeImage")
+    private MobileElement chkAlwaysBtn;
+
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @iOSXCUITFindBy(xpath = "//*[@name='Foreground']//following-sibling:: XCUIElementTypeImage", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Foreground, Only use your Mobile ID when the app is in foreground\"]", priority = 1)
@@ -108,6 +116,10 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//*[contains(@name,'Foreground, Only use your Mobile ID when the app is in foreground')]", priority = 3)
     private MobileElement txtForeground;
 
+    //Foreground ration button
+    @iOSXCUITFindBy(xpath = "//*[@name='Foreground']//following-sibling::XCUIElementTypeImage")
+    private MobileElement chkForegroundBtn;
+
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @iOSXCUITFindBy(xpath = "//*[@name='Unlocked']//following-sibling:: XCUIElementTypeImage", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Unlocked, Only use your Mobile ID when your iPhone is unlocked\"]", priority = 1)
@@ -121,6 +133,10 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//*[contains(@name,'Unlocked')]", priority = 2)
     @iOSXCUITFindBy(xpath = "//*[contains(@name,'Unlocked, Only use your Mobile ID when your iPhone is unlocked')]", priority = 3)
     private MobileElement txtUnlocked;
+
+    //Unlocked ration button
+    @iOSXCUITFindBy(xpath = "//*[@name='Unlocked']//following-sibling::XCUIElementTypeImage")
+    private MobileElement chkUnlockedBtn;
 
     //3. Sounds and Vibration
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
@@ -486,27 +502,48 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
                 if (DriverManager.getPlatformVersion().contains("14")) {
                     TestUtils.log().info("{} as {}",MessageConstants.MODE_SET_AS_STRING,txtUnlocked);
                 } else {
-                    Assert.assertTrue(chkUnlocked.isSelected());
+                    String strAlways = getElementText(chkAlwaysBtn);
+                    String strForeground = getElementText(chkForegroundBtn);
+                    String strUnlocked = getElementText(chkUnlockedBtn);
+                    Assert.assertEquals(strAlways,"circle");
+                    Assert.assertEquals(strForeground,"circle");
+                    Assert.assertEquals(strUnlocked,"roundedCheckmarkFilled");
+
+                    /*Assert.assertTrue(chkUnlocked.isSelected());
                     Assert.assertFalse(chkForeground.isSelected());
-                    Assert.assertFalse(chkAlways.isSelected());
+                    Assert.assertFalse(chkAlways.isSelected());*/
                 }
             } else if (getElementText(txtForeground).contains(mode)) {
                 click(chkForeground);
                 if (DriverManager.getPlatformVersion().contains("14")) {
                     TestUtils.log().info("{} as {}",MessageConstants.MODE_SET_AS_STRING,txtForeground);
                 } else {
-                    Assert.assertTrue(chkForeground.isSelected());
+                    String strAlways = getElementText(chkAlwaysBtn);
+                    String strForeground = getElementText(chkForegroundBtn);
+                    String strUnlocked = getElementText(chkUnlockedBtn);
+                    Assert.assertEquals(strAlways,"circle");
+                    Assert.assertEquals(strForeground,"roundedCheckmarkFilled");
+                    Assert.assertEquals(strUnlocked,"circle");
+
+                    /*Assert.assertTrue(chkForeground.isSelected());
                     Assert.assertFalse(chkUnlocked.isSelected());
-                    Assert.assertFalse(chkAlways.isSelected());
+                    Assert.assertFalse(chkAlways.isSelected());*/
                 }
             } else if (getElementText(txtAlways).contains(mode)) {
                 click(chkAlways);
                 if (DriverManager.getPlatformVersion().contains("14")) {
                     TestUtils.log().info("{} as {}",MessageConstants.MODE_SET_AS_STRING,txtAlways);
                 } else {
-                    Assert.assertTrue(chkAlways.isSelected());
+                    String strAlways = getElementText(chkAlwaysBtn);
+                    String strForeground = getElementText(chkForegroundBtn);
+                    String strUnlocked = getElementText(chkUnlockedBtn);
+                    Assert.assertEquals(strAlways,"roundedCheckmarkFilled");
+                    Assert.assertEquals(strForeground,"circle");
+                    Assert.assertEquals(strUnlocked,"circle");
+
+                   /* Assert.assertTrue(chkAlways.isSelected());
                     Assert.assertFalse(chkForeground.isSelected());
-                    Assert.assertFalse(chkUnlocked.isSelected());
+                    Assert.assertFalse(chkUnlocked.isSelected());*/
                 }
             } else {
                 TestUtils.log().info("Please select the correct Mode value");
