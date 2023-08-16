@@ -26,10 +26,10 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
     Examples:
       | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
       | RevE        | _TAP_WF1_TC-01 | Always     | Allowed    | Always              | Foreground | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
-#      | RevE        | _TAP_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
-#      | RevE        | _TAP_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
-#      | RevE        | _TAP_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
-#      | RevE        | _TAP_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
+      | RevE        | _TAP_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
+      | RevE        | _TAP_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
+      | RevE        | _TAP_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
+      | RevE        | _TAP_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
 
 
     @iOS_RevE_Tap_WF2 @iOS_RevE_Tap @iOS_RevE
