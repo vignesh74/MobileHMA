@@ -59,7 +59,8 @@ public class SerialPortUtils {
 
     public static String performRoboticArmOperation(String deviceCOMPort, String actionName) throws SerialPortException {
         String roboticArmLogs = "";
-        SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem"+DriverManager.getDriver().getCapabilities().getCapability("systemPort").toString().trim());
+        SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem"+deviceCOMPort.trim());
+        //SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem"+DriverManager.getDriver().getCapabilities().getCapability("systemPort").toString().trim());
         try {
             // Define COM Port
 
