@@ -99,7 +99,7 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     private MobileElement txtAlways;
 
     //Always ratio button
-    @iOSXCUITFindBy(xpath = "//*[@name='Always']//following-sibling::XCUIElementTypeImage")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Use your Mobile ID when the app is in foreground or background or when your iPhone is locked\"]//following-sibling::XCUIElementTypeImage")
     private MobileElement chkAlwaysBtn;
 
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
