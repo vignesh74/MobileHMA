@@ -135,7 +135,7 @@ public class AndrStepDef {
 
     @Then("Activity log is displayed in android device and {string}, {string} are verified")
     public void activityLogIsDisplayed_Andr(String strDate, String strMessage) {
-        if (armLogs.equalsIgnoreCase("TAP:ENABLE") || armLogs.equalsIgnoreCase("TWIST_AND_GO=:ENABLE")) {
+        if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
             appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
             boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
             DriverManager.setPopupHandled(popups);

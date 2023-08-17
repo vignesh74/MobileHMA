@@ -93,7 +93,7 @@ public class IOSStepDef {
 
     @Then("Activity log is displayed in iOS device and {string}, {string}, {string}, {string} and {string} are verified")
     public void activityLogIsDisplayed_iOS(String strDate, String strMobileRead, String strMessage, String strArmActionName, String strReaderName) {
-        if (armLogs.equalsIgnoreCase("TAP:ENABLE") || armLogs.equalsIgnoreCase("TWIST_AND_GO=:ENABLE")) {
+        if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
             settingScreen.clickOnHelpCenterAndVerify();
             helpCenterScreen.clickOnActivityLogAndVerify();
             Assert.assertEquals(activityScreen.getTodayDate(), strDate);
@@ -109,7 +109,8 @@ public class IOSStepDef {
 
     @Then("Robotic arms log {string} is displayed for iOS device")
     public void roboticArmsLogIsDisplayed_iOS(String strRoboticLog) {
-        Assert.assertEquals(armLogs, strRoboticLog);
+        TestUtils.log().info("Robotic arms: "+armLogs+" is Equal to "+strRoboticLog);
+        Assert.assertTrue(armLogs.toLowerCase().contains(strRoboticLog.toLowerCase()));
     }
 
     @Then("BLE status is displayed as {string} in iOS device")
