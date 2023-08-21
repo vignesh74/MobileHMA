@@ -22,6 +22,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgMobileIdsContainer", priority = 1)
     private MobileElement txtViewMobileIdCard;
 
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtMobileIds")
+    private MobileElement txtMobileIdsTab;
+
     @AndroidFindBy(xpath = "//*[@text='Next']")
     private MobileElement btnNext;
     @AndroidFindBy(xpath = "//*[@text='Got It']")
@@ -240,6 +243,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
      */
+    public MobileElement getTxtMobileIdsTab(){return txtMobileIdsTab;}
     public MobileElement getRdoAllowAllTheTime() {
         return rdoAllowAllTheTime;
     }
