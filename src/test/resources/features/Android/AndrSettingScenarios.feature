@@ -7,6 +7,8 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
 #    And   Enter invitation code on HID mobile Application in android device
     Then  Mobile IDs screen is displayed in android device
 #    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
+    And   Tap on the Mobile ID to check back of the card details
+    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
   @ANDR_Settings_12_WF1 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline:ANDR_12_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>

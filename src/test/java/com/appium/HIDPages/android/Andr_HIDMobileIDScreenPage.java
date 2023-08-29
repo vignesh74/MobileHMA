@@ -8,6 +8,10 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import org.testng.Assert;
+import static com.appium.constants.MessageConstants.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+
 
 public class Andr_HIDMobileIDScreenPage extends BasePage {
     /**
@@ -17,6 +21,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/mobile_ids", priority = 0)
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgMobileIdsContainer", priority = 1)
     private MobileElement txtViewMobileIdCard;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtMobileIds")
+    private MobileElement txtMobileIdsTab;
 
     @AndroidFindBy(xpath = "//*[@text='Next']")
     private MobileElement btnNext;
@@ -125,12 +132,118 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertBtn", priority = 1)
     private MobileElement btnSettings;
 
+
+
     @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
     private MobileElement btnTurnOnPermission;
 
     /**
+     * These are the Mobile elements required for validating back of the card details
+     */
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgMobileIdsContainer")
+    private MobileElement mobileId;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtMobileIdDetails")
+    private MobileElement txtMobileIdDetails;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtNickName")
+    private MobileElement txtNickName;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtName")
+    private MobileElement txtName;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtMobileKeySetName")
+    private MobileElement txtMobileKeySetName;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtCompany")
+    private MobileElement txtCompany;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtIssued")
+    private MobileElement txtIssued;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtExpires")
+    private MobileElement txtExpires;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtIdno")
+    private MobileElement txtIdNo;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgEditBtn")
+    private MobileElement pencilEditIcon;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgCredentialContainer")
+    private MobileElement imgCredentialContainer;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtCredentialName")
+    private MobileElement txtCredentialName;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgCredentialPhoto")
+    private MobileElement imgCredentialPhoto;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgBackBtn")
+    private MobileElement imgBackBtn;
+
+    /**
+     * These are the mobile elements for validating Nickname popup
+     */
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/editTextDialog")
+    private MobileElement editTextDialogBox;
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement alertTitle;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertNegativeBtn")
+    private MobileElement cancelBtn;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertPositiveBtn")
+    private  MobileElement doneBtn;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/edtTxtIssueDescription")
+    private MobileElement txtIssueDescriptionNickname;
+
+
+
+
+    /**
+     * These are the Mobile elements required for validating Warning Banners
+     */
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='NFC Disabled']")
+    private MobileElement nfcDisabled;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Enable NFC to use your Mobile ID by presenting your phone to the reader.']")
+    private MobileElement nfcDisabledText;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location Permission']")
+    private MobileElement locationPermissionDisabled;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='We do not track your location. Enable Location to use your Mobile ID over Bluetooth.']")
+    private MobileElement locationPermissionDisabledText;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bluetooth Disabled']")
+    private MobileElement bleDisabled;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Enable Bluetooth to find readers nearby and use your Mobile ID over Bluetooth.']")
+    private MobileElement bleDisabledText;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='GPS Disabled']")
+    private MobileElement gpsDisabled;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='We do not track your location. Enable this to find readers nearby and use your Mobile ID over Bluetooth.']")
+    private MobileElement gpsDisabledText;
+
+    @AndroidFindBy(id = "com.android.settings:id/switch_widget")
+    private MobileElement nfcTurnOn;
+
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(id = "com.android.settings:id/switch_widget", priority = 0)
+    @AndroidFindBy(id = "android:id/switch_widget", priority = 1)
+    private MobileElement nfcTurnOnOFF;
+
+    /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
      */
+    public MobileElement getTxtMobileIdsTab(){return txtMobileIdsTab;}
     public MobileElement getRdoAllowAllTheTime() {
         return rdoAllowAllTheTime;
     }
@@ -216,6 +329,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         return btnTurnOnPermission;
     }
 
+
     /**
      * clickOnNextButton- This method is used click on the next button Date- 25/01/2023
      */
@@ -271,6 +385,26 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         } catch (Exception e) {
             
             TestUtils.log().debug("Exception occurred while handling NFC popup...");
+        }
+    }
+
+    /**
+     * to HandleNFCWarningBanner-This method is used to handle NFC warning Banner Date-10/05/2023
+     */
+
+    public void handleNFCWarningBanner(){
+       try {
+           if (isDisplayed(nfcDisabled)) {
+               click(nfcDisabled);
+               waitForGivenTime(2);
+               click(nfcTurnOn);
+               waitForGivenTime(2);
+               navigateBack();
+
+           }
+       }catch(Exception e)
+        {
+
         }
     }
 
@@ -351,6 +485,292 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             TestUtils.log().debug("Exception occurred while verifying Mobile ID...");
         }
     }
+
+    /**
+     * to VerifyBackOfCard- These methods are used to verify back of the card
+     */
+
+    public void clickOnMobileID(){
+        if(isDisplayed(txtViewMobileIdCard))
+            click(mobileId);
+    }
+
+    public void checkHeaderMobileIdHeader(){
+
+        try {
+
+            if((CHECK_HEADER.equals(txtMobileIdDetails.getText())))
+            {
+                Assert.assertTrue(true, "The Header is  correct...");
+                TestUtils.log().debug(" The Header is  correct...");
+            }
+            else
+            {
+                Assert.assertTrue(false, "The Header is  incorrect...");
+                TestUtils.log().debug(" The Header is  incorrect...");
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while validating the Header in  Back of Card ...");
+        }
+    }
+
+    public void checkNickname(){
+
+        try {
+
+            if((CHECK_NICKNAME.equals(txtNickName.getText())))
+            {
+                Assert.assertTrue(true, "The Nickname text is  correct...");
+                TestUtils.log().debug(" The Nickname text is  incorrect...");
+            }
+            else{
+                Assert.assertTrue(false, "The Nickname text is  incorrect...");
+                TestUtils.log().debug(" The Nickname text is  incorrect...");
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while validating the Nickname text in  Back of Card ...");
+        }
+    }
+
+    public void checkName(){
+
+        try {
+
+            if((CHECK_NAME.equals(txtName.getText())))
+            {
+                Assert.assertTrue(true, "The Name text is  correct...");
+                TestUtils.log().debug(" The name text is  correct...");
+
+            }
+            else {
+                Assert.assertTrue(false, "The Name text is  incorrect...");
+                TestUtils.log().debug(" The name text is  incorrect...");
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while validating the name text in  Back of Card ...");
+        }
+    }
+
+
+    public void checkMobileKeySet(){
+
+        try {
+
+            if((CHECK_MOBILE_KEY_SET.equals(txtMobileKeySetName.getText())))
+            {
+                Assert.assertTrue(true, "The mobile keyset  text is correct...");
+                TestUtils.log().debug(" The mobile keyset  text is  correct...");
+
+            }
+            else {
+                Assert.assertTrue(false, "The mobile keyset  text is incorrect...");
+                TestUtils.log().debug(" The mobile keyset  text is  incorrect...");
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while validating the mobile keyset text in  Back of Card ...");
+        }
+    }
+
+    public void checkOrganization(){
+
+        try {
+
+            if((CHECK_ORGANIZATION.equals(txtCompany.getText())))
+            {
+                Assert.assertTrue(true, "The organisation  text is  correct...");
+                TestUtils.log().debug(" The organisation  text is  correct...");
+
+            }
+            else {
+                Assert.assertTrue(false, "The organisation  text is  incorrect...");
+                TestUtils.log().debug(" The organisation  text is  incorrect...");
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while validating the organisation text in  Back of Card ...");
+        }
+    }
+
+    public void checkIssuedOn(){
+
+        try {
+
+            if((CHECK_ISSUED_ON.equals(txtIssued.getText())))
+            {
+                Assert.assertTrue(true, "The IssuedOn  text is  correct...");
+                TestUtils.log().debug(" The IssuedOn  text is  correct...");
+            }
+            else
+            {
+                Assert.assertTrue(false, "The IssuedOn  text is  incorrect...");
+                TestUtils.log().debug(" The IssuedOn  text is  incorrect...");
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while validating the IssuedOn text in  Back of Card ...");
+        }
+    }
+
+    public void checkExpiresOn(){
+
+        try {
+
+            if((CHECK_EXPIRES_ON.equals(txtExpires.getText())))
+            {
+                Assert.assertTrue(true, "The ExpiresOn  text is  correct...");
+                TestUtils.log().debug(" The ExpiresOn  text is  correct...");
+            }
+
+            else {
+                Assert.assertTrue(false, "The ExpiresOn  text is  incorrect...");
+                TestUtils.log().debug(" The ExpiresOn  text is  incorrect...");
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while validating the ExpiresOn text in  Back of Card ...");
+        }
+    }
+
+    public void checkID(){
+
+        try {
+
+            if((CHECK_ID.equals(txtIdNo.getText())))
+            {
+                Assert.assertTrue(true, "The ID#  text is  correct...");
+                TestUtils.log().debug(" The ID#  text is  correct...");
+            }
+            else {
+                Assert.assertTrue(false, "The ID#  text is  incorrect...");
+                TestUtils.log().debug(" The ID#  text is  incorrect...");
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while validating the ID# text in  Back of Card ...");
+        }
+    }
+
+    public void checkVisibilityOfEditNicknamePencilIcon() {
+
+        try {
+
+            if (!isDisplayed(pencilEditIcon)) {
+                Assert.assertTrue(false, "Pencil Edit icon is not displayed...");
+                TestUtils.log().info("Pencil Edit icon is not displayed");
+
+            }
+
+            else
+            {
+                Assert.assertTrue(true, "Pencil Edit icon is  displayed...");
+                TestUtils.log().info("Pencil Edit icon is displayed");
+                click(pencilEditIcon);
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while checking visibility of Edit Pencil Icon...");
+        }
+
+    }
+
+    public void checkVisibilityOfEditNicknamePopup() {
+
+        try {
+
+            if (!isDisplayed(editTextDialogBox)) {
+                Assert.assertTrue(false, "Edit Text Dialog Box is not displayed...");
+                TestUtils.log().info("Edit Text Dialog Box is not displayed");
+
+            }
+            else
+            {
+                Assert.assertTrue(true, "Edit Text Dialog Box is displayed...");
+                TestUtils.log().info("Edit Text Dialog Box is  displayed");
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while checking visibility of Nickname Dialog Box...");
+        }
+
+    }
+
+
+    public void validateNicknameDialogBox() {
+
+        try {
+
+            if (!isDisplayed(alertTitle)) {
+                Assert.assertTrue(false, "Nickname Title is not displayed...");
+                TestUtils.log().info("Nickname Title is not displayed");
+
+
+            }
+            else if (!isDisplayed(cancelBtn)) {
+                Assert.assertTrue(false, "Cancel Button is not displayed...");
+                TestUtils.log().info("Cancel Button is not displayed");
+
+            }
+            else if(!isDisplayed(doneBtn)){
+                Assert.assertTrue(false, "Done Button is not displayed...");
+                TestUtils.log().info("Done Button is not displayed");
+
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while validating Nickname dialog box...");
+        }
+
+    }
+
+    public void enterNickname(){
+        click(txtIssueDescriptionNickname);
+        txtIssueDescriptionNickname.sendKeys("HID Employee @ CHENNAI");
+        click(doneBtn);
+        waitForGivenTime(5);
+
+    }
+    public void removeNickname(){
+        click(pencilEditIcon);
+        click(txtIssueDescriptionNickname);
+        txtIssueDescriptionNickname.clear();
+        click(doneBtn);
+        waitForGivenTime(5);
+        click(imgBackBtn);
+
+    }
+
+    /**Note: Robot class implementation is not supported with Ventura OS in Mac.**/
+ /*   public void enterNickname() throws AWTException {
+        click(txtIssueDescriptionNickname);
+        waitForGivenTime(10);
+        Robot r=new Robot();
+
+        r.keyPress(KeyEvent.VK_H);
+        r.keyRelease(KeyEvent.VK_H);
+
+        r.keyPress(KeyEvent.VK_I);
+        r.keyPress(KeyEvent.VK_D);
+       // r.keyPress(KeyEvent.VK_ENTER);
+
+        click(doneBtn);
+        click(imgBackBtn);
+    }
+    */
 
     /**
      * clickOnNotificationTab- This method is used to click on the notification tab Date-25/01/2023

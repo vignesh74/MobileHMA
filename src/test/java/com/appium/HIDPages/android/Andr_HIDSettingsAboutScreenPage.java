@@ -20,7 +20,7 @@ public class Andr_HIDSettingsAboutScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='ENDPOINT INFO']")
     private MobileElement txtEndPointInfo;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgBackAppPreferences")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgBackAbout")
     private MobileElement imgBackFromAbout;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='About']")

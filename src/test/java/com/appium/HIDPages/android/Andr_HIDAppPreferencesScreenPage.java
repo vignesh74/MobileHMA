@@ -15,7 +15,11 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     /**
      * mobile elements - These are mobile elements which is present in app preferences page Date-25/01/2023
      */
-    @AndroidFindBy(xpath = "//*[@text='Bluetooth']")
+
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(xpath = "//*[@text='Bluetooth']",priority = 2)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bluetooth']",priority = 0)
+    @AndroidFindBy(xpath = "android.widget.TextView[@text='Use Bluetooth']",priority = 1)
     private MobileElement txtBluetooth;
 
     @AndroidFindBy(xpath = "//*[@text='NFC']")
@@ -97,6 +101,21 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/mobile_ids")
     private MobileElement txtViewMobileIdCard;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement batteryOptimizationTitle;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertBtn")
+    private MobileElement settingsAlertBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Let app always run in background?']")
+    private MobileElement backgroundPermissionPopup;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Allow']")
+    private MobileElement allowBtnBGPerm;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Allowing HID Mobile Access to always run in the background may reduce battery life. You can change this later from Settings > Apps & notifications.']")
+    private MobileElement PermPopupDescription;
 
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
@@ -246,6 +265,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     }
 
+
     /**
      * clickOnNFCTab- This method is used to click on the NFC tab Date- 25/01/2023
      */
@@ -281,12 +301,29 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         boolean flag = false;
         try {
             String strBLEStatusValue = txtBluetoothStatusValue.getText();
-            if (strBLEStatusValue.equalsIgnoreCase("On")) {
+            if (strBLEStatusValue.equalsIgnoreCase("Off")) {
                 flag = true;
             }
         } catch (Exception e) {
             
             TestUtils.log().debug("Exception occurred while checking on BLE status...");
+        }
+        return flag;
+    }
+
+    /**
+     * checkNFCStatus- This method is used to check NFC status Date- 30/06/2023
+     */
+    public boolean checkNFCStatus() {
+        boolean flag = false;
+        try {
+            String strNFCStatusValue = txtNFCStatusValue.getText();
+            if (strNFCStatusValue.equalsIgnoreCase("Off")) {
+                flag = true;
+            }
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while checking on NFC status...");
         }
         return flag;
     }
@@ -298,7 +335,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         boolean flag = false;
         try {
             String strLocationStatusValue = txtLocationStatusValue.getText();
-            if (strLocationStatusValue.equalsIgnoreCase("On")) {
+            if (strLocationStatusValue.equalsIgnoreCase("Off")) {
                 flag = true;
             }
         } catch (Exception e) {
@@ -380,7 +417,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 if (strPermissionStatus.equalsIgnoreCase("Allow") || strPermissionStatus.equalsIgnoreCase("Allow all the time") || strPermissionStatus.equalsIgnoreCase("Allow only while using app") || strPermissionStatus.equalsIgnoreCase(" Allow only while using the app")) {
                     Assert.assertEquals(getTxtLocationPermStatusValue().getText(), MessageConstants.ALWAYS_STRING);
                 } else if (strPermissionStatus.equalsIgnoreCase("Don't allow") || strPermissionStatus.equalsIgnoreCase("Deny")) {
-                    Assert.assertEquals(getTxtLocationPermStatusValue().getText(), "Denied");
+                    Assert.assertEquals(getTxtLocationPermStatusValue().getText(), "We do not track your location. Enable Location to use your Mobile ID over Bluetooth.");
                 } else
                     TestUtils.log().info("Please provide correct input");
             }
@@ -419,16 +456,46 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
             } else if (usageType.equalsIgnoreCase(MessageConstants.UNLOCKED_STRING)) {
                 click(rdoUsageUnlocked);
-                waitForGivenTime(1);
-                String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
-                String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
-                Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
-                Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
-                Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
-                TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr3);
-            } else
+                if(isDisplayed(batteryOptimizationTitle))
+                {
+                    Assert.assertTrue(true, "The Battery Optimization Title  is  displayed...");
+                    TestUtils.log().info("The BG Permission Popup  is  displayed...");
+                    click(settingsAlertBtn);
+                        if(isDisplayed(backgroundPermissionPopup))
+                       {
+                          Assert.assertTrue(true, "The BG Permission Popup  is  displayed...");
+                          TestUtils.log().info("The BG Permission Popup  is  displayed...");
+                          click(allowBtnBGPerm);
+                       }
+                      else
+                      {
+                        Assert.assertTrue(false, "The BG Permission Popup  is not displayed...");
+                        TestUtils.log().info("The BG Permission Popup  is not displayed...");
+                      }
+                    waitForGivenTime(1);
+                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
+                    Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
+                    Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
+                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
+                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr3);
+                }
+                else
+                {
+                    waitForGivenTime(1);
+                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
+                    Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
+                    Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
+                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
+                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr3);
+                }
+            }
+            else
                 TestUtils.log().info("Please select the correct usage state");
+
 
         } catch (Exception e) {
             

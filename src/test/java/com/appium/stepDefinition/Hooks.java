@@ -18,8 +18,6 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 
 import java.io.IOException;
 
@@ -90,18 +88,17 @@ public class Hooks {
     /**
      * unRegisterDevice- This method is used to unregister device after each scenario execution Date-06/03/2023
      */
-
-//    @After
-//    public void unRegisterDevice() {
-//        BasePage basePage = new BasePage();
-//        Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
-//        if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
-//            settingsScreenPage.traverseToSettingsPage();
-//            if (!DriverManager.getPopupHandled()) {
-//                handlePopUps.enableAllPopUps("endTestPopupsHandling");
-//            }
-//            settingsScreenPage.unRegisterThisDevice();
-//            basePage.waitForGivenTime(2);
-//        }
-//    }
+    @After
+    public void unRegisterDevice() {
+        BasePage basePage = new BasePage();
+        Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
+        if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
+            settingsScreenPage.traverseToSettingsPage();
+            if (!DriverManager.getPopupHandled()) {
+                handlePopUps.enableAllPopUps("endTestPopupsHandling");
+            }
+            settingsScreenPage.unRegisterThisDevice();
+            basePage.waitForGivenTime(2);
+        }
+    }
 }

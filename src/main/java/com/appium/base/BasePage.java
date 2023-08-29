@@ -20,6 +20,8 @@ import io.appium.java_client.appmanagement.ApplicationState;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.touch.TouchActions;
@@ -120,8 +122,8 @@ public class BasePage {
             Dimension dimension = DriverManager.getDriver().manage().window().getSize();
             int startX = dimension.width / 2;
             int endX = startX;
-            int startY = (int) (dimension.height * 0.8);
-            int endY = (int) (dimension.height * 0.5);
+            int startY = (int) (dimension.height * 0.9);
+            int endY = (int) (dimension.height * 0.1);
             for (int i = 0; i < swipeCount; i++) {
                 touchAction = new TouchAction<>(DriverManager.getDriver());
                 touchAction.press(point(startX, startY)).
@@ -1386,4 +1388,30 @@ public class BasePage {
         }
         return bnFlag;
     }
+    /**
+     * swipeUp()- It swipe left device screen by provided swipe count
+     *
+     * @param swipeLeft-int
+     *         Date-02/05/2023
+     */
+    public void  swipeLeft(int swipeLeftCount) {
+        try {
+            Dimension dimension = DriverManager.getDriver().manage().window().getSize();
+            int startX = (int) (dimension.width * 0.9);
+            int endX = (int) (dimension.width * 0.1);
+            int y = dimension.height / 2;
+
+            TouchAction touchAction1 = new TouchAction<>(DriverManager.getDriver());
+
+            touchAction1.press(PointOption.point(startX, y))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+                    .moveTo(PointOption.point(endX, y))
+                    .release()
+                    .perform();
+            TestUtils.log().debug("Swipe Left is performed successfully");
+        } catch (Exception e) {
+            TestUtils.log().debug("Getting exception while performing swipe left operation");
+        }
+    }
 }
+
