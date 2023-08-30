@@ -14,9 +14,8 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@iOS_RevE_Tap_WF1")
-//, tags = "@iOS_RevE_Tap")
-//, tags = "@iOS_RevE")
+        , tags = "@iOS_RevE_Tap")
+
 
 public class iOS_RevE_Tap_Runner extends BaseTest {
 }

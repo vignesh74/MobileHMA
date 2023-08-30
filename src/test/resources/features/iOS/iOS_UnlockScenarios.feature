@@ -26,10 +26,10 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
     Examples:
       | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
       | RevE        | _TAP_WF1_TC-01 | Always     | Allowed    | Always              | Foreground | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
-#      | RevE        | _TAP_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
-#      | RevE        | _TAP_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
-#      | RevE        | _TAP_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
-#      | RevE        | _TAP_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
+      | RevE        | _TAP_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
+      | RevE        | _TAP_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
+      | RevE        | _TAP_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
+      | RevE        | _TAP_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | Optimusrev2 |
 
 
     @iOS_RevE_Tap_WF2 @iOS_RevE_Tap @iOS_RevE
@@ -173,7 +173,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
       | RevE        | _TG_WF6_TC-29 | Unlocked   | Allowed    | Never               | Background | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | Optimusrev2 |
       | RevE        | _TG_WF6_TC-30 | Unlocked   | Allowed    | Never               | Killed     | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | Optimusrev2 |
 
-    @iOS_RevE_TwistGo_WF7 @iOS_RevE_TwistGo @iOS_RevE
+    @iOS_RevE_TwistGo_WF7 @iOS_RevE_TwistGo @iOS_RevE @iOS_SmokeRun
 
     Examples:
       | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
@@ -203,7 +203,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
       | RevE        | _TG_WF9_TC-44 | Foreground | Allowed    | Never               | Background | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | Optimusrev2 |
       | RevE        | _TG_WF9_TC-45 | Foreground | Allowed    | Never               | Killed     | Unlocked     | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | Optimusrev2 |
 
-    @iOS_Signo_EnhancedTap_WF1 @iOS_Signo_EnhancedTap
+    @iOS_Signo_EnhancedTap_WF1 @iOS_Signo_EnhancedTap @iOS_SmokeRun
 
     Examples:
       | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
@@ -293,4 +293,3 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
       | Signo       | _ET_WF9_TC-43 | Foreground | Allowed    | Never               | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | SIGNO40     |
       | Signo       | _ET_WF9_TC-44 | Foreground | Allowed    | Never               | Background | Unlocked     | ON             | TAP         | TAP:DISABLE     | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | SIGNO40     |
       | Signo       | _ET_WF9_TC-45 | Foreground | Allowed    | Never               | Killed     | Unlocked     | OFF            | TAP         | TAP:DISABLE     | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | SIGNO40     |
-

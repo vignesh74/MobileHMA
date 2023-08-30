@@ -1,4 +1,4 @@
-package com.appium.runners.Android;
+package com.appium.runners.iOS;
 
 import com.appium.base.BaseTest;
 import io.cucumber.testng.CucumberOptions;
@@ -10,12 +10,11 @@ import io.cucumber.testng.CucumberOptions;
                 , "html:target/cucumber-reports/cucumber-html-reports/report.html"
                 , "json:target/cucumber-reports/cucumber-json-report/cucumber.json"
                 , "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }
-        , features = "src/test/resources/features/Android/"
+        , features = "src/test/resources/features/iOS"
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@Android12_Signo_EnhancedTap")
+        , tags = "@iOS_SmokeRun")
 
-public class Andr12_Signo_EnhancedTap_Runner extends BaseTest {
-
+public class iOS_Smoke_Runner extends BaseTest {
 }

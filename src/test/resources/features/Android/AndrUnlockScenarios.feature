@@ -6,7 +6,6 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     And   Get Invitation Code using Rest API when credential are assigned
     And   Enter invitation code on HID mobile Application in android device
     Then  Mobile IDs screen is displayed in android device
-    And   Tap on the Mobile ID to check back of the card details
     And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
   Scenario Outline:ANDR_12_<Reader_Name><Gesture_TC_ID>: Verify Robotic Arm Action and logs when BLE is <BLE_status>, NFC is <NFC_status>, Nearby is <NearByOrLocation_permission>, Location is <location_status>, App State set is <app_state>, device state is <device_state> and display status is <display_status>

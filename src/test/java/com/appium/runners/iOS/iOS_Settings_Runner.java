@@ -15,7 +15,7 @@ import io.cucumber.testng.CucumberOptions;
         , dryRun = false
         , monochrome = true
         //, tags = "@iOS_Settings_WF3")
-        , tags = "@iOS_Settings_WF2")
+        , tags = "@iOS_Settings_WF")
 
 public class iOS_Settings_Runner extends BaseTest {
 }

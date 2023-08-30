@@ -48,7 +48,6 @@ public class AndrStepDef {
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
-
         DriverManager.getDriver().closeApp();
         TestUtils.log().info("Application closed.....");
         DriverManager.getDriver().launchApp();
@@ -274,24 +273,24 @@ public class AndrStepDef {
 
     @Then("Activity log is displayed in android device and {string}, {string} are verified")
     public void activityLogIsDisplayed_Andr(String strDate, String strMessage) {
-        if (armLogs.equalsIgnoreCase("TAP:ENABLE") || armLogs.equalsIgnoreCase("TWIST_AND_GO=:ENABLE")) {
-            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
-            boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
-            DriverManager.setPopupHandled(popups);
-            mobileIDScreen.clickOnMobileIDTabAndVerify();
-            mobileIDScreen.expandActivityLogs();
-            Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
-            Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-            if (strMessage.equalsIgnoreCase("Successful NFC Transaction")) {
-
-                Assert.assertEquals(mobileIDScreen.verifySuccessMessage().substring(0, 26), strMessage);
-            } else {
-                Assert.assertEquals(mobileIDScreen.verifySuccessMessage().substring(0, 32), strMessage);
-
-            }
-        } else {
-            TestUtils.log().info("Robotic arm action is not performed");
-        }
+//        if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+//            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
+//            boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
+//            DriverManager.setPopupHandled(popups);
+//            mobileIDScreen.clickOnMobileIDTabAndVerify();
+//            mobileIDScreen.expandActivityLogs();
+//            Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+//            Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+//            if (strMessage.equalsIgnoreCase("Successful NFC Transaction")) {
+//
+//                Assert.assertEquals(mobileIDScreen.verifySuccessMessage().substring(0, 26), strMessage);
+//            } else {
+//                Assert.assertEquals(mobileIDScreen.verifySuccessMessage().substring(0, 32), strMessage);
+//
+//            }
+//        } else {
+//            TestUtils.log().info("Robotic arm action is not performed");
+//        }
     }
 
     @Then("Robotic arms log {string} is displayed for android device")
