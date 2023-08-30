@@ -90,15 +90,15 @@ public class Hooks {
      */
     @After
     public void unRegisterDevice() {
-        BasePage basePage = new BasePage();
-        Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
-        if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
-            settingsScreenPage.traverseToSettingsPage();
-            if (!DriverManager.getPopupHandled()) {
-                handlePopUps.enableAllPopUps("endTestPopupsHandling");
-            }
-            settingsScreenPage.unRegisterThisDevice();
-            basePage.waitForGivenTime(2);
+//        BasePage basePage = new BasePage();
+//        Andr_HIDSettingsScreenPage settingsScreenPage = new Andr_HIDSettingsScreenPage();
+//        if (DriverManager.getDriver().getPlatformName().equalsIgnoreCase("Android")) {
+//            settingsScreenPage.traverseToSettingsPage();
+//            if (!DriverManager.getPopupHandled()) {
+//                handlePopUps.enableAllPopUps("endTestPopupsHandling");
+//            }
+//            settingsScreenPage.unRegisterThisDevice();
+//            basePage.waitForGivenTime(2);
         }
     }
 }
