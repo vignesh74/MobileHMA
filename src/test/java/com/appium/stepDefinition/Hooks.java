@@ -99,6 +99,6 @@ public class Hooks {
 //            }
 //            settingsScreenPage.unRegisterThisDevice();
 //            basePage.waitForGivenTime(2);
-        }
+//        }
     }
 }
