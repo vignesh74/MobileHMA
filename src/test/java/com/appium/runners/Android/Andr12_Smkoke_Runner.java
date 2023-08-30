@@ -12,10 +12,10 @@ import io.cucumber.testng.CucumberOptions;
                 , "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }
         , features = "src/test/resources/features/Android/"
         , glue = "com.appium.stepDefinition"
-        , dryRun = true
+        , dryRun = false
         , monochrome = true
         , tags = "@ANDR_SmokeRun")
 
-public class Andr12_Smkoke_Runner extends BaseTest {
+public class Andr12_Smoke_Runner extends BaseTest {
 
 }

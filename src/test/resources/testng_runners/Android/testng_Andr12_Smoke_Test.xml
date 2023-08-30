@@ -28,7 +28,7 @@
         <parameter name="roboticArmY" value="500"/>
 
         <classes>
-            <class name="com.appium.runners.Android.Andr12_Smkoke_Runner"></class>
+            <class name="com.appium.runners.Android.Andr12_Smoke_Runner"></class>
         </classes>
     </test>
 </suite>

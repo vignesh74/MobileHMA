@@ -12,7 +12,7 @@ import io.cucumber.testng.CucumberOptions;
                 , "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }
         , features = "src/test/resources/features/iOS"
         , glue = "com.appium.stepDefinition"
-        , dryRun = true
+        , dryRun = false
         , monochrome = true
         , tags = "@iOS_SmokeRun")
 
