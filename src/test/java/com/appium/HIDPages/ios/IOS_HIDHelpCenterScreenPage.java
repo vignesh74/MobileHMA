@@ -87,7 +87,7 @@ public class IOS_HIDHelpCenterScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Log file\"]", priority = 1)
     private MobileElement txtHelpCenterLogFile;
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Log file\"]|/XCUIElementTypeSwitch", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Log file\"]/XCUIElementTypeSwitch", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Log file\"]", priority = 1)
     private MobileElement tglBtnHelpCenterLogFile;
 

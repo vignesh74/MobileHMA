@@ -27,8 +27,8 @@ public class IOS_DeviceSettingsPage extends BasePage {
     private MobileElement imgDeviceSetting;
 
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Bluetooth\"]", priority = 0)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Bluetooth\"]/XCUIElementTypeSwitch", priority = 1)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Bluetooth\"]", priority = 1)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Bluetooth\"]/XCUIElementTypeSwitch", priority = 0)
     @iOSXCUITFindBy(xpath = "(//*[contains(@name,'Bluetooth')])[2]", priority = 2)
     private MobileElement tglBtnBluetoothDeviceSetting;
 

@@ -140,7 +140,7 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
 
     //3. Sounds and Vibration
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Play Sound\"]|/XCUIElementTypeSwitch", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Play Sound\"]/XCUIElementTypeSwitch", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Play Sound\"]", priority = 1)
     private MobileElement tglBtnPlayAndSound;
 
@@ -150,7 +150,7 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     private MobileElement txtPlayAndSound;
 
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Vibrate\"]|/XCUIElementTypeSwitch", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Vibrate\"]/XCUIElementTypeSwitch", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Vibrate\"]", priority = 1)
     private MobileElement tglBtnVibrate;
 
@@ -161,7 +161,7 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
 
     //4. Gestures
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Twist & Go\"]|/XCUIElementTypeSwitch", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Twist & Go\"]/XCUIElementTypeSwitch", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Twist & Go\"]", priority = 1)
     private MobileElement tglBtnTwistAndGo;
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
