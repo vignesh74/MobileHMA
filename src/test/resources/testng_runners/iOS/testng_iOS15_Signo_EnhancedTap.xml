@@ -27,7 +27,7 @@
         <parameter name="roboticArmX" value="1350"/>
         <parameter name="roboticArmY" value="300"/>
         <classes>
-            <class name="com.appium.runners.iOS.iOS_Settings_Runner"></class>
+            <class name="com.appium.runners.iOS.iOS_Signo_EnhancedTap_Runner"></class>
         </classes>
     </test>
 </suite>
