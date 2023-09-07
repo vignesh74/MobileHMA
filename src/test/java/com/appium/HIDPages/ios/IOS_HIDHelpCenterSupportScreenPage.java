@@ -3,6 +3,8 @@ package com.appium.HIDPages.ios;
 import com.appium.base.BasePage;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.HowToUseLocators;
+import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.testng.Assert;
 
@@ -17,7 +19,9 @@ public class IOS_HIDHelpCenterSupportScreenPage extends BasePage {
      * mobile elements - These are mobile elements which is present in Help Center Support Page Date-25/1/2023
      */
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Centre\"]")
+    @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Centre\"]", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Center\"]", priority = 1)
     private MobileElement imgBackFromSupport;
 
     @iOSXCUITFindBy(xpath = "//*[@name='Help Centre']//following-sibling:: XCUIElementTypeStaticText")

@@ -173,11 +173,13 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @iOSXCUITFindBy(xpath = "//*[@name='Help Centre']//following-sibling:: XCUIElementTypeStaticText", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Centre\"]", priority = 1)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Center\"]", priority = 2)
     private MobileElement txtHelpCenter;
 
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @iOSXCUITFindBy(xpath = "//*[@name='Help Centre']//following-sibling:: XCUIElementTypeImage", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Centre\"]", priority = 1)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Center\"]", priority = 2)
     private MobileElement imgHelpCenter;
 
     //6. Deregister
