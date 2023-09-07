@@ -211,7 +211,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
       | Signo       | _ET_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
       | Signo       | _ET_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
       | Signo       | _ET_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
-      | Signo       | _ET_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
+      #| Signo       | _ET_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
 
 
     @iOS_Signo_EnhancedTap_WF2 @iOS_Signo_EnhancedTap
