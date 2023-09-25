@@ -181,4 +181,25 @@ public class IOSStepDef {
     public void checkLogFileStatus_iOS(String strSwitchState) {
         helpCenterScreen.verifyLogFileToggleButtonState(strSwitchState);
     }
+
+    @Then("About screen is displayed {string}, {string}, {string} and {string} in iOS device")
+    public void verifyAboutScreen_iOS(String Mode, String Env, String BLE, String LocSev) {
+        helpCenterScreen.verifyAboutScreenDetails(Mode, Env, BLE, LocSev);
+        aboutScreen.clickOnBackButtonAbout();
+    }
+
+    @Then("Mobile ID is {string} and the Notification screen is displayed with message as {string} and {string} in iOS device")
+    public void verifyNotificationScreen_iOS(String strMobileID, String strMsg1, String strMsg2) {
+        notificationScreen.verifyNotificationScreen(strMobileID, strMsg1, strMsg2);
+    }
+
+    @Then("Navigate back to Mobile ID screen in iOS device")
+    public void clickonMobileIDScreen_iOS() {
+        mobileIdScreen.clickOnMobileIDTabAndVerify();
+    }
+
+    @Then("Verify the Mobile ID screen {string} in iOS device")
+    public void verifyMobileIDScreen_iOS(String strMobileID) {
+        mobileIdScreen.verifyMobileIDScreen(strMobileID);
+    }
 }

@@ -26,6 +26,26 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Notifications\"]")
     private MobileElement tabNotifications;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Mobile ID suspended\"]")
+    private MobileElement txtMobileIDSuspended;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"attentionRequiredIcon\"]")
+    private MobileElement imgAttentionIcon;
+
+    @iOSXCUITFindBy(accessibility = "Please contact your administrator for a new Invitation Code")
+    private MobileElement txtMsgForSuspend;
+
+    @iOSXCUITFindBy(accessibility = "warningSign")
+    private MobileElement imgWarningSign;
+
+    @iOSXCUITFindBy(accessibility = "No Mobile IDs yet")
+    private MobileElement txtNoMobileIDsYet;
+
+    @iOSXCUITFindBy(accessibility = "Invitation Code redeemed. Waiting for your administrator to issue a Mobile ID.")
+    private MobileElement txtMsgForRevoke;
+
+    //XCUIElementTypeOther/XCUIElementTypeImage - Card Image
+
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
      */
@@ -50,6 +70,30 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
         return lnkAddLinkText;
     }
 
+    public MobileElement getTxtMobileIDSuspended() {
+        return txtMobileIDSuspended;
+    }
+
+    public MobileElement getImgAttentionIcon() {
+        return imgAttentionIcon;
+    }
+
+    public MobileElement getTxtMsgForSuspend() {
+        return txtMsgForSuspend;
+    }
+
+    public MobileElement getImgWarningSign() {
+        return imgWarningSign;
+    }
+
+    public MobileElement getTxtNoMobileIDsYet() {
+        return txtNoMobileIDsYet;
+    }
+
+    public MobileElement getTxtMsgForRevoke() {
+        return txtMsgForRevoke;
+    }
+
     /**
      * isMobileIdScreenDisplayed- This method is used to verify the mobile id screen is displayed or not
      *
@@ -69,6 +113,33 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
             Assert.assertTrue(isElementVisible(lnkAddLinkText));
         } catch (Exception e) {
             
+            TestUtils.log().info("Exception occurred while displaying Mobile ID Screen...");
+        }
+    }
+
+    public void verifyMobileIDScreen(String strMobileID) {
+        try{
+            switch (strMobileID){
+                case "Suspend" -> {
+                    Assert.assertTrue(isElementVisible(txtMobileIDSuspended));
+                    Assert.assertTrue(isElementVisible(imgAttentionIcon));
+                    Assert.assertTrue(isElementVisible(txtMsgForSuspend));
+                }
+                case "Resume" -> {
+                    Assert.assertFalse(isElementVisible(txtMobileIDSuspended));
+                    Assert.assertFalse(isElementVisible(imgAttentionIcon));
+                    Assert.assertFalse(isElementVisible(txtMsgForSuspend));
+                }
+                case "Revoke" -> {
+                    Assert.assertTrue(isElementVisible(imgWarningSign));
+                    Assert.assertTrue(isElementVisible(txtNoMobileIDsYet));
+                    Assert.assertTrue(isElementVisible(txtMsgForRevoke));
+                }
+                default ->
+                        TestUtils.log().info("Please select the correct mobile ID ");
+            }
+        }
+        catch (Exception e) {
             TestUtils.log().info("Exception occurred while displaying Mobile ID Screen...");
         }
     }

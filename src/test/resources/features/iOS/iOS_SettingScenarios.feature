@@ -59,3 +59,25 @@ Feature: To Test iOS Setting workflow for HID mobile access application
       | _TC-12 | Enable   |
       | _TC-13 | Disable  |
 
+  @iOS_Settings_WF5 @iOS_Settings_WF
+  Scenario Outline: iOS_Settings_WF5<TC_ID>: Verify the page of About and it's details, Application Info, Endpoint Info and Device Info
+    When  Navigate to Settings in iOS device
+    And   Select the mode state as "<mode_state>" in iOS device
+    And   Navigate to Help center in iOS device
+    Then  About screen is displayed "<mode_state>", "<Environment>", "<Bluetooth>" and "<LocationServices>" in iOS device
+
+    Examples:
+      | TC_ID  | mode_state | Environment | Bluetooth     | LocationServices              |
+      | _TC-14 | Always     | Prod        | BLE Supported | Location Services are enabled |
+
+  @iOS_Settings_WF6 @iOS_Settings_WF
+  Scenario Outline: iOS_Settings_WF6<TC_ID>: Verify the page of Notification screen along with Suspend, Resume, and Revoke.
+    When  Mobile ID is "<mobileID>" and the Notification screen is displayed with message as "<Message1>" and "<Message2>" in iOS device
+    And   Navigate back to Mobile ID screen in iOS device
+    Then  Verify the Mobile ID screen "<mobileID>" in iOS device
+
+    Examples:
+      | TC_ID  | mobileID| Message1                | Message2         |
+      | _TC-15 | Suspend | From Your Administrator |Mobile ID updated |
+      | _TC-16 | Resume  | From Your Administrator |Mobile ID updated |
+      | _TC-17 | Revoke  | From Your Administrator |Mobile ID revoked |
