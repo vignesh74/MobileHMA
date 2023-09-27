@@ -1,4 +1,4 @@
-Feature: To Test iOS Setting workflow for HID mobile access application
+ Feature: To Test iOS Setting workflow for HID mobile access application
 
 
   Background:To launch the HID app and navigate
@@ -81,3 +81,33 @@ Feature: To Test iOS Setting workflow for HID mobile access application
       | _TC-15 | Suspend | From Your Administrator |Mobile ID updated |
       | _TC-16 | Resume  | From Your Administrator |Mobile ID updated |
       | _TC-17 | Revoke  | From Your Administrator |Mobile ID revoked |
+
+   @iOS_Settings_WF7 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF7<TC_ID>: Verify the warning banners for BLE and Location permission combinations
+     When  Navigate to Settings in iOS device
+     And   Select the mode state as "<mode_state>" in iOS device
+     And   Set BLE status as "<BLE_status>" in iOS device
+     And   Set location permission as "<location_permission>" in iOS device
+     Then  Verify the warning banners of "<mode_state>" BLE "<BLE_status>" and Location permission "<location_permission>" in iOS device
+
+     Examples:
+       | TC_ID  | mode_state | BLE_status | location_permission |
+       | _TC-18 | Always     | Allowed    | Never               |
+       | _TC-19 | Always     | Allowed    | While using the app |
+       | _TC-20 | Always     | Allowed    | Always              |
+       | _TC-21 | Foreground | Allowed    | Never               |
+       | _TC-22 | Foreground | Allowed    | While using the app |
+       | _TC-23 | Foreground | Allowed    | Always              |
+       | _TC-24 | Unlocked   | Allowed    | Never               |
+       | _TC-26 | Unlocked   | Allowed    | Always              |
+       | _TC-27 | Always     | Denied     | Never               |
+       | _TC-28 | Always     | Denied     | While using the app |
+       | _TC-29 | Always     | Denied     | Always              |
+       | _TC-30 | Foreground | Denied     | Never               |
+       | _TC-31 | Foreground | Denied     | While using the app |
+       | _TC-31 | Foreground | Denied     | Always              |
+       | _TC-33 | Unlocked   | Denied     | Never               |
+       | _TC-34 | Unlocked   | Denied     | While using the app |
+       | _TC-35 | Unlocked   | Denied     | Always              |
+
+

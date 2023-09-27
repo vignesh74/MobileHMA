@@ -191,6 +191,25 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"DEREGISTER\"]", priority = 1)
     private MobileElement imgDeregister;
 
+    //Warning Banners
+    @iOSXCUITFindBy(accessibility = "Bluetooth Permission Required, Enable this to find readers nearby and use your Mobile ID over Bluetooth")
+    private MobileElement txtInfoMessageBLE;
+
+    @iOSXCUITFindBy(accessibility = "Location Permission Required, Enable this to find readers nearby")
+    private MobileElement txtInfoMessageLocPerm;
+
+    @iOSXCUITFindBy(accessibility = "Enable this to find readers nearby and use your Mobile ID over Bluetooth")
+    private MobileElement txtInfoBLEMsg;
+
+    @iOSXCUITFindBy(accessibility = "Enable this to find readers nearby")
+    private MobileElement txtInfoLocationMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Location Permission Required, Enable this to find readers nearby\"]//following-sibling::XCUIElementTypeImage")
+    private MobileElement chkLocFwdButton;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Bluetooth Permission Required, Enable this to find readers nearby and use your Mobile ID over Bluetooth\"]//following-sibling:: XCUIElementTypeImage")
+    private MobileElement chkBLEFwdButton;
+
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
      */
@@ -334,9 +353,32 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
         return txtPopUpAlertTitle;
     }
 
-    public MobileElement getBtnSettingPopUpLocation() {
-        return btnSettingPopUpLocation;
+    public MobileElement getBtnSettingPopUpLocation() { return btnSettingPopUpLocation; }
+
+    public MobileElement getTxtInfoMessageBLE() {
+        return txtInfoMessageBLE;
     }
+
+    public MobileElement getTxtInfoMessageLocPerm() {
+        return txtInfoMessageLocPerm;
+    }
+
+    public MobileElement getTxtInfoBLEMsg() {
+        return txtInfoBLEMsg;
+    }
+
+    public MobileElement getTxtInfoLocationMsg() {
+        return txtInfoLocationMsg;
+    }
+
+    public MobileElement getChkLocFwdButton() {
+        return chkLocFwdButton;
+    }
+
+    public MobileElement getChkBLEFwdButton() {
+        return chkBLEFwdButton;
+    }
+
 
     /**
      * isHidAppSettingScreenDisplayed- This method is used to verify the settings screen is displayed or not
@@ -698,8 +740,82 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             click(imgHelpCenter);
             helpCenterSettingScreen.isHelpCenterScreenDisplayed();
         } catch (Exception e) {
-            
             TestUtils.log().info("Exception occurred while verifying help center screen...");
+        }
+    }
+
+    public void verifyWarningBanners(String strMode, String BLE, String Location) {
+        try {
+                switch (strMode) {
+                    case "Always" -> {
+                        if(BLE.equals("Allowed")){
+                            if(Location.equals("Never") | Location.equals("While using the app")){
+                                checkLocationPermBanner();
+                            } else if (Location.equals("Always")) {
+                                Assert.assertFalse(isElementVisible(txtInfoMessageLocation));
+                            }
+                        } else if (BLE.equals("Denied")) {
+                            if(Location.equals("Never") | Location.equals("While using the app")){
+                                checkBLEPermBanner();
+                                checkLocationPermBanner();
+                            } else if (Location.equals("Always")) {
+                                checkBLEPermBanner();
+                            }
+                        }
+                    }
+                    case "Foreground" -> {
+                        if(BLE.equals("Allowed")){
+                            if(Location.equals("Never") | Location.equals("While using the app") | Location.equals("Always")){
+                                Assert.assertFalse(isElementVisible(txtInfoMessageLocation));
+                            }
+                        } else if (BLE.equals("Denied")) {
+                            if(Location.equals("Never") | Location.equals("While using the app") | Location.equals("Always")){
+                                checkBLEPermBanner();
+                            }
+                        }
+                    }
+                    case "Unlocked" -> {
+                        if(BLE.equals("Allowed")){
+                            if(Location.equals("Never") | Location.equals("While using the app")){
+                                checkLocationPermBanner();
+                            } else if (Location.equals("Always")) {
+                                Assert.assertFalse(isElementVisible(txtInfoMessageLocation));
+                            }
+                        } else if (BLE.equals("Denied")) {
+                            if(Location.equals("Never") | Location.equals("While using the app")){
+                                checkBLEPermBanner();
+                                checkLocationPermBanner();
+                            } else if (Location.equals("Always")) {
+                                checkBLEPermBanner();
+                            }
+                        }
+                    }
+                }
+
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the warning banners in settings screen...");
+        }
+    }
+
+    public void checkLocationPermBanner() {
+        try {
+            Assert.assertTrue(isElementVisible(txtInfoMessageLocPerm));
+            Assert.assertTrue(isElementVisible(txtLocationNotAsAlwaysError));
+            Assert.assertTrue(isElementVisible(txtInfoLocationMsg));
+            Assert.assertTrue(isElementVisible(chkLocFwdButton));
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the location permission banner in settings screen...");
+        }
+    }
+
+    public void checkBLEPermBanner() {
+        try {
+            Assert.assertTrue(isElementVisible(txtInfoMessageBLE));
+            Assert.assertTrue(isElementVisible(txtBluetoothOffError));
+            Assert.assertTrue(isElementVisible(txtInfoBLEMsg));
+            Assert.assertTrue(isElementVisible(chkBLEFwdButton));
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the BLE permission banner in settings screen...");
         }
     }
 }

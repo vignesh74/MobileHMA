@@ -194,12 +194,17 @@ public class IOSStepDef {
     }
 
     @Then("Navigate back to Mobile ID screen in iOS device")
-    public void clickonMobileIDScreen_iOS() {
+    public void clickOnMobileIDScreen_iOS() {
         mobileIdScreen.clickOnMobileIDTabAndVerify();
     }
 
     @Then("Verify the Mobile ID screen {string} in iOS device")
     public void verifyMobileIDScreen_iOS(String strMobileID) {
         mobileIdScreen.verifyMobileIDScreen(strMobileID);
+    }
+
+    @Then("Verify the warning banners of {string} BLE {string} and Location permission {string} in iOS device")
+    public void checkWarningBanners_iOS(String strMode, String BLE, String Location) {
+        settingScreen.verifyWarningBanners(strMode, BLE, Location);
     }
 }
