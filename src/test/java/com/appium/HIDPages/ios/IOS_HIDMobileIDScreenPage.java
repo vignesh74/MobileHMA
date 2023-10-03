@@ -44,6 +44,36 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
     @iOSXCUITFindBy(accessibility = "Invitation Code redeemed. Waiting for your administrator to issue a Mobile ID.")
     private MobileElement txtMsgForRevoke;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Add Mobile ID\"]")
+    private MobileElement txtAddMobileID;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Back\"]")
+    private MobileElement btnMobileIDBack;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Invitation Code\"]")
+    private MobileElement txtInvitationCode;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Enter the 16-digit code from your HID Mobile Access welcome email\"]")
+    private MobileElement txtInvitationCodeMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Invitation Code\"]//following-sibling::XCUIElementTypeTextField")
+    private MobileElement txtInvitationCodeBox;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"Qr Code\"]")
+    private MobileElement imgQRCode;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Scan QR Code\"]")
+    private MobileElement txtScanQRCode;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Add Mobile ID\"]")
+    private MobileElement btnAddMobileID;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Code not recognised. Please check and try again.\"]")
+    private MobileElement txtInvalidCodeMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"No Internet connection\"]")
+    private MobileElement txtNoInternetMsg;
+
     //XCUIElementTypeOther/XCUIElementTypeImage - Card Image
 
     /**
@@ -94,6 +124,46 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
         return txtMsgForRevoke;
     }
 
+    public MobileElement getTxtAddMobileID() {
+        return txtAddMobileID;
+    }
+
+    public MobileElement getBtnMobileIDBack() {
+        return btnMobileIDBack;
+    }
+
+    public MobileElement getTxtInvitationCode() {
+        return txtInvitationCode;
+    }
+
+    public MobileElement getTxtInvitationCodeMsg() {
+        return txtInvitationCodeMsg;
+    }
+
+    public MobileElement getTxtInvitationCodeBox() {
+        return txtInvitationCodeBox;
+    }
+
+    public MobileElement getImgQRCode() {
+        return imgQRCode;
+    }
+
+    public MobileElement getTxtScanQRCode() {
+        return txtScanQRCode;
+    }
+
+    public MobileElement getBtnAddMobileID() {
+        return btnAddMobileID;
+    }
+
+    public MobileElement getTxtInvalidCodeMsg() {
+        return txtInvalidCodeMsg;
+    }
+
+    public MobileElement getTxtNoInternetMsg() {
+        return txtNoInternetMsg;
+    }
+
     /**
      * isMobileIdScreenDisplayed- This method is used to verify the mobile id screen is displayed or not
      *
@@ -141,6 +211,78 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
         }
         catch (Exception e) {
             TestUtils.log().info("Exception occurred while displaying Mobile ID Screen...");
+        }
+    }
+
+    public void clickOnAddButton() {
+        try {
+            click(lnkAddLinkText);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while displaying Mobile ID Screen...");
+        }
+    }
+
+    public void chkAddMobileIDPage() {
+        try {
+            Assert.assertTrue(isElementVisible(txtAddMobileID));
+            Assert.assertTrue(isElementVisible(btnMobileIDBack));
+            Assert.assertTrue(isElementVisible(txtInvitationCode));
+            Assert.assertTrue(isElementVisible(txtInvitationCodeMsg));
+            Assert.assertTrue(isElementVisible(txtInvitationCodeBox));
+            Assert.assertTrue(isElementVisible(imgQRCode));
+            Assert.assertTrue(isElementVisible(txtScanQRCode));
+            Assert.assertTrue(isElementVisible(btnAddMobileID));
+            Assert.assertFalse(btnAddMobileID.isEnabled());
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while displaying Mobile ID Screen...");
+        }
+    }
+
+    public void enterInvitationCode(String strInvitationCode) {
+        try {
+            if (isDisplayed(txtInvitationCodeBox)) {
+                sendKeys(txtInvitationCodeBox, strInvitationCode);
+            } else {
+                TestUtils.log().info("InvitationCode TextBox is not displayed");
+            }
+            Assert.assertTrue(btnAddMobileID.isEnabled());
+            click(btnAddMobileID);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while entering invitation code...");
+        }
+    }
+
+    public void enterInvalidInvitationCode(String strInvalidCode) {
+        try {
+            if (isDisplayed(txtInvitationCodeBox)) {
+                sendKeys(txtInvitationCodeBox, strInvalidCode);
+            } else {
+                TestUtils.log().info("InvitationCode TextBox is not displayed");
+            }
+            Assert.assertTrue(btnAddMobileID.isEnabled());
+            click(btnAddMobileID);
+            waitForVisibility(txtInvalidCodeMsg);
+            Assert.assertTrue(isElementVisible(txtInvalidCodeMsg));
+            Assert.assertFalse(btnAddMobileID.isEnabled());
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while entering invitation code...");
+        }
+    }
+
+    public void chkNoInternet(String strInvitation) {
+        try {
+            if (isDisplayed(txtInvitationCodeBox)) {
+                sendKeys(txtInvitationCodeBox, strInvitation);
+            } else {
+                TestUtils.log().info("InvitationCode TextBox is not displayed");
+            }
+            Assert.assertTrue(btnAddMobileID.isEnabled());
+            click(btnAddMobileID);
+            waitForVisibility(txtNoInternetMsg);
+            Assert.assertTrue(isElementVisible(txtNoInternetMsg));
+            Assert.assertFalse(btnAddMobileID.isEnabled());
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying the No Internet Error msg...");
         }
     }
 

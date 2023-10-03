@@ -99,6 +99,7 @@
        | _TC-22 | Foreground | Allowed    | While using the app |
        | _TC-23 | Foreground | Allowed    | Always              |
        | _TC-24 | Unlocked   | Allowed    | Never               |
+       | _TC-25 | Unlocked   | Allowed    | While using the app |
        | _TC-26 | Unlocked   | Allowed    | Always              |
        | _TC-27 | Always     | Denied     | Never               |
        | _TC-28 | Always     | Denied     | While using the app |
@@ -110,4 +111,39 @@
        | _TC-34 | Unlocked   | Denied     | While using the app |
        | _TC-35 | Unlocked   | Denied     | Always              |
 
+   @iOS_Settings_WF8 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF8<TC_ID>: Verify the Add Mobile ID screen with valid invitation code using Rest API
+     When  Mobile IDs screen is displayed in iOS device
+     And   Click on ADD button in iOS device
+     And   Verify the Add Mobile ID screen in iOS device
+     And   Get Invitation Code iOS using Rest API when credential are assigned
+     Then  Enter invitation code on HID mobile Application in iOS device
 
+     Examples:
+       | TC_ID  |
+       | _TC-36 |
+
+   @iOS_Settings_WF9 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF9<TC_ID>: Verify the Add Mobile ID screen with invalid or expired invitation code
+     When  Mobile IDs screen is displayed in iOS device
+     And   Click on ADD button in iOS device
+     And   Verify the Add Mobile ID screen in iOS device
+     Then  Enter Invalid or Expired invitation code "<Expired_Code>" on HID mobile Application in iOS device
+
+     Examples:
+       | TC_ID  | Expired_Code         |
+       | _TC-37 | AC57-R6ZF-AAD5-ZGVQ  |
+
+   @iOS_Settings_WF10 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF10<TC_ID>: Verify the Add Mobile ID screen with Internet OFF scenario
+     When  Navigate to Settings in iOS device
+     And   Set WIFI status as "<Internet>" in iOS device
+     When  Mobile IDs screen is displayed in iOS device
+     And   Click on ADD button in iOS device
+     And   Verify the Add Mobile ID screen in iOS device
+     Then  Verify the No Internet Error "<Invitation_Code>" on HID mobile Application in iOS device
+     And   Set back the WIFI status as ON in iOS device
+
+     Examples:
+       | TC_ID  | Internet | Invitation_Code     |
+       | _TC-38 | Off      | AC57-R6ZF-AAD5-ZGVQ |

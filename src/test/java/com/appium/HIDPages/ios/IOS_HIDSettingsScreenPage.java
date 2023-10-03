@@ -210,6 +210,19 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Bluetooth Permission Required, Enable this to find readers nearby and use your Mobile ID over Bluetooth\"]//following-sibling:: XCUIElementTypeImage")
     private MobileElement chkBLEFwdButton;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[@name=\"Wi-Fi\"]//following-sibling::XCUIElementTypeStaticText[2]")
+    private MobileElement txtWIFIPermissionStatus;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[@name=\"Wi-Fi\"]//following-sibling::XCUIElementTypeButton")
+    private MobileElement btnWIFIchevron;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Wi-Fi\"])[2]//following-sibling::XCUIElementTypeSwitch")
+    private MobileElement tglWIFISwitch;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Back\"]")
+    private MobileElement btnMobileIDBack;
+
+
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
      */
@@ -816,6 +829,46 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue(isElementVisible(chkBLEFwdButton));
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while verifying the BLE permission banner in settings screen...");
+        }
+    }
+
+    public void setWifiStatus(String strInternet) {
+        try {
+            click(imgBluetoothPermissionStatus);
+            click(tabSettings);
+
+            if (getElementText(txtWIFIPermissionStatus).contains(strInternet)) {
+                TestUtils.log().info("WIFI already set as {}", strInternet);
+            } else {
+                click(btnWIFIchevron);
+                click(tglWIFISwitch);
+                click(tabSettings);
+                Assert.assertTrue(getElementText(txtWIFIPermissionStatus).contains(strInternet));
+                switchToAnotherApp(ConfigLoader.getInstance().getiOSBundleID());
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying the No Internet Error msg...");
+        }
+    }
+
+    public void setWifiStatusON() {
+        try {
+            click(btnMobileIDBack);
+            clickOnSettingTabAndVerify();
+            click(imgBluetoothPermissionStatus);
+            click(tabSettings);
+
+            if (getElementText(txtWIFIPermissionStatus).contains("Off")) {
+                click(btnWIFIchevron);
+                click(tglWIFISwitch);
+                click(tabSettings);
+                Assert.assertNotEquals(getElementText(txtWIFIPermissionStatus),"Off");
+                switchToAnotherApp(ConfigLoader.getInstance().getiOSBundleID());
+            } else {
+                TestUtils.log().info("WIFI already connected to some network...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying the No Internet Error msg...");
         }
     }
 }

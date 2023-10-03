@@ -2,6 +2,7 @@ package com.appium.stepDefinition;
 
 import com.appium.HIDPages.ios.*;
 import com.appium.deviceinfo_action.IOSDeviceInfo;
+import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
@@ -11,7 +12,13 @@ import io.cucumber.java.en.When;
 import jssc.SerialPortException;
 import org.testng.Assert;
 
+import java.io.IOException;
+
+import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
+
 public class IOSStepDef {
+
+    String strInvitationCode = "";
 
     IOS_HIDMobileIDScreenPage mobileIdScreen = new IOS_HIDMobileIDScreenPage();
     IOS_HIDNotificationScreenPage notificationScreen = new IOS_HIDNotificationScreenPage();
@@ -206,5 +213,47 @@ public class IOSStepDef {
     @Then("Verify the warning banners of {string} BLE {string} and Location permission {string} in iOS device")
     public void checkWarningBanners_iOS(String strMode, String BLE, String Location) {
         settingScreen.verifyWarningBanners(strMode, BLE, Location);
+    }
+
+    @Then("Click on ADD button in iOS device")
+    public void clickOnAddButton_iOS() {
+        mobileIdScreen.clickOnAddButton();
+    }
+
+    @Then("Verify the Add Mobile ID screen in iOS device")
+    public void verifyAddMobileIDPage_iOS() {
+        mobileIdScreen.chkAddMobileIDPage();
+    }
+
+    @Given("Get Invitation Code iOS using Rest API when credential are {}")
+    public void createInvitationCode_iOS(String assigned) throws AutomationException, IOException {
+        boolean assign = true;
+        strInvitationCode = createInvitationAPI(DriverManager.getUserId(), assign);
+        TestUtils.log().info(strInvitationCode);
+    }
+
+    @Then("Enter invitation code on HID mobile Application in iOS device")
+    public void enterInvitationCode_iOS() {
+        mobileIdScreen.enterInvitationCode(strInvitationCode);
+    }
+
+    @Then("Enter Invalid or Expired invitation code {string} on HID mobile Application in iOS device")
+    public void enterInvalidInvitationCode_iOS(String strInvalidCode) {
+        mobileIdScreen.enterInvalidInvitationCode(strInvalidCode);
+    }
+
+    @Then("Verify the No Internet Error {string} on HID mobile Application in iOS device")
+    public void chkNoInternetErrMsg_iOS(String strInvitation) {
+        mobileIdScreen.chkNoInternet(strInvitation);
+    }
+
+    @Then("Set WIFI status as {string} in iOS device")
+    public void setWIFIStatus(String strInternet) {
+        settingScreen.setWifiStatus(strInternet);
+    }
+
+    @Then("Set back the WIFI status as ON in iOS device")
+    public void setWIFIStatusON() {
+        settingScreen.setWifiStatusON();
     }
 }
