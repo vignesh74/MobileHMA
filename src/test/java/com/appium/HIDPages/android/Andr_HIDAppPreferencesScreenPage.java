@@ -243,7 +243,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
             if (usageType.equalsIgnoreCase(MessageConstants.ALWAYS_STRING)) {
                 selectRadioButton(rdoUsageAlways);
             } else if (usageType.equalsIgnoreCase(MessageConstants.FOREGROUND_STRING)) {
-                selectRadioButton(rdoUsageActive);
+                selectRadioButton(rdoUsageForeground);
             } else if (usageType.equalsIgnoreCase(MessageConstants.UNLOCKED_STRING)) {
                 selectRadioButton(rdoUsageUnlocked);
             } else {
