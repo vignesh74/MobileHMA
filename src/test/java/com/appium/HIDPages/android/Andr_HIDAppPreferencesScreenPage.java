@@ -37,6 +37,9 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]")
     private MobileElement rdoUsageActive;
 
+    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]")
+    private MobileElement rdoUsageForeground;
+
     @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[3]")
     private MobileElement rdoUsageUnlocked;
 
@@ -239,7 +242,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         try {
             if (usageType.equalsIgnoreCase(MessageConstants.ALWAYS_STRING)) {
                 selectRadioButton(rdoUsageAlways);
-            } else if (usageType.equalsIgnoreCase(MessageConstants.ACTIVE_STRING)) {
+            } else if (usageType.equalsIgnoreCase(MessageConstants.FOREGROUND_STRING)) {
                 selectRadioButton(rdoUsageActive);
             } else if (usageType.equalsIgnoreCase(MessageConstants.UNLOCKED_STRING)) {
                 selectRadioButton(rdoUsageUnlocked);

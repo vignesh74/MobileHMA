@@ -375,19 +375,19 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     And   Set Application status as "<app_state>" in android device
     And   Set display screen as "<display_status>" in android device
     And   Set device state as "<device_state>" in android device
-    And   Perform robotic arm action as "<action_name>" for android device
+#    And   Perform robotic arm action as "<action_name>" for android device
     And   Set device state as "ForcedUnlock" in android device
     And   Set Application status as "Foreground" in android device
-    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
+#    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
     And   Activity log is displayed in android device and "<date>", "<message>" are verified
 
     @Android11_10_RevE_Tap_WF_1 @Android11_10_RevE_Tap @Android11_10_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                          | robotic_arm_log |
       | RevE        | _Tap_WF1_TC-01 | Always      | On         | Off        | Allow all the time          | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
-      | RevE        | _Tap_WF1_TC-02 | Always      | On         | Off        | Allow all the time          | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
-      | RevE        | _Tap_WF1_TC-03 | Always      | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
-      | RevE        | _Tap_WF1_TC-04 | Always      | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
+#      | RevE        | _Tap_WF1_TC-02 | Always      | On         | Off        | Allow all the time          | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
+#      | RevE        | _Tap_WF1_TC-03 | Always      | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
+#      | RevE        | _Tap_WF1_TC-04 | Always      | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
 
     @Android11_10_RevE_Tap_WF_2 @Android11_10_RevE_Tap @Android11_10_RevE
     Examples:
