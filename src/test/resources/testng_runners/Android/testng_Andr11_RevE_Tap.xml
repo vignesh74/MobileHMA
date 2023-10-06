@@ -15,15 +15,17 @@
         <parameter name="emulator" value="false"></parameter>
         <parameter name="platformName" value="Android"></parameter>
         <parameter name="platformVersion" value="11"></parameter>
-        <parameter name="udid" value="RZ8MA0C8JEX"></parameter>
-        <parameter name="installApp" value="true"></parameter>
+        <parameter name="udid" value="e465bed2"></parameter>
+        <parameter name="installApp" value="False"></parameter>
         <parameter name="deviceName" value="TestPhone-ANDROID"></parameter>
-        <parameter name="systemPort" value="10031"/>
+        <parameter name="systemPort" value="2301"/>
         <parameter name="chromeDriverPort" value="11033"/>
-        <parameter name="wdaLocalPort" value="1002"/>
+        <parameter name="wdaLocalPort" value=""/>
         <parameter name="webkitDebugProxyPort" value="9228"/>
-        <parameter name="userId" value="11963667"/>
-        <parameter name="comPort" value=""/>
+        <parameter name="userId" value="12441635"/>
+        <parameter name="comPort" value="24601"/>
+        <parameter name="roboticArmX" value="1900"/>
+        <parameter name="roboticArmY" value="500"/>
 
         <classes>
             <class name="com.appium.runners.Android.Andr11_RevE_Tap_Runner"></class>
