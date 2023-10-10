@@ -14,7 +14,6 @@ public class MessageConstants {
     public static final String POPUP_NOT_AVAILABLE = "Popups not available !!!!!!";
     public static final String ALL_POPUP_HANDLED = "All the popups handled !!!!!!";
     public static final String ALWAYS_STRING = "Always";
-    public static final String ACTIVE_STRING = "Active";
     public static final String FOREGROUND_STRING = "Foreground";
     public static final String UNLOCKED_STRING = "Unlocked";
     public static final String DISABLE_ENABLE_STRING = "Disable/Enable";

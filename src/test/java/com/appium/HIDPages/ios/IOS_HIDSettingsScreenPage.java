@@ -663,4 +663,13 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while verifying help center screen...");
         }
     }
+
+    public void clickOnDeregister(){
+        try{
+
+        }catch (Exception e){
+            TestUtils.log().debug("Exception occurred while click on Deregister Tab");
+        }
+    }
+//txtUnRegisterThisDevice
 }

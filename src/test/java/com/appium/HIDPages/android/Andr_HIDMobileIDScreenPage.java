@@ -201,6 +201,12 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/edtTxtIssueDescription")
     private MobileElement txtIssueDescriptionNickname;
 
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtNoMobileIdTitle")
+    private MobileElement noMobileIDTitleTxt;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtNoMobileIdMessage")
+    private MobileElement noMobileIDMsg;
+
 
 
 
@@ -239,6 +245,46 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id = "com.android.settings:id/switch_widget", priority = 0)
     @AndroidFindBy(id = "android:id/switch_widget", priority = 1)
     private MobileElement nfcTurnOnOFF;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgNoMobileIdImage")
+    private MobileElement noMobileIDImage;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtMobileIDs")
+    private MobileElement txtAddMobileIDTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtEnterInvitationCode")
+    private MobileElement txtEnterInvitationCodeTab;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtInviteCode")
+    private MobileElement txtInvitationCode;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/edInviteCode")
+    private MobileElement invitationCodeTxtBox;
+
+    @AndroidFindBy(xpath="//android.widget.EditText[@text='XXXX-XXXX-XXXX-XXXX']")
+    private MobileElement invitationCodeTxtBoxPlaceHolder;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtInviteCodeMessage")
+    private MobileElement invitationCodeMessageTxt;
+
+    @AndroidFindBy(xpath="//android.widget.Button[@enabled='false']")
+    private MobileElement disabledEnterBtn;
+
+    @AndroidFindBy(xpath="//android.widget.Button[@enabled='true']")
+    private MobileElement enabledEnterBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtScanQrCode")
+    private MobileElement txtScanQRCodeTab;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertMessage")
+    private MobileElement wrongInvitationCodeAlert;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertBtn")
+    private MobileElement wrongInvitationCodeAlertBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgAdd")
+    private MobileElement addmobileIDIcon;
+
 
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
@@ -690,7 +736,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         try {
 
-            if (!isDisplayed(editTextDialogBox)) {
+            if (!isDisplayed(alertTitle)) {
                 Assert.assertTrue(false, "Edit Text Dialog Box is not displayed...");
                 TestUtils.log().info("Edit Text Dialog Box is not displayed");
 
@@ -1114,6 +1160,98 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             }
         } catch (Exception e) {
             TestUtils.log().debug("Exception occurred while checking visibility of enable the location popup...{}", e.getMessage());
+        }
+    }
+
+    public void verifyMobileIDScreen(){
+        try {
+            isDisplayed(txtMobileIdsTab);
+            isDisplayed(noMobileIDImage);
+            isDisplayed(noMobileIDTitleTxt);
+            isDisplayed(noMobileIDMsg);
+        }catch (Exception e){
+            TestUtils.log().info("Exception occured while verifying the mobileID screen");
+        }
+    }
+
+    public void verifyAddMobileIDScreen(){
+        try{
+            isDisplayed(txtAddMobileIDTitle);
+            isDisplayed(txtEnterInvitationCodeTab);
+            isDisplayed(txtScanQRCodeTab);
+        }catch (Exception e){
+            TestUtils.log().info("Exception occurred while verifying the Add mobileID screen");
+        }
+    }
+
+    public void plusIcon(){
+        try{
+            isDisplayed(addmobileIDIcon);
+            click(addmobileIDIcon);
+        }catch (Exception e){
+            TestUtils.log().info("Exception occurred while clicking on the Add mobileID icon");
+        }
+    }
+
+    public void clickOnEnterInvitationCodeTab(){
+        try{
+            click(txtEnterInvitationCodeTab);
+        }catch (Exception e){
+            TestUtils.log().info("Exception occurred while clicking on the 'Enter invitation code tab'");
+        }
+    }
+
+    public void verifyInvitationCodeScreen(){
+        try{
+            isDisplayed(txtInvitationCode);
+            isDisplayed(invitationCodeTxtBox);
+            isDisplayed(invitationCodeTxtBoxPlaceHolder);
+            isDisplayed(invitationCodeMessageTxt);
+            isDisplayed(disabledEnterBtn);
+        }catch (Exception e){
+            TestUtils.log().info("Exception occurred while verifying on the invitation code screen");
+        }
+    }
+
+    public void verifyEnterButton(String type, String invitation_code){
+        try{
+            if(type.equalsIgnoreCase("valid")){
+                click(invitationCodeTxtBox);
+                invitationCodeTxtBox.clear();
+                invitationCodeTxtBox.sendKeys(invitation_code);
+                isDisplayed(enabledEnterBtn);
+                Assert.assertTrue(true,"Enter button is enabled");
+                TestUtils.log().info("Valid Invitation code is entered");
+            }else if(type.equalsIgnoreCase("invalid")){
+                click(invitationCodeTxtBox);
+                invitationCodeTxtBox.clear();
+                invitationCodeTxtBox.sendKeys(invitation_code);
+                isDisplayed(disabledEnterBtn);
+                Assert.assertTrue(true,"Enter button is disabled");
+                TestUtils.log().info("InValid Invitation code is entered");
+            }
+        }catch (Exception e){
+            TestUtils.log().info("Exception occurred while verifying Enter button");
+        }
+    }
+
+    public void verifyPopupContent(String type, String invitation_code){
+        try{
+            if(type.equalsIgnoreCase("valid")){
+                click(invitationCodeTxtBox);
+                invitationCodeTxtBox.clear();
+                invitationCodeTxtBox.sendKeys(invitation_code);
+                isDisplayed(enabledEnterBtn);
+                Assert.assertTrue(true,"Enter button is enabled");
+                TestUtils.log().info("Wrong Invitation code is entered");
+                click(enabledEnterBtn);
+                waitForGivenTime(2);
+                isDisplayed(wrongInvitationCodeAlert);
+                Assert.assertTrue(true,"Wrong invitation code alert is displayed");
+                click(wrongInvitationCodeAlertBtn);
+            }
+        }catch (Exception e){
+            TestUtils.log().info("Exception occurred while verifying the wrong invitation code popup");
         }
     }
 

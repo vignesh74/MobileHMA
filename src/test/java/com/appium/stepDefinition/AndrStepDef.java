@@ -28,7 +28,6 @@ public class AndrStepDef {
     Andr_HIDMobileAccessTermsOfUse termsOfUseScreen=new Andr_HIDMobileAccessTermsOfUse();
     Andr_HIDInvitationCodeScreenPage invitationScreen = new Andr_HIDInvitationCodeScreenPage();
     Andr_HIDMobileIDScreenPage mobileIDScreen = new Andr_HIDMobileIDScreenPage();
-    Andr_HIDSettingsScreenPage settingsScreen = new Andr_HIDSettingsScreenPage();
     Andr_HIDNotificationScreenPage notificationScreen = new Andr_HIDNotificationScreenPage();
     Andr_HIDAppPreferencesScreenPage appPreferencesScreen = new Andr_HIDAppPreferencesScreenPage();
     Andr_DeviceBLESettingsPage bleSettingsPage = new Andr_DeviceBLESettingsPage();
@@ -42,6 +41,7 @@ public class AndrStepDef {
     Andr_HIDSettingLegalScreenPage settingLegalScreenPage = new Andr_HIDSettingLegalScreenPage();
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
     Andr_HIDWarningBanners warningBanners = new Andr_HIDWarningBanners();
+    Andr_HIDSettingsScreenPage settingsScreen = new Andr_HIDSettingsScreenPage();
 
     String strUDID = "";
     String armLogs;
@@ -347,6 +347,8 @@ public class AndrStepDef {
         settingsScreen.clickOnReportIssueScreen();
         settingsReportIssueScreenPage.isReportIssuePageDisplayed();
         settingsReportIssueScreenPage.verifySubmitButtonEnable(strReportIssue);
+//        settingsReportIssueScreenPage.getBtnSubmit();
+        settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
         settingsReportIssueScreenPage.backFromReportIssue();
     }
 
@@ -451,6 +453,134 @@ public class AndrStepDef {
     @Then("Warning Banners in Wf3 are displayed  in android device")
     public void WarningBannersWf3(){
         warningBanners.warningBannersWf3();
+    }
+
+    @And("Verify {string} always is disabled and other modes are enabled")
+    public void checkEnforcedSetting(String usage_state) {
+        settingsScreen.checkEnforcedSetting(usage_state);
+    }
+
+    @And("Set Twist and Go status as {string} in android device")
+    public void setTwistAndGoEnableOrDisable(String Twist_And_Go_State){
+        appPreferencesScreen.setTwistAndGoEnableOrDisable(Twist_And_Go_State);
+    }
+
+    @Then("Verify About menu is displayed in android device")
+    public void AboutTab(){
+        settingsScreen.verifyAboutMenu();
+    }
+
+    @Then("Verify application information are displayed in android device")
+    public void applicationInformation(){
+        settingsScreen.verifyApplicationInformation();
+    }
+
+    @Then("Verify About Page contents are copied in android device")
+    public void copyAboutScreen(){
+        settingsScreen.copyAboutScreen();
+    }
+
+    @And("Copy image should turned to tick mark symbol and copied to clipboard toast")
+    public void verifyTickSymbol(){
+        settingsScreen.verifyAboutContents();
+    }
+
+    @When("Navigate to notification page in android device")
+    public void navigateNotification(){
+        mobileIDScreen.clickOnNotificationTab();
+    }
+
+    @Then("Verify the title of notification page in android device")
+    public void notificationTitles(){
+        notificationScreen.verifyNotificationTitle();
+    }
+
+    @And("Verify Notification Date in android device")
+    public void notificationDate(){
+        notificationScreen.verifyNotificationDate();
+    }
+
+    @And("Verify Notification of {string} issues and {string} in android device")
+    public void verifyMobileIdStatus(String action, String notification){
+        notificationScreen.verifyMobileIdStatus(action, notification);
+    }
+
+    @Then("Verify the screen without any notification in android device")
+    public void verifyNoNotificationScreen(){
+        notificationScreen.verifyNoNotificationScreen();
+    }
+
+    @Then("Warning Banners are displayed {string} in android device with {string} {string} {string} {string}")
+    public void verifyBanners(String BLE_Status, String NFC_Status, String location, String location_permission, String banners){
+        warningBanners.verifyWarningBanners(BLE_Status,NFC_Status,location,location_permission,banners);
+    }
+
+    @Then("Warning Banners are displayed {string} in android device with {string} {string}")
+    public void verifyBanners12(String BLE_Status, String nearByPermission, String banners){
+        warningBanners.verifyWarningBanners12(BLE_Status,nearByPermission,banners);
+    }
+    @Then("Warning Banners are displayed {string} in android device with {string} {string} {string}")
+    public void verifyBanners789(String BLE_Status, String location, String location_permission, String banners){
+        warningBanners.verifyWarningBanners789(BLE_Status,location,location_permission,banners);
+    }
+
+    @When("Verify Mobile ID screen is displayed in android device")
+    public void verifyMobileIDScreen(){
+        boolean popups = handlePopUps.enableAllPopUps("initialPopupsHandling");
+        DriverManager.setPopupHandled(popups);
+        mobileIDScreen.verifyMobileIDScreen();
+    }
+
+    @And("Click on plus icon view the mobile ID screen in android device")
+    public void verifyAddMobileIDScreen(){
+        mobileIDScreen.plusIcon();
+        mobileIDScreen.verifyAddMobileIDScreen();
+    }
+
+    @And("Click on Enter invitation code tab in android device")
+    public void clickOnEnterInvitationCodeTab(){
+        mobileIDScreen.clickOnEnterInvitationCodeTab();
+    }
+
+    @And("Verify the invitation code entering screen in android device")
+    public void verifyInvitationCodeScreen(){
+        mobileIDScreen.verifyInvitationCodeScreen();
+    }
+
+    @And("Verify after entering the {string} invitation code {string} and check the enter button in android device")
+    public void verifyEnterButton(String typeOf, String invitationCode){
+        mobileIDScreen.verifyEnterButton(typeOf,invitationCode);
+    }
+
+    @And("Verify the alert message after entered the {string} wrong {string} in android device")
+    public void verifyPopupContent(String typeOf, String invitationCode){
+        mobileIDScreen.verifyPopupContent(typeOf,invitationCode);
+    }
+
+    @And("Debug Logs status displayed as {string} in android device")
+    public void DebugLogsSwitchButton(String strDebugLogs) {
+        appPreferencesScreen.debugLogsToggleButton(strDebugLogs);
+        appPreferencesScreen.navigateBack();
+    }
+
+    @And("Click on report issue submit button")
+    public void clickOnSubmitButton(){
+        settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
+    }
+
+    @And("Share the access logs")
+    public void shareLogs(){
+        settingsReportIssueScreenPage.shareLogs();
+    }
+
+    @Then("Attachment will be displayed based on {string}")
+    public void checkAttachment(String DebugLogs){
+        settingsReportIssueScreenPage.checkAttachment(DebugLogs);
+    }
+
+    @And("Click on the tab Deregister this device")
+    public void clickOnDeregister(){
+       // settingsScreen.clickOnDeregister();
     }
 
 }

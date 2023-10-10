@@ -32,10 +32,8 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     private MobileElement txtNearByPermission;
 
     @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]")
+    //@AndroidFindBy(xpath = "(//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[7]/android.widget.TextView[@text=‘Always’]/following-sibling::android.widget.RadioButton[2]")
     private MobileElement rdoUsageAlways;
-
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]")
-    private MobileElement rdoUsageActive;
 
     @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]")
     private MobileElement rdoUsageForeground;
@@ -162,10 +160,6 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     public MobileElement getRdoUsageAlways() {
         return rdoUsageAlways;
-    }
-
-    public MobileElement getRdoUsageActive() {
-        return rdoUsageActive;
     }
 
     public MobileElement getRdoUsageUnlocked() {
@@ -441,17 +435,17 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 click(rdoUsageAlways);
                 waitForGivenTime(1);
                 String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
                 String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
                 TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
                 Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
                 Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
                 Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
-            } else if (usageType.equalsIgnoreCase(MessageConstants.ACTIVE_STRING)) {
-                click(rdoUsageActive);
+            } else if (usageType.equalsIgnoreCase(MessageConstants.FOREGROUND_STRING)) {
+                click(rdoUsageForeground);
                 waitForGivenTime(1);
                 String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
                 String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
                 TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr2);
                 Assert.assertEquals(strAttr2, MessageConstants.TRUE_MESSAGE);
@@ -477,7 +471,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                       }
                     waitForGivenTime(1);
                     String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
                     String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
                     Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
                     Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
@@ -488,7 +482,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 {
                     waitForGivenTime(1);
                     String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
                     String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
                     Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
                     Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
@@ -672,6 +666,63 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
             
             TestUtils.log().debug("Exception occurred while verifying debug logs button...");
         }
+    }
+
+    public void debugLogsToggleButton(String switchState) {
+        try {
+            scrollUpTillElement(txtDebugLogs, 1000, 0);
+            isElementVisible(txtDebugLogs);
+            if (switchState.equalsIgnoreCase(MessageConstants.ENABLE_STRING)) {
+                if (switchDebugLogs.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.TRUE_MESSAGE)) {
+                    TestUtils.log().info("Debug logs toggle button is initially in Enable state");
+                }else{
+                    click(switchDebugLogs);
+                    TestUtils.log().info("Debug logs toggle button is set to Enable state");
+                }
+            } else if (switchState.equalsIgnoreCase(MessageConstants.DISABLE_STRING)) {
+                if (switchDebugLogs.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.FALSE_MESSAGE)) {
+                    TestUtils.log().info("Debug logs toggle button is initially in Disable state");
+                }else{
+                    click(switchDebugLogs);
+                    TestUtils.log().info("Debug logs toggle button is set to Disable state");
+                }
+            } else TestUtils.log().info("Please provide correct input");
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while verifying debug logs button...");
+        }
+    }
+
+    public void setTwistAndGoEnableOrDisable(String switchState){
+        try {
+            scrollUpTillElement(txtTwistGo, 1000, 0);
+            isElementVisible(txtTwistGo);
+            if (switchState.equalsIgnoreCase(MessageConstants.ENABLE_STRING)) {
+                if (switchTwistGo.getAttribute(MessageConstants.CHECKED_MESSAGE).equals(MessageConstants.TRUE_MESSAGE)) {
+                    TestUtils.log().info("Twist & Go toggle button is initially in Enable state");
+                }else
+                    click(switchTwistGo);
+                if (switchTwistGo.getAttribute(MessageConstants.CHECKED_MESSAGE).equals(MessageConstants.TRUE_MESSAGE)) {
+                    TestUtils.log().info("Twist & Go toggle button is set to Enable state");
+                }
+            }else{
+                if (switchTwistGo.getAttribute(MessageConstants.CHECKED_MESSAGE).equals(MessageConstants.FALSE_MESSAGE)) {
+                    TestUtils.log().info("Twist & Go toggle button is initially in Disable state");
+                }else
+                    click(switchTwistGo);
+                if (switchTwistGo.getAttribute(MessageConstants.CHECKED_MESSAGE).equals(MessageConstants.FALSE_MESSAGE)) {
+                    TestUtils.log().info("Twist & Go toggle button is set to Disable state");
+                }
+
+            }
+
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while verifying twist and go toggle button...");
+        }
+
+
     }
 
 }

@@ -2,11 +2,11 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
 
   Background:To launch the HID app and navigate
     Given Launch HID Access Mobile Application in android device
-#    When  Swipe EULA screen to left in android device
-#    And   Get Invitation Code using Rest API when credential are assigned
-#    And   Enter invitation code on HID mobile Application in android device
+    When  Swipe EULA screen to left in android device
+    And   Get Invitation Code using Rest API when credential are assigned
+    And   Enter invitation code on HID mobile Application in android device
     Then  Mobile IDs screen is displayed in android device
-#    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
+    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
     And   Tap on the Mobile ID to check back of the card details
     And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
@@ -59,6 +59,11 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     Examples:
       | TC_ID  | Show_Activity_State | Debug_Logs     |
       | _TC-13 | Enable/Disable      | Enable/Disable |
+
+  @ANDR_Settings_12_WF5 @ANDR_Settings_12_WF @ANDR_SmokeRun
+  Scenario: ANDR_12_Settings_WF5<TC_ID>: Verify the Deregister in android device
+    When Navigate to settings page in android device
+    And Click on the tab Deregister this device
 
   #android version 11 setting scenarios
   Scenario Outline:ANDR_11_10_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>
@@ -183,5 +188,19 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     Examples:
       | TC_ID  | Show_Activity_State | Debug_Logs     |
       | _TC-13 | Enable/Disable      | Enable/Disable |
+
+  Scenario Outline: ANDR_11_10_Settings_WF5<TC_ID>: Verify the page of ReportIssue, Legal, About, and Toggle button of DebugLogs and ShowActivity as Enable/Disable
+    When Navigate to Settings and App Preferences screen in android device
+    And  Debug Logs status displayed as "<Debug_Logs>" in android device
+    Then Report issue by entering text "Application is not working" in android device
+    And Share the access logs
+    Then Attachment will be displayed based on "<Debug_Logs>"
+
+    @ANDR_11_10_Settings_WF5 @ANDR_11_10_Settings_WF
+    Examples:
+      | TC_ID  | Debug_Logs |
+      | _TC-01 | Enable     |
+      | _TC-02 | Disable    |
+
 
 
