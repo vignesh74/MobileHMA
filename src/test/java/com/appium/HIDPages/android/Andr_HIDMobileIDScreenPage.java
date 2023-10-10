@@ -1243,7 +1243,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 invitationCodeTxtBox.sendKeys(invitation_code);
                 isDisplayed(enabledEnterBtn);
                 Assert.assertTrue(true,"Enter button is enabled");
-                TestUtils.log().info("Wrong Invitation code is entered");
+                TestUtils.log().info("Wrong Invitation code is entered..");
                 click(enabledEnterBtn);
                 waitForGivenTime(2);
                 isDisplayed(wrongInvitationCodeAlert);
