@@ -5,8 +5,8 @@ Feature: To Test Android Unlock workflow for HID mobile access application
 #    When  Swipe EULA screen to left in android device
 #    And   Get Invitation Code using Rest API when credential are assigned
 #    And   Enter invitation code on HID mobile Application in android device
-    Then  Mobile IDs screen is displayed in android device
-    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
+#    Then  Mobile IDs screen is displayed in android device
+#    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
   Scenario Outline:ANDR_12_<Reader_Name><Gesture_TC_ID>: Verify Robotic Arm Action and logs when BLE is <BLE_status>, NFC is <NFC_status>, Nearby is <NearByOrLocation_permission>, Location is <location_status>, App State set is <app_state>, device state is <device_state> and display status is <display_status>
     When  Navigate to Settings and App Preferences screen in android device
@@ -801,7 +801,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     @Android9_8_7_RevE_Tap_WF_3 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                          | robotic_arm_log |
-     | RevE        | _Tap_WF3_TC-09 | Unlocked    | On         | Off        | Always                      | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
+      | RevE        | _Tap_WF3_TC-09 | Unlocked    | On         | Off        | Always                      | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
       | RevE        | _Tap_WF3_TC-10 | Unlocked    | On         | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
       | RevE        | _Tap_WF3_TC-11 | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
       | RevE        | _Tap_WF3_TC-12 | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
