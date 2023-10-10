@@ -45,6 +45,7 @@ public class IOSStepDef {
 
     @When("Mobile IDs screen is displayed in iOS device")
     public void mobileIDScreenIsDisplayed_iOS() {
+        settingScreen.verifyNoInternetPopUp();
         settingScreen.handlingSettingPopUp();
         mobileIdScreen.clickOnMobileIDTabAndVerify();
     }
@@ -255,5 +256,48 @@ public class IOSStepDef {
     @Then("Set back the WIFI status as ON in iOS device")
     public void setWIFIStatusON() {
         settingScreen.setWifiStatusON();
+    }
+
+    @Then("Verify Support status debug log file {string} in feedback page {string} in iOS device")
+    public void chkDebugLogFile(String logFile, String strFeedback) {
+        helpCenterScreen.clickOnSupportAndVerify();
+        supportScreen.clickOnSubmitFeedbackButtonAndVerify();
+        feedbackScreen.isFeedbackScreenDisplayed();
+        feedbackScreen.chkSupportTermsOfUse();
+        termAndConditionScreen.clickOnEndUserLicenceAgreementAndVerify();
+        termAndConditionScreen.clickOnPrivacyNoticeLinkAndVerify();
+        termAndConditionScreen.clickOnCancelButton();
+        feedbackScreen.chkDebugLogFile(logFile, strFeedback);
+        supportScreen.clickOnBackToHelpCenter();
+    }
+
+    @Then("Deregister all the Mobile IDs from this phone in iOS device")
+    public void deregisterMobileIDs() {
+        settingScreen.clickOnDegisterSetting();
+        settingScreen.verifyDeregisterPopUp();
+        settingScreen.deregisterSuccessfulPopUp();
+        mobileIdScreen.verifyHIDMobilePage();
+    }
+
+    @Then("Verify No Internet pop up while deregister the Mobile IDs in iOS device")
+    public void chkNoInternetPopUp() {
+        settingScreen.clickOnDegisterSetting();
+        settingScreen.verifyNoInternetPopUp();
+    }
+
+    @Then("Trigger the Rest API to delete device in iOS device")
+    public void deleteDeviceRestAPI() {
+        //Have to implement API part here to delete device
+    }
+
+    @Then("Verify Delete Mobile IDs pop up in welcome screen in iOS device")
+    public void deleteMobileIDs() {
+        mobileIdScreen.isDeletePopUpDispalyed();
+        mobileIdScreen.verifyHIDMobilePage();
+    }
+
+    @Then("Verify the No Internet pop up in home screen in iOS device")
+    public void noInternetPopUp() {
+        settingScreen.verifyNoInternetPopUp();
     }
 }

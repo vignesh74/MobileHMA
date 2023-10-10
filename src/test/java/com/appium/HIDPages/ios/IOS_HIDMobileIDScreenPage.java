@@ -74,6 +74,19 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"No Internet connection\"]")
     private MobileElement txtNoInternetMsg;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Welcome to HID Mobile Access\"]")
+    private MobileElement txtWelcomeToHIDMsg;
+
+    //Delete Device Pop Up
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Mobile ID Deleted\"]")
+    private MobileElement txtMobileIDDeleted;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Your administrator has removed your Mobile ID. Please contact your administrator for a new Invitation Code.\"]")
+    private MobileElement txtDeletedMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
+    private MobileElement btnDeletedOKBtn;
+
     //XCUIElementTypeOther/XCUIElementTypeImage - Card Image
 
     /**
@@ -162,6 +175,10 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
 
     public MobileElement getTxtNoInternetMsg() {
         return txtNoInternetMsg;
+    }
+
+    public MobileElement getTxtWelcomeToHIDMsg() {
+        return txtWelcomeToHIDMsg;
     }
 
     /**
@@ -281,9 +298,33 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
             waitForVisibility(txtNoInternetMsg);
             Assert.assertTrue(isElementVisible(txtNoInternetMsg));
             Assert.assertFalse(btnAddMobileID.isEnabled());
+            click(btnMobileIDBack);
         } catch (Exception e) {
             TestUtils.log().debug("Exception occurred while verifying the No Internet Error msg...");
         }
     }
 
+    public void verifyHIDMobilePage() {
+        try {
+            waitForVisibility(txtWelcomeToHIDMsg);
+            Assert.assertTrue(isElementVisible(txtWelcomeToHIDMsg));
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while displaying Mobile ID Screen...");
+        }
+    }
+
+    public void isDeletePopUpDispalyed() {
+        try {
+            waitForVisibility(txtMobileIDDeleted);
+            if(txtMobileIDDeleted.isDisplayed()) {
+                Assert.assertTrue(isElementVisible(txtDeletedMsg));
+                Assert.assertTrue(isElementVisible(btnDeletedOKBtn));
+                click(btnDeletedOKBtn);
+            } else {
+                TestUtils.log().info("Delete Mobile ID pop up is not displayed...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while displaying the Delete device pop up...");
+        }
+    }
 }

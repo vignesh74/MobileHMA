@@ -216,12 +216,46 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[@name=\"Wi-Fi\"]//following-sibling::XCUIElementTypeButton")
     private MobileElement btnWIFIchevron;
 
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Wi-Fi\"])[2]//following-sibling::XCUIElementTypeSwitch")
+    @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Wi‑Fi\"])[2]//following-sibling::XCUIElementTypeSwitch", priority = 1)
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Wi-Fi\"])[2]//following-sibling::XCUIElementTypeSwitch", priority = 0)
     private MobileElement tglWIFISwitch;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Back\"]")
     private MobileElement btnMobileIDBack;
 
+    //Deregister Pop Up
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Are you sure you want to deregister this phone?\"]")
+    private MobileElement txtDeregisterPopUp;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"All Mobile IDs will be deleted! This cannot be undone! Are you sure you want to deregister?\"]")
+    private MobileElement txtDeregisterMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Cancel\"]")
+    private MobileElement btnDeregisterCancel;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name=\"DEREGISTER\"])[2]")
+    private MobileElement btnDeregisterButton;
+
+    //Deregister Successful message
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Deregistration successful\"]")
+    private MobileElement txtDeregisterSuccess;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"All Mobile IDs have been deleted\"]")
+    private MobileElement txtDeregisterSuccessMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
+    private MobileElement btnDeregisterSucessOK;
+
+    @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"No Internet connection.\"]", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"No Internet connection\"]", priority = 1)
+    private MobileElement txtNoInternetPopUp;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
+    private MobileElement btnNoInternetOKBtn;
+
+    //XCUIElementTypeStaticText[@name="Welcome to HID Mobile Access"]
 
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
@@ -392,6 +426,41 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
         return chkBLEFwdButton;
     }
 
+    public MobileElement getTxtDeregisterPopUp() {
+        return txtDeregisterPopUp;
+    }
+
+    public MobileElement getTxtDeregisterMsg() {
+        return txtDeregisterMsg;
+    }
+
+    public MobileElement getBtnDeregisterCancel() {
+        return btnDeregisterCancel;
+    }
+
+    public MobileElement getBtnDeregisterButton() {
+        return btnDeregisterButton;
+    }
+
+    public MobileElement getTxtDeregisterSuccess() {
+        return txtDeregisterSuccess;
+    }
+
+    public MobileElement getTxtDeregisterSuccessMsg() {
+        return txtDeregisterSuccessMsg;
+    }
+
+    public MobileElement getBtnDeregisterSucessOK() {
+        return btnDeregisterSucessOK;
+    }
+
+    public MobileElement getTxtNoInternetPopUp() {
+        return txtNoInternetPopUp;
+    }
+
+    public MobileElement getBtnNoInternetOKBtn() {
+        return btnNoInternetOKBtn;
+    }
 
     /**
      * isHidAppSettingScreenDisplayed- This method is used to verify the settings screen is displayed or not
@@ -853,11 +922,8 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
 
     public void setWifiStatusON() {
         try {
-            click(btnMobileIDBack);
-            clickOnSettingTabAndVerify();
             click(imgBluetoothPermissionStatus);
             click(tabSettings);
-
             if (getElementText(txtWIFIPermissionStatus).contains("Off")) {
                 click(btnWIFIchevron);
                 click(tglWIFISwitch);
@@ -871,4 +937,63 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             TestUtils.log().debug("Exception occurred while verifying the No Internet Error msg...");
         }
     }
+
+    public void clickOnDegisterSetting() {
+        try {
+            iOSScrollDownTillElement(txtDeregister);
+            isElementVisible(txtDeregister);
+            Assert.assertTrue(isElementVisible(imgDeregister));
+            click(txtDeregister);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while clicking the Deregister in setting screen...");
+        }
+    }
+
+    public void verifyDeregisterPopUp() {
+        try {
+            if(txtDeregisterPopUp.isDisplayed()) {
+                Assert.assertTrue(isElementVisible(txtDeregisterMsg));
+                Assert.assertTrue(isElementVisible(btnDeregisterCancel));
+                Assert.assertTrue(isElementVisible(btnDeregisterButton));
+                click(btnDeregisterCancel);
+                click(txtDeregister);
+                click(btnDeregisterButton);
+            } else {
+                TestUtils.log().info("Deregister pop up is not displayed...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the Deregistered pop up in settings screen...");
+        }
+    }
+
+    public void deregisterSuccessfulPopUp() {
+        try {
+            waitForVisibility(txtDeregisterSuccess);
+            if(txtDeregisterSuccess.isDisplayed()) {
+                Assert.assertTrue(isElementVisible(txtDeregisterSuccessMsg));
+                Assert.assertTrue(isElementVisible(btnDeregisterSucessOK));
+                click(btnDeregisterSucessOK);
+            } else {
+                TestUtils.log().info("Deregister Successful pop up is not displayed...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the Deregister successful pop up in settings screen...");
+        }
+    }
+
+    public void verifyNoInternetPopUp() {
+        try {
+            waitForVisibility(txtNoInternetPopUp);
+            if(txtNoInternetPopUp.isDisplayed()) {
+                Assert.assertTrue(isElementVisible(txtNoInternetPopUp));
+                Assert.assertTrue(isElementVisible(btnNoInternetOKBtn));
+                click(btnNoInternetOKBtn);
+            } else {
+                TestUtils.log().info("No Internet pop up is not displayed...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the No Internet pop up in settings screen...");
+        }
+    }
+
 }

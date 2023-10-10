@@ -142,8 +142,66 @@
      And   Click on ADD button in iOS device
      And   Verify the Add Mobile ID screen in iOS device
      Then  Verify the No Internet Error "<Invitation_Code>" on HID mobile Application in iOS device
+     And   Navigate to Settings in iOS device
      And   Set back the WIFI status as ON in iOS device
 
      Examples:
        | TC_ID  | Internet | Invitation_Code     |
        | _TC-38 | Off      | AC57-R6ZF-AAD5-ZGVQ |
+
+   @iOS_Settings_WF11 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF11<TC_ID>: Verify the page of Support and log document using Enable/Disable log file <log_file>
+     When  Navigate to Settings in iOS device
+     And   Navigate to Help center in iOS device
+     And   Log file status is displayed as "<log_file>" in iOS device
+     Then  Verify Support status debug log file "<log_file>" in feedback page "<Feedback_Msg>" in iOS device
+
+     Examples:
+       | TC_ID  | log_file | Feedback_Msg |
+       | _TC-39 | Enable   | Issue 1      |
+       | _TC-40 | Disable  | Issue 2      |
+
+   @iOS_Settings_WF12 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF12<TC_ID>: Verify the Deregister option of Mobile IDs in setting page
+     When  Navigate to Settings in iOS device
+     Then  Deregister all the Mobile IDs from this phone in iOS device
+
+     Examples:
+       | TC_ID  |
+       | _TC-41 |
+
+   @iOS_Settings_WF13 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF13<TC_ID>: Verify the Deregister option of Mobile IDs in setting page with No Internet
+     When  Navigate to Settings in iOS device
+     And   Set WIFI status as "<Internet>" in iOS device
+     Then  Verify No Internet pop up while deregister the Mobile IDs in iOS device
+     And   Set back the WIFI status as ON in iOS device
+
+     Examples:
+       | TC_ID  | Internet |
+       | _TC-42 | Off      |
+
+   @iOS_Settings_WF14 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF14<TC_ID>: Verify the delete device pop up in HID mobile access welcome page using Rest API
+     When  Trigger the Rest API to delete device in iOS device
+     And   Launch HID Access Mobile Application in iOS device
+     Then  Verify Delete Mobile IDs pop up in welcome screen in iOS device
+
+     Examples:
+       | TC_ID  |
+       | _TC-43 |
+
+   @iOS_Settings_WF15 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF15<TC_ID>: Verify the No Internet pop up while deleting the device from portal through Rest API
+     When  Navigate to Settings in iOS device
+     And   Set WIFI status as "<Internet>" in iOS device
+     When  Trigger the Rest API to delete device in iOS device
+     And   Launch HID Access Mobile Application in iOS device
+     Then  Verify the No Internet pop up in home screen in iOS device
+     And   Navigate to Settings in iOS device
+     When  Set back the WIFI status as ON in iOS device
+     Then  Verify Delete Mobile IDs pop up in welcome screen in iOS device
+
+     Examples:
+       | TC_ID  | Internet |
+       | _TC-44 | Off      |

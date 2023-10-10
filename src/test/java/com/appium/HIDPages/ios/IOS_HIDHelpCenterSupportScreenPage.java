@@ -34,12 +34,17 @@ public class IOS_HIDHelpCenterSupportScreenPage extends BasePage {
     private MobileElement lnkHelpCenterSupportHID;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Submit Feedback to HID\"]")
+    private MobileElement btnSupportSubmitFeedback;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Support\"])[2]//following-sibling::XCUIElementTypeStaticText[1]")
+    private MobileElement btnSupportContactMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Still having issues with the app?\"]")
+    private MobileElement btnSupportIssueMsg;
 
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
      */
-    private MobileElement btnSupportSubmitFeedback;
-
     public MobileElement getImgBackFromSupport() {
         return imgBackFromSupport;
     }
@@ -58,6 +63,14 @@ public class IOS_HIDHelpCenterSupportScreenPage extends BasePage {
 
     public MobileElement getBtnSupportSubmitFeedback() {
         return btnSupportSubmitFeedback;
+    }
+
+    public MobileElement getBtnSupportContactMsg() {
+        return btnSupportContactMsg;
+    }
+
+    public MobileElement getBtnSupportIssueMsg() {
+        return btnSupportIssueMsg;
     }
 
     /**
@@ -85,6 +98,8 @@ public class IOS_HIDHelpCenterSupportScreenPage extends BasePage {
             waitForVisibility(txtTitleHelpCenterSupport);
             Assert.assertTrue(isElementVisible(txtHelpCenterSupport));
             Assert.assertTrue(isElementVisible(lnkHelpCenterSupportHID));
+            Assert.assertTrue(isElementVisible(btnSupportContactMsg));
+            Assert.assertTrue(isElementVisible(btnSupportIssueMsg));
         } catch (Exception e) {
             
             TestUtils.log().info("Exception occurred while displaying Support Screen...");
