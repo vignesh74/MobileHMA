@@ -147,7 +147,7 @@ public class Andr_HIDSettingsReportIssueScreenPage extends BasePage {
             }
 
         }catch (Exception e){
-            TestUtils.log().debug("Exception occurred while checking the attachment");
+            TestUtils.log().debug("Exception occurred while checking the attachment.");
         }
     }
 

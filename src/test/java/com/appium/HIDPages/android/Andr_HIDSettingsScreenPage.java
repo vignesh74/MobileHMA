@@ -459,7 +459,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
                 TestUtils.log().info("Contents are not copied to clipboard");
             }
         }catch(Exception e){
-            TestUtils.log().info("Getting Exception while checking the copied contents in clipboard.");
+            TestUtils.log().info("Getting Exception while checking the copied contents in clipboard..");
         }
     }
 

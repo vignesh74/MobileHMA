@@ -77,3 +77,4 @@ public class MessageConstants {
     public static final String TERMS_OF_USE_HEADER="Mobile Access Terms of Use";
     public static final String INVITATION_SCREEN_HEADER="Invitation code";
 }
+

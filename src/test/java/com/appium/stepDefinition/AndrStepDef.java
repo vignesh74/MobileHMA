@@ -578,9 +578,10 @@ public class AndrStepDef {
         settingsReportIssueScreenPage.checkAttachment(DebugLogs);
     }
 
+
     @And("Click on the tab Deregister this device")
     public void clickOnDeregister(){
-       // settingsScreen.clickOnDeregister();
+//        settingsScreen.clickOnDeregister();
     }
 
 }

@@ -719,7 +719,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while verifying twist and go toggle button...");
+            TestUtils.log().debug("Exception occurred while verifying twist and go toggle button....");
         }
 
 

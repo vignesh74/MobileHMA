@@ -215,3 +215,4 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
 #      | _TC-10 | Off        | On              | Denied              | Location Permission&Bluetooth Disabled              |
 #      | _TC-25 | On         | On              | Always              | GPS Disabled                                        |
 #      | _TC-26 | On         | On              | Denied              | No                                        |
+

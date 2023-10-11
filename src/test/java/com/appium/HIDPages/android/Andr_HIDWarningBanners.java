@@ -548,7 +548,7 @@ public class Andr_HIDWarningBanners extends BasePage {
 
     public String checkBLEWB() {
         if (!(isDisplayed(bleDisabledText)) || (!isDisplayed(bleDisabled))) {
-            Assert.assertTrue(true, "BLE WARNING BANNER  is not visible...");
+            Assert.assertTrue(true, "BLE WARNING BANNER  is not visible....");
             TestUtils.log().debug("BLE WARNING BANNER is not visible ");
             return "false";
         } else {

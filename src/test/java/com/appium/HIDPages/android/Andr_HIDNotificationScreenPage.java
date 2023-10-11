@@ -177,7 +177,7 @@ public class Andr_HIDNotificationScreenPage extends BasePage {
             Assert.assertEquals(notification,strActualMobileIDRevokedTxt);
             notificationBubble.isDisplayed();
         }catch(Exception e){
-            TestUtils.log().debug("Exception occurred while verifying mobile ID Revoked notification...");
+            TestUtils.log().debug("Exception occurred while verifying mobile ID Revoked notification....");
         }
     }
 

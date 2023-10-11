@@ -202,5 +202,3 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-01 | Enable     |
       | _TC-02 | Disable    |
 
-
-
