@@ -300,4 +300,11 @@ public class IOSStepDef {
     public void noInternetPopUp() {
         settingScreen.verifyNoInternetPopUp();
     }
+
+    @Then("Verify Dynamic App review pop up {string} in Mobile Ids screen in iOS device")
+    public void dynamicAppReview(String review) {
+        mobileIdScreen.chkDynamicAppReview(review);
+    }
+
+
 }

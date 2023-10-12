@@ -87,6 +87,34 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
     private MobileElement btnDeletedOKBtn;
 
+    //Dynamic App Review
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"popupAppLogo\"]")
+    private MobileElement imgAppLogo;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Enjoying HID Mobile Access?\"]")
+    private MobileElement txtHIDMobAccess;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"We’d love to know if you’re having a great experience\"]")
+    private MobileElement txtPopUpMessage;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Not Really\"]")
+    private MobileElement btnNotReally;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"thumbsDown\"]")
+    private MobileElement imgThumbsDown;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Not Really\"]")
+    private MobileElement txtNotReally;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Yes!\"]")
+    private MobileElement btnYesPopUp;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"thumbsUp\"]")
+    private MobileElement imgThumbsUp;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Yes!\"]")
+    private MobileElement txtYesPopUp;
+
     //XCUIElementTypeOther/XCUIElementTypeImage - Card Image
 
     /**
@@ -179,6 +207,42 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
 
     public MobileElement getTxtWelcomeToHIDMsg() {
         return txtWelcomeToHIDMsg;
+    }
+
+    public MobileElement getImgAppLogo() {
+    return imgAppLogo;
+}
+
+    public MobileElement getTxtHIDMobAccess() {
+        return txtHIDMobAccess;
+    }
+
+    public MobileElement getTxtPopUpMessage() {
+        return txtPopUpMessage;
+    }
+
+    public MobileElement getBtnNotReally() {
+        return btnNotReally;
+    }
+
+    public MobileElement getImgThumbsDown() {
+        return imgThumbsDown;
+    }
+
+    public MobileElement getTxtNotReally() {
+        return txtNotReally;
+    }
+
+    public MobileElement getBtnYesPopUp() {
+        return btnYesPopUp;
+    }
+
+    public MobileElement getImgThumbsUp() {
+        return imgThumbsUp;
+    }
+
+    public MobileElement getTxtYesPopUp() {
+        return txtYesPopUp;
     }
 
     /**
@@ -327,4 +391,35 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while displaying the Delete device pop up...");
         }
     }
+
+    public void chkDynamicAppReview(String review) {
+        try {
+            waitForVisibility(txtHIDMobAccess);
+            if(txtHIDMobAccess.isDisplayed()) {
+                Assert.assertTrue(isElementVisible(imgAppLogo));
+                Assert.assertTrue(isElementVisible(txtHIDMobAccess));
+                Assert.assertTrue(isElementVisible(txtPopUpMessage));
+                //Not Really - Dislike button
+                Assert.assertTrue(isElementVisible(btnNotReally));
+                Assert.assertTrue(isElementVisible(imgThumbsDown));
+                Assert.assertTrue(isElementVisible(txtNotReally));
+                //Yes - Like Button
+                Assert.assertTrue(isElementVisible(btnYesPopUp));
+                Assert.assertTrue(isElementVisible(imgThumbsUp));
+                Assert.assertTrue(isElementVisible(txtYesPopUp));
+                //Click on Review feedback button
+                if(review.equalsIgnoreCase("Yes")){
+                    click(btnYesPopUp);
+                } else if (review.equalsIgnoreCase("Not Really")) {
+                    click(btnNotReally);
+                }
+
+            } else {
+                TestUtils.log().info("Dynamic App review pop up is not displayed...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while displaying the Dynamic App review pop up...");
+        }
+    }
+
 }
