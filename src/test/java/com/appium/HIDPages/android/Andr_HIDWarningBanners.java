@@ -552,6 +552,7 @@ public class Andr_HIDWarningBanners extends BasePage {
             TestUtils.log().debug("BLE WARNING BANNER is not visible ");
             return "false";
         } else {
+            TestUtils.log().debug("BLE WARNING BANNER is visible");
             return "true";
         }
     }
@@ -590,7 +591,7 @@ public class Andr_HIDWarningBanners extends BasePage {
     }
 
     public String checkNearByPermissionWB() {
-        if (!(isDisplayed(nearByPermissionDisabled)) || !(isDisplayed(nearByPermissionDisabled))) {
+        if (!(isDisplayed(nearByPermissionDisabled))) {
             Assert.assertTrue(true, "Nearby Permission WARNING BANNER  is not visible...");
             TestUtils.log().debug("Nearby Permission WARNING BANNER is not visible ");
             return "false";
@@ -599,9 +600,6 @@ public class Andr_HIDWarningBanners extends BasePage {
             return "true";
         }
     }
-
-
-
 
     public void verifyWarningBanners(String BLE_Status, String NFC_Status, String location_Status, String location_permission, String Banners) {
 
@@ -812,6 +810,54 @@ public class Andr_HIDWarningBanners extends BasePage {
                     Assert.assertTrue(false, locationPermissionWBStat);
                 }
             }
+        }
+    }
+
+    public void verifyWarningBanners13(String BLE_Status, String NFC_Status, String nearByPermission){
+        String BLEStat = checkBLEWB();
+        String NFCStat = checkNFCWB();
+        String NearbyStat = checkNearByPermissionWB();
+
+        switch (nearByPermission) {
+            case "Allow" -> {
+                if (BLE_Status.equalsIgnoreCase("Off") && NFC_Status.equalsIgnoreCase("Off")) {
+                    Assert.assertTrue(false, BLEStat);
+                    Assert.assertTrue(false, NFCStat);
+                    Assert.assertTrue(true, NearbyStat);
+                } else if (BLE_Status.equalsIgnoreCase("On") && NFC_Status.equalsIgnoreCase("Off")) {
+                    Assert.assertTrue(true, BLEStat);
+                    Assert.assertTrue(false, NFCStat);
+                    Assert.assertTrue(true, NearbyStat);
+                } else if (BLE_Status.equalsIgnoreCase("Off") && NFC_Status.equalsIgnoreCase("On")) {
+                    Assert.assertTrue(false, BLEStat);
+                    Assert.assertTrue(true, NFCStat);
+                    Assert.assertTrue(true, NearbyStat);
+                } else if (BLE_Status.equalsIgnoreCase("On") && NFC_Status.equalsIgnoreCase("On")) {
+                    Assert.assertTrue(true, BLEStat);
+                    Assert.assertTrue(true, NFCStat);
+                    Assert.assertTrue(true, NearbyStat);
+                }
+            }
+
+            case "Don't allow" -> {
+                    if (BLE_Status.equalsIgnoreCase("Off") && NFC_Status.equalsIgnoreCase("Off")) {
+                        Assert.assertTrue(false, BLEStat);
+                        Assert.assertTrue(false, NFCStat);
+                        Assert.assertTrue(false, NearbyStat);
+                    } else if (BLE_Status.equalsIgnoreCase("On") && NFC_Status.equalsIgnoreCase("Off")) {
+                        Assert.assertTrue(true, BLEStat);
+                        Assert.assertTrue(false, NFCStat);
+                        Assert.assertTrue(false, NearbyStat);
+                    } else if (BLE_Status.equalsIgnoreCase("Off") && NFC_Status.equalsIgnoreCase("On")) {
+                        Assert.assertTrue(false, BLEStat);
+                        Assert.assertTrue(true, NFCStat);
+                        Assert.assertTrue(false, NearbyStat);
+                    } else if (BLE_Status.equalsIgnoreCase("On") && NFC_Status.equalsIgnoreCase("On")) {
+                        Assert.assertTrue(true, BLEStat);
+                        Assert.assertTrue(true, NFCStat);
+                        Assert.assertTrue(false, NearbyStat);
+                    }
+                }
         }
     }
 }

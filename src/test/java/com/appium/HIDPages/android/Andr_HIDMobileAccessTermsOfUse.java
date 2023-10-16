@@ -78,7 +78,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
             }
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while checking visibility of FavoriteReader page...");
+            TestUtils.log().debug("Exception occurred while checking visibility of Terms of use page...");
         }
 
     }
@@ -154,13 +154,10 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
     public void checkVisibilityOfEulaPage()
     {
-
         try {
-
             if (!isDisplayed(eulaHeaderTxt)) {
                 Assert.assertTrue(false, "Eula Page is not displayed...");
                 TestUtils.log().info("Eula Page is not displayed");
-
             }
             swipeDown(12);
             click(emailLegal);
@@ -174,15 +171,11 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
 
     public void checkVisibilityOfPrivacyNoticePage()
     {
-
         try {
-
             if (!isDisplayed(privacyHeaderTxt)) {
                 Assert.assertTrue(false, "Privacy Notice Page is not displayed...");
                 TestUtils.log().info("Privacy Notice Page is not displayed");
-
             }
-
             swipeDown(10);
             click(emailPrivacy);
 
@@ -214,6 +207,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
             }
 
             click(btnContinue);
+            TestUtils.log().debug(" The Continue button in  TermsOfUse page is visible and clicked...");
 
         } catch (Exception e) {
 

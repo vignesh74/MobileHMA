@@ -11,6 +11,8 @@ import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import org.testng.Assert;
 
+import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
+
 public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     /**
      * mobile elements - These are mobile elements which is present in app preferences page Date-25/01/2023
@@ -30,6 +32,12 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location Permission']", priority = 1)
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']", priority = 2)
     private MobileElement txtNearByPermission;
+
+    @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc=\"Right arrow\"])[4]")
+    private MobileElement txtNearByPermissionTab;
+
+    @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc=\"Right arrow\"])[3])")
+    private MobileElement txtNearByPermissionTabin13;
 
     @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]")
     //@AndroidFindBy(xpath = "(//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[7]/android.widget.TextView[@text=‘Always’]/following-sibling::android.widget.RadioButton[2]")
@@ -118,6 +126,34 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Allowing HID Mobile Access to always run in the background may reduce battery life. You can change this later from Settings > Apps & notifications.']")
     private MobileElement PermPopupDescription;
 
+    @AndroidFindBy(xpath="//android.view.ViewGroup[5]/android.widget.TextView[@resource-id='com.hidglobal.mobilekeys.android.v3:id/statusDevices']")
+    private MobileElement txtLocationPermissionStatus;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Nearby Readers']")
+    private MobileElement txtNearByReaders;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Readers']/following-sibling::android.widget.TextView")
+    private MobileElement txtNearbyReaderStatusValue;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtManageFavReaderHeading")
+    private MobileElement txtNearbyReadersTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/switchAppPreferencesWidget")
+    private MobileElement nearByReaderTglBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement nearByReaderAlertTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertMessage")
+    private MobileElement nearByReaderAlertContent;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertNegativeBtn")
+    private MobileElement nearByReaderAlertNoBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertPositiveBtn")
+    private MobileElement nearByReaderAlertYesBtn;
+
+
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
      */
@@ -128,6 +164,10 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     public MobileElement getTxtBluetoothStatusValue() {
         return txtBluetoothStatusValue;
+    }
+
+    public MobileElement getTxtNearbyReaderStatusValue() {
+        return txtNearbyReaderStatusValue;
     }
 
     public MobileElement getSwitchPlayAndSound() {
@@ -158,6 +198,10 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         return txtNearByPermission;
     }
 
+    public MobileElement getTxtNearByPermissionTab() {
+        return txtNearByPermissionTab;
+    }
+
     public MobileElement getRdoUsageAlways() {
         return rdoUsageAlways;
     }
@@ -177,6 +221,11 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     public MobileElement getTxtNearByPermissionStatusValue() {
         return txtNearByPermissionStatusValue;
     }
+
+    public MobileElement getTxtLocationPermissionStatus(){
+        return txtLocationPermissionStatus;
+    }
+
 
     public MobileElement getImgLocationPermission() {
         return imgLocationPermission;
@@ -225,6 +274,10 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     public MobileElement getTxtViewMobileIdCard() {
         return txtViewMobileIdCard;
     }
+    public MobileElement getTxtNearByPermissionTabin13(){
+        return txtNearByPermissionTabin13;
+    }
+
 
     /**
      * selectUsageType- This method is used to select the usage type
@@ -288,6 +341,19 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         } catch (Exception e) {
             
             TestUtils.log().debug("Exception occurred while clicking on Nearby Permission...");
+        }
+    }
+
+    public void clickOnNearByPermissionTab(){
+        try {
+            if (isDisplayed(txtNearByPermissionTab)) {
+                click(txtNearByPermissionTab);
+            } else {
+                TestUtils.log().info("Nearby Permission tab is not available in this Android Version");
+            }
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while clicking on Nearby Permission tab...");
         }
     }
 
@@ -398,14 +464,25 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      * @param strPermissionStatus-String
      *         Date-16/02/2023
      */
-    public void toVerifyNearByOrLocationPermissionStatus(String strPermissionStatus) {
+        public void toVerifyNearByOrLocationPermissionStatus(String strPermissionStatus) {
         String strDevicePlatformVersion = DriverManager.getPlatformVersion();
         switch (strDevicePlatformVersion) {
-            case "12" -> {
+            case "12","13" -> {
                 if (strPermissionStatus.equalsIgnoreCase("Allow")) {
                     Assert.assertEquals(getTxtNearByPermissionStatusValue().getText(), "Granted always");
                 } else if (strPermissionStatus.equalsIgnoreCase("Don't allow") || strPermissionStatus.equalsIgnoreCase("Deny")) {
                     Assert.assertEquals(getTxtNearByPermissionStatusValue().getText(), "Denied");
+                } else
+                    TestUtils.log().info("Please provide correct input");
+
+            }
+            case "10","11" -> {
+                if (strPermissionStatus.equalsIgnoreCase("Allow all the time")) {
+                    Assert.assertEquals(getTxtLocationPermissionStatus().getText(), "Always");
+                } else if (strPermissionStatus.equalsIgnoreCase("Allow only while using the app") || strPermissionStatus.equalsIgnoreCase("Allow only while using app")) {
+                    Assert.assertEquals(getTxtLocationPermissionStatus().getText(), "While using the app");
+                }else if (strPermissionStatus.equalsIgnoreCase("Don't allow") || strPermissionStatus.equalsIgnoreCase("Deny") || strPermissionStatus.equalsIgnoreCase("Ask every time")) {
+                    Assert.assertEquals(getTxtLocationPermissionStatus().getText(), "Denied");
                 } else
                     TestUtils.log().info("Please provide correct input");
 
@@ -689,7 +766,6 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
             } else TestUtils.log().info("Please provide correct input");
 
         } catch (Exception e) {
-
             TestUtils.log().debug("Exception occurred while verifying debug logs button...");
         }
     }
@@ -714,15 +790,76 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 if (switchTwistGo.getAttribute(MessageConstants.CHECKED_MESSAGE).equals(MessageConstants.FALSE_MESSAGE)) {
                     TestUtils.log().info("Twist & Go toggle button is set to Disable state");
                 }
-
             }
-
         } catch (Exception e) {
-
             TestUtils.log().debug("Exception occurred while verifying twist and go toggle button....");
         }
-
-
     }
 
+    public void verifyActivityToggleButton(String switchState) {
+        try {
+            scrollUpTillElement(switchShowActivity, 1000, 0);
+            isElementVisible(switchShowActivity);
+            if (switchState.equalsIgnoreCase(MessageConstants.ENABLE_STRING)) {
+                if (switchShowActivity.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.TRUE_MESSAGE)) {
+                    TestUtils.log().info("Show Activity toggle button is initially in Enable state");
+                } else {
+                    click(switchShowActivity);
+                    TestUtils.log().info("Show Activity toggle button is set to Enable state");
+                }
+            } else if (switchState.equalsIgnoreCase(MessageConstants.DISABLE_STRING)) {
+                if (switchShowActivity.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.FALSE_MESSAGE)) {
+                    TestUtils.log().info("Show Activity toggle button is initially in Disable state");
+                } else {
+                    click(switchShowActivity);
+                    TestUtils.log().info("Show Activity toggle button is set to Disable state");
+                }
+            } else TestUtils.log().info("Please provide correct input");
+
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying Show Activity button...");
+        }
+    }
+
+    public void clickOnNearbyReaders(){
+        try{
+            scrollUpTillElement(txtNearByReaders, 1000, 0);
+            isElementVisible(txtNearByReaders);
+            click(txtNearByReaders);
+        }catch (Exception e){
+            TestUtils.log().debug("Exception occurred while clicking Nearby Readers tab...");
+        }
+    }
+
+    public void setNearByReaderStatus(String nearByReaderStatus) {
+        try {
+            scrollUpTillElement(txtNearByReaders, 1000, 0);
+            isElementVisible(txtNearByReaders);
+            String strNearByReaderStatusValue = getElementText(getTxtNearbyReaderStatusValue());
+            String nearByReaderToggle = "false";
+            System.out.println(strNearByReaderStatusValue+ "><<<<<M<< M<<");
+            if (nearByReaderStatus.equalsIgnoreCase(strNearByReaderStatusValue)) {
+                TestUtils.log().info("NearBy Reader status is already set as {}",strNearByReaderStatusValue);
+            }else{
+                click(txtNearByReaders);
+                isDisplayed(txtNearbyReadersTitle);
+                String nearByReaderToggleStatus = getElementAttribute(nearByReaderTglBtn,"checked");
+                if(nearByReaderToggleStatus.equalsIgnoreCase("true")){
+                    if(nearByReaderStatus.equalsIgnoreCase("On")){
+                        click(nearByReaderTglBtn);
+                        isDisplayed(nearByReaderAlertTitle);
+                        isDisplayed(nearByReaderAlertContent);
+                        click(nearByReaderAlertYesBtn);
+                    }else{
+                        TestUtils.log().info("NearBy Reader status is already set as Off");
+                    }
+                }else{
+                    TestUtils.log().info("NearBy Reader status is already set as {}",strNearByReaderStatusValue);
+                }
+
+            }
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while setting the NearBy Reader status...");
+        }
+    }
 }

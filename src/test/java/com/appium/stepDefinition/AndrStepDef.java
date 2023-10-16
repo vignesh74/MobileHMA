@@ -8,6 +8,8 @@ import com.appium.manager.DriverManager;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.android.connection.ConnectionState;
+import io.appium.java_client.android.connection.ConnectionStateBuilder;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,6 +21,7 @@ import org.testng.Assert;
 import java.io.IOException;
 
 import static com.appium.constants.MessageConstants.EULA;
+import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 
 
@@ -80,13 +83,13 @@ public class AndrStepDef {
         OnboardingScreen.checkVisibilityOfTwistAndGoPage() ;
         OnboardingScreen.checkDescriptionTwistAndGoScreen();
     }
-    @Then("Terms of Use Page is displayed when {string} is clicked in Twist&Go Screen")
+    @Then("Favorite Reader Page is displayed when {string} is clicked in Twist&Go Screen")
     public void skipTwistAndGo(String button){
         OnboardingScreen.skipTwistAndGoPage(button);
 
     }
 
-    @And("Header and Description is displayed for Banners Screen")
+    @And("Header and Description is displayed for Favorite Reader Screen")
     public void headerBannersScreen(){
         OnboardingScreen.checkVisibilityOfBannersPage();
         OnboardingScreen.checkDescriptionBannersScreen();
@@ -524,10 +527,13 @@ public class AndrStepDef {
         warningBanners.verifyWarningBanners789(BLE_Status,location,location_permission,banners);
     }
 
+    @Then("Warning Banners are displayed as {string} in android device with {string} {string} {string}")
+    public void verifyBanners13(String BLE_Status, String NFC_Status, String nearByPermission, String banners){
+        warningBanners.verifyWarningBanners13(BLE_Status,NFC_Status,nearByPermission);
+    }
+
     @When("Verify Mobile ID screen is displayed in android device")
     public void verifyMobileIDScreen(){
-        boolean popups = handlePopUps.enableAllPopUps("initialPopupsHandling");
-        DriverManager.setPopupHandled(popups);
         mobileIDScreen.verifyMobileIDScreen();
     }
 
@@ -579,9 +585,64 @@ public class AndrStepDef {
     }
 
 
-    @And("Click on the tab Deregister this device")
-    public void clickOnDeregister(){
-//        settingsScreen.clickOnDeregister();
+    @And("Click on the tab Deregister this device {string}")
+    public void clickOnDeregister(String action){
+        settingsScreen.clickOnDeregister(action);
     }
 
+    @And("Turn {string} the wifi")
+    public void actionOnNetwork(String action){
+        settingsScreen.actionOnNetwork(action);
+    }
+
+    @Then("Verify the confirm button when deregister is {string}")
+    public void confirmDeregisterBtn(String actionOFF){
+        settingsScreen.confirmDeregisterBtn(actionOFF);
+    }
+
+    @And("Verify the Delete device alert")
+    public void verifyDeleteDeviceAlert(){
+        mobileIDScreen.verifyDeleteDeviceAlert();
+    }
+
+    @And("Show Activity State is displayed as {string} in android device")
+    public void verifyActivityToggleButton(String activityState){
+        appPreferencesScreen.verifyActivityToggleButton(activityState);
+        appPreferencesScreen.navigateBack();
+    }
+
+    @And("Click on mobile ID tab in android device")
+    public void clickOnMobileIDTab(){
+        mobileIDScreen.click(mobileIDScreen.getMobileIDTab());
+    }
+
+    @Then("Activity will display in mobileID screen based on {string}")
+    public void verifyShowActivity(String activity){
+        mobileIDScreen.verifyShowActivity(activity);
+    }
+
+    @When("Verify Mobile ID screen when Mobile ID is present in android device")
+    public void verifyMobileIDWithID(){
+        mobileIDScreen.verifyMobileIDWithID();
+    }
+
+    @And("Verify nearby readers section in android device {string}")
+    public void verifyNearByReaders(String nearbyReaderCount){
+        mobileIDScreen.verifyNearByReaders(nearbyReaderCount);
+    }
+
+    @And("Verify the Manage Readers section in android device {string}")
+    public void verifyManageReaders(String nearbyReaderCount){
+        mobileIDScreen.verifyManageReaders(nearbyReaderCount);
+    }
+
+    @And("click on the Nearby Readers tab")
+    public void clickOnNearbyReaders(){
+        appPreferencesScreen.clickOnNearbyReaders();
+    }
+
+    @And("NearBy Reader Status is displayed as {string} in android device")
+    public void setNearByReaderStatus(String strNearByReaderStatus) {
+        appPreferencesScreen.setNearByReaderStatus(strNearByReaderStatus);
+    }
 }

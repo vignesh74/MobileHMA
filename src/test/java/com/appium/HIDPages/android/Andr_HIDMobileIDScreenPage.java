@@ -95,7 +95,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Turn On Bluetooth']")
     private MobileElement txtTurnOnBluetooth;
 
-    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Activity Expand/Collapse Image\"]")
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='Activity Expand/Collapse Image']")
     private MobileElement btnActivityExpander;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"TODAY\"]")
@@ -285,6 +285,50 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgAdd")
     private MobileElement addmobileIDIcon;
 
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement mobileIDDeletedTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertMessage")
+    private MobileElement mobileIDDeletedContent;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertBtn")
+    private MobileElement mobileIDDeletedOKBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtNearByReader")
+    private MobileElement nearbyReaderTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgNearbyReaderInfo")
+    private MobileElement nearbyReaderDataIcon;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtManage")
+    private MobileElement nearbyReaderManageBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/errorIcon")
+    private MobileElement noNearbyReaderImg;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/errorText")
+    private MobileElement noNearbyReaderText;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtManageFavReaderHeading")
+    private MobileElement txtManageReadersTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtFavoriteReaderEmptyHeading")
+    private MobileElement txtFavoriteReaders;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgEmptyFavHeart")
+    private MobileElement imgNoFavoriteReader;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtEmptyFavReaderDesc")
+    private MobileElement txtNoFavoriteReader;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtOtherReaderEmptyHeading")
+    private MobileElement txtSuccessfulTxnLogTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgEmptyTransaction")
+    private MobileElement imgSuccessfulTxnLogImg;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtEmptyOtherReaderDesc")
+    private MobileElement txtNoTxnMessage;
 
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
@@ -373,6 +417,26 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public MobileElement getBtnTurnOnPermission() {
         return btnTurnOnPermission;
+    }
+
+    public MobileElement getNearbyReaderTitle(){
+        return nearbyReaderTitle;
+    }
+
+    public MobileElement getNearbyReaderDataIcon(){
+        return nearbyReaderDataIcon;
+    }
+
+    public MobileElement getNearbyReaderManageBtn(){
+        return nearbyReaderManageBtn;
+    }
+
+    public MobileElement getNoNearbyReaderImg(){
+        return noNearbyReaderImg;
+    }
+
+    public MobileElement getNoNearbyReaderText(){
+        return noNearbyReaderText;
     }
 
 
@@ -1169,8 +1233,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             isDisplayed(noMobileIDImage);
             isDisplayed(noMobileIDTitleTxt);
             isDisplayed(noMobileIDMsg);
+            isDisplayed(addmobileIDIcon);
         }catch (Exception e){
-            TestUtils.log().info("Exception occured while verifying the mobileID screen");
+            TestUtils.log().info("Exception occurred while verifying the mobileID screen");
         }
     }
 
@@ -1252,6 +1317,98 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             }
         }catch (Exception e){
             TestUtils.log().info("Exception occurred while verifying the wrong invitation code popup");
+        }
+    }
+
+    public void verifyDeleteDeviceAlert(){
+        try{
+            if(isDisplayed(mobileIDDeletedTitle)){
+                Assert.assertTrue(true,"Mobile ID Deleted Title is displayed");
+                TestUtils.log().info("Mobile ID Deleted Title is displayed...");
+            }
+            if(isDisplayed(mobileIDDeletedContent)){
+                Assert.assertTrue(true,"Mobile ID Deleted Message is displayed");
+                TestUtils.log().info("Mobile ID Deleted Message is displayed...");
+            }
+
+            click(mobileIDDeletedOKBtn);
+
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while verifying delete device alert");
+        }
+
+    }
+
+    public void verifyShowActivity(String activity){
+        try{
+            if(activity.equalsIgnoreCase("Enable")){
+                isDisplayed(btnActivityExpander);
+                Assert.assertTrue(true,"Activity expand and collapse button is displayed");
+                expandActivityLogs();
+            }else{
+                if(!isDisplayed(btnActivityExpander)){
+                    Assert.assertTrue(true,"Activity expand and collapse button is not displayed");
+                }
+            }
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while verifying show activity");
+        }
+    }
+
+    public void verifyMobileIDWithID(){
+        try{
+            isDisplayed(txtMobileIdsTab);
+            isDisplayed(txtViewMobileIdCard);
+            isDisplayed(addmobileIDIcon);
+            isDisplayed(txtViewMobileIdCard);
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while verifying Mobile ID screen when having mobile ID");
+        }
+    }
+
+    public void verifyNearByReaders(String nearbyReaderCount){
+        try{
+            waitForVisibility(noNearbyReaderText);
+            int readerCount = Integer.parseInt(nearbyReaderCount);
+            if(readerCount>0){
+                TestUtils.log().info("NearbyReaders are present");
+            }else{
+                isDisplayed(noNearbyReaderText);
+                isDisplayed(noNearbyReaderImg);
+                isDisplayed(nearbyReaderManageBtn);
+                isDisplayed(nearbyReaderDataIcon);
+            }
+
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while verifying the nearby reader section");
+        }
+    }
+
+    public void verifyManageReaders(String nearbyReaderCount){
+        try{
+            click(nearbyReaderManageBtn);
+            int readerCount = Integer.parseInt(nearbyReaderCount);
+            if(readerCount>0){
+                TestUtils.log().info("NearbyReaders are present");
+            }else{
+                isDisplayed(txtManageReadersTitle);
+                isDisplayed(txtFavoriteReaders);
+                isDisplayed(imgNoFavoriteReader);
+                isDisplayed(txtSuccessfulTxnLogTitle);
+                isDisplayed(imgSuccessfulTxnLogImg);
+                isDisplayed(txtNoTxnMessage);
+            }
+
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while verifying the manage reader section");
+        }
+    }
+
+    public void setNearbyReaderStatus(String nearbyReaderStatus){
+        try{
+
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while setting the NearbyReaderStatus..");
         }
     }
 

@@ -314,8 +314,9 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         TestUtils.log().info("Location Permission is already set as {}",strLocOrNearByPerm);
 
                 }
-                default -> {
-                    appPrefencesScreenPage.clickOnNearByPermission();
+
+                case "10", "11" -> {
+                    appPrefencesScreenPage.clickOnNearByPermissionTab();
                     clickOnPermissionTab();
                     clickOnNearByDevices();
                     switch (strLocationOrNearBy) {
@@ -326,7 +327,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                             } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow all the time")) {
                                 selectRadioButton(rdoAllowAllTheTime);
                                 TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
-                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow only while using app")) {
+                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow only while using app")||strLocOrNearByPerm.equalsIgnoreCase("Allow only while using the app")) {
                                 selectRadioButton(rdoAllowOnlyWhileUsingApp);
                                 TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
                             } else if (strLocOrNearByPerm.equalsIgnoreCase("Ask every time")) {
@@ -348,11 +349,25 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
 
                         }
                         default ->
-                            TestUtils.log().info("Please provide correct permission option for execution");
+                                TestUtils.log().info("Please provide correct permission option for execution");
 
                     }
                 }
-            }
+
+                default -> {
+                    appPrefencesScreenPage.getTxtNearByPermissionStatusValue().click();
+                    clickOnPermissionTab();
+                    clickOnNearByDevices();
+                            if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
+                                selectRadioButton(rdoAllow);
+                                TestUtils.log().info("NearBy Devices Permission set as {}", strLocOrNearByPerm);
+                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
+                                selectRadioButton(rdoDeny);
+                                TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                            } else
+                                TestUtils.log().info("Please provide correct permission option");
+                    }
+                }
             loopHandle(txtAppPreferences, NAVIGATE_BACK, 10);
         } catch (Exception e) {
             TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE,e.getMessage());
@@ -534,11 +549,11 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                 }
                 default -> {
                     /**THESE METHODS WILL BE USED WITH ANDROID 10 & 11 WHICH WILL BE TAKEN UP LATER */
-                    // appPreferencesScreenPage.clickOnLocationPermission();
-                    //waitForGivenTime(2);
-                    // handlePermissionMsg();
-                    //clickOnPermissionTab();
-                    //click(locTab);
+                    appPrefencesScreenPage.clickOnLocationPermission();
+                    waitForGivenTime(2);
+                     handlePermissionMsg();
+                    clickOnPermissionTab();
+                    click(locTab);
 
                     loopHandle(mobileIDScreenPage.getTxtMobileIdsTab(), "navigateBack", 10);
                     if (isDisplayed(nearByPermissionDisabled)) {

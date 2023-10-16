@@ -66,7 +66,7 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
             if (!strNFCStatus.equalsIgnoreCase(strNFCStatusValue)) {
                 appPrefencesScreenPage.clickOnNFCTab();
                 waitForVisibility(nfcTab);
-                click(nfcTab);
+               // click(nfcTab);
                 waitForVisibility(btnOnOff);
                 click(btnOnOff);
                 waitForGivenTime(1);

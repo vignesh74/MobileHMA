@@ -89,14 +89,14 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
       | _TC-15 | On                | On                     | While Using the App                    |                                        |
       | _TC-16 | On                | On                     | Allow all the time                     |                                        |
 
-
+  @ANDR_WarningBanners_12_WF1 @ANDR_WarningBanners_12_WF
   Scenario Outline:ANDR_12_WarningBanners_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status>,Location Permission is <LocationPermOrNearbyPerm_Status>
     When Navigate to Settings and App Preferences screen in android device
     Then Bluetooth status is displayed as "<BLE_Status>" in android device
     And  NFC status is displayed as "<NFC_Status>" in android device
     And  Set "NearBy" permission status as "<LocationPermOrNearbyPerm_Status>" in android device
     Then Warning Banners are displayed  in android device
-    @ANDR_WarningBanners_12_WF1 @ANDR_WarningBanners_12_WF
+
     Examples:
       | TC_ID  | BLE_Status | NFC_Status | LocationPermOrNearbyPerm_Status | Warning_Banners1                                           |
       | _TC-01 | Off        | Off        | Allow                           | NFC Disabled_Bluetooth Disabled                            |
@@ -140,8 +140,8 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
       | _TC-05 | On                | On                | Don't Allow                            | Nearby Permission Disabled                                 |
       | _TC-06 | On                | On                | Allow                                  |                                                            |
 
-  @ANDR_11_10_WarningBanners_WF4 @ANDR_WarningBanners_11_WF
-  Scenario Outline:ANDR_11_10_WarningBanners_WF4<TC_ID>: Verify that BLE status is <BLE_Status>, Location is <Location_Status>,Location Permission is <Location_Permission>
+  @ANDR_11_10_WarningBanners @ANDR_WarningBanners_11_WF
+  Scenario Outline:ANDR_11_10_WarningBanners<TC_ID>: Verify that BLE status is <BLE_Status>, Location is <Location_Status>,Location Permission is <Location_Permission>
     When Navigate to Settings and App Preferences screen in android device
     Then Bluetooth status is displayed as "<BLE_Status>" in android device
     And  NFC status is displayed as "<NFC_Status>" in android device
@@ -150,39 +150,39 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<NFC_Status>" "<Location_Status>" "<Location_Permission>"
 
     Examples:
-      | TC_ID  | BLE_Status | NFC_Status | Location_Status | Location_Permission | Warning_Banners                                      |
-      | _TC-01 | Off        | Off        | Off             | Don't Allow         | NFC Disabled&Location Permission&Bluetooth Disabled  |
-      | _TC-02 | Off        | Off        | Off             | Ask every time      | NFC Disabled&Location Permission&Bluetooth Disabled  |
-      | _TC-03 | Off        | Off        | Off             | While Using the App | NFC Disabled&Location Permission&Bluetooth Disabled  |
-      | _TC-04 | Off        | Off        | Off             | Allow all the time  | NNFC Disabled&Location Permission&Bluetooth Disabled |
-#      | _TC-05 | On         | Off        | Off             | Don't Allow         | NFC Disabled	 Location Permission                    |
-#      | _TC-06 | On         | Off        | Off             | Ask every time      | NFC Disabled     Location Permission                 |
-#      | _TC-07 | On         | Off        | Off             | While Using the App | NFC Disabled	 Location Permission                    |
-#      | _TC-08 | On         | Off        | Off             | Allow all the time  | NFC Disabled	 GPS Disabled                           |
-#      | _TC-09 | Off        | On         | Off             | Don't Allow         | Location Permission Bluetooth Disabled               |
-#      | _TC-10 | Off        | On         | Off             | Ask every time      | Location Permission Bluetooth Disabled               |
-#      | _TC-11 | Off        | On         | Off             | While Using the App | Location Permission Bluetooth Disabled               |
-#      | _TC-12 | Off        | On         | Off             | Allow all the time  | Location Permission Bluetooth Disabled               |
-#      | _TC-13 | Off        | On         | On              | Don't Allow         | Location Permission Bluetooth Disabled               |
-#      | _TC-14 | Off        | On         | On              | Ask every time      | Location Permission Bluetooth Disabled               |
-#      | _TC-15 | Off        | On         | On              | While Using the App | Location Permission Bluetooth Disabled               |
-#      | _TC-16 | Off        | On         | On              | Allow all the time  | BLocation Permission Bluetooth Disabled              |
-#      | _TC-17 | Off        | Off        | On              | Don't Allow         | NFC Disabled	 Bluetooth Disabled                     |
-#      | _TC-18 | Off        | Off        | On              | Ask every time      | NFC Disabled	 Bluetooth Disabled                     |
-#      | _TC-19 | Off        | Off        | On              | While Using the App | NFC Disabled	 Bluetooth Disabled                     |
-#      | _TC-20 | Off        | Off        | On              | Allow all the time  | NFC Disabled	 Bluetooth Disabled                     |
-#      | _TC-21 | On         | Off        | On              | Don't Allow         | NFC Disabled                                         |
-#      | _TC-22 | On         | Off        | On              | Ask every time      | NFC Disabled                                         |
-#      | _TC-23 | On         | Off        | On              | While Using the App | NFC Disabled                                         |
-#      | _TC-24 | On         | Off        | On              | Allow all the time  | NFC Disabled                                         |
-#      | _TC-25 | On         | On         | Off             | Don't Allow         | GPS Disabled                                         |
-#      | _TC-26 | On         | On         | Off             | Ask every time      | GPS Disabled                                         |
-#      | _TC-27 | On         | On         | Off             | While Using the App | GPS Disabled                                         |
-#      | _TC-28 | On         | On         | Off             | Allow all the time  | GPS Disabled                                         |
-#      | _TC-29 | On         | On         | On              | Don't Allow         |                                                      |
-#      | _TC-30 | On         | On         | On              | Ask every time      |                                                      |
-#      | _TC-31 | On         | On         | On              | While Using the App |                                                      |
-#      | _TC-32 | On         | On         | On              | Allow all the time  |                                                      |
+      | TC_ID  | BLE_Status | NFC_Status | Location_Status | Location_Permission            | Warning_Banners                                      |
+      | _TC-01 | Off        | Off        | Off             | Don't allow                    | NFC Disabled&Location Permission&Bluetooth Disabled  |
+      | _TC-02 | Off        | Off        | Off             | Ask every time                 | NFC Disabled&Location Permission&Bluetooth Disabled  |
+      | _TC-03 | Off        | Off        | Off             | Allow only while using the app | NFC Disabled&Location Permission&Bluetooth Disabled  |
+      | _TC-04 | Off        | Off        | Off             | Allow all the time             | NFC Disabled&Location Permission&Bluetooth Disabled  |
+      | _TC-05 | On         | Off        | Off             | Don't allow                    | NFC Disabled	 Location Permission                    |
+      | _TC-06 | On         | Off        | Off             | Ask every time                 | NFC Disabled  Location Permission                    |
+      | _TC-07 | On         | Off        | Off             | Allow only while using the app | NFC Disabled	 Location Permission                    |
+      | _TC-08 | On         | Off        | Off             | Allow all the time             | NFC Disabled	 GPS Disabled                           |
+      | _TC-09 | Off        | On         | Off             | Don't allow                    | Location Permission Bluetooth Disabled               |
+      | _TC-10 | Off        | On         | Off             | Ask every time                 | Location Permission Bluetooth Disabled               |
+      | _TC-11 | Off        | On         | Off             | Allow only while using the app | Location Permission Bluetooth Disabled               |
+      | _TC-12 | Off        | On         | Off             | Allow all the time             | Location Permission Bluetooth Disabled               |
+      | _TC-13 | Off        | On         | On              | Don't allow                    | Location Permission Bluetooth Disabled               |
+      | _TC-14 | Off        | On         | On              | Ask every time                 | Location Permission Bluetooth Disabled               |
+      | _TC-15 | Off        | On         | On              | Allow only while using the app | Bluetooth Disabled                                   |
+      | _TC-16 | Off        | On         | On              | Allow all the time             | Bluetooth Disabled                                   |
+      | _TC-17 | Off        | Off        | On              | Don't allow                    | NFC Disabled	 Location Permission Bluetooth Disabled |
+      | _TC-18 | Off        | Off        | On              | Ask every time                 | NFC Disabled	 Location Permission Bluetooth Disabled |
+      | _TC-19 | Off        | Off        | On              | Allow only while using the app | NFC Disabled	 Bluetooth Disabled                     |
+      | _TC-20 | Off        | Off        | On              | Allow all the time             | NFC Disabled	 Bluetooth Disabled                     |
+      | _TC-21 | On         | Off        | On              | Don't allow                    | NFC Disabled                                         |
+      | _TC-22 | On         | Off        | On              | Ask every time                 | NFC Disabled                                         |
+      | _TC-23 | On         | Off        | On              | Allow only while using the app | NFC Disabled                                         |
+      | _TC-24 | On         | Off        | On              | Allow all the time             | NFC Disabled                                         |
+      | _TC-25 | On         | On         | Off             | Don't allow                    | GPS Disabled                                         |
+      | _TC-26 | On         | On         | Off             | Ask every time                 | GPS Disabled                                         |
+      | _TC-27 | On         | On         | Off             | Allow only while using the app | GPS Disabled                                         |
+      | _TC-28 | On         | On         | Off             | Allow all the time             | GPS Disabled                                         |
+      | _TC-29 | On         | On         | On              | Don't allow                    |                                                      |
+      | _TC-30 | On         | On         | On              | Ask every time                 |                                                      |
+      | _TC-31 | On         | On         | On              | Allow only while using the app |                                                      |
+      | _TC-32 | On         | On         | On              | Allow all the time             |                                                      |
 
   @ANDR_12_WarningBanners @ANDR_WarningBanners_12
   Scenario Outline:ANDR_12_WarningBanners_WF5<TC_ID>: Verify that BLE status is <BLE_Status>and nearBy location <Location_Permission>
@@ -206,13 +206,32 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
 #    Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<Location_Status>" "<Location_Permission>"
 
     Examples:
-      | TC_ID  | BLE_Status | Location_Status | Location_Permission | Warning_Banners                                     |
-#      | _TC-01 | Off        | Off             | Always              | GPS Disabled&Bluetooth Disabled |
-#      | _TC-02 | Off        | Off             | Denied              | Location Permission&Bluetooth Disabled |
-#      | _TC-05 | On         | Off             | Always              | GPS Disabled                   |
-      | _TC-06 | On         | Off             | Denied              | Location Permission                |
-#      | _TC-09 | Off        | On              | Always              | Bluetooth Disabled              |
-#      | _TC-10 | Off        | On              | Denied              | Location Permission&Bluetooth Disabled              |
-#      | _TC-25 | On         | On              | Always              | GPS Disabled                                        |
-#      | _TC-26 | On         | On              | Denied              | No                                        |
+      | TC_ID  | BLE_Status | Location_Status | Location_Permission | Warning_Banners     |
+      | _TC-01 | Off        | Off             | Always              | GPS Disabled&Bluetooth Disabled |
+      | _TC-02 | Off        | Off             | Denied              | Location Permission&Bluetooth Disabled |
+      | _TC-05 | On         | Off             | Always              | GPS Disabled                   |
+      | _TC-06 | On         | Off             | Denied              | Location Permission |
+      | _TC-09 | Off        | On              | Always              | Bluetooth Disabled              |
+      | _TC-10 | Off        | On              | Denied              | Location Permission&Bluetooth Disabled              |
+      | _TC-25 | On         | On              | Always              | GPS Disabled                                        |
+      | _TC-26 | On         | On              | Denied              | No                                        |
+
+  @ANDR_13_WarningBanners
+  Scenario Outline:ANDR_13_WarningBanners<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status>,NearBy Permission is <NearBy_Permission>
+    When Navigate to Settings and App Preferences screen in android device
+    Then Bluetooth status is displayed as "<BLE_Status>" in android device
+    And  NFC status is displayed as "<NFC_Status>" in android device
+    And  "NearBy" Permission status is displayed as "<NearBy_Permission>" in android device
+    Then Warning Banners are displayed as "<Warning_Banners>" in android device with "<BLE_Status>" "<NFC_Status>" "<NearBy_Permission>"
+
+    Examples:
+      | TC_ID  | BLE_Status | NFC_Status | NearBy_Permission | Warning_Banners                                            |
+      | _TC-01 | Off        | Off        | Allow             | Bluetooth Disabled,NFC Disabled                            |
+      | _TC-02 | Off        | Off        | Don't allow       | Bluetooth Disabled,NFC Disabled,Nearby Permission Disabled |
+      | _TC-03 | On         | Off        | Allow             | NFC Disabled                                               |
+      | _TC-04 | On         | Off        | Don't Allow       | Nearby Permission Disabled,NFC Disabled                    |
+      | _TC-05 | Off        | On         | Allow             | Bluetooth Disabled                                         |
+      | _TC-06 | Off        | On         | Don't Allow       | Nearby Permission Disabled,Bluetooth Disabled              |
+      | _TC-07 | On         | On         | Allow             |                                                            |
+      | _TC-08 | On         | On         | Don't Allow       | Nearby Permission Disabled                                 |
 

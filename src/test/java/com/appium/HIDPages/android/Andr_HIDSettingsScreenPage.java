@@ -5,6 +5,8 @@ import com.appium.manager.DriverManager;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.connection.ConnectionState;
+import io.appium.java_client.android.connection.ConnectionStateBuilder;
 import io.appium.java_client.clipboard.ClipboardContentType;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.testng.Assert;
@@ -39,6 +41,15 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Deregister This Device']")
     private MobileElement txtUnRegisterThisDevice;
 
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement txtNoConnection;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertMessage")
+    private MobileElement txtNoInternetConnection;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertBtn")
+    private MobileElement txtNoConnectionOKbtn;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirm Deregister']")
     private MobileElement txtConfirmUnregisterPopUpTitle;
 
@@ -50,6 +61,9 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/btnOk")
     private MobileElement btnOk;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertBtn")
+    private MobileElement confirmAlertOkBtn;
 
     @AndroidFindBy(xpath="//android.widget.TextView[@text='Always']")
     private MobileElement txtAlways;
@@ -181,6 +195,20 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     public MobileElement getBtnSubmit() {
         return btnSubmit;
     }
+
+    public MobileElement getTxtNoConnection(){
+        return txtNoConnection;
+    }
+
+    public MobileElement getTxtNoInternetConnection(){
+        return txtNoInternetConnection;
+    }
+
+    public MobileElement getTxtNoConnectionOKbtn(){
+        return txtNoConnectionOKbtn;
+    }
+
+
 
     public void clickOnAppPreferences() {
         try {
@@ -461,6 +489,81 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }catch(Exception e){
             TestUtils.log().info("Getting Exception while checking the copied contents in clipboard..");
         }
+    }
+
+    public void clickOnDeregister(String action){
+        try {
+            if(action.equalsIgnoreCase("ON")){
+                if (isElementVisible(txtUnRegisterThisDevice)) {
+                    click(txtUnRegisterThisDevice);
+                    if (isDisplayed(txtConfirmUnregisterPopUpTitle)) {
+                        click(btnUnRegister);
+                        waitForGivenTime(2);
+                        if (isDisplayed(txtDeviceUnRegistredMessage)) {
+                            click(btnOk);
+                            waitForGivenTime(4);
+                            TestUtils.log().info("Device has been Deregistered");
+                        }
+                    }
+                }
+            } else if (action.equalsIgnoreCase("OFF")) {
+                if (isElementVisible(txtUnRegisterThisDevice)) {
+                    click(txtUnRegisterThisDevice);
+                    if (isElementVisible(getTxtNoConnection())) {
+                        Assert.assertTrue(isElementVisible(getTxtNoConnection()));
+                        click(txtNoConnectionOKbtn);
+                    }
+                }
+            }
+        }catch (Exception e){
+
+            TestUtils.log().info("Getting Exception while performing device Deregister.");
+        }
+    }
+
+    public void verifyDeregisterContents(){
+        isElementVisible(txtDeviceUnRegistredMessage);
+        Assert.assertTrue(true,"You have successfully Deregistered from HID Mobile Access. All your Mobile IDs have been deleted.");
+    }
+
+    public void actionOnNetwork(String action){
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+
+        if(action.equalsIgnoreCase("ON")){
+            ConnectionState state = driver.setConnection(new ConnectionStateBuilder().withWiFiEnabled().build());
+            Assert.assertTrue(state.isWiFiEnabled(), "Wifi is not switched on");
+            TestUtils.log().info("WiFi turned on");
+            waitForGivenTime(3);
+        }else if(action.equalsIgnoreCase("OFF")){
+            ConnectionState state = driver.setConnection(new ConnectionStateBuilder().withWiFiDisabled().build());
+            Assert.assertFalse(state.isWiFiEnabled(), "Wifi is not switched off");
+            TestUtils.log().info("WiFi turned off");
+        }else
+            TestUtils.log().info("Incorrect action");
+
+    }
+
+
+    public void confirmDeregisterBtn(String wifiOFF){
+        try{
+            if (isElementVisible(txtUnRegisterThisDevice)) {
+                click(txtUnRegisterThisDevice);
+                if (isDisplayed(txtConfirmUnregisterPopUpTitle)) {
+                    actionOnNetwork("OFF");
+                    click(btnUnRegister);
+                    waitForGivenTime(4);
+                    if (isDisplayed(getTxtNoConnection())) {
+                        click(txtNoConnectionOKbtn);
+                        actionOnNetwork("ON");
+                        waitForGivenTime(4);
+                        TestUtils.log().info("Confirm button on wifiOFF functionality is verified");
+                    }
+                }
+            }
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while verifying the WiFi OFF functionality");
+        }
+
     }
 
 

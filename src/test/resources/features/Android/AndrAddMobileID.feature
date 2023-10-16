@@ -17,6 +17,15 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
       | _TC-1 | valid   | AAAA-BBBB-CC10-1112 |
       | _TC-2 | invalid | AAAA-@#$%-CCCC-1112 |
 
+  @ANDR_AddMobileID_2 @ANDR_AddMobileID
+  Scenario Outline:ANDR_AddMobileID_2<TC_ID>: Verify the mobile ID screen when Mobile ID is present
+    When Verify Mobile ID screen when Mobile ID is present in android device
+    And Verify nearby readers section in android device "<nearByReader>"
+    And Verify the Manage Readers section in android device "<nearByReader>"
+
+    Examples:
+      | TC_ID | nearByReader |
+      | _TC-1 | 0            |
 
 
 

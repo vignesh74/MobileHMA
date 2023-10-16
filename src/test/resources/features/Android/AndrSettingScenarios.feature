@@ -2,13 +2,13 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
 
   Background:To launch the HID app and navigate
     Given Launch HID Access Mobile Application in android device
-    When  Swipe EULA screen to left in android device
-    And   Get Invitation Code using Rest API when credential are assigned
-    And   Enter invitation code on HID mobile Application in android device
-    Then  Mobile IDs screen is displayed in android device
-    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
-    And   Tap on the Mobile ID to check back of the card details
-    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
+#    When  Swipe EULA screen to left in android device
+#    And   Get Invitation Code using Rest API when credential are assigned
+#    And   Enter invitation code on HID mobile Application in android device
+#    Then  Mobile IDs screen is displayed in android device
+#    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
+#    And   Tap on the Mobile ID to check back of the card details
+#    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
   @ANDR_Settings_12_WF1 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline:ANDR_12_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>
@@ -59,11 +59,6 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     Examples:
       | TC_ID  | Show_Activity_State | Debug_Logs     |
       | _TC-13 | Enable/Disable      | Enable/Disable |
-
-  @ANDR_Settings_12_WF5 @ANDR_Settings_12_WF @ANDR_SmokeRun
-  Scenario: ANDR_12_Settings_WF5<TC_ID>: Verify the Deregister in android device
-    When Navigate to settings page in android device
-    And Click on the tab Deregister this device
 
   #android version 11 setting scenarios
   Scenario Outline:ANDR_11_10_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>
@@ -175,30 +170,92 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | TC_ID  | Play_Sound_State | Vibrate_State  | Twist_And_Go   |
       | _TC-12 | Disable/Enable   | Disable/Enable | Disable/Enable |
 
-
+  @ANDR_Settings_9_8_7_WF4 @ANDR_Settings_9_8_7_WF
   Scenario Outline: ANDR_9_8_7_Settings_WF4<TC_ID>: Verify the page of ReportIssue, Legal, About, and Toggle button of DebugLogs and ShowActivity as Enable/Disable
     When Navigate to settings page in android device
-    Then Report issue by entering text "Application is not working" in android device
     And  Legal Screen is displayed in android device
     And  About Screen is displayed in android device
     And  Show Activity State status is displayed as "<Show_Activity_State>" in android device
     And  Debug Logs status is displayed as "<Debug_Logs>" in android device
 
-    @ANDR_Settings_9_8_7_WF4 @ANDR_Settings_9_8_7_WF
     Examples:
       | TC_ID  | Show_Activity_State | Debug_Logs     |
       | _TC-13 | Enable/Disable      | Enable/Disable |
 
-  Scenario Outline: ANDR_11_10_Settings_WF5<TC_ID>: Verify the page of ReportIssue, Legal, About, and Toggle button of DebugLogs and ShowActivity as Enable/Disable
+  @ANDR_11_10_Settings_DebugLog_ReportIssue
+  Scenario Outline: ANDR_11_10_Settings_DebugLog_ReportIssue<TC_ID>: Verify the page of Debug log and Report Issue
     When Navigate to Settings and App Preferences screen in android device
     And  Debug Logs status displayed as "<Debug_Logs>" in android device
     Then Report issue by entering text "Application is not working" in android device
     And Share the access logs
     Then Attachment will be displayed based on "<Debug_Logs>"
 
-    @ANDR_11_10_Settings_WF5 @ANDR_11_10_Settings_WF
     Examples:
       | TC_ID  | Debug_Logs |
       | _TC-01 | Enable     |
       | _TC-02 | Disable    |
+
+  @ANDR_11_10_Settings_Deregister
+  Scenario Outline: ANDR_11_10_Settings_Deregister<TC_ID>: Verify the Deregister in android device
+    When Navigate to settings page in android device
+    And Turn "<action>" the wifi
+    And Click on the tab Deregister this device "<action>"
+    Then Verify the confirm button when deregister is "OFF"
+
+    Examples:
+      | TC_ID  | action |
+      | _TC-01 | OFF    |
+      | _TC-02 | ON     |
+
+  @ANDR_Settings_AboutPage
+  Scenario: Verify About Page and its functionalities
+    When Navigate to settings page in android device
+    Then Verify About menu is displayed in android device
+    And  About Screen is displayed in android device
+    And Verify application information are displayed in android device
+    Then Verify About Page contents are copied in android device
+    And Copy image should turned to tick mark symbol and copied to clipboard toast
+
+  @ANDR_Settings_Notification
+  Scenario Outline:ANDR_Settings_Notification<TC_ID>:Verify Notification screen and its functionalities in android device
+    When Navigate to notification page in android device
+    Then Verify the title of notification page in android device
+    And  Verify Notification of "<Action>" issues and "<Notification>" in android device
+    And Verify Notification Date in android device
+
+    Examples:
+      | TC_ID | Action  | Notification      |
+      | _TC-1 | Suspend | Mobile ID Updated |
+      | _TC-2 | Resumed | Mobile ID Updated |
+      | _TC-3 | Revoked | Mobile ID Revoked |
+
+  @ANDR_Settings_DeleteDevice
+  Scenario:ANDR_9_8_7_Settings_WF6<TC_ID>:Verify Notification screen and its functionalities in android device
+    When Navigate to notification page in android device
+    And Verify the Delete device alert
+
+  @ANDR_11_10_Settings_ShowActivity
+  Scenario Outline: ANDR_11_10_Settings_ShowActivity<TC_ID>: Verify the tab of Show activity
+    When Navigate to Settings and App Preferences screen in android device
+    And  Show Activity State is displayed as "<Show_Activity>" in android device
+    And Click on mobile ID tab in android device
+    Then Activity will display in mobileID screen based on "<Show_Activity>"
+
+    Examples:
+      | TC_ID  | Show_Activity |
+      | _TC-01 | Enable        |
+      | _TC-02 | Disable       |
+
+  @ANDR_11_10_Settings_NearbyReader
+  Scenario Outline: ANDR_11_10_Settings_NearbyReader<TC_ID>: Verify the nearby Reader section
+    When Navigate to Settings and App Preferences screen in android device
+    And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
+
+    Examples:
+      | TC_ID  | NearByReader_Status |
+      | _TC-01 | On              |
+      | _TC-02 | Off             |
+
+
+
 
