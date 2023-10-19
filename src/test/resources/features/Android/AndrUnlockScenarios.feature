@@ -210,7 +210,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _TG_WF8_TC-31 | Always      | On         | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:ENABLE |
       | RevE        | _TG_WF8_TC-32 | Always      | On         | On         | Don't allow                 | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:ENABLE |
 
-    @Android12_RevE_TwistGo_WF_9 @Android12_RevE_TwistGo @Android12_RevE
+    @Android12_RevE_TwistGo_WF_9 @Android12_RevE_TwistGo @Android12_RevE @ANDR_SmokeRun
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                    | robotic_arm_log      |
       | RevE        | _TG_WF9_TC-33 | Unlocked    | On         | On         | Allow                       | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO:DISABLE |
@@ -259,7 +259,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | Signo       | _ET_WF2_TC-07 | Always      | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
       | Signo       | _ET_WF2_TC-08 | Always      | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
 
-    @Android12_Signo_EnhancedTap_WF_3   @Android12_Signo_EnhancedTap
+    @Android12_Signo_EnhancedTap_WF_3   @Android12_Signo_EnhancedTap @ANDR_SmokeRun
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                          | robotic_arm_log |
       | Signo       | _ET_WF3_TC-09 | Unlocked    | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
@@ -291,7 +291,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | Signo       | _ET_WF6_TC-23 | Foreground  | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
       | Signo       | _ET_WF6_TC-24 | Foreground  | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
 
-    @Android12_Signo_EnhancedTap_WF_7   @Android12_Signo_EnhancedTap
+    @Android12_Signo_EnhancedTap_WF_7   @Android12_Signo_EnhancedTap @ANDR_SmokeRun
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                    | robotic_arm_log |
       | Signo       | _ET_WF7_TC-25 | Always      | On         | On         | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful NFC transaction | TAP:ENABLE      |
@@ -581,7 +581,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _TG_WF8_TC-31 | Always      | On         | On         | Allow all the time          | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:ENABLE |
       | RevE        | _TG_WF8_TC-32 | Always      | On         | On         | Allow all the time          | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:ENABLE |
 
-    @Android11_10_RevE_TwistGo_WF_9 @Android11_10_RevE_TwistGo @Android11_10_RevE
+    @Android11_10_RevE_TwistGo_WF_9 @Android11_10_RevE_TwistGo @Android11_10_RevE @ANDR_SmokeRun10
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                    | robotic_arm_log      |
       | RevE        | _TG_WF9_TC-33 | Always      | On         | On         | Don't allow                 | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:ENABLE |
@@ -645,7 +645,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | Signo       | _ET_WF2_TC-07 | Always      | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
       | Signo       | _ET_WF2_TC-08 | Always      | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
 
-    @Android11_10_Signo_EnhancedTap_WF_3 @Android11_10_Signo_EnhancedTap
+    @Android11_10_Signo_EnhancedTap_WF_3 @Android11_10_Signo_EnhancedTap @ANDR_SmokeRun10
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                          | robotic_arm_log |
       | Signo       | _ET_WF3_TC-09 | Unlocked    | On         | Off        | Allow all the time          | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
@@ -677,7 +677,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | Signo       | _ET_WF6_TC-23 | Foreground  | On         | Off        | Allow only while using the app | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:ENABLE      |
       | Signo       | _ET_WF6_TC-24 | Foreground  | On         | Off        | Allow only while using the app | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
 
-    @Android11_10_Signo_EnhancedTap_WF_7 @Android11_10_Signo_EnhancedTap
+    @Android11_10_Signo_EnhancedTap_WF_7 @Android11_10_Signo_EnhancedTap @ANDR_SmokeRun10
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                          | robotic_arm_log |
       | Signo       | _ET_WF7_TC-25 | Foreground  | On         | Off        | Don't allow                 | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction | TAP:DISABLE     |
