@@ -18,7 +18,6 @@
         <parameter name="udid" value="e465bed2"></parameter>
         <parameter name="installApp" value="False"></parameter>
         <parameter name="deviceName" value="TestPhone-ANDROID"></parameter>
-        <parameter name="maxInstances" value="1"></parameter>
         <parameter name="systemPort" value="8205"/>
         <parameter name="chromeDriverPort" value="11033"/>
         <parameter name="wdaLocalPort" value=""/>
