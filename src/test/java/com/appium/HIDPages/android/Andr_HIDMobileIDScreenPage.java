@@ -1446,7 +1446,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 TestUtils.log().info("activity actionName is not displayed");
             }
         }catch(Exception e){
-            TestUtils.log().info("Exception occurred while verifying the activity name....");
+            TestUtils.log().info("Exception occurred while verifying the activity name.....");
         }
         return actionName;
     }
