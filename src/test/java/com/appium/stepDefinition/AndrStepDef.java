@@ -296,6 +296,23 @@ public class AndrStepDef {
 //        }
     }
 
+
+    @Then("Activity log is displayed in android device and {string}, {string}, {string}, {string} and {string} are verified")
+    public void activityLogIsDisplayed_Andr(String strDate, String strMobileRead, String strMessage, String strArmActionName, String strReaderName) {
+        if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
+            mobileIDScreen.expandActivityLogs();
+            Assert.assertEquals(mobileIDScreen.getTodayDate(), strDate);
+            Assert.assertEquals(mobileIDScreen.getMobileIDRead(), strMobileRead);
+            Assert.assertEquals(mobileIDScreen.getSuccessMessage(), strMessage);
+            Assert.assertEquals(mobileIDScreen.getActionName(), strArmActionName);
+             Assert.assertEquals(mobileIDScreen.getReaderName(), strReaderName);
+        } else {
+            TestUtils.log().info("Tap or Twist and Go is not performed hence activity logs are not captured ");
+        }
+
+    }
+
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
         TestUtils.log().info("Robotic arms: "+armLogs+" is Equal to "+strRoboticLog);
