@@ -113,6 +113,12 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[5]")
     private MobileElement txtActivityReaderName;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[2]")
+    private MobileElement txtActivityTime;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[6]")
+    private MobileElement txtActivityDuration;
+
     @AndroidFindBy(xpath = "(//android.widget.TextView[@text=\"Category:\"])[1]/following-sibling::android.widget.TextView[2]")
     private MobileElement txtMessage;
 
@@ -403,7 +409,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     }
 
     public MobileElement getTxtToday() {
-        return txtToday;
+        return txtActivityToday;
     }
 
     public MobileElement getTxtMessage() {
@@ -931,8 +937,8 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     public String verifyDate() {
         String date = "";
         try {
-            if (isDisplayed(txtToday)) {
-                date = getElementText(txtToday);
+            if (isDisplayed(txtActivityToday)) {
+                date = getElementText(txtActivityToday);
                 TestUtils.log().info("TODAY is displayed ");
             } else {
                 TestUtils.log().info(" No any activity description is captured");
