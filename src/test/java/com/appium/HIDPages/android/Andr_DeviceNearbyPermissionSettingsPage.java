@@ -337,17 +337,17 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                                 TestUtils.log().info("Please provide correct permission option");
 
                         }
-                        case "NearBy" -> {
-                            if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
-                                selectRadioButton(rdoAllow);
-                                TestUtils.log().info("NearBy Devices Permission set as {}",strLocOrNearByPerm);
-                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
-                                selectRadioButton(rdoDeny);
-                                TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
-                            } else
-                                TestUtils.log().info("Please provide correct permission option");
-
-                        }
+//                        case "NearBy" -> {
+//                            if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
+//                                selectRadioButton(rdoAllow);
+//                                TestUtils.log().info("NearBy Devices Permission set as {}",strLocOrNearByPerm);
+//                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
+//                                selectRadioButton(rdoDeny);
+//                                TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
+//                            } else
+//                                TestUtils.log().info("Please provide correct permission option");
+//
+//                        }
                         default ->
                                 TestUtils.log().info("Please provide correct permission option for execution");
 
