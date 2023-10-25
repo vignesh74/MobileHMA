@@ -181,4 +181,9 @@ public class IOSStepDef {
     public void checkLogFileStatus_iOS(String strSwitchState) {
         helpCenterScreen.verifyLogFileToggleButtonState(strSwitchState);
     }
+
+    @Then("Verify {string} is disabled and other modes are enabled")
+    public void checkEnforcedSetting(String mode_state){
+        settingScreen.checkEnforcedSetting(mode_state);
+    }
 }

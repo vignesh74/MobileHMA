@@ -671,5 +671,26 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             TestUtils.log().debug("Exception occurred while click on Deregister Tab");
         }
     }
-//txtUnRegisterThisDevice
+
+    public void checkEnforcedSetting(String mode_state){
+        if(mode_state == "Always"){
+            String alwaysText = txtAlways.getText();
+            Assert.assertEquals(alwaysText,mode_state);
+            String enforcedAlways = enforcedAlwaysTxt.getText();
+            Assert.assertEquals(enforcedAlways,"Required by your administrator: app mode must be 'Foreground'");
+            String alwaysAttribute  = chkAlways.getAttribute("enabled");
+            Assert.assertEquals(alwaysAttribute,"false");
+        }else if(mode_state == "Foreground"){
+            String foregroundText = txtForeground.getText();
+            Assert.assertEquals(foregroundText,mode_state);
+            String foregroundAttribute = chkForeground.getAttribute("enabled");
+            Assert.assertEquals(foregroundAttribute,true);
+        }else if(mode_state == "Unlocked"){
+            String unlockedText = txtUnlocked.getText();
+            Assert.assertEquals(unlockedText,mode_state);
+            String unlockedAttribute = chkUnlocked.getAttribute("enabled");
+            Assert.assertEquals(unlockedAttribute,true);
+        }
+
+    }
 }
