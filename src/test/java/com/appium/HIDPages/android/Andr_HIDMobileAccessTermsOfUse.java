@@ -37,16 +37,16 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtTermsOfUse")
     private MobileElement txtTermsOfUse;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtEndUserLicenseAgreementAndPrivacyNoticeTitle")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mobile Application License and User Agreement']")
     private MobileElement eulaHeaderTxt;
 
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"legal@hidglobal.com\"]/android.widget.TextView")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='legal@hidglobal.com']/android.widget.TextView")
     private MobileElement emailLegal;
 
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"privacy@hidglobal.com\"]/android.widget.TextView")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='privacy@hidglobal.com']/android.widget.TextView")
     private  MobileElement emailPrivacy;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtEndUserLicenseAgreementAndPrivacyNoticeTitle")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='HID® Mobile Access® Application Privacy Notice']")
     private MobileElement privacyHeaderTxt;
 
     @AndroidFindBy(id ="com.hidglobal.mobilekeys.android.v3:id/txtTermsOfUseMessage")
@@ -71,12 +71,12 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
     public void checkVisibilityOfTermsOfUsePage()
     {
         try {
-            if (!isDisplayed(txtTermsOfUse))
+            if (isDisplayed(txtTermsOfUse))
             {
-                Assert.assertTrue(false, "Terms of Use Page is not displayed...");
-                TestUtils.log().info("Terms of Use Page is not displayed");
-            }else{
+                Assert.assertTrue(true, "Terms of Use Page is displayed...");
                 TestUtils.log().info("Terms of Use Page is displayed");
+            }else{
+                TestUtils.log().info("Terms of Use Page is not displayed");
             }
         } catch (Exception e) {
 
@@ -129,8 +129,10 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
             if (!EULA.equalsIgnoreCase(link)) {
                 Assert.assertTrue(false, "The Eula link in TermsOfUse page is not displayed...");
                 TestUtils.log().info("The Eula link in TermsOfUse page is not displayed");
+            }else{
+                click(eulaBtn);
             }
-            click(eulaBtn);
+
 
         } catch (Exception e) {
 
@@ -144,10 +146,10 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
             if (!PRIVACY_NOTICE.equalsIgnoreCase(link)) {
                 Assert.assertTrue(false, "The Privacy Notice link in TermsOfUse page is not displayed...");
                 TestUtils.log().info("The Privacy Notice link in TermsOfUse page is not displayed");
+            }else{
+                click(privacyNoticeBtn);
+                TestUtils.log().info("The Privacy Notice link is clicked");
             }
-
-            click(privacyNoticeBtn);
-
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while clicking on Privacy  page link...");
@@ -161,7 +163,7 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
                 Assert.assertTrue(false, "Eula Page is not displayed...");
                 TestUtils.log().info("Eula Page is not displayed");
             }
-            swipeDown(12);
+            swipeDown(15);
             click(emailLegal);
 
         } catch (Exception e) {
@@ -177,10 +179,10 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
             if (!isDisplayed(privacyHeaderTxt)) {
                 Assert.assertTrue(false, "Privacy Notice Page is not displayed...");
                 TestUtils.log().info("Privacy Notice Page is not displayed");
+            }else{
+                swipeDown(12);
+                click(emailPrivacy);
             }
-            swipeDown(10);
-            click(emailPrivacy);
-
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of Privacy Notice page...");

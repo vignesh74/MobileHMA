@@ -27,6 +27,11 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
       | TC_ID | nearByReader |
       | _TC-1 | 0            |
 
+  @ANDR_AddMobileID_3 @ANDR_AddMobileID
+  Scenario: ANDR_AddMobileID_3<TC_ID>:Verify the back of the card details
+    When Verify Mobile ID screen when Mobile ID is present in android device
+    And   Tap on the Mobile ID to check back of the card details
+
 
 
 

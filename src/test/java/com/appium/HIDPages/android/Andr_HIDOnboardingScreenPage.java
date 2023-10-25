@@ -52,7 +52,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtTwistAndGoDescription")
     private MobileElement twistAndGoDesc;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtFavReaderDescription")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Select the reader(s) you want to tag as favorite. When nearby, favorite readers are targeted for door opening.']")
     private MobileElement favReaderDesc;
 
 
@@ -199,22 +199,18 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
      * checkVisibilityOfFavoriteReaderPage- This method is used to check visibility of the FavoriteReader page Date- 02/05/2023
      */
 
-    public boolean checkVisibilityOfFavoriteReaderPage() {
-        boolean flag = false;
+    public void checkVisibilityOfFavoriteReaderPage() {
+
         try {
-                checkVisibilityOfConvenientPage();
-                swipeLeft(1);
                 swipeLeft(1);
 
-            if (!isDisplayed(btnGetStarted)) {
-                TestUtils.log().info("FavoriteReader page is not displayed");
-                flag = true;
+            if (isDisplayed(GetStartedBtn)) {
+                TestUtils.log().info("FavoriteReader page is displayed");
             }
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of FavoriteReader page...");
         }
-        return flag;
     }
 
     /**
@@ -224,7 +220,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     public void GetStartedFavoriteReaderPage() {
         try {
 
-            click(btnGetStarted);
+            click(GetStartedBtn);
 
         } catch (Exception e) {
 

@@ -147,7 +147,6 @@ public class AndrStepDef {
             termsOfUseScreen.checkVisibilityOfEulaPage();
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
-            OnboardingScreen.skipConvenientPage();
             termsOfUseScreen.checkEulaPageLink(link);
             termsOfUseScreen.backButtonEula();
             DriverManager.getDriver().closeApp();
@@ -158,10 +157,9 @@ public class AndrStepDef {
         termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
         DriverManager.getDriver().launchApp();
         TestUtils.log().info("Application launched.....");
-        OnboardingScreen.skipConvenientPage();
         termsOfUseScreen.checkPrivacyPageLink(link);
         termsOfUseScreen.backButtonPrivacyNoticePage();
-
+        DriverManager.getDriver().closeApp();
         }
 
     }
@@ -198,7 +196,7 @@ public class AndrStepDef {
 
     @Then("Tap on the Mobile ID to check back of the card details")
     public void backOfTheCardDetailsIsDisplayed_Andr() {
-        //API need to integrate
+        //API need to integrate when received
         mobileIDScreen.clickOnMobileID();
         mobileIDScreen.checkHeaderMobileIdHeader();
         mobileIDScreen.checkOrgContactInfo();
