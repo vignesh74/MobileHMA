@@ -34,7 +34,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     Examples:
       | TC_ID  | Usage_State |
       | _TC-09 | Always      |
-      | _TC-10 | Active      |
+      | _TC-10 | Foreground  |
       | _TC-11 | Unlocked    |
 
   @ANDR_Settings_12_WF3 @ANDR_Settings_12_WF @ANDR_SmokeRun
@@ -101,7 +101,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     Examples:
       | TC_ID  | Usage_State |
       | _TC-09 | Always      |
-      | _TC-10 | Active      |
+      | _TC-10 | Foreground  |
       | _TC-11 | Unlocked    |
 
 
@@ -157,7 +157,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     Examples:
       | TC_ID  | Usage_State |
       | _TC-09 | Always      |
-      | _TC-10 | Active      |
+      | _TC-10 | Foreground  |
       | _TC-11 | Unlocked    |
 
   Scenario Outline:ANDR_9_8_7_Settings_WF3<TC_ID>: Verify toggle button Enable/Disable for PlaySound, Vibrate and TwistAndGo
@@ -253,8 +253,8 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
 
     Examples:
       | TC_ID  | NearByReader_Status |
-      | _TC-01 | On              |
-      | _TC-02 | Off             |
+      | _TC-01 | On                  |
+      | _TC-02 | Off                 |
 
 
 
