@@ -369,7 +369,13 @@ public class AndrStepDef {
         settingsReportIssueScreenPage.verifySubmitButtonEnable(strReportIssue);
 //        settingsReportIssueScreenPage.getBtnSubmit();
         settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
-        settingsReportIssueScreenPage.backFromReportIssue();
+        DriverManager.getDriver().closeApp();
+        TestUtils.log().info("Application closed.....");
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
+        mobileIDScreen.clickOnSettingsTab();
+
+//        settingsReportIssueScreenPage.backFromReportIssue();
     }
 
     @Then("Legal Screen is displayed in android device")

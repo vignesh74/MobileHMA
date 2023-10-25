@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@ANDR_SmokeRun10")
+        , tags = "@Android11_10_RevE_TwistGo_WF_9")
 //        , tags = "@Android11_RevE_Tap")
 //        , tags = "@Android11_RevE")
 
