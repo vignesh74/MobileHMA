@@ -116,7 +116,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
             }
             else
             {
-                click(btnSkip);
+                click(skipBtn);
             }
         }
          catch(Exception e){
@@ -133,7 +133,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     public void skipTwistAndGoPage(String button) {
         try {
             swipeLeft(1);
-            if(button.equalsIgnoreCase(btnSkip.getText())){
+            if(button.equalsIgnoreCase(skipBtn.getText())){
                 if(isDisplayed(favReaderDesc)){
                     Assert.assertTrue(true, "The SKIP link in Twist&Go page is working...");
                     TestUtils.log().info("The SKIP link in Twist&Go is working");
@@ -161,7 +161,8 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
             if (isDisplayed(convDesc)) {
                 Assert.assertTrue(true, "The Convenient page is  displayed...");
                 TestUtils.log().info("Convenient page is  displayed");
-
+            }else{
+                TestUtils.log().info("Convenient page is not displayed");
             }
 
         } catch (Exception e) {
@@ -224,7 +225,6 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
         try {
 
             click(btnGetStarted);
-           // click(btnAccept);
 
         } catch (Exception e) {
 

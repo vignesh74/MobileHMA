@@ -75,6 +75,8 @@ public class Andr_HIDMobileAccessTermsOfUse extends BasePage{
             {
                 Assert.assertTrue(false, "Terms of Use Page is not displayed...");
                 TestUtils.log().info("Terms of Use Page is not displayed");
+            }else{
+                TestUtils.log().info("Terms of Use Page is displayed");
             }
         } catch (Exception e) {
 

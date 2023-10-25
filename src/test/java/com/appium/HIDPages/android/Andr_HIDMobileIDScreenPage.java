@@ -163,6 +163,27 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtMobileIdDetails")
     private MobileElement txtMobileIdDetails;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Organization’s Contact Info']")
+    private MobileElement txtOrgContactInfo;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtCall")
+    private MobileElement txtCall;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgCall")
+    private MobileElement imgCall;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtEmail")
+    private MobileElement txtEmail;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgEmail")
+    private MobileElement imgEmail;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtWebsite")
+    private MobileElement txtWebsite;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgWebsite")
+    private MobileElement imgWebsite;
+
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtNickName")
     private MobileElement txtNickName;
 
@@ -639,6 +660,62 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         }
     }
 
+    public void checkOrgContactInfo(){
+        try{
+            if ((CHECK_ORGCONTACTINFO.equals(txtOrgContactInfo.getText()))) {
+                Assert.assertTrue(true, "The Header is  correct...");
+                TestUtils.log().debug(" The Org Contact Info is  correct...");
+            } else {
+                Assert.assertTrue(false, "The Header is  incorrect...");
+                TestUtils.log().debug(" The Org Contact Info  is  incorrect...");
+            }
+        }catch(Exception e){
+            TestUtils.log().debug("Exception occurred while validating the Org Contact Info in  Back of Card ...");
+        }
+    }
+
+    public void checkCall(){
+        try{
+            if ((CHECK_CALL.equals(txtCall.getText()))) {
+                Assert.assertTrue(true, "The Call is  correct...");
+                TestUtils.log().debug(" The Call is  correct...");
+            } else {
+                Assert.assertTrue(false, "The Header is  incorrect...");
+                TestUtils.log().debug(" The Call  is  incorrect...");
+            }
+        }catch(Exception e){
+            TestUtils.log().debug("Exception occurred while validating the Call in  Back of Card ...");
+        }
+    }
+
+    public void checkEmail(){
+        try{
+            if ((CHECK_Email.equals(txtEmail.getText()))) {
+                Assert.assertTrue(true, "The Email is  correct...");
+                TestUtils.log().debug(" The Email is  correct...");
+            } else {
+                Assert.assertTrue(false, "The Email is  incorrect...");
+                TestUtils.log().debug(" The Email  is  incorrect...");
+            }
+        }catch(Exception e){
+            TestUtils.log().debug("Exception occurred while validating the Email in  Back of Card ...");
+        }
+    }
+
+    public void checkWebsite(){
+        try{
+            if ((CHECK_WEBSITE.equals(txtWebsite.getText()))) {
+                Assert.assertTrue(true, "The Website is  correct...");
+                TestUtils.log().debug(" The Website is  correct...");
+            } else {
+                Assert.assertTrue(false, "The Website is  incorrect...");
+                TestUtils.log().debug(" The Website  is  incorrect...");
+            }
+        }catch(Exception e){
+            TestUtils.log().debug("Exception occurred while validating the Website in  Back of Card ...");
+        }
+    }
+
     public void checkNickname() {
 
         try {
@@ -839,7 +916,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public void enterNickname() {
         click(txtIssueDescriptionNickname);
-        txtIssueDescriptionNickname.sendKeys("HID Employee @ CHENNAI");
+        txtIssueDescriptionNickname.sendKeys("HID Employee in CHENNAI Testing");
         click(doneBtn);
         waitForGivenTime(5);
 
@@ -1406,6 +1483,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         try {
             if (isDisplayed(txtActivityToday)) {
                 date = getElementText(txtActivityToday);
+                TestUtils.log().info("Today is displayed");
             } else {
                 TestUtils.log().info("Today is not displayed");
             }
@@ -1420,6 +1498,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         try {
             if (isDisplayed(txtActivityMobileIDRead)) {
                 mobileRead = getElementText(txtActivityMobileIDRead);
+                TestUtils.log().info("MobileIDRead is displayed");
             } else {
                 TestUtils.log().info("MobileIDRead is not displayed");
             }
@@ -1434,6 +1513,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         try {
             if(isDisplayed(txtActivityMsg)){
                  actMsg = getElementText(txtActivityMsg);
+                TestUtils.log().info("activity msg is displayed");
             }else {
                 TestUtils.log().info("activity msg is not displayed");
             }
@@ -1448,6 +1528,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         try{
             if(isDisplayed(txtActivityActionName)){
                 actionName = getElementText(txtActivityActionName);
+                TestUtils.log().info("activity actionName is displayed");
             }else {
                 TestUtils.log().info("activity actionName is not displayed");
             }
@@ -1462,6 +1543,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         try{
             if(isDisplayed(txtActivityReaderName)){
                 readerName = getElementText(txtActivityReaderName);
+                TestUtils.log().info("activity readerName is displayed");
             }else{
                 TestUtils.log().info("activity readerName is not displayed");
             }

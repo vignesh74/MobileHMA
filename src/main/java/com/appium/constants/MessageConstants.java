@@ -46,6 +46,16 @@ public class MessageConstants {
     public static final String MESSAGE_CHECKBOX="I have read and agree to the End User License Agreement and Privacy Notice for this application.";
 
     public static final String CHECK_HEADER="Mobile ID Details";
+
+    public static final String CHECK_ORGCONTACTINFO = "Organization’s Contact Info";
+
+    public static final String CHECK_CALL = "Call";
+
+    public static final String CHECK_Email = "E-Mail";
+
+    public static final String CHECK_MobileIDInfo = "Mobile ID Info";
+
+    public static final String CHECK_WEBSITE = "Website";
     public static final String CHECK_NICKNAME="Nickname";
     public static final String CHECK_NAME="Name";
     public static final String CHECK_MOBILE_KEY_SET="Mobile Keyset";

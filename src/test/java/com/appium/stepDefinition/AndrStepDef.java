@@ -90,13 +90,13 @@ public class AndrStepDef {
     }
 
     @And("Header and Description is displayed for Favorite Reader Screen")
-    public void headerBannersScreen(){
-        OnboardingScreen.checkVisibilityOfBannersPage();
-        OnboardingScreen.checkDescriptionBannersScreen();
+    public void headerFavoriteReaderScreen(){
+        OnboardingScreen.checkVisibilityOfFavoriteReaderPage();
+        OnboardingScreen.checkDescriptionFavoriteReaderScreen();
     }
-    @Then("Terms of Use Page is displayed when {string} is clicked in Banners Screen")
+    @Then("Terms of Use Page is displayed when {string} is clicked in Favorite Reader Screen")
     public void getStartedBanner(String button){
-        OnboardingScreen.GetStartedBannersPage(button);
+        OnboardingScreen.GetStartedFavoriteReaderPage();
 
     }
 
@@ -198,14 +198,16 @@ public class AndrStepDef {
 
     @Then("Tap on the Mobile ID to check back of the card details")
     public void backOfTheCardDetailsIsDisplayed_Andr() {
+        //API need to integrate
         mobileIDScreen.clickOnMobileID();
         mobileIDScreen.checkHeaderMobileIdHeader();
+        mobileIDScreen.checkOrgContactInfo();
+        mobileIDScreen.checkCall();
+        mobileIDScreen.checkEmail();
+        mobileIDScreen.checkWebsite();
         mobileIDScreen.checkNickname();
         mobileIDScreen.checkName();
         mobileIDScreen.checkMobileKeySet();
-        mobileIDScreen.checkOrganization();
-        mobileIDScreen.checkIssuedOn();
-        mobileIDScreen.checkExpiresOn();
         mobileIDScreen.checkID();
         mobileIDScreen.checkVisibilityOfEditNicknamePencilIcon();
         mobileIDScreen.checkVisibilityOfEditNicknamePopup();

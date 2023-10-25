@@ -24,7 +24,7 @@ Feature: To Test Android Onboarding Screens and Terms Of Use Screen Scenario Wor
     When Header and Description is displayed for Convenient Screen
     And  Header and Description  is displayed for Twist&Go
     And  Header and Description is displayed for Favorite Reader Screen
-    Then Terms of Use Page is displayed when "<Button>" is clicked in Banners Screen
+    Then Terms of Use Page is displayed when "<Button>" is clicked in Favorite Reader Screen
     @ANDR_Onboard_TermsOfUse_WF3 @ANDR_Onboard_TermsOfUse_WF
     Examples:
       | TC_ID | Button      |
