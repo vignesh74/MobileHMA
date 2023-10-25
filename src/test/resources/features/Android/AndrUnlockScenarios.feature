@@ -584,10 +584,10 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     @Android11_10_RevE_TwistGo_WF_9 @Android11_10_RevE_TwistGo @Android11_10_RevE @ANDR_SmokeRun10
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                    | robotic_arm_log      |
-      | RevE        | _TG_WF9_TC-33 | Always      | On         | On         | Don't allow                 | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:ENABLE |
-      | RevE        | _TG_WF9_TC-34 | Always      | On         | On         | Don't allow                 | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:ENABLE |
-      | RevE        | _TG_WF9_TC-35 | Always      | On         | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:ENABLE |
-      | RevE        | _TG_WF9_TC-36 | Always      | On         | On         | Don't allow                 | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:ENABLE |
+      | RevE        | _TG_WF9_TC-33 | Always      | On         | On         | Don't allow                 | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:DISABLE |
+      | RevE        | _TG_WF9_TC-34 | Always      | On         | On         | Don't allow                 | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:DISABLE |
+      | RevE        | _TG_WF9_TC-35 | Always      | On         | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:DISABLE |
+      | RevE        | _TG_WF9_TC-36 | Always      | On         | On         | Don't allow                 | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful NFC transaction | TWIST_AND_GO=:DISABLE |
 
     @Android11_10_RevE_TwistGo_WF_10 @Android11_10_RevE_TwistGo @Android11_10_RevE
     Examples:
