@@ -334,7 +334,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                                 selectRadioButton(rdoAskEveryTime);
                                 TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
                             } else
-                                TestUtils.log().info("Please provide correct permission option");
+                                TestUtils.log().info("Please provide correct permission option.");
 
                         }
                     }
