@@ -195,6 +195,15 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
         }
     }
 
+    public void clickOnLocationTab(){
+        try {
+            click(locTab);
+            TestUtils.log().info("Successfully click to location button");
+        } catch (Exception e) {
+            TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE,e.getMessage());
+        }
+    }
+
     /**
      * setLocationPermissionAsAllow- This method is used to set location permission as allow for android version 11 Date-03/02/2023
      */
@@ -319,7 +328,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnLocationPermission();
                         clickOnPermissionTab();
-                        clickOnNearByDevices();
+                        clickOnLocationTab();
                         switch (strLocationOrNearBy) {
                             case "Location" -> {
                                 if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow") || strLocOrNearByPerm.equalsIgnoreCase("Deny")) {
