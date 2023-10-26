@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@Android11_10_RevE_TwistGo_WF_14")
+        , tags = "@Android11_10_RevE_TwistGo")
 //        , tags = "@Android11_RevE_TwistGo")
 //        , tags = "@Android11_RevE")
 
