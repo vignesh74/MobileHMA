@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@ANDR_SmokeRun")
+        , tags = "@ANDR_SmokeRun10")
 
 public class Andr12_Smoke_Runner extends BaseTest {
 
