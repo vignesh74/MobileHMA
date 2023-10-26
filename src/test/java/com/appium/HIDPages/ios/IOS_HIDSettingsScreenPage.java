@@ -6,6 +6,7 @@ import com.appium.manager.DriverManager;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
@@ -172,6 +173,10 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//*[@name='DEREGISTER']//following-sibling:: XCUIElementTypeImage", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"DEREGISTER\"]", priority = 1)
     private MobileElement imgDeregister;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Required by your administrator: app mode must be 'Foreground'\"]")
+    public MobileElement enforcedAlwaysTxt;
+
 
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
