@@ -22,7 +22,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_Tap_WF1 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TAP_WF1_TC-01 | Foreground | Allowed    | Always              | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF1_TC-02 | Foreground | Allowed    | Always              | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF1_TC-03 | Foreground | Allowed    | Always              | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
@@ -35,7 +35,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_Tap_WF2 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TAP_WF2_TC-10 | Unlocked   | Allowed    | Always              | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF2_TC-11 | Unlocked   | Allowed    | Always              | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF2_TC-12 | Unlocked   | Allowed    | Always              | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
@@ -48,7 +48,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_Tap_WF3 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TAP_WF3_TC-19 | Foreground | Denied     | Always              | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF3_TC-20 | Foreground | Denied     | Always              | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF3_TC-21 | Foreground | Denied     | Always              | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
@@ -61,7 +61,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_Tap_WF4 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TAP_WF4_TC-28 | Foreground | Allowed    | While using the app | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF4_TC-29 | Foreground | Allowed    | While using the app | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF4_TC-30 | Foreground | Allowed    | While using the app | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
@@ -74,7 +74,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_Tap_WF5 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TAP_WF5_TC-37 | Unlocked   | Allowed    | While using the app | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF5_TC-38 | Unlocked   | Allowed    | While using the app | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF5_TC-39 | Unlocked   | Allowed    | While using the app | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
@@ -87,7 +87,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_Tap_WF6 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TAP_WF6_TC-46 | Unlocked   | Denied     | While using the app | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF6_TC-47 | Unlocked   | Denied     | While using the app | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF6_TC-48 | Unlocked   | Denied     | While using the app | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
@@ -100,7 +100,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_Tap_WF7 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TAP_WF7_TC-55 | Foreground | Allowed    | Never               | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF7_TC-56 | Foreground | Allowed    | Never               | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF7_TC-57 | Foreground | Allowed    | Never               | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
@@ -113,7 +113,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_Tap_WF8 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TAP_WF8_TC-64 | Unlocked   | Allowed    | Never               | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF8_TC-65 | Unlocked   | Allowed    | Never               | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF8_TC-66 | Unlocked   | Allowed    | Never               | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
@@ -126,7 +126,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_Tap_WF9 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TAP_WF9_TC-73 | Unlocked   | Denied     | Never               | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF9_TC-74 | Unlocked   | Denied     | Never               | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
       | RevE        | _TAP_WF9_TC-75 | Unlocked   | Denied     | Never               | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Tap             | Seos        |
@@ -139,7 +139,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_EnhancedTap_WF1 @iOS_DE @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _ET_WF1_TC-01 | Unlocked   | Denied     | Never               | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF1_TC-02 | Unlocked   | Denied     | Never               | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF1_TC-03 | Unlocked   | Denied     | Never               | Background | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
@@ -152,7 +152,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_EnhancedTap_WF2 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _ET_WF2_TC-10 | Unlocked   | Allowed    | Always              | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF2_TC-11 | Unlocked   | Allowed    | Always              | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF2_TC-12 | Unlocked   | Allowed    | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
@@ -165,7 +165,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_EnhancedTap_WF3 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _ET_WF3_TC-19 | Foreground | Denied     | Always              | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF3_TC-20 | Foreground | Denied     | Always              | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF3_TC-21 | Foreground | Denied     | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
@@ -178,7 +178,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_EnhancedTap_WF4 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _ET_WF4_TC-28 | Foreground | Allowed    | While using the app | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF4_TC-29 | Foreground | Allowed    | While using the app | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF4_TC-30 | Foreground | Allowed    | While using the app | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
@@ -191,7 +191,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_EnhancedTap_WF5 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _ET_WF5_TC-37 | Unlocked   | Allowed    | While using the app | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF5_TC-38 | Unlocked   | Allowed    | While using the app | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF5_TC-39 | Unlocked   | Allowed    | While using the app | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
@@ -204,7 +204,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_EnhancedTap_WF6 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _ET_WF6_TC-46 | Unlocked   | Denied     | While using the app | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF6_TC-47 | Unlocked   | Denied     | While using the app | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF6_TC-48 | Unlocked   | Denied     | While using the app | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
@@ -217,7 +217,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_EnhancedTap_WF7 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _ET_WF7_TC-55 | Foreground | Allowed    | Never               | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF7_TC-56 | Foreground | Allowed    | Never               | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF7_TC-57 | Foreground | Allowed    | Never               | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
@@ -230,7 +230,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_EnhancedTap_WF8 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _ET_WF7_TC-64 | Unlocked   | Allowed    | Never               | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF7_TC-65 | Unlocked   | Allowed    | Never               | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF7_TC-66 | Unlocked   | Allowed    | Never               | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
@@ -243,7 +243,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_EnhancedTap_WF9 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _ET_WF7_TC-73 | Unlocked   | Denied     | Never               | Foreground | Locked*      | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF7_TC-74 | Unlocked   | Denied     | Never               | Background | Locked*      | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
       | RevE        | _ET_WF7_TC-75 | Unlocked   | Denied     | Never               | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Enhanced Tap    | Seos        |
@@ -256,7 +256,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF1 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log     | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF1_TC-01 | Foreground | Allowed    | Always              | Foreground | Unlocked*    | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF1_TC-02 | Foreground | Allowed    | Always              | Background | Unlocked*    | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF1_TC-03 | Foreground | Allowed    | Always              | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -269,7 +269,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF2 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log     | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF2_TC-10 | Unlocked   | Allowed    | Always              | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF2_TC-11 | Unlocked   | Allowed    | Always              | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF2_TC-12 | Unlocked   | Allowed    | Always              | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -282,7 +282,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF3 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log       | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF3_TC-19 | Foreground | Allowed    | Always              | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF3_TC-20 | Foreground | Allowed    | Always              | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF3_TC-21 | Foreground | Allowed    | Always              | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -295,7 +295,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF4 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log     | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF4_TC-28 | Foreground | Denied     | Always              | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF4_TC-29 | Foreground | Denied     | Always              | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF4_TC-30 | Foreground | Denied     | Always              | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -308,7 +308,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF5 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log       | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF5_TC-37 | Unlocked   | Denied     | Always              | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF5_TC-38 | Unlocked   | Denied     | Always              | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF5_TC-39 | Unlocked   | Denied     | Always              | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -321,7 +321,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF6 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log     | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF6_TC-46 | Foreground | Allowed    | While using the app | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF6_TC-47 | Foreground | Allowed    | While using the app | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF6_TC-48 | Foreground | Allowed    | While using the app | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -334,7 +334,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF7 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log     | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF7_TC-55 | Unlocked   | Allowed    | While using the app | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF7_TC-56 | Unlocked   | Allowed    | While using the app | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF7_TC-57 | Unlocked   | Allowed    | While using the app | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -347,7 +347,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF8 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log       | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF8_TC-64 | Unlocked   | Allowed    | While using the app | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF8_TC-65 | Unlocked   | Allowed    | While using the app | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF8_TC-66 | Unlocked   | Allowed    | While using the app | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -360,7 +360,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF9 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log     | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF9_TC-73 | Unlocked   | Denied     | While using the app | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF9_TC-74 | Unlocked   | Denied     | While using the app | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF9_TC-75 | Unlocked   | Denied     | While using the app | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -373,7 +373,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF10 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log       | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF10_TC-82 | Unlocked   | Denied     | While using the app | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF10_TC-83 | Unlocked   | Denied     | While using the app | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF10_TC-84 | Unlocked   | Denied     | While using the app | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -386,7 +386,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF11 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID  | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log     | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF11_TC-91 | Foreground | Allowed    | Never               | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF11_TC-92 | Foreground | Allowed    | Never               | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF11_TC-93 | Foreground | Allowed    | Never               | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -399,7 +399,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF12 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID   | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID   | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log     | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF12_TC-100 | Unlocked   | Allowed    | Never               | Foreground | Locked*      | ON*            | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF12_TC-101 | Unlocked   | Allowed    | Never               | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF12_TC-102 | Unlocked   | Allowed    | Never               | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -412,7 +412,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF13 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID   | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log       | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID   | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF13_TC-109 | Unlocked   | Allowed    | Never               | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF13_TC-110 | Unlocked   | Allowed    | Never               | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF13_TC-111 | Unlocked   | Allowed    | Never               | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -425,7 +425,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF14 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID   | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID   | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log     | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF14_TC-118 | Unlocked   | Denied     | Never               | Foreground | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF14_TC-119 | Unlocked   | Denied     | Never               | Background | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF14_TC-120 | Unlocked   | Denied     | Never               | Background | Locked       | ON             | Twist & Go  | TWIST_AND_GO:ENABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
@@ -438,7 +438,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application from Devi
 
     @iOS_DE_TwistGo_WF15 @iOS_DE
     Examples:
-      | Reader_Name | Gesture_TC_ID   | mode_state | BLE_status | location_permission | app_state   | device_state | display_status | action_name | robotic_arm_log       | date  | mobile_read    | message                          | arm_action_name | reader_name |
+      | Reader_Name | Gesture_TC_ID   | mode_state | BLE_status | location_permission | app_state   | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                                                                     | arm_action_name | reader_name |
       | RevE        | _TG_WF15_TC-127 | Unlocked   | Denied     | Never               | Foreground  | Locked*      | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF15_TC-128 | Unlocked   | Denied     | Never               | Background* | Locked*      | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
       | RevE        | _TG_WF15_TC-129 | Unlocked   | Denied     | Never               | Background  | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Mobile ID incompatible with this reader. Please contact your administrator. | Twist & Go      | Seos        |
