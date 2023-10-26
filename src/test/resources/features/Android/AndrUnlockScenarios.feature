@@ -554,7 +554,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                          | robotic_arm_log      |
       | RevE        | _TG_WF5_TC-17 | Foreground  | On         | Off        | Allow all the time          | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction | TWIST_AND_GO:DISABLE |
       | RevE        | _TG_WF5_TC-18 | Foreground  | On         | Off        | Allow all the time          | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction | TWIST_AND_GO:DISABLE |
-      | RevE        | _TG_WF5_TC-19 | Foreground  | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction | TWIST_AND_GO=:ENABLE |
+      | RevE        | _TG_WF5_TC-19 | Foreground  | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction | TWIST_AND_GO:ENABLE |
       | RevE        | _TG_WF5_TC-20 | Foreground  | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction | TWIST_AND_GO:DISABLE |
 
     @Android11_10_RevE_TwistGo_WF_6 @Android11_10_RevE_TwistGo @Android11_10_RevE
