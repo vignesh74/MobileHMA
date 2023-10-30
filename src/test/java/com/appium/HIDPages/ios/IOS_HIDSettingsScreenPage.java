@@ -255,6 +255,17 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
     private MobileElement btnNoInternetOKBtn;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"“HID Mobile Access” Crashed\"]")
+    private MobileElement txtAppCrash;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"No Thanks\"]")
+    private MobileElement btnNoThanks;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Share\"]")
+    private MobileElement btnShare;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[@name=\"Feedback\"]")
+    private MobileElement navBarFeedback;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Submit\"]")
+    private MobileElement btnSubmit;
+
     //XCUIElementTypeStaticText[@name="Welcome to HID Mobile Access"]
 
     /**
@@ -460,6 +471,26 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
 
     public MobileElement getBtnNoInternetOKBtn() {
         return btnNoInternetOKBtn;
+    }
+
+    public MobileElement getTxtAppCrash() {
+        return txtAppCrash;
+    }
+
+    public MobileElement getBtnNoThanks() {
+        return btnNoThanks;
+    }
+
+    public MobileElement getBtnShare() {
+        return btnShare;
+    }
+
+    public MobileElement getNavBarFeedback() {
+        return navBarFeedback;
+    }
+
+    public MobileElement getBtnSubmit() {
+        return btnSubmit;
     }
 
     /**
@@ -993,6 +1024,25 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             }
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while verifying the No Internet pop up in settings screen...");
+        }
+    }
+
+    public void handlingAppCrashPopUp() {
+        try {
+            waitForVisibility(txtAppCrash);
+            if(txtAppCrash.isDisplayed()) {
+                Assert.assertTrue(isElementVisible(btnNoThanks));
+                Assert.assertTrue(isElementVisible(btnShare));
+                click(btnShare);
+                if(navBarFeedback.isDisplayed())
+                {
+                    click(btnSubmit);
+                }
+            } else {
+                TestUtils.log().info("App Crash pop up is not displayed...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the App Crash pop up in Home screen...");
         }
     }
 

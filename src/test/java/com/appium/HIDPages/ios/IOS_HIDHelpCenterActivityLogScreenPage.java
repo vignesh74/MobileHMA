@@ -6,6 +6,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.testng.Assert;
 
 public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
 
@@ -36,6 +37,18 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"signoReader\"])[1]", priority = 0)
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"TODAY\"]//following-sibling:: XCUIElementTypeImage)[1]", priority = 1)
     private MobileElement imgReader;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID mismatch\"])[1]")
+    private MobileElement txtMobIDMismatch;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID mismatch\"])[1]//following-sibling::XCUIElementTypeStaticText[2]")
+    private MobileElement txtMobIDMismatchMsg;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID Read\"])[1]")
+    private MobileElement txtMobIDRead;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID Read”])[1]//following-sibling::XCUIElementTypeStaticText[2]")
+    private MobileElement txtMobIDReadMsg;
 
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
@@ -211,5 +224,16 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
             
             TestUtils.log().info("Exception occurred while clicking on back to help center button...");
         }
+    }
+
+    public void verifyLogMessage(String activityLog, String logMessage) {
+        try {
+            Assert.assertEquals(getTodayDate(), "TODAY");
+            Assert.assertEquals(getMobileIDRead(), activityLog);
+            Assert.assertEquals(getSuccessMessage(), logMessage);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while validating the log message in Activity log screen...");
+        }
+
     }
 }

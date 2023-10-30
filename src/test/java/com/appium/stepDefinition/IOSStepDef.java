@@ -30,6 +30,10 @@ public class IOSStepDef {
     IOS_HIDHelpCenterLegalScreenPage termAndConditionScreen = new IOS_HIDHelpCenterLegalScreenPage();
     IOS_HIDHelpCenterSupportScreenPage supportScreen = new IOS_HIDHelpCenterSupportScreenPage();
     IOS_HIDHelpCenterFeedbackPage feedbackScreen = new IOS_HIDHelpCenterFeedbackPage();
+    IOS_HIDOnboardingScreenPage onboardingScreen = new IOS_HIDOnboardingScreenPage();
+    IOS_HIDHelpCenterFAQScreenPage FAQScreen = new IOS_HIDHelpCenterFAQScreenPage();
+    IOS_HIDMobileIDDetailedViewPage detailedViewScreen = new IOS_HIDMobileIDDetailedViewPage();
+
     IOSDeviceInfo iosDeviceInfo = new IOSDeviceInfo();
     SerialPortUtils serialPortUtils = new SerialPortUtils();
     String armLogs;
@@ -46,6 +50,7 @@ public class IOSStepDef {
     @When("Mobile IDs screen is displayed in iOS device")
     public void mobileIDScreenIsDisplayed_iOS() {
         settingScreen.verifyNoInternetPopUp();
+        settingScreen.handlingAppCrashPopUp();
         settingScreen.handlingSettingPopUp();
         mobileIdScreen.clickOnMobileIDTabAndVerify();
     }
@@ -249,17 +254,17 @@ public class IOSStepDef {
     }
 
     @Then("Set WIFI status as {string} in iOS device")
-    public void setWIFIStatus(String strInternet) {
+    public void setWIFIStatus_iOS(String strInternet) {
         settingScreen.setWifiStatus(strInternet);
     }
 
     @Then("Set back the WIFI status as ON in iOS device")
-    public void setWIFIStatusON() {
+    public void setWIFIStatusON_iOS() {
         settingScreen.setWifiStatusON();
     }
 
     @Then("Verify Support status debug log file {string} in feedback page {string} in iOS device")
-    public void chkDebugLogFile(String logFile, String strFeedback) {
+    public void chkDebugLogFile_iOS(String logFile, String strFeedback) {
         helpCenterScreen.clickOnSupportAndVerify();
         supportScreen.clickOnSubmitFeedbackButtonAndVerify();
         feedbackScreen.isFeedbackScreenDisplayed();
@@ -272,7 +277,7 @@ public class IOSStepDef {
     }
 
     @Then("Deregister all the Mobile IDs from this phone in iOS device")
-    public void deregisterMobileIDs() {
+    public void deregisterMobileIDs_iOS() {
         settingScreen.clickOnDegisterSetting();
         settingScreen.verifyDeregisterPopUp();
         settingScreen.deregisterSuccessfulPopUp();
@@ -280,30 +285,94 @@ public class IOSStepDef {
     }
 
     @Then("Verify No Internet pop up while deregister the Mobile IDs in iOS device")
-    public void chkNoInternetPopUp() {
+    public void chkNoInternetPopUp_iOS() {
         settingScreen.clickOnDegisterSetting();
         settingScreen.verifyNoInternetPopUp();
     }
 
     @Then("Trigger the Rest API to delete device in iOS device")
-    public void deleteDeviceRestAPI() {
+    public void deleteDeviceRestAPI_iOS() {
         //Have to implement API part here to delete device
     }
 
     @Then("Verify Delete Mobile IDs pop up in welcome screen in iOS device")
-    public void deleteMobileIDs() {
+    public void deleteMobileIDs_iOS() {
         mobileIdScreen.isDeletePopUpDispalyed();
         mobileIdScreen.verifyHIDMobilePage();
     }
 
     @Then("Verify the No Internet pop up in home screen in iOS device")
-    public void noInternetPopUp() {
+    public void noInternetPopUp_iOS() {
         settingScreen.verifyNoInternetPopUp();
     }
 
     @Then("Verify Dynamic App review pop up {string} in Mobile Ids screen in iOS device")
-    public void dynamicAppReview(String review) {
+    public void dynamicAppReview_iOS(String review) {
         mobileIdScreen.chkDynamicAppReview(review);
+    }
+    @Then("Verify Onboarding screen in iOS device")
+    public void chkOnboardingScreen_iOS() {
+        onboardingScreen.onboardConvenientPage();
+        onboardingScreen.onboardTwistAndGoPage();
+        onboardingScreen.onboardBannersPage();
+    }
+    @Then("Agree Terms of Use License and policy in iOS device")
+    public void agreeTermsOfUse_iOS() {
+        onboardingScreen.checkTermsOfUse();
+        termAndConditionScreen.clickOnEndUserLicenceAgreementAndVerify();
+        termAndConditionScreen.clickOnPrivacyNoticeLinkAndVerify();
+        onboardingScreen.clickAgreeAndContinue();
+    }
+
+    @Then("Welcome to HID Mobile Access screen in iOS device")
+    public void welcomeMobileAccess_iOS() {
+        mobileIdScreen.verifyHIDMobilePage();
+        mobileIdScreen.clickAboutThisApp();
+        aboutScreen.clickOnAboutCopyButton();
+        aboutScreen.verifyAboutInHome("Always", "BLE Supported", "Location Services are enabled");
+    }
+
+    @Then("Navigate to FAQ screen in iOS device")
+    public void chkFAQScreen_iOS() {
+        FAQScreen.clickOnFAQButton();
+        FAQScreen.isFAQScreenDisplayed();
+        FAQScreen.checkFAQScreen();
+    }
+
+    @Then("Search in FAQ screen in iOS device")
+    public void searchFAQScreen_iOS() {
+        FAQScreen.verifySearchFieldValid();
+        FAQScreen.verifySearchFieldInValid();
+        FAQScreen.clickLetUsKnow();
+        supportScreen.isSupportScreenDisplayed();
+        supportScreen.clickOnSupportFAQ();
+        FAQScreen.clickFAQBackBtn();
+    }
+
+    @Then("Navigate to Org specific contact information in iOS device")
+    public void chkOrgSpecificInfo_iOS() {
+        detailedViewScreen.clickHIDCard();
+        detailedViewScreen.chkOrgSpecificInfo();
+        detailedViewScreen.clickCallButton();
+        detailedViewScreen.clickEmailButton();
+        detailedViewScreen.clickWebsiteButton();
+    }
+
+    @Then("Add Nickname {string} to the card in iOS device")
+    public void editNickNameInCard_iOS(String nickName) {
+        detailedViewScreen.addNickName(nickName);
+        detailedViewScreen.clickDetailedViewBack();
+        detailedViewScreen.chkEditedNickname(nickName);
+    }
+
+    @Then("Navigate to Activity log screen in iOS device")
+    public void navToActivityLog_iOS() {
+        helpCenterScreen.clickOnActivityLogAndVerify();
+    }
+
+    @Then("Verify the log message {string} and {string} in Activity log screen in iOS device")
+    public void verifyErrMsgInLog_iOS(String activityLog, String logMessage) {
+        activityScreen.verifyLogMessage(activityLog, logMessage);
     }
 
 

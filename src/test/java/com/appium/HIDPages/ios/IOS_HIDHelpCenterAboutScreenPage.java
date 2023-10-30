@@ -116,6 +116,9 @@ public class IOS_HIDHelpCenterAboutScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"About\"]", priority = 1)
     private MobileElement imgArrowHelpCenterAbout;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[@name=\"About\"]")
+    private MobileElement navAboutInHome;
+
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
      */
@@ -138,6 +141,10 @@ public class IOS_HIDHelpCenterAboutScreenPage extends BasePage {
 
     public MobileElement getImgAboutBack() {
         return imgAboutBack;
+    }
+
+    public MobileElement getNavAboutInHome() {
+        return navAboutInHome;
     }
 
     /**
@@ -242,6 +249,70 @@ public class IOS_HIDHelpCenterAboutScreenPage extends BasePage {
             }
             else {
                 TestUtils.log().info("About screen is displayed with value " + strValue);
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Getting Exception while checking the about screen values...");
+        }
+    }
+
+    public void verifyAboutInHome(String Mode, String BLE, String LocSev) {
+        try{
+            waitForVisibility(navAboutInHome);
+            Assert.assertTrue(isElementVisible(txtHelpCenterApplicationInfo));
+            Assert.assertTrue(isElementVisible(txtAboutMobileAccessVersion));
+            verifyValueNotEmpty(txtAboutMobileAccessValue);
+
+            Assert.assertTrue(isElementVisible(txtAboutOrigoSDKVersion));
+            verifyValueNotEmpty(txtAboutOrigoSDKValue);
+
+            Assert.assertTrue(isElementVisible(txtAboutOpeningMode));
+            Assert.assertEquals(getElementText(txtAboutOpeningModeValue), Mode);
+
+            Assert.assertTrue(isElementVisible(txtAboutReaders));
+            verifyValueIsEmpty(txtAboutReadersValue);
+
+            Assert.assertTrue(isElementVisible(txtAboutEndpointStatus));
+            verifyValueNotEmpty(txtAboutEndpointStatusValue);
+
+            Assert.assertTrue(isElementVisible(txtAboutSeosID));
+            verifyValueIsEmpty(txtAboutSeosIDValue);
+
+            Assert.assertTrue(isElementVisible(txtAboutLastServerComm));
+            verifyValueNotEmpty(txtAboutLastServerCommValue);
+
+            Assert.assertTrue(isElementVisible(txtAboutEndpointAppVer));
+            verifyValueNotEmpty(txtAboutEndpointAppValue);
+
+            iOSScrollDownTillElement(txtAboutLocationServ);
+            isElementVisible(txtAboutLocationServ);
+
+            Assert.assertTrue(isElementVisible(txtAboutEnvironment));
+            verifyValueIsEmpty(txtAboutEnvironmentValue);
+
+            Assert.assertTrue(isElementVisible(txtAboutDeviceInfo));
+            Assert.assertTrue(isElementVisible(txtAboutOSVersion));
+            verifyValueNotEmpty(txtAboutOSVersionValue);
+
+            Assert.assertTrue(isElementVisible(txtAboutBluetooth));
+            Assert.assertEquals(getElementText(txtAboutBluetoothValue), BLE);
+
+            Assert.assertTrue(isElementVisible(txtAboutLocationServ));
+            Assert.assertEquals(getElementText(txtAboutLocationServValue), LocSev);
+
+            click(imgBackFromHelpCenter);
+        }catch (Exception e) {
+            TestUtils.log().info("Getting Exception while displaying about in Welcome screen...");
+        }
+    }
+
+    public void verifyValueIsEmpty(MobileElement element) {
+        try {
+            String strValue = element.getAttribute(MessageConstants.VALUE_STRING);
+            if(strValue.isEmpty() | strValue == null) {
+                TestUtils.log().info("About screen value is empty as expected " + strValue);
+            }
+            else {
+                TestUtils.log().info("About screen is displayed with value, which is not as expected" + strValue);
             }
         } catch (Exception e) {
             TestUtils.log().info("Getting Exception while checking the about screen values...");

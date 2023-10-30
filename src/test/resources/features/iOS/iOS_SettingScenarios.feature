@@ -6,7 +6,7 @@
     When  Mobile IDs screen is displayed in iOS device
     Then  Notification screen is displayed with message "New Mobile ID issued" and "A new Mobile ID is now ready for use" in iOS device
 
-  @iOS_Settings_WF1 @iOS_Settings_WF @iOS_SmokeRun
+  @iOS_Settings_WF1 @iOS_Settings_WF @iOS_SmokeRun 
   Scenario Outline: iOS_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status> and location permission status is <location_permission>
     When  Navigate to Settings in iOS device
     Then  BLE status is displayed as "<BLE_status>" in iOS device
@@ -21,7 +21,7 @@
       | _TC-05 | Denied     | While using the app |
       | _TC-06 | Denied     | Never               |
 
-  @iOS_Settings_WF2 @iOS_Settings_WF @iOS_SmokeRun
+  @iOS_Settings_WF2 @iOS_Settings_WF @iOS_SmokeRun 
   Scenario Outline: iOS_Settings_WF2<TC_ID>: Verify Mode State status is <mode_state>
     When  Navigate to Settings in iOS device
     Then  Mode state is displayed as "<mode_state>" in iOS device
@@ -32,7 +32,7 @@
       | _TC-08 | Foreground |
       | _TC-09 | Unlocked   |
 
-  @iOS_Settings_WF3 @iOS_Settings_WF @iOS_SmokeRun
+  @iOS_Settings_WF3 @iOS_Settings_WF @iOS_SmokeRun 
   Scenario Outline: iOS_Settings_WF3<TC_ID>: Verify toggle button Enable/Disable for PlaySound <play_sound_state>, Vibrate <Vibrate_state> and TwistAndGo <twist_and_go>
     When  Navigate to Settings in iOS device
     Then  Play sound status is displayed as "<play_sound_state>" in iOS device
@@ -44,7 +44,7 @@
       | _TC-10 | Enable           | Enable        | Disable      |
       | _TC-11 | Disable          | Disable       | Enable       |
 
-  @iOS_Settings_WF4 @iOS_Settings_WF @iOS_SmokeRun
+  @iOS_Settings_WF4 @iOS_Settings_WF @iOS_SmokeRun 
   Scenario Outline: iOS_Settings_WF4<TC_ID>: Verify the page of Support, activity, about, term of use, privacy notice and Verify toggle button Enable/Disable log file <log_file>
     When  Navigate to Settings in iOS device
     And   Navigate to Help center in iOS device
@@ -59,8 +59,8 @@
       | _TC-12 | Enable   |
       | _TC-13 | Disable  |
 
-  @iOS_Settings_WF5 @iOS_Settings_WF
-  Scenario Outline: iOS_Settings_WF5<TC_ID>: Verify the page of About and it's details, Application Info, Endpoint Info and Device Info
+  @iOS_Settings_WF5 @iOS_Settings_WF 
+  Scenario Outline: iOS_Settings_WF5<TC_ID>: Verify the page of About and its details, Application Info, Endpoint Info and Device Info <Environment>
     When  Navigate to Settings in iOS device
     And   Select the mode state as "<mode_state>" in iOS device
     And   Navigate to Help center in iOS device
@@ -71,7 +71,7 @@
       | _TC-14 | Always     | Prod        | BLE Supported | Location Services are enabled |
 
   @iOS_Settings_WF6 @iOS_Settings_WF
-  Scenario Outline: iOS_Settings_WF6<TC_ID>: Verify the page of Notification screen along with Suspend, Resume, and Revoke.
+  Scenario Outline: iOS_Settings_WF6<TC_ID>: Verify the page of Notification message in notification screen along with <mobileID>
     When  Mobile ID is "<mobileID>" and the Notification screen is displayed with message as "<Message1>" and "<Message2>" in iOS device
     And   Navigate back to Mobile ID screen in iOS device
     Then  Verify the Mobile ID screen "<mobileID>" in iOS device
@@ -82,8 +82,8 @@
       | _TC-16 | Resume  | From Your Administrator |Mobile ID updated |
       | _TC-17 | Revoke  | From Your Administrator |Mobile ID revoked |
 
-   @iOS_Settings_WF7 @iOS_Settings_WF
-   Scenario Outline: iOS_Settings_WF7<TC_ID>: Verify the warning banners for BLE and Location permission combinations
+   @iOS_Settings_WF7 @iOS_Settings_WF 
+   Scenario Outline: iOS_Settings_WF7<TC_ID>: Verify the warning banners for mode <mode_state>, BLE status as <BLE_status> and Location permission as <location_permission> combinations
      When  Navigate to Settings in iOS device
      And   Select the mode state as "<mode_state>" in iOS device
      And   Set BLE status as "<BLE_status>" in iOS device
@@ -123,7 +123,7 @@
        | TC_ID  |
        | _TC-36 |
 
-   @iOS_Settings_WF9 @iOS_Settings_WF
+   @iOS_Settings_WF9 @iOS_Settings_WF 
    Scenario Outline: iOS_Settings_WF9<TC_ID>: Verify the Add Mobile ID screen with invalid or expired invitation code
      When  Mobile IDs screen is displayed in iOS device
      And   Click on ADD button in iOS device
@@ -134,7 +134,7 @@
        | TC_ID  | Expired_Code         |
        | _TC-37 | AC57-R6ZF-AAD5-ZGVQ  |
 
-   @iOS_Settings_WF10 @iOS_Settings_WF
+   @iOS_Settings_WF10 @iOS_Settings_WF 
    Scenario Outline: iOS_Settings_WF10<TC_ID>: Verify the Add Mobile ID screen with Internet OFF scenario
      When  Navigate to Settings in iOS device
      And   Set WIFI status as "<Internet>" in iOS device
@@ -149,7 +149,7 @@
        | TC_ID  | Internet | Invitation_Code     |
        | _TC-38 | Off      | AC57-R6ZF-AAD5-ZGVQ |
 
-   @iOS_Settings_WF11 @iOS_Settings_WF
+   @iOS_Settings_WF11 @iOS_Settings_WF 
    Scenario Outline: iOS_Settings_WF11<TC_ID>: Verify the page of Support and log document using Enable/Disable log file <log_file>
      When  Navigate to Settings in iOS device
      And   Navigate to Help center in iOS device
@@ -170,8 +170,8 @@
        | TC_ID  |
        | _TC-41 |
 
-   @iOS_Settings_WF13 @iOS_Settings_WF
-   Scenario Outline: iOS_Settings_WF13<TC_ID>: Verify the Deregister option of Mobile IDs in setting page with No Internet
+   @iOS_Settings_WF13 @iOS_Settings_WF 
+   Scenario Outline: iOS_Settings_WF13<TC_ID>: Verify the Deregister option of Mobile IDs in setting page with Internet <Internet>
      When  Navigate to Settings in iOS device
      And   Set WIFI status as "<Internet>" in iOS device
      Then  Verify No Internet pop up while deregister the Mobile IDs in iOS device
@@ -192,7 +192,7 @@
        | _TC-43 |
 
    @iOS_Settings_WF15 @iOS_Settings_WF
-   Scenario Outline: iOS_Settings_WF15<TC_ID>: Verify the No Internet pop up while deleting the device from portal through Rest API
+   Scenario Outline: iOS_Settings_WF15<TC_ID>: Verify the Internet <Internet> pop up while deleting the device from portal through Rest API
      When  Navigate to Settings in iOS device
      And   Set WIFI status as "<Internet>" in iOS device
      When  Trigger the Rest API to delete device in iOS device
@@ -205,3 +205,50 @@
      Examples:
        | TC_ID  | Internet |
        | _TC-44 | Off      |
+
+   @iOS_Settings_WF16 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF16<TC_ID>: Verify the Onboarding screens, Welcome page along with About the App
+     When  Verify Onboarding screen in iOS device
+     And   Agree Terms of Use License and policy in iOS device
+     And   Welcome to HID Mobile Access screen in iOS device
+     #And  Get Invitation Code iOS using Rest API when credential are assigned
+     #Then  Enter invitation code on HID mobile Application in iOS device
+
+     Examples:
+       | TC_ID  |
+       | _TC-45 |
+
+   @iOS_Settings_WF17 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF17<TC_ID>: Verify the FAQ screen and search field in IOS APP
+     When  Navigate to Settings in iOS device
+     And   Navigate to Help center in iOS device
+     And   Navigate to FAQ screen in iOS device
+     Then  Search in FAQ screen in iOS device
+
+     Examples:
+       | TC_ID  |
+       | _TC-46 |
+
+   @iOS_Settings_WF18 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF18<TC_ID>: Verify the Org specific contact information in the back of the card
+     When  Mobile IDs screen is displayed in iOS device
+     Then  Navigate to Org specific contact information in iOS device
+     And   Add Nickname "<nickname>" to the card in iOS device
+
+     Examples:
+       | TC_ID  | nickname  |
+       | _TC-47 | Auto Test |
+
+   @iOS_Settings_WF19 @iOS_Settings_WF
+   Scenario Outline: iOS_Settings_WF19<TC_ID>: Verify the Activity log Error scenarios with error message in the Activity log <activityLog>
+     When  Navigate to Settings in iOS device
+     And   Navigate to Help center in iOS device
+     Then  Navigate to Activity log screen in iOS device
+     Then  Verify the log message "<activityLog>" and "<logMessage>" in Activity log screen in iOS device
+
+     Examples:
+       | TC_ID  | activityLog                   | logMessage                                                                            |
+       | _TC-48 | Mobile ID mismatch            | Mobile ID incompatible with this reader. Please contact your administrator.           |
+       | _TC-49 | Mobile ID Read                | Communication timeout. Please try again.                                              |
+       | _TC-50 | Reader Range                  | Please move closer to the reader to gain access                                       |
+       | _TC-51 | Anti-Passback Detected        | This reader is anti-passback enabled. Please make sure your Mobile ID is not misused. |                                                                            |

@@ -115,7 +115,20 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Yes!\"]")
     private MobileElement txtYesPopUp;
 
-    //XCUIElementTypeOther/XCUIElementTypeImage - Card Image
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Redeem a Mobile ID by entering the 16 digit Invitation code or choose to Sign in with SSO.\"]")
+    private MobileElement txtRedeemIDMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Get Started\"]")
+    private MobileElement btnGetStarted;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"About this app\"]")
+    private MobileElement btnAboutApp;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"About this app\"]")
+    private MobileElement txtAboutApp;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"icAboutInfo\"]")
+    private MobileElement imgIconAboutInfo;
 
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
@@ -244,6 +257,16 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
     public MobileElement getTxtYesPopUp() {
         return txtYesPopUp;
     }
+
+    public MobileElement getTxtRedeemIDMsg() { return txtRedeemIDMsg; }
+
+    public MobileElement getBtnGetStarted() { return btnGetStarted; }
+
+    public MobileElement getBtnAboutApp() { return btnAboutApp; }
+
+    public MobileElement getTxtAboutApp() { return txtAboutApp; }
+
+    public MobileElement getImgIconAboutInfo() { return imgIconAboutInfo; }
 
     /**
      * isMobileIdScreenDisplayed- This method is used to verify the mobile id screen is displayed or not
@@ -419,6 +442,34 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
             }
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while displaying the Dynamic App review pop up...");
+        }
+    }
+
+    public void verifyWelcomeHIDPage() {
+        try {
+            waitForVisibility(txtWelcomeToHIDMsg);
+            Assert.assertTrue(isElementVisible(txtWelcomeToHIDMsg));
+            Assert.assertTrue(isElementVisible(txtRedeemIDMsg));
+            Assert.assertTrue(isElementVisible(txtInvitationCode));
+            Assert.assertTrue(isElementVisible(txtInvitationCodeMsg));
+            Assert.assertTrue(isElementVisible(txtInvitationCodeBox));
+            Assert.assertTrue(isElementVisible(imgQRCode));
+            Assert.assertTrue(isElementVisible(txtScanQRCode));
+            Assert.assertTrue(isElementVisible(btnGetStarted));
+            Assert.assertFalse(btnGetStarted.isEnabled());
+            Assert.assertTrue(isElementVisible(btnAboutApp));
+            Assert.assertTrue(isElementVisible(txtAboutApp));
+            Assert.assertTrue(isElementVisible(imgIconAboutInfo));
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while displaying Welcome to HID Mobile Access Screen...");
+        }
+    }
+
+    public void clickAboutThisApp() {
+        try {
+            click(btnAboutApp);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while clicking on About in welcome screen...");
         }
     }
 

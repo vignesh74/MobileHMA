@@ -24,7 +24,8 @@ public class IOS_HIDHelpCenterSupportScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Center\"]", priority = 1)
     private MobileElement imgBackFromSupport;
 
-    @iOSXCUITFindBy(xpath = "//*[@name='Help Centre']//following-sibling:: XCUIElementTypeStaticText")
+    @iOSXCUITFindBy(xpath = "//*[@name='Help Centre']//following-sibling:: XCUIElementTypeStaticText", priority = 0)
+    @iOSXCUITFindBy(xpath = "//*[@name='FAQ']//following-sibling:: XCUIElementTypeStaticText" , priority = 1)
     private MobileElement txtTitleHelpCenterSupport;
 
     @iOSXCUITFindBy(xpath = "//*[@name='Submit Feedback to HID']//preceding-sibling:: XCUIElementTypeStaticText[@name='Support']")
@@ -113,8 +114,18 @@ public class IOS_HIDHelpCenterSupportScreenPage extends BasePage {
         try {
             click(imgBackFromSupport);
         } catch (Exception e) {
-            
             TestUtils.log().info("Exception occurred while displaying Help Center Screen...");
+        }
+    }
+
+    /**
+     * clickOnBackToHelpCenter- This method is used to click on back to help center screen Date-25/1/2023
+     */
+    public void clickOnSupportFAQ() {
+        try {
+            click(txtTitleHelpCenterSupport);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while displaying Help Center FAQ Screen...");
         }
     }
 
