@@ -251,4 +251,4 @@
        | _TC-48 | Mobile ID mismatch            | Mobile ID incompatible with this reader. Please contact your administrator.           |
        | _TC-49 | Mobile ID Read                | Communication timeout. Please try again.                                              |
        | _TC-50 | Reader Range                  | Please move closer to the reader to gain access                                       |
-       | _TC-51 | Anti-Passback Detected        | This reader is anti-passback enabled. Please make sure your Mobile ID is not misused. |                                                                            |
+       | _TC-51 | Anti-Passback Detected        | This reader is anti-passback enabled. Please make sure your Mobile ID is not misused. |
