@@ -49,8 +49,8 @@ public class IOSStepDef {
 
     @When("Mobile IDs screen is displayed in iOS device")
     public void mobileIDScreenIsDisplayed_iOS() {
-        settingScreen.verifyNoInternetPopUp();
         settingScreen.handlingAppCrashPopUp();
+        settingScreen.verifyNoInternetPopUp();
         settingScreen.handlingSettingPopUp();
         mobileIdScreen.clickOnMobileIDTabAndVerify();
     }

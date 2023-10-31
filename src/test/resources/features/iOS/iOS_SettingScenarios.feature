@@ -195,7 +195,7 @@
    Scenario Outline: iOS_Settings_WF15<TC_ID>: Verify the Internet <Internet> pop up while deleting the device from portal through Rest API
      When  Navigate to Settings in iOS device
      And   Set WIFI status as "<Internet>" in iOS device
-     When  Trigger the Rest API to delete device in iOS device
+     And   Trigger the Rest API to delete device in iOS device
      And   Launch HID Access Mobile Application in iOS device
      Then  Verify the No Internet pop up in home screen in iOS device
      And   Navigate to Settings in iOS device
@@ -243,7 +243,7 @@
    Scenario Outline: iOS_Settings_WF19<TC_ID>: Verify the Activity log Error scenarios with error message in the Activity log <activityLog>
      When  Navigate to Settings in iOS device
      And   Navigate to Help center in iOS device
-     Then  Navigate to Activity log screen in iOS device
+     And   Navigate to Activity log screen in iOS device
      Then  Verify the log message "<activityLog>" and "<logMessage>" in Activity log screen in iOS device
 
      Examples:
