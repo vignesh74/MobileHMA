@@ -32,6 +32,21 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
     When Verify Mobile ID screen when Mobile ID is present in android device
     And   Tap on the Mobile ID to check back of the card details
 
+  @ANDR_AddMobileID_4 @ANDR_AddMobileID
+  Scenario Outline: Verify the app rating
+#    When Relaunch the app in android device
+    And Verify the rating popup UI in android device
+    And select the rating as "<Star>" in android device
+    And Click on the submit button should close the popup in android device
+    Then Verify the content on the improve popup in android device
+    Then send the improve content "<improve>" in android device
+    Then Verify the thank you popup in android device
+
+    Examples:
+      | TC_ID | Star | improve              |
+      | _TC-1 | 3    | Testing from chennai |
+
+
 
 
 

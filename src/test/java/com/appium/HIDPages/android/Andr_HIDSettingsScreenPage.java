@@ -152,6 +152,19 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     @AndroidFindBy(xpath="//android.widget.Toast[@text='Copied to clipboard']", priority = 3)
     private MobileElement aboutCopyToastMsg;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='FAQ']")
+    private MobileElement txtFAQMenu;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtfaqtitle")
+    private MobileElement txtFAQTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgBack")
+    private MobileElement imgFAQBack;
+
+    @AndroidFindBy(id="searchQueryInput")
+    private MobileElement searchBox;
+
+
     public MobileElement getTxtConfirmUnregisterPopUpTitle() {
         return txtConfirmUnregisterPopUpTitle;
     }
@@ -335,6 +348,8 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue(isElementVisible(txtAppPreference));
             Assert.assertTrue(isElementVisible(txtLegal));
             Assert.assertTrue(isElementVisible(txtReportIssue));
+            Assert.assertTrue((isElementVisible(txtUnRegisterThisDevice)));
+            Assert.assertTrue(isElementVisible(txtFAQMenu));
         } catch (Exception e) {
             
             TestUtils.log().info("Getting Exception while verifying to settings screen...");
@@ -374,6 +389,15 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         } catch (Exception e) {
             
             TestUtils.log().info("Getting Exception while clicking on About Screen...");
+        }
+    }
+
+    public void clickOnFAQScreen() {
+        try {
+            click(txtFAQMenu);
+        } catch (Exception e) {
+
+            TestUtils.log().info("Getting Exception while clicking on FAQ Screen...");
         }
     }
 
@@ -564,6 +588,17 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while verifying the WiFi OFF functionality");
         }
 
+    }
+
+    public void verifyFAQMenu(){
+        try {
+            waitForVisibility(txtFAQMenu);
+            Assert.assertTrue(isElementVisible(txtFAQMenu));
+
+        } catch (Exception e) {
+
+            TestUtils.log().info("Getting Exception while verifying to FAQ text ...");
+        }
     }
 
 

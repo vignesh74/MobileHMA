@@ -256,6 +256,19 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-01 | On                  |
       | _TC-02 | Off                 |
 
+  @ANDR_11_10_Settings_FAQ
+  Scenario Outline: ANDR_11_10_Settings_FAQ<TC_ID>: Verify the FAQ section
+    When Navigate to settings page in android device
+    Then Verify the FAQ Menu is displayed in android device
+    And FAQ screen is displayed in android device
+    And Enter "<input>" type on the search box
+#    And Verify the "<input>" present on the screen in android device
+
+    Examples:
+      | TC_ID  | input   |
+      | _TC-01 | battery |
+#      | _TC-02 | hsdfgdhfg |
+
 
 
 

@@ -7,6 +7,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import static com.appium.constants.MessageConstants.*;
 import java.awt.*;
@@ -364,6 +366,51 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtEmptyOtherReaderDesc")
     private MobileElement txtNoTxnMessage;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement reviewTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement improveTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertMessage")
+    private MobileElement reviewContent;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/edtTxtcomment")
+    private MobileElement improveContentBox;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/ratingbar")
+    private MobileElement reviewStar;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertNegativeBtn")
+    private MobileElement reviewNotNowBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertNegativeBtn")
+    private MobileElement improveNotNowBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertPositiveBtn")
+    private MobileElement reviewSubmitBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertPositiveBtn")
+    private MobileElement improveSubmitBtn;
+
+    @AndroidFindBy(xpath="//android.widget.RatingBar[@text='3.0']")
+    private MobileElement reviewRating;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/ratingbar")
+    private MobileElement reviewRate;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgCheckCircle")
+    private MobileElement thankYouTick;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Thank You']")
+    private MobileElement thankYouContent1;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Your feedback was successfully submitted.']")
+    private MobileElement thankYouContent2;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertdone")
+    private MobileElement thankYouDoneBtn;
 
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
@@ -1551,6 +1598,144 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while verifying the activity reader name....");
         }
         return readerName;
+    }
+
+    public void checkRatingPopup(){
+        if (isDisplayed(reviewTitle)) {
+            Assert.assertTrue(true, "Review alert Title is displayed");
+            TestUtils.log().info("Review alert Title is displayed...");
+        }else{
+            TestUtils.log().info("Review alert Title is not displayed...");
+        }
+        if (isDisplayed(reviewContent)) {
+            Assert.assertTrue(true, "Review alert Content is displayed");
+            TestUtils.log().info("Review alert Content is displayed...");
+        }else{
+            TestUtils.log().info("Review alert Content is not displayed...");
+        }
+        if (isDisplayed(reviewStar)) {
+            Assert.assertTrue(true, "Review alert star is displayed");
+            TestUtils.log().info("Review alert star is displayed...");
+        }else{
+            TestUtils.log().info("Review alert star is not displayed...");
+        }
+        if (isDisplayed(reviewNotNowBtn)) {
+            Assert.assertTrue(true, "Review negative Btn is displayed");
+            TestUtils.log().info("Review negative Btn is displayed...");
+        }else{
+            TestUtils.log().info("Review alert star is not displayed...");
+        }
+        if (isDisplayed(reviewSubmitBtn)) {
+            Assert.assertTrue(true, "Review Submit Btn is displayed");
+            TestUtils.log().info("Review Submit Btn is displayed...");
+        }else{
+            TestUtils.log().info("Review Submit Btn is not displayed...");
+        }
+    }
+
+    public void relaunchApp(){
+        DriverManager.getDriver().closeApp();
+        TestUtils.log().info("Application closed.....");
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
+    }
+
+    public void giveRating(String rating){
+    try{
+        String rate = ("//android.widget.RatingBar[contains(text(),'"+rating+"')]");
+        if(isDisplayed(reviewRate)){
+            reviewRate.click();
+            TestUtils.log().info("Review rating 3 is displayed...");
+        }else{
+            TestUtils.log().info("Review rating 3 is not displayed...");
+        }
+    }catch(Exception e){
+        TestUtils.log().info("Exception occurred on click on rating bar..");
+    }
+
+    }
+
+    public void reviewSubmitBtn(){
+        try{
+            if(isDisplayed(reviewSubmitBtn)){
+                reviewSubmitBtn.click();
+                TestUtils.log().info("Review submit Btn 3 is clicked...");
+            }else{
+                TestUtils.log().info("Review submit Btn 3 is not clicked...");
+            }
+        }catch (Exception e){
+            TestUtils.log().info("Exception occurred on click on the submit button in review popup..");
+        }
+
+    }
+
+    public void improvePopup(){
+        if (isDisplayed(improveContentBox)) {
+            Assert.assertTrue(true, "Review alert Content is displayed");
+            TestUtils.log().info("Review alert Content is displayed...");
+        }else{
+            TestUtils.log().info("Review alert Content is not displayed...");
+        }
+        if (isDisplayed(improveTitle)) {
+            Assert.assertTrue(true, "improve alert Title is displayed");
+            TestUtils.log().info("improve alert Title is displayed...");
+        }else{
+            TestUtils.log().info("improve alert Title is not displayed...");
+        }
+        if (isDisplayed(improveNotNowBtn)) {
+            Assert.assertTrue(true, "improve negative Btn is displayed");
+            TestUtils.log().info("improve negative Btn is displayed...");
+        }else{
+            TestUtils.log().info("improve alert star is not displayed...");
+        }
+        if (isDisplayed(improveSubmitBtn)) {
+            Assert.assertTrue(true, "improve Submit Btn is displayed");
+            TestUtils.log().info("improve Submit Btn is displayed...");
+        }else{
+            TestUtils.log().info("improve Submit Btn is not displayed...");
+        }
+    }
+
+    public void sendImprove(String improve){
+        try{
+            improveContentBox.sendKeys(improve);
+            improveSubmitBtn.click();
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while sending the improve content");
+        }
+    }
+
+    public void verifyThankYou(){
+        try{
+            if (isDisplayed(thankYouTick)) {
+                Assert.assertTrue(true, "tick is displayed");
+                TestUtils.log().info("Tick is displayed...");
+            }else{
+                TestUtils.log().info("Tick is not displayed...");
+            }
+            if (isDisplayed(thankYouContent1)) {
+                Assert.assertTrue(true, "Thank you is displayed");
+                TestUtils.log().info("Thank you is displayed...");
+            }else{
+                TestUtils.log().info("Thank you is not displayed...");
+            }
+            if (isDisplayed(thankYouContent2)) {
+                Assert.assertTrue(true, "Feedback submitted txt is displayed");
+                TestUtils.log().info("Feedback submitted is displayed...");
+            }else{
+                TestUtils.log().info("Feedback submitted txt is not displayed...");
+            }
+            if (isDisplayed(thankYouDoneBtn)) {
+                Assert.assertTrue(true, "Thank you Done Btn is displayed");
+                TestUtils.log().info("Thank you Done Btn is displayed...");
+            }else{
+                TestUtils.log().info("Thank you Done Btn is not displayed...");
+            }
+            thankYouDoneBtn.click();
+            TestUtils.log().info("Thank you Done Btn is clicked...");
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while verifying the done content");
+        }
     }
 
 }

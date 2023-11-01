@@ -10,12 +10,14 @@ import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.android.connection.ConnectionState;
 import io.appium.java_client.android.connection.ConnectionStateBuilder;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en_scouse.An;
 import jssc.SerialPortException;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -45,6 +47,8 @@ public class AndrStepDef {
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
     Andr_HIDWarningBanners warningBanners = new Andr_HIDWarningBanners();
     Andr_HIDSettingsScreenPage settingsScreen = new Andr_HIDSettingsScreenPage();
+
+    Andr_HIDSettingsFAQScreenPage FAQScreen = new Andr_HIDSettingsFAQScreenPage();
 
     String strUDID = "";
     String armLogs;
@@ -668,4 +672,61 @@ public class AndrStepDef {
     public void setNearByReaderStatus(String strNearByReaderStatus) {
         appPreferencesScreen.setNearByReaderStatus(strNearByReaderStatus);
     }
+
+    @Then("Verify the FAQ Menu is displayed in android device")
+    public void FAQTab(){
+        FAQScreen.clickOnFAQScreen();
+    }
+
+    @Then("FAQ screen is displayed in android device")
+    public void verifyFAQScreen() {
+        FAQScreen.isFAQScreenPageDisplayed();
+    }
+
+    @And("Enter {string} type on the search box")
+    public void checkSearch(String text){
+        FAQScreen.changeDriverContextToWeb();
+        FAQScreen.checkSearch(text);
+    }
+
+    @And("Verify the rating popup UI in android device")
+    public void checkRatingPopup(){
+        mobileIDScreen.checkRatingPopup();
+    }
+
+    @When("Relaunch the app in android device")
+    public void relaunchApp(){
+        mobileIDScreen.relaunchApp();
+    }
+
+    @And("select the rating as {string} in android device")
+    public void giveRating(String rating){
+        mobileIDScreen.giveRating(rating);
+    }
+
+    @And("Click on the submit button should close the popup in android device")
+    public void reviewSubmitBtn(){
+        mobileIDScreen.reviewSubmitBtn();
+    }
+
+    @Then("Verify the content on the improve popup in android device")
+    public void improvePopup(){
+        mobileIDScreen.improvePopup();
+    }
+
+    @Then("send the improve content {string} in android device")
+    public void sendImprove(String improve){
+        mobileIDScreen.sendImprove(improve);
+    }
+
+    @Then("Verify the thank you popup in android device")
+    public void verifyThankYou(){
+        mobileIDScreen.verifyThankYou();
+    }
+
+    @And("Verify the {string} present on the screen in android device")
+    public void searchText(String text){
+//        @AndroidFindBy(xpath="")
+    }
+
 }
