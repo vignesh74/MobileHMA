@@ -1030,17 +1030,18 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     public void handlingAppCrashPopUp() {
         try {
             waitForVisibility(txtAppCrash);
-            if(txtAppCrash.isDisplayed()) {
-                Assert.assertTrue(isElementVisible(btnNoThanks));
-                Assert.assertTrue(isElementVisible(btnShare));
-                click(btnShare);
-                if(navBarFeedback.isDisplayed())
-                {
-                    click(btnSubmit);
+                if(txtAppCrash.isDisplayed()) {
+                    Assert.assertTrue(isElementVisible(btnNoThanks));
+                    Assert.assertTrue(isElementVisible(btnShare));
+                    for(int i = 1; i < 10; i++) {
+                        if(txtAppCrash.isDisplayed()) {
+                            click(btnNoThanks);
+                            waitForGivenTime(2000);
+                        }
+                    }
+                } else {
+                    TestUtils.log().info("App Crash pop up is not displayed: Great!...");
                 }
-            } else {
-                TestUtils.log().info("App Crash pop up is not displayed...");
-            }
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while verifying the App Crash pop up in Home screen...");
         }

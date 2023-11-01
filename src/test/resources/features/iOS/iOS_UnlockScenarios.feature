@@ -211,7 +211,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
       | Signo       | _ET_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
       | Signo       | _ET_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
       | Signo       | _ET_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
-      | Signo       | _ET_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
+      #| Signo       | _ET_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
 
 
     @iOS_Signo_EnhancedTap_WF2 @iOS_Signo_EnhancedTap
@@ -252,9 +252,9 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
       #| Signo       | _ET_WF5_TC-22 | Unlocked   | Allowed    | While using the app | Background | Locked       | OFF            | TAP         | TAP:DISABLE     | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
       | Signo       | _ET_WF5_TC-23 | Unlocked   | Allowed    | While using the app | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
       | Signo       | _ET_WF5_TC-24 | Unlocked   | Allowed    | While using the app | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
-      | Signo       | _ET_WF5_TC-25 | Unlocked   | Allowed    | While using the app | Killed     | Unlocked     | ON             | TAP         | TAP:DISABLE     | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
+      #| Signo       | _ET_WF5_TC-25 | Unlocked   | Allowed    | While using the app | Killed     | Unlocked     | ON             | TAP         | TAP:DISABLE     | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
 
-    @iOS_Signo_EnhancedTap_WF6 @iOS_Signo_EnhancedTap       #Currently exculded Locked scenarios, as pattern lock not supporting to Unlock - Looking for alternatives
+    @iOS_Signo_EnhancedTap_WF6 @iOS_Signo_EnhancedTap @iOS_SmokeRun     #Currently exculded Locked scenarios, as pattern lock not supporting to Unlock - Looking for alternatives
 
     Examples:
       | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |

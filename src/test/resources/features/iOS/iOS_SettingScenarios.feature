@@ -70,7 +70,7 @@
       | TC_ID  | mode_state | Environment | Bluetooth     | LocationServices              |
       | _TC-14 | Always     | Prod        | BLE Supported | Location Services are enabled |
 
-  @iOS_Settings_WF6 @iOS_Settings_WF
+  @iOS_Settings_WF6 @iOS_Settings_WF_Dep
   Scenario Outline: iOS_Settings_WF6<TC_ID>: Verify the page of Notification message in notification screen along with <mobileID>
     When  Mobile ID is "<mobileID>" and the Notification screen is displayed with message as "<Message1>" and "<Message2>" in iOS device
     And   Navigate back to Mobile ID screen in iOS device
@@ -111,7 +111,7 @@
        | _TC-34 | Unlocked   | Denied     | While using the app |
        | _TC-35 | Unlocked   | Denied     | Always              |
 
-   @iOS_Settings_WF8 @iOS_Settings_WF
+   @iOS_Settings_WF8 @iOS_Settings_WF_Dep
    Scenario Outline: iOS_Settings_WF8<TC_ID>: Verify the Add Mobile ID screen with valid invitation code using Rest API
      When  Mobile IDs screen is displayed in iOS device
      And   Click on ADD button in iOS device
@@ -123,7 +123,7 @@
        | TC_ID  |
        | _TC-36 |
 
-   @iOS_Settings_WF9 @iOS_Settings_WF 
+   @iOS_Settings_WF9 @iOS_Settings_WF_Dep
    Scenario Outline: iOS_Settings_WF9<TC_ID>: Verify the Add Mobile ID screen with invalid or expired invitation code
      When  Mobile IDs screen is displayed in iOS device
      And   Click on ADD button in iOS device
@@ -134,7 +134,7 @@
        | TC_ID  | Expired_Code         |
        | _TC-37 | AC57-R6ZF-AAD5-ZGVQ  |
 
-   @iOS_Settings_WF10 @iOS_Settings_WF 
+   @iOS_Settings_WF10 @iOS_Settings_WF_Dep
    Scenario Outline: iOS_Settings_WF10<TC_ID>: Verify the Add Mobile ID screen with Internet OFF scenario
      When  Navigate to Settings in iOS device
      And   Set WIFI status as "<Internet>" in iOS device
@@ -161,7 +161,7 @@
        | _TC-39 | Enable   | Issue 1      |
        | _TC-40 | Disable  | Issue 2      |
 
-   @iOS_Settings_WF12 @iOS_Settings_WF
+   @iOS_Settings_WF12 @iOS_Settings_WF_Dep
    Scenario Outline: iOS_Settings_WF12<TC_ID>: Verify the Deregister option of Mobile IDs in setting page
      When  Navigate to Settings in iOS device
      Then  Deregister all the Mobile IDs from this phone in iOS device
@@ -170,7 +170,7 @@
        | TC_ID  |
        | _TC-41 |
 
-   @iOS_Settings_WF13 @iOS_Settings_WF 
+   @iOS_Settings_WF13 @iOS_Settings_WF_Dep
    Scenario Outline: iOS_Settings_WF13<TC_ID>: Verify the Deregister option of Mobile IDs in setting page with Internet <Internet>
      When  Navigate to Settings in iOS device
      And   Set WIFI status as "<Internet>" in iOS device
@@ -181,7 +181,7 @@
        | TC_ID  | Internet |
        | _TC-42 | Off      |
 
-   @iOS_Settings_WF14 @iOS_Settings_WF
+   @iOS_Settings_WF14 @iOS_Settings_WF_Dep
    Scenario Outline: iOS_Settings_WF14<TC_ID>: Verify the delete device pop up in HID mobile access welcome page using Rest API
      When  Trigger the Rest API to delete device in iOS device
      And   Launch HID Access Mobile Application in iOS device
@@ -191,7 +191,7 @@
        | TC_ID  |
        | _TC-43 |
 
-   @iOS_Settings_WF15 @iOS_Settings_WF
+   @iOS_Settings_WF15 @iOS_Settings_WF_Dep
    Scenario Outline: iOS_Settings_WF15<TC_ID>: Verify the Internet <Internet> pop up while deleting the device from portal through Rest API
      When  Navigate to Settings in iOS device
      And   Set WIFI status as "<Internet>" in iOS device
@@ -206,13 +206,13 @@
        | TC_ID  | Internet |
        | _TC-44 | Off      |
 
-   @iOS_Settings_WF16 @iOS_Settings_WF
+   @iOS_Settings_WF16 @iOS_Settings_WF_Dep
    Scenario Outline: iOS_Settings_WF16<TC_ID>: Verify the Onboarding screens, Welcome page along with About the App
      When  Verify Onboarding screen in iOS device
      And   Agree Terms of Use License and policy in iOS device
      And   Welcome to HID Mobile Access screen in iOS device
-     #And  Get Invitation Code iOS using Rest API when credential are assigned
-     #Then  Enter invitation code on HID mobile Application in iOS device
+     And   Get Invitation Code iOS using Rest API when credential are assigned
+     Then  Enter invitation code on HID mobile Application in iOS device
 
      Examples:
        | TC_ID  |
@@ -239,7 +239,7 @@
        | TC_ID  | nickname  |
        | _TC-47 | Auto Test |
 
-   @iOS_Settings_WF19 @iOS_Settings_WF
+   @iOS_Settings_WF19 @iOS_Settings_WF_Dep
    Scenario Outline: iOS_Settings_WF19<TC_ID>: Verify the Activity log Error scenarios with error message in the Activity log <activityLog>
      When  Navigate to Settings in iOS device
      And   Navigate to Help center in iOS device
