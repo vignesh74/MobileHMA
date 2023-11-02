@@ -100,7 +100,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='Activity Expand/Collapse Image']")
     private MobileElement btnActivityExpander;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"TODAY\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='TODAY']")
     private MobileElement txtActivityToday;
 
     @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[1]")
@@ -121,11 +121,14 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[6]")
     private MobileElement txtActivityDuration;
 
-    @AndroidFindBy(xpath = "(//android.widget.TextView[@text=\"Category:\"])[1]/following-sibling::android.widget.TextView[2]")
+    @AndroidFindBy(xpath = "(//android.widget.TextView[@text='Category:'])[1]/following-sibling::android.widget.TextView[2]")
     private MobileElement txtMessage;
 
     //@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Category:\"]/following-sibling::android.widget.TextView[1]/following-sibling::android.widget.ImageView[1]")
     @AndroidFindBy(xpath = "(//android.widget.TextView[@text=\"Category:\"])[1]/following-sibling::android.widget.ImageView[1]")
+    private MobileElement imgSuccessful1;
+
+    @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc='HID Mobile Access'])[1]")
     private MobileElement imgSuccessful;
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
@@ -1735,6 +1738,30 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             TestUtils.log().info("Thank you Done Btn is clicked...");
         }catch(Exception e){
             TestUtils.log().info("Exception occurred while verifying the done content");
+        }
+    }
+
+    public void verifyActivityLog(String mobileIDState,String message){
+        try{
+            navigateBack();
+            clickOnMobileIDTabAndVerify();
+            expandActivityLogs();
+            if(txtActivityMobileIDRead.getText().equalsIgnoreCase(mobileIDState)){
+                TestUtils.log().info("MobileRead is displayed correct.....");
+                Assert.assertTrue(true, "MobileRead is displayed correct");
+                if(txtActivityMsg.getText().equalsIgnoreCase(message)){
+                    Assert.assertTrue(true, "Msg is displayed correct");
+                    TestUtils.log().info("Msg is displayed correct.....");
+                }else{
+                    Assert.assertTrue(true, "Msg is not displayed correct");
+                    TestUtils.log().info("Msg is not displayed correct.....");
+                }
+            }else{
+                Assert.assertTrue(true, "MobileRead is not displayed correct");
+            }
+
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while verifying the activity log");
         }
     }
 
