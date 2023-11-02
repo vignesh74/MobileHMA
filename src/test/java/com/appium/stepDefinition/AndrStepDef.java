@@ -51,7 +51,7 @@ public class AndrStepDef {
     Andr_HIDSettingsFAQScreenPage FAQScreen = new Andr_HIDSettingsFAQScreenPage();
 
     String strUDID = "";
-    String armLogs = "TAP:ENABLE";
+    String armLogs;
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
