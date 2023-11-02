@@ -14,9 +14,8 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@Android11_10_Signo_EnhancedTap_WF_3")
+        , tags = "@ANDR_SmokeRun10")
 
 public class Andr12_Smoke_Runner extends BaseTest {
 
 }
-
