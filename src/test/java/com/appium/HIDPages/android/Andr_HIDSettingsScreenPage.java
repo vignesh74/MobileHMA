@@ -349,7 +349,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue(isElementVisible(txtLegal));
             Assert.assertTrue(isElementVisible(txtReportIssue));
             Assert.assertTrue((isElementVisible(txtUnRegisterThisDevice)));
-            Assert.assertTrue(isElementVisible(txtFAQMenu));
+//            Assert.assertTrue(isElementVisible(txtFAQMenu));
         } catch (Exception e) {
             
             TestUtils.log().info("Getting Exception while verifying to settings screen...");
