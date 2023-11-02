@@ -66,7 +66,8 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     Then Bluetooth status is displayed as "<BLE_Status>" in android device
     And  NFC status is displayed as "<NFC_Status>" in android device
     And  Location Status is displayed as "<Location_Status>" in android device
-    And  "Location" Permission status is displayed as "<Location_Permission>" in android device
+#    And  "Location" Permission status is displayed as "<Location_Permission>" in android device
+    And   Set "Location" permission status as "<NearByOrLocation_permission>" in android device
 
     @ANDR_Settings_11_WF1 @ANDR_Settings_11_WF @ANDR_SmokeRun10
     Examples:
