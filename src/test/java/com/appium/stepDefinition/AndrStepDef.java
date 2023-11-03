@@ -1,6 +1,7 @@
 package com.appium.stepDefinition;
 
 import com.appium.HIDPages.android.*;
+import com.appium.base.BasePage;
 import com.appium.constants.FrameworkConstants;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
@@ -27,7 +28,7 @@ import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 
 
-public class AndrStepDef {
+public class AndrStepDef extends BasePage {
     String strInvitationCode = "";
     Andr_HIDOnboardingScreenPage OnboardingScreen = new Andr_HIDOnboardingScreenPage();
     Andr_HIDMobileAccessTermsOfUse termsOfUseScreen = new Andr_HIDMobileAccessTermsOfUse();
@@ -231,6 +232,7 @@ public class AndrStepDef {
     public void navigateToAppPreferencesScreen_Andr() {
         mobileIDScreen.clickOnSettingsTab();
         TestUtils.log().info("Settings screen is displayed");
+        isElementVisible(settingsScreen.getTxtAppPreference());
         settingsScreen.clickOnAppPreferences();
     }
 
