@@ -24,19 +24,21 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(xpath = "android.widget.TextView[@text='Use Bluetooth']",priority = 1)
     private MobileElement txtBluetooth;
 
-    @AndroidFindBy(xpath = "//*[@text='NFC']")
+    @AndroidFindBy(xpath = "//*[@text='NFC']", priority = 0)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='NFC']", priority = 1)
     private MobileElement txtNFC;
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Permission']", priority = 0)
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location Permission']", priority = 1)
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']", priority = 2)
+    @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc='Right arrow'])[3]", priority = 0)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Permission']", priority = 1)
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location Permission']", priority = 2)
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']", priority = 3)
     private MobileElement txtNearByPermission;
 
-    @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc=\"Right arrow\"])[4]")
+    @AndroidFindBy(xpath="((//android.widget.ImageView[@content-desc='Right arrow'])[3]")
     private MobileElement txtNearByPermissionTab;
 
-    @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc=\"Right arrow\"])[3])")
+    @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc='Right arrow'])[3])")
     private MobileElement txtNearByPermissionTabin13;
 
     @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]")
