@@ -5,11 +5,16 @@ import com.appium.manager.DriverFactory;
 import com.appium.manager.DriverManager;
 import com.appium.manager.IDriver;
 import com.appium.utils.TestUtils;
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.FindsByAndroidUIAutomator;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -40,7 +45,7 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='FAQ']")
     private MobileElement txtFAQ;
 
-    @AndroidFindBy(xpath="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.widget.TextView[1]")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.widget.TextView[1]")
     private MobileElement txtNoResultsFound;
 
     /**
@@ -93,7 +98,7 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
         try {
             click(imgBackFromFAQ);
         } catch (Exception e) {
-            
+
             TestUtils.log().debug("Exception occurred while coming back from FAQ Screen...");
         }
     }
@@ -105,22 +110,26 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
         try {
             click(txtFAQ);
         } catch (Exception e) {
-            
+
             TestUtils.log().debug("Exception occurred while clicking on FAQ Screen...");
         }
     }
 
-    public void checkSearch(String text){
-        try{
-            searchBox.clear();
-            searchBox.sendKeys(text);
-//            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-//            if(driver.getPageSource().contains(text)){
-//                System.out.println("true");
-//            }else{
-//                System.out.println("false");
-//            }
-        }catch(Exception e){
+    public void checkSearch(String text) {
+        try {
+//            searchBox.clear();
+//            searchBox.sendKeys(text);
+//            WebDriver driver = DriverManager.getDriver();
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+//            driver.findElement(By.id("searchQueryInput"));
+
+        WebElement searchBox = driver.findElementByAndroidUIAutomator("new By.ById('searchQueryInput')");
+            if(driver.getPageSource().contains(text)){
+                System.out.println("true");
+            }else{
+                System.out.println("false");
+            }
+        } catch (Exception e) {
             System.out.println("Vignesh" + e);
             TestUtils.log().debug("Exception occurred while entering text on search box in FAQ Screen...");
         }
@@ -129,16 +138,18 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
 
     public static void changeDriverContextToWeb() {
         AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-
-            Set<String> contextNames = driver.getContextHandles();
-            for(String contextName : contextNames){
-                System.out.println(contextName);
-            }
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("appium:chromeOptions", ImmutableMap.of("w3c", false));
+        Set<String> contextNames = driver.getContextHandles();
+        for (String contextName : contextNames) {
+            System.out.println(contextName);
+        }
         driver.context("WEBVIEW_com.hidglobal.mobilekeys.android.v3");
-
+//        WebElement aa = ((FindsByAndroidUIAutomator)driver).findElementByAndroidUIAutomator("new UiSelector().textContains('Blue')");
+        WebElement ee = driver.findElement(By.id("searchQueryInput"));
+//        aa.sendKeys("asdasd");
 
     }
-
 
 
 }

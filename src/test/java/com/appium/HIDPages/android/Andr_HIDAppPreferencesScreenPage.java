@@ -29,10 +29,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     private MobileElement txtNFC;
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc='Right arrow'])[3]", priority = 0)
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Permission']", priority = 1)
-//    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location Permission']", priority = 2)
-//    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']", priority = 3)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Permission']")
     private MobileElement txtNearByPermission;
 
     @AndroidFindBy(xpath="((//android.widget.ImageView[@content-desc='Right arrow'])[3]")

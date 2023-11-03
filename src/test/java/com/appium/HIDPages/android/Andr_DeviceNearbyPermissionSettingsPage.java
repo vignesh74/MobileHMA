@@ -350,7 +350,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                 }
                 case "12","13" -> {
-                    appPrefencesScreenPage.clickOnLocationPermission();
+                    appPrefencesScreenPage.clickOnNearByPermission();
                     clickOnPermissionTab();
                     clickOnNearByDevices();
                         if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
