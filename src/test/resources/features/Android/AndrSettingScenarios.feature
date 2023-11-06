@@ -10,7 +10,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
 #    And   Tap on the Mobile ID to check back of the card details
 #    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
-  @ANDR_Settings_12_WF1 @ANDR_Settings_12_WF @ANDR_SmokeRun12
+  @ANDR_Settings_12_WF1 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline:ANDR_12_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>
     When Navigate to Settings and App Preferences screen in android device
     Then Bluetooth status is displayed as "<BLE_Status>" in android device
@@ -27,7 +27,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-07 | Off        | Off        | Allow             |
       | _TC-08 | Off        | On         | Don't allow       |
 
-  @ANDR_Settings_12_WF2 @ANDR_Settings_12_WF  @ANDR_SmokeRun10  @ANDR_SmokeRun @ANDR_SmokeRun12
+  @ANDR_Settings_12_WF2 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline:ANDR_12_Settings_WF2<TC_ID>: Verify Usage State status is <Usage_State>
     When Navigate to Settings and App Preferences screen in android device
     Then Usage State status is displayed as "<Usage_State>" in android device
@@ -37,7 +37,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-10 | Foreground  |
       | _TC-11 | Unlocked    |
 
-  @ANDR_Settings_12_WF3 @ANDR_Settings_12_WF  @ANDR_SmokeRun10  @ANDR_SmokeRun @ANDR_SmokeRun12
+  @ANDR_Settings_12_WF3 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline:ANDR_12_Settings_WF3<TC_ID>: Verify toggle button Enable/Disable for PlaySound, Vibrate and TwistAndGo
     When Navigate to Settings and App Preferences screen in android device
     Then Play Sound status is displayed as "<Play_Sound_State>" in android device
@@ -47,7 +47,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | TC_ID  | Play_Sound_State | Vibrate_State  | Twist_And_Go   |
       | _TC-12 | Disable/Enable   | Disable/Enable | Disable/Enable |
 
-  @ANDR_Settings_12_WF4 @ANDR_Settings_12_WF  @ANDR_SmokeRun10  @ANDR_SmokeRun @ANDR_SmokeRun12
+  @ANDR_Settings_12_WF4 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline: ANDR_12_Settings_WF4<TC_ID>: Verify the page of ReportIssue, Legal, About, and Toggle button of DebugLogs and ShowActivity as Enable/Disable
     When Navigate to settings page in android device
     Then Report issue by entering text "Application is not working" in android device
@@ -69,7 +69,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And  "Location" Permission status is displayed as "<Location_Permission>" in android device
     And   Set "Location" permission status as "<NearByOrLocation_permission>" in android device
 
-    @ANDR_Settings_11_WF1 @ANDR_Settings_11_WF @ANDR_SmokeRun10  @ANDR_SmokeRun
+    @ANDR_Settings_11_WF1 @ANDR_Settings_11_WF
     Examples:
       | TC_ID  | BLE_Status | NFC_Status | Location_Status | Location_Permission            |
       | _TC-01 | On         | On         | On              | Allow all the time             |
@@ -98,7 +98,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     When Navigate to Settings and App Preferences screen in android device
     Then Usage State status is displayed as "<Usage_State>" in android device
 
-    @ANDR_Settings_11_WF2 @ANDR_Settings_11_WF @ANDR_Settings_10_WF2 @ANDR_Settings_10_WF @ANDR_SmokeRun10 @ANDR_SmokeRun @ANDR_SmokeRun12
+    @ANDR_Settings_11_WF2 @ANDR_Settings_11_WF @ANDR_Settings_10_WF2 @ANDR_Settings_10_WF
     Examples:
       | TC_ID  | Usage_State |
       | _TC-09 | Always      |
@@ -112,7 +112,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And  Vibrate status is displayed as "<Vibrate_State>" in android device
     And  Twist and Go status is displayed as "<Twist_And_Go>" in android device
 
-    @ANDR_Settings_11_WF3 @ANDR_Settings_11_WF @ANDR_Settings_10_WF3 @ANDR_Settings_10_WF @ANDR_SmokeRun10 @ANDR_SmokeRun
+    @ANDR_Settings_11_WF3 @ANDR_Settings_11_WF @ANDR_Settings_10_WF3 @ANDR_Settings_10_WF @ANDR_SmokeRun10
     Examples:
       | TC_ID  | Play_Sound_State | Vibrate_State  | Twist_And_Go   |
       | _TC-12 | Disable/Enable   | Disable/Enable | Disable/Enable |
@@ -126,7 +126,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And  Show Activity State status is displayed as "<Show_Activity_State>" in android device
     And  Debug Logs status is displayed as "<Debug_Logs>" in android device
 
-    @ANDR_Settings_11_WF4 @ANDR_Settings_11_WF @ANDR_Settings_10_WF2 @ANDR_Settings_10_WF @ANDR_SmokeRun10 @ANDR_SmokeRun @ANDR_SmokeRun12
+    @ANDR_Settings_11_WF4 @ANDR_Settings_11_WF @ANDR_Settings_10_WF2 @ANDR_Settings_10_WF
     Examples:
       | TC_ID  | Show_Activity_State | Debug_Logs     |
       | _TC-13 | Enable/Disable      | Enable/Disable |
