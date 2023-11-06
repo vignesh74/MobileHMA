@@ -278,10 +278,11 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
     public void setNearByOrLocationPerm(String strLocationOrNearBy, String strLocOrNearByPerm) {
         try {
             String strDevicePlatformVersion = DriverManager.getPlatformVersion();
-            String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
+
 
             switch (strDevicePlatformVersion) {
                 case "9" -> {
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnLocationPermission();
                         waitForGivenTime(1);
@@ -305,6 +306,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                 }
                 case "7", "8" -> {
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
 
                         appPrefencesScreenPage.clickOnLocationPermission();
@@ -323,6 +325,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                 }
 
                 case "10", "11" -> {
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnLocationPermission();
                         clickOnPermissionTab();
@@ -349,7 +352,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                 }
                 case "12","13" -> {
-                    System.out.println("Entered 12");
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtNearByPermissionStatusValue());
                     appPrefencesScreenPage.clickOnNearByPermission();
                     clickOnPermissionTab();
                     clickOnNearByDevices();
