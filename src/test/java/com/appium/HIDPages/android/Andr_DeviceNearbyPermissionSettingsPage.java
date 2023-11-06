@@ -26,8 +26,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']")
     private MobileElement txtLocation;
-    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(xpath = "//*[@text='Nearby devices']", priority = 0)
+    @AndroidFindBy(xpath = "//*[@text='Nearby devices']")
     private MobileElement txtNearByDevices;
     @AndroidFindBy(id = "com.android.permissioncontroller:id/allow_radio_button")
     private MobileElement rdoAllow;
@@ -350,6 +349,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                 }
                 case "12","13" -> {
+                    System.out.println("Entered 12");
                     appPrefencesScreenPage.clickOnNearByPermission();
                     clickOnPermissionTab();
                     clickOnNearByDevices();
