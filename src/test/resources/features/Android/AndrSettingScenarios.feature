@@ -112,7 +112,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And  Vibrate status is displayed as "<Vibrate_State>" in android device
     And  Twist and Go status is displayed as "<Twist_And_Go>" in android device
 
-    @ANDR_Settings_11_WF3 @ANDR_Settings_11_WF @ANDR_Settings_10_WF3 @ANDR_Settings_10_WF @ANDR_SmokeRun10
+    @ANDR_Settings_11_WF3 @ANDR_Settings_11_WF @ANDR_Settings_10_WF3 @ANDR_Settings_10_WF
     Examples:
       | TC_ID  | Play_Sound_State | Vibrate_State  | Twist_And_Go   |
       | _TC-12 | Disable/Enable   | Disable/Enable | Disable/Enable |
