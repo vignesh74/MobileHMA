@@ -442,9 +442,13 @@ public class AndroidDeviceAction {
         String s = null;
         StringBuilder info = new StringBuilder();
         try {
+            System.out.println("<><<><><<<><<><><<<<<");
             Runtime rt = Runtime.getRuntime();
+            System.out.println("<><<><><<<><<><><<<<<2");
             Process p = rt.exec(" adb -s " + udid + " shell input keyevent 26");
+            System.out.println("<><<><><<<><<><><<<<<3");
             InputStream is = p.getInputStream();
+            System.out.println("<><<><><<<><<><><<<<<4");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             TestUtils.log().info("*************** Device locked by entring pin ************");
             s = (reader.readLine());
