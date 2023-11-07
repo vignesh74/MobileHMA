@@ -60,7 +60,6 @@ public class AndroidDriverManager implements IDriver {
             }
             capabilities.setCapability("noReset", true);
             capabilities.setCapability("skipDeviceInitialization", true);
-            capabilities.setCapability(AndroidMobileCapabilityType.ADB_EXEC_TIMEOUT,40000);
 //                    "skipServerInstallation": true,
 
             if (Boolean.TRUE.equals(installApp)) {
