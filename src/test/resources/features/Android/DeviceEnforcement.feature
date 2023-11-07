@@ -575,19 +575,6 @@ Feature:To Test Device Enforcement feature in HID mobile application
 
 
   Scenario Outline:ANDR_12_<Reader_Name><Gesture_TC_ID>: Verify Robotic Arm Action and logs when BLE is <BLE_status>, NFC is <NFC_status>, Nearby is <NearByOrLocation_permission>, Location is <location_status>, App State set is <app_state>, device state is <device_state> and display status is <display_status>
-#    When  Navigate to Settings and App Preferences screen in android device
-#    And   Set BLE status as "<BLE_status>" in android device
-#    And   Set NFC status as "<NFC_status>" in android device
-#    And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
-#    And   Select the usage state as "<usage_state>" in android device
-#    And   Set Twist and Go status as "<Twist_And_Go>" in android device
-#    And   Set Application status as "<app_state>" in android device
-#    And   Set display screen as "<display_status>" in android device
-#    And   Verify "<usage_state>" always is disabled and other modes are enabled
-#    And   Set device state as "<device_state>" in android device
-#    And   Perform robotic arm action as "<action_name>" for android device
-##    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
-#    And   Activity log is displayed in android device and "<date>", "<mobile_read>", "<message>", "<arm_action_name>" and "<reader_name>" are verified android device
     When  Navigate to Settings and App Preferences screen in android device
     And   Set BLE status as "<BLE_status>" in android device
     And   Set NFC status as "<NFC_status>" in android device
@@ -605,14 +592,14 @@ Feature:To Test Device Enforcement feature in HID mobile application
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                                                                     | robotic_arm_log | Twist_And_Go | mobile_read        | arm_action_name | reader_name |
       | RevE        | _Tap_WF1_TC-01 | Foreground  | On         | Off        | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:ENABLE      | Disable      | Mobile ID Mismatch | Tap             | Seos        |
-      | RevE        | _Tap_WF1_TC-02 | Foreground  | On         | Off        | Allow                       | On              | Unlocked     | Off            | Background | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:ENABLE      | Disable      | Mobile ID Mismatch | Tap             | Seos        |
-      | RevE        | _Tap_WF1_TC-03 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Background | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
-      | RevE        | _Tap_WF1_TC-04 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Background | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
-      | RevE        | _Tap_WF1_TC-05 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
-      | RevE        | _Tap_WF1_TC-06 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
-      | RevE        | _Tap_WF1_TC-07 | Foreground  | On         | Off        | Allow                       | On              | Unlocked     | On             | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
-      | RevE        | _Tap_WF1_TC-08 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
-      | RevE        | _Tap_WF1_TC-09 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
+#      | RevE        | _Tap_WF1_TC-02 | Foreground  | On         | Off        | Allow                       | On              | Unlocked     | Off            | Background | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:ENABLE      | Disable      | Mobile ID Mismatch | Tap             | Seos        |
+#      | RevE        | _Tap_WF1_TC-03 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Background | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
+#      | RevE        | _Tap_WF1_TC-04 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Background | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
+#      | RevE        | _Tap_WF1_TC-05 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
+#      | RevE        | _Tap_WF1_TC-06 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
+#      | RevE        | _Tap_WF1_TC-07 | Foreground  | On         | Off        | Allow                       | On              | Unlocked     | On             | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
+#      | RevE        | _Tap_WF1_TC-08 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
+#      | RevE        | _Tap_WF1_TC-09 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
 
     @Android12_DE_Tap_WF2 @Android12_DE
     Examples:
