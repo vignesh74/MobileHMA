@@ -6,9 +6,12 @@ import com.appium.constants.FrameworkConstants;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
+import com.appium.manager.IDriver;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.connection.ConnectionState;
 import io.appium.java_client.android.connection.ConnectionStateBuilder;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -18,6 +21,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en_scouse.An;
 import jssc.SerialPortException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
 
@@ -25,6 +29,7 @@ import java.io.IOException;
 
 import static com.appium.constants.MessageConstants.EULA;
 import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
+import static com.appium.manager.DriverManager.driver;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 
 
@@ -260,7 +265,9 @@ public class AndrStepDef extends BasePage {
     @When("Set device state as {string} in android device")
     public void setDeviceState_Andr(String strDeviceState) {
         strUDID = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
-        androidDeviceAction.setDeviceState(strDeviceState, strUDID);
+//        androidDeviceAction.setDeviceState(strDeviceState, strUDID);
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+        androidDeviceAction.lockDevice(driver);
         waitForGivenTime(3);
     }
 

@@ -11,6 +11,10 @@ import com.appium.base.BasePage;
 import com.appium.manager.DriverManager;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.appmanagement.ApplicationState;
 
 import java.io.BufferedReader;
@@ -442,14 +446,9 @@ public class AndroidDeviceAction {
         String s = null;
         StringBuilder info = new StringBuilder();
         try {
-            System.out.println("<><<><><<<><<><><<<<<");
             Runtime rt = Runtime.getRuntime();
-            System.out.println("<><<><><<<><<><><<<<<2");
-//            Process p = rt.exec(" adb -s " + udid + "shell input keyevent 26");
-            Process p = rt.exec(ADB_COMMAND + udid + "shell input keyevent 26");
-            System.out.println("<><<><><<<><<><><<<<<3");
+            Process p = rt.exec(" adb -s " + udid + "shell input keyevent 26");
             InputStream is = p.getInputStream();
-            System.out.println("<><<><><<<><<><><<<<<4");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             TestUtils.log().info("*************** Device locked by entering pin ************");
             s = (reader.readLine());
@@ -692,6 +691,10 @@ public class AndroidDeviceAction {
             TestUtils.log().debug("Getting exception while app is running in Background ....");
         }
         return info.toString();
+    }
+
+    public static void lockDevice(AndroidDriver<MobileElement> driver){
+        driver.pressKey(new KeyEvent(AndroidKey.POWER));
     }
 
 }
