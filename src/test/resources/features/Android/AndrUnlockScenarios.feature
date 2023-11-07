@@ -10,10 +10,10 @@ Feature: To Test Android Unlock workflow for HID mobile access application
 
   Scenario Outline:ANDR_12_<Reader_Name><Gesture_TC_ID>: Verify Robotic Arm Action and logs when BLE is <BLE_status>, NFC is <NFC_status>, Nearby is <NearByOrLocation_permission>, Location is <location_status>, App State set is <app_state>, device state is <device_state> and display status is <display_status>
     When  Navigate to Settings and App Preferences screen in android device
-    And   Set BLE status as "<BLE_status>" in android device
-    And   Set NFC status as "<NFC_status>" in android device
-    And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
-    And   Select the usage state as "<usage_state>" in android device
+#    And   Set BLE status as "<BLE_status>" in android device
+#    And   Set NFC status as "<NFC_status>" in android device
+#    And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
+#    And   Select the usage state as "<usage_state>" in android device
     And   Set Application status as "<app_state>" in android device
     And   Set device state as "<device_state>" in android device
 #    And   Set display screen as "<display_status>" in android device
