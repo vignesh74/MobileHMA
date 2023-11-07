@@ -261,6 +261,7 @@ public class AndrStepDef extends BasePage {
     public void setDeviceState_Andr(String strDeviceState) {
         strUDID = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
         androidDeviceAction.setDeviceState(strDeviceState, strUDID);
+        waitForGivenTime(3);
     }
 
     @When("Set display screen as {string} in android device")
