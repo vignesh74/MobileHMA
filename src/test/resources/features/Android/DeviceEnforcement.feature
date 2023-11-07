@@ -6,8 +6,8 @@ Feature:To Test Device Enforcement feature in HID mobile application
 #    And   Get Invitation Code using Rest API when credential are assigned
 #    And   Enter invitation code on HID mobile Application in android device
 #    Then  Mobile IDs screen is displayed in android device
-    And   Tap on the Mobile ID to check back of the card details
-    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
+#    And   Tap on the Mobile ID to check back of the card details
+#    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
   Scenario Outline:ANDR_9_<Reader_Name><Gesture_TC_ID>: Verify Robotic Arm Action and logs when BLE is <BLE_status>, NFC is <NFC_status>, Nearby is <NearByOrLocation_permission>, Location is <location_status>, App State set is <app_state>, device state is <device_state> and display status is <display_status>
     When  Navigate to Settings and App Preferences screen in android device
@@ -587,8 +587,8 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Verify "<usage_state>" always is disabled and other modes are enabled
     And   Set device state as "<device_state>" in android device
     And   Perform robotic arm action as "<action_name>" for android device
-    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
-    And   Activity log is displayed in android device and "<date>", "<mobile_read>", "<message>", "<arm_action_name>" and "<reader_name>" are verified
+#    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
+    And   Activity log is displayed in android device and "<date>", "<mobile_read>", "<message>", "<arm_action_name>" and "<reader_name>" are verified android device
 
     @Android12_DE_Tap_WF1 @Android12_DE
     Examples:

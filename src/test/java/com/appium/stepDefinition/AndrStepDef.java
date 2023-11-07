@@ -309,7 +309,7 @@ public class AndrStepDef extends BasePage {
 
 
 
-    @Then("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string} are verified in android device")
+    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string} and {string} are verified android device")
     public void activityLogIsDisplayed_Andr(String strDate, String strMobileRead, String strMessage, String strArmActionName, String strReaderName) {
         if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
             appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
