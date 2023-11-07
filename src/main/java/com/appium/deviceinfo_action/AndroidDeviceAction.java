@@ -445,12 +445,13 @@ public class AndroidDeviceAction {
             System.out.println("<><<><><<<><<><><<<<<");
             Runtime rt = Runtime.getRuntime();
             System.out.println("<><<><><<<><<><><<<<<2");
-            Process p = rt.exec(" adb -s " + udid + " shell input keyevent 26");
+//            Process p = rt.exec(" adb -s " + udid + "shell input keyevent 26");
+            Process p = rt.exec(ADB_COMMAND + udid + "shell input keyevent 26");
             System.out.println("<><<><><<<><<><><<<<<3");
             InputStream is = p.getInputStream();
             System.out.println("<><<><><<<><<><><<<<<4");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            TestUtils.log().info("*************** Device locked by entring pin ************");
+            TestUtils.log().info("*************** Device locked by entering pin ************");
             s = (reader.readLine());
 
             do {
