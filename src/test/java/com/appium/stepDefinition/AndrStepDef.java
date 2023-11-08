@@ -266,9 +266,14 @@ public class AndrStepDef extends BasePage {
     public void setDeviceState_Andr(String strDeviceState) {
         strUDID = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
 //        androidDeviceAction.setDeviceState(strDeviceState, strUDID);
-        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-        androidDeviceAction.lockDevice(driver);
-        waitForGivenTime(3);
+        if(strDeviceState.equalsIgnoreCase("Locked")){
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+            androidDeviceAction.lockDevice(driver);
+            waitForGivenTime(2);
+        }else{
+            TestUtils.log().info("Device in unlocked state...");
+        }
+
     }
 
     @When("Set display screen as {string} in android device")
