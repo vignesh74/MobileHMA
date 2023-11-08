@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@Android12_DE")
+        , tags = "@ANDR_Settings_9_8_7_WF4")
 
 public class Andr12_RevE_Tap_Runner extends BaseTest {
 
