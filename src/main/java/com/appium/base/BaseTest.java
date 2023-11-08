@@ -202,13 +202,10 @@ public class BaseTest extends AbstractTestNGCucumberTests {
             if ((DriverManager.getPlatform().equalsIgnoreCase(PLATFORM_ANDROID))) {
                 String strUdId = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
                 if (basePage.toKnowDeviceLockedState()) {
-//                    androidDeviceAction.toUnlockDevice(strUdId);
-                    AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-                    androidDeviceAction.lockUnlockDevice(driver);
+                    androidDeviceAction.toUnlockDevice(strUdId);
                     basePage.waitForGivenTime(2);
                     if (basePage.toKnowDeviceLockedState()) {
-//                        androidDeviceAction.toUnlockDevice(strUdId);
-                        androidDeviceAction.lockUnlockDevice(driver);
+                        androidDeviceAction.toUnlockDevice(strUdId);
                         basePage.waitForGivenTime(2);
                         TestUtils.log().info("Device is unlocked and ready for execution");
                     }
