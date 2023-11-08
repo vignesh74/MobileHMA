@@ -583,10 +583,10 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Set Application status as "<app_state>" in android device
     And   Set device state as "<device_state>" in android device
     And   Perform robotic arm action as "<action_name>" for android device
-    And   Set device state as "ForcedUnlock" in android device
+    And   Set device state as "Unlocked" in android device
     And   Set Application status as "Foreground" in android device
     Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
-    And   Activity log is displayed in android device and "<date>", "<message>" are verified
+    Then Verify the log message "<mobile_read>" and "<message>" in Activity log screen in android device
     @Android12_DE_Tap_WF1 @Android12_DE
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                                                                     | robotic_arm_log | Twist_And_Go | mobile_read        | arm_action_name | reader_name |
