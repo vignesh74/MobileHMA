@@ -271,7 +271,7 @@ public class AndrStepDef extends BasePage {
             androidDeviceAction.lockDevice(driver);
             waitForGivenTime(2);
         }else{
-            TestUtils.log().info("Device in unlocked state...");
+            TestUtils.log().info("Device in unlocked state....");
         }
 
     }
