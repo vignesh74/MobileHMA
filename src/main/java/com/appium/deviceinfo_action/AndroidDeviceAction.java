@@ -693,7 +693,7 @@ public class AndroidDeviceAction {
         return info.toString();
     }
 
-    public static void lockDevice(AndroidDriver<MobileElement> driver){
+    public static void lockUnlockDevice(AndroidDriver<MobileElement> driver){
         driver.pressKey(new KeyEvent(AndroidKey.POWER));
     }
 
