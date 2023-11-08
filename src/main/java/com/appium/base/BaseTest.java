@@ -15,7 +15,6 @@ import com.appium.utils.TestUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
@@ -194,35 +193,35 @@ public class BaseTest extends AbstractTestNGCucumberTests {
     /**
      * verifyDeviceStateAndUnlockDevice- This method is used to check device state and unlock the device for at starting of the execution Date-14/02/2023
      */
-    @BeforeMethod
-    public void verifyDeviceStateAndUnlockDevice() {
-        try {
-            BasePage basePage = new BasePage();
-            AndroidDeviceAction androidDeviceAction = new AndroidDeviceAction();
-            if ((DriverManager.getPlatform().equalsIgnoreCase(PLATFORM_ANDROID))) {
-                String strUdId = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
-                if (basePage.toKnowDeviceLockedState()) {
-                    androidDeviceAction.toUnlockDevice(strUdId);
-                    basePage.waitForGivenTime(2);
-                    if (basePage.toKnowDeviceLockedState()) {
-                        androidDeviceAction.toUnlockDevice(strUdId);
-                        basePage.waitForGivenTime(2);
-                        TestUtils.log().info("Device is unlocked and ready for execution");
-                    }
-                } else {
-                    TestUtils.log().info("Device is already in unlocked state");
-                }
-            } else if ((DriverManager.getPlatform().equalsIgnoreCase(PLATFORM_IOS))) {
-                if (basePage.toKnowDeviceLockedState()) {
-                    basePage.toUnlock();
-                    TestUtils.log().info("Device is unlocked and ready for execution");
-                } else {
-                    TestUtils.log().info("Device is already in unlocked state");
-                }
-            }
-        } catch (Exception e) {
-            TestUtils.log().debug("Exception occurred while verifying the device state...{}", e.getMessage());
-        }
-    }
+//    @BeforeMethod
+//    public void verifyDeviceStateAndUnlockDevice() {
+//        try {
+//            BasePage basePage = new BasePage();
+//            AndroidDeviceAction androidDeviceAction = new AndroidDeviceAction();
+//            if ((DriverManager.getPlatform().equalsIgnoreCase(PLATFORM_ANDROID))) {
+//                String strUdId = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
+//                if (basePage.toKnowDeviceLockedState()) {
+//                    androidDeviceAction.toUnlockDevice(strUdId);
+//                    basePage.waitForGivenTime(2);
+//                    if (basePage.toKnowDeviceLockedState()) {
+//                        androidDeviceAction.toUnlockDevice(strUdId);
+//                        basePage.waitForGivenTime(2);
+//                        TestUtils.log().info("Device is unlocked and ready for execution");
+//                    }
+//                } else {
+//                    TestUtils.log().info("Device is already in unlocked state");
+//                }
+//            } else if ((DriverManager.getPlatform().equalsIgnoreCase(PLATFORM_IOS))) {
+//                if (basePage.toKnowDeviceLockedState()) {
+//                    basePage.toUnlock();
+//                    TestUtils.log().info("Device is unlocked and ready for execution");
+//                } else {
+//                    TestUtils.log().info("Device is already in unlocked state");
+//                }
+//            }
+//        } catch (Exception e) {
+//            TestUtils.log().debug("Exception occurred while verifying the device state...{}", e.getMessage());
+//        }
+//    }
 
 }
