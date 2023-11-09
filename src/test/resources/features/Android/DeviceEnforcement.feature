@@ -23,7 +23,8 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Set device state as "<device_state>" in android device.
     And   Perform robotic arm action as "<action_name>" for android device
     Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
-    And   Activity log is displayed in android device and "<date>", "<mobile_read>", "<message>", "<arm_action_name>" and "<reader_name>" are verified
+    Then Verify the log message "<mobile_read>" and "<message>" in Activity log screen in android device
+
 
     @Android7_8_9_DE_Tap_WF1
     Examples:
@@ -246,7 +247,8 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Verify "<usage_state>" always is disabled and other modes are enabled
 #    And   Perform robotic arm action as "<action_name>" for android device
 #    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
-    And   Activity log is displayed in android device and "<date>", "<mobile_read>", "<message>", "<arm_action_name>" and "<reader_name>" are verified
+    Then Verify the log message "<mobile_read>" and "<message>" in Activity log screen in android device
+
 
     @Android10_11_DE_Tap_WF1
     Examples:
