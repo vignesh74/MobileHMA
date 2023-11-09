@@ -262,19 +262,19 @@ public class AndrStepDef extends BasePage {
         deviceLocationSettingsPage.setLocationStatus(strLocationStatus, strUDID);
     }
 
-  /*  @When("Set device state as {string} in android device")
+   @When("Set device state as {string} in android device")
     public void setDeviceState_Andr(String strDeviceState) {
         strUDID = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
         androidDeviceAction.setDeviceState(strDeviceState, strUDID);
-//        if(strDeviceState.equalsIgnoreCase("Locked")){
-//            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-//            androidDeviceAction.lockUnlockDevice(driver);
-//            waitForGivenTime(2);
-//        }else{
-//            TestUtils.log().info("Device in unlocked state....");
-//        }
+        if(strDeviceState.equalsIgnoreCase("Locked")){
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+            androidDeviceAction.lockUnlockDevice(driver);
+            waitForGivenTime(2);
+        }else{
+            TestUtils.log().info("Device in unlocked state....");
+        }
 
-    }*/
+    }
 
     @When("Set display screen as {string} in android device")
     public void setDisplayScreen_Andr(String strDisplayStatus) {
