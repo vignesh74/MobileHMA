@@ -589,7 +589,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Set Application status as "Foreground" in android device
     Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
     Then Verify the log message "<mobile_read>" and "<message>" in Activity log screen in android device
-    @Android12_DE_Tap_WF1 @Android12_DE
+    @Android12_DE_Tap_WF1 @Android12_DE_Tap
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                                                                     | robotic_arm_log | Twist_And_Go | mobile_read        | arm_action_name | reader_name |
       | RevE        | _Tap_WF1_TC-01 | Foreground  | On         | Off        | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
@@ -602,7 +602,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
       | RevE        | _Tap_WF1_TC-08 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
       | RevE        | _Tap_WF1_TC-09 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
 
-    @Android12_DE_Tap_WF2 @Android12_DE
+    @Android12_DE_Tap_WF2 @Android12_DE_Tap
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                                                                     | robotic_arm_log | Twist_And_Go | mobile_read        | arm_action_name | reader_name |
       | RevE        | _Tap_WF2_TC-10 | Unlocked    | On         | Off        | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
@@ -615,7 +615,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
       | RevE        | _Tap_WF2_TC-17 | Unlocked    | On         | Off        | Allow                       | On              | Locked       | Off            | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
       | RevE        | _Tap_WF2_TC-18 | Unlocked    | On         | Off        | Allow                       | On              | Locked       | On             | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
 
-    @Android12_DE_Tap_WF3 @Android12_DE
+    @Android12_DE_Tap_WF3 @Android12_DE_Tap
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                                                                     | robotic_arm_log | Twist_And_Go | mobile_read        | arm_action_name | reader_name |
       | RevE        | _Tap_WF3_TC-19 | Unlocked    | Off        | Off        | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
@@ -628,7 +628,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
       | RevE        | _Tap_WF3_TC-26 | Unlocked    | Off        | Off        | Don't allow                 | On              | Locked       | Off            | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
       | RevE        | _Tap_WF3_TC-27 | Unlocked    | Off        | Off        | Don't allow                 | On              | Locked       | On             | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
 
-    @Android12_DE_Tap_WF4 @Android12_DE
+    @Android12_DE_Tap_WF4 @Android12_DE_Tap
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                                                                     | robotic_arm_log | Twist_And_Go | mobile_read        | arm_action_name | reader_name |
       | RevE        | _Tap_WF4_TC-28 | Unlocked    | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
@@ -641,7 +641,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
       | RevE        | _Tap_WF4_TC-35 | Unlocked    | On         | Off        | Don't allow                 | On              | Locked       | Off            | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
       | RevE        | _Tap_WF4_TC-36 | Unlocked    | On         | Off        | Don't allow                 | On              | Locked       | On             | Killed     | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
 
-    @Android12_DE_Tap_WF5 @Android12_DE
+    @Android12_DE_Tap_WF5 @Android12_DE_Tap
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                                                                     | robotic_arm_log | Twist_And_Go | mobile_read        | arm_action_name | reader_name |
       | RevE        | _Tap_WF5_TC-37 | Unlocked    | Off        | Off        | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
