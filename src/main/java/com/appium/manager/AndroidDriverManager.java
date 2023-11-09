@@ -60,7 +60,7 @@ public class AndroidDriverManager implements IDriver {
             }
             capabilities.setCapability("noReset", true);
             capabilities.setCapability("skipDeviceInitialization", true);
-            capabilities.setCapability("maxInstances", 1);
+            capabilities.setCapability("appium:maxInstances", 1);
 //                    "skipServerInstallation": true,
 
             if (Boolean.TRUE.equals(installApp)) {
