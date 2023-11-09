@@ -265,14 +265,14 @@ public class AndrStepDef extends BasePage {
     @When("Set device state as {string} in android device")
     public void setDeviceState_Andr(String strDeviceState) {
         strUDID = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
-//        androidDeviceAction.setDeviceState(strDeviceState, strUDID);
-        if(strDeviceState.equalsIgnoreCase("Locked")){
-            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-            androidDeviceAction.lockUnlockDevice(driver);
-            waitForGivenTime(2);
-        }else{
-            TestUtils.log().info("Device in unlocked state....");
-        }
+        androidDeviceAction.setDeviceState(strDeviceState, strUDID);
+//        if(strDeviceState.equalsIgnoreCase("Locked")){
+//            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+//            androidDeviceAction.lockUnlockDevice(driver);
+//            waitForGivenTime(2);
+//        }else{
+//            TestUtils.log().info("Device in unlocked state....");
+//        }
 
     }
 
