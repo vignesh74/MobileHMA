@@ -771,7 +771,6 @@ public class AndrStepDef extends BasePage {
             AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
             androidDeviceAction.lockUnlockDevice(driver);
             waitForGivenTime(1);
-            driver.quit();
         }else{
             TestUtils.log().info("Device in unlocked state....");
         }
