@@ -20,7 +20,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Set Application status as "<app_state>" in android device
 #    And   Set display screen as "<display_status>" in android device
     And   Verify "<usage_state>" always is disabled and other modes are enabled
-    And   Set device state as "<device_state>" in android device
+    And   Set device state as "<device_state>" in android device.
     And   Perform robotic arm action as "<action_name>" for android device
     Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
     And   Activity log is displayed in android device and "<date>", "<mobile_read>", "<message>", "<arm_action_name>" and "<reader_name>" are verified
@@ -241,7 +241,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Set location as "<location_status>" in android device
     And   Select the usage state as "<usage_state>" in android device
     And   Set Application status as "<app_state>" in android device
-    And   Set device state as "<device_state>" in android device
+    And   Set device state as "<device_state>" in android device.
     And   Set display screen as "<display_status>" in android device
     And   Verify "<usage_state>" always is disabled and other modes are enabled
 #    And   Perform robotic arm action as "<action_name>" for android device
@@ -581,7 +581,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
     And   Select the usage state as "<usage_state>" in android device
     And   Set Application status as "<app_state>" in android device
-    And   Set device state as "<device_state>" in android device
+    And   Set device state as "<device_state>" in android device.
     And   Perform robotic arm action as "<action_name>" for android device
     And   Set device state as "Unlocked" in android device
     And   Set Application status as "Foreground" in android device
