@@ -263,12 +263,12 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     Then Verify the FAQ Menu is displayed in android device
     And FAQ screen is displayed in android device
     And Enter "<input>" type on the search box
-#    And Verify the "<input>" present on the screen in android device
+    And Verify the "<input>" present on the screen in android device
 
     Examples:
-      | TC_ID  | input   |
-      | _TC-01 | battery |
-#      | _TC-02 | hsdfgdhfg |
+      | TC_ID  | input        |
+      | _TC-01 | bluetooth    |
+      | _TC-02 | invalidjhdvf |
 
 
 

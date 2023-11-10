@@ -716,7 +716,7 @@ public class AndrStepDef extends BasePage {
     @And("Enter {string} type on the search box")
     public void checkSearch(String text) {
         FAQScreen.changeDriverContextToWeb();
-//        FAQScreen.checkSearch(text);
+        FAQScreen.checkSearch(text);
     }
 
     @And("Verify the rating popup UI in android device")
@@ -756,7 +756,7 @@ public class AndrStepDef extends BasePage {
 
     @And("Verify the {string} present on the screen in android device")
     public void searchText(String text) {
-//        @AndroidFindBy(xpath="");
+        FAQScreen.searchText(text);
     }
 
     @Then("Verify the log message {string} and {string} in Activity log screen in android device")

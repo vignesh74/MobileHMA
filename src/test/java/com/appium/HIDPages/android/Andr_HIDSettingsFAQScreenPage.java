@@ -85,8 +85,9 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
         try {
             waitForVisibility(txtAboutHIDMobileAccess);
             Assert.assertTrue(isElementVisible(txtAboutHIDMobileAccess));
+            TestUtils.log().info("FAQ screen is displayed...");
         } catch (Exception e) {
-            TestUtils.log().debug("Exception occurred while displaying FAQ Screen...");
+            TestUtils.log().info("Exception occurred while displaying FAQ Screen...");
         }
     }
 
@@ -117,21 +118,24 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
 
     public void checkSearch(String text) {
         try {
-//            searchBox.clear();
-//            searchBox.sendKeys(text);
-//            WebDriver driver = DriverManager.getDriver();
             AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-//            driver.findElement(By.id("searchQueryInput"));
-
-        WebElement searchBox = driver.findElementByAndroidUIAutomator("new By.ById('searchQueryInput')");
-            if(driver.getPageSource().contains(text)){
-                System.out.println("true");
-            }else{
-                System.out.println("false");
-            }
+            WebElement searchBox = driver.findElementByCssSelector("#searchQueryInput");
+            searchBox.sendKeys(text);
         } catch (Exception e) {
-            System.out.println("Vignesh" + e);
             TestUtils.log().debug("Exception occurred while entering text on search box in FAQ Screen...");
+        }
+    }
+
+    public void searchText(String text){
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+        if(driver.getPageSource().contains(text)){
+            Assert.assertTrue(true, "Text is present");
+            TestUtils.log().debug("Searched Text is displayed on the FAQ screen");
+        }else{
+            WebElement noResults = driver.findElementByCssSelector("#noResultsMessage");
+            noResults.isDisplayed();
+            Assert.assertFalse(false, "Text is not present");
+            TestUtils.log().debug("Searched Text is not displayed on the FAQ screen");
         }
     }
 
@@ -145,9 +149,6 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
             System.out.println(contextName);
         }
         driver.context("WEBVIEW_com.hidglobal.mobilekeys.android.v3");
-//        WebElement aa = ((FindsByAndroidUIAutomator)driver).findElementByAndroidUIAutomator("new UiSelector().textContains('Blue')");
-        WebElement ee = driver.findElement(By.id("searchQueryInput"));
-//        aa.sendKeys("asdasd");
 
     }
 

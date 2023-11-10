@@ -47,15 +47,15 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
       | _TC-1 | 3    | Testing from chennai |
 
   @ANDR_11_10_Activity_Log
-  Scenario Outline: iOS_Settings_WF19<TC_ID>: Verify the Activity log Error scenarios with error message in the Activity log <activityLog>
+  Scenario Outline: ANDR_11_10_Activity_Log<TC_ID>: Verify the Activity log Error scenarios with error message in the Activity log <activityLog>
     When Navigate to settings page in android device
     And  Show Activity State status is displayed as "<Show_Activity_State>" in android device
     Then  Verify the log message "<activityLog>" and "<logMessage>" in Activity log screen in android device
 
     Examples:
       | TC_ID  | activityLog            | logMessage                                                                            | Show_Activity_State |
-#      | _TC-48 | Mobile ID mismatch     | Mobile ID incompatible with this reader. Please contact your administrator.           | Enable              |
-      | _TC-49 | Mobile ID Read         | Communication timeout. Please try again.                                              | Enable              |
+      | _TC-48 | Mobile ID Mismatch     | Mobile ID incompatible with this reader. Please contact your administrator.           | Enable              |
+#      | _TC-49 | Mobile ID Read         | Communication timeout. Please try again.                                              | Enable              |
 #      | _TC-50 | Reader Range           | Please move closer to the reader to gain access                                       | Enable              |
 #      | _TC-51 | Anti-Passback Detected | This reader is anti-passback enabled. Please make sure your Mobile ID is not misused. | Enable              |
 
