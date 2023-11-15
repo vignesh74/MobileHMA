@@ -777,6 +777,18 @@ public class AndrStepDef extends BasePage {
 
     }
 
+    @And("{string} the app in android device")
+    public void possibleMethod(String method){
+        settingsScreen.possibleMethod(method);
+    }
+
+    @And("Verify new version available text in the notification screen in android device")
+    public void upgrade(){
+        notificationScreen.upgrade();
+    }
+
+
+
 
 }
 

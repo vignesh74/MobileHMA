@@ -2,14 +2,20 @@ package com.appium.HIDPages.android;
 
 import com.appium.base.BasePage;
 import com.appium.manager.DriverManager;
+import com.appium.utils.ConfigLoader;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.connection.ConnectionState;
 import io.appium.java_client.android.connection.ConnectionStateBuilder;
 import io.appium.java_client.clipboard.ClipboardContentType;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
+
+import java.net.URL;
 
 public class Andr_HIDSettingsScreenPage extends BasePage {
     Andr_HIDMobileIDScreenPage mobileIDScreenPage = new Andr_HIDMobileIDScreenPage();
@@ -41,13 +47,13 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Deregister This Device']")
     private MobileElement txtUnRegisterThisDevice;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertTitle")
     private MobileElement txtNoConnection;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertMessage")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertMessage")
     private MobileElement txtNoInternetConnection;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertBtn")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertBtn")
     private MobileElement txtNoConnectionOKbtn;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirm Deregister']")
@@ -62,106 +68,106 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/btnOk")
     private MobileElement btnOk;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertBtn")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertBtn")
     private MobileElement confirmAlertOkBtn;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Always']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Always']")
     private MobileElement txtAlways;
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtReason")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtReason")
     private MobileElement enforcedAlwaysTxt;
-    @AndroidFindBy(xpath="//android.view.ViewGroup[@resource-id='com.hidglobal.mobilekeys.android.v3:id/doorOpeningListItem'][1]")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.hidglobal.mobilekeys.android.v3:id/doorOpeningListItem'][1]")
     private MobileElement chkMode;
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Foreground']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Foreground']")
     private MobileElement txtForeground;
-    @AndroidFindBy(xpath="//android.view.ViewGroup[@resource-id='com.hidglobal.mobilekeys.android.v3:id/doorOpeningListItem'][2]")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.hidglobal.mobilekeys.android.v3:id/doorOpeningListItem'][2]")
     private MobileElement chkForeground;
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Unlocked']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Unlocked']")
     private MobileElement txtUnlocked;
-    @AndroidFindBy(xpath="//android.view.ViewGroup[@resource-id='com.hidglobal.mobilekeys.android.v3:id/doorOpeningListItem'][2]")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.hidglobal.mobilekeys.android.v3:id/doorOpeningListItem'][2]")
     private MobileElement chkUnlocked;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='HID Mobile Access Version']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='HID Mobile Access Version']")
     private MobileElement txtHIDMobileAccessVersion;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='HID Origo SDK Version']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='HID Origo SDK Version']")
     private MobileElement txtHIDOrigoSDKVersion;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Door Opening Mode']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Door Opening Mode']")
     private MobileElement txtDoorOpeningMode;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Readers found']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Readers found']")
     private MobileElement txtReadersFound;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Endpoint Status']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Endpoint Status']")
     private MobileElement txtEndPointStatus;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Seos ID']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Seos ID']")
     private MobileElement txtSeosID;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Seos ID']/following-sibling::android.widget.TextView")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Seos ID']/following-sibling::android.widget.TextView")
     private MobileElement txtSeosIDValue;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Last Server Communication']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Last Server Communication']")
     private MobileElement txtLastServerComm;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Endpoint App Version']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Endpoint App Version']")
     private MobileElement txtEndPointAppVersion;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Environment']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Environment']")
     private MobileElement txtEnvironment;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='OS version']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='OS version']")
     private MobileElement txtOSVersion;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='BLE info']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='BLE info']")
     private MobileElement txtBleInfo;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='NFC info']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='NFC info']")
     private MobileElement txtNfcInfo;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Location info']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location info']")
     private MobileElement txtLocationInfo;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Nearby Permission']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Permission']")
     private MobileElement txtNearByPermission;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Location Permission']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location Permission']")
     private MobileElement txtLocationPermission;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='APPLICATION INFO']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='APPLICATION INFO']")
     private MobileElement txtApplicationInfo;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='ENDPOINT INFO']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='ENDPOINT INFO']")
     private MobileElement txtEndPointInfo;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='DEVICE INFO']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='DEVICE INFO']")
     private MobileElement txtDeviceInfo;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgCopyClipIcon")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgCopyClipIcon")
     private MobileElement AboutCopyImage;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgCopyClipIcon")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgCopyClipIcon")
     private MobileElement imgCopyClipIcon;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgBackAbout")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgBackAbout")
     private MobileElement AboutBackIcon;
 
-    @AndroidFindBy(xpath="(//android.widget.Toast)[1]",priority = 0)
-    @AndroidFindBy(xpath="//*[@id=\"sourceContainer\"]/div/div/div/div[3]/div/div/div/div[24]/span[3]/span/span/b", priority = 1)
-    @AndroidFindBy(xpath="/hierarchy/android.widget.Toast[1]", priority = 2)
-    @AndroidFindBy(xpath="//android.widget.Toast[@text='Copied to clipboard']", priority = 3)
+    @AndroidFindBy(xpath = "(//android.widget.Toast)[1]", priority = 0)
+    @AndroidFindBy(xpath = "//*[@id=\"sourceContainer\"]/div/div/div/div[3]/div/div/div/div[24]/span[3]/span/span/b", priority = 1)
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.Toast[1]", priority = 2)
+    @AndroidFindBy(xpath = "//android.widget.Toast[@text='Copied to clipboard']", priority = 3)
     private MobileElement aboutCopyToastMsg;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='FAQ']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='FAQ']")
     private MobileElement txtFAQMenu;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtfaqtitle")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtfaqtitle")
     private MobileElement txtFAQTitle;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgBack")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgBack")
     private MobileElement imgFAQBack;
 
-    @AndroidFindBy(id="searchQueryInput")
+    @AndroidFindBy(id = "searchQueryInput")
     private MobileElement searchBox;
 
 
@@ -209,25 +215,24 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         return btnSubmit;
     }
 
-    public MobileElement getTxtNoConnection(){
+    public MobileElement getTxtNoConnection() {
         return txtNoConnection;
     }
 
-    public MobileElement getTxtNoInternetConnection(){
+    public MobileElement getTxtNoInternetConnection() {
         return txtNoInternetConnection;
     }
 
-    public MobileElement getTxtNoConnectionOKbtn(){
+    public MobileElement getTxtNoConnectionOKbtn() {
         return txtNoConnectionOKbtn;
     }
-
 
 
     public void clickOnAppPreferences() {
         try {
             click(txtAppPreference);
         } catch (Exception e) {
-            
+
             TestUtils.log().debug("Exception occurred while clicking on app preferences...");
         }
 
@@ -242,7 +247,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             click(txtReportIssue);
             Assert.assertTrue(txtReportIssueHeadline.isDisplayed());
         } catch (Exception e) {
-            
+
             TestUtils.log().debug("Exception occurred while checking report issue...");
         }
     }
@@ -256,7 +261,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue(btnSubmit.getAttribute("enabled").equals("true"));
             navigateBack();
         } catch (Exception e) {
-            
+
             TestUtils.log().debug("Exception occurred while sending text in report issue...");
         }
     }
@@ -270,7 +275,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             click(txtLegal);
             Assert.assertTrue(txtLegalHeadline.isDisplayed());
         } catch (Exception e) {
-            
+
             TestUtils.log().debug("Exception occurred while checking Legal Screen...");
         }
     }
@@ -286,12 +291,12 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             waitForGivenTime(2);
             Assert.assertTrue(txtAbout.isDisplayed());
         } catch (Exception e) {
-            
+
             TestUtils.log().debug("Exception occurred while checking About Screen...");
         }
     }
 
-   /**
+    /**
      * unRegisterThisDevice - This method is used to unregister mobile device
      * Date-25/01/2023
      */
@@ -309,8 +314,8 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
                     }
                 }
             }
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
             TestUtils.log().info("Getting Exception while performing device Deregister.");
         }
     }
@@ -319,11 +324,9 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
      * traverseToSettingsPage- This method is used to traverse to the setting page from app preferences or mobile id page
      * Date-22/02/2023
      */
-    public void traverseToSettingsPage()
-    {
+    public void traverseToSettingsPage() {
         try {
-            if (isDisplayed(appPrefencesScreenPage.getTxtAppPreferences()))
-            {
+            if (isDisplayed(appPrefencesScreenPage.getTxtAppPreferences())) {
                 loopHandle(mobileIDScreenPage.getSettingsTab(), "navigateBack", 3);
                 if (isElementVisible(mobileIDScreenPage.getSettingsTab())) {
                     TestUtils.log().info("Setting page is displayed");
@@ -332,8 +335,8 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
                 click(mobileIDScreenPage.getSettingsTab());
                 waitForGivenTime(2);
             }
-        }catch(Exception e){
-            
+        } catch (Exception e) {
+
             TestUtils.log().info("Getting Exception while coming to settings screen");
         }
     }
@@ -351,7 +354,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue((isElementVisible(txtUnRegisterThisDevice)));
 //            Assert.assertTrue(isElementVisible(txtFAQMenu));
         } catch (Exception e) {
-            
+
             TestUtils.log().info("Getting Exception while verifying to settings screen...");
         }
     }
@@ -363,7 +366,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         try {
             click(txtLegal);
         } catch (Exception e) {
-            
+
             TestUtils.log().info("Getting Exception while clicking on Legal Screen...");
         }
     }
@@ -375,7 +378,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         try {
             click(txtReportIssue);
         } catch (Exception e) {
-            
+
             TestUtils.log().info("Getting Exception while clicking on Report Issue Screen...");
         }
     }
@@ -387,7 +390,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         try {
             click(txtAbout);
         } catch (Exception e) {
-            
+
             TestUtils.log().info("Getting Exception while clicking on About Screen...");
         }
     }
@@ -401,29 +404,29 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }
     }
 
-    public void checkEnforcedSetting(String usage_state){
-        if(usage_state == "Always"){
+    public void checkEnforcedSetting(String usage_state) {
+        if (usage_state == "Always") {
             String alwaysText = txtAlways.getText();
-            Assert.assertEquals(alwaysText,usage_state);
+            Assert.assertEquals(alwaysText, usage_state);
             String enforcedAlways = enforcedAlwaysTxt.getText();
-            Assert.assertEquals(enforcedAlways,"Enforced by your organization.");
-            String alwaysAttribute  = chkMode.getAttribute("enabled");
-            Assert.assertEquals(alwaysAttribute,"false");
-        }else if(usage_state == "Foreground"){
+            Assert.assertEquals(enforcedAlways, "Enforced by your organization.");
+            String alwaysAttribute = chkMode.getAttribute("enabled");
+            Assert.assertEquals(alwaysAttribute, "false");
+        } else if (usage_state == "Foreground") {
             String foregroundText = txtForeground.getText();
-            Assert.assertEquals(foregroundText,usage_state);
+            Assert.assertEquals(foregroundText, usage_state);
             String foregroundAttribute = chkForeground.getAttribute("enabled");
-            Assert.assertEquals(foregroundAttribute,true);
-        }else if(usage_state == "Unlocked"){
+            Assert.assertEquals(foregroundAttribute, true);
+        } else if (usage_state == "Unlocked") {
             String unlockedText = txtUnlocked.getText();
-            Assert.assertEquals(unlockedText,usage_state);
+            Assert.assertEquals(unlockedText, usage_state);
             String unlockedAttribute = chkUnlocked.getAttribute("enabled");
-            Assert.assertEquals(unlockedAttribute,true);
+            Assert.assertEquals(unlockedAttribute, true);
         }
 
     }
 
-    public void verifyAboutMenu(){
+    public void verifyAboutMenu() {
         try {
             waitForVisibility(txtAbout);
             Assert.assertTrue(isElementVisible(txtAbout));
@@ -434,10 +437,10 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }
     }
 
-    public void verifyApplicationInformation(){
+    public void verifyApplicationInformation() {
         click(txtAbout);
 
-        try{
+        try {
             waitForVisibility(txtApplicationInfo);
             Assert.assertTrue(isElementVisible(txtApplicationInfo));
             waitForVisibility(txtHIDMobileAccessVersion);
@@ -456,10 +459,10 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue(isElementVisible(txtSeosID));
             waitForVisibility(txtLastServerComm);
             Assert.assertTrue(isElementVisible(txtLastServerComm));
-            scrollDownTillElement(100,2);
+            scrollDownTillElement(100, 2);
             waitForVisibility(txtEndPointAppVersion);
             Assert.assertTrue(isElementVisible(txtEndPointAppVersion));
-            scrollDownTillElement(100,2);
+            scrollDownTillElement(100, 2);
             waitForVisibility(txtEnvironment);
             Assert.assertTrue(isElementVisible(txtEnvironment));
             waitForVisibility(txtDeviceInfo);
@@ -472,52 +475,48 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue(isElementVisible(txtNfcInfo));
             waitForVisibility(txtLocationInfo);
             Assert.assertTrue(isElementVisible(txtLocationInfo));
-            scrollDownTillElement(100,2);
-            if (DriverManager.getPlatformVersion().equalsIgnoreCase("7") ||
-                    DriverManager.getPlatformVersion().equalsIgnoreCase("8") ||
-                    DriverManager.getPlatformVersion().equalsIgnoreCase("9") ||
-                    DriverManager.getPlatformVersion().equalsIgnoreCase("10") ||
-                    DriverManager.getPlatformVersion().equalsIgnoreCase("11")) {
+            scrollDownTillElement(100, 2);
+            if (DriverManager.getPlatformVersion().equalsIgnoreCase("7") || DriverManager.getPlatformVersion().equalsIgnoreCase("8") || DriverManager.getPlatformVersion().equalsIgnoreCase("9") || DriverManager.getPlatformVersion().equalsIgnoreCase("10") || DriverManager.getPlatformVersion().equalsIgnoreCase("11")) {
                 waitForVisibility(txtLocationPermission);
                 Assert.assertTrue(isElementVisible(txtLocationPermission));
-            }else{
+            } else {
                 waitForVisibility(txtNearByPermission);
                 Assert.assertTrue(isElementVisible(txtNearByPermission));
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             TestUtils.log().info("Getting Exception while verifying to Application Information ...");
         }
     }
 
-    public void copyAboutScreen(){
-        try{
+    public void copyAboutScreen() {
+        try {
             waitForVisibility(AboutCopyImage);
             click(AboutCopyImage);
-        }catch(Exception e){
+        } catch (Exception e) {
             TestUtils.log().info("Getting Exception while copying the about page content to clipboard");
         }
     }
 
-    public void verifyAboutContents(){
+    public void verifyAboutContents() {
 
-       AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-        try{
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+        try {
             driver.getClipboard(ClipboardContentType.PLAINTEXT); // get plaintext
-            String text =  driver.getClipboardText();
-            if(text !=null){
+            String text = driver.getClipboardText();
+            if (text != null) {
                 TestUtils.log().info("Contents are copied to clipboard");
-            }else{
+            } else {
                 TestUtils.log().info("Contents are not copied to clipboard");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             TestUtils.log().info("Getting Exception while checking the copied contents in clipboard..");
         }
     }
 
-    public void clickOnDeregister(String action){
+    public void clickOnDeregister(String action) {
         try {
-            if(action.equalsIgnoreCase("ON")){
+            if (action.equalsIgnoreCase("ON")) {
                 if (isElementVisible(txtUnRegisterThisDevice)) {
                     click(txtUnRegisterThisDevice);
                     if (isDisplayed(txtConfirmUnregisterPopUpTitle)) {
@@ -539,37 +538,36 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
                     }
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
             TestUtils.log().info("Getting Exception while performing device Deregister.");
         }
     }
 
-    public void verifyDeregisterContents(){
+    public void verifyDeregisterContents() {
         isElementVisible(txtDeviceUnRegistredMessage);
-        Assert.assertTrue(true,"You have successfully Deregistered from HID Mobile Access. All your Mobile IDs have been deleted.");
+        Assert.assertTrue(true, "You have successfully Deregistered from HID Mobile Access. All your Mobile IDs have been deleted.");
     }
 
-    public void actionOnNetwork(String action){
+    public void actionOnNetwork(String action) {
         AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
 
-        if(action.equalsIgnoreCase("ON")){
+        if (action.equalsIgnoreCase("ON")) {
             ConnectionState state = driver.setConnection(new ConnectionStateBuilder().withWiFiEnabled().build());
             Assert.assertTrue(state.isWiFiEnabled(), "Wifi is not switched on");
             TestUtils.log().info("WiFi turned on");
             waitForGivenTime(3);
-        }else if(action.equalsIgnoreCase("OFF")){
+        } else if (action.equalsIgnoreCase("OFF")) {
             ConnectionState state = driver.setConnection(new ConnectionStateBuilder().withWiFiDisabled().build());
             Assert.assertFalse(state.isWiFiEnabled(), "Wifi is not switched off");
             TestUtils.log().info("WiFi turned off");
-        }else
-            TestUtils.log().info("Incorrect action");
+        } else TestUtils.log().info("Incorrect action");
 
     }
 
 
-    public void confirmDeregisterBtn(String wifiOFF){
-        try{
+    public void confirmDeregisterBtn(String wifiOFF) {
+        try {
             if (isElementVisible(txtUnRegisterThisDevice)) {
                 click(txtUnRegisterThisDevice);
                 if (isDisplayed(txtConfirmUnregisterPopUpTitle)) {
@@ -584,13 +582,13 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
                     }
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             TestUtils.log().info("Exception occurred while verifying the WiFi OFF functionality");
         }
 
     }
 
-    public void verifyFAQMenu(){
+    public void verifyFAQMenu() {
         try {
             waitForVisibility(txtFAQMenu);
             Assert.assertTrue(isElementVisible(txtFAQMenu));
@@ -601,8 +599,32 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }
     }
 
+    public void possibleMethod(String method) {
+        try {
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+            switch (method) {
+                case "uninstall" -> {
+                    String strAndroidAppPackage = ConfigLoader.getInstance().getAndroidAppPackage();
+                    driver.removeApp(strAndroidAppPackage);
+                    TestUtils.log().info("App is uninstalled...");
+                }
+
+                case "upgrade" -> {
+
+                }
+
+                default -> {
+                    TestUtils.log().info("Please provide the correct input...");
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("vignesh "+e);
+            TestUtils.log().info("Getting Exception while uninstalling the app ...");
+        }
 
 
+    }
 
 
 }

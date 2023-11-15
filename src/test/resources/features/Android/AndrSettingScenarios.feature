@@ -270,6 +270,20 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-01 | bluetooth    |
       | _TC-02 | invalidjhdvf |
 
+  @ANDR_11_10_Settings_uninstallation
+  Scenario: ANDR_11_10_Settings_installation<TC_ID>: Verify the Install, Uninstall & Upgrade
+    Given Launch HID Access Mobile Application in android device
+    And "<method>" the app in android device
+
+    Examples:
+      | TC_ID  | method    |
+      | _TC-01 | uninstall   |
+
+
+  @ANDR_11_10_Settings_upgrade
+  Scenario: ANDR_11_10_Settings_upgrade<TC_ID>: Verify the Upgrade
+    And Navigate to notification page in android device
+    And Verify new version available text in the notification screen in android device
 
 
 

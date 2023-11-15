@@ -45,6 +45,15 @@ public class Andr_HIDNotificationScreenPage extends BasePage {
     @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtNoNotifications")
     private MobileElement txtnoNotification;
 
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/fBtnNotification")
+    private MobileElement install;
+
+    @AndroidFindBy(xpath="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.Button[2]")
+    private MobileElement update;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='New version available']")
+    private MobileElement txtNewVersionAvailable;
+
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
      */
@@ -78,6 +87,10 @@ public class Andr_HIDNotificationScreenPage extends BasePage {
 
     public MobileElement getTxtNotificationRevoked() {
         return txtNotificationRevoked;
+    }
+
+    public MobileElement getTxtInstall(){
+        return install;
     }
 
     /**
@@ -187,4 +200,35 @@ public class Andr_HIDNotificationScreenPage extends BasePage {
         String strActualNoNotificationTxt = getElementText(txtnoNotification);
         Assert.assertEquals(strNoNotificationTxt,strActualNoNotificationTxt);
     }
+
+    public void upgrade(){
+        try{
+        String newVersionTxt = "New version available";
+
+            if(isDisplayed(txtNewVersionAvailable)) {
+                TestUtils.log().info("New version is available to upgrade...");
+                if(isDisplayed(install)) {
+                    click(install);
+                    TestUtils.log().info("clicked on install button...");
+                }else{
+                    TestUtils.log().info("Install button is not displayed...");
+                }
+                waitForGivenTime(1);
+                if (isDisplayed(update)) {
+                    click(update);
+                    TestUtils.log().info("clicked on update button...");
+                }else{
+                    TestUtils.log().info("Update button is not displayed...");
+                }
+            }else{
+                    TestUtils.log().debug("New version is not available to upgrade...");
+                }
+            } catch(Exception e){
+            TestUtils.log().info("Exception occurred while updating the app...");
+            System.out.println("vignesh "+e);
+        }
+
+    }
+
+
 }
