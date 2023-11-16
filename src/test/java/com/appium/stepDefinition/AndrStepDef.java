@@ -772,7 +772,6 @@ public class AndrStepDef extends BasePage {
             androidDeviceAction.lockUnlockDevice(driver);
             waitForGivenTime(1);
         }else{
-            androidDeviceAction.lockUnlockDevice(driver);
             TestUtils.log().info("Device in unlocked state....");
         }
 
@@ -788,6 +787,17 @@ public class AndrStepDef extends BasePage {
         notificationScreen.upgrade();
     }
 
+
+    @And("Set device state as {string} in android device {string}")
+    public void forceUnlock(String forceUnlock, String strDeviceState){
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+        if(strDeviceState.equalsIgnoreCase("Locked")){
+            androidDeviceAction.lockUnlockDevice(driver);
+            waitForGivenTime(1);
+        }else if(strDeviceState.equalsIgnoreCase("Unlocked")){
+            TestUtils.log().info("Device is already in unlocked state....");
+        }
+    }
 
 
 
