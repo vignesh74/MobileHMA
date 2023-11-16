@@ -625,6 +625,11 @@ public class AndroidDeviceAction {
                         sendAppToBackground(strUdid);
                     }
 
+                    case "Killed" -> {
+                        DriverManager.getDriver().closeApp();
+                        TestUtils.log().info("Application is killed");
+                    }
+
                     default -> {
                         TestUtils.log().info("Please provide correct input");
                     }
