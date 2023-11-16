@@ -697,7 +697,12 @@ public class AndroidDeviceAction {
     }
 
     public static void lockUnlockDevice(AndroidDriver<MobileElement> driver){
-        driver.pressKey(new KeyEvent(AndroidKey.POWER));
+        try{
+            driver.pressKey(new KeyEvent(AndroidKey.POWER));
+        }catch(Exception e){
+            TestUtils.log().debug("Getting exception while lock or unlock ....");
+        }
+
     }
 
 }
