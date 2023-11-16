@@ -767,12 +767,11 @@ public class AndrStepDef extends BasePage {
 
     @When("Set device state as {string} in android device.")
     public void setDeviceState_Android(String strDeviceState) {
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
         if(strDeviceState.equalsIgnoreCase("Locked")){
-            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
             androidDeviceAction.lockUnlockDevice(driver);
             waitForGivenTime(1);
         }else{
-            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
             androidDeviceAction.lockUnlockDevice(driver);
             TestUtils.log().info("Device in unlocked state....");
         }
