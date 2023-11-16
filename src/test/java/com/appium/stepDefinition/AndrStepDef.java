@@ -10,6 +10,7 @@ import com.appium.manager.IDriver;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.connection.ConnectionState;
@@ -26,6 +27,7 @@ import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import static com.appium.constants.MessageConstants.EULA;
 import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
@@ -797,6 +799,31 @@ public class AndrStepDef extends BasePage {
         }else if(strDeviceState.equalsIgnoreCase("Unlocked")){
             TestUtils.log().info("Device is already in unlocked state....");
         }
+    }
+
+    @And("Set Application status as {string} in android device.")
+    public void appState(String appState){
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+        if(appState.equalsIgnoreCase("Background")){
+            driver.runAppInBackground(Duration.ofSeconds(5));
+            TestUtils.log().info("App is running in background state....");
+        } else if (appState.equalsIgnoreCase("Foreground")) {
+            bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
+            TestUtils.log().info("App is running in Foreground state....");
+        }
+    }
+
+    private static void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
+        String adbCommand = String.format("adb shell am start -n %s/.%s", appPackage, getAppMainActivity(driver));
+        try {
+            Runtime.getRuntime().exec(adbCommand);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String getAppMainActivity(AppiumDriver<MobileElement> driver) {
+        return driver.getCapabilities().getCapability("appActivity").toString();
     }
 
 
