@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@Android12_RevE_Tap_WF_1")
+        , tags = "@ANDR_11_10_Settings_uninstallation")
 
 public class Andr12_SettingsScenario_Runner extends BaseTest {
 

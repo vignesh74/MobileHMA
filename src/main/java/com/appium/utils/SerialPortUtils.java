@@ -120,7 +120,7 @@ public class SerialPortUtils {
             basePage.waitForGivenTime(2000);
 
             //Send Command
-            serialPort.writeString("$T,900,350,&");
+            serialPort.writeString("$T,1850,350,&");
 
             //Wait time
             basePage.waitForGivenTime(25000);
@@ -144,7 +144,7 @@ public class SerialPortUtils {
             basePage.waitForGivenTime(2000);
 
             // Send Command
-            jsscSerialPort.writeString("$G,900,350,&");
+            jsscSerialPort.writeString("$G,1500,350,&");
 
             // Wait time
             basePage.waitForGivenTime(25000);
@@ -171,7 +171,7 @@ public class SerialPortUtils {
             basePage.waitForGivenTime(2000);
 
             // Send Command
-            jsscSerialPort.writeString("$B,900,350,&");
+            jsscSerialPort.writeString("$B,1850,350,&");
 
             // Wait time
             basePage.waitForGivenTime(25000);
