@@ -11,6 +11,7 @@ import com.appium.base.BasePage;
 import com.appium.manager.DriverManager;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -20,9 +21,11 @@ import io.appium.java_client.appmanagement.ApplicationState;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.time.Duration;
 
 import static com.appium.constants.FrameworkConstants.*;
 import static com.appium.constants.MessageConstants.EXCEPTION_OCCURRED_MESSAGE;
+import static com.appium.manager.DriverManager.driver;
 
 public class AndroidDeviceAction {
     BasePage basePage = new BasePage();
@@ -710,7 +713,7 @@ public class AndroidDeviceAction {
 
     }
 
-    public static void lockDevice(AndroidDriver<MobileElement> driver){
+    public static void lockDevice(AndroidDriver driver){
         try{
             driver.pressKey(new KeyEvent(AndroidKey.POWER));
         }catch(Exception e){
@@ -719,11 +722,67 @@ public class AndroidDeviceAction {
 
     }
 
-    public static void unlockDevice(AndroidDriver<MobileElement> driver) {
+    public void unlockDevice(AndroidDriver driver) {
         try{
             driver.pressKey(new KeyEvent(AndroidKey.POWER));
         }catch(Exception e){
             TestUtils.log().debug("Getting exception while unlock ....");
+        }
+    }
+
+    public void setDeviceState_Android(String strDeviceState,AndroidDriver driver){
+        if(strDeviceState.equalsIgnoreCase("Locked")){
+            lockDevice(driver);
+            basePage.waitForGivenTime(1);
+        }else{
+            TestUtils.log().info("Device is already in unlocked state....");
+        }
+    }
+
+    public void appState(String appState, AndroidDriver driver){
+        if(appState.equalsIgnoreCase("Background")){
+            driver.runAppInBackground(Duration.ofSeconds(5));
+            TestUtils.log().info("App is running in background state....");
+        } else if (appState.equalsIgnoreCase("Foreground")) {
+            bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
+            TestUtils.log().info("App is running in Foreground state....");
+        }else{
+            TestUtils.log().info("Please provide correct input");
+        }
+    }
+
+    private void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
+        String adbPath = "/opt/homebrew/bin/adb";
+        String appMainActivity = getAppMainActivity(driver);
+//        String adbCommand = String.format("%s shell am start -n %s/.%s", adbPath, appPackage, appMainActivity);
+        ProcessBuilder processBuilder = new ProcessBuilder(adbPath, "shell", "am", "start", "-n", appPackage + "/." + appMainActivity);
+        try {
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor();
+
+            if (exitCode == 0) {
+                System.out.println("Application brought to foreground successfully.");
+            } else {
+                System.err.println("Failed to bring the application to foreground. Exit code: " + exitCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getAppMainActivity(AppiumDriver<MobileElement> driver) {
+        return driver.getCapabilities().getCapability("appActivity").toString();
+    }
+
+    public void forceUnlock(String strDeviceState, AndroidDriver driver){
+        if(strDeviceState.equalsIgnoreCase("Locked")){
+            unlockDevice(driver);
+            TestUtils.log().info("Device is now in unlocked state....");
+            basePage.waitForGivenTime(1);
+        }else if(strDeviceState.equalsIgnoreCase("Unlocked")){
+            TestUtils.log().info("Device is already in unlocked state....");
+        }else{
+            TestUtils.log().info("Please provide correct input...");
         }
     }
 
