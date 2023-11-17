@@ -14,9 +14,9 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     And   Set NFC status as "<NFC_status>" in android device
     And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
     And   Select the usage state as "<usage_state>" in android device
-    And   Set Application status as "<app_state>" in android device.
+#    And   Set Application status as "<app_state>" in android device.
     And   Set device state as "<device_state>" in android device with "<app_state>".
-    And   Set display screen as "<display_status>" in android device
+#    And   Set display screen as "<display_status>" in android device
     And   Perform robotic arm action as "<action_name>" for android device
     And   Set device state as "Forced Unlock" in android device "<device_state>"
     And   Set Application status as "Foreground" in android device.
@@ -58,9 +58,9 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     @Android12_RevE_Tap_WF_5 @Android12_RevE_Tap @Android12_RevE @Android12_RevE_TapRun
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-#      | RevE        | _Tap_WF5_TC-17 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
-#      | RevE        | _Tap_WF5_TC-18 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
-#      | RevE        | _Tap_WF5_TC-19 | Foreground  | On         | Off        | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF5_TC-17 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF5_TC-18 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF5_TC-19 | Foreground  | On         | Off        | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
       | RevE        | _Tap_WF5_TC-20 | Foreground  | On         | Off        | Allow                       | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
 
     @Android12_RevE_Tap_WF_6 @Android12_RevE_Tap @Android12_RevE @Android12_RevE_TapRun

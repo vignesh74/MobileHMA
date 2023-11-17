@@ -795,9 +795,12 @@ public class AndrStepDef extends BasePage {
         AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
         if(strDeviceState.equalsIgnoreCase("Locked")){
             androidDeviceAction.lockUnlockDevice(driver);
+            TestUtils.log().info("Device is now in unlocked state....");
             waitForGivenTime(1);
         }else if(strDeviceState.equalsIgnoreCase("Unlocked")){
             TestUtils.log().info("Device is already in unlocked state....");
+        }else{
+            TestUtils.log().info("Please provide correct input...");
         }
     }
 
@@ -831,11 +834,22 @@ public class AndrStepDef extends BasePage {
         AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
         if(deviceState.equalsIgnoreCase("Locked") && (appState.equalsIgnoreCase("Background"))){
             driver.runAppInBackground(Duration.ofSeconds(5));
-            TestUtils.log().info("App is running in background state with locked State");
             androidDeviceAction.lockUnlockDevice(driver);
             waitForGivenTime(1);
+            TestUtils.log().info("App is running in background state with locked State");
         }else if(deviceState.equalsIgnoreCase("Unlocked")&&(appState.equalsIgnoreCase("Foreground"))){
-            TestUtils.log().info("Device in unlocked state in foreground state");
+            bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
+            TestUtils.log().info("App is unlocked and running in Foreground state....");
+        }else if(deviceState.equalsIgnoreCase("Locked") && (appState.equalsIgnoreCase("Foreground"))){
+            bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
+            androidDeviceAction.lockUnlockDevice(driver);
+            waitForGivenTime(1);
+            TestUtils.log().info("App is locked and running in Foreground state....");
+        }else if(deviceState.equalsIgnoreCase("Unlocked")&&(appState.equalsIgnoreCase("Background"))){
+            driver.runAppInBackground(Duration.ofSeconds(5));
+            TestUtils.log().info("App is running in background state with Unlocked State");
+        }else{
+            TestUtils.log().info("Please provide the correct input...");
         }
     }
 
