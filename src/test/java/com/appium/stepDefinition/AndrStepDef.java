@@ -817,7 +817,9 @@ public class AndrStepDef extends BasePage {
     }
 
     private static void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
-        String adbCommand = String.format("adb shell am start -n %s/.%s", appPackage, getAppMainActivity(driver));
+        String adbPath = "/Users/vigneshrajesh/Library/Android/sdk/platform-tools/adb";
+        String appMainActivity = getAppMainActivity(driver);
+        String adbCommand = String.format("%s shell am start -n %s/.%s", adbPath, appPackage, appMainActivity);
         try {
             Process process = Runtime.getRuntime().exec(adbCommand);
             int exitCode = process.waitFor();
