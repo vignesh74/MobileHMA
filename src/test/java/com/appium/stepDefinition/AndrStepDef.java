@@ -266,10 +266,10 @@ public class AndrStepDef extends BasePage {
 
    @When("Set device state as {string} in android device")
     public void setDeviceState_Andr(String strDeviceState) {
+       AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
         strUDID = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
         androidDeviceAction.setDeviceState(strDeviceState, strUDID);
         if(strDeviceState.equalsIgnoreCase("Locked")){
-            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
             androidDeviceAction.lockUnlockDevice(driver);
             waitForGivenTime(2);
         }else{
@@ -774,7 +774,7 @@ public class AndrStepDef extends BasePage {
             androidDeviceAction.lockUnlockDevice(driver);
             waitForGivenTime(1);
         }else{
-            TestUtils.log().info("Device in unlocked state....");
+            TestUtils.log().info("Device is already in unlocked state....");
         }
 
     }
@@ -813,6 +813,8 @@ public class AndrStepDef extends BasePage {
         } else if (appState.equalsIgnoreCase("Foreground")) {
             bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
             TestUtils.log().info("App is running in Foreground state....");
+        }else{
+            TestUtils.log().info("Please provide correct input");
         }
     }
 
@@ -840,36 +842,26 @@ public class AndrStepDef extends BasePage {
     }
 
     @And("Set device state as {string} in android device with {string}.")
-    public void setAppState(String deviceState, String appState) {
-        AppiumDriver driver = DriverManager.getDriver(); // Assuming DriverManager returns an AppiumDriver
-
-        if (deviceState.equalsIgnoreCase("Locked")) {
-            androidDeviceAction.lockUnlockDevice((AndroidDriver<MobileElement>) driver);
-            TestUtils.log().info("Device in locked state");
-
-            if (appState.equalsIgnoreCase("Background")) {
-                driver.runAppInBackground(Duration.ofSeconds(5));
-                TestUtils.log().info("Device in background state");
-                waitForGivenTime(1);
-                TestUtils.log().info("App is running in background state with locked state");
-            } else if (appState.equalsIgnoreCase("Foreground")) {
-                bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
-                TestUtils.log().info("App is locked and running in foreground state");
-            } else {
-                TestUtils.log().info("Please provide the correct input for appState...");
-            }
-        } else if (deviceState.equalsIgnoreCase("Unlocked")) {
-            if (appState.equalsIgnoreCase("Background")) {
-                driver.runAppInBackground(Duration.ofSeconds(5));
-                TestUtils.log().info("App is running in background state with Unlocked state");
-            } else if (appState.equalsIgnoreCase("Foreground")) {
-                bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
-                TestUtils.log().info("App is unlocked and running in foreground state");
-            } else {
-                TestUtils.log().info("Please provide the correct input for appState...");
-            }
-        } else {
-            TestUtils.log().info("Please provide the correct input for deviceState...");
+    public void setAppState(String deviceState, String appState){
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+        if(deviceState.equalsIgnoreCase("Locked") && (appState.equalsIgnoreCase("Background"))){
+            driver.runAppInBackground(Duration.ofSeconds(5));
+            androidDeviceAction.lockUnlockDevice(driver);
+            waitForGivenTime(1);
+            TestUtils.log().info("App is running in background state with locked State");
+        }else if(deviceState.equalsIgnoreCase("Unlocked")&&(appState.equalsIgnoreCase("Foreground"))){
+            bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
+            TestUtils.log().info("App is unlocked and running in Foreground state....");
+        }else if(deviceState.equalsIgnoreCase("Locked") && (appState.equalsIgnoreCase("Foreground"))){
+            bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
+            androidDeviceAction.lockUnlockDevice(driver);
+            waitForGivenTime(1);
+            TestUtils.log().info("App is locked and running in Foreground state....");
+        }else if(deviceState.equalsIgnoreCase("Unlocked")&&(appState.equalsIgnoreCase("Background"))){
+            driver.runAppInBackground(Duration.ofSeconds(5));
+            TestUtils.log().info("App is running in background state with Unlocked State");
+        }else{
+            TestUtils.log().info("Please provide the correct input...");
         }
     }
 
