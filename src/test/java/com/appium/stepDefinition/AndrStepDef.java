@@ -844,7 +844,9 @@ public class AndrStepDef extends BasePage {
         AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
         if(deviceState.equalsIgnoreCase("Locked") && (appState.equalsIgnoreCase("Background"))){
             androidDeviceAction.lockUnlockDevice(driver);
+            TestUtils.log().info("Device in locked State");
             driver.runAppInBackground(Duration.ofSeconds(5));
+            TestUtils.log().info("Device in background State");
             waitForGivenTime(1);
             TestUtils.log().info("App is running in background state with locked State");
         }else if(deviceState.equalsIgnoreCase("Unlocked")&&(appState.equalsIgnoreCase("Foreground"))){
