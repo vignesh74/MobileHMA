@@ -471,10 +471,8 @@ public class AndroidDeviceAction {
     /**
      * setScreenDisplayStatus- This method is used to set screen display status
      *
-     * @param displayStatus-
-     *         String
-     * @param udid-
-     *         String Date- 14/02/2023
+     * @param displayStatus- String
+     * @param udid-          String Date- 14/02/2023
      */
 
     public void setScreenDisplayStatus(String displayStatus, String udid) {
@@ -496,10 +494,8 @@ public class AndroidDeviceAction {
     /**
      * setLocationStatus- This method is used to set the location status
      *
-     * @param locationStatus-
-     *         String
-     * @param udid-
-     *         String Date- 14/02/2023
+     * @param locationStatus- String
+     * @param udid-           String Date- 14/02/2023
      */
 
     public void setLocationStatus(String locationStatus, String udid) {
@@ -519,10 +515,8 @@ public class AndroidDeviceAction {
     /**
      * setDeviceState- This method is used to set the device state
      *
-     * @param deviceState-
-     *         String
-     * @param udid-
-     *         String Date- 14/02/2023
+     * @param deviceState- String
+     * @param udid-        String Date- 14/02/2023
      */
     public void setDeviceState(String deviceState, String udid) {
         try {
@@ -605,12 +599,9 @@ public class AndroidDeviceAction {
     /**
      * setAppState- This method is used to set the application state
      *
-     * @param strAppState-
-     *         String
-     * @param strAppPackage-
-     *         String
-     * @param strUdid-
-     *         String Date- 14/02/2023
+     * @param strAppState-   String
+     * @param strAppPackage- String
+     * @param strUdid-       String Date- 14/02/2023
      */
     public void setAppState(String strAppState, String strAppPackage, String strUdid) {
         try {
@@ -624,8 +615,8 @@ public class AndroidDeviceAction {
                         TestUtils.log().info("Application set to {} state ", strAppState);
                     }
                     case "Background" -> {
-                        TestUtils.log().info("Application running  in {}", strAppState);
                         sendAppToBackground(strUdid);
+                        TestUtils.log().info("Application running  in {}", strAppState);
                     }
 
                     case "Killed" -> {
@@ -646,10 +637,8 @@ public class AndroidDeviceAction {
     /**
      * sendAppToForeground-This method is used to set application in foreground
      *
-     * @param appPackage-
-     *         String
-     * @param udid-
-     *         String
+     * @param appPackage- String
+     * @param udid-       String
      * @return- String Date- 14/02/2023
      */
     public String sendAppToForground(String appPackage, String udid) {
@@ -677,114 +666,128 @@ public class AndroidDeviceAction {
     /**
      * sendAppToBackground-This method is used to send application in background state
      *
-     * @param udid
-     *         - String
+     * @param udid - String
      * @return- String Date- 14/02/2023
      */
 
+//    public String sendAppToBackground(String udid) {
+//        String str = null;
+//        StringBuilder info = new StringBuilder();
+//        try {
+//            Runtime rt = Runtime.getRuntime();
+//            Process p = rt.exec(ADB_COMMAND + udid + "shell input keyevent 3");
+//            InputStream is = p.getInputStream();
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+//
+//            str = (reader.readLine());
+//            do {
+//                info = info.append(str + "\n");
+//                str = reader.readLine();
+//            } while (str != null);
+//            is.close();
+//            TestUtils.log().info("Application is successfully send into background");
+//        } catch (Exception e) {
+//            TestUtils.log().debug("Getting exception while app is running in Background ....");
+//        }
+//        return info.toString();
+//    }
+
     public String sendAppToBackground(String udid) {
-        String str = null;
         StringBuilder info = new StringBuilder();
         try {
-            Runtime rt = Runtime.getRuntime();
-            Process p = rt.exec(ADB_COMMAND + udid + " shell input keyevent 3");
-            InputStream is = p.getInputStream();
+            // Separate the adb command and its arguments into individual elements of an array
+            String[] command = { "adb", "-s", udid, "shell", "input", "keyevent", "3" };
+
+            ProcessBuilder processBuilder = new ProcessBuilder(command);
+            processBuilder.redirectErrorStream(true); // Redirect error stream to input stream
+
+            Process process = processBuilder.start();
+            process.waitFor(); // Wait for the process to complete
+
+            InputStream is = process.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
-            str = (reader.readLine());
-            do {
-                info = info.append(str + "\n");
-                str = reader.readLine();
-            } while (str != null);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                info.append(line).append("\n");
+            }
+
             is.close();
-            TestUtils.log().info("Application is successfully send into background");
+            TestUtils.log().info("Application is successfully sent to the background");
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while app is running in Background ....");
+            TestUtils.log().error("Exception while sending app to background: ", e);
         }
+
         return info.toString();
     }
 
-    public static void lockUnlockDevice(AndroidDriver<MobileElement> driver){
-        try{
+
+//    public void appState(String appState, AndroidDriver driver){
+//        if(appState.equalsIgnoreCase("Background")){
+//            driver.runAppInBackground(Duration.ofSeconds(5));
+//            TestUtils.log().info("App is running in background state....");
+//        } else if (appState.equalsIgnoreCase("Foreground")) {
+//            bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
+//            TestUtils.log().info("App is running in Foreground state....");
+//        }else{
+//            TestUtils.log().info("Please provide correct input");
+//        }
+//    }
+//
+//    private void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
+////        String adbPath = "/Users/vigneshrajesh/Library/Android/sdk/platform-tools/adb";
+//        String adbPath = "/opt/homebrew/bin/adb";
+//        String appMainActivity = getAppMainActivity(driver);
+////        String adbCommand = String.format("%s shell am start -n %s/.%s", adbPath, appPackage, appMainActivity);
+//        ProcessBuilder processBuilder = new ProcessBuilder(adbPath, "shell", "am", "start", "-n", appPackage + "/." + appMainActivity);
+//        try {
+//            Process process = processBuilder.start();
+//            int exitCode = process.waitFor();
+//
+//            if (exitCode == 0) {
+//                System.out.println("Application brought to foreground successfully.");
+//            } else {
+//                System.err.println("Failed to bring the application to foreground. Exit code: " + exitCode);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public String getAppMainActivity(AppiumDriver<MobileElement> driver) {
+//        return driver.getCapabilities().getCapability("appActivity").toString();
+//    }
+//}
+
+    public void setDeviceState_Android(String strDeviceState) {
+        if (strDeviceState.equalsIgnoreCase("Locked")) {
+            lockUnlockDevice();
+            basePage.waitForGivenTime(1);
+        } else {
+            TestUtils.log().info("Device is already in unlocked state....");
+        }
+    }
+
+    public void lockUnlockDevice() {
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+        try {
             driver.pressKey(new KeyEvent(AndroidKey.POWER));
-        }catch(Exception e){
+        } catch (Exception e) {
             TestUtils.log().debug("Getting exception while lock or unlock ....");
         }
-
     }
 
-    public static void lockDevice(AndroidDriver driver){
-        try{
-            driver.pressKey(new KeyEvent(AndroidKey.POWER));
-        }catch(Exception e){
-            TestUtils.log().debug("Getting exception while lock ....");
-        }
 
-    }
-
-    public void unlockDevice(AndroidDriver driver) {
-        try{
-            driver.pressKey(new KeyEvent(AndroidKey.POWER));
-        }catch(Exception e){
-            TestUtils.log().debug("Getting exception while unlock ....");
-        }
-    }
-
-    public void setDeviceState_Android(String strDeviceState,AndroidDriver driver){
-        if(strDeviceState.equalsIgnoreCase("Locked")){
-            lockDevice(driver);
-            basePage.waitForGivenTime(1);
-        }else{
-            TestUtils.log().info("Device is already in unlocked state....");
-        }
-    }
-
-    public void appState(String appState, AndroidDriver driver){
-        if(appState.equalsIgnoreCase("Background")){
-            driver.runAppInBackground(Duration.ofSeconds(5));
-            TestUtils.log().info("App is running in background state....");
-        } else if (appState.equalsIgnoreCase("Foreground")) {
-            bringAppToForeground(driver, "com.hidglobal.mobilekeys.android.v3");
-            TestUtils.log().info("App is running in Foreground state....");
-        }else{
-            TestUtils.log().info("Please provide correct input");
-        }
-    }
-
-    private void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
-//        String adbPath = "/Users/vigneshrajesh/Library/Android/sdk/platform-tools/adb";
-        String adbPath = "/opt/homebrew/bin/adb";
-        String appMainActivity = getAppMainActivity(driver);
-//        String adbCommand = String.format("%s shell am start -n %s/.%s", adbPath, appPackage, appMainActivity);
-        ProcessBuilder processBuilder = new ProcessBuilder(adbPath, "shell", "am", "start", "-n", appPackage + "/." + appMainActivity);
-        try {
-            Process process = processBuilder.start();
-            int exitCode = process.waitFor();
-
-            if (exitCode == 0) {
-                System.out.println("Application brought to foreground successfully.");
-            } else {
-                System.err.println("Failed to bring the application to foreground. Exit code: " + exitCode);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String getAppMainActivity(AppiumDriver<MobileElement> driver) {
-        return driver.getCapabilities().getCapability("appActivity").toString();
-    }
-
-    public void forceUnlock(String strDeviceState, AndroidDriver driver){
-        if(strDeviceState.equalsIgnoreCase("Locked")){
-            unlockDevice(driver);
+    public void forceUnlock(String strDeviceState, AndroidDriver driver) {
+        if (strDeviceState.equalsIgnoreCase("Locked")) {
+            lockUnlockDevice();
             TestUtils.log().info("Device is now in unlocked state....");
             basePage.waitForGivenTime(1);
-        }else if(strDeviceState.equalsIgnoreCase("Unlocked")){
+        } else if (strDeviceState.equalsIgnoreCase("Unlocked")) {
             TestUtils.log().info("Device is already in unlocked state....");
-        }else{
+        } else {
             TestUtils.log().info("Please provide correct input...");
         }
     }
-
 }
+
