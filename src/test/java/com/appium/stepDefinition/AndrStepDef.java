@@ -819,7 +819,14 @@ public class AndrStepDef extends BasePage {
     private static void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
         String adbCommand = String.format("adb shell am start -n %s/.%s", appPackage, getAppMainActivity(driver));
         try {
-            Runtime.getRuntime().exec(adbCommand);
+            Process process = Runtime.getRuntime().exec(adbCommand);
+            int exitCode = process.waitFor();
+
+            if (exitCode == 0) {
+                System.out.println("Application brought to foreground successfully.");
+            } else {
+                System.err.println("Failed to bring the application to foreground. Exit code: " + exitCode);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
