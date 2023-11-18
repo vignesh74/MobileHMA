@@ -611,7 +611,7 @@ public class AndroidDeviceAction {
                 switch (strAppState) {
                     case "Foreground" -> {
                         basePage.waitForGivenTime(7);
-                        sendAppToForground(strAppPackage, strUdid);
+                        sendAppToForeground(strAppPackage, strUdid);
                         TestUtils.log().info("Application set to {} state ", strAppState);
                     }
                     case "Background" -> {
@@ -634,7 +634,7 @@ public class AndroidDeviceAction {
         }
     }
 
-    private void sendAppToForground(String strAppPackage, String strUdid) {
+    public void sendAppToForeground(String strAppPackage, String strUdid) {
         StringBuilder info = new StringBuilder();
         try {
             String appPackage = ConfigLoader.getInstance().getAndroidAppPackage();
@@ -790,7 +790,7 @@ public class AndroidDeviceAction {
     public String getAppMainActivity(AppiumDriver<MobileElement> driver) {
         return driver.getCapabilities().getCapability("appActivity").toString();
     }
-}
+
 
     public void setDeviceState_Android(String strDeviceState) {
         if (strDeviceState.equalsIgnoreCase("Locked")) {
