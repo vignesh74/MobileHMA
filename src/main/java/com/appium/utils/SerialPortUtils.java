@@ -101,14 +101,14 @@ public class SerialPortUtils {
                 roboticArmLogs = roboticArmLogs.substring(0, 20);
             }
 
-            if (actionName.equals("Twist & Go")) {
-                AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-                try {
-                    driver.pressKey(new KeyEvent(AndroidKey.POWER));
-                } catch (Exception e) {
-                    TestUtils.log().debug("Getting exception while lock or unlock ....");
-                }
-            }
+//            if (actionName.equals("Twist & Go")) {
+//                AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+//                try {
+//                    driver.pressKey(new KeyEvent(AndroidKey.POWER));
+//                } catch (Exception e) {
+//                    TestUtils.log().debug("Getting exception while lock or unlock ....");
+//                }
+//            }
 
         } catch (Exception e) {
             throw new AutomationException("Error occurred : Not able to perform Arm operation " + e.getMessage());
