@@ -2,7 +2,6 @@ package com.appium.utils;
 
 import com.appium.base.BasePage;
 import com.appium.constants.MessageConstants;
-import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
 import jssc.SerialPort;
@@ -13,7 +12,6 @@ import static com.appium.constants.FrameworkConstants.DESCRIPTIVEPORTNAME;
 public class SerialPortUtils {
 
     static BasePage basePage = new BasePage();
-    AndroidDeviceAction androidDeviceAction = new AndroidDeviceAction();
 
 
     public static String getDeviceCOMPort() {
@@ -59,7 +57,7 @@ public class SerialPortUtils {
         return deviceCOMPort;
     }
 
-    public String performRoboticArmOperation(String deviceCOMPort, String actionName) throws SerialPortException {
+    public static String performRoboticArmOperation(String deviceCOMPort, String actionName) throws SerialPortException {
         String roboticArmLogs = "";
         SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem"+deviceCOMPort.trim());
         try {
@@ -98,10 +96,6 @@ public class SerialPortUtils {
             } else if ((roboticArmLogs.equalsIgnoreCase("TWIST_AND_GO:DISABLE;\r\n"))) {
                 TestUtils.log().info(MessageConstants.TWO_BRACKETS,MessageConstants.ROBOTIC_ARM_MESSAGE,roboticArmLogs.substring(0, 20));
                 roboticArmLogs = roboticArmLogs.substring(0, 20);
-            }
-
-            if (actionName.equals("Twist & Go")) {
-                androidDeviceAction.lockUnlockDevice();
             }
 
         } catch (Exception e) {
