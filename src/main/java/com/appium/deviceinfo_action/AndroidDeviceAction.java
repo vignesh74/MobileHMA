@@ -702,24 +702,38 @@ public class AndroidDeviceAction {
             processBuilder.redirectErrorStream(true); // Redirect error stream to input stream
 
             Process process = processBuilder.start();
-            process.waitFor(); // Wait for the process to complete
+            int exitCode = process.waitFor(); // Wait for the process to complete
 
-            InputStream is = process.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            if (exitCode == 0) {
+                InputStream is = process.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                info.append(line).append("\n");
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    info.append(line).append("\n");
+                }
+
+                is.close();
+                TestUtils.log().info("Application is successfully sent to the background");
+            } else {
+                // Capture error stream
+                InputStream errorStream = process.getErrorStream();
+                BufferedReader errorReader = new BufferedReader(new InputStreamReader(errorStream));
+
+                String errorLine;
+                while ((errorLine = errorReader.readLine()) != null) {
+                    TestUtils.log().error("Error: {}", errorLine);
+                }
+
+                TestUtils.log().error("Failed to send app to background. Exit code: {}", exitCode);
             }
-
-            is.close();
-            TestUtils.log().info("Application is successfully sent to the background");
         } catch (Exception e) {
             TestUtils.log().error("Exception while sending app to background: ", e);
         }
 
         return info.toString();
     }
+
 
 
 //    public void appState(String appState, AndroidDriver driver){
