@@ -692,46 +692,48 @@ public class AndroidDeviceAction {
 //        return info.toString();
 //    }
 
-    public String sendAppToBackground(String udid) {
-        StringBuilder info = new StringBuilder();
-        try {
-            // Separate the adb command and its arguments into individual elements of an array
-            String[] command = { "adb", "-s", udid, "shell", "input", "keyevent", "3" };
-
-            ProcessBuilder processBuilder = new ProcessBuilder(command);
-            processBuilder.redirectErrorStream(true); // Redirect error stream to input stream
-
-            Process process = processBuilder.start();
-            int exitCode = process.waitFor(); // Wait for the process to complete
-
-            if (exitCode == 0) {
-                InputStream is = process.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    info.append(line).append("\n");
-                }
-
-                is.close();
-                TestUtils.log().info("Application is successfully sent to the background");
-            } else {
-                // Capture error stream
-                InputStream errorStream = process.getErrorStream();
-                BufferedReader errorReader = new BufferedReader(new InputStreamReader(errorStream));
-
-                String errorLine;
-                while ((errorLine = errorReader.readLine()) != null) {
-                    TestUtils.log().error("Error: {}", errorLine);
-                }
-
-                TestUtils.log().error("Failed to send app to background. Exit code: {}", exitCode);
-            }
-        } catch (Exception e) {
-            TestUtils.log().error("Exception while sending app to background: ", e);
-        }
-
-        return info.toString();
+    public void sendAppToBackground(String udid) {
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+        driver.pressKey(new KeyEvent(AndroidKey.HOME));
+//        StringBuilder info = new StringBuilder();
+//        try {
+//            // Separate the adb command and its arguments into individual elements of an array
+//            String[] command = { "adb", "-s", udid, "shell", "input", "keyevent", "3" };
+//
+//            ProcessBuilder processBuilder = new ProcessBuilder(command);
+//            processBuilder.redirectErrorStream(true); // Redirect error stream to input stream
+//
+//            Process process = processBuilder.start();
+//            int exitCode = process.waitFor(); // Wait for the process to complete
+//
+//            if (exitCode == 0) {
+//                InputStream is = process.getInputStream();
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+//
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    info.append(line).append("\n");
+//                }
+//
+//                is.close();
+//                TestUtils.log().info("Application is successfully sent to the background");
+//            } else {
+//                // Capture error stream
+//                InputStream errorStream = process.getErrorStream();
+//                BufferedReader errorReader = new BufferedReader(new InputStreamReader(errorStream));
+//
+//                String errorLine;
+//                while ((errorLine = errorReader.readLine()) != null) {
+//                    TestUtils.log().error("Error: {}", errorLine);
+//                }
+//
+//                TestUtils.log().error("Failed to send app to background. Exit code: {}", exitCode);
+//            }
+//        } catch (Exception e) {
+//            TestUtils.log().error("Exception while sending app to background: ", e);
+//        }
+//
+//        return info.toString();
     }
 
 
