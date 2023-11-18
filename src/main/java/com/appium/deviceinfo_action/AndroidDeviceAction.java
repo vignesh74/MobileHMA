@@ -634,34 +634,51 @@ public class AndroidDeviceAction {
         }
     }
 
-    /**
-     * sendAppToForeground-This method is used to set application in foreground
-     *
-     * @param appPackage- String
-     * @param udid-       String
-     * @return- String Date- 14/02/2023
-     */
-    public String sendAppToForground(String appPackage, String udid) {
-        String str = null;
+    private void sendAppToForground(String strAppPackage, String strUdid) {
         StringBuilder info = new StringBuilder();
         try {
-            Runtime rt = Runtime.getRuntime();
-            Process p = rt.exec(ADB_COMMAND + udid + " shell monkey -p  " + appPackage + " 1");
-            InputStream is = p.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String appPackage = ConfigLoader.getInstance().getAndroidAppPackage();
+            String udid = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
+            // Separate the adb command and its arguments into individual elements of an array
+            String[] command = { "adb", "-s", udid, "shell", "monkey", "-p", appPackage, "1" };
 
-            str = (reader.readLine());
-            do {
-                info = info.append(str + "\n");
-                str = reader.readLine();
-            } while (str != null);
-            is.close();
-            TestUtils.log().info("Application is successfully send into foreground");
+            ProcessBuilder processBuilder = new ProcessBuilder(command);
+            processBuilder.redirectErrorStream(true); // Redirect error stream to input stream
+
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor(); // Wait for the process to complete
+
+            if (exitCode == 0) {
+                InputStream is = process.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    info.append(line).append("\n");
+                }
+
+                is.close();
+                TestUtils.log().info("Application is successfully brought to the foreground");
+            } else {
+                // Capture error stream
+                InputStream errorStream = process.getErrorStream();
+                BufferedReader errorReader = new BufferedReader(new InputStreamReader(errorStream));
+
+                String errorLine;
+                while ((errorLine = errorReader.readLine()) != null) {
+                    TestUtils.log().error("Error: {}", errorLine);
+                }
+
+                TestUtils.log().error("Failed to bring app to foreground. Exit code: {}", exitCode);
+            }
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while app is running in Foreground ....");
+            TestUtils.log().error("Exception while bringing app to foreground: ", e);
         }
-        return info.toString();
     }
+
+
+
+
 
     /**
      * sendAppToBackground-This method is used to send application in background state
@@ -750,30 +767,30 @@ public class AndroidDeviceAction {
 //        }
 //    }
 //
-//    private void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
-////        String adbPath = "/Users/vigneshrajesh/Library/Android/sdk/platform-tools/adb";
-//        String adbPath = "/opt/homebrew/bin/adb";
-//        String appMainActivity = getAppMainActivity(driver);
-////        String adbCommand = String.format("%s shell am start -n %s/.%s", adbPath, appPackage, appMainActivity);
-//        ProcessBuilder processBuilder = new ProcessBuilder(adbPath, "shell", "am", "start", "-n", appPackage + "/." + appMainActivity);
-//        try {
-//            Process process = processBuilder.start();
-//            int exitCode = process.waitFor();
-//
-//            if (exitCode == 0) {
-//                System.out.println("Application brought to foreground successfully.");
-//            } else {
-//                System.err.println("Failed to bring the application to foreground. Exit code: " + exitCode);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public String getAppMainActivity(AppiumDriver<MobileElement> driver) {
-//        return driver.getCapabilities().getCapability("appActivity").toString();
-//    }
-//}
+    private void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
+//        String adbPath = "/Users/vigneshrajesh/Library/Android/sdk/platform-tools/adb";
+        String adbPath = "/opt/homebrew/bin/adb";
+        String appMainActivity = getAppMainActivity(driver);
+//        String adbCommand = String.format("%s shell am start -n %s/.%s", adbPath, appPackage, appMainActivity);
+        ProcessBuilder processBuilder = new ProcessBuilder(adbPath, "shell", "am", "start", "-n", appPackage + "/." + appMainActivity);
+        try {
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor();
+
+            if (exitCode == 0) {
+                System.out.println("Application brought to foreground successfully.");
+            } else {
+                System.err.println("Failed to bring the application to foreground. Exit code: " + exitCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getAppMainActivity(AppiumDriver<MobileElement> driver) {
+        return driver.getCapabilities().getCapability("appActivity").toString();
+    }
+}
 
     public void setDeviceState_Android(String strDeviceState) {
         if (strDeviceState.equalsIgnoreCase("Locked")) {
