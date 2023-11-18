@@ -4,6 +4,9 @@ import com.appium.base.BasePage;
 import com.appium.constants.MessageConstants;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
@@ -96,6 +99,15 @@ public class SerialPortUtils {
             } else if ((roboticArmLogs.equalsIgnoreCase("TWIST_AND_GO:DISABLE;\r\n"))) {
                 TestUtils.log().info(MessageConstants.TWO_BRACKETS,MessageConstants.ROBOTIC_ARM_MESSAGE,roboticArmLogs.substring(0, 20));
                 roboticArmLogs = roboticArmLogs.substring(0, 20);
+            }
+
+            if (actionName.equals("Twist & Go")) {
+                AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+                try {
+                    driver.pressKey(new KeyEvent(AndroidKey.POWER));
+                } catch (Exception e) {
+                    TestUtils.log().debug("Getting exception while lock or unlock ....");
+                }
             }
 
         } catch (Exception e) {
