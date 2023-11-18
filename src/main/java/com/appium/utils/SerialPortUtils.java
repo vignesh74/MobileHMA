@@ -96,7 +96,6 @@ public class SerialPortUtils {
             } else if ((roboticArmLogs.equalsIgnoreCase("TWIST_AND_GO:DISABLE;\r\n"))) {
                 TestUtils.log().info(MessageConstants.TWO_BRACKETS,MessageConstants.ROBOTIC_ARM_MESSAGE,roboticArmLogs.substring(0, 20));
                 roboticArmLogs = roboticArmLogs.substring(0, 20);
-                basePage.waitForGivenTime(1);
             }
 
         } catch (Exception e) {
