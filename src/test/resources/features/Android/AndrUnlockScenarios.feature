@@ -131,10 +131,10 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     @Android12_RevE_Tap_WF_14 @Android12_RevE_Tap @Android12_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID   | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | _Tap_WF14_TC-53 | Unlocked    | Off        | On         | Don't allow                 | Off             | Locked       | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
-      | RevE        | _Tap_WF14_TC-54 | Unlocked    | Off        | On         | Don't allow                 | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
-      | RevE        | _Tap_WF14_TC-55 | Unlocked    | Off        | On         | Don't allow                 | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
-      | RevE        | _Tap_WF14_TC-56 | Unlocked    | Off        | On         | Don't allow                 | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF14_TC-53 | Unlocked    | Off        | On         | Don't allow                 | Off             | Locked       | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE      | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF14_TC-54 | Unlocked    | Off        | On         | Don't allow                 | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE      | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF14_TC-55 | Unlocked    | Off        | On         | Don't allow                 | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE     | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF14_TC-56 | Unlocked    | Off        | On         | Don't allow                 | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE     | Mobile ID Read | Seos        |
 
     @Android12_RevE_Tap_WF_15 @Android12_RevE_Tap @Android12_RevE
     Examples:
