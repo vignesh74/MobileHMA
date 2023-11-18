@@ -786,7 +786,7 @@ public class AndroidDeviceAction {
         } else if (strDeviceState.equalsIgnoreCase("Unlocked")) {
             TestUtils.log().info("Device is already in unlocked state....");
         } else {
-            TestUtils.log().info("Please provide correct input...");
+            TestUtils.log().info("Please provide correct input....");
         }
     }
 }
