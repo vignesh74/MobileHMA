@@ -639,8 +639,8 @@ public class AndroidDeviceAction {
         try {
             String appPackage = ConfigLoader.getInstance().getAndroidAppPackage();
             String udid = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
-            // Separate the adb command and its arguments into individual elements of an array
-            String[] command = { "adb", "-s", udid, "shell", "monkey", "-p", appPackage, "1" };
+            String adbPath = "/opt/homebrew/bin/adb";
+            String[] command = { adbPath, "-s", udid, "shell", "monkey", "-p", appPackage, "1" };
 
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.redirectErrorStream(true); // Redirect error stream to input stream
