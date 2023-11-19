@@ -1741,25 +1741,42 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         }
     }
 
-    public void verifyActivityLog(String mobileIDState,String message){
+    public void verifyActivityLog(String mobileIDState,String message, String appState){
         try{
-            navigateBack();
-            clickOnMobileIDTabAndVerify();
-            expandActivityLogs();
-            if(txtActivityMobileIDRead.getText().equalsIgnoreCase(mobileIDState)){
-                TestUtils.log().info("MobileRead is displayed correct.....");
-                Assert.assertTrue(true, "MobileRead is displayed correct");
-                if(txtActivityMsg.getText().equalsIgnoreCase(message)){
-                    Assert.assertTrue(true, "Msg is displayed correct");
-                    TestUtils.log().info("Msg is displayed correct.....");
+            if(appState.equalsIgnoreCase("Killed")){
+                clickOnMobileIDTabAndVerify();
+                expandActivityLogs();
+                if(txtActivityMobileIDRead.getText().equalsIgnoreCase(mobileIDState)){
+                    TestUtils.log().info("MobileRead is displayed correct.....");
+                    Assert.assertTrue(true, "MobileRead is displayed correct");
+                    if(txtActivityMsg.getText().equalsIgnoreCase(message)){
+                        Assert.assertTrue(true, "Msg is displayed correct");
+                        TestUtils.log().info("Msg is displayed correct.....");
+                    }else{
+                        Assert.assertTrue(true, "Msg is not displayed correct");
+                        TestUtils.log().info("Msg is not displayed correct.....");
+                    }
                 }else{
-                    Assert.assertTrue(true, "Msg is not displayed correct");
-                    TestUtils.log().info("Msg is not displayed correct.....");
+                    Assert.assertTrue(true, "MobileRead is not displayed correct");
                 }
             }else{
-                Assert.assertTrue(true, "MobileRead is not displayed correct");
+                navigateBack();
+                clickOnMobileIDTabAndVerify();
+                expandActivityLogs();
+                if(txtActivityMobileIDRead.getText().equalsIgnoreCase(mobileIDState)){
+                    TestUtils.log().info("MobileRead is displayed correct.....");
+                    Assert.assertTrue(true, "MobileRead is displayed correct");
+                    if(txtActivityMsg.getText().equalsIgnoreCase(message)){
+                        Assert.assertTrue(true, "Msg is displayed correct");
+                        TestUtils.log().info("Msg is displayed correct.....");
+                    }else{
+                        Assert.assertTrue(true, "Msg is not displayed correct");
+                        TestUtils.log().info("Msg is not displayed correct.....");
+                    }
+                }else{
+                    Assert.assertTrue(true, "MobileRead is not displayed correct");
+                }
             }
-
         }catch(Exception e){
             TestUtils.log().info("Exception occurred while verifying the activity log");
         }

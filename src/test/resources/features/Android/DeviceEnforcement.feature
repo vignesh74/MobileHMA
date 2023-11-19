@@ -588,7 +588,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Set device state as "Forced Unlock" in android device "<device_state>" "<app_state>"
     And   Set Application status as "Foreground" in android device
     Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
-    Then Verify the log message "<mobile_read>" and "<message>" in Activity log screen in android device
+    Then Verify the log message "<mobile_read>" and "<message>" in Activity log screen in android device with "<app_state>"
 
     @Android12_DE_Tap_WF1 @Android12_DE_Tap @Android12_DE
     Examples:

@@ -761,9 +761,9 @@ public class AndrStepDef extends BasePage {
         FAQScreen.searchText(text);
     }
 
-    @Then("Verify the log message {string} and {string} in Activity log screen in android device")
-    public void verifyActivityLog(String mobileIDState, String message) {
-        mobileIDScreen.verifyActivityLog(mobileIDState, message);
+    @Then("Verify the log message {string} and {string} in Activity log screen in android device with {string}")
+    public void verifyActivityLog(String mobileIDState, String message, String appState) {
+        mobileIDScreen.verifyActivityLog(mobileIDState, message, appState);
 
     }
 
