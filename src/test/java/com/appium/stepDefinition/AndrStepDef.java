@@ -783,9 +783,9 @@ public class AndrStepDef extends BasePage {
     }
 
 
-    @And("Set device state as {string} in android device {string}")
-    public void forceUnlock(String forceUnlock, String strDeviceState){
-        androidDeviceAction.forceUnlock(strDeviceState,(AndroidDriver) DriverManager.getDriver());
+    @And("Set device state as {string} in android device {string} {string}")
+    public void forceUnlock(String forceUnlock, String strDeviceState, String appState){
+        androidDeviceAction.forceUnlock(strDeviceState,appState, (AndroidDriver) DriverManager.getDriver());
     }
 
 
