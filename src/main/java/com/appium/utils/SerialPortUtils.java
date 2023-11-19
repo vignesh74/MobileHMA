@@ -231,6 +231,8 @@ public class SerialPortUtils {
                 roboticArmLogs = roboticArmLogs.substring(0, 20);
             }
 
+            basePage.waitForGivenTime(1);
+
             if (actionName.equals("Twist & Go") && (deviceState.equalsIgnoreCase("Locked"))) {
                 AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
                 try {
