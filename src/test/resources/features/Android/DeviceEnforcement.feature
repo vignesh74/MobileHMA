@@ -800,7 +800,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
       | RevE        | _TG_WF5_TC-53 | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Killed     | Twist & Go  | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TWIST_AND_GO:DISABLE | Enable       | Mobile ID Mismatch | Twist & Go      | Seos        |
       | RevE        | _TG_WF5_TC-54 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Killed     | Twist & Go  | TODAY | Mobile ID incompatible with this reader. Please contact your administrator. | TWIST_AND_GO:DISABLE | Enable       | Mobile ID Mismatch | Twist & Go      | Seos        |
 
-    @Android12_DE_NFCTap_WF1 @Android12_DE @Android12_DE_TwistGo
+    @Android12_DE_NFCTap_WF1 @Android12_DE
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                                                                      | robotic_arm_log | Twist_And_Go | mobile_read        | arm_action_name | reader_name |
       | RevE        | _Tap_WF1_TC-01 | Foreground  | On         | On         | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Mobile ID incompatible with this reader. Please contact your administrator.  | TAP:DISABLE     | Disable      | Mobile ID Mismatch | Tap             | Seos        |
