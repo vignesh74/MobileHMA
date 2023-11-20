@@ -241,7 +241,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _TG_WF12_TC-47 | Foreground  | On         | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
       | RevE        | _TG_WF12_TC-48 | Foreground  | On         | On         | Don't allow                 | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
 
-    @Android12_Signo_EnhancedTap_WF_1  @Android12_Signo_EnhancedTap @Android12_RevE
+    @Android12_Signo_EnhancedTap_WF_1 @Android12_Signo_EnhancedTap @Android12_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
       | Signo       | _ET_WF1_TC-01 | Always      | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
@@ -274,7 +274,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | Signo       | _ET_WF4_TC-15 | Unlocked    | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
       | Signo       | _ET_WF4_TC-16 | Unlocked    | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
 
-    @Android12_Signo_EnhancedTap_WF_5   @Android12_Signo_EnhancedTap @Android12_RevE
+    @Android12_Signo_EnhancedTap_WF_5  @Android12_Signo_EnhancedTap @Android12_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
       | Signo       | _ET_WF5_TC-17 | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
