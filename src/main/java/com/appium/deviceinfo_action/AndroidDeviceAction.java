@@ -812,20 +812,25 @@ public class AndroidDeviceAction {
 
 
     public void forceUnlock(String strDeviceState,String appState, AndroidDriver driver) {
-        if (strDeviceState.equalsIgnoreCase("Locked")) {
-            lockUnlockDevice();
-            TestUtils.log().info("Device is now in unlocked state....");
-            basePage.waitForGivenTime(1);
-        } else if (strDeviceState.equalsIgnoreCase("Unlocked")) {
-            TestUtils.log().info("Device is already in unlocked state....");
-        } else {
-            TestUtils.log().info("Please provide correct input....");
+        try{
+            if (strDeviceState.equalsIgnoreCase("Locked")) {
+                lockUnlockDevice();
+                TestUtils.log().info("Device is now in unlocked state....");
+                basePage.waitForGivenTime(1);
+            } else if (strDeviceState.equalsIgnoreCase("Unlocked")) {
+                TestUtils.log().info("Device is already in unlocked state....");
+            } else {
+                TestUtils.log().info("Please provide correct input....");
+            }
+
+            if(appState.equalsIgnoreCase("Killed")){
+                DriverManager.getDriver().launchApp();
+                TestUtils.log().info("Application is launched again");
+            }
+        }catch(Exception e){
+            TestUtils.log().info("Exception While force unlocking the device");
         }
 
-        if(appState.equalsIgnoreCase("Killed")){
-            DriverManager.getDriver().launchApp();
-            TestUtils.log().info("Application is launched again");
-        }
     }
 }
 
