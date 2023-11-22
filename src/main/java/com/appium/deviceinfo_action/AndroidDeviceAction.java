@@ -819,6 +819,7 @@ public class AndroidDeviceAction {
 
     public void forceUnlock(String strDeviceState,String appState, AndroidDriver driver) {
         try{
+            basePage.waitForGivenTime(1);
             if (strDeviceState.equalsIgnoreCase("Locked")) {
                 unlockDeviceWithPin("1234");
                 TestUtils.log().info("Device is now in unlocked state....");
@@ -848,7 +849,7 @@ public class AndroidDeviceAction {
             executeCommand(adbPath, "shell", "input", "keyevent", "82");
             executeCommand(adbPath, "shell", "input", "text", pin);
             executeCommand(adbPath, "shell", "input", "keyevent", "66");
-        } catch (IOException | InterruptedException e) {
+        } catch (Exception e) {
             TestUtils.log().info("Exception While force unlocking the device");
         }
     }
