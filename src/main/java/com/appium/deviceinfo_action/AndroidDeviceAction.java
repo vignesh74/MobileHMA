@@ -842,7 +842,7 @@ public class AndroidDeviceAction {
     public void unlockDeviceWithPin(String pin){
 //        String adbPath = "/Users/vigneshrajesh/Library/Android/sdk/platform-tools/adb";
         String adbPath = "/opt/homebrew/bin/adb";
-//        try {
+        try {
             // Run ADB commands
             executeCommand(adbPath, "shell", "input", "keyevent", "82");
             executeCommand(adbPath, "shell", "input", "text", pin);
