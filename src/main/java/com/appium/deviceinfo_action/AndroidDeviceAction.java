@@ -19,6 +19,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.appmanagement.ApplicationState;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.Duration;
@@ -819,7 +820,7 @@ public class AndroidDeviceAction {
     public void forceUnlock(String strDeviceState,String appState, AndroidDriver driver) {
         try{
             if (strDeviceState.equalsIgnoreCase("Locked")) {
-                lockUnlockDevice();
+                unlockDeviceWithPin("1234");
                 TestUtils.log().info("Device is now in unlocked state....");
                 basePage.waitForGivenTime(1);
             } else if (strDeviceState.equalsIgnoreCase("Unlocked")) {
@@ -836,6 +837,36 @@ public class AndroidDeviceAction {
             TestUtils.log().info("Exception While force unlocking the device");
         }
 
+    }
+
+    public void unlockDeviceWithPin(String pin){
+//        String adbPath = "/Users/vigneshrajesh/Library/Android/sdk/platform-tools/adb";
+        String adbPath = "/opt/homebrew/bin/adb";
+//        try {
+            // Run ADB commands
+            executeCommand(adbPath, "shell", "input", "keyevent", "82");
+            executeCommand(adbPath, "shell", "input", "text", pin);
+            executeCommand(adbPath, "shell", "input", "keyevent", "66");
+        } catch (IOException | InterruptedException e) {
+            TestUtils.log().info("Exception While force unlocking the device");
+        }
+    }
+
+    private static void executeCommand(String... command) throws IOException, InterruptedException {
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        Process process = processBuilder.start();
+
+        // Read the output (if needed)
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+
+        int exitCode = process.waitFor();
+        if (exitCode != 0) {
+            throw new RuntimeException("Command execution failed with exit code: " + exitCode);
+        }
     }
 }
 
