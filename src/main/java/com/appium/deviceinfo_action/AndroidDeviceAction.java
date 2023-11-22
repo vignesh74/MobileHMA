@@ -834,7 +834,7 @@ public class AndroidDeviceAction {
                 TestUtils.log().info("Application is launched again");
             }
         }catch(Exception e){
-            System.out.println("vignesh "+e);
+            e.printStackTrace();
             TestUtils.log().info("Exception While force unlocking the device");
         }
 
