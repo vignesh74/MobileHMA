@@ -18,7 +18,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     And   Set device state as "<device_state>" in android device.
 #    And   Set display screen as "<display_status>" in android device
     And   Perform robotic arm action as "<action_name>" for android device "<device_state>"
-    And   Set device state as "Forced Unlock" in android device "<device_state>" "<app_state>"
+    And   Set device state as "<device_state>" with "<app_state>" in android device
     And   Set Application status as "Foreground" in android device
     Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
     And   Activity log is displayed in android device and "<date>", "<message>" are verified
@@ -147,7 +147,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     @Android12_RevE_TwistGo_WF_1 @Android12_RevE_TwistGo @Android12_RevE @Android12_RevE_TwistGo
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-#      | RevE        | _TG_WF1_TC-01 | Always      | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
+      | RevE        | _TG_WF1_TC-01 | Always      | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
 #      | RevE        | _TG_WF1_TC-02 | Always      | On         | Off        | Allow                       | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
       | RevE        | _TG_WF1_TC-03 | Always      | On         | Off        | Allow                       | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
 #      | RevE        | _TG_WF1_TC-04 | Always      | On         | Off        | Allow                       | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
