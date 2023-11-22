@@ -2,6 +2,7 @@ package com.appium.utils;
 
 import com.appium.base.BasePage;
 import com.appium.constants.MessageConstants;
+import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
 import io.appium.java_client.android.AndroidDriver;
@@ -15,6 +16,7 @@ import static com.appium.constants.FrameworkConstants.DESCRIPTIVEPORTNAME;
 public class SerialPortUtils {
 
     static BasePage basePage = new BasePage();
+    AndroidDeviceAction androidDeviceAction = new AndroidDeviceAction();
 
 
     public static String getDeviceCOMPort() {
@@ -190,7 +192,7 @@ public class SerialPortUtils {
     }
 
 
-    public static String performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
+    public String performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
         String roboticArmLogs = "";
         SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem"+deviceCOMPort.trim());
         try {
@@ -236,7 +238,8 @@ public class SerialPortUtils {
             if (actionName.equals("Twist & Go") && (deviceState.equalsIgnoreCase("Locked"))) {
                 AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
                 try {
-                    driver.pressKey(new KeyEvent(AndroidKey.POWER));
+                    androidDeviceAction.unlockDeviceWithPin("1234");
+                    //driver.pressKey(new KeyEvent(AndroidKey.POWER));
                 } catch (Exception e) {
                     TestUtils.log().debug("Getting exception while lock or unlock ....");
                 }
