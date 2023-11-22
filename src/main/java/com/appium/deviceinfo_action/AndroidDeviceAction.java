@@ -710,8 +710,13 @@ public class AndroidDeviceAction {
 //    }
 
     public void sendAppToBackground(String udid) {
-        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-        driver.pressKey(new KeyEvent(AndroidKey.HOME));
+        try{
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+            driver.pressKey(new KeyEvent(AndroidKey.HOME));
+        }catch (Exception e){
+            TestUtils.log().debug("Getting exception while app is moving to Background ....");
+        }
+
 //        StringBuilder info = new StringBuilder();
 //        try {
 //            // Separate the adb command and its arguments into individual elements of an array
@@ -802,8 +807,8 @@ public class AndroidDeviceAction {
     }
 
     public void lockUnlockDevice() {
-        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
         try {
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
             driver.pressKey(new KeyEvent(AndroidKey.POWER));
         } catch (Exception e) {
             TestUtils.log().debug("Getting exception while lock or unlock ....");
