@@ -15,7 +15,7 @@ import static com.appium.constants.FrameworkConstants.DESCRIPTIVEPORTNAME;
 
 public class SerialPortUtils {
 
-    static BasePage basePage = new BasePage();
+    public static BasePage basePage = new BasePage();
     AndroidDeviceAction androidDeviceAction = new AndroidDeviceAction();
 
 

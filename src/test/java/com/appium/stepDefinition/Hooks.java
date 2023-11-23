@@ -18,10 +18,11 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
-
+import com.appium.base.BasePage;
 import java.io.IOException;
 
 import static com.appium.constants.FrameworkConstants.YES;
+import static com.appium.utils.SerialPortUtils.basePage;
 
 public class Hooks {
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
@@ -36,6 +37,7 @@ public class Hooks {
      **/
     @AfterStep
     public static void addScreenshotForScenario(Scenario scenario) {
+        basePage.waitForGivenTime(1);
         String status = String.valueOf(scenario.getStatus());
         byte[] screenshot = DriverManager.getDriver().getScreenshotAs(OutputType.BYTES);
         if (ConfigLoader.getInstance().getPassedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("PASSED")) {

@@ -819,7 +819,6 @@ public class AndroidDeviceAction {
 
     public void forceUnlock(String strDeviceState,String appState, AndroidDriver driver) {
         try{
-            basePage.waitForGivenTime(1);
             if (strDeviceState.equalsIgnoreCase("Locked")) {
                 unlockDeviceWithPin("1234");
                 TestUtils.log().info("Device is now in unlocked state....");
