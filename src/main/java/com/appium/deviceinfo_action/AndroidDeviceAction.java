@@ -832,7 +832,7 @@ public class AndroidDeviceAction {
 
             if(appState.equalsIgnoreCase("Killed")){
                 DriverManager.getDriver().launchApp();
-                TestUtils.log().info("Application is launched again");
+                TestUtils.log().info("Application is launched again....");
             }
         }catch(Exception e){
             e.printStackTrace();
