@@ -829,7 +829,7 @@ public class AndroidDeviceAction {
             } else {
                 TestUtils.log().info("Please provide correct input....");
             }
-
+            basePage.waitForGivenTime(1);
             if(appState.equalsIgnoreCase("Killed")){
                 DriverManager.getDriver().launchApp();
                 TestUtils.log().info("Application is launched again....");
