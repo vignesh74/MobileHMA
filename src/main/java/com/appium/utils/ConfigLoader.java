@@ -47,6 +47,8 @@ public class ConfigLoader {
     private static ConfigLoader configLoader;
     private Properties properties;
 
+    private static final String ADB_PATH = "adbPath";
+
     /**
      * ConfigLoader- Constructor load the config.properties Date-02/11/2022
      */
@@ -281,6 +283,10 @@ public class ConfigLoader {
      */
     public String getiOSHomeBundleId() {
         return getPropertyValue(IOS_HOME_BUNDLE_ID);
+    }
+
+    public String getAdbPath(){
+        return getPropertyValue(ADB_PATH);
     }
 
 }
