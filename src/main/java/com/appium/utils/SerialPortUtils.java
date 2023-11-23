@@ -239,7 +239,6 @@ public class SerialPortUtils {
                 AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
                 try {
                     androidDeviceAction.unlockDeviceWithPin("1234");
-                    //driver.pressKey(new KeyEvent(AndroidKey.POWER));
                 } catch (Exception e) {
                     TestUtils.log().debug("Getting exception while lock or unlock ....");
                 }
