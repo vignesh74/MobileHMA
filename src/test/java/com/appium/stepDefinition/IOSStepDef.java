@@ -4,6 +4,7 @@ import com.appium.HIDPages.ios.*;
 import com.appium.deviceinfo_action.IOSDeviceInfo;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
+import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
 import io.cucumber.java.en.Given;
@@ -13,6 +14,7 @@ import jssc.SerialPortException;
 import org.testng.Assert;
 
 import java.io.IOException;
+import java.sql.Driver;
 
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 
@@ -42,6 +44,7 @@ public class IOSStepDef {
     public void launchHidAccessMobileApp_iOS() {
         if (!mobileIdScreen.isMobileIdScreenDisplayed()) {
             DriverManager.getDriver().closeApp();
+            //DriverManager.getDriver().installApp(ConfigLoader.getInstance().getiOSAppLocation());
             DriverManager.getDriver().launchApp();
         }
         TestUtils.log().info("Application launched Successfully");
@@ -375,5 +378,10 @@ public class IOSStepDef {
         activityScreen.verifyLogMessage(activityLog, logMessage);
     }
 
+    //Device Enforcement
+    @Then("Verify {string} is disabled and other modes are enabled")
+    public void checkEnforcedSetting(String mode_state){
+        settingScreen.checkEnforcedSetting(mode_state);
+    }
 
 }

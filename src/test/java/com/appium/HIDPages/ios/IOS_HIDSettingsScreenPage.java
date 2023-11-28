@@ -78,6 +78,9 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name=\"Settings\"])[2]")
     private MobileElement btnSettingPopUpLocation;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Cancel\"]")
+    private MobileElement btnCancelPopUpLocation;
+
     //Raji
  //   @iOSXCUITFindBy(accessibility = "alertTitle")
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[@name=\"We do not track your location. The app will use location services to optimize its ability to find nearby readers.\"]")
@@ -265,6 +268,9 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     private MobileElement navBarFeedback;
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Submit\"]")
     private MobileElement btnSubmit;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Required by your administrator: app mode must be 'Foreground'\"]")
+    private MobileElement enforcedAlwaysTxt;
 
     //XCUIElementTypeStaticText[@name="Welcome to HID Mobile Access"]
 
@@ -636,8 +642,12 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     public void handlingSettingPopUp() {
         try {
             if (isDisplayed(txtPopUpAlertTitle)) {
-                click(btnSettingPopUpLocation);
-                switchToAnotherApp(ConfigLoader.getInstance().getiOSBundleID());
+                click(btnCancelPopUpLocation);
+                //click(btnSettingPopUpLocation);
+                //switchToAnotherApp(ConfigLoader.getInstance().getiOSBundleID());
+                if(isDisplayed(txtPopUpAlertTitle)) {
+                    click(btnCancelPopUpLocation);
+                }
             } else
                 TestUtils.log().info("Turn on location pop-up is not displayed");
         } catch (Exception e) {
@@ -1044,6 +1054,28 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
                 }
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while verifying the App Crash pop up in Home screen...");
+        }
+    }
+
+    //Device Enforcement methods
+    public void checkEnforcedSetting(String mode_state){
+        if(mode_state == "Always"){
+            String alwaysText = txtAlways.getText();
+            Assert.assertEquals(alwaysText,mode_state);
+            String enforcedAlways = enforcedAlwaysTxt.getText();
+            Assert.assertEquals(enforcedAlways,"Required by your administrator: app mode must be 'Foreground'");
+            String alwaysAttribute  = chkAlways.getAttribute("enabled");
+            Assert.assertEquals(alwaysAttribute,"false");
+        }else if(mode_state == "Foreground"){
+            String foregroundText = txtForeground.getText();
+            Assert.assertEquals(foregroundText,mode_state);
+            String foregroundAttribute = chkForeground.getAttribute("enabled");
+            Assert.assertEquals(foregroundAttribute,true);
+        }else if(mode_state == "Unlocked"){
+            String unlockedText = txtUnlocked.getText();
+            Assert.assertEquals(unlockedText,mode_state);
+            String unlockedAttribute = chkUnlocked.getAttribute("enabled");
+            Assert.assertEquals(unlockedAttribute,true);
         }
     }
 

@@ -14,12 +14,12 @@
 
     Examples:
       | TC_ID  | BLE_status | location_permission |
-      | _TC-01 | Allowed    | Always              |
-      | _TC-02 | Allowed    | While using the app |
-      | _TC-03 | Allowed    | Never               |
-      | _TC-04 | Denied     | Always              |
-      | _TC-05 | Denied     | While using the app |
-      | _TC-06 | Denied     | Never               |
+      | _TC-01 | Allowed    | While using the app |
+      | _TC-02 | Allowed    | Never               |
+      | _TC-03 | Denied     | Always              |
+      | _TC-03 | Denied     | While using the app |
+      | _TC-05 | Denied     | Never               |
+      | _TC-06 | Allowed    | Always              |
 
   @iOS_Settings_WF2 @iOS_Settings_WF @iOS_SmokeRun 
   Scenario Outline: iOS_Settings_WF2<TC_ID>: Verify Mode State status is <mode_state>
