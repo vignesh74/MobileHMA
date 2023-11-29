@@ -118,7 +118,8 @@ public class IOS_HIDHelpCenterFeedbackPage extends BasePage {
     public void isSubmitFeedbackButtonEnable(String text) {
         try {
             if (!btnSubmitFeedback.isEnabled()) {
-                click(txtFeedbackSupport);
+                //click(txtFeedbackSupport);
+                click(txtBoxFeedbackDescribe);
                 sendKeys(txtBoxFeedbackDescribe, text);
                 Assert.assertTrue(btnSubmitFeedback.isEnabled());
                 clickOnBackToSupportScreen();
