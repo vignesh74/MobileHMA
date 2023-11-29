@@ -38,6 +38,7 @@ public class ConfigLoader {
     private static final String ANDROID_APP_ACTIVITY = "androidAppActivity";
     private static final String ANDROID_APP_LOCATION = "androidAppLocation";
 
+    private static final String ANDROID_APP_LOCATION_NEW = "androidAppLocationNew";
     private static final String IOS_AUTOMATION_NAME = "iOSAutomationName";
     private static final String IOS_BUNDLE_ID = "iOSBundleId";
     private static final String IOS_HOME_BUNDLE_ID = "iOSHomeBundleId";
@@ -147,6 +148,10 @@ public class ConfigLoader {
      */
     public String getAndroidApplocation() {
         return getPropertyValue(ANDROID_APP_LOCATION);
+    }
+
+    public String getAndroidAppLocationNew(){
+        return getPropertyValue(ANDROID_APP_LOCATION_NEW);
     }
 
     /**
