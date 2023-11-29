@@ -205,6 +205,10 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         return rdoUsageAlways;
     }
 
+    public MobileElement getRdoUsageForeground() {
+        return rdoUsageForeground;
+    }
+
     public MobileElement getRdoUsageUnlocked() {
         return rdoUsageUnlocked;
     }

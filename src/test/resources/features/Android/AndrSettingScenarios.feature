@@ -257,6 +257,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-01 | On                  |
       | _TC-02 | Off                 |
 
+    #This feature can be run with the debug enabled abk.
   @ANDR_11_10_Settings_FAQ
   Scenario Outline: ANDR_11_10_Settings_FAQ<TC_ID>: Verify the FAQ section
     When Navigate to settings page in android device
@@ -271,19 +272,30 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-02 | invalidjhdvf |
 
   @ANDR_11_10_Settings_uninstallation
-  Scenario: ANDR_11_10_Settings_installation<TC_ID>: Verify the Install, Uninstall & Upgrade
+  Scenario: ANDR_11_10_Settings_installation<TC_ID>: Verify the Uninstall Upgrade
     Given Launch HID Access Mobile Application in android device
-    And "<method>" the app in android device
-
-    Examples:
-      | TC_ID  | method    |
-      | _TC-01 | uninstall   |
+    And uninstall the app in android device
 
 
-  @ANDR_11_10_Settings_upgrade
-  Scenario: ANDR_11_10_Settings_upgrade<TC_ID>: Verify the Upgrade
+  @ANDR_11_10_Settings_upgrade_production
+  Scenario: ANDR_11_10_Settings_upgrade<TC_ID>: Verify the Upgrade in PlayStore
     And Navigate to notification page in android device
     And Verify new version available text in the notification screen in android device
+
+ @ANDR_11_10_upgrade
+ Scenario: ANDR_11_10_upgrade: Verify the upgrade of app
+   When Navigate to Settings and App Preferences screen in android device
+   And Note down the settings of application before upgrade
+   And Verify mobile about page information are displayed in android device
+   And install the new apk provided
+   Given Launch HID Access Mobile Application in android device
+   When Navigate to Settings and App Preferences screen in android device
+   And compare the App Preference information are same after the upgrade
+   And compare the About page information are same after the upgrade
+   And Verify the upgrade in android device
+
+
+
 
 
 

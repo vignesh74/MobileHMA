@@ -2,36 +2,25 @@ package com.appium.stepDefinition;
 
 import com.appium.HIDPages.android.*;
 import com.appium.base.BasePage;
-import com.appium.constants.FrameworkConstants;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
-import com.appium.manager.IDriver;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.connection.ConnectionState;
-import io.appium.java_client.android.connection.ConnectionStateBuilder;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_scouse.An;
 import jssc.SerialPortException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
-import java.time.Duration;
 
 import static com.appium.constants.MessageConstants.EULA;
-import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
-import static com.appium.manager.DriverManager.driver;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 
 
@@ -772,9 +761,9 @@ public class AndrStepDef extends BasePage {
         androidDeviceAction.setDeviceState_Android(strDeviceState);
     }
 
-    @And("{string} the app in android device")
-    public void possibleMethod(String method){
-        settingsScreen.possibleMethod(method);
+    @And("uninstall the app in android device")
+    public void uninstall(){
+        settingsScreen.uninstall();
     }
 
     @And("Verify new version available text in the notification screen in android device")
@@ -796,6 +785,40 @@ public class AndrStepDef extends BasePage {
     @And("Perform robotic arm action as {string} for android device {string}")
     public void roboticExecution(String RoboticAction,String deviceState) throws SerialPortException{
         armLogs = serialPortUtils.performRoboticArmOperationWithDeviceState(DriverManager.getDevicePort(), RoboticAction, deviceState);
+    }
+
+    @And("Verify mobile about page information are displayed in android device")
+    public void checkAboutInfo(){
+        settingsScreen.navigateBack();
+        settingsScreen.getTxtAbout().click();
+        settingsScreen.checkAboutInfo();
+    }
+
+    @And("install the new apk provided")
+    public void installAPK(){
+        settingsScreen.installAPK();
+    }
+
+//    @And("Verify the upgrade in android device")
+//    public void verifyUpgrade(){
+//        settingsScreen.verifyUpgrade();
+//    }
+
+    @And("Note down the settings of application before upgrade")
+    public void settingsStatus(){
+        settingsScreen.settingsStatus();
+    }
+
+    @And("compare the App Preference information are same after the upgrade")
+    public void compareAppPreference(){
+        settingsScreen.compareAppPreference();
+    }
+
+    @And("compare the About page information are same after the upgrade")
+    public void compareAboutInfo(){
+        settingsScreen.navigateBack();
+        click(settingsScreen.getTxtAbout());
+        settingsScreen.compareAboutInfo();
     }
 
 
