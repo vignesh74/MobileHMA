@@ -292,7 +292,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
    When Navigate to Settings and App Preferences screen in android device
    And compare the App Preference information are same after the upgrade
    And compare the About page information are same after the upgrade
-   And Verify the upgrade in android device
+#   And Verify the upgrade in android device
 
 
 

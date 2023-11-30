@@ -1073,15 +1073,17 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         String locationInfo = null;
         String nearByPermission = null;
         try {
-            scrollUpTillElement(txtHIDMobileAccessVersionValue,100,2);
+            isElementVisible(txtHIDMobileAccessVersionValue);
             mobileAccessVersion = txtHIDMobileAccessVersionValue.getText();
             origoSDKVersion = txtHIDOrigoSDKVersionValue.getText();
             doorOpeningMode = txtDoorOpeningModeValue.getText();
             endPointStatus = txtEndPointStatusValue.getText();
             seosID = txtSeosIDValue.getText();
             scrollDownTillElement(100, 2);
+            isElementVisible(txtEndPointAppVersionValue);
             endPointAppVersion = txtEndPointAppVersionValue.getText();
             scrollDownTillElement(100, 2);
+            isElementVisible(txtEnvironmentValue);
             environment = txtEnvironmentValue.getText();
             deviceModel = txtDeviceModelValue.getText();
             OSVersion = txtOSVersionValue.getText();
@@ -1089,7 +1091,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             NFCInfo = txtNfcInfoValue.getText();
             locationInfo = txtLocationInfoValue.getText();
             nearByPermission = txtNearByPermissionValue.getText();
-
+            scrollUpTillElement(txtHIDMobileAccessVersionValue,100,1);
         } catch (Exception e) {
             System.out.println("vignesh "+e);
             TestUtils.log().info("Getting Exception while verifying the About info of the app ...");
@@ -1192,6 +1194,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     public void compareAboutInfoForVersion12to13(){
         try{
             scrollUpTillElement(txtHIDMobileAccessVersion,100,2);
+            isElementVisible(txtHIDMobileAccessVersion);
             String mobileAccessVersion = checkAboutInfoForVersion12To13()[0];
             String origoSDKVersion = checkAboutInfoForVersion12To13()[1];
             String doorOpeningMode = checkAboutInfoForVersion12To13()[2];
@@ -1206,14 +1209,17 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             String locationInfo = checkAboutInfoForVersion12To13()[11];
             String nearbyPermission = checkAboutInfoForVersion12To13()[12];
 
+            isElementVisible(txtHIDMobileAccessVersionValue);
             String newMobileAccessVersion = txtHIDMobileAccessVersionValue.getText();
             String newOrigoSDKVersion = txtHIDOrigoSDKVersionValue.getText();
             String newDoorOpeningMode = txtDoorOpeningModeValue.getText();
             String newEndPointStatus = txtEndPointStatusValue.getText();
             String newSeosID = txtSeosIDValue.getText();
             scrollDownTillElement(100,2);
+            isElementVisible(txtEndPointAppVersionValue);
             String newEndPointAppVersion = txtEndPointAppVersionValue.getText();
             scrollDownTillElement(100,2);
+            isElementVisible(txtEnvironmentValue);
             String newEnvironment = txtEnvironmentValue.getText();
             String newDeviceModel = txtDeviceModelValue.getText();
             String newOSVersion = txtOSVersionValue.getText();
@@ -1263,6 +1269,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
 
 
         }catch (Exception e){
+            System.out.println("Compare "+e);
             TestUtils.log().info("Getting Exception while comparing the About info of the app after the upgrade ...");
         }
     }

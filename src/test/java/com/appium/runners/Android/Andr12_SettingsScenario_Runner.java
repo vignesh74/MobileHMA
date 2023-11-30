@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@ANDR_11_10_Settings_uninstallation")
+        , tags = "@ANDR_11_10_upgrade")
 
 public class Andr12_SettingsScenario_Runner extends BaseTest {
 
