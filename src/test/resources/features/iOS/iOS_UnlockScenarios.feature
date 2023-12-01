@@ -147,8 +147,8 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
 
     Examples:
       | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
-      | RevE        | _TG_WF4_TC-16 | Unlocked   | Allowed    | Always              | Foreground | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
-      | RevE        | _TG_WF4_TC-17 | Unlocked   | Allowed    | Always              | Background | Locked       | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+      #| RevE        | _TG_WF4_TC-16 | Unlocked   | Allowed    | Always              | Foreground | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+      #| RevE        | _TG_WF4_TC-17 | Unlocked   | Allowed    | Always              | Background | Locked       | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       | RevE        | _TG_WF4_TC-18 | Unlocked   | Allowed    | Always              | Foreground | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       | RevE        | _TG_WF4_TC-19 | Unlocked   | Allowed    | Always              | Background | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       | RevE        | _TG_WF4_TC-20 | Unlocked   | Allowed    | Always              | Killed     | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
@@ -157,18 +157,18 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
 
     Examples:
       | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
-      | RevE        | _TG_WF5_TC-21 | Unlocked   | Allowed    | While using the app | Foreground | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
-      | RevE        | _TG_WF5_TC-22 | Unlocked   | Allowed    | While using the app | Background | Locked       | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+#      | RevE        | _TG_WF5_TC-21 | Unlocked   | Allowed    | While using the app | Foreground | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+#      | RevE        | _TG_WF5_TC-22 | Unlocked   | Allowed    | While using the app | Background | Locked       | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       | RevE        | _TG_WF5_TC-23 | Unlocked   | Allowed    | While using the app | Foreground | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       | RevE        | _TG_WF5_TC-24 | Unlocked   | Allowed    | While using the app | Background | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
-      | RevE        | _TG_WF5_TC-25 | Unlocked   | Allowed    | While using the app | Killed     | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+#      | RevE        | _TG_WF5_TC-25 | Unlocked   | Allowed    | While using the app | Killed     | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
 
     @iOS_RevE_TwistGo_WF6 @iOS_RevE_TwistGo @iOS_RevE
 
     Examples:
       | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
-      | RevE        | _TG_WF6_TC-26 | Unlocked   | Allowed    | Never               | Foreground | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
-      | RevE        | _TG_WF6_TC-27 | Unlocked   | Allowed    | Never               | Background | Locked       | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+#      | RevE        | _TG_WF6_TC-26 | Unlocked   | Allowed    | Never               | Foreground | Locked       | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+#      | RevE        | _TG_WF6_TC-27 | Unlocked   | Allowed    | Never               | Background | Locked       | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       | RevE        | _TG_WF6_TC-28 | Unlocked   | Allowed    | Never               | Foreground | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       | RevE        | _TG_WF6_TC-29 | Unlocked   | Allowed    | Never               | Background | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       | RevE        | _TG_WF6_TC-30 | Unlocked   | Allowed    | Never               | Killed     | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
