@@ -200,10 +200,10 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
   @ANDR_7_8_9_WarningBanners @ANDR_WarningBanners
   Scenario Outline:@ANDR_7_8_9_WarningBanners<TC_ID>: Verify that BLE status is <BLE_Status>, Location is <Location_Status>,Location Permission is <Location_Permission>
     When Navigate to Settings and App Preferences screen in android device
-#    Then Bluetooth status is displayed as "<BLE_Status>" in android device
-#    And  Location Status is displayed as "<Location_Status>" in android device
+    Then Bluetooth status is displayed as "<BLE_Status>" in android device
+    And  Location Status is displayed as "<Location_Status>" in android device
     And  "Location" Permission status is displayed as "<Location_Permission>" in android device
-#    Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<Location_Status>" "<Location_Permission>"
+    Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<Location_Status>" "<Location_Permission>"
 
     Examples:
       | TC_ID  | BLE_Status | Location_Status | Location_Permission | Warning_Banners     |
@@ -211,7 +211,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
       | _TC-02 | Off        | Off             | Denied              | Location Permission&Bluetooth Disabled |
       | _TC-05 | On         | Off             | Always              | GPS Disabled                   |
       | _TC-06 | On         | Off             | Denied              | Location Permission |
-      | _TC-09 | Off        | On              | Always              | Bluetooth Disabled              |
+      | _TC-09 | Off        | On              | Always              | Bluetooth Disabled  GPS Disabled             |
       | _TC-10 | Off        | On              | Denied              | Location Permission&Bluetooth Disabled              |
       | _TC-25 | On         | On              | Always              | GPS Disabled                                        |
       | _TC-26 | On         | On              | Denied              | No                                        |
