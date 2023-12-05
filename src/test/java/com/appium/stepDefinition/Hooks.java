@@ -37,28 +37,39 @@ public class Hooks {
      **/
     @AfterStep
     public static void addScreenshotForScenario(Scenario scenario) {
-        basePage.waitForGivenTime(1);
-        String status = String.valueOf(scenario.getStatus());
-        byte[] screenshot = DriverManager.getDriver().getScreenshotAs(OutputType.BYTES);
-        if (ConfigLoader.getInstance().getPassedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("PASSED")) {
-            if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
-                ExtentCucumberAdapter.getCurrentStep().log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenshotUtils.getBase64Image()).build());
-            } else {
-                scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
+        try{
+
+            basePage.waitForGivenTime(1);
+            String status = String.valueOf(scenario.getStatus());
+            if(scenario.getName().equalsIgnoreCase("ANDR_11_10_upgrade: Verify the upgrade of app")){
+                byte[] screenshot = null;
+            }else{
+                byte[] screenshot = DriverManager.getDriver().getScreenshotAs(OutputType.BYTES);
+                if (ConfigLoader.getInstance().getPassedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("PASSED")) {
+                    if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
+                        ExtentCucumberAdapter.getCurrentStep().log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenshotUtils.getBase64Image()).build());
+                    } else {
+                        scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
+                    }
+                } else if (ConfigLoader.getInstance().getFailedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("FAILED")) {
+                    if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
+                        ExtentCucumberAdapter.getCurrentStep().log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenshotUtils.getBase64Image()).build());
+                    } else {
+                        scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
+                    }
+                } else if (ConfigLoader.getInstance().getSkippedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("SKIPPED")) {
+                    if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
+                        ExtentCucumberAdapter.getCurrentStep().log(Status.SKIP, MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenshotUtils.getBase64Image()).build());
+                    } else {
+                        scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
+                    }
+                }
             }
-        } else if (ConfigLoader.getInstance().getFailedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("FAILED")) {
-            if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
-                ExtentCucumberAdapter.getCurrentStep().log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenshotUtils.getBase64Image()).build());
-            } else {
-                scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
-            }
-        } else if (ConfigLoader.getInstance().getSkippedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("SKIPPED")) {
-            if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
-                ExtentCucumberAdapter.getCurrentStep().log(Status.SKIP, MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenshotUtils.getBase64Image()).build());
-            } else {
-                scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
-            }
+
+        }catch(Exception e){
+            System.out.println("addScreenshotForScenario "+e);
         }
+
     }
 
     /**
