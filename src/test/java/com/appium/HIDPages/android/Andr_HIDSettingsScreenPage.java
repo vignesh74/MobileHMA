@@ -701,10 +701,6 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             if (driver != null) {
                 // Install the new APK within the existing session
                 driver.installApp(appPath);
-
-                // Optionally, perform additional actions with the installed app
-                // ...
-
             } else {
                 System.out.println("Driver is null. Cannot install APK.");
                 TestUtils.log().info("Driver is null. Cannot install APK.");
@@ -801,9 +797,8 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             nearbyPermissionValue = appPrefencesScreenPage.getTxtNearByPermissionStatusValue().getText();
             alwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
             foregroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
-            scrollDownTillElement(100, 2);
+            scrollDownTillElement(150, 2);
             unlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
-            scrollDownTillElement(100, 2);
             twistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
             nearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
             showActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
@@ -984,10 +979,10 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             String newNFCValue = appPrefencesScreenPage.getTxtNFCStatusValue().getText();
             String newNearbyPermissionValue = appPrefencesScreenPage.getTxtNearByPermissionStatusValue().getText();
             String newAlwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
-            scrollDownTillElement(100,2);
+            scrollDownTillElement(150,2);
             String newForegroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
             String newUnlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
-            scrollDownTillElement(100,2);
+            scrollDownTillElement(150,2);
             String newTwistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
             String newNearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
             String newShowActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
@@ -1118,7 +1113,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             doorOpeningMode = txtDoorOpeningModeValue.getText();
             endPointStatus = txtEndPointStatusValue.getText();
             seosID = txtSeosIDValue.getText();
-            scrollDownTillElement(100, 2);
+            scrollDownTillElement(150, 2);
             isElementVisible(txtEndPointAppVersionValue);
             endPointAppVersion = txtEndPointAppVersionValue.getText();
             scrollDownTillElement(100, 2);
@@ -1255,10 +1250,9 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             String newDoorOpeningMode = txtDoorOpeningModeValue.getText();
             String newEndPointStatus = txtEndPointStatusValue.getText();
             String newSeosID = txtSeosIDValue.getText();
-            scrollDownTillElement(100,2);
+            scrollDownTillElement(150,2);
             isElementVisible(txtEndPointAppVersionValue);
             String newEndPointAppVersion = txtEndPointAppVersionValue.getText();
-            scrollDownTillElement(100,2);
             isElementVisible(txtEnvironmentValue);
             String newEnvironment = txtEnvironmentValue.getText();
             String newDeviceModel = txtDeviceModelValue.getText();

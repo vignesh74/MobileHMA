@@ -257,7 +257,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-01 | On                  |
       | _TC-02 | Off                 |
 
-    #This feature can be run with the debug enabled abk.
+    #This feature can be run with the debug enabled apk.
   @ANDR_11_10_Settings_FAQ
   Scenario Outline: ANDR_11_10_Settings_FAQ<TC_ID>: Verify the FAQ section
     When Navigate to settings page in android device
@@ -287,12 +287,11 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
    When Navigate to Settings and App Preferences screen in android device
    And Note down the settings of application before upgrade
    And Verify mobile about page information are displayed in android device
-   And install the new apk provided
+    And upgrade the new apk provided
    Given Launch HID Access Mobile Application in android device
    When Navigate to Settings and App Preferences screen in android device
    And compare the App Preference information are same after the upgrade
    And compare the About page information are same after the upgrade
-#   And Verify the upgrade in android device
 
 
 

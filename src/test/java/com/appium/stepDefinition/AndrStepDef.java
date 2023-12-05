@@ -794,7 +794,7 @@ public class AndrStepDef extends BasePage {
         settingsScreen.checkAboutInfo();
     }
 
-    @And("install the new apk provided")
+    @And("upgrade the new apk provided")
     public void installAPK(){
         settingsScreen.installAPK();
     }
