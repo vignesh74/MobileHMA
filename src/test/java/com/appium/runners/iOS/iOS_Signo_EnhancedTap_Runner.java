@@ -15,7 +15,7 @@ import io.cucumber.testng.CucumberOptions;
         , dryRun = false
         , monochrome = true
         //        , tags = "@iOS_Signo_EnhancedTap_WF1")
-        , tags = "@iOS_Signo_EnhancedTap")
+        , tags = "@DemoIOS")
 
 public class iOS_Signo_EnhancedTap_Runner extends BaseTest {
 }

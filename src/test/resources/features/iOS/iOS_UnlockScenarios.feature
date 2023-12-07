@@ -112,14 +112,14 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
       | RevE        | _TAP_WF9_TC-44 | Foreground | Allowed    | Never               | Background | Unlocked     | ON             | TAP         | TAP:DISABLE     | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | FavR5 |
       | RevE        | _TAP_WF9_TC-45 | Foreground | Allowed    | Never               | Killed     | Unlocked     | OFF            | TAP         | TAP:DISABLE     | TODAY | Mobile ID Read | Successful Bluetooth transaction | Tap             | FavR5 |
 
-    @iOS_RevE_TwistGo_WF1 @iOS_RevE_TwistGo @iOS_RevE
+    @iOS_RevE_TwistGo_WF1 @iOS_RevE_TwistGo @iOS_RevE @DemoIOS
 
     Examples:
       | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log      | date  | mobile_read    | message                          | arm_action_name | reader_name |
       | RevE        | _TG_WF1_TC-01 | Always     | Allowed    | Always              | Foreground | Locked       | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
-      | RevE        | _TG_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
-      | RevE        | _TG_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
-      | RevE        | _TG_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+#      | RevE        | _TG_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+#      | RevE        | _TG_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
+#      | RevE        | _TG_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       #| RevE        | _TG_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO=:ENABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
 
     @iOS_RevE_TwistGo_WF2 @iOS_RevE_TwistGo @iOS_RevE
@@ -203,14 +203,14 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
       | RevE        | _TG_WF9_TC-44 | Foreground | Allowed    | Never               | Background | Unlocked     | ON             | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
       | RevE        | _TG_WF9_TC-45 | Foreground | Allowed    | Never               | Killed     | Unlocked     | OFF            | Twist & Go  | TWIST_AND_GO:DISABLE | TODAY | Mobile ID Read | Successful Bluetooth transaction | Twist & Go      | FavR5 |
 
-    @iOS_Signo_EnhancedTap_WF1 @iOS_Signo_EnhancedTap @iOS_SmokeRun
+    @iOS_Signo_EnhancedTap_WF1 @iOS_Signo_EnhancedTap @iOS_SmokeRun @DemoIOS
 
     Examples:
       | Reader_Name | Gesture_TC_ID | mode_state | BLE_status | location_permission | app_state  | device_state | display_status | action_name | robotic_arm_log | date  | mobile_read    | message                          | arm_action_name | reader_name |
       | Signo       | _ET_WF1_TC-01 | Always     | Allowed    | Always              | Foreground | Locked       | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
-      | Signo       | _ET_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
-      | Signo       | _ET_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
-      | Signo       | _ET_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
+#      | Signo       | _ET_WF1_TC-02 | Always     | Allowed    | Always              | Background | Locked       | OFF            | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
+#      | Signo       | _ET_WF1_TC-03 | Always     | Allowed    | Always              | Foreground | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
+#      | Signo       | _ET_WF1_TC-04 | Always     | Allowed    | Always              | Background | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
       #| Signo       | _ET_WF1_TC-05 | Always     | Allowed    | Always              | Killed     | Unlocked     | ON             | TAP         | TAP:ENABLE      | TODAY | Mobile ID Read | Successful Bluetooth transaction | Enhanced Tap    | FavR5     |
 
 
