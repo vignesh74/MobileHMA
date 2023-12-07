@@ -192,7 +192,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _TG_WF6_TC-23 | Foreground  | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
       | RevE        | _TG_WF6_TC-24 | Foreground  | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
 
-    @Android12_RevE_TwistGo_WF_7 @Android12_RevE_TwistGo @Android12_RevE @Demo
+    @Android12_RevE_TwistGo_WF_7 @Android12_RevE_TwistGo @Android12_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
 #      | RevE        | _TG_WF7_TC-25 | Always      | On         | On         | Allow                       | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
@@ -225,13 +225,13 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _TG_WF10_TC-39 | Unlocked    | On         | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
       | RevE        | _TG_WF10_TC-40 | Unlocked    | On         | On         | Don't allow                 | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
 
-    @Android12_RevE_TwistGo_WF_11 @Android12_RevE_TwistGo @Android12_RevE
+    @Android12_RevE_TwistGo_WF_11 @Android12_RevE_TwistGo @Android12_RevE @Demo
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF11_TC-41 | Foreground  | On         | On         | Allow                       | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
-      | RevE        | _TG_WF11_TC-42 | Foreground  | On         | On         | Allow                       | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
+#      | RevE        | _TG_WF11_TC-41 | Foreground  | On         | On         | Allow                       | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
+#      | RevE        | _TG_WF11_TC-42 | Foreground  | On         | On         | Allow                       | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
       | RevE        | _TG_WF11_TC-43 | Foreground  | On         | On         | Allow                       | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
-      | RevE        | _TG_WF11_TC-44 | Foreground  | On         | On         | Allow                       | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
+#      | RevE        | _TG_WF11_TC-44 | Foreground  | On         | On         | Allow                       | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | Seos        |
 
     @Android12_RevE_TwistGo_WF_12 @Android12_RevE_TwistGo @Android12_RevE
     Examples:
