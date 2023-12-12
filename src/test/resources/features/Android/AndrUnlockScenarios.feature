@@ -72,13 +72,13 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _Tap_WF6_TC-23 | Foreground  | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
       | RevE        | _Tap_WF6_TC-24 | Foreground  | On         | Off        | Don't allow                 | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
 
-    @Android12_RevE_Tap_WF_7 @Android12_RevE_Tap @Android12_RevE @Demo
+    @Android12_RevE_Tap_WF_7 @Android12_RevE_Tap @Android12_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-#      | RevE        | _Tap_WF7_TC-25 | Always      | On         | On         | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
-#      | RevE        | _Tap_WF7_TC-26 | Always      | On         | On         | Allow                       | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF7_TC-25 | Always      | On         | On         | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF7_TC-26 | Always      | On         | On         | Allow                       | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
       | RevE        | _Tap_WF7_TC-27 | Always      | On         | On         | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
-#      | RevE        | _Tap_WF7_TC-28 | Always      | On         | On         | Allow                       | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
+      | RevE        | _Tap_WF7_TC-28 | Always      | On         | On         | Allow                       | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
 
     @Android12_RevE_Tap_WF_8 @Android12_RevE_Tap @Android12_RevE
     Examples:
@@ -144,13 +144,13 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _Tap_WF15_TC-59 | Foreground  | Off        | On         | Don't allow                 | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | Seos        |
       | RevE        | _Tap_WF15_TC-60 | Foreground  | Off        | On         | Don't allow                 | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | Seos        |
 
-    @Android12_RevE_TwistGo_WF_1 @Android12_RevE_TwistGo @Android12_RevE @Demo
+    @Android12_RevE_TwistGo_WF_1 @Android12_RevE_TwistGo @Android12_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-#      | RevE        | _TG_WF1_TC-01 | Always      | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
-#      | RevE        | _TG_WF1_TC-02 | Always      | On         | Off        | Allow                       | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
+      | RevE        | _TG_WF1_TC-01 | Always      | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
+      | RevE        | _TG_WF1_TC-02 | Always      | On         | Off        | Allow                       | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
       | RevE        | _TG_WF1_TC-03 | Always      | On         | Off        | Allow                       | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
-#      | RevE        | _TG_WF1_TC-04 | Always      | On         | Off        | Allow                       | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
+      | RevE        | _TG_WF1_TC-04 | Always      | On         | Off        | Allow                       | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | Seos        |
 
     @Android12_RevE_TwistGo_WF_2 @Android12_RevE_TwistGo @Android12_RevE
     Examples:

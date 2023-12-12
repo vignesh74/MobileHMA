@@ -272,7 +272,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-02 | invalid |
 
   @ANDR_11_10_Settings_uninstallation
-  Scenario: ANDR_11_10_Settings_installation<TC_ID>: Verify the Uninstall Upgrade
+  Scenario: ANDR_11_10_Settings_installation<TC_ID>: Verify the Uninstall of app
     Given Launch HID Access Mobile Application in android device
     And uninstall the app in android device
 

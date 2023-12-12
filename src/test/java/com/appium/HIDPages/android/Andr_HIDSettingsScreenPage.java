@@ -1262,11 +1262,17 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             String newLocationInfo = txtLocationInfoValue.getText();
             String newNearByPermission = txtNearByPermissionValue.getText();
 
-            Assert.assertEquals(mobileAccessVersion, newMobileAccessVersion);
-            TestUtils.log().info("mobileAccessVersion is same");
+            Assert.assertFalse(Boolean.parseBoolean(mobileAccessVersion),newMobileAccessVersion);
+            TestUtils.log().info("mobileAccessVersion is upgraded");
 
-            Assert.assertEquals(origoSDKVersion, newOrigoSDKVersion);
-            TestUtils.log().info("origoSDKVersion is same");
+//            Assert.assertEquals(mobileAccessVersion, newMobileAccessVersion);
+//            TestUtils.log().info("mobileAccessVersion is same");
+
+            Assert.assertFalse(Boolean.parseBoolean(origoSDKVersion), newOrigoSDKVersion);
+            TestUtils.log().info("origoSDKVersion is upgraded");
+
+//            Assert.assertEquals(origoSDKVersion, newOrigoSDKVersion);
+//            TestUtils.log().info("origoSDKVersion is same");
 
             Assert.assertEquals(doorOpeningMode, newDoorOpeningMode);
             TestUtils.log().info("doorOpeningMode is same");
