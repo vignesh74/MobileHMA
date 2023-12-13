@@ -20,6 +20,8 @@ import org.testng.Assert;
 import org.testng.internal.collections.Pair;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static com.appium.constants.MessageConstants.EULA;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
@@ -49,7 +51,7 @@ public class AndrStepDef extends BasePage {
     Andr_HIDSettingsFAQScreenPage FAQScreen = new Andr_HIDSettingsFAQScreenPage();
 
     String strUDID = "";
-    Pair<String, Boolean> armLogs;
+    Pair<String, String> armLogs;
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
@@ -333,8 +335,17 @@ public class AndrStepDef extends BasePage {
                 setAppStatus_Andr(strAppState);
 
             }else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
-                    Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
-                    Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+                Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                String currentTime = armLogs.second();
+//                String futureTime = getFutureTime(10);
+//                    TestUtils.log().info("Future Time " + futureTime);
+
+                // Compare the times
+                boolean isWithin10Seconds = compareTimes(currentTime, mobileIDScreen.getTxtActivityTime().toString());
+                System.out.println("Is within 10 seconds: " + isWithin10Seconds);
+                TestUtils.log().info("time check " + isWithin10Seconds);
+                    Assert.assertEquals(mobileIDScreen.getTxtActivityTime(),armLogs.second());
                     Assert.assertTrue(true,armLogs.second().toString());
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
@@ -346,6 +357,35 @@ public class AndrStepDef extends BasePage {
             }
         }catch(Exception e){
             TestUtils.log().info("Exception occurred while verifying the activity log");
+        }
+    }
+
+//    private static String getCurrentTime() {
+//        Date date = new Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+//        String formattedTime = sdf.format(date);
+//        return formattedTime;
+//    }
+
+//    private static String getFutureTime(int secondsToAdd) {
+//        Date currentDate = new Date();
+//        Date futureDate = new Date(currentDate.getTime() + (secondsToAdd * 1000));
+//        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+//        return sdf.format(futureDate);
+//    }
+
+    private static boolean compareTimes(String currentTime, String futureTime) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+            Date currentTimeDate = sdf.parse(currentTime);
+            Date futureTimeDate = sdf.parse(futureTime);
+
+            // Compare the times
+            return futureTimeDate.after(currentTimeDate);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
@@ -822,7 +862,7 @@ public class AndrStepDef extends BasePage {
     }
 
     @And("Perform robotic arm action as {string} for android device {string}")
-    public Pair<String, Boolean> roboticExecution(String RoboticAction, String deviceState) throws SerialPortException{
+    public Pair<String, String> roboticExecution(String RoboticAction, String deviceState) throws SerialPortException{
         armLogs = serialPortUtils.performRoboticArmOperationWithDeviceState(DriverManager.getDevicePort(), RoboticAction, deviceState);
         return armLogs;
     }

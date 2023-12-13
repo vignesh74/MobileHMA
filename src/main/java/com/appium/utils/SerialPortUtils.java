@@ -6,8 +6,6 @@ import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import org.testng.internal.collections.Pair;
@@ -121,35 +119,6 @@ public class SerialPortUtils {
         return roboticArmLogs.trim();
     }
 
-    private static String getCurrentTime() {
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-        String formattedTime = sdf.format(date);
-        return formattedTime;
-    }
-
-    private static String getFutureTime(int secondsToAdd) {
-        Date currentDate = new Date();
-        Date futureDate = new Date(currentDate.getTime() + (secondsToAdd * 1000));
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-        return sdf.format(futureDate);
-    }
-
-    private static boolean compareTimes(String currentTime, String futureTime) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-            Date currentTimeDate = sdf.parse(currentTime);
-            Date futureTimeDate = sdf.parse(futureTime);
-
-            // Compare the times
-            return futureTimeDate.after(currentTimeDate);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
     public static boolean performTAPOperation() {
         try {
             //Define COM Port
@@ -228,10 +197,10 @@ public class SerialPortUtils {
     }
 
 
-    public Pair<String, Boolean> performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
+    public Pair<String, String> performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
         String roboticArmLogs = "";
         SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem" + deviceCOMPort.trim());
-        boolean isWithin10Seconds;
+        String currentTime;
         try {
             // Define COM Port
 
@@ -249,15 +218,8 @@ public class SerialPortUtils {
                 TestUtils.log().info("Action is not valid");
             }
 
-            String currentTime = getCurrentTime();
+            currentTime = getCurrentTime();
             TestUtils.log().info("currentTime " + currentTime);
-            String futureTime = getFutureTime(10);
-            TestUtils.log().info("Future Time " + futureTime);
-
-            // Compare the times
-            isWithin10Seconds = compareTimes(currentTime, futureTime);
-            System.out.println("Is within 10 seconds: " + isWithin10Seconds);
-            TestUtils.log().info("time check " + isWithin10Seconds);
 
             // Wait time
             basePage.waitForGivenTime(15); // wait till arm got any message
@@ -299,7 +261,14 @@ public class SerialPortUtils {
             TestUtils.log().info("Serial Port got closed in finally block");
             TestUtils.log().info("+++++++++++++++++++++++++++++++++++++++++++++++");
         }
-        return new Pair<>(roboticArmLogs.trim(), isWithin10Seconds);
+        return new Pair<>(roboticArmLogs.trim(), currentTime);
+    }
+
+    private static String getCurrentTime() {
+        // Get the current time using the Date class
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+        return sdf.format(date);
     }
 }
 

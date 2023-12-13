@@ -527,6 +527,10 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         return noNearbyReaderText;
     }
 
+    public MobileElement getTxtActivityTime(){
+        return txtActivityTime;
+    }
+
 
     /**
      * clickOnNextButton- This method is used click on the next button Date- 25/01/2023
