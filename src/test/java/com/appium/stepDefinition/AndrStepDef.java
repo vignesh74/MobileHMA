@@ -340,7 +340,7 @@ public class AndrStepDef extends BasePage {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
                     }
             } else {
-                TestUtils.log().info("Robotic arm is not performed");
+                TestUtils.log().info("Robotic arm is not performed or disabled");
             }
         }catch(Exception e){
             TestUtils.log().info("Exception occurred while verifying the activity log");

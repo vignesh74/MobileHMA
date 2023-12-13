@@ -127,6 +127,28 @@ public class SerialPortUtils {
         return formattedTime;
     }
 
+    private static String getFutureTime(int secondsToAdd) {
+        Date currentDate = new Date();
+        Date futureDate = new Date(currentDate.getTime() + (secondsToAdd * 1000));
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+        return sdf.format(futureDate);
+    }
+
+    private static boolean compareTimes(String currentTime, String futureTime) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+            Date currentTimeDate = sdf.parse(currentTime);
+            Date futureTimeDate = sdf.parse(futureTime);
+
+            // Compare the times
+            return futureTimeDate.after(currentTimeDate);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static boolean performTAPOperation() {
         try {
             //Define COM Port
@@ -226,7 +248,14 @@ public class SerialPortUtils {
             }
 
             String currentTime = getCurrentTime();
-            System.out.println("Current Time: " + currentTime);
+            TestUtils.log().info("currentTime "+currentTime);
+            String futureTime = getFutureTime(10);
+            TestUtils.log().info("Future Time "+futureTime);
+
+            // Compare the times
+            boolean isWithin10Seconds = compareTimes(currentTime, futureTime);
+            System.out.println("Is within 10 seconds: " + isWithin10Seconds);
+            TestUtils.log().info("time check "+isWithin10Seconds);
 
             // Wait time
             basePage.waitForGivenTime(15); // wait till arm got any message
