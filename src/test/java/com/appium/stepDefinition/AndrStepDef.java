@@ -24,8 +24,10 @@ import java.io.IOException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
 import java.util.Date;
 import java.util.Locale;
 
@@ -341,19 +343,37 @@ public class AndrStepDef extends BasePage {
                 setAppStatus_Andr(strAppState);
 
             }else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+//                Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+//                Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+//                String currentTime = armLogs.second();
+//                TestUtils.log().info("currentTime: " + currentTime);
+//                String activityTime = mobileIDScreen.getTxtActivityTime().getText();
+//                TestUtils.log().info("activityTime: " + activityTime);
+//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a");
+//                LocalTime parsedCurrentTime = LocalTime.parse(currentTime,formatter);
+//                TestUtils.log().info("parsedCurrentTime: " + parsedCurrentTime);
+//                LocalTime parsedActivityTime = LocalTime.parse(activityTime,formatter);
+//                TestUtils.log().info("parsedActivityTime: " + parsedActivityTime);
+//
+//                Duration duration = Duration.between(parsedCurrentTime, parsedActivityTime);
+//                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
+//                System.out.println("Time Difference: " + timeDifferenceInSeconds + " seconds");
+//                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds);
+
+
                 Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                 String currentTime = armLogs.second();
                 TestUtils.log().info("currentTime: " + currentTime);
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 TestUtils.log().info("activityTime: " + activityTime);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a");
-                LocalTime parsedCurrentTime = LocalTime.parse(currentTime,formatter);
-                TestUtils.log().info("parsedCurrentTime: " + parsedCurrentTime);
-                LocalTime parsedActivityTime = LocalTime.parse(activityTime,formatter);
-                TestUtils.log().info("parsedActivityTime: " + parsedActivityTime);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss a");
+                Date time1 = simpleDateFormat.parse(currentTime);
+                Date time2 = simpleDateFormat.parse(activityTime);
+                TestUtils.log().info("time1: " + time1);
+                TestUtils.log().info("time2: " + time2);
 
-                Duration duration = Duration.between(parsedCurrentTime, parsedActivityTime);
+                Duration duration = Duration.between((Temporal) time1, (Temporal) time2);
                 long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
                 System.out.println("Time Difference: " + timeDifferenceInSeconds + " seconds");
                 TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds);
