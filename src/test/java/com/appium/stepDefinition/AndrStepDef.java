@@ -17,6 +17,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import jssc.SerialPortException;
 import org.testng.Assert;
+import org.testng.internal.collections.Pair;
 
 import java.io.IOException;
 
@@ -48,7 +49,7 @@ public class AndrStepDef extends BasePage {
     Andr_HIDSettingsFAQScreenPage FAQScreen = new Andr_HIDSettingsFAQScreenPage();
 
     String strUDID = "";
-    String armLogs;
+    Pair<String, Boolean> armLogs;
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
@@ -280,10 +281,10 @@ public class AndrStepDef extends BasePage {
         androidDeviceAction.setAppState(strAppState, strAndroidAppPackage, strUdId);
     }
 
-    @When("Perform robotic arm action as {string} for android device")
-    public void performRoboticArmAction_Andr(String RoboticAction) throws SerialPortException {
-        armLogs = serialPortUtils.performRoboticArmOperation(DriverManager.getDevicePort(), RoboticAction);
-    }
+//    @When("Perform robotic arm action as {string} for android device")
+//    public void performRoboticArmAction_Andr(String RoboticAction) throws SerialPortException {
+//        armLogs = serialPortUtils.performRoboticArmOperation(DriverManager.getDevicePort(), RoboticAction);
+//    }
 
 //    @Then("Activity log is displayed in android device and {string}, {string} are verified")
 //    public void activityLogIsDisplayed_Andr(String strDate, String strMessage) {
@@ -331,9 +332,10 @@ public class AndrStepDef extends BasePage {
                 androidDeviceAction.forceUnlock(strDeviceState,strAppState, (AndroidDriver) DriverManager.getDriver());
                 setAppStatus_Andr(strAppState);
 
-            }else if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+            }else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
                     Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                     Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                    Assert.assertTrue(true,armLogs.second().toString());
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
                     } else {
@@ -369,7 +371,7 @@ public class AndrStepDef extends BasePage {
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
         TestUtils.log().info("Robotic arms: " + armLogs + " is Equal to " + strRoboticLog);
-        Assert.assertTrue(armLogs.toLowerCase().contains(strRoboticLog.toLowerCase()));
+        Assert.assertTrue(armLogs.first().toLowerCase().contains(strRoboticLog.toLowerCase()));
 
     }
 
@@ -820,8 +822,9 @@ public class AndrStepDef extends BasePage {
     }
 
     @And("Perform robotic arm action as {string} for android device {string}")
-    public void roboticExecution(String RoboticAction,String deviceState) throws SerialPortException{
+    public Pair<String, Boolean> roboticExecution(String RoboticAction, String deviceState) throws SerialPortException{
         armLogs = serialPortUtils.performRoboticArmOperationWithDeviceState(DriverManager.getDevicePort(), RoboticAction, deviceState);
+        return armLogs;
     }
 
     @And("Verify mobile about page information are displayed in android device")

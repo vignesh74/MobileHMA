@@ -10,6 +10,7 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import org.testng.internal.collections.Pair;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -227,9 +228,10 @@ public class SerialPortUtils {
     }
 
 
-    public String performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
+    public Pair<String, Boolean> performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
         String roboticArmLogs = "";
-        SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem"+deviceCOMPort.trim());
+        SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem" + deviceCOMPort.trim());
+        boolean isWithin10Seconds;
         try {
             // Define COM Port
 
@@ -238,43 +240,43 @@ public class SerialPortUtils {
             jsscSerialPort.setParams(SerialPort.BAUDRATE_115200, 8, 1, 0);
             basePage.waitForGivenTime(2);
             if (actionName.equals("Twist & Go")) {
-                jsscSerialPort.writeString("$G,"+DriverManager.getRoboticArmX()+","+DriverManager.getRoboticArmY()+",&");
+                jsscSerialPort.writeString("$G," + DriverManager.getRoboticArmX() + "," + DriverManager.getRoboticArmY() + ",&");
             } else if (actionName.equalsIgnoreCase("TAP")) {
-                jsscSerialPort.writeString("$T,"+DriverManager.getRoboticArmX()+","+DriverManager.getRoboticArmY()+",&");
+                jsscSerialPort.writeString("$T," + DriverManager.getRoboticArmX() + "," + DriverManager.getRoboticArmY() + ",&");
             } else if (actionName.equalsIgnoreCase("Both")) {
-                jsscSerialPort.writeString("$B,"+DriverManager.getRoboticArmX()+","+DriverManager.getRoboticArmY()+",&");
+                jsscSerialPort.writeString("$B," + DriverManager.getRoboticArmX() + "," + DriverManager.getRoboticArmY() + ",&");
             } else {
                 TestUtils.log().info("Action is not valid");
             }
 
             String currentTime = getCurrentTime();
-            TestUtils.log().info("currentTime "+currentTime);
+            TestUtils.log().info("currentTime " + currentTime);
             String futureTime = getFutureTime(10);
-            TestUtils.log().info("Future Time "+futureTime);
+            TestUtils.log().info("Future Time " + futureTime);
 
             // Compare the times
-            boolean isWithin10Seconds = compareTimes(currentTime, futureTime);
+            isWithin10Seconds = compareTimes(currentTime, futureTime);
             System.out.println("Is within 10 seconds: " + isWithin10Seconds);
-            TestUtils.log().info("time check "+isWithin10Seconds);
+            TestUtils.log().info("time check " + isWithin10Seconds);
 
             // Wait time
             basePage.waitForGivenTime(15); // wait till arm got any message
 
             // Receive Response
             roboticArmLogs = jsscSerialPort.readString();
-            TestUtils.log().info("Robotic Arm message: {}",roboticArmLogs);
+            TestUtils.log().info("Robotic Arm message: {}", roboticArmLogs);
             if (roboticArmLogs.equalsIgnoreCase("TAP:ENABLE;\r\n")) {
                 roboticArmLogs = roboticArmLogs.trim().substring(0, 10);
                 TestUtils.log().info("This is my Robotic Arm message: {}", roboticArmLogs.substring(0, 10));
 
             } else if (roboticArmLogs.equalsIgnoreCase("TAP:DISABLE;\r\n")) {
-                TestUtils.log().info(MessageConstants.TWO_BRACKETS,MessageConstants.ROBOTIC_ARM_MESSAGE, roboticArmLogs.substring(0, 11));
+                TestUtils.log().info(MessageConstants.TWO_BRACKETS, MessageConstants.ROBOTIC_ARM_MESSAGE, roboticArmLogs.substring(0, 11));
                 roboticArmLogs = roboticArmLogs.substring(0, 11);
             } else if ((roboticArmLogs.equalsIgnoreCase("TWIST_AND_GO=:ENABLE;\r\n"))) {
                 roboticArmLogs = roboticArmLogs.trim().substring(0, 20);
-                TestUtils.log().info(MessageConstants.TWO_BRACKETS,MessageConstants.ROBOTIC_ARM_MESSAGE,roboticArmLogs.substring(0, 20));
+                TestUtils.log().info(MessageConstants.TWO_BRACKETS, MessageConstants.ROBOTIC_ARM_MESSAGE, roboticArmLogs.substring(0, 20));
             } else if ((roboticArmLogs.equalsIgnoreCase("TWIST_AND_GO:DISABLE;\r\n"))) {
-                TestUtils.log().info(MessageConstants.TWO_BRACKETS,MessageConstants.ROBOTIC_ARM_MESSAGE,roboticArmLogs.substring(0, 20));
+                TestUtils.log().info(MessageConstants.TWO_BRACKETS, MessageConstants.ROBOTIC_ARM_MESSAGE, roboticArmLogs.substring(0, 20));
                 roboticArmLogs = roboticArmLogs.substring(0, 20);
             }
 
@@ -297,7 +299,7 @@ public class SerialPortUtils {
             TestUtils.log().info("Serial Port got closed in finally block");
             TestUtils.log().info("+++++++++++++++++++++++++++++++++++++++++++++++");
         }
-        return roboticArmLogs.trim();
+        return new Pair<>(roboticArmLogs.trim(), isWithin10Seconds);
     }
 }
 
