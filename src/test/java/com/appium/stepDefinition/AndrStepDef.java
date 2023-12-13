@@ -345,7 +345,7 @@ public class AndrStepDef extends BasePage {
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                 String currentTime = armLogs.second();
                 TestUtils.log().info("currentTime: " + currentTime);
-                String activityTime = mobileIDScreen.getTxtActivityTime().toString();
+                String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 TestUtils.log().info("activityTime: " + activityTime);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a", new Locale("en", "IN"));
                 LocalTime parsedCurrentTime = LocalTime.parse(currentTime,formatter);
