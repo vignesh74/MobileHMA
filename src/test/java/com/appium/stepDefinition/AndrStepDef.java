@@ -27,6 +27,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
 import static com.appium.constants.MessageConstants.EULA;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
@@ -344,7 +345,7 @@ public class AndrStepDef extends BasePage {
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                 String currentTime = armLogs.second();
                 String activityTime = mobileIDScreen.getTxtActivityTime().toString();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a", new Locale("en", "IN"));
                 LocalTime parsedCurrentTime = LocalTime.parse(currentTime,formatter);
                 LocalTime parsedActivityTime = LocalTime.parse(activityTime,formatter);
 
@@ -370,7 +371,6 @@ public class AndrStepDef extends BasePage {
             }
         }catch(Exception e){
             TestUtils.log().info("qwqwqwqw "+e);
-            System.out.println("qwqwqwqw "+e);
             TestUtils.log().info("Exception occurred while verifying the activity log");
         }
     }
