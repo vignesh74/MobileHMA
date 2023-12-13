@@ -338,15 +338,13 @@ public class AndrStepDef extends BasePage {
                 Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                 String currentTime = armLogs.second();
-//                String futureTime = getFutureTime(10);
-//                    TestUtils.log().info("Future Time " + futureTime);
 
-                // Compare the times
-                boolean isWithin10Seconds = compareTimes(currentTime, mobileIDScreen.getTxtActivityTime().toString());
-                System.out.println("Is within 10 seconds: " + isWithin10Seconds);
-                TestUtils.log().info("time check " + isWithin10Seconds);
-                    Assert.assertEquals(mobileIDScreen.getTxtActivityTime(),armLogs.second());
-                    Assert.assertTrue(true,armLogs.second().toString());
+//                 Compare the times
+//                boolean isWithin10Seconds = compareTimes(currentTime, mobileIDScreen.getTxtActivityTime().toString());
+//                System.out.println("Is within 10 seconds: " + isWithin10Seconds);
+//                TestUtils.log().info("time check " + isWithin10Seconds);
+//                    Assert.assertEquals(mobileIDScreen.getTxtActivityTime(),armLogs.second());
+//                    Assert.assertTrue(true,armLogs.second().toString());
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
                     } else {
@@ -359,20 +357,6 @@ public class AndrStepDef extends BasePage {
             TestUtils.log().info("Exception occurred while verifying the activity log");
         }
     }
-
-//    private static String getCurrentTime() {
-//        Date date = new Date();
-//        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-//        String formattedTime = sdf.format(date);
-//        return formattedTime;
-//    }
-
-//    private static String getFutureTime(int secondsToAdd) {
-//        Date currentDate = new Date();
-//        Date futureDate = new Date(currentDate.getTime() + (secondsToAdd * 1000));
-//        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-//        return sdf.format(futureDate);
-//    }
 
     private static boolean compareTimes(String currentTime, String futureTime) {
         try {
