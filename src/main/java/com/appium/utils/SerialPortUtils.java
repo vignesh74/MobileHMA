@@ -11,6 +11,9 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.appium.constants.FrameworkConstants.DESCRIPTIVEPORTNAME;
 
 public class SerialPortUtils {
@@ -82,6 +85,9 @@ public class SerialPortUtils {
                 TestUtils.log().info("Action is not valid");
             }
 
+            String currentTime = getCurrentTime();
+            System.out.println("Current Time: " + currentTime);
+
             // Wait time
             basePage.waitForGivenTime(15); // wait till arm got any message
 
@@ -112,6 +118,13 @@ public class SerialPortUtils {
             TestUtils.log().info("+++++++++++++++++++++++++++++++++++++++++++++++");
         }
         return roboticArmLogs.trim();
+    }
+
+    private static String getCurrentTime() {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+        String formattedTime = sdf.format(date);
+        return formattedTime;
     }
 
     public static boolean performTAPOperation() {
