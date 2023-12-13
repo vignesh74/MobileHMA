@@ -18,9 +18,14 @@ import io.cucumber.java.en.When;
 import jssc.SerialPortException;
 import org.testng.Assert;
 import org.testng.internal.collections.Pair;
+import org.testng.util.TimeUtils;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static com.appium.constants.MessageConstants.EULA;
@@ -338,6 +343,16 @@ public class AndrStepDef extends BasePage {
                 Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                 String currentTime = armLogs.second();
+                String activityTime = mobileIDScreen.getTxtActivityTime().toString();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                LocalTime parsedCurrentTime = LocalTime.parse(currentTime,formatter);
+                LocalTime parsedActivityTime = LocalTime.parse(activityTime,formatter);
+
+                Duration duration = Duration.between(parsedCurrentTime, parsedActivityTime);
+                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
+                System.out.println("Time Difference: " + timeDifferenceInSeconds + " seconds");
+                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds);
+
 
 //                 Compare the times
 //                boolean isWithin10Seconds = compareTimes(currentTime, mobileIDScreen.getTxtActivityTime().toString());
