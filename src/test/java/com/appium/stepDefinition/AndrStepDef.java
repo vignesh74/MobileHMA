@@ -33,7 +33,6 @@ import java.util.Locale;
 
 import static com.appium.constants.MessageConstants.EULA;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
-import static java.time.Duration.*;
 
 
 public class AndrStepDef extends BasePage {
@@ -368,16 +367,16 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("currentTime: " + currentTime);
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 TestUtils.log().info("activityTime: " + activityTime);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss a");
-                Temporal time1 = (Temporal) simpleDateFormat.parse(currentTime);
-                Temporal time2 = (Temporal) simpleDateFormat.parse(activityTime);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+                Date time1 = simpleDateFormat.parse(currentTime);
+                Date time2 = simpleDateFormat.parse(activityTime);
                 TestUtils.log().info("time1: " + time1);
                 TestUtils.log().info("time2: " + time2);
 
-                Duration duration = between(time1, time2);
-                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
-                System.out.println("Time Difference: " + timeDifferenceInSeconds + " seconds");
-                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds);
+//                Duration duration = Duration.between(time1,time2);
+//                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
+//                System.out.println("Time Difference: " + timeDifferenceInSeconds + " seconds");
+//                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds);
 
 
 //                 Compare the times
