@@ -344,7 +344,7 @@ public class AndrStepDef extends BasePage {
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                 String currentTime = armLogs.second();
                 String activityTime = mobileIDScreen.getTxtActivityTime().toString();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a");
                 LocalTime parsedCurrentTime = LocalTime.parse(currentTime,formatter);
                 LocalTime parsedActivityTime = LocalTime.parse(activityTime,formatter);
 
@@ -369,6 +369,8 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("Robotic arm is not performed or disabled");
             }
         }catch(Exception e){
+            TestUtils.log().info("qwqwqwqw "+e);
+            System.out.println("qwqwqwqw "+e);
             TestUtils.log().info("Exception occurred while verifying the activity log");
         }
     }
