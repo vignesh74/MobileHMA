@@ -347,7 +347,7 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("currentTime: " + currentTime);
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 TestUtils.log().info("activityTime: " + activityTime);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a", new Locale("en", "IN"));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a", new Locale("en", "IN"));
                 LocalTime parsedCurrentTime = LocalTime.parse(currentTime,formatter);
                 TestUtils.log().info("parsedCurrentTime: " + parsedCurrentTime);
                 LocalTime parsedActivityTime = LocalTime.parse(activityTime,formatter);
