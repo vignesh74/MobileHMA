@@ -21,7 +21,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     And   Set device state as force unlock "<device_state>" with "<app_state>" in android device
     And   Set Application status as "Foreground" in android device
     Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
-    And   Activity log is displayed in android device and "<date>", "<message>" are verified
+    And   Activity log is displayed in android device and "<date>", "<message>", "<reader_name>", "<action_name>", "<device_state>","<app_state>" are verified
 
     @Android12_RevE_Tap_WF_1 @Android12_RevE_Tap @Android12_RevE @Android12_RevE_TapRun
     Examples:

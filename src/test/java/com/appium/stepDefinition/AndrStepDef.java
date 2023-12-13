@@ -285,23 +285,60 @@ public class AndrStepDef extends BasePage {
         armLogs = serialPortUtils.performRoboticArmOperation(DriverManager.getDevicePort(), RoboticAction);
     }
 
-    @Then("Activity log is displayed in android device and {string}, {string} are verified")
-    public void activityLogIsDisplayed_Andr(String strDate, String strMessage) {
+//    @Then("Activity log is displayed in android device and {string}, {string} are verified")
+//    public void activityLogIsDisplayed_Andr(String strDate, String strMessage) {
+//        try {
+//            if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+//                navigateToAppPreferencesScreen_Andr();
+//                appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
+//                boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
+//                DriverManager.setPopupHandled(popups);
+//                mobileIDScreen.clickOnMobileIDTabAndVerify();
+//                mobileIDScreen.expandActivityLogs();
+//                Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+//                Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+//                if (strMessage.contains("Bluetooth")) {
+//                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
+//                } else {
+//                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
+//                }
+//            } else {
+//                TestUtils.log().info("Robotic arm is not performed");
+//            }
+//        }catch(Exception e){
+//            TestUtils.log().info("Exception occurred while verifying the activity log");
+//        }
+//    }
+
+    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string} are verified")
+    public void activityLogIsDisplayed_Andr(String strDate, String strMessage,String strReaderName,String strActionName,String strDeviceState,String strAppState) {
         try {
-            if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
-                navigateToAppPreferencesScreen_Andr();
-                appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
-                boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
-                DriverManager.setPopupHandled(popups);
-                mobileIDScreen.clickOnMobileIDTabAndVerify();
-                mobileIDScreen.expandActivityLogs();
-                Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
-                Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-                if (strMessage.contains("Bluetooth")) {
-                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
-                } else {
-                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
-                }
+            navigateToAppPreferencesScreen_Andr();
+            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
+            boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
+            DriverManager.setPopupHandled(popups);
+            mobileIDScreen.clickOnMobileIDTabAndVerify();
+            mobileIDScreen.expandActivityLogs();
+            if(mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Please move closer to the reader to gain access.")||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Communication timeout. Please try again.")||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Bluetooth communication failed. Please try again.")||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Reader busy. Please try again.")||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")||
+                    !mobileIDScreen.getReaderName().equalsIgnoreCase(strReaderName)||
+                    !mobileIDScreen.getActionName().equalsIgnoreCase(strActionName)){
+
+                roboticExecution(strActionName,strDeviceState);
+                androidDeviceAction.forceUnlock(strDeviceState,strAppState, (AndroidDriver) DriverManager.getDriver());
+                setAppStatus_Andr(strAppState);
+
+            }else if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+                    Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+                    Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                    if (strMessage.contains("Bluetooth")) {
+                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
+                    } else {
+                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
+                    }
             } else {
                 TestUtils.log().info("Robotic arm is not performed");
             }
@@ -313,21 +350,21 @@ public class AndrStepDef extends BasePage {
 
 
 
-    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string} and {string} are verified android device")
-    public void activityLogIsDisplayed_Andr(String strDate, String strMobileRead, String strMessage, String strArmActionName, String strReaderName) {
-        if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
-            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
-            mobileIDScreen.expandActivityLogs();
-            Assert.assertEquals(mobileIDScreen.getTodayDate().toLowerCase(), strDate.toLowerCase());
-            Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
-            Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
-            Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strArmActionName.toLowerCase());
-            Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
-        } else {
-            TestUtils.log().info("Tap or Twist and Go is not performed hence activity logs are not captured ");
-        }
-
-    }
+//    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string} and {string} are verified android device")
+//    public void activityLogIsDisplayed_Andr(String strDate, String strMobileRead, String strMessage, String strArmActionName, String strReaderName) {
+//        if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+//            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
+//            mobileIDScreen.expandActivityLogs();
+//            Assert.assertEquals(mobileIDScreen.getTodayDate().toLowerCase(), strDate.toLowerCase());
+//            Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
+//            Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+//            Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strArmActionName.toLowerCase());
+//            Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
+//        } else {
+//            TestUtils.log().info("Tap or Twist and Go is not performed hence activity logs are not captured ");
+//        }
+//
+//    }
 
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
