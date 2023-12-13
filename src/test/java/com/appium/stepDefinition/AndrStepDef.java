@@ -334,7 +334,7 @@ public class AndrStepDef extends BasePage {
             }else if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
                     Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                     Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-                    if (strMessage.contains("Bluetooth")) {
+                    if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
                     } else {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
