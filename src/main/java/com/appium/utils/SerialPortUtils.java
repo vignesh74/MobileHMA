@@ -225,6 +225,9 @@ public class SerialPortUtils {
                 TestUtils.log().info("Action is not valid");
             }
 
+            String currentTime = getCurrentTime();
+            System.out.println("Current Time: " + currentTime);
+
             // Wait time
             basePage.waitForGivenTime(15); // wait till arm got any message
 
