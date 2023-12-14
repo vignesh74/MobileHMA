@@ -374,6 +374,14 @@ public class AndrStepDef extends BasePage {
                 long timeInDifference = difference/1000;
                 TestUtils.log().info("timeInDifference: " + timeInDifference);
 
+                if(timeInDifference >= 10){
+                    Assert.assertTrue(true,"Correct activity log");
+                    TestUtils.log().info("correct activity time: " + timeInDifference);
+                }else{
+                    Assert.assertFalse(false,"Incorrect activity log");
+                }
+
+
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
                     } else {
