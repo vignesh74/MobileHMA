@@ -201,6 +201,7 @@ public class SerialPortUtils {
         String roboticArmLogs = "";
         SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem" + deviceCOMPort.trim());
         String deviceRoboTime;
+        String currentTime;
         try {
             // Define COM Port
 
@@ -221,7 +222,7 @@ public class SerialPortUtils {
 //            Object deviceTime = driver1.executeScript("return new Date().toLocaleString()");
 //            deviceRoboTime = deviceTime.toString();
 //
-////            currentTime = getCurrentTime();
+              currentTime = getCurrentTime().toString();
 //            TestUtils.log().info("deviceTime " + deviceTime);
 //            TestUtils.log().info("deviceRoboTime " + deviceRoboTime);
 
@@ -265,7 +266,7 @@ public class SerialPortUtils {
             TestUtils.log().info("Serial Port got closed in finally block");
             TestUtils.log().info("+++++++++++++++++++++++++++++++++++++++++++++++");
         }
-        return new Pair<>(roboticArmLogs.trim(), deviceRoboTime);
+        return new Pair<>(roboticArmLogs.trim(), currentTime);
     }
 
     private static String getCurrentTime() {
