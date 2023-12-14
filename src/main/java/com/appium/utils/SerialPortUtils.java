@@ -5,6 +5,7 @@ import com.appium.constants.MessageConstants;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import jssc.SerialPort;
 import jssc.SerialPortException;
@@ -14,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import static com.appium.constants.FrameworkConstants.DESCRIPTIVEPORTNAME;
 
@@ -221,27 +223,13 @@ public class SerialPortUtils {
                 TestUtils.log().info("Action is not valid");
             }
 
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+            String deviceTime = driver.getDeviceTime();
 
-             Process process = Runtime.getRuntime().exec("adb shell date");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-            // Read the output of the command
-            String line;
-            StringBuilder output = new StringBuilder();
-            while ((line = reader.readLine()) != null) {
-                output.append(line);
-            }
-
-//             Print the device time
-            TestUtils.log().info("Device Time: " + output.toString());
-
-//            // Close the BufferedReader and wait for the process to exit
-            reader.close();
-            process.waitFor();
 
               currentTime = getCurrentTime().toString();
             TestUtils.log().info("currentTime " + currentTime);
-//            TestUtils.log().info("deviceRoboTime " + deviceRoboTime);
+            TestUtils.log().info("deviceTime " + deviceTime);
 
             // Wait time
             basePage.waitForGivenTime(15); // wait till arm got any message
@@ -267,7 +255,7 @@ public class SerialPortUtils {
             basePage.waitForGivenTime(1);
 
             if (actionName.equals("Twist & Go") && (deviceState.equalsIgnoreCase("Locked"))) {
-                AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+//                AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
                 try {
                     androidDeviceAction.unlockDeviceWithPin("1234");
                 } catch (Exception e) {
