@@ -353,23 +353,33 @@ public class AndrStepDef extends BasePage {
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 TestUtils.log().info("activityTime: " + activityTime);
 
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-                Date time1 = simpleDateFormat.parse(currentTime);
-                Date time2 = simpleDateFormat.parse(activityTime);
-                TestUtils.log().info("time1: " + time1);
-                TestUtils.log().info("time2: " + time2);
-                TestUtils.log().info("time2:dfasdfsdfasdfsadfasdfasdfsadfsd ");
-                Duration duration = Duration.between(time1.toInstant(), time2.toInstant());
-                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
-                TestUtils.log().info("Time1: " + time1);
-                TestUtils.log().info("Time2: " + time2);
-                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds + " seconds");
-                if (timeDifferenceInSeconds <= 10) {
-                    boolean diff = true;
-                    Assert.assertTrue(true,"Time is lesser than 10 seconds");
-                } else {
-                    boolean diff = false;
-                }
+                SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+                Date date = inputFormatter.parse(currentTime);
+
+                // Set the desired output pattern
+                SimpleDateFormat outputFormatter = new SimpleDateFormat("HH:mm:ss");
+
+                // Format the date to the desired pattern
+                String formattedTime = outputFormatter.format(date);
+                TestUtils.log().info("formattedTime: " + formattedTime);
+
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+//                Date time1 = simpleDateFormat.parse(currentTime);
+//                Date time2 = simpleDateFormat.parse(activityTime);
+//                TestUtils.log().info("time1: " + time1);
+//                TestUtils.log().info("time2: " + time2);
+//                TestUtils.log().info("time2:dfasdfsdfasdfsadfasdfasdfsadfsd ");
+//                Duration duration = Duration.between(time1.toInstant(), time2.toInstant());
+//                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
+//                TestUtils.log().info("Time1: " + time1);
+//                TestUtils.log().info("Time2: " + time2);
+//                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds + " seconds");
+//                if (timeDifferenceInSeconds <= 10) {
+//                    boolean diff = true;
+//                    Assert.assertTrue(true,"Time is lesser than 10 seconds");
+//                } else {
+//                    boolean diff = false;
+//                }
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
                     } else {
