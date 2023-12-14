@@ -223,7 +223,7 @@ public class SerialPortUtils {
 //            deviceRoboTime = deviceTime.toString();
 //
               currentTime = getCurrentTime().toString();
-//            TestUtils.log().info("deviceTime " + deviceTime);
+            TestUtils.log().info("deviceTime " + currentTime);
 //            TestUtils.log().info("deviceRoboTime " + deviceRoboTime);
 
             // Wait time
