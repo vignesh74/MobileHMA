@@ -11,6 +11,7 @@ import com.appium.utils.TestUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.cucumber.core.plugin.TimelineFormatter;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -25,6 +26,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
@@ -372,6 +374,12 @@ public class AndrStepDef extends BasePage {
                 Date time2 = simpleDateFormat.parse(activityTime);
                 TestUtils.log().info("time1: " + time1);
                 TestUtils.log().info("time2: " + time2);
+                TestUtils.log().info("time2:dfasdfsdfasdfsadfasdfasdfsadfsd ");
+                Duration duration = Duration.between(time1.toInstant(), time2.toInstant());
+                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
+                TestUtils.log().info("Time1: " + time1);
+                TestUtils.log().info("Time2: " + time2);
+                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds + " seconds");
 
 //                Duration duration = Duration.between(time1,time2);
 //                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
