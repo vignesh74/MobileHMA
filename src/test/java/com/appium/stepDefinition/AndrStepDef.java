@@ -352,7 +352,7 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("deviceTime: " + deviceTime);
                 SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
                 Date deviceTimeNew = inputFormatter.parse(deviceTime);
-                TestUtils.log().info("deviceTime formatted: " + deviceTimeNew);
+                TestUtils.log().info("deviceTimeNew " + deviceTimeNew);
                 SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
                 String deviceTimeFinal = outputFormatter.format(deviceTimeNew);
                 TestUtils.log().info("deviceTimeFinal: " + deviceTimeFinal);
@@ -363,32 +363,10 @@ public class AndrStepDef extends BasePage {
                 SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
                 Date activityTimeFinal = inputFormatter1.parse(activityTime);
                 TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
+                String activityTimeFinalNew = outputFormatter.format(activityTimeFinal);
+                TestUtils.log().info("activityTimeFinalNew: " + activityTimeFinalNew);
 
 
-
-
-
-
-
-
-
-
-
-//                DateTimeFormatter outputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss");
-//                String activityTimeNewFinal = activityTimeNew.format(outputFormatter1);
-//                TestUtils.log().info("activityTimeNewFinal: " + activityTimeNewFinal);
-
-//                TestUtils.log().info("activityTime: " + activityTime);
-//                DateTimeFormatter inputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss a");
-//                LocalTime activityTimeNew = LocalTime.parse(activityTime, inputFormatter1);
-//                TestUtils.log().info("activityTimeNew: " + activityTimeNew);
-
-//                SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
-//                String deviceTimeNew1 = outputFormatter.format(activityTimeNew);
-//                TestUtils.log().info("deviceTimeNew1: " + deviceTimeNew1);
-//                String activityTime1 = outputFormatter.format(activityTimeNew);
-//
-//                TestUtils.log().info("activityTime1: " + activityTime1);
 
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
