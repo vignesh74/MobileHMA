@@ -359,8 +359,9 @@ public class AndrStepDef extends BasePage {
 
                 SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
                 String deviceTime = outputFormatter.format(date);
-                String activityTime1 = outputFormatter.format(activityTime);
                 TestUtils.log().info("deviceTime: " + deviceTime);
+                String activityTime1 = outputFormatter.format(activityTime);
+
                 TestUtils.log().info("activityTime1: " + activityTime1);
 
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
