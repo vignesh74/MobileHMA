@@ -357,7 +357,7 @@ public class AndrStepDef extends BasePage {
                 Date date = inputFormatter.parse(currentTime);
 
                 // Set the desired output pattern
-                SimpleDateFormat outputFormatter = new SimpleDateFormat("HH:mm:ss");
+                SimpleDateFormat outputFormatter = new SimpleDateFormat("HH:mm:ss a");
 
                 // Format the date to the desired pattern
                 String formattedTime = outputFormatter.format(date);
