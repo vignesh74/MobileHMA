@@ -350,35 +350,19 @@ public class AndrStepDef extends BasePage {
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                 String currentTime = armLogs.second();
                 TestUtils.log().info("currentTime: " + currentTime);
+                SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+                Date date = inputFormatter.parse(currentTime);
+                TestUtils.log().info("currentTimeformatted: " + date);
+
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 TestUtils.log().info("activityTime: " + activityTime);
 
-                SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-                Date date = inputFormatter.parse(currentTime);
-
-                // Set the desired output pattern
-                SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss a");
-
-                // Format the date to the desired pattern
+                SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
                 String deviceTime = outputFormatter.format(date);
+                String activityTime1 = outputFormatter.format(activityTime);
                 TestUtils.log().info("deviceTime: " + deviceTime);
+                TestUtils.log().info("activityTime1: " + activityTime1);
 
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
-                Date time1 = simpleDateFormat.parse(currentTime);
-                Date time2 = simpleDateFormat.parse(deviceTime);
-                TestUtils.log().info("time1: " + time1);
-                TestUtils.log().info("time2: " + time2);
-                Duration duration = Duration.between(time1.toInstant(), time2.toInstant());
-                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
-                TestUtils.log().info("Time1: 1 " + time1);
-                TestUtils.log().info("Time2: 2 " + time2);
-                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds + " seconds");
-                if (timeDifferenceInSeconds <= 10) {
-                    boolean diff = true;
-                    Assert.assertTrue(true,"Time is lesser than 10 seconds");
-                } else {
-                    boolean diff = false;
-                }
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
                     } else {
