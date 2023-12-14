@@ -359,11 +359,12 @@ public class AndrStepDef extends BasePage {
 
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 TestUtils.log().info("activityTime: " + activityTime);
-                DateTimeFormatter inputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss");
+                DateTimeFormatter inputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss a");
                 LocalTime activityTimeNew = LocalTime.parse(activityTime, inputFormatter1);
                 TestUtils.log().info("activityTimeNew: " + activityTimeNew);
-
-
+                DateTimeFormatter outputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss");
+                String activityTimeNewFinal = activityTimeNew.format(outputFormatter1);
+                TestUtils.log().info("activityTimeNewFinal: " + activityTimeNewFinal);
 
 //                TestUtils.log().info("activityTime: " + activityTime);
 //                DateTimeFormatter inputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss a");
