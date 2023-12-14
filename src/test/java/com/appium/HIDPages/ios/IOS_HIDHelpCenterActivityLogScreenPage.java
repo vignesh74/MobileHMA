@@ -28,6 +28,9 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID Read\"])[1]//following-sibling::XCUIElementTypeStaticText[1]")
     private MobileElement txtTime;
 
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"TODAY\"]//following-sibling::XCUIElementTypeStaticText)[2]")
+    private MobileElement txtExpectedTime;
+
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"TODAY\"]//following-sibling::XCUIElementTypeStaticText)[3]")
     private MobileElement txtSuccessMessage;
 
@@ -235,5 +238,18 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while validating the log message in Activity log screen...");
         }
 
+    }
+
+    public String getLogTime() {
+        String logTime = "";
+        try {
+            if (isDisplayed(txtExpectedTime)) {
+                logTime = getElementText(txtExpectedTime);
+            } else
+                TestUtils.log().info("Activity log time is not displayed");
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while getting Activity log time text...");
+        }
+        return mobileRead;
     }
 }

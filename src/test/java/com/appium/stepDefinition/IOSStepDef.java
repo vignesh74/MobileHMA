@@ -12,6 +12,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import jssc.SerialPortException;
 import org.testng.Assert;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.io.IOException;
 import java.sql.Driver;
@@ -21,6 +23,7 @@ import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 public class IOSStepDef {
 
     String strInvitationCode = "";
+    String timeExp = "";
 
     IOS_HIDMobileIDScreenPage mobileIdScreen = new IOS_HIDMobileIDScreenPage();
     IOS_HIDNotificationScreenPage notificationScreen = new IOS_HIDNotificationScreenPage();
@@ -39,6 +42,7 @@ public class IOSStepDef {
     IOSDeviceInfo iosDeviceInfo = new IOSDeviceInfo();
     SerialPortUtils serialPortUtils = new SerialPortUtils();
     String armLogs;
+    String dateTime;
 
     @Given("Launch HID Access Mobile Application in iOS device")
     public void launchHidAccessMobileApp_iOS() {
@@ -55,6 +59,7 @@ public class IOSStepDef {
         settingScreen.handlingAppCrashPopUp();
         settingScreen.verifyNoInternetPopUp();
         settingScreen.handlingSettingPopUp();
+        dynamicAppReview_iOS("Yes");
         mobileIdScreen.clickOnMobileIDTabAndVerify();
     }
 
@@ -66,6 +71,9 @@ public class IOSStepDef {
     @When("Navigate to Settings in iOS device")
     public void navigateToSettingsScreen_iOS() {
         settingScreen.clickOnSettingTabAndVerify();
+        //String dateTime = DriverManager.getDriver().getDeviceTime();
+        //settingScreen.verifyTime(dateTime);
+
     }
 
     @When("Select the mode state as {string} in iOS device")
@@ -105,6 +113,8 @@ public class IOSStepDef {
     @When("Perform robotic arm action as {string} for iOS device")
     public void performRoboticArmAction_iOS(String strRoboticAction) throws SerialPortException {
         armLogs = SerialPortUtils.performRoboticArmOperation(DriverManager.getDevicePort(), strRoboticAction);
+        String dateTime = DriverManager.getDriver().getDeviceTime();
+        timeExp = settingScreen.verifyTime(dateTime);
     }
 
     @Then("Activity log is displayed in iOS device and {string}, {string}, {string}, {string} and {string} are verified")
@@ -114,6 +124,7 @@ public class IOSStepDef {
               helpCenterScreen.clickOnActivityLogAndVerify();
               Assert.assertEquals(activityScreen.getTodayDate(), strDate);
               Assert.assertEquals(activityScreen.getMobileIDRead(), strMobileRead);
+              Assert.assertEquals(activityScreen.getLogTime(), timeExp);
               Assert.assertEquals(activityScreen.getSuccessMessage(), strMessage);
               Assert.assertEquals(activityScreen.getActionName(), strArmActionName);
               Assert.assertEquals(activityScreen.getReaderName(), strReaderName);

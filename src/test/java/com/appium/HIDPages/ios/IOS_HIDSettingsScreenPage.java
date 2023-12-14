@@ -11,6 +11,9 @@ import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.testng.Assert;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class IOS_HIDSettingsScreenPage extends BasePage {
     /**
      * object created to access methods from page classes  Date- 25/1/2023
@@ -1077,6 +1080,28 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             String unlockedAttribute = chkUnlocked.getAttribute("enabled");
             Assert.assertEquals(unlockedAttribute,true);
         }
+    }
+
+    public void verifyTime(String dateTime) {
+        try {
+            String date = dateTime.replace("T", " ");
+            System.out.println(date);
+            String strTime = date.replace("+05:30", "");
+            System.out.println(strTime);
+            String strdate[] = strTime.split(" ");
+            String time = strdate[1];
+            System.out.println(time);
+
+            SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm:ss a");
+            Date _24HourDt = _24HourSDF.parse(time);
+            System.out.println(_12HourSDF.format(_24HourDt));
+            String timeExp = _12HourSDF.format(_24HourDt);
+
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the No Internet pop up in settings screen...");
+        }
+        return timeExp.trim();
     }
 
 }
