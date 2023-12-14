@@ -362,10 +362,15 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("activityTime: " + activityTime);
                 SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
                 Date activityTimeNew = inputFormatter1.parse(activityTime);
-                TestUtils.log().info("activityTimeFinal: " + activityTimeNew);
+                TestUtils.log().info("activityTimeNew: " + activityTimeNew);
                 String activityTimeFinal = outputFormatter.format(activityTimeNew);
-                TestUtils.log().info("activityTimeFinalNew: " + activityTimeFinal);
+                TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
 
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+                Date date1 = format.parse(deviceTimeFinal);
+                Date date2 = format.parse(activityTimeFinal);
+                long difference = date2.getTime() - date1.getTime();
+                TestUtils.log().info("difference: " + difference);
 
 
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
