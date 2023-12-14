@@ -360,7 +360,9 @@ public class AndrStepDef extends BasePage {
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 String activityTimeNew = activityTime.substring(0,9);
                 TestUtils.log().info("activityTimeNew: " + activityTimeNew);
-
+                DateTimeFormatter inputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss");
+                LocalTime activityTimeFinal = LocalTime.parse(activityTimeNew, inputFormatter1);
+                TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
 
 
 
