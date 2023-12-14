@@ -361,10 +361,10 @@ public class AndrStepDef extends BasePage {
                 String activityTime = activityTimeStr.substring(0,9);
                 TestUtils.log().info("activityTime: " + activityTime);
                 SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
-                Date activityTimeFinal = inputFormatter1.parse(activityTime);
-                TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
-                String activityTimeFinalNew = outputFormatter.format(activityTimeFinal);
-                TestUtils.log().info("activityTimeFinalNew: " + activityTimeFinalNew);
+                Date activityTimeNew = inputFormatter1.parse(activityTime);
+                TestUtils.log().info("activityTimeFinal: " + activityTimeNew);
+                String activityTimeFinal = outputFormatter.format(activityTimeNew);
+                TestUtils.log().info("activityTimeFinalNew: " + activityTimeFinal);
 
 
 
