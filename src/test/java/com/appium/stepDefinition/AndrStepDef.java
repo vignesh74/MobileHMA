@@ -371,7 +371,8 @@ public class AndrStepDef extends BasePage {
                 Date date2 = format.parse(activityTimeFinal);
                 long difference = date2.getTime() - date1.getTime();
                 TestUtils.log().info("difference: " + difference);
-
+                long timeInDifference = difference/1000;
+                TestUtils.log().info("timeInDifference: " + timeInDifference);
 
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
