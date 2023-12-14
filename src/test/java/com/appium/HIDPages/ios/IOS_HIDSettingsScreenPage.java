@@ -1083,6 +1083,7 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     }
 
     public static String verifyTime(String dateTime) {
+        String timeExp = "";
         try {
             String date = dateTime.replace("T", " ");
             System.out.println(date);
@@ -1096,7 +1097,7 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm:ss a");
             Date _24HourDt = _24HourSDF.parse(time);
             System.out.println(_12HourSDF.format(_24HourDt));
-            String timeExp = _12HourSDF.format(_24HourDt);
+            timeExp = _12HourSDF.format(_24HourDt);
 
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while verifying the No Internet pop up in settings screen...");
