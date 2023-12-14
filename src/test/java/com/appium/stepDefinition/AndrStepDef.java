@@ -374,7 +374,7 @@ public class AndrStepDef extends BasePage {
                 long timeInDifference = difference/1000;
                 TestUtils.log().info("timeInDifference: " + timeInDifference);
 
-                if(timeInDifference >= 10){
+                if(timeInDifference <= 10){
                     Assert.assertTrue(true,"Correct activity log");
                     TestUtils.log().info("correct activity time: " + timeInDifference);
                 }else{
