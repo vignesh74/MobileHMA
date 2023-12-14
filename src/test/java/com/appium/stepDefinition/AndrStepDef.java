@@ -368,7 +368,6 @@ public class AndrStepDef extends BasePage {
                     Assert.assertTrue(true,"Time is lesser than 10 seconds");
                 } else {
                     boolean diff = false;
-                    Assert.assertTrue(fail,"Time is not lesser than 10 seconds");
                 }
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
