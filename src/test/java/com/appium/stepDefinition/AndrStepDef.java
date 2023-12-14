@@ -345,23 +345,6 @@ public class AndrStepDef extends BasePage {
                 setAppStatus_Andr(strAppState);
 
             }else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
-//                Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
-//                Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-//                String currentTime = armLogs.second();
-//                TestUtils.log().info("currentTime: " + currentTime);
-//                String activityTime = mobileIDScreen.getTxtActivityTime().getText();
-//                TestUtils.log().info("activityTime: " + activityTime);
-//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a");
-//                LocalTime parsedCurrentTime = LocalTime.parse(currentTime,formatter);
-//                TestUtils.log().info("parsedCurrentTime: " + parsedCurrentTime);
-//                LocalTime parsedActivityTime = LocalTime.parse(activityTime,formatter);
-//                TestUtils.log().info("parsedActivityTime: " + parsedActivityTime);
-//
-//                Duration duration = Duration.between(parsedCurrentTime, parsedActivityTime);
-//                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
-//                System.out.println("Time Difference: " + timeDifferenceInSeconds + " seconds");
-//                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds);
-
 
                 Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
@@ -380,19 +363,13 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("Time1: " + time1);
                 TestUtils.log().info("Time2: " + time2);
                 TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds + " seconds");
-
-//                Duration duration = Duration.between(time1,time2);
-//                long timeDifferenceInSeconds = Math.abs(duration.getSeconds());
-//                System.out.println("Time Difference: " + timeDifferenceInSeconds + " seconds");
-//                TestUtils.log().info("Time Difference: " + timeDifferenceInSeconds);
-
-
-//                 Compare the times
-//                boolean isWithin10Seconds = compareTimes(currentTime, mobileIDScreen.getTxtActivityTime().toString());
-//                System.out.println("Is within 10 seconds: " + isWithin10Seconds);
-//                TestUtils.log().info("time check " + isWithin10Seconds);
-//                    Assert.assertEquals(mobileIDScreen.getTxtActivityTime(),armLogs.second());
-//                    Assert.assertTrue(true,armLogs.second().toString());
+                if (timeDifferenceInSeconds <= 10) {
+                    boolean diff = true;
+                    Assert.assertTrue(true,"Time is lesser than 10 seconds");
+                } else {
+                    boolean diff = false;
+                    Assert.assertTrue(fail,"Time is not lesser than 10 seconds");
+                }
                     if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
                     } else {
