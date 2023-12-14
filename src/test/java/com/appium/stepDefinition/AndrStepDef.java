@@ -353,7 +353,9 @@ public class AndrStepDef extends BasePage {
                 SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
                 Date deviceTimeNew = inputFormatter.parse(deviceTime);
                 TestUtils.log().info("deviceTime formatted: " + deviceTimeNew);
-
+                DateTimeFormatter inputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss a");
+                LocalTime deviceTimeFinal = LocalTime.parse((CharSequence) deviceTimeNew,inputFormatter1);
+                TestUtils.log().info("deviceTimeFinal: " + deviceTimeFinal);
 
 //                String activityTime = mobileIDScreen.getTxtActivityTime().getText();
 //                TestUtils.log().info("activityTime: " + activityTime);
