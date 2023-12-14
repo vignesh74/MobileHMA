@@ -361,11 +361,9 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("activityTime: " + activityTime);
 
                 DateTimeFormatter inputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss a");
-                LocalTime localTime = LocalTime.parse(activityTime, inputFormatter1);
+                LocalTime activityTimeNew = LocalTime.parse(activityTime, inputFormatter1);
+                TestUtils.log().info("localTime: " + activityTimeNew);
 
-                DateTimeFormatter outputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss a");
-                String activityTimeNew = localTime.format(outputFormatter1);
-                TestUtils.log().info("activityTimeNew: " + activityTimeNew);
 
 
 
