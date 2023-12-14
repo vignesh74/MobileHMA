@@ -23,7 +23,6 @@ import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 public class IOSStepDef {
 
     String strInvitationCode = "";
-    String timeExp = "";
 
     IOS_HIDMobileIDScreenPage mobileIdScreen = new IOS_HIDMobileIDScreenPage();
     IOS_HIDNotificationScreenPage notificationScreen = new IOS_HIDNotificationScreenPage();
@@ -42,6 +41,8 @@ public class IOSStepDef {
     IOSDeviceInfo iosDeviceInfo = new IOSDeviceInfo();
     SerialPortUtils serialPortUtils = new SerialPortUtils();
     String armLogs;
+    String timeExp;
+
     String dateTime;
 
     @Given("Launch HID Access Mobile Application in iOS device")
@@ -113,7 +114,7 @@ public class IOSStepDef {
     @When("Perform robotic arm action as {string} for iOS device")
     public void performRoboticArmAction_iOS(String strRoboticAction) throws SerialPortException {
         armLogs = SerialPortUtils.performRoboticArmOperation(DriverManager.getDevicePort(), strRoboticAction);
-        String dateTime = DriverManager.getDriver().getDeviceTime();
+        dateTime = DriverManager.getDriver().getDeviceTime();
         timeExp = settingScreen.verifyTime(dateTime);
     }
 

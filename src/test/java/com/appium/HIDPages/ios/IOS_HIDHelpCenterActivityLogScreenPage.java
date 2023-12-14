@@ -250,6 +250,6 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while getting Activity log time text...");
         }
-        return mobileRead;
+        return logTime;
     }
 }

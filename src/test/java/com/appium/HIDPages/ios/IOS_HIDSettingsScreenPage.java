@@ -1082,7 +1082,7 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
         }
     }
 
-    public void verifyTime(String dateTime) {
+    public static String verifyTime(String dateTime) {
         try {
             String date = dateTime.replace("T", " ");
             System.out.println(date);
