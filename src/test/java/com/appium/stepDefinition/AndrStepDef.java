@@ -358,8 +358,10 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("deviceTimeFinal: " + deviceTimeFinal);
 
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
-                String activityTimeNew = activityTime.substring(1,9);
+                String activityTimeNew = activityTime.substring(0,9);
                 TestUtils.log().info("activityTimeNew: " + activityTimeNew);
+
+
 
 
 
