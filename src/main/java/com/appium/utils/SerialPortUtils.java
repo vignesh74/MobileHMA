@@ -10,6 +10,8 @@ import jssc.SerialPort;
 import jssc.SerialPortException;
 import org.testng.internal.collections.Pair;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -218,10 +220,25 @@ public class SerialPortUtils {
             } else {
                 TestUtils.log().info("Action is not valid");
             }
-//            AndroidDriver driver1 = (AndroidDriver) DriverManager.getDriver();
-//            Object deviceTime = driver1.executeScript("return new Date().toLocaleString()");
-//            deviceRoboTime = deviceTime.toString();
-//
+
+
+             Process process = Runtime.getRuntime().exec("adb shell date");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+            // Read the output of the command
+            String line;
+            StringBuilder output = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                output.append(line);
+            }
+
+//             Print the device time
+            TestUtils.log().info("Device Time: " + output.toString());
+
+//            // Close the BufferedReader and wait for the process to exit
+            reader.close();
+            process.waitFor();
+
               currentTime = getCurrentTime().toString();
             TestUtils.log().info("currentTime " + currentTime);
 //            TestUtils.log().info("deviceRoboTime " + deviceRoboTime);
