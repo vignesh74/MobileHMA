@@ -217,8 +217,8 @@ public class SerialPortUtils {
             } else {
                 TestUtils.log().info("Action is not valid");
             }
-            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-            Object deviceTime = driver.executeScript("return new Date().toLocaleString()");
+            AndroidDriver driver1 = (AndroidDriver) DriverManager.getDriver();
+            Object deviceTime = driver1.executeScript("return new Date().toLocaleString()");
             deviceRoboTime = deviceTime.toString();
 
 //            currentTime = getCurrentTime();
@@ -249,7 +249,7 @@ public class SerialPortUtils {
             basePage.waitForGivenTime(1);
 
             if (actionName.equals("Twist & Go") && (deviceState.equalsIgnoreCase("Locked"))) {
-
+                AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
                 try {
                     androidDeviceAction.unlockDeviceWithPin("1234");
                 } catch (Exception e) {
