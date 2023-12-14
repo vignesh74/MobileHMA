@@ -348,21 +348,22 @@ public class AndrStepDef extends BasePage {
 
                 Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-                String currentTime = armLogs.second();
-                TestUtils.log().info("currentTime: " + currentTime);
+                String deviceTime = armLogs.second();
+                TestUtils.log().info("currentTime: " + deviceTime);
                 SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-                Date date = inputFormatter.parse(currentTime);
-                TestUtils.log().info("currentTimeformatted: " + date);
+                Date deviceTimeNew = inputFormatter.parse(deviceTime);
+                TestUtils.log().info("currentTimeformatted: " + deviceTimeNew);
 
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 TestUtils.log().info("activityTime: " + activityTime);
                 DateTimeFormatter inputFormatter1 = DateTimeFormatter.ofPattern("hh:mm:ss a");
-                LocalTime actTime = LocalTime.parse(activityTime, inputFormatter1);
+                LocalTime activityTimeNew = LocalTime.parse(activityTime, inputFormatter1);
+                TestUtils.log().info("activityTimeNew: " + activityTimeNew);
 
                 SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
-                String deviceTime = outputFormatter.format(actTime);
-                TestUtils.log().info("deviceTime: " + deviceTime);
-                String activityTime1 = outputFormatter.format(activityTime);
+                String deviceTimeNew1 = outputFormatter.format(activityTimeNew);
+                TestUtils.log().info("deviceTimeNew1: " + deviceTimeNew1);
+                String activityTime1 = outputFormatter.format(activityTimeNew);
 
                 TestUtils.log().info("activityTime1: " + activityTime1);
 
