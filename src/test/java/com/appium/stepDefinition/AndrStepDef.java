@@ -24,10 +24,7 @@ import org.testng.util.TimeUtils;
 import java.io.IOException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 import java.util.Date;
@@ -352,6 +349,14 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("currentTime: " + currentTime);
                 String activityTime = mobileIDScreen.getTxtActivityTime().getText();
                 TestUtils.log().info("activityTime: " + activityTime);
+
+                OffsetDateTime offsetDateTime = OffsetDateTime.parse(currentTime, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+
+                // Format the OffsetDateTime to the desired pattern
+                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String formattedTime = offsetDateTime.format(outputFormatter);
+                TestUtils.log().info("time1: " + formattedTime);
+
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
                 Date time1 = simpleDateFormat.parse(currentTime);
                 Date time2 = simpleDateFormat.parse(activityTime);
