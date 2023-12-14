@@ -200,7 +200,7 @@ public class SerialPortUtils {
     public Pair<String, String> performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
         String roboticArmLogs = "";
         SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem" + deviceCOMPort.trim());
-        String currentTime;
+        String deviceRoboTime;
         try {
             // Define COM Port
 
@@ -217,9 +217,13 @@ public class SerialPortUtils {
             } else {
                 TestUtils.log().info("Action is not valid");
             }
+            AndroidDriver driver1 = (AndroidDriver) DriverManager.getDriver();
+            Object deviceTime = driver1.executeScript("return new Date().toLocaleString()");
+            deviceRoboTime = deviceTime.toString();
 
-            currentTime = getCurrentTime();
-            TestUtils.log().info("currentTime " + currentTime);
+//            currentTime = getCurrentTime();
+            TestUtils.log().info("deviceTime " + deviceTime);
+            TestUtils.log().info("deviceRoboTime " + deviceRoboTime);
 
             // Wait time
             basePage.waitForGivenTime(15); // wait till arm got any message
@@ -261,7 +265,7 @@ public class SerialPortUtils {
             TestUtils.log().info("Serial Port got closed in finally block");
             TestUtils.log().info("+++++++++++++++++++++++++++++++++++++++++++++++");
         }
-        return new Pair<>(roboticArmLogs.trim(), currentTime);
+        return new Pair<>(roboticArmLogs.trim(), deviceRoboTime);
     }
 
     private static String getCurrentTime() {
