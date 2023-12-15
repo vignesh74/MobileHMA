@@ -349,8 +349,7 @@ public class AndrStepDef extends BasePage {
 
                 Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-//                Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
-                Assert.assertEquals(mobileIDScreen.getTxtMessage().getText().toLowerCase(),strMessage.toLowerCase());
+                Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
                 Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strActionName.toLowerCase());
                 Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
                 Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
@@ -399,8 +398,6 @@ public class AndrStepDef extends BasePage {
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
         TestUtils.log().info("Robotic arms: " + armLogs.first() + " is Equal to " + strRoboticLog);
-        TestUtils.log().info("armLogs.first() "+armLogs.first());
-        TestUtils.log().info("strRoboticLog "+strRoboticLog);
         Assert.assertTrue(armLogs.first().toLowerCase().contains(strRoboticLog.toLowerCase()));
 
     }
