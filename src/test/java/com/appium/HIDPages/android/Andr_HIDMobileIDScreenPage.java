@@ -1566,7 +1566,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         String actMsg = "";
         try {
             if(isDisplayed(txtActivityMsg)){
-//                 actMsg = getElementText(txtActivityMsg);
+                 actMsg = getElementText(txtActivityMsg);
                 TestUtils.log().info("activity msg is displayed");
             }else {
                 TestUtils.log().info("activity msg is not displayed");
