@@ -323,8 +323,8 @@ public class AndrStepDef extends BasePage {
 //        }
 //    }
 
-    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string} are verified")
-    public void activityLogIsDisplayed_Andr(String strDate, String strMessage,String strReaderName,String strActionName,String strDeviceState,String strAppState) {
+    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
+    public void activityLogIsDisplayed_Andr(String strDate, String strMessage,String strReaderName,String strActionName,String strDeviceState,String strAppState,String strMobileRead) {
         try {
             navigateToAppPreferencesScreen_Andr();
             appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
@@ -348,6 +348,10 @@ public class AndrStepDef extends BasePage {
 
                 Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+                Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strActionName.toLowerCase());
+                Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
+                Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
                 String deviceTime = armLogs.second();
                 TestUtils.log().info("deviceTime: " + deviceTime);
                 SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
@@ -391,44 +395,9 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("Robotic arm is not performed or disabled");
             }
         }catch(Exception e){
-            TestUtils.log().info("qwqwqwqw "+e);
-            TestUtils.log().info("Exception occurred while verifying the activity log");
+            TestUtils.log().info("Exception occurred while verifying the activity log: " + e);
         }
     }
-
-    private static boolean compareTimes(String currentTime, String futureTime) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-            Date currentTimeDate = sdf.parse(currentTime);
-            Date futureTimeDate = sdf.parse(futureTime);
-
-            // Compare the times
-            return futureTimeDate.after(currentTimeDate);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-
-
-
-//    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string} and {string} are verified android device")
-//    public void activityLogIsDisplayed_Andr(String strDate, String strMobileRead, String strMessage, String strArmActionName, String strReaderName) {
-//        if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
-//            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
-//            mobileIDScreen.expandActivityLogs();
-//            Assert.assertEquals(mobileIDScreen.getTodayDate().toLowerCase(), strDate.toLowerCase());
-//            Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
-//            Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
-//            Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strArmActionName.toLowerCase());
-//            Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
-//        } else {
-//            TestUtils.log().info("Tap or Twist and Go is not performed hence activity logs are not captured ");
-//        }
-//
-//    }
 
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
