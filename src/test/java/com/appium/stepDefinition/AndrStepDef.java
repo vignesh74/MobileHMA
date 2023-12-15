@@ -346,15 +346,24 @@ public class AndrStepDef extends BasePage {
                 setAppStatus_Andr(strAppState);
 
             }else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+                    if(mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Successful NFC transaction.")){
+                        Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+                        Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+                        TestUtils.log().info("mobileIDScreen.getSuccessMessage().toLowerCase() "+mobileIDScreen.getSuccessMessage().toLowerCase());
+                        TestUtils.log().info("strMessage.toLowerCase() "+strMessage.toLowerCase());
+                        Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
+                    }else{
+                        Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+                        Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+                        TestUtils.log().info("mobileIDScreen.getSuccessMessage().toLowerCase() "+mobileIDScreen.getSuccessMessage().toLowerCase());
+                        TestUtils.log().info("strMessage.toLowerCase() "+strMessage.toLowerCase());
+                        Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strActionName.toLowerCase());
+                        Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
+                        Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
+                    }
 
-                Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
-                Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-                Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
-                TestUtils.log().info("mobileIDScreen.getSuccessMessage().toLowerCase() "+mobileIDScreen.getSuccessMessage().toLowerCase());
-                TestUtils.log().info("strMessage.toLowerCase() "+strMessage.toLowerCase());
-                Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strActionName.toLowerCase());
-                Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
-                Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
                 String deviceTime = armLogs.second();
                 SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
                 Date deviceTimeNew = inputFormatter.parse(deviceTime);
