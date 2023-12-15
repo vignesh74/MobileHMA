@@ -341,6 +341,7 @@ public class AndrStepDef extends BasePage {
                     !mobileIDScreen.getActionName().equalsIgnoreCase(strActionName)){
 
                 roboticExecution(strActionName,strDeviceState);
+                TestUtils.log().info("--- ---- RE-EXECUTION OF ROBOTIC ARM AFTER FAILED---- ---");
                 androidDeviceAction.forceUnlock(strDeviceState,strAppState, (AndroidDriver) DriverManager.getDriver());
                 setAppStatus_Andr(strAppState);
 
