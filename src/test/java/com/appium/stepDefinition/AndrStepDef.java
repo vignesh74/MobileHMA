@@ -353,20 +353,15 @@ public class AndrStepDef extends BasePage {
                 Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
                 Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
                 String deviceTime = armLogs.second();
-                TestUtils.log().info("deviceTime: " + deviceTime);
                 SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
                 Date deviceTimeNew = inputFormatter.parse(deviceTime);
-                TestUtils.log().info("deviceTimeNew " + deviceTimeNew);
                 SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
                 String deviceTimeFinal = outputFormatter.format(deviceTimeNew);
-                TestUtils.log().info("deviceTimeFinal: " + deviceTimeFinal);
 
                 String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
                 String activityTime = activityTimeStr.substring(0,9);
-                TestUtils.log().info("activityTime: " + activityTime);
                 SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
                 Date activityTimeNew = inputFormatter1.parse(activityTime);
-                TestUtils.log().info("activityTimeNew: " + activityTimeNew);
                 String activityTimeFinal = outputFormatter.format(activityTimeNew);
                 TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
 
@@ -374,7 +369,6 @@ public class AndrStepDef extends BasePage {
                 Date date1 = format.parse(deviceTimeFinal);
                 Date date2 = format.parse(activityTimeFinal);
                 long difference = date2.getTime() - date1.getTime();
-                TestUtils.log().info("difference: " + difference);
                 long timeInDifference = difference/1000;
                 TestUtils.log().info("timeInDifference: " + timeInDifference);
 
