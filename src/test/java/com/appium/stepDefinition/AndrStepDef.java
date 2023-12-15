@@ -336,9 +336,9 @@ public class AndrStepDef extends BasePage {
                     mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Communication timeout. Please try again.")||
                     mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Bluetooth communication failed. Please try again.")||
                     mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Reader busy. Please try again.")||
-                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")){
 //                    !mobileIDScreen.getReaderName().equalsIgnoreCase(strReaderName)||
-                    !mobileIDScreen.getActionName().equalsIgnoreCase(strActionName)){
+//                    !mobileIDScreen.getActionName().equalsIgnoreCase(strActionName)){
 
                 roboticExecution(strActionName,strDeviceState);
                 TestUtils.log().info("--- ---- RE-EXECUTION OF ROBOTIC ARM AFTER FAILED---- ---");
