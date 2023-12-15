@@ -389,10 +389,6 @@ public class AndrStepDef extends BasePage {
                     } else {
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
                     }
-            } else if(armLogs.first().toLowerCase().contains(("TAP:DISABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO:DISABLE").toLowerCase())){
-                Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
-                TestUtils.log().info("mobileIDScreen.getSuccessMessage().toLowerCase() "+mobileIDScreen.getSuccessMessage().toLowerCase());
-                TestUtils.log().info("strMessage.toLowerCase() "+strMessage.toLowerCase());
             }else{
                 TestUtils.log().info("Robotic arm is not performed or disabled");
             }
@@ -404,10 +400,9 @@ public class AndrStepDef extends BasePage {
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
         TestUtils.log().info("Robotic arms: " + armLogs.first() + " is Equal to " + strRoboticLog);
+        TestUtils.log().info("armLogs.first(): "+armLogs.first()+" is Equal to "+" : strRoboticLog"+strRoboticLog);
         Assert.assertTrue(armLogs.first().toLowerCase().contains(strRoboticLog.toLowerCase()));
-
-//        TestUtils.log().info("Robotic arms: "+armLogs+" is Equal to "+strRoboticLog);
-//        Assert.assertTrue(armLogs.toLowerCase().contains(strRoboticLog.toLowerCase()));
+        TestUtils.log().info("armLogs.first(): "+armLogs.first()+" is Equal to "+" : strRoboticLog"+strRoboticLog);
     }
 
     //setting scenarios step definition method
