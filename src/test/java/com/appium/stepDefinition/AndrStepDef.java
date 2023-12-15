@@ -357,6 +357,7 @@ public class AndrStepDef extends BasePage {
                 Date deviceTimeNew = inputFormatter.parse(deviceTime);
                 SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
                 String deviceTimeFinal = outputFormatter.format(deviceTimeNew);
+                TestUtils.log().info("deviceTimeFinal: " + deviceTimeFinal);
 
                 String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
                 String activityTime = activityTimeStr.substring(0,9);
@@ -374,9 +375,9 @@ public class AndrStepDef extends BasePage {
 
                 if(timeInDifference <= 10){
                     Assert.assertTrue(true,"Correct activity log");
-                    TestUtils.log().info("correct activity time: " + timeInDifference);
+                    TestUtils.log().info("correct activity time lesser than 10 seconds: " + timeInDifference);
                 }else{
-                    Assert.assertFalse(false,"Incorrect activity log");
+                    Assert.assertFalse(false,"activity time is greater than 10 seconds");
                 }
 
 
