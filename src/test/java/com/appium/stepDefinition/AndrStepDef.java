@@ -349,7 +349,8 @@ public class AndrStepDef extends BasePage {
 
                 Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                 Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-                Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+//                Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+                Assert.assertEquals(mobileIDScreen.getTxtMessage().getText().toLowerCase(),strMessage.toLowerCase());
                 Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strActionName.toLowerCase());
                 Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
                 Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
