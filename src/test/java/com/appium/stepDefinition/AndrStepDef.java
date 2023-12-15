@@ -332,10 +332,10 @@ public class AndrStepDef extends BasePage {
             DriverManager.setPopupHandled(popups);
             mobileIDScreen.clickOnMobileIDTabAndVerify();
             mobileIDScreen.expandActivityLogs();
-            if(mobileIDScreen.getTxtMessage().getText().equalsIgnoreCase("Please move closer to the reader to gain access.")||
-                    mobileIDScreen.getTxtMessage().getText().equalsIgnoreCase("Communication timeout. Please try again.")||
-                    mobileIDScreen.getTxtMessage().getText().equalsIgnoreCase("Bluetooth communication failed. Please try again.")||
-                    mobileIDScreen.getTxtMessage().getText().equalsIgnoreCase("Reader busy. Please try again.")||
+            if(mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Please move closer to the reader to gain access.")||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Communication timeout. Please try again.")||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Bluetooth communication failed. Please try again.")||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Reader busy. Please try again.")||
                     mobileIDScreen.getSuccessMessage().equalsIgnoreCase("This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")||
                     !mobileIDScreen.getReaderName().equalsIgnoreCase(strReaderName)||
                     !mobileIDScreen.getActionName().equalsIgnoreCase(strActionName)){
