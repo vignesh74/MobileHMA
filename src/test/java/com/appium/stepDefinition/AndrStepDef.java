@@ -350,15 +350,11 @@ public class AndrStepDef extends BasePage {
                         Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                         Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
-                        TestUtils.log().info("mobileIDScreen.getSuccessMessage().toLowerCase() "+mobileIDScreen.getSuccessMessage().toLowerCase());
-                        TestUtils.log().info("strMessage.toLowerCase() "+strMessage.toLowerCase());
                         Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
                     }else{
                         Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                         Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                         Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
-                        TestUtils.log().info("mobileIDScreen.getSuccessMessage().toLowerCase() "+mobileIDScreen.getSuccessMessage().toLowerCase());
-                        TestUtils.log().info("strMessage.toLowerCase() "+strMessage.toLowerCase());
                         Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strActionName.toLowerCase());
                         Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
                         Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
