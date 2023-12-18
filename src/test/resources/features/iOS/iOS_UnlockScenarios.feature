@@ -19,7 +19,7 @@ Feature: To Test iOS Unlock workflow for HID mobile access application
     And   Set device state as "ForcedUnlock" in iOS device
     And   Set Application status as "AlwaysForeground" in iOS device
     Then  Robotic arms log "<robotic_arm_log>" is displayed for iOS device
-    And   Activity log is displayed in iOS device and "<date>", "<mobile_read>", "<message>", "<arm_action_name>" and "<reader_name>" are verified
+    And   Activity log is displayed in iOS device and "<date>", "<mobile_read>", "<message>", "<arm_action_name>", "<reader_name>" and "<action_name>" are verified
 
 
     @iOS_RevE_Tap_WF1 @iOS_RevE_Tap @iOS_RevE

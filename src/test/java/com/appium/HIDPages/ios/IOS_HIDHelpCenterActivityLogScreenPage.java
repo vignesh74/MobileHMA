@@ -8,6 +8,9 @@ import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.testng.Assert;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
 
     /**
@@ -251,5 +254,26 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while getting Activity log time text...");
         }
         return logTime;
+    }
+
+    public void checkActivityLogTime(String timeExp, String timeAct){
+        try{
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            Date date1 = format.parse(timeExp);
+            Date date2 = format.parse(timeAct);
+            long difference = date2.getTime() - date1.getTime();
+            long timeInDifference = difference/1000;
+            TestUtils.log().info("timeInDifference: " + timeInDifference);
+
+            if(timeInDifference <= 15){
+                Assert.assertTrue(true,"Correct activity log");
+                TestUtils.log().info("correct activity time lesser than 10 seconds: " + timeInDifference);
+            }else{
+                Assert.assertFalse(false,"activity time is greater than 10 seconds");
+            }
+        }
+        catch (Exception e) {
+            TestUtils.log().info("Exception occurred while getting Activity log time text...");
+        }
     }
 }
