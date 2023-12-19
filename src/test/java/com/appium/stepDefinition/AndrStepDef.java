@@ -340,7 +340,7 @@ public class AndrStepDef extends BasePage {
 
                 roboticExecution(strActionName,strDeviceState);
                 TestUtils.log().info("--- ---- RE-EXECUTION OF ROBOTIC ARM AFTER FAILED---- ---");
-                androidDeviceAction.forceUnlock(strDeviceState,strAppState, (AndroidDriver) DriverManager.getDriver());
+                androidDeviceAction.forceUnlock(strDeviceState,strAppState);
                 setAppStatus_Andr(strAppState);
 
             }else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
@@ -846,7 +846,7 @@ public class AndrStepDef extends BasePage {
 
     @And("Set device state as force unlock {string} with {string} in android device")
     public void forceUnlock(String strDeviceState, String appState){
-        androidDeviceAction.forceUnlock(strDeviceState,appState, (AndroidDriver) DriverManager.getDriver());
+        androidDeviceAction.forceUnlock(strDeviceState,appState);
     }
 
 

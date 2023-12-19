@@ -819,7 +819,7 @@ public class AndroidDeviceAction {
     }
 
 
-    public void forceUnlock(String strDeviceState,String appState, AndroidDriver driver) {
+    public void forceUnlock(String strDeviceState,String appState) {
         try{
             if (strDeviceState.equalsIgnoreCase("Locked")) {
                 unlockDeviceWithPin("1234");
@@ -843,9 +843,7 @@ public class AndroidDeviceAction {
     }
 
     public void unlockDeviceWithPin(String pin){
-//        String adbPath = "/Users/vigneshrajesh/Library/Android/sdk/platform-tools/adb";
-        //String adbPath = "/opt/homebrew/bin/adb";
-            String adbPath = ConfigLoader.getInstance().getAdbPath();
+        String adbPath = ConfigLoader.getInstance().getAdbPath();
         try {
             // Run ADB commands
             executeCommand(adbPath, "shell", "input", "keyevent", "82");
