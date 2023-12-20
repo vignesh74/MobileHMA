@@ -159,7 +159,6 @@ public class IOSStepDef {
             }
             else {
                 TestUtils.log().info("Tap or Twist and Go is not performed hence activity logs are not captured ");
-                Assert.assertTrue(armLogs.toLowerCase().contains(strRoboticLog.toLowerCase()));
             }
 
         }catch(Exception e){
@@ -171,7 +170,7 @@ public class IOSStepDef {
     @Then("Robotic arms log {string} is displayed for iOS device")
     public void roboticArmsLogIsDisplayed_iOS(String strRoboticLog) {
         TestUtils.log().info("Robotic arms: "+armLogs+" is Equal to "+strRoboticLog);
-        //Assert.assertTrue(armLogs.toLowerCase().contains(strRoboticLog.toLowerCase()));
+        Assert.assertTrue(armLogs.toLowerCase().contains(strRoboticLog.toLowerCase()));
     }
 
     @Then("BLE status is displayed as {string} in iOS device")
