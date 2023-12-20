@@ -267,9 +267,9 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
 
             if(timeInDifference <= 15){
                 Assert.assertTrue(true,"Correct activity log");
-                TestUtils.log().info("correct activity time lesser than 10 seconds: " + timeInDifference);
+                TestUtils.log().info("correct activity time lesser than 15 seconds: " + timeInDifference);
             }else{
-                Assert.assertFalse(false,"activity time is greater than 10 seconds");
+                Assert.assertFalse(false,"activity time is greater than 15 seconds");
             }
         }
         catch (Exception e) {
