@@ -323,82 +323,82 @@ public class AndrStepDef extends BasePage {
 //        }
 //    }
 
-    @And("qActivity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
-    public void activityLogIsDisplayed_Andr1(String strDate, String strMessage,String strReaderName,String strActionName,String strDeviceState,String strAppState,String strMobileRead) {
-        try {
-            navigateToAppPreferencesScreen_Andr();
-            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
-            boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
-            DriverManager.setPopupHandled(popups);
-            mobileIDScreen.clickOnMobileIDTabAndVerify();
-            mobileIDScreen.expandActivityLogs();
-            if(mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Please move closer to the reader to gain access.")||
-                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Communication timeout. Please try again.")||
-                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Bluetooth communication failed. Please try again.")||
-                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Reader busy. Please try again.")||
-                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")){
-
-                roboticExecution(strActionName,strDeviceState);
-                TestUtils.log().info("--- ---- RE-EXECUTION OF ROBOTIC ARM AFTER FAILED---- ---");
-                androidDeviceAction.forceUnlock(strDeviceState,strAppState);
-                setAppStatus_Andr(strAppState);
-
-            }else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
-                    if(mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Successful NFC transaction.")){
-                        Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
-                        Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
-                        Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
-                    }else{
-                        Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
-                        Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
-                        Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strActionName.toLowerCase());
-                        Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
-                        Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
-                    }
-
-                String deviceTime = armLogs.second();
-                SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-                Date deviceTimeNew = inputFormatter.parse(deviceTime);
-                SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
-                String deviceTimeFinal = outputFormatter.format(deviceTimeNew);
-                TestUtils.log().info("deviceTimeFinal: " + deviceTimeFinal);
-
-                String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
-                String activityTime = activityTimeStr.substring(0,9);
-                SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
-                Date activityTimeNew = inputFormatter1.parse(activityTime);
-                String activityTimeFinal = outputFormatter.format(activityTimeNew);
-                TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
-
-                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-                Date date1 = format.parse(deviceTimeFinal);
-                Date date2 = format.parse(activityTimeFinal);
-                long difference = date2.getTime() - date1.getTime();
-                long timeInDifference = difference/1000;
-                TestUtils.log().info("timeInDifference: " + timeInDifference);
-
-                if(timeInDifference <= 10){
-                    Assert.assertTrue(true,"Correct activity log");
-                    TestUtils.log().info("correct activity time lesser than 10 seconds: " + timeInDifference);
-                }else{
-                    Assert.assertFalse(false,"activity time is greater than 10 seconds");
-                }
-
-
-                    if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
-                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
-                    } else {
-                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
-                    }
-            }else{
-                TestUtils.log().info("Robotic arm is not performed or disabled");
-            }
-        }catch(Exception e){
-            TestUtils.log().info("Exception occurred while verifying the activity log: " + e);
-        }
-    }
+//    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
+//    public void activityLogIsDisplayed_Andr(String strDate, String strMessage,String strReaderName,String strActionName,String strDeviceState,String strAppState,String strMobileRead) {
+//        try {
+//            navigateToAppPreferencesScreen_Andr();
+//            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
+//            boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
+//            DriverManager.setPopupHandled(popups);
+//            mobileIDScreen.clickOnMobileIDTabAndVerify();
+//            mobileIDScreen.expandActivityLogs();
+//            if(mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Please move closer to the reader to gain access.")||
+//                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Communication timeout. Please try again.")||
+//                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Bluetooth communication failed. Please try again.")||
+//                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Reader busy. Please try again.")||
+//                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")){
+//
+//                roboticExecution(strActionName,strDeviceState);
+//                TestUtils.log().info("--- ---- RE-EXECUTION OF ROBOTIC ARM AFTER FAILED---- ---");
+//                androidDeviceAction.forceUnlock(strDeviceState,strAppState);
+//                setAppStatus_Andr(strAppState);
+//
+//            }else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+//                    if(mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Successful NFC transaction.")){
+//                        Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+//                        Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+//                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+//                        Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
+//                    }else{
+//                        Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+//                        Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+//                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+//                        Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strActionName.toLowerCase());
+//                        Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
+//                        Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
+//                    }
+//
+//                String deviceTime = armLogs.second();
+//                SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+//                Date deviceTimeNew = inputFormatter.parse(deviceTime);
+//                SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
+//                String deviceTimeFinal = outputFormatter.format(deviceTimeNew);
+//                TestUtils.log().info("deviceTimeFinal: " + deviceTimeFinal);
+//
+//                String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
+//                String activityTime = activityTimeStr.substring(0,9);
+//                SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
+//                Date activityTimeNew = inputFormatter1.parse(activityTime);
+//                String activityTimeFinal = outputFormatter.format(activityTimeNew);
+//                TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
+//
+//                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+//                Date date1 = format.parse(deviceTimeFinal);
+//                Date date2 = format.parse(activityTimeFinal);
+//                long difference = date2.getTime() - date1.getTime();
+//                long timeInDifference = difference/1000;
+//                TestUtils.log().info("timeInDifference: " + timeInDifference);
+//
+//                if(timeInDifference <= 10){
+//                    Assert.assertTrue(true,"Correct activity log");
+//                    TestUtils.log().info("correct activity time lesser than 10 seconds: " + timeInDifference);
+//                }else{
+//                    Assert.assertFalse(false,"activity time is greater than 10 seconds");
+//                }
+//
+//
+//                    if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
+//                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
+//                    } else {
+//                        Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
+//                    }
+//            }else{
+//                TestUtils.log().info("Robotic arm is not performed or disabled");
+//            }
+//        }catch(Exception e){
+//            TestUtils.log().info("Exception occurred while verifying the activity log: " + e);
+//        }
+//    }
 
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
