@@ -339,7 +339,7 @@ public class AndrStepDef extends BasePage {
                     mobileIDScreen.getSuccessMessage().equalsIgnoreCase("This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")){
 
                 roboticExecution(strActionName,strDeviceState);
-                TestUtils.log().info("--- ---- RE-EXECUTION OF ROBOTIC ARM AFTER FAILED---- ---");
+                TestUtils.log().info("--- ---- RE-EXECUTION OF ROBOTIC ARM AFTER FAILED---- ---"+armLogs.first());
                 androidDeviceAction.forceUnlock(strDeviceState,strAppState);
                 setAppStatus_Andr(strAppState);
 
