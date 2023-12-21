@@ -850,7 +850,7 @@ public class AndroidDeviceAction {
             executeCommand(adbPath, "shell", "input", "text", pin);
             executeCommand(adbPath, "shell", "input", "keyevent", "66");
         } catch (Exception e) {
-            TestUtils.log().info("Exception While force unlocking the device");
+            TestUtils.log().info("Exception While force unlocking the device  "+e);
         }
     }
 
