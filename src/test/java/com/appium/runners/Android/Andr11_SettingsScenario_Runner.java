@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@Android11_10_RevE_Tap_WF_1")
+        , tags = "@ANDR_11_10_Bluetooth_Sensitivity")
 
 public class Andr11_SettingsScenario_Runner extends BaseTest {
 

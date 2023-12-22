@@ -267,9 +267,9 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And Verify the "<input>" present on the screen in android device
 
     Examples:
-      | TC_ID  | input        |
-      | _TC-01 | bluetooth    |
-      | _TC-02 | invalid |
+      | TC_ID  | input     |
+      | _TC-01 | bluetooth |
+      | _TC-02 | invalid   |
 
   @ANDR_11_10_Settings_uninstallation
   Scenario: ANDR_11_10_Settings_installation<TC_ID>: Verify the Uninstall of app
@@ -282,16 +282,31 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And Navigate to notification page in android device
     And Verify new version available text in the notification screen in android device
 
- @ANDR_11_10_upgrade
- Scenario: ANDR_11_10_upgrade: Verify the upgrade of app
-   When Navigate to Settings and App Preferences screen in android device
-   And Note down the settings of application before upgrade
-   And Verify mobile about page information are displayed in android device
+  @ANDR_11_10_upgrade
+  Scenario: ANDR_11_10_upgrade: Verify the upgrade of app
+    When Navigate to Settings and App Preferences screen in android device
+    And Note down the settings of application before upgrade
+    And Verify mobile about page information are displayed in android device
     And upgrade the new apk provided
-   Given Launch HID Access Mobile Application in android device
-   When Navigate to Settings and App Preferences screen in android device
-   And compare the App Preference information are same after the upgrade
-   And compare the About page information are same after the upgrade
+    Given Launch HID Access Mobile Application in android device
+    When Navigate to Settings and App Preferences screen in android device
+    And compare the App Preference information are same after the upgrade
+    And compare the About page information are same after the upgrade
+
+  @ANDR_11_10_Bluetooth_Sensitivity
+  Scenario Outline: ANDR_11_10_Bluetooth_Sensitivity: Verify the Bluetooth sensitivity is "<BLE_Sensitivity>"
+    When Navigate to Settings and App Preferences screen in android device
+    And Verify Bluetooth Sensitivity menu is displayed in android device
+    And Bluetooth Sensitivity Screen is displayed in android device
+    Then Bluetooth Sensitivity status is displayed as "<BLE_Sensitivity>" and its "<Content>" in android device
+    Examples:
+      | TC_ID  | BLE_Sensitivity | Content                                                                                       |
+      | _TC-01 | High            | Enhances BLE communication with the HID reader over longer distances                          |
+      | _TC-02 | Medium          | The default option for optimal performance                                                    |
+      | _TC-03 | Low             | Lowers BLE sensitivity, requiring the mobile device to be closer to the HID reader for access |
+
+
+
 
 
 

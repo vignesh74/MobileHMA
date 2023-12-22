@@ -892,6 +892,23 @@ public class AndrStepDef extends BasePage {
         settingsScreen.compareAboutInfo();
     }
 
+    @And("Verify Bluetooth Sensitivity menu is displayed in android device")
+    public void bluetoothSensitivityMenu(){
+        settingsScreen.verifyBluetoothSensitivityMenu();
+    }
+
+    @And("Bluetooth Sensitivity Screen is displayed in android device")
+    public void verifyBluetoothSensitivity(){
+        settingsScreen.clickOnBluetoothSensitivity();
+        settingsScreen.isBluetoothSensitivityPageDisplayed();
+    }
+
+    @Then("Bluetooth Sensitivity status is displayed as {string} and its {string} in android device")
+    public void verifyBluetoothSensitivity(String strBLESensitivity, String strContent){
+        settingsScreen.verifyBluetoothSensitivity(strBLESensitivity,strContent);
+    }
+
+
 //    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
 //    public void activityLogIsDisplayed_Andr(String strDate, String strMessage,String strReaderName,String strActionName,String strDeviceState,String strAppState,String strMobileRead) {
 //        try {

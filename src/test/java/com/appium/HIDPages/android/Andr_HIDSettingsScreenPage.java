@@ -207,6 +207,36 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     @AndroidFindBy(id = "searchQueryInput")
     private MobileElement searchBox;
 
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/sensitivityTitle")
+    private MobileElement txtBluetoothSensitivity;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtBleSensitivityHeading")
+    private MobileElement txtBluetoothSensitivitytitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtAppPreferencesCategory")
+    private MobileElement txtOptions;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/descriptionBleSensitivity")
+    private MobileElement BluetoothSensitivityDesc;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/rbtnHigh")
+    private MobileElement rdoBLEHigh;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/rbtnMedium")
+    private MobileElement rdoBLEMedium;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/rbtnLow")
+    private MobileElement rdoBLELow;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/descriptionHigh")
+    private MobileElement BLEHighDesc;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/descriptionMedium")
+    private MobileElement BLEMediumDesc;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/descriptionLow")
+    private MobileElement BLELowDesc;
+
 
     public MobileElement getTxtConfirmUnregisterPopUpTitle() {
         return txtConfirmUnregisterPopUpTitle;
@@ -262,6 +292,14 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
 
     public MobileElement getTxtNoConnectionOKbtn() {
         return txtNoConnectionOKbtn;
+    }
+
+    public MobileElement getTxtBluetoothSensitivity(){
+        return txtBluetoothSensitivity;
+    }
+
+    public MobileElement getTxtBluetoothSensitivitytitle(){
+        return txtBluetoothSensitivitytitle;
     }
 
 
@@ -470,7 +508,6 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue(isElementVisible(txtAbout));
             TestUtils.log().info("About menu is displayed..");
         } catch (Exception e) {
-
             TestUtils.log().info("Getting Exception while verifying to About text ...");
         }
     }
@@ -1313,6 +1350,79 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             TestUtils.log().info("Getting Exception while comparing the About info of the app after the upgrade ...");
         }
     }
+
+    public void verifyBluetoothSensitivityMenu(){
+        try {
+            scrollUpTillElement(txtBluetoothSensitivity, 1000, 0);
+            waitForVisibility(txtBluetoothSensitivity);
+            Assert.assertTrue(isElementVisible(txtBluetoothSensitivity));
+            TestUtils.log().info("Bluetooth Sensitivity menu is displayed..");
+        } catch (Exception e) {
+            TestUtils.log().info("Getting Exception while verifying to Bluetooth Sensitivity text ...");
+        }
+    }
+
+    public void clickOnBluetoothSensitivity(){
+        try {
+            click(txtBluetoothSensitivity);
+        } catch (Exception e) {
+            TestUtils.log().info("Getting Exception while clicking on Bluetooth Sensitivity Menu...");
+        }
+    }
+
+    public void isBluetoothSensitivityPageDisplayed(){
+        try {
+            waitForVisibility(txtBluetoothSensitivitytitle);
+            Assert.assertTrue(isElementVisible(txtBluetoothSensitivitytitle));
+            Assert.assertTrue(isElementVisible(txtOptions));
+            Assert.assertTrue(isElementVisible(BluetoothSensitivityDesc));
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while displaying Bluetooth Sensitivity Screen...");
+        }
+    }
+
+    public void verifyBluetoothSensitivity(String strBLESensitivity, String strContent){
+        try{
+            if (strBLESensitivity.equalsIgnoreCase(MessageConstants.BLE_HIGH)) {
+                click(rdoBLEHigh);
+                waitForGivenTime(1);
+                String strAttr1 = getElementAttribute(rdoBLEHigh, MessageConstants.CHECKED_MESSAGE);
+                String strAttr2 = getElementAttribute(rdoBLEMedium, MessageConstants.CHECKED_MESSAGE);
+                String strAttr3 = getElementAttribute(rdoBLELow, MessageConstants.CHECKED_MESSAGE);
+                TestUtils.log().info("Status for usage: {} is: {} ",strBLESensitivity, strAttr1);
+                Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
+                Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
+                Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
+                Assert.assertEquals(strContent,BLEHighDesc.getText());
+            } else if (strBLESensitivity.equalsIgnoreCase(MessageConstants.BLE_MEDIUM)) {
+                click(rdoBLEMedium);
+                waitForGivenTime(1);
+                String strAttr1 = getElementAttribute(rdoBLEHigh, MessageConstants.CHECKED_MESSAGE);
+                String strAttr2 = getElementAttribute(rdoBLEMedium, MessageConstants.CHECKED_MESSAGE);
+                String strAttr3 = getElementAttribute(rdoBLELow, MessageConstants.CHECKED_MESSAGE);
+                TestUtils.log().info("Status for usage: {} is: {} ",strBLESensitivity, strAttr2);
+                Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
+                Assert.assertEquals(strAttr2, MessageConstants.TRUE_MESSAGE);
+                Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
+                Assert.assertEquals(strContent,BLEMediumDesc.getText());
+            }else{
+                click(rdoBLELow);
+                waitForGivenTime(1);
+                String strAttr1 = getElementAttribute(rdoBLEHigh, MessageConstants.CHECKED_MESSAGE);
+                String strAttr2 = getElementAttribute(rdoBLEMedium, MessageConstants.CHECKED_MESSAGE);
+                String strAttr3 = getElementAttribute(rdoBLELow, MessageConstants.CHECKED_MESSAGE);
+                TestUtils.log().info("Status for usage: {} is: {} ",strBLESensitivity, strAttr3);
+                Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
+                Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
+                Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
+                Assert.assertEquals(strContent,BLELowDesc.getText());
+            }
+        }catch(Exception e){
+            TestUtils.log().debug("Exception occurred while verifying Bluetooth Sensitivity options...");
+        }
+    }
+
+
 
 
 }

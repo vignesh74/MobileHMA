@@ -86,5 +86,8 @@ public class MessageConstants {
     public static final String FAVORITE_READER_DESCRIPTION_TXT="Select the reader(s) you want to tag as favorite. When nearby, favorite readers are targeted for door opening.";
     public static final String TERMS_OF_USE_HEADER="Mobile Access Terms of Use";
     public static final String INVITATION_SCREEN_HEADER="Invitation code";
+    public static final String BLE_HIGH="High";
+    public static final String BLE_MEDIUM="Medium";
+    public static final String BLE_LOW="Low";
 }
 
