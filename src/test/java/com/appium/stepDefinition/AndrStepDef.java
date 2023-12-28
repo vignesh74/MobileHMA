@@ -908,6 +908,16 @@ public class AndrStepDef extends BasePage {
         settingsScreen.verifyBluetoothSensitivity(strBLESensitivity,strContent);
     }
 
+    @And("Identity Positioning status is displayed as {string} in android device")
+    public void verifyIdentityPositioning(String strOIP){
+        settingsScreen.verifyIdentityPositioning(strOIP);
+    }
+
+    @Then("{string} status is displayed on the pass in android device")
+    public void verifyOIPPass(String strOIPPass){
+        mobileIDScreen.verifyOIPPass(strOIPPass);
+    }
+
 
 //    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
 //    public void activityLogIsDisplayed_Andr(String strDate, String strMessage,String strReaderName,String strActionName,String strDeviceState,String strAppState,String strMobileRead) {

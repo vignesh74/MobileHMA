@@ -237,6 +237,8 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/descriptionLow")
     private MobileElement BLELowDesc;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Identity Positioning']/following-sibling::android.widget.Switch")
+    private MobileElement switchIdentityPositioning;
 
     public MobileElement getTxtConfirmUnregisterPopUpTitle() {
         return txtConfirmUnregisterPopUpTitle;
@@ -1419,6 +1421,31 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             }
         }catch(Exception e){
             TestUtils.log().debug("Exception occurred while verifying Bluetooth Sensitivity options...");
+        }
+    }
+
+    public void verifyIdentityPositioning(String OIPStatus){
+        try {
+            scrollUpTillElement(switchIdentityPositioning, 1000, 0);
+            isElementVisible(switchIdentityPositioning);
+            if (OIPStatus.equalsIgnoreCase(MessageConstants.ENABLE_STRING)) {
+                if (switchIdentityPositioning.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.TRUE_MESSAGE)) {
+                    TestUtils.log().info("Identity Positioning toggle button is initially in Enable state");
+                } else {
+                    click(switchIdentityPositioning);
+                    TestUtils.log().info("Identity Positioning toggle button is set to Enable state");
+                }
+            } else if (OIPStatus.equalsIgnoreCase(MessageConstants.DISABLE_STRING)) {
+                if (switchIdentityPositioning.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.FALSE_MESSAGE)) {
+                    TestUtils.log().info("Identity Positioning toggle button is initially in Disable state");
+                } else {
+                    click(switchIdentityPositioning);
+                    TestUtils.log().info("Identity Positioning toggle button is set to Disable state");
+                }
+            } else TestUtils.log().info("Please provide correct input");
+
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying identity Positioning button...");
         }
     }
 

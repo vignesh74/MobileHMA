@@ -415,6 +415,19 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertdone")
     private MobileElement thankYouDoneBtn;
 
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/navigation_bar_item_large_label_view")
+    private MobileElement mobileIDMenu;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/imgOipMobileIdsContainer")
+    private MobileElement OIPContainer;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Not Active']")
+    private MobileElement OIPNotActiveStatus;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Active']")
+    private MobileElement OIPActiveStatus;
+
+
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
      */
@@ -1782,6 +1795,28 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             }
         }catch(Exception e){
             TestUtils.log().info("Exception occurred while verifying the activity log");
+        }
+    }
+
+    public void verifyOIPPass(String strOIPPass){
+        try {
+            navigateBack();
+            navigateBack();
+
+            if(strOIPPass.equalsIgnoreCase("Active")){
+                swipeLeft(1);
+                isDisplayed(OIPActiveStatus);
+                Assert.assertEquals("Active",OIPActiveStatus.getText());
+                TestUtils.log().info("OIP is Active");
+            } else if (strOIPPass.equalsIgnoreCase("Not Active")) {
+                swipeLeft(1);
+                isDisplayed(OIPNotActiveStatus);
+                Assert.assertEquals("Not Active",OIPActiveStatus.getText());
+                TestUtils.log().info("OIP is Not Active");
+            }
+
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying Mobile ID screen when having mobile ID");
         }
     }
 

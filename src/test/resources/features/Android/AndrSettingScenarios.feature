@@ -235,7 +235,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     When Navigate to notification page in android device
     And Verify the Delete device alert
 
-  @ANDR_11_10_Settings_ShowActivity
+  @ANDR_Settings_ShowActivity
   Scenario Outline: ANDR_11_10_Settings_ShowActivity<TC_ID>: Verify the tab of Show activity
     When Navigate to Settings and App Preferences screen in android device
     And  Show Activity State is displayed as "<Show_Activity>" in android device
@@ -247,7 +247,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-01 | Enable        |
       | _TC-02 | Disable       |
 
-  @ANDR_11_10_Settings_NearbyReader
+  @ANDR_Settings_NearbyReader
   Scenario Outline: ANDR_11_10_Settings_NearbyReader<TC_ID>: Verify the nearby Reader section
     When Navigate to Settings and App Preferences screen in android device
     And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
@@ -258,7 +258,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-02 | Off                 |
 
     #This feature can be run with the debug enabled apk.
-  @ANDR_11_10_Settings_FAQ
+  @ANDR_Settings_FAQ
   Scenario Outline: ANDR_11_10_Settings_FAQ<TC_ID>: Verify the FAQ section
     When Navigate to settings page in android device
     Then Verify the FAQ Menu is displayed in android device
@@ -271,18 +271,18 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-01 | bluetooth |
       | _TC-02 | invalid   |
 
-  @ANDR_11_10_Settings_uninstallation
+  @ANDR_Settings_uninstallation
   Scenario: ANDR_11_10_Settings_installation<TC_ID>: Verify the Uninstall of app
     Given Launch HID Access Mobile Application in android device
     And uninstall the app in android device
 
 
-  @ANDR_11_10_Settings_upgrade_production
+  @ANDR_Settings_upgrade_production
   Scenario: ANDR_11_10_Settings_upgrade<TC_ID>: Verify the Upgrade in PlayStore
     And Navigate to notification page in android device
     And Verify new version available text in the notification screen in android device
 
-  @ANDR_11_10_upgrade
+  @ANDR_upgrade
   Scenario: ANDR_11_10_upgrade: Verify the upgrade of app
     When Navigate to Settings and App Preferences screen in android device
     And Note down the settings of application before upgrade
@@ -293,7 +293,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And compare the App Preference information are same after the upgrade
     And compare the About page information are same after the upgrade
 
-  @ANDR_11_10_Bluetooth_Sensitivity
+  @ANDR_Bluetooth_Sensitivity
   Scenario Outline: ANDR_11_10_Bluetooth_Sensitivity: Verify the Bluetooth sensitivity is "<BLE_Sensitivity>"
     When Navigate to Settings and App Preferences screen in android device
     And Verify Bluetooth Sensitivity menu is displayed in android device
@@ -305,8 +305,15 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-02 | Medium          | The default option for optimal performance                                                    |
       | _TC-03 | Low             | Lowers BLE sensitivity, requiring the mobile device to be closer to the HID reader for access |
 
-
-
+  @ANDR_OIP
+  Scenario Outline:@ANDR_OIP: Verify the Origo Identity Positioning is "<OIP_Status>"
+    When Navigate to Settings and App Preferences screen in android device
+    And Identity Positioning status is displayed as "<OIP_Status>" in android device
+    Then "<Pass_Status>" status is displayed on the pass in android device
+    Examples:
+      | TC_ID  | OIP_Status | Pass_Status |
+      | _TC-01 | Enable     | Active      |
+      | _TC-02 | Disable    | Not Active  |
 
 
 
