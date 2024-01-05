@@ -1584,7 +1584,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 TestUtils.log().info("activity msg is not displayed");
             }
         } catch (Exception e) {
-            TestUtils.log().info("Exception occurred while verifying the activity msg....");
+            TestUtils.log().info("Exception occurred while verifying the activity msg.... "+ e);
         }
         return actMsg;
     }
