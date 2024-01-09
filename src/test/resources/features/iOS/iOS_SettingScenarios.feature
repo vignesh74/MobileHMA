@@ -117,7 +117,7 @@
      And   Click on ADD button in iOS device
      And   Verify the Add Mobile ID screen in iOS device
      And   Get Invitation Code iOS using Rest API when credential are assigned
-     Then  Enter invitation code on HID mobile Application in iOS device
+     Then  Enter invitation code using ADD button on HID mobile Application in iOS device
 
      Examples:
        | TC_ID  |

@@ -14,6 +14,7 @@ import jssc.SerialPortException;
 import org.testng.Assert;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import io.cucumber.java.Scenario;
 
 import java.io.IOException;
 import java.sql.Driver;
@@ -288,6 +289,11 @@ public class IOSStepDef {
     @Then("Enter invitation code on HID mobile Application in iOS device")
     public void enterInvitationCode_iOS() {
         mobileIdScreen.enterInvitationCode(strInvitationCode);
+    }
+
+    @Then("Enter invitation code using ADD button on HID mobile Application in iOS device")
+    public void enterInvitationCodeADD_iOS() {
+        mobileIdScreen.enterInvitationCode_ADD(strInvitationCode);
     }
 
     @Then("Enter Invalid or Expired invitation code {string} on HID mobile Application in iOS device")
