@@ -349,8 +349,24 @@ public class IOS_HIDMobileIDScreenPage extends BasePage {
             } else {
                 TestUtils.log().info("InvitationCode TextBox is not displayed");
             }
+            Assert.assertTrue(btnGetStarted.isEnabled());
+            click(btnGetStarted);
+            waitForVisibility(txtMobileIds);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while entering invitation code...");
+        }
+    }
+
+    public void enterInvitationCode_ADD(String strInvitationCode) {
+        try {
+            if (isDisplayed(txtInvitationCodeBox)) {
+                sendKeys(txtInvitationCodeBox, strInvitationCode);
+            } else {
+                TestUtils.log().info("InvitationCode TextBox is not displayed");
+            }
             Assert.assertTrue(btnAddMobileID.isEnabled());
             click(btnAddMobileID);
+            waitForVisibility(txtMobileIds);
         } catch (Exception e) {
             TestUtils.log().debug("Exception occurred while entering invitation code...");
         }
