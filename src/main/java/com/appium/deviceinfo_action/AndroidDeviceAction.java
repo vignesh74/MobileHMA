@@ -252,7 +252,7 @@ public class AndroidDeviceAction {
             is.close();
 
         } catch (Exception e) {
-            System.out.println("check1 "+e);
+            TestUtils.log().debug("check1sleep "+e);
             TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE);
         }
         return info.toString();
@@ -281,7 +281,7 @@ public class AndroidDeviceAction {
             is.close();
 
         } catch (Exception e) {
-            System.out.println("check2 "+e);
+            TestUtils.log().debug("check2 wake "+e);
             TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE);
         }
         return info.toString();
