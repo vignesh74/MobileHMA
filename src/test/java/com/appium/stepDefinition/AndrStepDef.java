@@ -459,6 +459,7 @@ public class AndrStepDef extends BasePage {
         settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
         TestUtils.log().info("try to navigate back");
         navigateBack();
+
         TestUtils.log().info("navigated back");
         DriverManager.getDriver().closeApp();
         TestUtils.log().info("Application closed.....");
@@ -471,6 +472,7 @@ public class AndrStepDef extends BasePage {
 
     @Then("Legal Screen is displayed in android device")
     public void verifyLegalScreen() {
+        mobileIDScreen.clickOnSettingsTab();
         settingsScreen.clickOnLegalScreen();
         settingLegalScreenPage.isLegalScreenPageDisplayed();
         settingLegalScreenPage.verifyEndUserLicenseScreenPageDisplayed();
