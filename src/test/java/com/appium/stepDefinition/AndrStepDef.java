@@ -457,7 +457,9 @@ public class AndrStepDef extends BasePage {
         settingsReportIssueScreenPage.verifySubmitButtonEnable(strReportIssue);
 //        settingsReportIssueScreenPage.getBtnSubmit();
         settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
+        TestUtils.log().info("try to navigate back");
         navigateBack();
+        TestUtils.log().info("navigated back");
         DriverManager.getDriver().closeApp();
         TestUtils.log().info("Application closed.....");
         DriverManager.getDriver().launchApp();
