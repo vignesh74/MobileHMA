@@ -292,10 +292,10 @@ Feature: To Test Android Unlock workflow for HID mobile access application
 
     @Android12_Signo_EnhancedTap_WF_7  @Android12_Signo_EnhancedTap @ANDR_SmokeRun @Android12_RevE
     Examples:
-      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                      | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF7_TC-25 | Always      | On         | On         | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful NFC transaction.  | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF7_TC-26 | Always      | On         | On         | Allow                       | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction.  | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF7_TC-27 | Always      | On         | On         | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction.  | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
+      | Signo       | _ET_WF7_TC-25 | Always      | On         | On         | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _ET_WF7_TC-26 | Always      | On         | On         | Allow                       | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _ET_WF7_TC-27 | Always      | On         | On         | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
       | Signo       | _ET_WF7_TC-28 | Always      | On         | On         | Allow                       | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android12_Signo_EnhancedTap_WF_8  @Android12_Signo_EnhancedTap @Android12_RevE
