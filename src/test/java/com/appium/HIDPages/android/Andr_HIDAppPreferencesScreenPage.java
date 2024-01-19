@@ -38,14 +38,15 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc='Right arrow'])[3])")
     private MobileElement txtNearByPermissionTabin13;
 
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]")
-    //@AndroidFindBy(xpath = "(//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[7]/android.widget.TextView[@text=‘Always’]/following-sibling::android.widget.RadioButton[2]")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Always']/following-sibling::android.widget.RadioButton")
+//    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]")
+//    @AndroidFindBy(xpath = "(//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[7]/android.widget.TextView[@text=‘Always’]/following-sibling::android.widget.RadioButton[2]")
     private MobileElement rdoUsageAlways;
-
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Foreground']/following-sibling::android.widget.RadioButton")
+    //@AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]")
     private MobileElement rdoUsageForeground;
-
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[3]")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Unlocked']/following-sibling::android.widget.RadioButton")
+//    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[3]")
     private MobileElement rdoUsageUnlocked;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bluetooth']/following-sibling::android.widget.TextView")
@@ -151,6 +152,9 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertPositiveBtn")
     private MobileElement nearByReaderAlertYesBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/sensitivityLevel")
+    private MobileElement bluetoothSensitivityLevel;
 
 
     /**
@@ -281,6 +285,9 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         return txtNearByPermissionTabin13;
     }
 
+    public MobileElement getBluetoothSensitivityLevel(){
+        return bluetoothSensitivityLevel;
+    }
 
     /**
      * selectUsageType- This method is used to select the usage type
