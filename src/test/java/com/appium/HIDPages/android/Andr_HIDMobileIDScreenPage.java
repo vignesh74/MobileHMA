@@ -427,7 +427,52 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath="//android.widget.TextView[@text='Active']")
     private MobileElement OIPActiveStatus;
 
+// ************************************************   code of surrender sundaraj begins  ****************************************************
 
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgTour")
+    private MobileElement onboardingScreen1;
+
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.hidglobal.mobilekeys.android.v3:id/convenient_layout']")
+    private MobileElement onboardingNavigation;
+
+    @AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.hidglobal.mobilekeys.android.v3:id/favoriteRecyclerView']/android.widget.RelativeLayout")
+    private MobileElement nearbyReadersList;
+
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Default Photo ID\"])[2]")
+    private  MobileElement nearbyReaderheartIcon;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtManage")
+    private MobileElement mobileIdScreenManageBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Readers']")
+    private MobileElement manageReadersTitle;
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtDefaultFavMessage")
+    private MobileElement manageReaderDefaultMsg;
+
+    @AndroidFindBy(id= "com.hidglobal.mobilekeys.android.v3:id/imgBackBtn")
+    private MobileElement ImgBackManageReaders;
+    @AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]")
+    private MobileElement transactionLogs;
+    @AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]")
+    private MobileElement favouriteReaderHeader;
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgMobileIdsContainer")
+    private MobileElement transactionLogsContainer;
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.hidglobal.mobilekeys.android.v3:id/imgMobileIdsContainer']")
+    private MobileElement favouriteReaderContainer;
+
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Favorite Readers\"])[1]")
+    private MobileElement unSelectFavReader;
+
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Favorite Readers\"])[2]")
+    private MobileElement selectTransactionslogReader;
+
+    @AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.TextView")
+    private MobileElement favouriteReaderPlacement;
+
+    @AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]/android.widget.TextView")
+    private MobileElement transactionLogsPlacement;
+
+//    ******************************************* code of surrender sundarraj ends *************************************************
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
      */
@@ -1819,5 +1864,188 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while verifying Mobile ID screen when having mobile ID");
         }
     }
+
+
+//   ********************************************** code of Surrender sundarraj begins *********************************************************
+
+    public void checkNearbyDataInfoIcon() {
+        try {
+            if (isElementVisible(nearbyReaderDataIcon)) {
+                TestUtils.log().info("Nearby Reader Info Icon is Visible..");
+                click(nearbyReaderDataIcon);
+            } else {
+                TestUtils.log().info("Nearby Reader Info Icon is Invisible..");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking the NearbyReadersInfoIcon..");
+        }
+    }
+
+    public void checkonboardingScreenOne() {
+        try {
+            if (isElementVisible(onboardingScreen1)) {
+                TestUtils.log().info("Onboarding Screen One is Visible..");
+            } else {
+                TestUtils.log().info("Onboarding Screen One is is Invisible..");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking Onboarding Screen One..");
+        }
+    }
+
+    public void onboardScreenNavigation() {
+        try {
+            swipeLeft(1);
+            swipeLeft(1);
+//            if (isDisplayed(onboardingNavigation)) {
+//                Assert.assertTrue(true, "Onboarding Screen Navigable...");
+            TestUtils.log().info("Onboarding Screen is Navigable");
+//            } else {
+//                TestUtils.log().info("Onboarding Screen is not Navigable");
+//            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while Onboarding Screen Navigable");
+            System.out.println("Exception occurred: " + e.getMessage());
+        }
+    }
+
+    public void checkNearbyReadersVisible() {
+        try {
+            if (isDisplayed(nearbyReadersList)) {
+                TestUtils.log().info("Nearby Readers Visible in home screen");
+//                List MobileElement elements=new getNearbyReadersList();
+            } else {
+                TestUtils.log().info("Nearby Readers not showing in home screen");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking Nearby Readers list in home screen");
+        }
+    }
+
+    public void checkManageButtonVisible() {
+        try {
+            if (isDisplayed(mobileIdScreenManageBtn)) {
+                TestUtils.log().info("Manage button is Visible in home screen");
+                click(mobileIdScreenManageBtn);
+            } else {
+                TestUtils.log().info("Manage button not showing in home screen");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking Manage butoon home screen");
+        }
+    }
+
+    public void checkManageReadersScreen() {
+        try {
+            if (isDisplayed(manageReadersTitle)) {
+                TestUtils.log().info("Manage Readers Title is Visible in Manage Screen");
+                isDisplayed(manageReaderDefaultMsg);
+                isDisplayed(favouriteReaderHeader);
+                isDisplayed(favouriteReaderContainer);
+                isDisplayed(transactionLogs);
+                isDisplayed(transactionLogsContainer);
+                TestUtils.log().info("Manage Readers All Elements is Visible in Manage Screen");
+
+            } else {
+                TestUtils.log().info("Manage Readers All Elements is Not Showing in Manage Screen");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking Manage Screen Elements");
+        }
+
+    }
+
+    public void favouriteReaderPlacement() {
+        try {
+            String expectedFavoriteReaderText = "Favorite Readers";
+            String expectedTransactionLogsText = "Successful Transactions Log";
+            if (isDisplayed(favouriteReaderPlacement)) {
+                String favoriteReaderText = favouriteReaderPlacement.getText();
+                if (favoriteReaderText.equals(expectedTransactionLogsText) || favoriteReaderText.equals(expectedFavoriteReaderText)) {
+                    TestUtils.log().info(favoriteReaderText+"is displayed");
+                }
+                if (isDisplayed(transactionLogsPlacement)) {
+                    String transactionLogsText = transactionLogsPlacement.getText();
+                    if (favoriteReaderText.equals(expectedFavoriteReaderText) && transactionLogsText.equals(expectedTransactionLogsText)) {
+                        TestUtils.log().info("Favourite Reader is Placed above the Successful Transaction Log");
+                    }
+                } else {
+                    TestUtils.log().info("Verified Favourite Reader Placement");
+                }
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking Favorite Reader Placement");
+        }
+    }
+
+    public void clickBackButtonManageReaders() {
+        try {
+            if (isElementVisible(ImgBackManageReaders)) {
+                TestUtils.log().debug("ManageReaders back button is visible in Manage Screen Page...");
+                click(ImgBackManageReaders);
+                TestUtils.log().debug("Able to click back button in Manage Screen Page...");
+            } else {
+                TestUtils.log().debug("Unable to click back button in Manage Screen Page...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking back button in Manage Screen Page...");
+        }
+    }
+
+    public void clickNearbyReaderHeartIcon() {
+        try {
+            if (isElementVisible(nearbyReaderheartIcon)) {
+                TestUtils.log().debug("Nearby Reader Heart Icon is visible ...");
+                click(nearbyReaderheartIcon);
+                TestUtils.log().debug("Able to click Heart Icon in Nearby Reader...");
+            } else {
+                TestUtils.log().debug("Unable to click Heart Icon in Nearby Reader...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking Heart Icon in Nearby Reader...");
+        }
+    }
+
+    public void checkTransactionsLog() {
+        try {
+            if(isElementVisible(favouriteReaderHeader)) {
+                isElementVisible(favouriteReaderContainer);
+                TestUtils.log().debug("FavoriteReader is Available in android device");
+                click(unSelectFavReader);
+                TestUtils.log().debug("FavoriteReader is Unselected in android device");
+                if(isElementVisible(transactionLogs)) {
+                    isElementVisible(transactionLogsContainer);
+                    TestUtils.log().debug("FavoriteReader stored in Successful Transactions Log in android device");
+                }
+            } else {
+
+                TestUtils.log().debug("FavoriteReader is Unavailable in android device");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking the Favorite Reader in android device...");
+        }
+    }
+
+    public void checkFavoriteReaders() {
+        try {
+            if(isElementVisible(transactionLogs)) {
+                isElementVisible(transactionLogsContainer);
+                TestUtils.log().debug("Transactions Log is Available in android device");
+                click(selectTransactionslogReader);
+                TestUtils.log().debug("Transactions Log Reader is selected in android device");
+                if(isElementVisible(favouriteReaderHeader)) {
+                    isElementVisible(favouriteReaderContainer);
+                    TestUtils.log().debug("Transactions Log Reader added in the Favorite Readers in android device");
+                }
+            } else {
+
+                TestUtils.log().debug("Transactions Log is Unavailable in android device");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking the Transactions Log in android device...");
+        }
+    }
+
+    //   ********************************************** code of Surrender sundarraj Ends *********************************************************
 
 }

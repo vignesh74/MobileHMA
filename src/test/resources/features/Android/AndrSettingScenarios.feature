@@ -315,8 +315,109 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-01 | Enable     | Active      |
       | _TC-02 | Disable    | Not Active  |
 
+#    *********************************** Code of Surrender Sundarraj Begins **************************************
+
+  @ANDR_12_13_Settings_NearbyReader_WF1 @ANDR_12_13_Settings_NearbyReader_WF
+  Scenario Outline: ANDR_12_13_Settings_NearbyReader<TC_ID>: Verify the nearby Reader section
+    When Navigate to Settings and App Preferences screen in android device
+    And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
+
+    Examples:
+      | TC_ID  | NearByReader_Status |
+      | _TC-01 | On                  |
+      | _TC-02 | Off                 |
+
+  @ANDR_12_13_Settings_NearbyReader_WF2 @ANDR_12_13_Settings_NearbyReader_WF
+  Scenario Outline: ANDR_12_13_Settings_NearbyReader<TC_ID>: Verify Enable Nearby Reader toggle button is enabled and Verify SE Reader enabled by Default
+    When Navigate to Settings and App Preferences screen in android device
+    And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
+    And click on the Nearby Readers tab
+    And Verify Discover Nearby Reader Element is displayed as Discover Nearby Readers in android device
+    And Signo Reader Text is displayed as Signo Reader in android device
+    And Verify Signo Reader Status is displayed as "<Signo Reader>" in android device
+    Examples:
+      | TC_ID | NearByReader_Status | Discover Nearby Readers | Signo Reader |
+      | TC_01 | On                  | Signo Reader            | On           |
 
 
+  @ANDR_12_13_Settings_NearbyReader_WF3 @ANDR_12_13_Settings_NearbyReader_WF
+  Scenario Outline: ANDR_12_13_Settings_NearbyReader<TC_ID>: Verify SE Reader can be enabled when "Enable Nearby Reader" toggle button is enabled
+    When Navigate to Settings and App Preferences screen in android device
+    And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
+    And click on the Nearby Readers tab
+    And Verify Discover Nearby Reader Element is displayed as Discover Nearby Readers in android device
+    And Signo Reader Text is displayed as Signo Reader in android device
+    And Click on the RevE Reader checkbox
+    And Verify RevE Reader Status is displayed as "<RevE Reader>" in android device
+    Examples:
+      | TC_ID | NearByReader_Status | RevE Reader |
+      | TC_01 | On                  | On          |
+
+  @ANDR_12_13_Settings_NearbyReader_WF4 @ANDR_12_13_Settings_NearbyReader_WF
+  Scenario Outline: ANDR_12_13_Settings_NearbyReader<TC_ID>: Verify both HID Signo and SE Reader can be selected when "Enable Nearby Reader" toggle button is enabled
+    When Navigate to Settings and App Preferences screen in android device
+    And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
+    And click on the Nearby Readers tab
+    And Verify Discover Nearby Reader Element is displayed as Discover Nearby Readers in android device
+    And Signo Reader Text is displayed as Signo Reader in android device
+    And Verify RevE Reader Status is displayed as "<RevE Reader>" in android device
+    And Verify Signo Reader Status is displayed as "<Signo Reader>" in android device
+    Examples:
+      | TC_ID | NearByReader_Status | RevE Reader | Signo Reader |
+      | TC_01 | On                  | On          | On           |
+
+  @ANDR_12_13_Settings_NearbyReader_WF5 @ANDR_12_13_Settings_NearbyReader_WF
+  Scenario Outline:ANDR_12_13_Settings_NearbyReader<TC_ID>:Verify if a pop up is displayed if a specific reader type is disabled
+    When Navigate to Settings and App Preferences screen in android device
+    And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
+    And click on the Nearby Readers tab
+    And Verify Discover Nearby Reader Element is displayed as Discover Nearby Readers in android device
+    And Signo Reader Text is displayed as Signo Reader in android device
+    And Verify RevE Reader Status is displayed as "<RevE Reader>" in android device
+    And Verify Signo Reader Status is displayed as "<Signo Reader>" in android device
+    And Disable the RevE Reader checkbox
+    And Verify alertTitle pop up is displayed in android device
+    Examples:
+      | TC_ID | NearByReader_Status | RevE Reader | Signo Reader |
+      | TC_01 | On                  | On          | On           |
+
+  @ANDR_12_13_Settings_NearbyReader_WF6 @ANDR_12_13_Settings_NearbyReader_WF
+  Scenario Outline:ANDR_12_13_Settings_NearbyReader<TC_ID>:Verify If a pop up is displayed when both reader types are unselected indicating that "Enable Nearby Reader" toggle button will be disabled.
+    When Navigate to Settings and App Preferences screen in android device
+    And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
+    And click on the Nearby Readers tab
+    And Verify Discover Nearby Reader Element is displayed as Discover Nearby Readers in android device
+    And Signo Reader Text is displayed as Signo Reader in android device
+    And Verify RevE Reader Status is displayed as "<RevE Reader>" in android device
+    And Verify Signo Reader Status is displayed as "<Signo Reader>" in android device
+    And Disable the RevE Reader checkbox
+    And Verify alertTitle pop up is displayed in android device
+    And click on AlertPositiveBtn
+    And Disable the Signo Reader checkbox
+    And click on AlertPositiveBtn
+    And Verify Enable Nearby Reader toggle button status
+    Examples:
+      | TC_ID | NearByReader_Status | RevE Reader | Signo Reader |
+      | TC_01 | On                  | On          | On           |
+
+
+  @ANDR_12_13_Settings_NearbyReader_WF7 @ANDR_12_13_Settings_NearbyReader_WF
+  Scenario Outline: Verify if HID Signo is set as default when "Enable Nearby Reader" toggle button is enabled again after disablement
+    When Navigate to Settings and App Preferences screen in android device
+    And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
+    And click on the Nearby Readers tab
+    And Verify Enable Nearby Reader toggle button status
+    And click on the Nearby Readers switch
+    And Verify Enable Nearby Reader toggle button status
+    And Verify Discover Nearby Reader Element is displayed as Discover Nearby Readers in android device
+    And Signo Reader Text is displayed as Signo Reader in android device
+    And Verify Signo Reader Status is displayed as "<Signo Reader>" in android device
+    Examples:
+      | TC_ID | NearByReader_Status | Signo Reader |
+      | TC_01 | Off                 | On           |
+
+
+# ************************************************** Code of Surrender Sundarraj Ends **********************************************
 
 
 

@@ -156,6 +156,46 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/sensitivityLevel")
     private MobileElement bluetoothSensitivityLevel;
 
+//   ************************************************* code of surrender sundarraj begins  ************************************************
+
+    // *** New Xpath Discover nearby Readers
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Discover Nearby Readers']")
+    private MobileElement txtDiscoverNearbyReaders;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='HID Signo']")
+    private MobileElement txtSignoReader;
+
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Signo Icon\"])")
+    private MobileElement txtSignoReaderIcon;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/signoReaderCheckbox")
+    private MobileElement txtSignoReaderCheckbox;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement txtalertTitle;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"Positive Button\"]")
+    private MobileElement alertPositiveBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Back Arrow\"]")
+    private MobileElement ImgBackBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Back Arrow\"]")
+    private MobileElement ImgBackAppPreferences;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='HID iCLASS \\ multiCLASS SE']")
+    private MobileElement txtRevEReader;
+
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Rev-E Icon\"]")
+    private MobileElement txtRevEReaderIcon;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/revECheckbox")
+    private MobileElement txtRevEReaderCheckbox;
+
+
+    //    ******************************************* code of surrender sundarraj ends *************************************************
 
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
@@ -872,4 +912,170 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while setting the NearBy Reader status...");
         }
     }
+
+//   ********************************************** code of Surrender sundarraj *********************************************************
+
+    public void checkDiscoverNearbyReaderText() {
+        try {
+            scrollUpTillElement(txtDiscoverNearbyReaders, 1000, 0);
+            isElementVisible(txtDiscoverNearbyReaders);
+            TestUtils.log().debug("DiscoverNearbyReaders Text is Visible...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Discover Nearby Readers tab...");
+        }
+    }
+
+    public void checkSignoReaderText() {
+        try {
+            isElementVisible(txtSignoReader);
+            TestUtils.log().debug("Signo Reader Text is Visible...");
+            isElementVisible(txtSignoReaderCheckbox);
+            TestUtils.log().debug("Signo Reader Checkbox is Visible...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Signo Readers tab...");
+        }
+    }
+
+    public void checkSignoReaderStatus(String SignoReader) {
+        try {
+            isDisplayed(txtSignoReaderCheckbox);
+            String SignoReaderCheckbox = getElementAttribute(txtSignoReaderCheckbox, "checked");
+            if (SignoReaderCheckbox.equalsIgnoreCase(SignoReader)) {
+                TestUtils.log().info("Signo Reader status is already set as Off");
+            } else {
+                TestUtils.log().info("Signo Reader status is already set as On");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Signo Readers Status...");
+        }
+
+
+    }
+
+    public void checkRevEReaderText() {
+        try {
+            isElementVisible(txtRevEReader);
+            TestUtils.log().debug("RivE Reader Text is Visible...");
+            isElementVisible(txtRevEReaderCheckbox);
+            TestUtils.log().debug("RivE Reader Checkbox is Visible...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking RivE Readers tab...");
+        }
+    }
+
+    public void checkRevEReaderStatus(String RevEReader) {
+        try {
+            isDisplayed(txtRevEReaderCheckbox);
+            String RevEReaderCheckbox = getElementAttribute(txtRevEReaderCheckbox, "checked");
+            if (RevEReaderCheckbox.equalsIgnoreCase(RevEReader)) {
+                TestUtils.log().info("RevE Reader status is already set as Off");
+            } else {
+                TestUtils.log().info("RevE Reader status is already set as On");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking RevE Readers Status...");
+        }
+
+
+    }
+
+    public void clickRevEReadercheckbox() {
+        try {
+            click(txtRevEReaderCheckbox);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking RevE Reader Checkbox...");
+        }
+    }
+
+    public void disableRevEReadercheckbox() {
+        try {
+            click(txtRevEReaderCheckbox);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while disable RevE Reader Checkbox...");
+        }
+    }
+
+    public void checkAlertTitleText() {
+        try {
+            scrollUpTillElement(txtalertTitle, 1000, 0);
+            if (isElementVisible(txtalertTitle)) {
+                TestUtils.log().debug("AlertTitle pop up Text is Visible...");
+            } else {
+                TestUtils.log().debug("AlertTitle pop up Text is Invisible...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking AlertTitle pop up Text...");
+        }
+
+    }
+
+    public void clickAlertPositiveBtn() {
+        try {
+            click(alertPositiveBtn);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking alertPositiveBtn...");
+        }
+    }
+
+    public void disableSignoReadercheckbox() {
+        try {
+            click(txtSignoReaderCheckbox);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while disable Signo Reader Checkbox...");
+        }
+    }
+
+    public void checkNearbyReaderStatus() {
+        try {
+            scrollUpTillElement(txtalertTitle, 1000, 0);
+            if (isElementVisible(txtalertTitle)) {
+                TestUtils.log().debug("Nearby Reader toggle button is disabled in android device...");
+            } else {
+                TestUtils.log().debug("Nearby Reader toggle button is enabled in android device...");
+
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Nearby Reader Status...");
+        }
+    }
+
+    public void clickOnNearbyReaderSwitch() {
+        try {
+            scrollUpTillElement(nearByReaderTglBtn, 1000, 0);
+            isElementVisible(nearByReaderTglBtn);
+            click(nearByReaderTglBtn);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking Nearby Readers tab...");
+        }
+    }
+
+    public void clickImgBackBtn() {
+        try {
+//            scrollUpTillElement(txtalertTitle, 1000, 0);
+            if (isElementVisible(ImgBackBtn)) {
+                click(ImgBackBtn);
+                TestUtils.log().debug("Able to click back button in Nearby Readers Page...");
+            } else {
+                TestUtils.log().debug("Unable to click back button in Nearby Readers Page...");
+
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking back button in Nearby Readers Page...");
+        }
+    }
+
+    public void clickImgBackAppPreferencesPage() {
+        try {
+            if (isElementVisible(ImgBackAppPreferences)) {
+                click(ImgBackAppPreferences);
+                TestUtils.log().debug("Able to click back button in App Preferences Page...");
+            } else {
+                TestUtils.log().debug("Unable to click back button in App Preferences Page...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking back button in App Preferences Page...");
+        }
+    }
+
+    //   ********************************************** code of Surrender sundarraj Ends *********************************************************
 }

@@ -304,6 +304,10 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         return txtBluetoothSensitivitytitle;
     }
 
+    //    ******************************************* code of surrender sundarraj begins *************************************************
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Mobile IDs\"]/android.widget.FrameLayout/android.widget.ImageView")
+    private MobileElement MobileIdsIcon;
+    //    ******************************************* code of surrender sundarraj ends *************************************************
     public void clickOnAppPreferences() {
         try {
             click(txtAppPreference);
@@ -1004,6 +1008,8 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
 
     public void compareElementsForVersion12to13(){
         try {
+            String[] values = settingsElementsForVersion12To13();
+            System.out.println(values);
             String bluetoothValue = settingsElementsForVersion12To13()[0];
             String NFCValue = settingsElementsForVersion12To13()[1];
             String nearbyPermissionValue = settingsElementsForVersion12To13()[2];
@@ -1027,17 +1033,19 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             String newForegroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
             String newUnlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
             iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchTwistGo(),"up");
-            String newTwistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            String newTwistAndGoValue = getElementAttribute(appPrefencesScreenPage.getSwitchTwistGo(),MessageConstants.CHECKED_MESSAGE);
             iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtNearbyReaderStatusValue(),"up");
-            String newNearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            String newNearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getText();
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getBluetoothSensitivityLevel(),"up");
             String newBluetoothSensitivityValue = appPrefencesScreenPage.getBluetoothSensitivityLevel().getText();
             iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchShowActivity(),"up");
-            String newShowActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            String newShowActivityValue = getElementAttribute(appPrefencesScreenPage.getSwitchShowActivity(),MessageConstants.CHECKED_MESSAGE);
+            System.out.println("newShowActivityValue....."+newShowActivityValue);
             iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchDebugLogs(),"up");
-            String newDebugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            String newDebugLogsValue = getElementAttribute(appPrefencesScreenPage.getSwitchDebugLogs(),MessageConstants.CHECKED_MESSAGE);
             iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchPlayAndSound(),"up");
-            String newPlaySoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newVibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            String newPlaySoundValue = getElementAttribute(appPrefencesScreenPage.getSwitchPlayAndSound(),MessageConstants.CHECKED_MESSAGE);
+            String newVibrateValue = getElementAttribute(appPrefencesScreenPage.getSwitchVibrate(),MessageConstants.CHECKED_MESSAGE);
             scrollDownTillElement(200,2);
 
             Assert.assertEquals(bluetoothValue, newBluetoothValue);
@@ -1065,7 +1073,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             TestUtils.log().info("NearBy Reader button value is same after the upgrade....");
 
             Assert.assertEquals(bluetoothSensitivityValue, newBluetoothSensitivityValue);
-            TestUtils.log().info("NearBy Reader button value is same after the upgrade....");
+            TestUtils.log().info("bluetooth Sensitivity Value is same after the upgrade....");
 
             Assert.assertEquals(showActivityValue, newShowActivityValue);
             TestUtils.log().info("Show Activity button value is same after the upgrade....");
@@ -1462,7 +1470,22 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }
     }
 
+//   ********************************************** code of Surrender sundarraj begins *********************************************************
+
+    public void clickOnMobileIdsIcon() {
+        try {
+            if (isElementVisible(MobileIdsIcon)) {
+                click(MobileIdsIcon);
+                TestUtils.log().debug("Able to click MobileIds Icon in Setting Page...");
+            } else {
+                TestUtils.log().debug("Unable to click MobileIds Icon in Setting Page...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking MobileIds Icon in Setting Page...");
+        }
+    }
 
 
+//   ********************************************** code of Surrender sundarraj Ends *********************************************************
 
 }
