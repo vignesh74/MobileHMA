@@ -737,8 +737,9 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
 
     public void installAPK() {
         try {
-            String appPath = "/Users/vigneshrajesh/Downloads/develop430/src/test/resources/app/hid_mobile_access-global-4.4.0.apk";
-            AppiumDriver driver = DriverManager.getDriver(); // Assuming DriverManager manages the driver lifecycle
+            String appPath = ConfigLoader.getInstance().getAndroidAppLocationNew();
+//            String appPath = "/Users/vigneshrajesh/Downloads/develop430/src/test/resources/app/hid_mobile_access-global-4.5.0.apk";
+            AppiumDriver driver = DriverManager.getDriver();
 
             if (driver != null) {
                 // Install the new APK within the existing session
