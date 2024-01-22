@@ -206,6 +206,7 @@ public class SerialPortUtils {
         SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem" + deviceCOMPort.trim());
         String currentTime;
         String deviceTime;
+        String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
         try {
             // Define COM Port
 
@@ -257,7 +258,7 @@ public class SerialPortUtils {
             if (actionName.equals("Twist & Go") && (deviceState.equalsIgnoreCase("Locked"))) {
 //                AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
                 try {
-                    androidDeviceAction.unlockDeviceWithPin("1234");
+                    androidDeviceAction.unlockDeviceWithPin(mobilePin);
                 } catch (Exception e) {
                     TestUtils.log().debug("Getting exception while lock or unlock ....");
                 }

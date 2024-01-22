@@ -823,8 +823,9 @@ public class AndroidDeviceAction {
 
     public void forceUnlock(String strDeviceState,String appState) {
         try{
+            String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
             if (strDeviceState.equalsIgnoreCase("Locked")) {
-                unlockDeviceWithPin("1234");
+                unlockDeviceWithPin(mobilePin);
                 TestUtils.log().info("Device is now in unlocked state....");
                 basePage.waitForGivenTime(1);
             } else if (strDeviceState.equalsIgnoreCase("Unlocked")) {

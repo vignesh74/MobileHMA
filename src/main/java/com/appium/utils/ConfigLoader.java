@@ -50,6 +50,8 @@ public class ConfigLoader {
 
     private static final String ADB_PATH = "adbPath";
 
+    private static final String ANDROID_MOBILE_PIN = "androidMobilePin";
+
     /**
      * ConfigLoader- Constructor load the config.properties Date-02/11/2022
      */
@@ -292,6 +294,10 @@ public class ConfigLoader {
 
     public String getAdbPath(){
         return getPropertyValue(ADB_PATH);
+    }
+
+    public String getAndroidMobilePin(){
+        return getPropertyValue(ANDROID_MOBILE_PIN);
     }
 
 }
