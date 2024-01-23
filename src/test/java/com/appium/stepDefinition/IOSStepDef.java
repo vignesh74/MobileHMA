@@ -4,9 +4,11 @@ import com.appium.HIDPages.ios.*;
 import com.appium.deviceinfo_action.IOSDeviceInfo;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
+import com.appium.restAPI.EnvironmentProperties;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,6 +22,8 @@ import java.io.IOException;
 import java.sql.Driver;
 
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
+import static com.appium.restAPI.DeleteDeviceAPI.deleteDeviceAPI;
+import static com.appium.restAPI.EnvironmentProperties.storeProp;
 
 public class IOSStepDef {
 
@@ -45,6 +49,8 @@ public class IOSStepDef {
     String timeExp;
 
     String dateTime;
+
+    String actSeosID="";
 
     @Given("Launch HID Access Mobile Application in iOS device")
     public void launchHidAccessMobileApp_iOS() {
@@ -343,9 +349,15 @@ public class IOSStepDef {
         settingScreen.verifyNoInternetPopUp();
     }
 
+    @Then("Get the Seos ID from About screen in iOS device")
+    public void getSeosID_iOS() throws AutomationException, IOException {
+        helpCenterScreen.clickOnAboutAndVerify();
+        actSeosID = aboutScreen.getSeosID();
+        EnvironmentProperties.storeProp("device-id", actSeosID);
+    }
     @Then("Trigger the Rest API to delete device in iOS device")
-    public void deleteDeviceRestAPI_iOS() {
-        //Have to implement API part here to delete device
+    public void deleteDeviceRestAPI_iOS() throws AutomationException, IOException {
+        deleteDeviceAPI();
     }
 
     @Then("Verify Delete Mobile IDs pop up in welcome screen in iOS device")
@@ -432,6 +444,92 @@ public class IOSStepDef {
     @Then("Verify {string} is disabled and other modes are enabled")
     public void checkEnforcedSetting(String mode_state){
         settingScreen.checkEnforcedSetting(mode_state);
+    }
+
+    //NearBy Readers
+    @Then("click on the Nearby Readers tab")
+    public void clickOnNearbyReaders() {
+        settingScreen.clickOnNearbyReaders();
+    }
+    @And("Verify NearBy Reader Status is displayed as {string} in iOS device")
+    public void checkNearByReaderStatus(String strNearByReaderStatus) {
+        settingScreen.checkNearByReaderStatus(strNearByReaderStatus);
+    }
+    @And("Signo Reader Text is displayed as Signo Reader in iOS device")
+    public void checkSignoReaderText() {
+        settingScreen.checkSignoReaderText();
+    }
+
+    @And("Verify Signo Reader Status is displayed as {string} in iOS device")
+    public void checkSignoReaderStatus(String SignoReader) {
+        settingScreen.checkSignoReaderStatus(SignoReader);
+    }
+    @And("Click on the RevE Reader checkbox")
+    public void clickRevEReadercheckbox() {
+        settingScreen.clickRevEReadercheckbox();
+    }
+    @And ("Verify RevE Reader Status is displayed as {string} in iOS device")
+    public void checkRevEReaderStatus(String RevEReader) {
+        settingScreen.checkRevEReaderStatus(RevEReader);
+    }
+    @And("Disable the RevE Reader checkbox")
+    public void disableRevEReadercheckbox() {
+        settingScreen.disableRevEReadercheckbox();
+    }
+
+    @And("Verify alertTitle pop up is displayed in iOS device")
+    public void checkAlertTitleText() {
+        settingScreen.checkAlertTitleText();
+    }
+
+    @And("click on AlertPositiveBtn RevE Reader")
+    public void clickAlertPositiveBtnRevE() {
+        settingScreen.clickAlertPositiveBtnRevE();
+    }
+    @And("Disable the Signo Reader checkbox")
+    public void disableSignoReadercheckbox() {
+        settingScreen.disableSignoReadercheckbox();
+    }
+    @And("click on AlertPositiveBtn Signo Reader")
+    public void clickAlertPositiveBtnSigno() {
+        settingScreen.clickAlertPositiveBtnSigno();
+    }
+    @And("click on the Nearby Readers switch")
+    public void clickOnNearbyReaderSwitch() {
+        settingScreen.clickOnNearbyReaderSwitch();
+    }
+    @When("Verify nearby readers section in iOS device {string}")
+    public void verifyNearByReaders(String nearbyReaderCount) {
+        settingScreen.verifyNearByReaders(nearbyReaderCount);
+    }
+    @And("Verify the Manage Readers section in iOS device {string}")
+    public void verifyManageReaders(String nearbyReaderCount) {
+        settingScreen.verifyManageReaders(nearbyReaderCount);
+    }
+
+    @And("Verify nearby readers information icon is visible in iOS device")
+    public void checkNearbyReadersDataIcon() {
+        settingScreen.checkNearbyDataInfoIcon();
+    }
+    @And("Verify onboarding screen one is Visible")
+    public void checkonboardingScreenOne() {
+        settingScreen.checkonboardingScreenOne();
+    }
+    @And("Verify onboarding screen is navigable")
+    public void onboardScreenNavigation() {
+        settingScreen.onboardScreenNavigation();
+    }
+    @And("Click on Image back button in Nearby Readers page")
+    public void clickImgBackBtn() {
+        settingScreen.clickImgBackBtn();
+    }
+    @And("Click on the Mobile IDs in Settings page for navigating to home screen")
+    public void clickOnMobileIdsIcon() {
+        settingScreen.clickOnMobileIdsIcon();
+    }
+    @And("Verify Nearby Readers are visible in iOS device")
+    public void checkNearbyReadersVisible() {
+        settingScreen.checkNearbyReadersVisible();
     }
 
 }

@@ -40,7 +40,7 @@ public class EnvironmentProperties extends Properties {
         return b;
     }
 
-    static void storeProp(String key, String value) throws IOException {
+    public static void storeProp(String key, String value) throws IOException {
         Properties props = new Properties();
         FileInputStream fis = null;
         FileOutputStream fos = null;

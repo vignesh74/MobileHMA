@@ -319,6 +319,17 @@ public class IOS_HIDHelpCenterAboutScreenPage extends BasePage {
         }
     }
 
+    public String getSeosID() {
+        String seosID = "";
+        try {
+            seosID = txtAboutSeosIDValue.getAttribute(MessageConstants.VALUE_STRING);
+            Assert.assertTrue(isElementVisible(txtAboutSeosIDValue));
+        } catch (Exception e) {
+            TestUtils.log().info("Getting Exception while checking the about screen values...");
+        }
+        return seosID;
+    }
+
    /* public void getClipboardContent() {
         try{
             DriverManager.getDriver().getClipboard(ClipboardContentType.PLAINTEXT); // get plaintext

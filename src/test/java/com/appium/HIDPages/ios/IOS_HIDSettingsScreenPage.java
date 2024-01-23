@@ -275,6 +275,58 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Required by your administrator: app mode must be 'Foreground'\"]")
     private MobileElement enforcedAlwaysTxt;
 
+    //NearBy Readers
+    @iOSXCUITFindBy(xpath = "\t\n" + "//XCUIElementTypeStaticText[@name=\"Nearby Readers\"]")
+    private MobileElement elementNearByReaders;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Nearby Readers\"]")
+    private MobileElement txtNearbyReader;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Nearby Readers\"])[1]")
+    private MobileElement txtNearbyReaderTitle;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"HID Signo\"]")
+    private MobileElement txtSignoReader;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"squareCheckmarkFilled\"])[1]")
+    private MobileElement txtSignoReaderCheckbox;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"HID iCLASS \\ multiCLASS SE Readers\"]")
+    private MobileElement txtRevEReader;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"squareCheckmarkFilled\"])[2]")
+    private MobileElement txtRevEReaderCheckbox;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Are you sure you want to change the selection?\"]")
+    private MobileElement txtalertTitle;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Disable\"]")
+    private MobileElement alertPositiveBtnRevE;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Disable Nearby Readers\"]")
+    private MobileElement alertPositiveBtnSigno;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Nearby Readers\"]/XCUIElementTypeSwitch")
+    private MobileElement nearByReaderTglBtn;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"When nearby, readers will be listed after refresh\"]")
+    private MobileElement noNearbyReaderText;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"signoReader\"]")
+    private MobileElement noNearbyReaderImg;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Manage\"]")
+    private MobileElement nearbyReaderManageBtn;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Favorite Readers\"]")
+    private MobileElement txtFavoriteReadersTitle;
+    @iOSXCUITFindBy(xpath = "\t\n" + "//XCUIElementTypeStaticText[@name=\"FAVORITE DOORS\"]")
+    private MobileElement txtFavoriteDoors;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"signoReader\"])[1]")
+    private MobileElement imgFavoriteReader;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"OTHER DOORS\"]")
+    private MobileElement txtOtherDoors;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"signoReader\"])[2]")
+    private MobileElement imgOtherDoorsReader;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"You can choose a favorite door from the ones that you have already used Below there is a list of most recent used doors\"]")
+    private MobileElement txtFavoriteReaderInfo;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"icAboutInfo\"]")
+    private MobileElement nearbyReaderDataIcon;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"nearbyReader\"]")
+    private MobileElement onboardingScreen1;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Back\"]")
+    private MobileElement ImgBackBtn;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Mobile IDs\"]")
+    private MobileElement MobileIdsIcon;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"Mobile Access\"]/XCUIElementTypeWindow/XCUIElementTypeOther")
+    private MobileElement nearbyReadersList;
+
     //XCUIElementTypeStaticText[@name="Welcome to HID Mobile Access"]
 
     /**
@@ -1103,6 +1155,252 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while verifying the No Internet pop up in settings screen...");
         }
         return timeExp.trim();
+    }
+
+    //NearBy Readers Methods
+    public void clickOnNearbyReaders() {
+        try {
+            scrollUpTillElement(elementNearByReaders, 1000, 0);
+            isElementVisible(elementNearByReaders);
+            click(elementNearByReaders);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking Nearby Readers tab...");
+        }
+    }
+
+    public void checkNearByReaderStatus(String strNearByReaderStatus) {
+        try {
+            scrollUpTillElement(txtNearbyReaderTitle, 1000, 0);
+            if (isElementVisible(txtNearbyReader)) {
+                TestUtils.log().debug("Nearby Reader toggle button is disabled in iOS device...");
+            } else {
+                TestUtils.log().debug("Nearby Reader toggle button is enabled in iOS device...");
+
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Nearby Reader Status...");
+        }
+    }
+
+    public void checkSignoReaderText() {
+        try {
+            isElementVisible(txtSignoReader);
+            TestUtils.log().debug("Signo Reader Text is Visible...");
+            isElementVisible(txtSignoReaderCheckbox);
+            TestUtils.log().debug("Signo Reader Checkbox is Visible...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Signo Readers tab...");
+        }
+    }
+
+    public void checkSignoReaderStatus(String SignoReader) {
+        try {
+            isDisplayed(txtSignoReaderCheckbox);
+            String SignoReaderCheckbox = getElementAttribute(txtSignoReaderCheckbox, "checked");
+            if (SignoReaderCheckbox.equalsIgnoreCase(SignoReader)) {
+                TestUtils.log().info("Signo Reader status is already set as Off");
+            } else {
+                TestUtils.log().info("Signo Reader status is already set as On");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Signo Readers Status...");
+        }
+    }
+
+    public void clickRevEReadercheckbox() {
+        try {
+            click(txtRevEReaderCheckbox);
+            TestUtils.log().debug("Able to clicking RevE Reader Checkbox...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking RevE Reader Checkbox...");
+        }
+    }
+
+    public void checkRevEReaderStatus(String RevEReader) {
+        try {
+            isDisplayed(txtRevEReader);
+            String RevEReaderCheckbox = getElementAttribute(txtRevEReaderCheckbox, "checked");
+            if (RevEReaderCheckbox.equalsIgnoreCase(RevEReader)) {
+                TestUtils.log().info("RevE Reader status is already set as Off");
+            } else {
+                TestUtils.log().info("RevE Reader status is already set as On");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking RevE Readers Status...");
+        }
+    }
+
+    public void disableRevEReadercheckbox() {
+        try {
+            click(txtRevEReaderCheckbox);
+            TestUtils.log().debug("Able to disable the RevEReader checkbox");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while disable RevE Reader Checkbox...");
+        }
+    }
+
+    public void checkAlertTitleText() {
+        try {
+            scrollUpTillElement(txtalertTitle, 1000, 0);
+            if (isElementVisible(txtalertTitle)) {
+                TestUtils.log().debug("AlertTitle pop up Text is Visible...");
+            } else {
+                TestUtils.log().debug("AlertTitle pop up Text is Invisible...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking AlertTitle pop up Text...");
+        }
+    }
+
+    public void clickAlertPositiveBtnRevE() {
+        try {
+            click(alertPositiveBtnRevE);
+            TestUtils.log().debug("Able to click alert Positive button RevE");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking alertPositiveBtn RevE...");
+        }
+    }
+
+    public void disableSignoReadercheckbox() {
+        try {
+            click(txtSignoReaderCheckbox);
+            TestUtils.log().debug("Able to disable Signo Reader checkbox");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while disable Signo Reader Checkbox...");
+        }
+    }
+
+    public void clickAlertPositiveBtnSigno() {
+        try {
+            click(alertPositiveBtnSigno);
+            TestUtils.log().debug("Able to click alert Positive button Signo");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking alertPositiveBtn Signo...");
+        }
+    }
+
+    public void clickOnNearbyReaderSwitch() {
+        try {
+            scrollUpTillElement(nearByReaderTglBtn, 1000, 0);
+            isElementVisible(nearByReaderTglBtn);
+            click(nearByReaderTglBtn);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking Nearby Readers Toggle button...");
+        }
+    }
+
+    public void verifyNearByReaders(String nearbyReaderCount) {
+        try {
+//            waitForVisibility(noNearbyReaderText);
+            int readerCount = Integer.parseInt(nearbyReaderCount);
+            if (readerCount > 0) {
+                TestUtils.log().info("NearbyReaders are present");
+            } else {
+                isDisplayed(noNearbyReaderText);
+                isDisplayed(noNearbyReaderImg);
+                isDisplayed(nearbyReaderManageBtn);
+                isDisplayed(nearbyReaderDataIcon);
+
+            }
+
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the nearby reader section");
+        }
+    }
+
+    public void verifyManageReaders(String nearbyReaderCount) {
+        try {
+            click(nearbyReaderManageBtn);
+            int readerCount = Integer.parseInt(nearbyReaderCount);
+            if (readerCount > 0) {
+                TestUtils.log().info("NearbyReaders are present");
+            } else {
+                isDisplayed(txtFavoriteReadersTitle);
+                isDisplayed(txtFavoriteDoors);
+                isDisplayed(imgFavoriteReader);
+                isDisplayed(txtOtherDoors);
+                isDisplayed(imgOtherDoorsReader);
+                isDisplayed(txtFavoriteReaderInfo);
+            }
+
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the manage reader section");
+        }
+    }
+
+    public void checkNearbyDataInfoIcon() {
+        try {
+            if (isElementVisible(nearbyReaderDataIcon)) {
+                TestUtils.log().info("Nearby Reader Info Icon is Visible..");
+                click(nearbyReaderDataIcon);
+            } else {
+                TestUtils.log().info("Nearby Reader Info Icon is Invisible..");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking the NearbyReadersInfoIcon..");
+        }
+    }
+
+    public void checkonboardingScreenOne() {
+        try {
+            if (isElementVisible(onboardingScreen1)) {
+                TestUtils.log().info("Onboarding Screen One is Visible..");
+            } else {
+                TestUtils.log().info("Onboarding Screen One is is Invisible..");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking Onboarding Screen One..");
+        }
+    }
+
+    public void onboardScreenNavigation() {
+        try {
+            swipeLeft(1);
+            swipeLeft(1);
+            TestUtils.log().info("Onboarding Screen is Navigable");
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while Onboarding Screen Navigable");
+            System.out.println("Exception occurred: " + e.getMessage());
+        }
+    }
+    public void clickImgBackBtn() {
+        try {
+            if (isElementVisible(ImgBackBtn)) {
+                click(ImgBackBtn);
+                TestUtils.log().debug("Able to click back button in Nearby Readers Page...");
+            } else {
+                TestUtils.log().debug("Unable to click back button in Nearby Readers Page...");
+
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking back button in Nearby Readers Page...");
+        }
+    }
+
+    public void clickOnMobileIdsIcon() {
+        try {
+            if (isElementVisible(MobileIdsIcon)) {
+                click(MobileIdsIcon);
+                TestUtils.log().debug("Able to click MobileIds Icon in Setting Page...");
+            } else {
+                TestUtils.log().debug("Unable to click MobileIds Icon in Setting Page...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking MobileIds Icon in Setting Page...");
+        }
+    }
+
+    public void checkNearbyReadersVisible() {
+        try {
+            if (isDisplayed(nearbyReadersList)) {
+                TestUtils.log().info("Nearby Readers Visible in home screen");
+//                List MobileElement elements=new getNearbyReadersList();
+            } else {
+                TestUtils.log().info("Nearby Readers not showing in home screen");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking Nearby Readers list in home screen");
+        }
     }
 
 }
