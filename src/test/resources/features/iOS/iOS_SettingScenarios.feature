@@ -198,7 +198,6 @@
      When  Navigate to Settings in iOS device
      And   Set WIFI status as "<Internet>" in iOS device
      And   Trigger the Rest API to delete device in iOS device
-     And   Launch HID Access Mobile Application in iOS device
      Then  Verify the No Internet pop up in home screen in iOS device
      And   Navigate to Settings in iOS device
      When  Set back the WIFI status as ON in iOS device
@@ -254,6 +253,18 @@
        | _TC-49 | Mobile ID Read                | Communication timeout. Please try again.                                              |
        | _TC-50 | Reader Range                  | Please move closer to the reader to gain access                                       |
        | _TC-51 | Anti-Passback Detected        | This reader is anti-passback enabled. Please make sure your Mobile ID is not misused. |
+
+   @iOS_Settings_WF20 @iOS_Settings_WF_Dep
+   Scenario Outline: iOS_Settings_WF20<TC_ID>: Verify the upgrade scenario with the latest app and settings screen
+     When  Navigate to Settings in iOS device
+     And   Get the details of settings screen in iOS device
+     And   Launch the Upgraded app in iOS device
+     And   Navigate to Settings in iOS device
+     Then  Validate the values with the New app in iOS device
+
+     Examples:
+       | TC_ID  |
+       | _TC-52 |
 
      #NearBy Readers Scenarios
    @iOS_Settings_NearbyReader_WF1 @iOS_Settings_NearbyReader_WF

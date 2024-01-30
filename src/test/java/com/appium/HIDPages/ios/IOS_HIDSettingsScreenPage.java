@@ -3,6 +3,7 @@ package com.appium.HIDPages.ios;
 import com.appium.base.BasePage;
 import com.appium.constants.MessageConstants;
 import com.appium.manager.DriverManager;
+import com.appium.restAPI.EnvironmentProperties;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
@@ -10,7 +11,9 @@ import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 
+import java.lang.reflect.Parameter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -1400,6 +1403,36 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             }
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while checking Nearby Readers list in home screen");
+        }
+    }
+
+    public void collectSettingsDetails() {
+        try {
+            EnvironmentProperties.storeProp("BLE_iOS", getElementText(txtBluetoothPermissionStatus));
+            EnvironmentProperties.storeProp("LocPerm_iOS", getElementText(txtLocationPermission));
+            EnvironmentProperties.storeProp("Mode_Always_iOS", getElementText(chkAlwaysBtn));
+            EnvironmentProperties.storeProp("Mode_Foreground_iOS", getElementText(chkForegroundBtn));
+            EnvironmentProperties.storeProp("Mode_Unlocked_iOS", getElementText(chkUnlockedBtn));
+            EnvironmentProperties.storeProp("PlaySound_Toggle_iOS", tglBtnPlayAndSound.getAttribute(MessageConstants.VALUE_STRING));
+            EnvironmentProperties.storeProp("Vibrate_Toggle_iOS", tglBtnVibrate.getAttribute(MessageConstants.VALUE_STRING));
+            EnvironmentProperties.storeProp("TwistNGo_Toggle_iOS", tglBtnTwistAndGo.getAttribute(MessageConstants.VALUE_STRING));
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while validating the settings screen...");
+        }
+    }
+
+    public void verifyNewApp() {
+        try {
+            Assert.assertEquals(getElementText(txtBluetoothPermissionStatus),EnvironmentProperties.get("BLE_iOS"));
+            Assert.assertEquals(getElementText(txtLocationPermission),EnvironmentProperties.get("LocPerm_iOS"));
+            Assert.assertEquals(getElementText(chkAlwaysBtn),EnvironmentProperties.get("Mode_Always_iOS"));
+            Assert.assertEquals(getElementText(chkForegroundBtn),EnvironmentProperties.get("Mode_Foreground_iOS"));
+            Assert.assertEquals(getElementText(chkUnlockedBtn),EnvironmentProperties.get("Mode_Unlocked_iOS"));
+            Assert.assertEquals(tglBtnPlayAndSound.getAttribute(MessageConstants.VALUE_STRING),EnvironmentProperties.get("PlaySound_Toggle_iOS").toString());
+            Assert.assertEquals(tglBtnVibrate.getAttribute(MessageConstants.VALUE_STRING),EnvironmentProperties.get("Vibrate_Toggle_iOS").toString());
+            Assert.assertEquals(tglBtnTwistAndGo.getAttribute(MessageConstants.VALUE_STRING),EnvironmentProperties.get("TwistNGo_Toggle_iOS").toString());
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while validating the New app settings screen...");
         }
     }
 

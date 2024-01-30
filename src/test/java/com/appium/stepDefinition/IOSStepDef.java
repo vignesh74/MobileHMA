@@ -440,6 +440,26 @@ public class IOSStepDef {
         activityScreen.verifyLogMessage(activityLog, logMessage);
     }
 
+    @Then("Get the details of settings screen in iOS device")
+    public void settingsDetailsUpgrade_iOS() {
+        settingScreen.collectSettingsDetails();
+    }
+
+    @Then("Launch the Upgraded app in iOS device")
+    public void launchUpgradeApp_iOS() {
+        if (!mobileIdScreen.isMobileIdScreenDisplayed()) {
+            DriverManager.getDriver().closeApp();
+            DriverManager.getDriver().installApp(ConfigLoader.getInstance().getiOSAppLocation());
+            DriverManager.getDriver().launchApp();
+        }
+        TestUtils.log().info("Application launched Successfully");
+    }
+
+    @Then("Validate the values with the New app in iOS device")
+    public void validateNewApp_iOS() {
+        settingScreen.verifyNewApp();
+    }
+
     //Device Enforcement
     @Then("Verify {string} is disabled and other modes are enabled")
     public void checkEnforcedSetting(String mode_state){
