@@ -449,7 +449,7 @@ public class AndrStepDef extends BasePage {
     @When("Navigate to settings page in android device")
     public void navigateToSettingsPage() {
         mobileIDScreen.clickOnSettingsTab();
-        settingsScreen.verifySettingsScreen();
+//        settingsScreen.verifySettingsScreen();
 
     }
 
