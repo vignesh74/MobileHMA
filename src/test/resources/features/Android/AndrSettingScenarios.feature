@@ -290,8 +290,10 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And upgrade the new apk provided
     Given Launch HID Access Mobile Application in android device
     When Navigate to Settings and App Preferences screen in android device
-    And compare the App Preference information are same after the upgrade
-    And compare the About page information are same after the upgrade
+    And Note down the App Preference information are same after the upgrade
+    And compare the app preference values
+    And Note down the About page information are same after the upgrade
+    And compare the about info values
 
   @ANDR_Bluetooth_Sensitivity
   Scenario Outline: ANDR_11_10_Bluetooth_Sensitivity: Verify the Bluetooth sensitivity is "<BLE_Sensitivity>"

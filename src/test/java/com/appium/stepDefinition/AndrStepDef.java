@@ -870,7 +870,7 @@ public class AndrStepDef extends BasePage {
     public void checkAboutInfo() {
         settingsScreen.navigateBack();
         settingsScreen.getTxtAbout().click();
-        settingsScreen.checkAboutInfo();
+        settingsScreen.olderAboutInfo();
     }
 
     @And("upgrade the new apk provided")
@@ -884,20 +884,38 @@ public class AndrStepDef extends BasePage {
 //    }
 
     @And("Note down the settings of application before upgrade")
-    public void settingsStatus() {
-        settingsScreen.settingsStatus();
+    public String[] olderApkAppPreferenceValues() {
+        String[] olderApkAppPreferenceValues = settingsScreen.olderApkAppPreferenceValues();
+        return olderApkAppPreferenceValues;
     }
 
-    @And("compare the App Preference information are same after the upgrade")
-    public void compareAppPreference() {
-        settingsScreen.compareAppPreference();
+    @And("Note down the App Preference information are same after the upgrade")
+    public String[] newerApkAppPreferenceValues() {
+        String[] newerApkAppPreferenceValues = settingsScreen.newerApkAppPreferenceValues();
+        return newerApkAppPreferenceValues;
     }
 
-    @And("compare the About page information are same after the upgrade")
-    public void compareAboutInfo() {
+    @And("compare the app preference values")
+    public String[] compareAppPreferenceValues(){
+        String[] older = olderApkAppPreferenceValues();
+        String[] newer = newerApkAppPreferenceValues();
+        settingsScreen.compareValues(older,newer);
+        return older;
+    }
+
+    @And("Note down the About page information are same after the upgrade")
+    public void newerAboutInfo() {
         settingsScreen.navigateBack();
         click(settingsScreen.getTxtAbout());
-        settingsScreen.compareAboutInfo();
+        settingsScreen.newerAboutInfo();
+    }
+
+    @And("compare the about info values")
+    public String[]  compareAboutValues(){
+        String[] older = settingsScreen.olderAboutInfo();
+        String[] newer = settingsScreen.newerAboutInfo();
+        settingsScreen.compareValues(older,newer);
+        return older;
     }
 
     @And("Verify Bluetooth Sensitivity menu is displayed in android device")

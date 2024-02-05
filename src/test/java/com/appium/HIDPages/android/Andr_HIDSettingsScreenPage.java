@@ -210,34 +210,34 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/sensitivityTitle")
     private MobileElement txtBluetoothSensitivity;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtBleSensitivityHeading")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtBleSensitivityHeading")
     private MobileElement txtBluetoothSensitivitytitle;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtAppPreferencesCategory")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtAppPreferencesCategory")
     private MobileElement txtOptions;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/descriptionBleSensitivity")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/descriptionBleSensitivity")
     private MobileElement BluetoothSensitivityDesc;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/rbtnHigh")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/rbtnHigh")
     private MobileElement rdoBLEHigh;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/rbtnMedium")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/rbtnMedium")
     private MobileElement rdoBLEMedium;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/rbtnLow")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/rbtnLow")
     private MobileElement rdoBLELow;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/descriptionHigh")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/descriptionHigh")
     private MobileElement BLEHighDesc;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/descriptionMedium")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/descriptionMedium")
     private MobileElement BLEMediumDesc;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/descriptionLow")
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/descriptionLow")
     private MobileElement BLELowDesc;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Identity Positioning']/following-sibling::android.widget.Switch")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Identity Positioning']/following-sibling::android.widget.Switch")
     private MobileElement switchIdentityPositioning;
 
     public MobileElement getTxtConfirmUnregisterPopUpTitle() {
@@ -296,17 +296,18 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         return txtNoConnectionOKbtn;
     }
 
-    public MobileElement getTxtBluetoothSensitivity(){
+    public MobileElement getTxtBluetoothSensitivity() {
         return txtBluetoothSensitivity;
     }
 
-    public MobileElement getTxtBluetoothSensitivitytitle(){
+    public MobileElement getTxtBluetoothSensitivitytitle() {
         return txtBluetoothSensitivitytitle;
     }
 
     //    ******************************************* code of surrender sundarraj begins *************************************************
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Mobile IDs\"]/android.widget.FrameLayout/android.widget.ImageView")
     private MobileElement MobileIdsIcon;
+
     //    ******************************************* code of surrender sundarraj ends *************************************************
     public void clickOnAppPreferences() {
         try {
@@ -689,60 +690,15 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }
     }
 
-//    public String[] checkAboutInfo() {
-//        String mobileAccessVersion = "";
-//        String origoSDKVersion = "";
-//        String doorOpeningMode = "";
-//        String endPointStatus = "";
-//        String seosID = "";
-//        String endPointAppVersion = "";
-//        String environment = "";
-//        String OSVersion = "";
-//        String deviceModel = "";
-//        String BLEInfo = "";
-//        String NFCInfo = "";
-//        String locationInfo = "";
-//        String nearByPermission = "";
-//        String locationPermission = "";
-//
-//        try {
-//            click(txtAbout);
-//            mobileAccessVersion = txtHIDMobileAccessVersionValue.getText();
-//            origoSDKVersion = txtHIDOrigoSDKVersionValue.getText();
-//            doorOpeningMode = txtDoorOpeningModeValue.getText();
-//            endPointStatus = txtEndPointStatusValue.getText();
-//            seosID = txtSeosIDValue.getText();
-//            endPointAppVersion = txtEndPointAppVersionValue.getText();
-//            environment = txtEnvironmentValue.getText();
-//            deviceModel = txtDeviceModelValue.getText();
-//            OSVersion = txtOSVersionValue.getText();
-//            BLEInfo = txtBleInfoValue.getText();
-//            NFCInfo = txtNfcInfoValue.getText();
-//            locationInfo = txtLocationInfoValue.getText();
-//            if(DriverManager.getPlatformVersion().equalsIgnoreCase("9") || DriverManager.getPlatformVersion().equalsIgnoreCase("10") || DriverManager.getPlatformVersion().equalsIgnoreCase("11")){
-//                locationPermission = txtLocationPermissionValue.getText();
-//            }else{
-//                nearByPermission = txtNearByPermissionValue.getText();
-//            }
-//        } catch (Exception e) {
-//            TestUtils.log().info("Getting Exception while verifying the version of the app ...");
-//        }
-//        if(DriverManager.getPlatformVersion().equalsIgnoreCase("9") || DriverManager.getPlatformVersion().equalsIgnoreCase("10") || DriverManager.getPlatformVersion().equalsIgnoreCase("11")){
-//            return new String[]{mobileAccessVersion, origoSDKVersion,doorOpeningMode,endPointStatus,seosID,endPointAppVersion,environment,deviceModel,OSVersion,BLEInfo,NFCInfo,locationInfo,locationPermission};
-//        }else if(DriverManager.getPlatformVersion().equalsIgnoreCase("12") || DriverManager.getPlatformVersion().equalsIgnoreCase("13")){
-//            return new String[]{mobileAccessVersion, origoSDKVersion,doorOpeningMode,endPointStatus,seosID,endPointAppVersion,environment,deviceModel,OSVersion,BLEInfo,NFCInfo,locationInfo,nearByPermission};
-//        }
-//
-//    }
-
     public void installAPK() {
         try {
             String appPath = ConfigLoader.getInstance().getAndroidAppLocationNew();
-//            String appPath = "/Users/vigneshrajesh/Downloads/develop430/src/test/resources/app/hid_mobile_access-global-4.5.0.apk";
+//            String appPath = "/Users/vigneshrajesh/Downloads/develop430/src/test/resources/app/hid_mobile_access-global-4.4.0.apk";
             AppiumDriver driver = DriverManager.getDriver();
 
             if (driver != null) {
                 // Install the new APK within the existing session
+                System.out.println("***************  ENTERING  ************");
                 driver.installApp(appPath);
             } else {
                 System.out.println("Driver is null. Cannot install APK.");
@@ -755,364 +711,60 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }
     }
 
-    public void compareAppPreference(){
-        try{
+    public String[] newerApkAppPreferenceValues() {
+        String[] newApkAppPreferenceValue = new String[0];
+        try {
             String platformVersion = DriverManager.getPlatformVersion();
-
-            if(platformVersion.equalsIgnoreCase("9")){
-                compareElementsForVersion9();
-            }else if (platformVersion.equalsIgnoreCase("10") || platformVersion.equalsIgnoreCase("11")) {
-                compareElementsForVersion10to11();
+            if (platformVersion.equalsIgnoreCase("9")) {
+                newApkAppPreferenceValue = newerApkAppPreferenceValues9();
+            } else if (platformVersion.equalsIgnoreCase("10") || platformVersion.equalsIgnoreCase("11")) {
+                newApkAppPreferenceValue = newerApkAppPreferenceValues10To11();
             } else if (platformVersion.equalsIgnoreCase("12") || platformVersion.equalsIgnoreCase("13")) {
-                compareElementsForVersion12to13();
+                newApkAppPreferenceValue = newerApkAppPreferenceValues12To13();
             } else {
                 TestUtils.log().info("Wrong version....");
             }
-        }catch (Exception e){
-            System.out.println("compareAppPreference "+e);
+        } catch (Exception e) {
+            System.out.println("newerApkAppPreferenceValues " + e);
             TestUtils.log().info("Getting Exception while comparing the app preference ...");
         }
+        return newApkAppPreferenceValue;
     }
 
-    public void settingsStatus() {
+    public String[] olderApkAppPreferenceValues() {
         String platformVersion = DriverManager.getPlatformVersion();
+        String[] oldApkAppPreferenceValues = new String[0];
 
-        if(platformVersion.equalsIgnoreCase("9")){
-            settingsElementsForVersion9();
-        }else if (platformVersion.equalsIgnoreCase("10") || platformVersion.equalsIgnoreCase("11")) {
-            settingsElementsForVersion10To11();
+        if (platformVersion.equalsIgnoreCase("9")) {
+            oldApkAppPreferenceValues = olderApkAppPreferenceValues9();
+        } else if (platformVersion.equalsIgnoreCase("10") || platformVersion.equalsIgnoreCase("11")) {
+            oldApkAppPreferenceValues = olderApkAppPreferenceValues10To11();
         } else if (platformVersion.equalsIgnoreCase("12") || platformVersion.equalsIgnoreCase("13")) {
-            settingsElementsForVersion12To13();
+            oldApkAppPreferenceValues = olderApkAppPreferenceValues12To13();
         } else {
             TestUtils.log().info("Wrong version....");
         }
+        return oldApkAppPreferenceValues;
     }
 
-    public String[] settingsElementsForVersion9(){
-        String bluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
-        String locationValue = appPrefencesScreenPage.getTxtLocationStatusValue().getText();
-        String locationPermissionValue = appPrefencesScreenPage.getTxtLocationPermStatusValue().getText();
-        String alwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
-        String foregroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
-        String unlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
-        String twistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String nearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String showActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String debugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String playSoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String vibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        return new String[]{bluetoothValue,locationValue,locationPermissionValue,alwaysModeValue,foregroundModeValue,unlockedModeValue,twistAndGoValue,nearByReadersValue,showActivityValue,debugLogsValue,playSoundValue,vibrateValue};
-    }
-
-    public String[] settingsElementsForVersion10To11(){
-        String bluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
-        String NFCValue = appPrefencesScreenPage.getTxtNFCStatusValue().getText();
-        String locationValue = appPrefencesScreenPage.getTxtLocationStatusValue().getText();
-        String locationPermissionValue = appPrefencesScreenPage.getTxtLocationPermStatusValue().getText();
-        String alwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
-        String foregroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
-        String unlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
-        String twistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String nearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String showActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String debugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String playSoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        String vibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
-        return new String[]{bluetoothValue,NFCValue,locationValue,locationPermissionValue,alwaysModeValue,foregroundModeValue,unlockedModeValue,twistAndGoValue,nearByReadersValue,showActivityValue,debugLogsValue,playSoundValue,vibrateValue};
-    }
-
-    public String[] settingsElementsForVersion12To13() {
-        String bluetoothValue = null;
-        String NFCValue = null;
-        String nearbyPermissionValue = null;
-        String alwaysModeValue = null;
-        String foregroundModeValue = null;
-        String unlockedModeValue = null;
-        String twistAndGoValue = null;
-        String nearByReadersValue = null;
-        String bluetoothSensitivityValue = null;
-        String showActivityValue = null;
-        String debugLogsValue = null;
-        String playSoundValue = null;
-        String vibrateValue = null;
+    public String[] olderAboutInfo() {
+        String[] oldApkAboutValues = new String[0];
         try {
-            bluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
-            NFCValue = appPrefencesScreenPage.getTxtNFCStatusValue().getText();
-            nearbyPermissionValue = appPrefencesScreenPage.getTxtNearByPermissionStatusValue().getText();
-            alwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
-            foregroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getRdoUsageUnlocked(),"up");
-            unlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
-            twistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtNearbyReaderStatusValue(),"up");
-            nearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getText();
-            bluetoothSensitivityValue = appPrefencesScreenPage.getBluetoothSensitivityLevel().getText();
-            showActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchDebugLogs(),"up");
-            debugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            playSoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            vibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtBluetooth(), "down");
-
-        } catch (Exception e) {
-            System.out.println("settingsElementsForVersion12To13 " + e);
-        }
-        return new String[]{bluetoothValue, NFCValue, nearbyPermissionValue, alwaysModeValue, foregroundModeValue, unlockedModeValue, twistAndGoValue, nearByReadersValue,bluetoothSensitivityValue, showActivityValue, debugLogsValue, playSoundValue, vibrateValue};
-    }
-
-    public void compareElementsForVersion9(){
-        try {
-            String bluetoothValue = settingsElementsForVersion9()[0];
-            String locationValue = settingsElementsForVersion9()[1];
-            String locationPermissionValue = settingsElementsForVersion9()[2];
-            String alwaysModeValue = settingsElementsForVersion9()[3];
-            String foregroundModeValue = settingsElementsForVersion9()[4];
-            String unlockedModeValue = settingsElementsForVersion9()[5];
-            String twistAndGoValue = settingsElementsForVersion9()[6];
-            String nearByReadersValue = settingsElementsForVersion9()[7];
-            String showActivityValue = settingsElementsForVersion9()[8];
-            String debugLogsValue = settingsElementsForVersion9()[9];
-            String playSoundValue = settingsElementsForVersion9()[10];
-            String vibrateValue = settingsElementsForVersion9()[11];
-
-            String newBluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
-            String newLocationValue = appPrefencesScreenPage.getTxtLocationStatusValue().getText();
-            String newLocationPermissionValue = appPrefencesScreenPage.getTxtLocationPermStatusValue().getText();
-            String newAlwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
-            String newForegroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
-            String newUnlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
-            String newTwistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newNearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newShowActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newDebugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newPlaySoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newVibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
-
-            Assert.assertEquals(bluetoothValue, newBluetoothValue);
-            TestUtils.log().info("Bluetooth value is same after the upgrade....");
-
-            Assert.assertEquals(locationValue, newLocationValue);
-            TestUtils.log().info("Location value is same after the upgrade....");
-
-            Assert.assertEquals(locationPermissionValue,newLocationPermissionValue);
-            TestUtils.log().info("Location Permission value is same after the upgrade....");
-
-            Assert.assertEquals(alwaysModeValue, newAlwaysModeValue);
-            TestUtils.log().info("Always mode value is same after the upgrade....");
-
-            Assert.assertEquals(foregroundModeValue, newForegroundModeValue);
-            TestUtils.log().info("Foreground mode value is same after the upgrade....");
-
-            Assert.assertEquals(unlockedModeValue, newUnlockedModeValue);
-            TestUtils.log().info("Unlocked mode value is same after the upgrade....");
-
-            Assert.assertEquals(twistAndGoValue, newTwistAndGoValue);
-            TestUtils.log().info("Twist & Go button value is same after the upgrade....");
-
-            Assert.assertEquals(nearByReadersValue, newNearByReadersValue);
-            TestUtils.log().info("NearBy Reader button value is same after the upgrade....");
-
-            Assert.assertEquals(showActivityValue, newShowActivityValue);
-            TestUtils.log().info("Show Activity button value is same after the upgrade....");
-
-            Assert.assertEquals(debugLogsValue, newDebugLogsValue);
-            TestUtils.log().info("Debugs Log button value is same after the upgrade....");
-
-            Assert.assertEquals(playSoundValue, newPlaySoundValue);
-            TestUtils.log().info("Play Sound button value is same after the upgrade....");
-
-            Assert.assertEquals(vibrateValue, newVibrateValue);
-            TestUtils.log().info("Vibrate button value is same after the upgrade....");
-
-
-        }catch(Exception e){
-            System.out.println("compareElementsForVersion9 "+e);
-            TestUtils.log().info("Getting Exception while comparing the values of old app information with upgraded app in App preference screen in 9...");
-        }
-    }
-
-    public void compareElementsForVersion10to11(){
-        try {
-            String bluetoothValue = settingsElementsForVersion10To11()[0];
-            String NFCValue = settingsElementsForVersion10To11()[1];
-            String locationValue = settingsElementsForVersion10To11()[2];
-            String locationPermissionValue = settingsElementsForVersion10To11()[3];
-            String alwaysModeValue = settingsElementsForVersion10To11()[4];
-            String foregroundModeValue = settingsElementsForVersion10To11()[5];
-            String unlockedModeValue = settingsElementsForVersion10To11()[6];
-            String twistAndGoValue = settingsElementsForVersion10To11()[7];
-            String nearByReadersValue = settingsElementsForVersion10To11()[8];
-            String showActivityValue = settingsElementsForVersion10To11()[9];
-            String debugLogsValue = settingsElementsForVersion10To11()[10];
-            String playSoundValue = settingsElementsForVersion10To11()[11];
-            String vibrateValue = settingsElementsForVersion10To11()[12];
-
-            String newBluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
-            String newNFCValue = appPrefencesScreenPage.getTxtNFCStatusValue().getText();
-            String newLocationValue = appPrefencesScreenPage.getTxtLocationStatusValue().getText();
-            String newLocationPermissionValue = appPrefencesScreenPage.getTxtLocationPermStatusValue().getText();
-            String newAlwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
-            String newForegroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
-            String newUnlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
-            String newTwistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newNearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newShowActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newDebugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newPlaySoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
-            String newVibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
-
-            Assert.assertEquals(bluetoothValue, newBluetoothValue);
-            TestUtils.log().info("Bluetooth value is same after the upgrade....");
-
-            Assert.assertEquals(NFCValue, newNFCValue);
-            TestUtils.log().info("NFC value is same after the upgrade....");
-
-            Assert.assertEquals(locationValue, newLocationValue);
-            TestUtils.log().info("Location value is same after the upgrade....");
-
-            Assert.assertEquals(locationPermissionValue, newLocationPermissionValue);
-            TestUtils.log().info("Location value is same after the upgrade....");
-
-            Assert.assertEquals(alwaysModeValue, newAlwaysModeValue);
-            TestUtils.log().info("Always mode value is same after the upgrade....");
-
-            Assert.assertEquals(foregroundModeValue, newForegroundModeValue);
-            TestUtils.log().info("Foreground mode value is same after the upgrade....");
-
-            Assert.assertEquals(unlockedModeValue, newUnlockedModeValue);
-            TestUtils.log().info("Unlocked mode value is same after the upgrade....");
-
-            Assert.assertEquals(twistAndGoValue, newTwistAndGoValue);
-            TestUtils.log().info("Twist & Go button value is same after the upgrade....");
-
-            Assert.assertEquals(nearByReadersValue, newNearByReadersValue);
-            TestUtils.log().info("NearBy Reader button value is same after the upgrade....");
-
-            Assert.assertEquals(showActivityValue, newShowActivityValue);
-            TestUtils.log().info("Show Activity button value is same after the upgrade....");
-
-            Assert.assertEquals(debugLogsValue, newDebugLogsValue);
-            TestUtils.log().info("Debugs Log button value is same after the upgrade....");
-
-            Assert.assertEquals(playSoundValue, newPlaySoundValue);
-            TestUtils.log().info("Play Sound button value is same after the upgrade....");
-
-            Assert.assertEquals(vibrateValue, newVibrateValue);
-            TestUtils.log().info("Vibrate button value is same after the upgrade....");
-
-
-        }catch(Exception e){
-            System.out.println("compareElementsForVersion10to11 "+e);
-            TestUtils.log().info("Getting Exception while comparing the values of old app information with upgraded app in App preference screen in 11...");
-        }
-    }
-
-    public void compareElementsForVersion12to13(){
-        try {
-            String[] values = settingsElementsForVersion12To13();
-            System.out.println(values);
-            String bluetoothValue = settingsElementsForVersion12To13()[0];
-            String NFCValue = settingsElementsForVersion12To13()[1];
-            String nearbyPermissionValue = settingsElementsForVersion12To13()[2];
-            String alwaysModeValue = settingsElementsForVersion12To13()[3];
-            String foregroundModeValue = settingsElementsForVersion12To13()[4];
-            String unlockedModeValue = settingsElementsForVersion12To13()[5];
-            String twistAndGoValue = settingsElementsForVersion12To13()[6];
-            String nearByReadersValue = settingsElementsForVersion12To13()[7];
-            String bluetoothSensitivityValue = settingsElementsForVersion12To13()[8];
-            String showActivityValue = settingsElementsForVersion12To13()[9];
-            String debugLogsValue = settingsElementsForVersion12To13()[10];
-            String playSoundValue = settingsElementsForVersion12To13()[11];
-            String vibrateValue = settingsElementsForVersion12To13()[12];
-
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtBluetoothStatusValue(),"down");
-            String newBluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
-            String newNFCValue = appPrefencesScreenPage.getTxtNFCStatusValue().getText();
-            String newNearbyPermissionValue = appPrefencesScreenPage.getTxtNearByPermissionStatusValue().getText();
-            String newAlwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getRdoUsageForeground(),"up");
-            String newForegroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
-            String newUnlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchTwistGo(),"up");
-            String newTwistAndGoValue = getElementAttribute(appPrefencesScreenPage.getSwitchTwistGo(),MessageConstants.CHECKED_MESSAGE);
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtNearbyReaderStatusValue(),"up");
-            String newNearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getText();
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getBluetoothSensitivityLevel(),"up");
-            String newBluetoothSensitivityValue = appPrefencesScreenPage.getBluetoothSensitivityLevel().getText();
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchShowActivity(),"up");
-            String newShowActivityValue = getElementAttribute(appPrefencesScreenPage.getSwitchShowActivity(),MessageConstants.CHECKED_MESSAGE);
-            System.out.println("newShowActivityValue....."+newShowActivityValue);
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchDebugLogs(),"up");
-            String newDebugLogsValue = getElementAttribute(appPrefencesScreenPage.getSwitchDebugLogs(),MessageConstants.CHECKED_MESSAGE);
-            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchPlayAndSound(),"up");
-            String newPlaySoundValue = getElementAttribute(appPrefencesScreenPage.getSwitchPlayAndSound(),MessageConstants.CHECKED_MESSAGE);
-            String newVibrateValue = getElementAttribute(appPrefencesScreenPage.getSwitchVibrate(),MessageConstants.CHECKED_MESSAGE);
-            scrollDownTillElement(200,2);
-
-            Assert.assertEquals(bluetoothValue, newBluetoothValue);
-            TestUtils.log().info("Bluetooth value is same after the upgrade....");
-
-            Assert.assertEquals(NFCValue, newNFCValue);
-            TestUtils.log().info("NFC value is same after the upgrade....");
-
-            Assert.assertEquals(nearbyPermissionValue, newNearbyPermissionValue);
-            TestUtils.log().info("Nearby Permission value is same after the upgrade....");
-
-            Assert.assertEquals(alwaysModeValue, newAlwaysModeValue);
-            TestUtils.log().info("Always mode value is same after the upgrade....");
-
-            Assert.assertEquals(foregroundModeValue, newForegroundModeValue);
-            TestUtils.log().info("Foreground mode value is same after the upgrade....");
-
-            Assert.assertEquals(unlockedModeValue, newUnlockedModeValue);
-            TestUtils.log().info("Unlocked mode value is same after the upgrade....");
-
-            Assert.assertEquals(twistAndGoValue, newTwistAndGoValue);
-            TestUtils.log().info("Twist & Go button value is same after the upgrade....");
-
-            Assert.assertEquals(nearByReadersValue, newNearByReadersValue);
-            TestUtils.log().info("NearBy Reader button value is same after the upgrade....");
-
-            Assert.assertEquals(bluetoothSensitivityValue, newBluetoothSensitivityValue);
-            TestUtils.log().info("bluetooth Sensitivity Value is same after the upgrade....");
-
-            Assert.assertEquals(showActivityValue, newShowActivityValue);
-            TestUtils.log().info("Show Activity button value is same after the upgrade....");
-
-            Assert.assertEquals(debugLogsValue, newDebugLogsValue);
-            TestUtils.log().info("Debugs Log button value is same after the upgrade....");
-
-            Assert.assertEquals(playSoundValue, newPlaySoundValue);
-            TestUtils.log().info("Play Sound button value is same after the upgrade....");
-
-            Assert.assertEquals(vibrateValue, newVibrateValue);
-            TestUtils.log().info("Vibrate button value is same after the upgrade....");
-
-
-        }catch(Exception e){
-            System.out.println("compareElementsForVersion12to13 "+e);
-            TestUtils.log().info("Getting Exception while comparing the values of old app information with upgraded app in App preference screen in 12...",e);
-        }
-    }
-
-    public void checkAboutInfo() {
-        try{
             String platformVersion = DriverManager.getPlatformVersion();
-
-            if(platformVersion.equalsIgnoreCase("9") || platformVersion.equalsIgnoreCase("10")||platformVersion.equalsIgnoreCase("11")){
-                checkAboutInfoForVersion9to11();
-            }else if (platformVersion.equalsIgnoreCase("12") || platformVersion.equalsIgnoreCase("13")) {
-                checkAboutInfoForVersion12To13();
+            if (platformVersion.equalsIgnoreCase("9") || platformVersion.equalsIgnoreCase("10") || platformVersion.equalsIgnoreCase("11")) {
+                oldApkAboutValues = oldApkAboutValues9to11();
+            } else if (platformVersion.equalsIgnoreCase("12") || platformVersion.equalsIgnoreCase("13")) {
+                oldApkAboutValues = oldApkAboutValues12To13();
             } else {
                 TestUtils.log().info("Wrong version....");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             TestUtils.log().info("Getting Exception while checking the values of about info...");
         }
-
+        return oldApkAboutValues;
     }
 
-    public String[] checkAboutInfoForVersion9to11() {
+    public String[] oldApkAboutValues9to11() {
 
         String mobileAccessVersion = null;
         String origoSDKVersion = null;
@@ -1134,12 +786,13 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             doorOpeningMode = txtDoorOpeningModeValue.getText();
             endPointStatus = txtEndPointStatusValue.getText();
             seosID = txtSeosIDValue.getText();
-            scrollDownTillElement(100, 2);
+            iosScrollUpAndDownToElement(txtEndPointAppVersionValue, "up");
             endPointAppVersion = txtEndPointAppVersionValue.getText();
-            scrollDownTillElement(100, 2);
+            iosScrollUpAndDownToElement(txtEnvironmentValue, "up");
             environment = txtEnvironmentValue.getText();
             deviceModel = txtDeviceModelValue.getText();
             OSVersion = txtOSVersionValue.getText();
+            iosScrollUpAndDownToElement(txtBleInfoValue, "up");
             BLEInfo = txtBleInfoValue.getText();
             NFCInfo = txtNfcInfoValue.getText();
             locationInfo = txtLocationInfoValue.getText();
@@ -1153,7 +806,49 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
 
     }
 
-    public String[] checkAboutInfoForVersion12To13() {
+    public String[] newApkAboutValues9to11() {
+
+        String newMobileAccessVersion = null;
+        String newOrigoSDKVersion = null;
+        String newDoorOpeningMode = null;
+        String newEndPointStatus = null;
+        String newSeosID = null;
+        String newEndPointAppVersion = null;
+        String newEnvironment = null;
+        String newDeviceModel = null;
+        String newOSVersion = null;
+        String newBLEInfo = null;
+        String newNFCInfo = null;
+        String newLocationInfo = null;
+        String newLocationPermission = null;
+        try {
+            click(txtAbout);
+            newMobileAccessVersion = txtHIDMobileAccessVersionValue.getText();
+            newOrigoSDKVersion = txtHIDOrigoSDKVersionValue.getText();
+            newDoorOpeningMode = txtDoorOpeningModeValue.getText();
+            newEndPointStatus = txtEndPointStatusValue.getText();
+            newSeosID = txtSeosIDValue.getText();
+            iosScrollUpAndDownToElement(txtEndPointAppVersionValue, "up");
+            newEndPointAppVersion = txtEndPointAppVersionValue.getText();
+            iosScrollUpAndDownToElement(txtEnvironmentValue, "up");
+            newEnvironment = txtEnvironmentValue.getText();
+            newDeviceModel = txtDeviceModelValue.getText();
+            newOSVersion = txtOSVersionValue.getText();
+            iosScrollUpAndDownToElement(txtBleInfoValue, "up");
+            newBLEInfo = txtBleInfoValue.getText();
+            newNFCInfo = txtNfcInfoValue.getText();
+            newLocationInfo = txtLocationInfoValue.getText();
+            newLocationPermission = txtLocationPermissionValue.getText();
+            String nearByPermission = txtNearByPermissionValue.getText();
+
+        } catch (Exception e) {
+            TestUtils.log().info("Getting Exception while verifying the About info of the app ...");
+        }
+        return new String[]{newMobileAccessVersion, newOrigoSDKVersion, newDoorOpeningMode, newEndPointStatus, newSeosID, newEndPointAppVersion, newEnvironment, newDeviceModel, newOSVersion, newBLEInfo, newNFCInfo, newLocationInfo, newLocationPermission};
+
+    }
+
+    public String[] oldApkAboutValues12To13() {
 
         String mobileAccessVersion = null;
         String origoSDKVersion = null;
@@ -1169,213 +864,94 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         String locationInfo = null;
         String nearByPermission = null;
         try {
-            isElementVisible(txtHIDMobileAccessVersionValue);
+            iosScrollUpAndDownToElement(txtHIDMobileAccessVersionValue, "down");
             mobileAccessVersion = txtHIDMobileAccessVersionValue.getText();
             origoSDKVersion = txtHIDOrigoSDKVersionValue.getText();
             doorOpeningMode = txtDoorOpeningModeValue.getText();
             endPointStatus = txtEndPointStatusValue.getText();
             seosID = txtSeosIDValue.getText();
-            iosScrollUpAndDownToElement(txtEndPointAppVersionValue,"up");
+            iosScrollUpAndDownToElement(txtEndPointAppVersionValue, "up");
             endPointAppVersion = txtEndPointAppVersionValue.getText();
-            iosScrollUpAndDownToElement(txtEnvironmentValue,"up");
+            iosScrollUpAndDownToElement(txtEnvironmentValue, "up");
             environment = txtEnvironmentValue.getText();
-            iosScrollUpAndDownToElement(txtNearByPermissionValue,"up");
+            iosScrollUpAndDownToElement(txtNearByPermissionValue, "up");
             deviceModel = txtDeviceModelValue.getText();
             OSVersion = txtOSVersionValue.getText();
             BLEInfo = txtBleInfoValue.getText();
             NFCInfo = txtNfcInfoValue.getText();
             locationInfo = txtLocationInfoValue.getText();
             nearByPermission = txtNearByPermissionValue.getText();
-            iosScrollUpAndDownToElement(txtHIDMobileAccessVersionValue,"down");
         } catch (Exception e) {
-            System.out.println("checkAboutInfoForVersion12To13 "+e);
+            System.out.println("oldApkAboutValues12To13 " + e);
             TestUtils.log().info("Getting Exception while verifying the About info of the app ...");
         }
         return new String[]{mobileAccessVersion, origoSDKVersion, doorOpeningMode, endPointStatus, seosID, endPointAppVersion, environment, deviceModel, OSVersion, BLEInfo, NFCInfo, locationInfo, nearByPermission};
 
     }
 
-    public void compareAboutInfo(){
-        try{
-            String platformVersion = DriverManager.getPlatformVersion();
+    public String[] newApkAboutValues12To13() {
 
-            if(platformVersion.equalsIgnoreCase("9")||platformVersion.equalsIgnoreCase("10")||platformVersion.equalsIgnoreCase("11")){
-                compareAboutInfoForVersion9to11();
+        String newMobileAccessVersion = null;
+        String newOrigoSDKVersion = null;
+        String newDoorOpeningMode = null;
+        String newEndPointStatus = null;
+        String newSeosID = null;
+        String newEndPointAppVersion = null;
+        String newEnvironment = null;
+        String newDeviceModel = null;
+        String newOSVersion = null;
+        String newBLEInfo = null;
+        String newNFCInfo = null;
+        String newLocationInfo = null;
+        String newNearByPermission = null;
+        try {
+            iosScrollUpAndDownToElement(txtHIDMobileAccessVersionValue, "down");
+            newMobileAccessVersion = txtHIDMobileAccessVersionValue.getText();
+            newOrigoSDKVersion = txtHIDOrigoSDKVersionValue.getText();
+            newDoorOpeningMode = txtDoorOpeningModeValue.getText();
+            newEndPointStatus = txtEndPointStatusValue.getText();
+            newSeosID = txtSeosIDValue.getText();
+            iosScrollUpAndDownToElement(txtEndPointAppVersionValue, "up");
+            newEndPointAppVersion = txtEndPointAppVersionValue.getText();
+            iosScrollUpAndDownToElement(txtEnvironmentValue, "up");
+            newEnvironment = txtEnvironmentValue.getText();
+            iosScrollUpAndDownToElement(txtNearByPermissionValue, "up");
+            newDeviceModel = txtDeviceModelValue.getText();
+            newOSVersion = txtOSVersionValue.getText();
+            newBLEInfo = txtBleInfoValue.getText();
+            newNFCInfo = txtNfcInfoValue.getText();
+            newLocationInfo = txtLocationInfoValue.getText();
+            newNearByPermission = txtNearByPermissionValue.getText();
+        } catch (Exception e) {
+            System.out.println("oldApkAboutValues12To13 " + e);
+            TestUtils.log().info("Getting Exception while verifying the About info of the app ...");
+        }
+        return new String[]{newMobileAccessVersion, newOrigoSDKVersion, newDoorOpeningMode, newEndPointStatus, newSeosID, newEndPointAppVersion, newEnvironment, newDeviceModel, newOSVersion, newBLEInfo, newNFCInfo, newLocationInfo, newNearByPermission};
+
+    }
+
+    public String[] newerAboutInfo() {
+        String platformVersion = DriverManager.getPlatformVersion();
+        String[] newApkAboutValues = new String[0];
+        try {
+            if (platformVersion.equalsIgnoreCase("9") || platformVersion.equalsIgnoreCase("10") || platformVersion.equalsIgnoreCase("11")) {
+                newApkAboutValues = newApkAboutValues9to11();
             } else if (platformVersion.equalsIgnoreCase("12") || platformVersion.equalsIgnoreCase("13")) {
-                compareAboutInfoForVersion12to13();
+                newApkAboutValues = newApkAboutValues12To13();
             } else {
                 TestUtils.log().info("Wrong version....");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             TestUtils.log().info("Getting Exception while comparing the About info of the app after the upgrade ...");
         }
+        return newApkAboutValues;
     }
 
-    public void compareAboutInfoForVersion9to11(){
-        try{
-            String mobileAccessVersion = checkAboutInfoForVersion9to11()[0];
-            String origoSDKVersion = checkAboutInfoForVersion9to11()[1];
-            String doorOpeningMode = checkAboutInfoForVersion9to11()[2];
-            String endPointStatus = checkAboutInfoForVersion9to11()[3];
-            String seosID = checkAboutInfoForVersion9to11()[4];
-            String endPointAppVersion = checkAboutInfoForVersion9to11()[5];
-            String environment = checkAboutInfoForVersion9to11()[6];
-            String deviceModel = checkAboutInfoForVersion9to11()[7];
-            String OSVersion = checkAboutInfoForVersion9to11()[8];
-            String BLEInfo = checkAboutInfoForVersion9to11()[9];
-            String NFCInfo = checkAboutInfoForVersion9to11()[10];
-            String locationInfo = checkAboutInfoForVersion9to11()[11];
-            String locationPermission = checkAboutInfoForVersion9to11()[12];
-
-            String newMobileAccessVersion = txtHIDMobileAccessVersionValue.getText();
-            String newOrigoSDKVersion = txtHIDOrigoSDKVersionValue.getText();
-            String newDoorOpeningMode = txtDoorOpeningModeValue.getText();
-            String newEndPointStatus = txtEndPointStatusValue.getText();
-            String newSeosID = txtSeosIDValue.getText();
-            scrollDownTillElement(100,2);
-            String newEndPointAppVersion = txtEndPointAppVersionValue.getText();
-            scrollDownTillElement(100,2);
-            String newEnvironment = txtEnvironmentValue.getText();
-            String newDeviceModel = txtDeviceModelValue.getText();
-            String newOSVersion = txtOSVersionValue.getText();
-            String newBLEInfo = txtBleInfoValue.getText();
-            String newNFCInfo = txtNfcInfoValue.getText();
-            String newLocationInfo = txtLocationInfoValue.getText();
-            String newLocationPermission = txtNearByPermissionValue.getText();
-
-            Assert.assertEquals(mobileAccessVersion, newMobileAccessVersion);
-            TestUtils.log().info("mobileAccessVersion is same");
-
-            Assert.assertEquals(origoSDKVersion, newOrigoSDKVersion);
-            TestUtils.log().info("origoSDKVersion is same");
-
-            Assert.assertEquals(doorOpeningMode, newDoorOpeningMode);
-            TestUtils.log().info("doorOpeningMode is same");
-
-            Assert.assertEquals(endPointStatus, newEndPointStatus);
-            TestUtils.log().info("endPointStatus is same");
-
-            Assert.assertEquals(seosID, newSeosID);
-            TestUtils.log().info("seosID is same");
-
-            Assert.assertEquals(endPointAppVersion, newEndPointAppVersion);
-            TestUtils.log().info("endPointAppVersion is same");
-
-            Assert.assertEquals(environment, newEnvironment);
-            TestUtils.log().info("environment is same");
-
-            Assert.assertEquals(deviceModel, newDeviceModel);
-            TestUtils.log().info("deviceModel is same");
-
-            Assert.assertEquals(OSVersion, newOSVersion);
-            TestUtils.log().info("OSVersion is same");
-
-            Assert.assertEquals(BLEInfo, newBLEInfo);
-            TestUtils.log().info("BLEInfo is same");
-
-            Assert.assertEquals(NFCInfo, newNFCInfo);
-            TestUtils.log().info("NFCInfo is same");
-
-            Assert.assertEquals(locationInfo, newLocationInfo);
-            TestUtils.log().info("locationInfo is same");
-
-            Assert.assertEquals(locationPermission, newLocationPermission);
-            TestUtils.log().info("locationPermission is same");
-        }catch (Exception e){
-            System.out.println("compareAboutInfoForVersion9to11 "+e);
-            TestUtils.log().info("Getting Exception while comparing the About info of the app after the upgrade ...");
-        }
-    }
-
-    public void compareAboutInfoForVersion12to13(){
-        try{
-            iosScrollUpAndDownToElement(txtHIDMobileAccessVersion,"up");
-            String mobileAccessVersion = checkAboutInfoForVersion12To13()[0];
-            String origoSDKVersion = checkAboutInfoForVersion12To13()[1];
-            String doorOpeningMode = checkAboutInfoForVersion12To13()[2];
-            String endPointStatus = checkAboutInfoForVersion12To13()[3];
-            String seosID = checkAboutInfoForVersion12To13()[4];
-            String endPointAppVersion = checkAboutInfoForVersion12To13()[5];
-            String environment = checkAboutInfoForVersion12To13()[6];
-            String deviceModel = checkAboutInfoForVersion12To13()[7];
-            String OSVersion = checkAboutInfoForVersion12To13()[8];
-            String BLEInfo = checkAboutInfoForVersion12To13()[9];
-            String NFCInfo = checkAboutInfoForVersion12To13()[10];
-            String locationInfo = checkAboutInfoForVersion12To13()[11];
-            String nearbyPermission = checkAboutInfoForVersion12To13()[12];
-
-            isElementVisible(txtHIDMobileAccessVersionValue);
-            String newMobileAccessVersion = txtHIDMobileAccessVersionValue.getText();
-            String newOrigoSDKVersion = txtHIDOrigoSDKVersionValue.getText();
-            String newDoorOpeningMode = txtDoorOpeningModeValue.getText();
-            String newEndPointStatus = txtEndPointStatusValue.getText();
-            String newSeosID = txtSeosIDValue.getText();
-            iosScrollUpAndDownToElement(txtEndPointAppVersionValue,"up");
-            String newEndPointAppVersion = txtEndPointAppVersionValue.getText();
-            String newEnvironment = txtEnvironmentValue.getText();
-            iosScrollUpAndDownToElement(txtDeviceModelValue,"up");
-            String newDeviceModel = txtDeviceModelValue.getText();
-            String newOSVersion = txtOSVersionValue.getText();
-            iosScrollUpAndDownToElement(txtBleInfoValue,"up");
-            String newBLEInfo = txtBleInfoValue.getText();
-            String newNFCInfo = txtNfcInfoValue.getText();
-            iosScrollUpAndDownToElement(txtLocationInfoValue,"up");
-            String newLocationInfo = txtLocationInfoValue.getText();
-            String newNearByPermission = txtNearByPermissionValue.getText();
-
-            Assert.assertFalse(Boolean.parseBoolean(mobileAccessVersion),newMobileAccessVersion);
-            TestUtils.log().info("mobileAccessVersion is upgraded");
-
-//            Assert.assertEquals(mobileAccessVersion, newMobileAccessVersion);
-//            TestUtils.log().info("mobileAccessVersion is same");
-
-            Assert.assertFalse(Boolean.parseBoolean(origoSDKVersion), newOrigoSDKVersion);
-            TestUtils.log().info("origoSDKVersion is upgraded");
-
-//            Assert.assertEquals(origoSDKVersion, newOrigoSDKVersion);
-//            TestUtils.log().info("origoSDKVersion is same");
-
-            Assert.assertEquals(doorOpeningMode, newDoorOpeningMode);
-            TestUtils.log().info("doorOpeningMode is same");
-
-            Assert.assertEquals(endPointStatus, newEndPointStatus);
-            TestUtils.log().info("endPointStatus is same");
-
-            Assert.assertEquals(seosID, newSeosID);
-            TestUtils.log().info("seosID is same");
-
-            Assert.assertEquals(endPointAppVersion, newEndPointAppVersion);
-            TestUtils.log().info("endPointAppVersion is same");
-
-            Assert.assertEquals(environment, newEnvironment);
-            TestUtils.log().info("environment is same");
-
-            Assert.assertEquals(deviceModel, newDeviceModel);
-            TestUtils.log().info("deviceModel is same");
-
-            Assert.assertEquals(OSVersion, newOSVersion);
-            TestUtils.log().info("OSVersion is same");
-
-            Assert.assertEquals(BLEInfo, newBLEInfo);
-            TestUtils.log().info("BLEInfo is same");
-
-            Assert.assertEquals(NFCInfo, newNFCInfo);
-            TestUtils.log().info("NFCInfo is same");
-
-            Assert.assertEquals(locationInfo, newLocationInfo);
-            TestUtils.log().info("locationInfo is same");
-
-            Assert.assertEquals(nearbyPermission, newNearByPermission);
-            TestUtils.log().info("nearbyPermission is same");
 
 
-        }catch (Exception e){
-            System.out.println("compareAboutInfoForVersion12to13 "+e);
-            TestUtils.log().info("Getting Exception while comparing the About info of the app after the upgrade ...",e);
-        }
-    }
 
-    public void verifyBluetoothSensitivityMenu(){
+
+    public void verifyBluetoothSensitivityMenu() {
         try {
             scrollUpTillElement(txtBluetoothSensitivity, 1000, 0);
             waitForVisibility(txtBluetoothSensitivity);
@@ -1386,7 +962,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }
     }
 
-    public void clickOnBluetoothSensitivity(){
+    public void clickOnBluetoothSensitivity() {
         try {
             click(txtBluetoothSensitivity);
         } catch (Exception e) {
@@ -1394,7 +970,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }
     }
 
-    public void isBluetoothSensitivityPageDisplayed(){
+    public void isBluetoothSensitivityPageDisplayed() {
         try {
             waitForVisibility(txtBluetoothSensitivitytitle);
             Assert.assertTrue(isElementVisible(txtBluetoothSensitivitytitle));
@@ -1405,48 +981,48 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         }
     }
 
-    public void verifyBluetoothSensitivity(String strBLESensitivity, String strContent){
-        try{
+    public void verifyBluetoothSensitivity(String strBLESensitivity, String strContent) {
+        try {
             if (strBLESensitivity.equalsIgnoreCase(MessageConstants.BLE_HIGH)) {
                 click(rdoBLEHigh);
                 waitForGivenTime(1);
                 String strAttr1 = getElementAttribute(rdoBLEHigh, MessageConstants.CHECKED_MESSAGE);
                 String strAttr2 = getElementAttribute(rdoBLEMedium, MessageConstants.CHECKED_MESSAGE);
                 String strAttr3 = getElementAttribute(rdoBLELow, MessageConstants.CHECKED_MESSAGE);
-                TestUtils.log().info("Status for usage: {} is: {} ",strBLESensitivity, strAttr1);
+                TestUtils.log().info("Status for usage: {} is: {} ", strBLESensitivity, strAttr1);
                 Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
                 Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
                 Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
-                Assert.assertEquals(strContent,BLEHighDesc.getText());
+                Assert.assertEquals(strContent, BLEHighDesc.getText());
             } else if (strBLESensitivity.equalsIgnoreCase(MessageConstants.BLE_MEDIUM)) {
                 click(rdoBLEMedium);
                 waitForGivenTime(1);
                 String strAttr1 = getElementAttribute(rdoBLEHigh, MessageConstants.CHECKED_MESSAGE);
                 String strAttr2 = getElementAttribute(rdoBLEMedium, MessageConstants.CHECKED_MESSAGE);
                 String strAttr3 = getElementAttribute(rdoBLELow, MessageConstants.CHECKED_MESSAGE);
-                TestUtils.log().info("Status for usage: {} is: {} ",strBLESensitivity, strAttr2);
+                TestUtils.log().info("Status for usage: {} is: {} ", strBLESensitivity, strAttr2);
                 Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
                 Assert.assertEquals(strAttr2, MessageConstants.TRUE_MESSAGE);
                 Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
-                Assert.assertEquals(strContent,BLEMediumDesc.getText());
-            }else{
+                Assert.assertEquals(strContent, BLEMediumDesc.getText());
+            } else {
                 click(rdoBLELow);
                 waitForGivenTime(1);
                 String strAttr1 = getElementAttribute(rdoBLEHigh, MessageConstants.CHECKED_MESSAGE);
                 String strAttr2 = getElementAttribute(rdoBLEMedium, MessageConstants.CHECKED_MESSAGE);
                 String strAttr3 = getElementAttribute(rdoBLELow, MessageConstants.CHECKED_MESSAGE);
-                TestUtils.log().info("Status for usage: {} is: {} ",strBLESensitivity, strAttr3);
+                TestUtils.log().info("Status for usage: {} is: {} ", strBLESensitivity, strAttr3);
                 Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
                 Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
                 Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
-                Assert.assertEquals(strContent,BLELowDesc.getText());
+                Assert.assertEquals(strContent, BLELowDesc.getText());
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             TestUtils.log().debug("Exception occurred while verifying Bluetooth Sensitivity options...");
         }
     }
 
-    public void verifyIdentityPositioning(String OIPStatus){
+    public void verifyIdentityPositioning(String OIPStatus) {
         try {
             scrollUpTillElement(switchIdentityPositioning, 1000, 0);
             isElementVisible(switchIdentityPositioning);
@@ -1489,4 +1065,245 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
 
 //   ********************************************** code of Surrender sundarraj Ends *********************************************************
 
+    public String[] olderApkAppPreferenceValues12To13() {
+        String bluetoothValue = null;
+        String NFCValue = null;
+        String nearbyPermissionValue = null;
+        String alwaysModeValue = null;
+        String foregroundModeValue = null;
+        String unlockedModeValue = null;
+        String twistAndGoValue = null;
+        String nearByReadersValue = null;
+        String bluetoothSensitivityValue = null;
+        String showActivityValue = null;
+        String debugLogsValue = null;
+        String playSoundValue = null;
+        String vibrateValue = null;
+        try {
+            bluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
+            NFCValue = appPrefencesScreenPage.getTxtNFCStatusValue().getText();
+            nearbyPermissionValue = appPrefencesScreenPage.getTxtNearByPermissionStatusValue().getText();
+            alwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
+            foregroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getRdoUsageUnlocked(), "up");
+            unlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
+            twistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement (appPrefencesScreenPage.getTxtNearbyReaderStatusValue(), "up");
+            nearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getText();
+            bluetoothSensitivityValue = appPrefencesScreenPage.getBluetoothSensitivityLevel().getText();
+            showActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchDebugLogs(), "up");
+            debugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            playSoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            vibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtBluetooth(), "down");
+
+        } catch (Exception e) {
+            System.out.println("olderApkValues12To13 " + e);
+        }
+        return new String[]{bluetoothValue, NFCValue, nearbyPermissionValue, alwaysModeValue, foregroundModeValue, unlockedModeValue, twistAndGoValue, nearByReadersValue, bluetoothSensitivityValue, showActivityValue, debugLogsValue, playSoundValue, vibrateValue};
+
+    }
+
+    public String[] olderApkAppPreferenceValues9() {
+        String bluetoothValue = null;
+        String locationValue = null;
+        String locationPermissionValue = null;
+        String alwaysModeValue = null;
+        String foregroundModeValue = null;
+        String unlockedModeValue = null;
+        String twistAndGoValue = null;
+        String nearByReadersValue = null;
+        String showActivityValue = null;
+        String debugLogsValue = null;
+        String playSoundValue = null;
+        String vibrateValue = null;
+        try {
+            bluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
+            locationValue = appPrefencesScreenPage.getTxtLocationStatusValue().getText();
+            locationPermissionValue = appPrefencesScreenPage.getTxtLocationPermStatusValue().getText();
+            alwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getRdoUsageAlways(), "up");
+            foregroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
+            unlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
+            twistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtNearbyReaderStatusValue(), "up");
+            nearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            showActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchDebugLogs(), "up");
+            debugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            playSoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            vibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
+        } catch (Exception e) {
+            System.out.println("olderApkValues9 " + e);
+        }
+        return new String[]{bluetoothValue, locationValue, locationPermissionValue, alwaysModeValue, foregroundModeValue, unlockedModeValue, twistAndGoValue, nearByReadersValue, showActivityValue, debugLogsValue, playSoundValue, vibrateValue};
+    }
+
+    public String[] olderApkAppPreferenceValues10To11() {
+        String bluetoothValue = null;
+        String NFCValue = null;
+        String locationValue = null;
+        String locationPermissionValue = null;
+        String alwaysModeValue = null;
+        String foregroundModeValue = null;
+        String unlockedModeValue = null;
+        String twistAndGoValue = null;
+        String nearByReadersValue = null;
+        String showActivityValue = null;
+        String debugLogsValue = null;
+        String playSoundValue = null;
+        String vibrateValue = null;
+        try {
+            bluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
+            NFCValue = appPrefencesScreenPage.getTxtNFCStatusValue().getText();
+            locationValue = appPrefencesScreenPage.getTxtLocationStatusValue().getText();
+            locationPermissionValue = appPrefencesScreenPage.getTxtLocationPermStatusValue().getText();
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getRdoUsageAlways(), "up");
+            alwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
+            foregroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
+            unlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
+            twistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtNearbyReaderStatusValue(), "up");
+            nearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            showActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchDebugLogs(), "up");
+            debugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            playSoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            vibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
+        } catch (Exception e) {
+            System.out.println("olderApkValues10To11 " + e);
+        }
+        return new String[]{bluetoothValue, NFCValue, locationValue, locationPermissionValue, alwaysModeValue, foregroundModeValue, unlockedModeValue, twistAndGoValue, nearByReadersValue, showActivityValue, debugLogsValue, playSoundValue, vibrateValue};
+    }
+
+    public String[] newerApkAppPreferenceValues12To13() {
+        String newBluetoothValue = null;
+        String newNFCValue = null;
+        String newNearbyPermissionValue = null;
+        String newAlwaysModeValue = null;
+        String newForegroundModeValue = null;
+        String newUnlockedModeValue = null;
+        String newTwistAndGoValue = null;
+        String newNearByReadersValue = null;
+        String newBluetoothSensitivityValue = null;
+        String newShowActivityValue = null;
+        String newDebugLogsValue = null;
+        String newPlaySoundValue = null;
+        String newVibrateValue = null;
+        try {
+            newBluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
+            newNFCValue = appPrefencesScreenPage.getTxtNFCStatusValue().getText();
+            newNearbyPermissionValue = appPrefencesScreenPage.getTxtNearByPermissionStatusValue().getText();
+            newAlwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
+            newForegroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getRdoUsageUnlocked(), "up");
+            newUnlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
+            newTwistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtNearbyReaderStatusValue(), "up");
+            newNearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getText();
+            newBluetoothSensitivityValue = appPrefencesScreenPage.getBluetoothSensitivityLevel().getText();
+            newShowActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchDebugLogs(), "up");
+            newDebugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            newPlaySoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            newVibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtBluetooth(), "down");
+
+        } catch (Exception e) {
+            System.out.println("newerApkValues12To13 " + e);
+        }
+        return new String[]{newBluetoothValue, newNFCValue, newNearbyPermissionValue, newAlwaysModeValue, newForegroundModeValue, newUnlockedModeValue, newTwistAndGoValue, newNearByReadersValue, newBluetoothSensitivityValue, newShowActivityValue, newDebugLogsValue, newPlaySoundValue, newVibrateValue};
+    }
+
+    public String[] newerApkAppPreferenceValues9() {
+        String newBluetoothValue = null;
+        String newLocationValue = null;
+        String newLocationPermissionValue = null;
+        String newAlwaysModeValue = null;
+        String newForegroundModeValue = null;
+        String newUnlockedModeValue = null;
+        String newTwistAndGoValue = null;
+        String newNearByReadersValue = null;
+        String newShowActivityValue = null;
+        String newDebugLogsValue = null;
+        String newPlaySoundValue = null;
+        String newVibrateValue = null;
+        try {
+            newBluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
+            newLocationValue = appPrefencesScreenPage.getTxtLocationStatusValue().getText();
+            newLocationPermissionValue = appPrefencesScreenPage.getTxtLocationPermStatusValue().getText();
+            newAlwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getRdoUsageAlways(), "up");
+            newForegroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
+            newUnlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
+            newTwistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtNearbyReaderStatusValue(), "up");
+            newNearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            newShowActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchDebugLogs(), "up");
+            newDebugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            newPlaySoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            newVibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
+        } catch (Exception e) {
+            System.out.println("olderApkValues9 " + e);
+        }
+        return new String[]{newBluetoothValue, newLocationValue, newLocationPermissionValue, newAlwaysModeValue, newForegroundModeValue, newUnlockedModeValue, newTwistAndGoValue, newNearByReadersValue, newShowActivityValue, newDebugLogsValue, newPlaySoundValue, newVibrateValue};
+    }
+
+    public String[] newerApkAppPreferenceValues10To11() {
+        String newBluetoothValue = null;
+        String newNFCValue = null;
+        String newLocationValue = null;
+        String newLocationPermissionValue = null;
+        String newAlwaysModeValue = null;
+        String newForegroundModeValue = null;
+        String newUnlockedModeValue = null;
+        String newTwistAndGoValue = null;
+        String newNearByReadersValue = null;
+        String newShowActivityValue = null;
+        String newDebugLogsValue = null;
+        String newPlaySoundValue = null;
+        String newVibrateValue = null;
+        try {
+            newBluetoothValue = appPrefencesScreenPage.getTxtBluetoothStatusValue().getText();
+            newNFCValue = appPrefencesScreenPage.getTxtNFCStatusValue().getText();
+            newLocationValue = appPrefencesScreenPage.getTxtLocationStatusValue().getText();
+            newLocationPermissionValue = appPrefencesScreenPage.getTxtLocationPermStatusValue().getText();
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getRdoUsageAlways(), "up");
+            newAlwaysModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageAlways(), MessageConstants.CHECKED_MESSAGE);
+            newForegroundModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageForeground(), MessageConstants.CHECKED_MESSAGE);
+            newUnlockedModeValue = getElementAttribute(appPrefencesScreenPage.getRdoUsageUnlocked(), MessageConstants.CHECKED_MESSAGE);
+            newTwistAndGoValue = appPrefencesScreenPage.getSwitchTwistGo().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getTxtNearbyReaderStatusValue(), "up");
+            newNearByReadersValue = appPrefencesScreenPage.getTxtNearbyReaderStatusValue().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            newShowActivityValue = appPrefencesScreenPage.getSwitchShowActivity().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            iosScrollUpAndDownToElement(appPrefencesScreenPage.getSwitchDebugLogs(), "up");
+            newDebugLogsValue = appPrefencesScreenPage.getSwitchDebugLogs().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            newPlaySoundValue = appPrefencesScreenPage.getSwitchPlayAndSound().getAttribute(MessageConstants.CHECKED_MESSAGE);
+            newVibrateValue = appPrefencesScreenPage.getSwitchVibrate().getAttribute(MessageConstants.CHECKED_MESSAGE);
+        } catch (Exception e) {
+            System.out.println("newerApkValues10To11 " + e);
+        }
+        return new String[]{newBluetoothValue, newNFCValue, newLocationValue, newLocationPermissionValue, newAlwaysModeValue, newForegroundModeValue, newUnlockedModeValue, newTwistAndGoValue, newNearByReadersValue, newShowActivityValue, newDebugLogsValue, newPlaySoundValue, newVibrateValue};
+    }
+
+    public void compareValues(String[] olderApkValues, String[] newerApkValues) {
+        Assert.assertEquals(olderApkValues.length, (newerApkValues.length));
+
+        // Compare each value
+        for (int i = 0; i < olderApkValues.length; i++) {
+            try {
+                Assert.assertEquals(olderApkValues[i], newerApkValues[i]);
+                System.out.println("Mismatch in values at index " + i + ": Older = " + olderApkValues [i] + ", Newer = " + newerApkValues[i]);
+            } catch (AssertionError e) {
+                // Log the mismatched values
+                System.out.println("Mismatch in values at index " + i + ": Older = " + olderApkValues [i] + ", Newer = " + newerApkValues[i]);
+            }
+        }
+    }
+
 }
+
+
+
