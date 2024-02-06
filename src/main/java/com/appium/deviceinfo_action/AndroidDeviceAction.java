@@ -613,7 +613,6 @@ public class AndroidDeviceAction {
             } else {
                 switch (strAppState) {
                     case "Foreground" -> {
-                        basePage.waitForGivenTime(7);
                         sendAppToForeground(strAppPackage, strUdid);
                         TestUtils.log().info("Application set to {} state ", strAppState);
                     }
