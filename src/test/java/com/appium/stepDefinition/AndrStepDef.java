@@ -477,6 +477,7 @@ public class AndrStepDef extends BasePage {
     @Then("Legal Screen is displayed in android device")
     public void verifyLegalScreen() {
         settingsScreen.clickOnLegalScreen();
+        waitForGivenTime(1);
         settingLegalScreenPage.isLegalScreenPageDisplayed();
         settingLegalScreenPage.verifyEndUserLicenseScreenPageDisplayed();
         settingLegalScreenPage.verifyPrivacyNoticeScreenPageDisplayed();
