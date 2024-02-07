@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@ANDR_upgrade")
+        , tags = "@ANDR_Settings_12_WF4")
 
 public class Andr12_SettingsScenario_Runner extends BaseTest {
 
