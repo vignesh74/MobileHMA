@@ -117,7 +117,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertBtn")
     private MobileElement settingsAlertBtn;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Let app always run in background?']")
+    @AndroidFindBy(id = "android:id/alertTitle")
     private MobileElement backgroundPermissionPopup;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Allow']")
@@ -560,6 +560,39 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
             loopHandle(txtPlayAndSound, "swipeUp", 5);
             if (usageType.equalsIgnoreCase(MessageConstants.ALWAYS_STRING)) {
                 click(rdoUsageAlways);
+                if(isDisplayed(batteryOptimizationTitle)){
+                    Assert.assertTrue(true, "The Battery Optimization Title  is  displayed...");
+                    TestUtils.log().info("The BG Permission Popup  is  displayed...");
+                    click(settingsAlertBtn);
+                    if(isDisplayed(backgroundPermissionPopup))
+                    {
+                        Assert.assertTrue(true, "The BG Permission Popup  is  displayed...");
+                        TestUtils.log().info("The BG Permission Popup  is  displayed...");
+                        click(allowBtnBGPerm);
+                    }
+                    else
+                    {
+                        Assert.assertTrue(false, "The BG Permission Popup  is not displayed...");
+                        TestUtils.log().info("The BG Permission Popup  is not displayed...");
+                    }
+                    waitForGivenTime(1);
+                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
+                    Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
+                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
+                    Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
+                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
+                }else{
+                    waitForGivenTime(1);
+                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
+                    Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
+                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
+                    Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
+                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
+                }
                 waitForGivenTime(1);
                 String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
                 String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
