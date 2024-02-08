@@ -18,9 +18,9 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Select the usage state as "<usage_state>" in android device
     And   Set Twist and Go status as "<Twist_And_Go>" in android device
     And   Set Application status as "<app_state>" in android device
-#    And   Set display screen as "<display_status>" in android device
     And   Verify "<usage_state>" always is disabled and other modes are enabled
     And   Set device state as force unlock "<device_state>" with "<app_state>" in android device
+    And   Set display screen as "<display_status>" with "<device_state>" in android device
     And   Perform robotic arm action as "<action_name>" for android device "<device_state>"
     Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
     Then Verify the log message "<mobile_read>" and "<message>" in Activity log screen in android device with "<app_state>"
@@ -244,7 +244,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Set Application status as "<app_state>" in android device
     And   Verify "<usage_state>" always is disabled and other modes are enabled
     And   Set device state as force unlock "<device_state>" with "<app_state>" in android device
-    And   Set display screen as "<display_status>" in android device
+    And   Set display screen as "<display_status>" with "<device_state>" in android device
     And   Verify "<usage_state>" always is disabled and other modes are enabled
     And   Perform robotic arm action as "<action_name>" for android device "<device_state>"
     Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
@@ -586,6 +586,7 @@ Feature:To Test Device Enforcement feature in HID mobile application
     And   Set Application status as "<app_state>" in android device
     And   Verify "<usage_state>" always is disabled and other modes are enabled
     And   Set device state as "<device_state>" in android device.
+    And   Set display screen as "<display_status>" with "<device_state>" in android device
     And   Perform robotic arm action as "<action_name>" for android device "<device_state>"
     And   Set device state as force unlock "<device_state>" with "<app_state>" in android device
     And   Set Application status as "Foreground" in android device
