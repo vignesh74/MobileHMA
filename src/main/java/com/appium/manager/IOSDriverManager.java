@@ -80,6 +80,7 @@ public class IOSDriverManager implements IDriver {
             capabilities.setCapability(DEVICE_NAME, deviceName);
             capabilities.setCapability(PLATFORM_NAME, MobilePlatform.IOS);
             capabilities.setCapability(AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
+            capabilities.setCapability(IOSMobileCapabilityType.LAUNCH_TIMEOUT, 500000);
 
             if (Boolean.TRUE.equals(installApp)) {
 

@@ -87,7 +87,7 @@ public class IOS_HIDHelpCenterScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Log file\"]", priority = 1)
     private MobileElement txtHelpCenterLogFile;
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Log file\"]|/XCUIElementTypeSwitch", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Log file\"]/XCUIElementTypeSwitch", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Log file\"]", priority = 1)
     private MobileElement tglBtnHelpCenterLogFile;
 
@@ -275,6 +275,21 @@ public class IOS_HIDHelpCenterScreenPage extends BasePage {
         } catch (Exception e) {
             
             TestUtils.log().info("Exception occurred while verifying support Screen...");
+        }
+    }
+
+    /**
+     * verifyAboutScreenDetails- This method is used to verify the About screen in details Date - 19/9/2023
+     */
+    public void verifyAboutScreenDetails(String Mode, String Env, String BLE, String LocSev) {
+        try {
+            waitForVisibility(txtHelpCenterAbout);
+            click(imgArrowHelpCenterAbout);
+            aboutScreen.aboutScreenVerify(Mode, Env, BLE, LocSev);
+            aboutScreen.clickOnAboutCopyButton();
+        } catch (Exception e) {
+
+            TestUtils.log().info("Exception occurred while verifying About Screen...");
         }
     }
 }

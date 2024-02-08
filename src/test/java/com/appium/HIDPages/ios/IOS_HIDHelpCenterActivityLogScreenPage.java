@@ -6,6 +6,10 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.testng.Assert;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
 
@@ -27,6 +31,9 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID Read\"])[1]//following-sibling::XCUIElementTypeStaticText[1]")
     private MobileElement txtTime;
 
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"TODAY\"]//following-sibling::XCUIElementTypeStaticText)[2]")
+    private MobileElement txtExpectedTime;
+
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"TODAY\"]//following-sibling::XCUIElementTypeStaticText)[3]")
     private MobileElement txtSuccessMessage;
 
@@ -36,6 +43,18 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"signoReader\"])[1]", priority = 0)
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"TODAY\"]//following-sibling:: XCUIElementTypeImage)[1]", priority = 1)
     private MobileElement imgReader;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID mismatch\"])[1]")
+    private MobileElement txtMobIDMismatch;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID mismatch\"])[1]//following-sibling::XCUIElementTypeStaticText[2]")
+    private MobileElement txtMobIDMismatchMsg;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID Read\"])[1]")
+    private MobileElement txtMobIDRead;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Mobile ID Read”])[1]//following-sibling::XCUIElementTypeStaticText[2]")
+    private MobileElement txtMobIDReadMsg;
 
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
@@ -210,6 +229,51 @@ public class IOS_HIDHelpCenterActivityLogScreenPage extends BasePage {
         } catch (Exception e) {
             
             TestUtils.log().info("Exception occurred while clicking on back to help center button...");
+        }
+    }
+
+    public void verifyLogMessage(String activityLog, String logMessage) {
+        try {
+            Assert.assertEquals(getTodayDate(), "TODAY");
+            Assert.assertEquals(getMobileIDRead(), activityLog);
+            Assert.assertEquals(getSuccessMessage(), logMessage);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while validating the log message in Activity log screen...");
+        }
+
+    }
+
+    public String getLogTime() {
+        String logTime = "";
+        try {
+            if (isDisplayed(txtExpectedTime)) {
+                logTime = getElementText(txtExpectedTime);
+            } else
+                TestUtils.log().info("Activity log time is not displayed");
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while getting Activity log time text...");
+        }
+        return logTime;
+    }
+
+    public void checkActivityLogTime(String timeExp, String timeAct){
+        try{
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            Date date1 = format.parse(timeExp);
+            Date date2 = format.parse(timeAct);
+            long difference = date2.getTime() - date1.getTime();
+            long timeInDifference = difference/1000;
+            TestUtils.log().info("timeInDifference: " + timeInDifference);
+
+            if(timeInDifference <= 15){
+                Assert.assertTrue(true,"Correct activity log");
+                TestUtils.log().info("correct activity time lesser than 15 seconds: " + timeInDifference);
+            }else{
+                Assert.assertFalse(false,"activity time is greater than 15 seconds");
+            }
+        }
+        catch (Exception e) {
+            TestUtils.log().info("Exception occurred while getting Activity log time text...");
         }
     }
 }

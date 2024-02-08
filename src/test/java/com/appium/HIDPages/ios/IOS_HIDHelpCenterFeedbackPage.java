@@ -30,6 +30,24 @@ public class IOS_HIDHelpCenterFeedbackPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Submit\"]")
     private MobileElement btnSubmitFeedback;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Information that you send to HID will be processed in accordance with the Privacy Policy that you have already accepted.\"]")
+    private MobileElement txtPolicyMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Message Body\"]/XCUIElementTypeOther//following-sibling::XCUIElementTypeButton")
+    private MobileElement btnLogFile;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Mail.cancelSendButton\"]")
+    private MobileElement btnCancelButton;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Mail.sendButton\"]")
+    private MobileElement btnSendButton;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Mail.compose.popoverAlert.deleteDraft\"]")
+    private MobileElement btnDeleteDraft;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"Horizontal scroll bar, 1 page\"])[2]")
+    private MobileElement txtLastPage;
+
+
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
      */
@@ -54,6 +72,30 @@ public class IOS_HIDHelpCenterFeedbackPage extends BasePage {
         return btnSubmitFeedback;
     }
 
+    public MobileElement getTxtPolicyMsg() {
+        return txtPolicyMsg;
+    }
+
+    public MobileElement getBtnLogFile() {
+        return btnLogFile;
+    }
+
+    public MobileElement getBtnCancelButton() {
+        return btnCancelButton;
+    }
+
+    public MobileElement getBtnSendButton() {
+        return btnSendButton;
+    }
+
+    public MobileElement getBtnDeleteDraft() {
+        return btnDeleteDraft;
+    }
+
+    public MobileElement getTxtLastPage() {
+        return txtLastPage;
+    }
+
     /**
      * isFeedbackScreenDisplayed- This method is used to verify the feedback screen is displayed or not Date-25/1/2023
      */
@@ -61,6 +103,7 @@ public class IOS_HIDHelpCenterFeedbackPage extends BasePage {
         try {
             waitForVisibility(txtFeedbackSupport);
             Assert.assertTrue(isElementVisible(txtBoxFeedbackDescribe));
+            Assert.assertTrue(isElementVisible(txtPolicyMsg));
             Assert.assertTrue(isElementVisible(lknFeedbackTermsOfUse));
             Assert.assertTrue(isElementVisible(btnSubmitFeedback));
         } catch (Exception e) {
@@ -75,7 +118,8 @@ public class IOS_HIDHelpCenterFeedbackPage extends BasePage {
     public void isSubmitFeedbackButtonEnable(String text) {
         try {
             if (!btnSubmitFeedback.isEnabled()) {
-                click(txtFeedbackSupport);
+                //click(txtFeedbackSupport);
+                click(txtBoxFeedbackDescribe);
                 sendKeys(txtBoxFeedbackDescribe, text);
                 Assert.assertTrue(btnSubmitFeedback.isEnabled());
                 clickOnBackToSupportScreen();
@@ -108,4 +152,49 @@ public class IOS_HIDHelpCenterFeedbackPage extends BasePage {
     public boolean getStatusSubmitFeedbackButton() {
         return btnSubmitFeedback.isEnabled();
     }
+
+    public void chkDebugLogFile(String log, String text) {
+        try {
+            if (!btnSubmitFeedback.isEnabled()) {
+                click(txtFeedbackSupport);
+                sendKeys(txtBoxFeedbackDescribe, text);
+                Assert.assertTrue(btnSubmitFeedback.isEnabled());
+                click(btnSubmitFeedback);
+                isLogFileDisplayed(log);
+                clickOnBackToSupportScreen();
+            } else {
+                TestUtils.log().info("Submit feedback button is failed to enable");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while enabling Feedback button...");
+        }
+    }
+
+    public void isLogFileDisplayed(String log) {
+        try {
+            Assert.assertTrue(isElementVisible(btnCancelButton));
+            Assert.assertTrue(isElementVisible(btnSendButton));
+            if(log.equals("Enable")) {
+                click(btnLogFile);
+                Assert.assertTrue(btnLogFile.isDisplayed());
+            }
+            else if (log.equals("Disable")) {
+                iOSScrollDownTillElement(txtLastPage);
+                Assert.assertFalse(btnLogFile.isDisplayed());
+            }
+            click(btnCancelButton);
+            click(btnDeleteDraft);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while clicking on back to support screen...");
+        }
+    }
+
+    public void chkSupportTermsOfUse() {
+        try {
+            click(lknFeedbackTermsOfUse);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while displaying Feedback screen...");
+        }
+    }
+
 }

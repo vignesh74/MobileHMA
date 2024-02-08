@@ -3,14 +3,19 @@ package com.appium.HIDPages.ios;
 import com.appium.base.BasePage;
 import com.appium.constants.MessageConstants;
 import com.appium.manager.DriverManager;
+import com.appium.restAPI.EnvironmentProperties;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
+
+import java.lang.reflect.Parameter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class IOS_HIDSettingsScreenPage extends BasePage {
     /**
@@ -74,10 +79,17 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Location Permissions, Never\"]", priority = 3)
     private MobileElement txtLocationPermission;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Settings\"]")
+    //Raji
+ //   @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Settings\"]")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name=\"Settings\"])[2]")
     private MobileElement btnSettingPopUpLocation;
 
-    @iOSXCUITFindBy(accessibility = "alertTitle")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Cancel\"]")
+    private MobileElement btnCancelPopUpLocation;
+
+    //Raji
+ //   @iOSXCUITFindBy(accessibility = "alertTitle")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[@name=\"We do not track your location. The app will use location services to optimize its ability to find nearby readers.\"]")
     private MobileElement txtPopUpAlertTitle;
 
     //2. MODE
@@ -95,6 +107,10 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//*[contains(@name,'Always, Use your Mobile ID when the app is in foreground or background or when your iPhone is locked')]", priority = 3)
     private MobileElement txtAlways;
 
+    //Always ratio button
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Use your Mobile ID when the app is in foreground or background or when your iPhone is locked\"]//following-sibling::XCUIElementTypeImage")
+    private MobileElement chkAlwaysBtn;
+
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @iOSXCUITFindBy(xpath = "//*[@name='Foreground']//following-sibling:: XCUIElementTypeImage", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Foreground, Only use your Mobile ID when the app is in foreground\"]", priority = 1)
@@ -108,6 +124,10 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//*[contains(@name,'Foreground')]", priority = 2)
     @iOSXCUITFindBy(xpath = "//*[contains(@name,'Foreground, Only use your Mobile ID when the app is in foreground')]", priority = 3)
     private MobileElement txtForeground;
+
+    //Foreground ration button
+    @iOSXCUITFindBy(xpath = "//*[@name='Foreground']//following-sibling::XCUIElementTypeImage")
+    private MobileElement chkForegroundBtn;
 
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @iOSXCUITFindBy(xpath = "//*[@name='Unlocked']//following-sibling:: XCUIElementTypeImage", priority = 0)
@@ -123,9 +143,13 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//*[contains(@name,'Unlocked, Only use your Mobile ID when your iPhone is unlocked')]", priority = 3)
     private MobileElement txtUnlocked;
 
+    //Unlocked ration button
+    @iOSXCUITFindBy(xpath = "//*[@name='Unlocked']//following-sibling::XCUIElementTypeImage")
+    private MobileElement chkUnlockedBtn;
+
     //3. Sounds and Vibration
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Play Sound\"]|/XCUIElementTypeSwitch", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Play Sound\"]/XCUIElementTypeSwitch", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Play Sound\"]", priority = 1)
     private MobileElement tglBtnPlayAndSound;
 
@@ -135,7 +159,7 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     private MobileElement txtPlayAndSound;
 
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Vibrate\"]|/XCUIElementTypeSwitch", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Vibrate\"]/XCUIElementTypeSwitch", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Vibrate\"]", priority = 1)
     private MobileElement tglBtnVibrate;
 
@@ -146,7 +170,7 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
 
     //4. Gestures
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Twist & Go\"]|/XCUIElementTypeSwitch", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Twist & Go\"]/XCUIElementTypeSwitch", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Twist & Go\"]", priority = 1)
     private MobileElement tglBtnTwistAndGo;
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
@@ -158,11 +182,13 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @iOSXCUITFindBy(xpath = "//*[@name='Help Centre']//following-sibling:: XCUIElementTypeStaticText", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Centre\"]", priority = 1)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Center\"]", priority = 2)
     private MobileElement txtHelpCenter;
 
     @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @iOSXCUITFindBy(xpath = "//*[@name='Help Centre']//following-sibling:: XCUIElementTypeImage", priority = 0)
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Centre\"]", priority = 1)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Help Center\"]", priority = 2)
     private MobileElement imgHelpCenter;
 
     //6. Deregister
@@ -174,9 +200,137 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"DEREGISTER\"]", priority = 1)
     private MobileElement imgDeregister;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Required by your administrator: app mode must be 'Foreground'\"]")
-    public MobileElement enforcedAlwaysTxt;
+    //Warning Banners
+    @iOSXCUITFindBy(accessibility = "Bluetooth Permission Required, Enable this to find readers nearby and use your Mobile ID over Bluetooth")
+    private MobileElement txtInfoMessageBLE;
 
+    @iOSXCUITFindBy(accessibility = "Location Permission Required, Enable this to find readers nearby")
+    private MobileElement txtInfoMessageLocPerm;
+
+    @iOSXCUITFindBy(accessibility = "Enable this to find readers nearby and use your Mobile ID over Bluetooth")
+    private MobileElement txtInfoBLEMsg;
+
+    @iOSXCUITFindBy(accessibility = "Enable this to find readers nearby")
+    private MobileElement txtInfoLocationMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Location Permission Required, Enable this to find readers nearby\"]//following-sibling::XCUIElementTypeImage")
+    private MobileElement chkLocFwdButton;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Bluetooth Permission Required, Enable this to find readers nearby and use your Mobile ID over Bluetooth\"]//following-sibling:: XCUIElementTypeImage")
+    private MobileElement chkBLEFwdButton;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[@name=\"Wi-Fi\"]//following-sibling::XCUIElementTypeStaticText[2]")
+    private MobileElement txtWIFIPermissionStatus;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[@name=\"Wi-Fi\"]//following-sibling::XCUIElementTypeButton")
+    private MobileElement btnWIFIchevron;
+
+    @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Wi‑Fi\"])[2]//following-sibling::XCUIElementTypeSwitch", priority = 1)
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Wi-Fi\"])[2]//following-sibling::XCUIElementTypeSwitch", priority = 0)
+    private MobileElement tglWIFISwitch;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Back\"]")
+    private MobileElement btnMobileIDBack;
+
+    //Deregister Pop Up
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Are you sure you want to deregister this phone?\"]")
+    private MobileElement txtDeregisterPopUp;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"All Mobile IDs will be deleted! This cannot be undone! Are you sure you want to deregister?\"]")
+    private MobileElement txtDeregisterMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Cancel\"]")
+    private MobileElement btnDeregisterCancel;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name=\"DEREGISTER\"])[2]")
+    private MobileElement btnDeregisterButton;
+
+    //Deregister Successful message
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Deregistration successful\"]")
+    private MobileElement txtDeregisterSuccess;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"All Mobile IDs have been deleted\"]")
+    private MobileElement txtDeregisterSuccessMsg;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
+    private MobileElement btnDeregisterSucessOK;
+
+    @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"No Internet connection.\"]", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"No Internet connection\"]", priority = 1)
+    private MobileElement txtNoInternetPopUp;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
+    private MobileElement btnNoInternetOKBtn;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"“HID Mobile Access” Crashed\"]")
+    private MobileElement txtAppCrash;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"No Thanks\"]")
+    private MobileElement btnNoThanks;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Share\"]")
+    private MobileElement btnShare;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[@name=\"Feedback\"]")
+    private MobileElement navBarFeedback;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Submit\"]")
+    private MobileElement btnSubmit;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Required by your administrator: app mode must be 'Foreground'\"]")
+    private MobileElement enforcedAlwaysTxt;
+
+    //NearBy Readers
+    @iOSXCUITFindBy(xpath = "\t\n" + "//XCUIElementTypeStaticText[@name=\"Nearby Readers\"]")
+    private MobileElement elementNearByReaders;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Nearby Readers\"]")
+    private MobileElement txtNearbyReader;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Nearby Readers\"])[1]")
+    private MobileElement txtNearbyReaderTitle;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"HID Signo\"]")
+    private MobileElement txtSignoReader;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"squareCheckmarkFilled\"])[1]")
+    private MobileElement txtSignoReaderCheckbox;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"HID iCLASS \\ multiCLASS SE Readers\"]")
+    private MobileElement txtRevEReader;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"squareCheckmarkFilled\"])[2]")
+    private MobileElement txtRevEReaderCheckbox;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Are you sure you want to change the selection?\"]")
+    private MobileElement txtalertTitle;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Disable\"]")
+    private MobileElement alertPositiveBtnRevE;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Disable Nearby Readers\"]")
+    private MobileElement alertPositiveBtnSigno;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name=\"Nearby Readers\"]/XCUIElementTypeSwitch")
+    private MobileElement nearByReaderTglBtn;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"When nearby, readers will be listed after refresh\"]")
+    private MobileElement noNearbyReaderText;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"signoReader\"]")
+    private MobileElement noNearbyReaderImg;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Manage\"]")
+    private MobileElement nearbyReaderManageBtn;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Favorite Readers\"]")
+    private MobileElement txtFavoriteReadersTitle;
+    @iOSXCUITFindBy(xpath = "\t\n" + "//XCUIElementTypeStaticText[@name=\"FAVORITE DOORS\"]")
+    private MobileElement txtFavoriteDoors;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"signoReader\"])[1]")
+    private MobileElement imgFavoriteReader;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"OTHER DOORS\"]")
+    private MobileElement txtOtherDoors;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name=\"signoReader\"])[2]")
+    private MobileElement imgOtherDoorsReader;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"You can choose a favorite door from the ones that you have already used Below there is a list of most recent used doors\"]")
+    private MobileElement txtFavoriteReaderInfo;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"icAboutInfo\"]")
+    private MobileElement nearbyReaderDataIcon;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"nearbyReader\"]")
+    private MobileElement onboardingScreen1;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Back\"]")
+    private MobileElement ImgBackBtn;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Mobile IDs\"]")
+    private MobileElement MobileIdsIcon;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"Mobile Access\"]/XCUIElementTypeWindow/XCUIElementTypeOther")
+    private MobileElement nearbyReadersList;
+
+    //XCUIElementTypeStaticText[@name="Welcome to HID Mobile Access"]
 
     /**
      * getter methods - These are getter methods for above mentioned mobile elements Date-25/1/2023
@@ -321,8 +475,86 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
         return txtPopUpAlertTitle;
     }
 
-    public MobileElement getBtnSettingPopUpLocation() {
-        return btnSettingPopUpLocation;
+    public MobileElement getBtnSettingPopUpLocation() { return btnSettingPopUpLocation; }
+
+    public MobileElement getTxtInfoMessageBLE() {
+        return txtInfoMessageBLE;
+    }
+
+    public MobileElement getTxtInfoMessageLocPerm() {
+        return txtInfoMessageLocPerm;
+    }
+
+    public MobileElement getTxtInfoBLEMsg() {
+        return txtInfoBLEMsg;
+    }
+
+    public MobileElement getTxtInfoLocationMsg() {
+        return txtInfoLocationMsg;
+    }
+
+    public MobileElement getChkLocFwdButton() {
+        return chkLocFwdButton;
+    }
+
+    public MobileElement getChkBLEFwdButton() {
+        return chkBLEFwdButton;
+    }
+
+    public MobileElement getTxtDeregisterPopUp() {
+        return txtDeregisterPopUp;
+    }
+
+    public MobileElement getTxtDeregisterMsg() {
+        return txtDeregisterMsg;
+    }
+
+    public MobileElement getBtnDeregisterCancel() {
+        return btnDeregisterCancel;
+    }
+
+    public MobileElement getBtnDeregisterButton() {
+        return btnDeregisterButton;
+    }
+
+    public MobileElement getTxtDeregisterSuccess() {
+        return txtDeregisterSuccess;
+    }
+
+    public MobileElement getTxtDeregisterSuccessMsg() {
+        return txtDeregisterSuccessMsg;
+    }
+
+    public MobileElement getBtnDeregisterSucessOK() {
+        return btnDeregisterSucessOK;
+    }
+
+    public MobileElement getTxtNoInternetPopUp() {
+        return txtNoInternetPopUp;
+    }
+
+    public MobileElement getBtnNoInternetOKBtn() {
+        return btnNoInternetOKBtn;
+    }
+
+    public MobileElement getTxtAppCrash() {
+        return txtAppCrash;
+    }
+
+    public MobileElement getBtnNoThanks() {
+        return btnNoThanks;
+    }
+
+    public MobileElement getBtnShare() {
+        return btnShare;
+    }
+
+    public MobileElement getNavBarFeedback() {
+        return navBarFeedback;
+    }
+
+    public MobileElement getBtnSubmit() {
+        return btnSubmit;
     }
 
     /**
@@ -468,8 +700,12 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
     public void handlingSettingPopUp() {
         try {
             if (isDisplayed(txtPopUpAlertTitle)) {
-                click(btnSettingPopUpLocation);
-                switchToAnotherApp(ConfigLoader.getInstance().getiOSBundleID());
+                click(btnCancelPopUpLocation);
+                //click(btnSettingPopUpLocation);
+                //switchToAnotherApp(ConfigLoader.getInstance().getiOSBundleID());
+                if(isDisplayed(txtPopUpAlertTitle)) {
+                    click(btnCancelPopUpLocation);
+                }
             } else
                 TestUtils.log().info("Turn on location pop-up is not displayed");
         } catch (Exception e) {
@@ -491,27 +727,48 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
                 if (DriverManager.getPlatformVersion().contains("14")) {
                     TestUtils.log().info("{} as {}",MessageConstants.MODE_SET_AS_STRING,txtUnlocked);
                 } else {
-                    Assert.assertTrue(chkUnlocked.isSelected());
+                    String strAlways = getElementText(chkAlwaysBtn);
+                    String strForeground = getElementText(chkForegroundBtn);
+                    String strUnlocked = getElementText(chkUnlockedBtn);
+                    Assert.assertEquals(strAlways,"circle");
+                    Assert.assertEquals(strForeground,"circle");
+                    Assert.assertEquals(strUnlocked,"roundedCheckmarkFilled");
+
+                    /*Assert.assertTrue(chkUnlocked.isSelected());
                     Assert.assertFalse(chkForeground.isSelected());
-                    Assert.assertFalse(chkAlways.isSelected());
+                    Assert.assertFalse(chkAlways.isSelected());*/
                 }
             } else if (getElementText(txtForeground).contains(mode)) {
                 click(chkForeground);
                 if (DriverManager.getPlatformVersion().contains("14")) {
                     TestUtils.log().info("{} as {}",MessageConstants.MODE_SET_AS_STRING,txtForeground);
                 } else {
-                    Assert.assertTrue(chkForeground.isSelected());
+                    String strAlways = getElementText(chkAlwaysBtn);
+                    String strForeground = getElementText(chkForegroundBtn);
+                    String strUnlocked = getElementText(chkUnlockedBtn);
+                    Assert.assertEquals(strAlways,"circle");
+                    Assert.assertEquals(strForeground,"roundedCheckmarkFilled");
+                    Assert.assertEquals(strUnlocked,"circle");
+
+                    /*Assert.assertTrue(chkForeground.isSelected());
                     Assert.assertFalse(chkUnlocked.isSelected());
-                    Assert.assertFalse(chkAlways.isSelected());
+                    Assert.assertFalse(chkAlways.isSelected());*/
                 }
             } else if (getElementText(txtAlways).contains(mode)) {
                 click(chkAlways);
                 if (DriverManager.getPlatformVersion().contains("14")) {
                     TestUtils.log().info("{} as {}",MessageConstants.MODE_SET_AS_STRING,txtAlways);
                 } else {
-                    Assert.assertTrue(chkAlways.isSelected());
+                    String strAlways = getElementText(chkAlwaysBtn);
+                    String strForeground = getElementText(chkForegroundBtn);
+                    String strUnlocked = getElementText(chkUnlockedBtn);
+                    Assert.assertEquals(strAlways,"roundedCheckmarkFilled");
+                    Assert.assertEquals(strForeground,"circle");
+                    Assert.assertEquals(strUnlocked,"circle");
+
+                   /* Assert.assertTrue(chkAlways.isSelected());
                     Assert.assertFalse(chkForeground.isSelected());
-                    Assert.assertFalse(chkUnlocked.isSelected());
+                    Assert.assertFalse(chkUnlocked.isSelected());*/
                 }
             } else {
                 TestUtils.log().info("Please select the correct Mode value");
@@ -664,19 +921,201 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             click(imgHelpCenter);
             helpCenterSettingScreen.isHelpCenterScreenDisplayed();
         } catch (Exception e) {
-            
             TestUtils.log().info("Exception occurred while verifying help center screen...");
         }
     }
 
-    public void clickOnDeregister(){
-        try{
+    public void verifyWarningBanners(String strMode, String BLE, String Location) {
+        try {
+                switch (strMode) {
+                    case "Always" -> {
+                        if(BLE.equals("Allowed")){
+                            if(Location.equals("Never") | Location.equals("While using the app")){
+                                checkLocationPermBanner();
+                            } else if (Location.equals("Always")) {
+                                Assert.assertFalse(isElementVisible(txtInfoMessageLocation));
+                            }
+                        } else if (BLE.equals("Denied")) {
+                            if(Location.equals("Never") | Location.equals("While using the app")){
+                                checkBLEPermBanner();
+                                checkLocationPermBanner();
+                            } else if (Location.equals("Always")) {
+                                checkBLEPermBanner();
+                            }
+                        }
+                    }
+                    case "Foreground" -> {
+                        if(BLE.equals("Allowed")){
+                            if(Location.equals("Never") | Location.equals("While using the app") | Location.equals("Always")){
+                                Assert.assertFalse(isElementVisible(txtInfoMessageLocation));
+                            }
+                        } else if (BLE.equals("Denied")) {
+                            if(Location.equals("Never") | Location.equals("While using the app") | Location.equals("Always")){
+                                checkBLEPermBanner();
+                            }
+                        }
+                    }
+                    case "Unlocked" -> {
+                        if(BLE.equals("Allowed")){
+                            if(Location.equals("Never") | Location.equals("While using the app")){
+                                checkLocationPermBanner();
+                            } else if (Location.equals("Always")) {
+                                Assert.assertFalse(isElementVisible(txtInfoMessageLocation));
+                            }
+                        } else if (BLE.equals("Denied")) {
+                            if(Location.equals("Never") | Location.equals("While using the app")){
+                                checkBLEPermBanner();
+                                checkLocationPermBanner();
+                            } else if (Location.equals("Always")) {
+                                checkBLEPermBanner();
+                            }
+                        }
+                    }
+                }
 
-        }catch (Exception e){
-            TestUtils.log().debug("Exception occurred while click on Deregister Tab");
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the warning banners in settings screen...");
         }
     }
 
+    public void checkLocationPermBanner() {
+        try {
+            Assert.assertTrue(isElementVisible(txtInfoMessageLocPerm));
+            Assert.assertTrue(isElementVisible(txtLocationNotAsAlwaysError));
+            Assert.assertTrue(isElementVisible(txtInfoLocationMsg));
+            Assert.assertTrue(isElementVisible(chkLocFwdButton));
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the location permission banner in settings screen...");
+        }
+    }
+
+    public void checkBLEPermBanner() {
+        try {
+            Assert.assertTrue(isElementVisible(txtInfoMessageBLE));
+            Assert.assertTrue(isElementVisible(txtBluetoothOffError));
+            Assert.assertTrue(isElementVisible(txtInfoBLEMsg));
+            Assert.assertTrue(isElementVisible(chkBLEFwdButton));
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the BLE permission banner in settings screen...");
+        }
+    }
+
+    public void setWifiStatus(String strInternet) {
+        try {
+            click(imgBluetoothPermissionStatus);
+            click(tabSettings);
+
+            if (getElementText(txtWIFIPermissionStatus).contains(strInternet)) {
+                TestUtils.log().info("WIFI already set as {}", strInternet);
+            } else {
+                click(btnWIFIchevron);
+                click(tglWIFISwitch);
+                click(tabSettings);
+                Assert.assertTrue(getElementText(txtWIFIPermissionStatus).contains(strInternet));
+                switchToAnotherApp(ConfigLoader.getInstance().getiOSBundleID());
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying the No Internet Error msg...");
+        }
+    }
+
+    public void setWifiStatusON() {
+        try {
+            click(imgBluetoothPermissionStatus);
+            click(tabSettings);
+            if (getElementText(txtWIFIPermissionStatus).contains("Off")) {
+                click(btnWIFIchevron);
+                click(tglWIFISwitch);
+                click(tabSettings);
+                Assert.assertNotEquals(getElementText(txtWIFIPermissionStatus),"Off");
+                switchToAnotherApp(ConfigLoader.getInstance().getiOSBundleID());
+            } else {
+                TestUtils.log().info("WIFI already connected to some network...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying the No Internet Error msg...");
+        }
+    }
+
+    public void clickOnDegisterSetting() {
+        try {
+            iOSScrollDownTillElement(txtDeregister);
+            isElementVisible(txtDeregister);
+            Assert.assertTrue(isElementVisible(imgDeregister));
+            click(txtDeregister);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while clicking the Deregister in setting screen...");
+        }
+    }
+
+    public void verifyDeregisterPopUp() {
+        try {
+            if(txtDeregisterPopUp.isDisplayed()) {
+                Assert.assertTrue(isElementVisible(txtDeregisterMsg));
+                Assert.assertTrue(isElementVisible(btnDeregisterCancel));
+                Assert.assertTrue(isElementVisible(btnDeregisterButton));
+                click(btnDeregisterCancel);
+                click(txtDeregister);
+                click(btnDeregisterButton);
+            } else {
+                TestUtils.log().info("Deregister pop up is not displayed...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the Deregistered pop up in settings screen...");
+        }
+    }
+
+    public void deregisterSuccessfulPopUp() {
+        try {
+            waitForVisibility(txtDeregisterSuccess);
+            if(txtDeregisterSuccess.isDisplayed()) {
+                Assert.assertTrue(isElementVisible(txtDeregisterSuccessMsg));
+                Assert.assertTrue(isElementVisible(btnDeregisterSucessOK));
+                click(btnDeregisterSucessOK);
+            } else {
+                TestUtils.log().info("Deregister Successful pop up is not displayed...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the Deregister successful pop up in settings screen...");
+        }
+    }
+
+    public void verifyNoInternetPopUp() {
+        try {
+            waitForVisibility(txtNoInternetPopUp);
+            if(txtNoInternetPopUp.isDisplayed()) {
+                Assert.assertTrue(isElementVisible(txtNoInternetPopUp));
+                Assert.assertTrue(isElementVisible(btnNoInternetOKBtn));
+                click(btnNoInternetOKBtn);
+            } else {
+                TestUtils.log().info("No Internet pop up is not displayed...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the No Internet pop up in settings screen...");
+        }
+    }
+
+    public void handlingAppCrashPopUp() {
+        try {
+            waitForVisibility(txtAppCrash);
+                if(txtAppCrash.isDisplayed()) {
+                    Assert.assertTrue(isElementVisible(btnNoThanks));
+                    Assert.assertTrue(isElementVisible(btnShare));
+                    for(int i = 1; i < 10; i++) {
+                        if(txtAppCrash.isDisplayed()) {
+                            click(btnNoThanks);
+                            waitForGivenTime(2000);
+                        }
+                    }
+                } else {
+                    TestUtils.log().info("App Crash pop up is not displayed: Great!...");
+                }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the App Crash pop up in Home screen...");
+        }
+    }
+
+    //Device Enforcement methods
     public void checkEnforcedSetting(String mode_state){
         if(mode_state == "Always"){
             String alwaysText = txtAlways.getText();
@@ -696,6 +1135,305 @@ public class IOS_HIDSettingsScreenPage extends BasePage {
             String unlockedAttribute = chkUnlocked.getAttribute("enabled");
             Assert.assertEquals(unlockedAttribute,true);
         }
-
     }
+
+    public static String verifyTime(String dateTime) {
+        String timeExp = "";
+        try {
+            String date = dateTime.replace("T", " ");
+            System.out.println(date);
+            String strTime = date.replace("+05:30", "");
+            System.out.println(strTime);
+            String strdate[] = strTime.split(" ");
+            String time = strdate[1];
+            System.out.println(time);
+
+            SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm:ss a");
+            Date _24HourDt = _24HourSDF.parse(time);
+            System.out.println(_12HourSDF.format(_24HourDt));
+            timeExp = _12HourSDF.format(_24HourDt);
+
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the No Internet pop up in settings screen...");
+        }
+        return timeExp.trim();
+    }
+
+    //NearBy Readers Methods
+    public void clickOnNearbyReaders() {
+        try {
+            scrollUpTillElement(elementNearByReaders, 1000, 0);
+            isElementVisible(elementNearByReaders);
+            click(elementNearByReaders);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking Nearby Readers tab...");
+        }
+    }
+
+    public void checkNearByReaderStatus(String strNearByReaderStatus) {
+        try {
+            scrollUpTillElement(txtNearbyReaderTitle, 1000, 0);
+            if (isElementVisible(txtNearbyReader)) {
+                TestUtils.log().debug("Nearby Reader toggle button is disabled in iOS device...");
+            } else {
+                TestUtils.log().debug("Nearby Reader toggle button is enabled in iOS device...");
+
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Nearby Reader Status...");
+        }
+    }
+
+    public void checkSignoReaderText() {
+        try {
+            isElementVisible(txtSignoReader);
+            TestUtils.log().debug("Signo Reader Text is Visible...");
+            isElementVisible(txtSignoReaderCheckbox);
+            TestUtils.log().debug("Signo Reader Checkbox is Visible...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Signo Readers tab...");
+        }
+    }
+
+    public void checkSignoReaderStatus(String SignoReader) {
+        try {
+            isDisplayed(txtSignoReaderCheckbox);
+            String SignoReaderCheckbox = getElementAttribute(txtSignoReaderCheckbox, "checked");
+            if (SignoReaderCheckbox.equalsIgnoreCase(SignoReader)) {
+                TestUtils.log().info("Signo Reader status is already set as Off");
+            } else {
+                TestUtils.log().info("Signo Reader status is already set as On");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Signo Readers Status...");
+        }
+    }
+
+    public void clickRevEReadercheckbox() {
+        try {
+            click(txtRevEReaderCheckbox);
+            TestUtils.log().debug("Able to clicking RevE Reader Checkbox...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking RevE Reader Checkbox...");
+        }
+    }
+
+    public void checkRevEReaderStatus(String RevEReader) {
+        try {
+            isDisplayed(txtRevEReader);
+            String RevEReaderCheckbox = getElementAttribute(txtRevEReaderCheckbox, "checked");
+            if (RevEReaderCheckbox.equalsIgnoreCase(RevEReader)) {
+                TestUtils.log().info("RevE Reader status is already set as Off");
+            } else {
+                TestUtils.log().info("RevE Reader status is already set as On");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking RevE Readers Status...");
+        }
+    }
+
+    public void disableRevEReadercheckbox() {
+        try {
+            click(txtRevEReaderCheckbox);
+            TestUtils.log().debug("Able to disable the RevEReader checkbox");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while disable RevE Reader Checkbox...");
+        }
+    }
+
+    public void checkAlertTitleText() {
+        try {
+            scrollUpTillElement(txtalertTitle, 1000, 0);
+            if (isElementVisible(txtalertTitle)) {
+                TestUtils.log().debug("AlertTitle pop up Text is Visible...");
+            } else {
+                TestUtils.log().debug("AlertTitle pop up Text is Invisible...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking AlertTitle pop up Text...");
+        }
+    }
+
+    public void clickAlertPositiveBtnRevE() {
+        try {
+            click(alertPositiveBtnRevE);
+            TestUtils.log().debug("Able to click alert Positive button RevE");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking alertPositiveBtn RevE...");
+        }
+    }
+
+    public void disableSignoReadercheckbox() {
+        try {
+            click(txtSignoReaderCheckbox);
+            TestUtils.log().debug("Able to disable Signo Reader checkbox");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while disable Signo Reader Checkbox...");
+        }
+    }
+
+    public void clickAlertPositiveBtnSigno() {
+        try {
+            click(alertPositiveBtnSigno);
+            TestUtils.log().debug("Able to click alert Positive button Signo");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking alertPositiveBtn Signo...");
+        }
+    }
+
+    public void clickOnNearbyReaderSwitch() {
+        try {
+            scrollUpTillElement(nearByReaderTglBtn, 1000, 0);
+            isElementVisible(nearByReaderTglBtn);
+            click(nearByReaderTglBtn);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking Nearby Readers Toggle button...");
+        }
+    }
+
+    public void verifyNearByReaders(String nearbyReaderCount) {
+        try {
+//            waitForVisibility(noNearbyReaderText);
+            int readerCount = Integer.parseInt(nearbyReaderCount);
+            if (readerCount > 0) {
+                TestUtils.log().info("NearbyReaders are present");
+            } else {
+                isDisplayed(noNearbyReaderText);
+                isDisplayed(noNearbyReaderImg);
+                isDisplayed(nearbyReaderManageBtn);
+                isDisplayed(nearbyReaderDataIcon);
+
+            }
+
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the nearby reader section");
+        }
+    }
+
+    public void verifyManageReaders(String nearbyReaderCount) {
+        try {
+            click(nearbyReaderManageBtn);
+            int readerCount = Integer.parseInt(nearbyReaderCount);
+            if (readerCount > 0) {
+                TestUtils.log().info("NearbyReaders are present");
+            } else {
+                isDisplayed(txtFavoriteReadersTitle);
+                isDisplayed(txtFavoriteDoors);
+                isDisplayed(imgFavoriteReader);
+                isDisplayed(txtOtherDoors);
+                isDisplayed(imgOtherDoorsReader);
+                isDisplayed(txtFavoriteReaderInfo);
+            }
+
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the manage reader section");
+        }
+    }
+
+    public void checkNearbyDataInfoIcon() {
+        try {
+            if (isElementVisible(nearbyReaderDataIcon)) {
+                TestUtils.log().info("Nearby Reader Info Icon is Visible..");
+                click(nearbyReaderDataIcon);
+            } else {
+                TestUtils.log().info("Nearby Reader Info Icon is Invisible..");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking the NearbyReadersInfoIcon..");
+        }
+    }
+
+    public void checkonboardingScreenOne() {
+        try {
+            if (isElementVisible(onboardingScreen1)) {
+                TestUtils.log().info("Onboarding Screen One is Visible..");
+            } else {
+                TestUtils.log().info("Onboarding Screen One is is Invisible..");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking Onboarding Screen One..");
+        }
+    }
+
+    public void onboardScreenNavigation() {
+        try {
+            swipeLeft(1);
+            swipeLeft(1);
+            TestUtils.log().info("Onboarding Screen is Navigable");
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while Onboarding Screen Navigable");
+            System.out.println("Exception occurred: " + e.getMessage());
+        }
+    }
+    public void clickImgBackBtn() {
+        try {
+            if (isElementVisible(ImgBackBtn)) {
+                click(ImgBackBtn);
+                TestUtils.log().debug("Able to click back button in Nearby Readers Page...");
+            } else {
+                TestUtils.log().debug("Unable to click back button in Nearby Readers Page...");
+
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking back button in Nearby Readers Page...");
+        }
+    }
+
+    public void clickOnMobileIdsIcon() {
+        try {
+            if (isElementVisible(MobileIdsIcon)) {
+                click(MobileIdsIcon);
+                TestUtils.log().debug("Able to click MobileIds Icon in Setting Page...");
+            } else {
+                TestUtils.log().debug("Unable to click MobileIds Icon in Setting Page...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking MobileIds Icon in Setting Page...");
+        }
+    }
+
+    public void checkNearbyReadersVisible() {
+        try {
+            if (isDisplayed(nearbyReadersList)) {
+                TestUtils.log().info("Nearby Readers Visible in home screen");
+//                List MobileElement elements=new getNearbyReadersList();
+            } else {
+                TestUtils.log().info("Nearby Readers not showing in home screen");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while checking Nearby Readers list in home screen");
+        }
+    }
+
+    public void collectSettingsDetails() {
+        try {
+            EnvironmentProperties.storeProp("BLE_iOS", getElementText(txtBluetoothPermissionStatus));
+            EnvironmentProperties.storeProp("LocPerm_iOS", getElementText(txtLocationPermission));
+            EnvironmentProperties.storeProp("Mode_Always_iOS", getElementText(chkAlwaysBtn));
+            EnvironmentProperties.storeProp("Mode_Foreground_iOS", getElementText(chkForegroundBtn));
+            EnvironmentProperties.storeProp("Mode_Unlocked_iOS", getElementText(chkUnlockedBtn));
+            EnvironmentProperties.storeProp("PlaySound_Toggle_iOS", tglBtnPlayAndSound.getAttribute(MessageConstants.VALUE_STRING));
+            EnvironmentProperties.storeProp("Vibrate_Toggle_iOS", tglBtnVibrate.getAttribute(MessageConstants.VALUE_STRING));
+            EnvironmentProperties.storeProp("TwistNGo_Toggle_iOS", tglBtnTwistAndGo.getAttribute(MessageConstants.VALUE_STRING));
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while validating the settings screen...");
+        }
+    }
+
+    public void verifyNewApp() {
+        try {
+            Assert.assertEquals(getElementText(txtBluetoothPermissionStatus),EnvironmentProperties.get("BLE_iOS"));
+            Assert.assertEquals(getElementText(txtLocationPermission),EnvironmentProperties.get("LocPerm_iOS"));
+            Assert.assertEquals(getElementText(chkAlwaysBtn),EnvironmentProperties.get("Mode_Always_iOS"));
+            Assert.assertEquals(getElementText(chkForegroundBtn),EnvironmentProperties.get("Mode_Foreground_iOS"));
+            Assert.assertEquals(getElementText(chkUnlockedBtn),EnvironmentProperties.get("Mode_Unlocked_iOS"));
+            Assert.assertEquals(tglBtnPlayAndSound.getAttribute(MessageConstants.VALUE_STRING),EnvironmentProperties.get("PlaySound_Toggle_iOS").toString());
+            Assert.assertEquals(tglBtnVibrate.getAttribute(MessageConstants.VALUE_STRING),EnvironmentProperties.get("Vibrate_Toggle_iOS").toString());
+            Assert.assertEquals(tglBtnTwistAndGo.getAttribute(MessageConstants.VALUE_STRING),EnvironmentProperties.get("TwistNGo_Toggle_iOS").toString());
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while validating the New app settings screen...");
+        }
+    }
+
 }
