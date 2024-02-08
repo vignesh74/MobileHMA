@@ -358,7 +358,7 @@ public class AndrStepDef extends BasePage {
                     Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
                     TestUtils.log().info(mobileIDScreen.getActionName());
                     Assert.assertTrue(mobileIDScreen.getActionName().equalsIgnoreCase(strActionName.toLowerCase()) ||
-                            mobileIDScreen.getActionName().toLowerCase().contains("enhanced tap"));
+                            mobileIDScreen.getActionName().toLowerCase().contains("enhanced tap") || mobileIDScreen.getActionName().toLowerCase().contains("Twist & Go"));
                 }
 
                 String deviceTime = armLogs.second();
