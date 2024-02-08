@@ -16,7 +16,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     And   Select the usage state as "<usage_state>" in android device
     And   Set Application status as "<app_state>" in android device
     And   Set device state as "<device_state>" in android device.
-#    And   Set display screen as "<display_status>" in android device
+    And   Set display screen as "<display_status>" with "<device_state>" in android device
     And   Perform robotic arm action as "<action_name>" for android device "<device_state>"
     And   Set device state as force unlock "<device_state>" with "<app_state>" in android device
     And   Set Application status as "Foreground" in android device

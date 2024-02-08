@@ -840,6 +840,11 @@ public class AndrStepDef extends BasePage {
         androidDeviceAction.setDeviceState_Android(strDeviceState);
     }
 
+    @And("Set display screen as {string} with {string} in android device")
+    public void setDisplayState(String displayStatus,String deviceState){
+        androidDeviceAction.setDisplayState(displayStatus,deviceState);
+    }
+
     @And("uninstall the app in android device")
     public void uninstall() {
         settingsScreen.uninstall();

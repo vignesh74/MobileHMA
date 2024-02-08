@@ -810,6 +810,24 @@ public class AndroidDeviceAction {
         }
     }
 
+    public void setDisplayState(String displayState,String deviceState){
+        try{
+            if(deviceState.equalsIgnoreCase("Locked")){
+                if(displayState.equalsIgnoreCase("On")){
+                    AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+                    driver.pressKey(new KeyEvent(AndroidKey.POWER));
+                }else{
+                    TestUtils.log().info("Display state is already OFF....");
+                }
+            }else{
+                TestUtils.log().info("Device is already in unlocked state....");
+            }
+        }catch(Exception e){
+            TestUtils.log().info("Exception while setting the display state....");
+        }
+
+    }
+
     public void lockUnlockDevice() {
         try {
             AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
