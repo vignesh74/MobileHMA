@@ -3,6 +3,8 @@ package com.appium.HIDPages.ios;
 import com.appium.base.BasePage;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.HowToUseLocators;
+import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.testng.Assert;
 
@@ -21,10 +23,14 @@ public class IOS_HIDHelpCenterLegalScreenPage extends BasePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name=\"imgTermsOfUse\"]")
     private MobileElement imgTermsOfUse;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"End User Licence Agreement\"]")
+    @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"End User Licence Agreement\"]", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"End User License Agreement\"]", priority = 1)
     private MobileElement lnkEndUserLicenceAgreement;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Privacy Notice\"]")
+    @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Privacy Notice\"]", priority = 0)
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Privacy Policy\"]", priority = 1)
     private MobileElement lnkPrivacyNotice;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"imgBack\"]")

@@ -19,7 +19,10 @@ public class CreateInvitationAPI {
         AuthenticationAPI.getAccessToken();
 
         JSONArray schemas = new JSONArray();
-        schemas.add("urn:hid:scim:api:ma:2.1:UserAction");
+        schemas.add("urn:hid:scim:api:ma:2.2:UserAction");
+
+        JSONObject objURN1 = new JSONObject();
+        objURN1.put("resourceType", "UserInvitation");
 
         JSONObject objURN = new JSONObject();
         objURN.put("createInvitationCode", "Y");
@@ -30,9 +33,11 @@ public class CreateInvitationAPI {
             objURN.put("assignCredential", "N");
         }
         objURN.put("partNumber",EnvironmentProperties.get("part-number"));
+
         JSONObject payLoad = new JSONObject();
         payLoad.put("schemas", schemas);
-        payLoad.put("urn:hid:scim:api:ma:2.1:UserAction", objURN);
+        payLoad.put("urn:hid:scim:api:ma:2.2:UserAction", objURN);
+        payLoad.put("meta", objURN1);
         config = config().encoderConfig(encoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false));
 
         String invitationUri = EnvironmentProperties.get("BASE_URL") + "/" + EnvironmentProperties.get("COMMON_SOURCE") + "/users/" + userId + "/invitation";
