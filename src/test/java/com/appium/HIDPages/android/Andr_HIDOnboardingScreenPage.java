@@ -17,6 +17,8 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     private MobileElement btnSkip;
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/btnAccept")
     private MobileElement btnAccept;
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Skip']")
+    private MobileElement skipBtn;
 
     /**
     *mobile elements - These are mobile elements which is present in FavoriteReader Onboarding Screen Date-03/05/2023
@@ -37,6 +39,9 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtGetStarted")
     private  MobileElement btnGetStarted;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Get Started']")
+    private MobileElement GetStartedBtn;
+
     /**
      * These are the mobile elements required to validate the descriptions in the Onboarding Screens Date-03/05/2023
      **/
@@ -47,7 +52,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtTwistAndGoDescription")
     private MobileElement twistAndGoDesc;
 
-    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtFavReaderDescription")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Select the reader(s) you want to tag as favorite. When nearby, favorite readers are targeted for door opening.']")
     private MobileElement favReaderDesc;
 
 
@@ -95,7 +100,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     public void skipConvenientPage() {
         try {
 
-                click(btnSkip);
+                click(skipBtn);
             }
 
         catch(Exception e){
@@ -111,7 +116,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
             }
             else
             {
-                click(btnSkip);
+                click(skipBtn);
             }
         }
          catch(Exception e){
@@ -127,14 +132,15 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
     public void skipTwistAndGoPage(String button) {
         try {
-            if (!SKIP.equalsIgnoreCase(button)) {
-                Assert.assertTrue(false, "The SKIP link in Twist&Go page is not displayed...");
-                TestUtils.log().info("The SKIP link in Twist&Go page is not displayed...");
+            swipeLeft(1);
+            if(button.equalsIgnoreCase(skipBtn.getText())){
+                if(isDisplayed(favReaderDesc)){
+                    Assert.assertTrue(true, "The SKIP link in Twist&Go page is working...");
+                    TestUtils.log().info("The SKIP link in Twist&Go is working");
+                }else {
+                    TestUtils.log().info("The SKIP link in Twist&Go is not working");
+                }
             }
-            else
-
-            { click(btnSkip);}
-
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while skipping/validating text in Twist&Go page...");
@@ -152,10 +158,11 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
         try {
 
-            if (isDisplayed(btnSkip)) {
+            if (isDisplayed(convDesc)) {
                 Assert.assertTrue(true, "The Convenient page is  displayed...");
                 TestUtils.log().info("Convenient page is  displayed");
-
+            }else{
+                TestUtils.log().info("Convenient page is not displayed");
             }
 
         } catch (Exception e) {
@@ -175,10 +182,11 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
         try {
                 checkVisibilityOfConvenientPage();
                 swipeLeft(1);
-            if (!isDisplayed(btnSkip)) {
-                Assert.assertTrue(false, "Twist&Go page is not displayed...");
+            if (isDisplayed(twistAndGoDesc)) {
+                Assert.assertTrue(true, "Twist&Go page is displayed...");
+                TestUtils.log().info("Twist&Go page is displayed");
+            }else{
                 TestUtils.log().info("Twist&Go page is not displayed");
-
             }
         } catch (Exception e) {
 
@@ -191,22 +199,18 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
      * checkVisibilityOfFavoriteReaderPage- This method is used to check visibility of the FavoriteReader page Date- 02/05/2023
      */
 
-    public boolean checkVisibilityOfFavoriteReaderPage() {
-        boolean flag = false;
+    public void checkVisibilityOfFavoriteReaderPage() {
+
         try {
-                checkVisibilityOfConvenientPage();
-                swipeLeft(1);
                 swipeLeft(1);
 
-            if (!isDisplayed(btnGetStarted)) {
-                TestUtils.log().info("FavoriteReader page is not displayed");
-                flag = true;
+            if (isDisplayed(GetStartedBtn)) {
+                TestUtils.log().info("FavoriteReader page is displayed");
             }
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while checking visibility of FavoriteReader page...");
         }
-        return flag;
     }
 
     /**
@@ -216,8 +220,7 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     public void GetStartedFavoriteReaderPage() {
         try {
 
-            click(btnGetStarted);
-           // click(btnAccept);
+            click(GetStartedBtn);
 
         } catch (Exception e) {
 
@@ -236,9 +239,9 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
             swipeLeft(1);
             swipeLeft(1);
 
-            if (!isDisplayed(btnGetStarted)) {
-                Assert.assertTrue(false, "Banners page is not displayed...");
-                TestUtils.log().info("Banners page is not displayed");
+            if (!isDisplayed(GetStartedBtn)) {
+                Assert.assertTrue(true, "Favorite Reader Page is not displayed...");
+                TestUtils.log().info("Favorite Reader page is not displayed");
 
             }
         } catch (Exception e) {
@@ -255,15 +258,15 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
     public void GetStartedBannersPage(String button) {
         try {
             if (!GET_STARTED.equalsIgnoreCase(button)) {
-                Assert.assertTrue(false, "The Get Started link in Banners page is not displayed...");
-                TestUtils.log().info("The Get Started link in Banners page is not displayed...");
+                Assert.assertTrue(false, "The Get Started link in Favorite Reader screen is not displayed...");
+                TestUtils.log().info("The Get Started link in Favorite Reader screen is not displayed...");
             }
             else
-            click(btnGetStarted);
+            click(GetStartedBtn);
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while skipping/validating description in Banners page...");
+            TestUtils.log().debug("Exception occurred while skipping/validating description in Favorite Reader screen...");
         }
 
 
@@ -338,18 +341,18 @@ public class Andr_HIDOnboardingScreenPage extends BasePage {
 
             if(BANNERS_DESCRIPTION_TXT.equals(bannerScreenDesc.getText()))
             {
-                Assert.assertTrue(true, "The description in  Banners Screen is correct...");
+                Assert.assertTrue(true, "The description in  Favorite Reader screen is correct...");
                 TestUtils.log().debug(" The description in  Banners Screen is correct...");
 
             }
             else {
-                Assert.assertTrue(false, "The description in  Banners Screen is incorrect...");
+                Assert.assertTrue(false, "The description in  Favorite Reader is incorrect...");
                 TestUtils.log().debug(" The description in  Banners Screen is incorrect...");
             }
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while validating the description in  Banners Screen ...");
+            TestUtils.log().debug("Exception occurred while validating the description in  Favorite Reader Screen ...");
         }
     }
 

@@ -10,6 +10,7 @@ import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.manager.DriverFactory;
 import com.appium.manager.DriverManager;
 import com.appium.utils.AppiumServerUtils;
+import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.AppiumDriver;
@@ -197,14 +198,17 @@ public class BaseTest extends AbstractTestNGCucumberTests {
     public void verifyDeviceStateAndUnlockDevice() {
         try {
             BasePage basePage = new BasePage();
+            String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
             AndroidDeviceAction androidDeviceAction = new AndroidDeviceAction();
             if ((DriverManager.getPlatform().equalsIgnoreCase(PLATFORM_ANDROID))) {
                 String strUdId = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
                 if (basePage.toKnowDeviceLockedState()) {
-                    androidDeviceAction.toUnlockDevice(strUdId);
+                    //androidDeviceAction.toUnlockDevice(strUdId);
+                    androidDeviceAction.unlockDeviceWithPin(mobilePin);
                     basePage.waitForGivenTime(2);
                     if (basePage.toKnowDeviceLockedState()) {
-                        androidDeviceAction.toUnlockDevice(strUdId);
+                        //androidDeviceAction.toUnlockDevice(strUdId);
+                        androidDeviceAction.unlockDeviceWithPin(mobilePin);
                         basePage.waitForGivenTime(2);
                         TestUtils.log().info("Device is unlocked and ready for execution");
                     }

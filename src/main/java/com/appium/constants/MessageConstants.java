@@ -14,7 +14,7 @@ public class MessageConstants {
     public static final String POPUP_NOT_AVAILABLE = "Popups not available !!!!!!";
     public static final String ALL_POPUP_HANDLED = "All the popups handled !!!!!!";
     public static final String ALWAYS_STRING = "Always";
-    public static final String ACTIVE_STRING = "Active";
+    public static final String FOREGROUND_STRING = "Foreground";
     public static final String UNLOCKED_STRING = "Unlocked";
     public static final String DISABLE_ENABLE_STRING = "Disable/Enable";
     public static final String ENABLE_DISABLE_STRING = "Enable/Disable";
@@ -46,6 +46,16 @@ public class MessageConstants {
     public static final String MESSAGE_CHECKBOX="I have read and agree to the End User License Agreement and Privacy Notice for this application.";
 
     public static final String CHECK_HEADER="Mobile ID Details";
+
+    public static final String CHECK_ORGCONTACTINFO = "Organization’s Contact Info";
+
+    public static final String CHECK_CALL = "Call";
+
+    public static final String CHECK_Email = "E-Mail";
+
+    public static final String CHECK_MobileIDInfo = "Mobile ID Info";
+
+    public static final String CHECK_WEBSITE = "Website";
     public static final String CHECK_NICKNAME="Nickname";
     public static final String CHECK_NAME="Name";
     public static final String CHECK_MOBILE_KEY_SET="Mobile Keyset";
@@ -76,4 +86,8 @@ public class MessageConstants {
     public static final String FAVORITE_READER_DESCRIPTION_TXT="Select the reader(s) you want to tag as favorite. When nearby, favorite readers are targeted for door opening.";
     public static final String TERMS_OF_USE_HEADER="Mobile Access Terms of Use";
     public static final String INVITATION_SCREEN_HEADER="Invitation code";
+    public static final String BLE_HIGH="High";
+    public static final String BLE_MEDIUM="Medium";
+    public static final String BLE_LOW="Low";
 }
+

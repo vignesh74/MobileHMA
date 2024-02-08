@@ -65,11 +65,17 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
             String strNFCStatusValue = getElementText(appPrefencesScreenPage.getTxtNFCStatusValue());
             if (!strNFCStatus.equalsIgnoreCase(strNFCStatusValue)) {
                 appPrefencesScreenPage.clickOnNFCTab();
-                waitForVisibility(nfcTab);
-                click(nfcTab);
-                waitForVisibility(btnOnOff);
-                click(btnOnOff);
-                waitForGivenTime(1);
+                if (DriverManager.getPlatformVersion().equalsIgnoreCase("13")) {
+                    waitForVisibility(btnOnOff);
+                    click(btnOnOff);
+                    waitForGivenTime(1);
+                }else{
+                    waitForVisibility(nfcTab);
+                    waitForVisibility(btnOnOff);
+                    click(btnOnOff);
+                    waitForGivenTime(1);
+                }
+
                 /**LOCATORS ARE NOT MODIFIED.THE OUTPUT IS NOT AS EXPECTED.SEPARATE METHOD HAS BEEN WRITTEN **/
 
           /*      if (isDisplayed(txtSwitchOnOff)) {

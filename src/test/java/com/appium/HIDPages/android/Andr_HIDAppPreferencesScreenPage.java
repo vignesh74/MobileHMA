@@ -11,6 +11,8 @@ import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import org.testng.Assert;
 
+import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
+
 public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     /**
      * mobile elements - These are mobile elements which is present in app preferences page Date-25/01/2023
@@ -22,22 +24,29 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(xpath = "android.widget.TextView[@text='Use Bluetooth']",priority = 1)
     private MobileElement txtBluetooth;
 
-    @AndroidFindBy(xpath = "//*[@text='NFC']")
+    @AndroidFindBy(xpath = "//*[@text='NFC']", priority = 0)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='NFC']", priority = 1)
     private MobileElement txtNFC;
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Permission']", priority = 0)
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location Permission']", priority = 1)
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']", priority = 2)
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Permission']")
     private MobileElement txtNearByPermission;
 
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]")
+    @AndroidFindBy(xpath="((//android.widget.ImageView[@content-desc='Right arrow'])[3]")
+    private MobileElement txtNearByPermissionTab;
+
+    @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc='Right arrow'])[3])")
+    private MobileElement txtNearByPermissionTabin13;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Always']/following-sibling::android.widget.RadioButton")
+//    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]")
+//    @AndroidFindBy(xpath = "(//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[7]/android.widget.TextView[@text=‘Always’]/following-sibling::android.widget.RadioButton[2]")
     private MobileElement rdoUsageAlways;
-
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]")
-    private MobileElement rdoUsageActive;
-
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[3]")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Foreground']/following-sibling::android.widget.RadioButton")
+    //@AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]")
+    private MobileElement rdoUsageForeground;
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Unlocked']/following-sibling::android.widget.RadioButton")
+//    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[3]")
     private MobileElement rdoUsageUnlocked;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bluetooth']/following-sibling::android.widget.TextView")
@@ -108,7 +117,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertBtn")
     private MobileElement settingsAlertBtn;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Let app always run in background?']")
+    @AndroidFindBy(id = "android:id/alertTitle")
     private MobileElement backgroundPermissionPopup;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Allow']")
@@ -116,6 +125,77 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Allowing HID Mobile Access to always run in the background may reduce battery life. You can change this later from Settings > Apps & notifications.']")
     private MobileElement PermPopupDescription;
+
+    @AndroidFindBy(xpath="//android.view.ViewGroup[5]/android.widget.TextView[@resource-id='com.hidglobal.mobilekeys.android.v3:id/statusDevices']")
+    private MobileElement txtLocationPermissionStatus;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Nearby Readers']")
+    private MobileElement txtNearByReaders;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Readers']/following-sibling::android.widget.TextView")
+    private MobileElement txtNearbyReaderStatusValue;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/txtManageFavReaderHeading")
+    private MobileElement txtNearbyReadersTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/switchAppPreferencesWidget")
+    private MobileElement nearByReaderTglBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement nearByReaderAlertTitle;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertMessage")
+    private MobileElement nearByReaderAlertContent;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertNegativeBtn")
+    private MobileElement nearByReaderAlertNoBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/alertPositiveBtn")
+    private MobileElement nearByReaderAlertYesBtn;
+
+    @AndroidFindBy(id="com.hidglobal.mobilekeys.android.v3:id/sensitivityLevel")
+    private MobileElement bluetoothSensitivityLevel;
+
+//   ************************************************* code of surrender sundarraj begins  ************************************************
+
+    // *** New Xpath Discover nearby Readers
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Discover Nearby Readers']")
+    private MobileElement txtDiscoverNearbyReaders;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='HID Signo']")
+    private MobileElement txtSignoReader;
+
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Signo Icon\"])")
+    private MobileElement txtSignoReaderIcon;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/signoReaderCheckbox")
+    private MobileElement txtSignoReaderCheckbox;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertTitle")
+    private MobileElement txtalertTitle;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"Positive Button\"]")
+    private MobileElement alertPositiveBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Back Arrow\"]")
+    private MobileElement ImgBackBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Back Arrow\"]")
+    private MobileElement ImgBackAppPreferences;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='HID iCLASS \\ multiCLASS SE']")
+    private MobileElement txtRevEReader;
+
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Rev-E Icon\"]")
+    private MobileElement txtRevEReaderIcon;
+
+    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/revECheckbox")
+    private MobileElement txtRevEReaderCheckbox;
+
+
+    //    ******************************************* code of surrender sundarraj ends *************************************************
 
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-25/01/2023
@@ -127,6 +207,10 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     public MobileElement getTxtBluetoothStatusValue() {
         return txtBluetoothStatusValue;
+    }
+
+    public MobileElement getTxtNearbyReaderStatusValue() {
+        return txtNearbyReaderStatusValue;
     }
 
     public MobileElement getSwitchPlayAndSound() {
@@ -157,12 +241,16 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         return txtNearByPermission;
     }
 
+    public MobileElement getTxtNearByPermissionTab() {
+        return txtNearByPermissionTab;
+    }
+
     public MobileElement getRdoUsageAlways() {
         return rdoUsageAlways;
     }
 
-    public MobileElement getRdoUsageActive() {
-        return rdoUsageActive;
+    public MobileElement getRdoUsageForeground() {
+        return rdoUsageForeground;
     }
 
     public MobileElement getRdoUsageUnlocked() {
@@ -180,6 +268,11 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     public MobileElement getTxtNearByPermissionStatusValue() {
         return txtNearByPermissionStatusValue;
     }
+
+    public MobileElement getTxtLocationPermissionStatus(){
+        return txtLocationPermissionStatus;
+    }
+
 
     public MobileElement getImgLocationPermission() {
         return imgLocationPermission;
@@ -228,6 +321,13 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     public MobileElement getTxtViewMobileIdCard() {
         return txtViewMobileIdCard;
     }
+    public MobileElement getTxtNearByPermissionTabin13(){
+        return txtNearByPermissionTabin13;
+    }
+
+    public MobileElement getBluetoothSensitivityLevel(){
+        return bluetoothSensitivityLevel;
+    }
 
     /**
      * selectUsageType- This method is used to select the usage type
@@ -239,8 +339,8 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         try {
             if (usageType.equalsIgnoreCase(MessageConstants.ALWAYS_STRING)) {
                 selectRadioButton(rdoUsageAlways);
-            } else if (usageType.equalsIgnoreCase(MessageConstants.ACTIVE_STRING)) {
-                selectRadioButton(rdoUsageActive);
+            } else if (usageType.equalsIgnoreCase(MessageConstants.FOREGROUND_STRING)) {
+                selectRadioButton(rdoUsageForeground);
             } else if (usageType.equalsIgnoreCase(MessageConstants.UNLOCKED_STRING)) {
                 selectRadioButton(rdoUsageUnlocked);
             } else {
@@ -248,7 +348,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
             }
         } catch (Exception e) {
             
-            TestUtils.log().debug("Exception occurred while selecting the usage type...");
+            TestUtils.log().debug("Exception occurred while selecting the usage type....");
         }
     }
 
@@ -291,6 +391,19 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         } catch (Exception e) {
             
             TestUtils.log().debug("Exception occurred while clicking on Nearby Permission...");
+        }
+    }
+
+    public void clickOnNearByPermissionTab(){
+        try {
+            if (isDisplayed(txtNearByPermissionTab)) {
+                click(txtNearByPermissionTab);
+            } else {
+                TestUtils.log().info("Nearby Permission tab is not available in this Android Version");
+            }
+        } catch (Exception e) {
+
+            TestUtils.log().debug("Exception occurred while clicking on Nearby Permission tab...");
         }
     }
 
@@ -401,14 +514,25 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      * @param strPermissionStatus-String
      *         Date-16/02/2023
      */
-    public void toVerifyNearByOrLocationPermissionStatus(String strPermissionStatus) {
+        public void toVerifyNearByOrLocationPermissionStatus(String strPermissionStatus) {
         String strDevicePlatformVersion = DriverManager.getPlatformVersion();
         switch (strDevicePlatformVersion) {
-            case "12" -> {
+            case "12","13" -> {
                 if (strPermissionStatus.equalsIgnoreCase("Allow")) {
                     Assert.assertEquals(getTxtNearByPermissionStatusValue().getText(), "Granted always");
                 } else if (strPermissionStatus.equalsIgnoreCase("Don't allow") || strPermissionStatus.equalsIgnoreCase("Deny")) {
                     Assert.assertEquals(getTxtNearByPermissionStatusValue().getText(), "Denied");
+                } else
+                    TestUtils.log().info("Please provide correct input");
+
+            }
+            case "10","11" -> {
+                if (strPermissionStatus.equalsIgnoreCase("Allow all the time")) {
+                    Assert.assertEquals(getTxtLocationPermissionStatus().getText(), "Always");
+                } else if (strPermissionStatus.equalsIgnoreCase("Allow only while using the app") || strPermissionStatus.equalsIgnoreCase("Allow only while using app")) {
+                    Assert.assertEquals(getTxtLocationPermissionStatus().getText(), "While using the app");
+                }else if (strPermissionStatus.equalsIgnoreCase("Don't allow") || strPermissionStatus.equalsIgnoreCase("Deny") || strPermissionStatus.equalsIgnoreCase("Ask every time")) {
+                    Assert.assertEquals(getTxtLocationPermissionStatus().getText(), "Denied");
                 } else
                     TestUtils.log().info("Please provide correct input");
 
@@ -436,19 +560,52 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
             loopHandle(txtPlayAndSound, "swipeUp", 5);
             if (usageType.equalsIgnoreCase(MessageConstants.ALWAYS_STRING)) {
                 click(rdoUsageAlways);
+                if(isDisplayed(batteryOptimizationTitle)){
+                    Assert.assertTrue(true, "The Battery Optimization Title  is  displayed...");
+                    TestUtils.log().info("The BG Permission Popup  is  displayed...");
+                    click(settingsAlertBtn);
+                    if(isDisplayed(backgroundPermissionPopup))
+                    {
+                        Assert.assertTrue(true, "The BG Permission Popup  is  displayed...");
+                        TestUtils.log().info("The BG Permission Popup  is  displayed...");
+                        click(allowBtnBGPerm);
+                    }
+                    else
+                    {
+                        Assert.assertTrue(false, "The BG Permission Popup  is not displayed...");
+                        TestUtils.log().info("The BG Permission Popup  is not displayed...");
+                    }
+                    waitForGivenTime(1);
+                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
+                    Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
+                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
+                    Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
+                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
+                }else{
+                    waitForGivenTime(1);
+                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
+                    Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
+                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
+                    Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
+                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
+                }
                 waitForGivenTime(1);
                 String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
                 String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
                 TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
                 Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
                 Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
                 Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
-            } else if (usageType.equalsIgnoreCase(MessageConstants.ACTIVE_STRING)) {
-                click(rdoUsageActive);
+            } else if (usageType.equalsIgnoreCase(MessageConstants.FOREGROUND_STRING)) {
+                click(rdoUsageForeground);
                 waitForGivenTime(1);
                 String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
                 String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
                 TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr2);
                 Assert.assertEquals(strAttr2, MessageConstants.TRUE_MESSAGE);
@@ -474,7 +631,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                       }
                     waitForGivenTime(1);
                     String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
                     String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
                     Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
                     Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
@@ -485,7 +642,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 {
                     waitForGivenTime(1);
                     String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr2 = getElementAttribute(rdoUsageActive, MessageConstants.CHECKED_MESSAGE);
+                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
                     String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
                     Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
                     Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
@@ -671,4 +828,287 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         }
     }
 
+    public void debugLogsToggleButton(String switchState) {
+        try {
+            scrollUpTillElement(txtDebugLogs, 1000, 0);
+            isElementVisible(txtDebugLogs);
+            if (switchState.equalsIgnoreCase(MessageConstants.ENABLE_STRING)) {
+                if (switchDebugLogs.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.TRUE_MESSAGE)) {
+                    TestUtils.log().info("Debug logs toggle button is initially in Enable state");
+                }else{
+                    click(switchDebugLogs);
+                    TestUtils.log().info("Debug logs toggle button is set to Enable state");
+                }
+            } else if (switchState.equalsIgnoreCase(MessageConstants.DISABLE_STRING)) {
+                if (switchDebugLogs.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.FALSE_MESSAGE)) {
+                    TestUtils.log().info("Debug logs toggle button is initially in Disable state");
+                }else{
+                    click(switchDebugLogs);
+                    TestUtils.log().info("Debug logs toggle button is set to Disable state");
+                }
+            } else TestUtils.log().info("Please provide correct input");
+
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying debug logs button...");
+        }
+    }
+
+    public void setTwistAndGoEnableOrDisable(String switchState){
+        try {
+            scrollUpTillElement(txtTwistGo, 1000, 0);
+            isElementVisible(txtTwistGo);
+            if (switchState.equalsIgnoreCase(MessageConstants.ENABLE_STRING)) {
+                if (switchTwistGo.getAttribute(MessageConstants.CHECKED_MESSAGE).equals(MessageConstants.TRUE_MESSAGE)) {
+                    TestUtils.log().info("Twist & Go toggle button is initially in Enable state");
+                }else
+                    click(switchTwistGo);
+                if (switchTwistGo.getAttribute(MessageConstants.CHECKED_MESSAGE).equals(MessageConstants.TRUE_MESSAGE)) {
+                    TestUtils.log().info("Twist & Go toggle button is set to Enable state");
+                }
+            }else{
+                if (switchTwistGo.getAttribute(MessageConstants.CHECKED_MESSAGE).equals(MessageConstants.FALSE_MESSAGE)) {
+                    TestUtils.log().info("Twist & Go toggle button is initially in Disable state");
+                }else
+                    click(switchTwistGo);
+                if (switchTwistGo.getAttribute(MessageConstants.CHECKED_MESSAGE).equals(MessageConstants.FALSE_MESSAGE)) {
+                    TestUtils.log().info("Twist & Go toggle button is set to Disable state");
+                }
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying twist and go toggle button....");
+        }
+    }
+
+    public void verifyActivityToggleButton(String switchState) {
+        try {
+            scrollUpTillElement(switchShowActivity, 1000, 0);
+            isElementVisible(switchShowActivity);
+            if (switchState.equalsIgnoreCase(MessageConstants.ENABLE_STRING)) {
+                if (switchShowActivity.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.TRUE_MESSAGE)) {
+                    TestUtils.log().info("Show Activity toggle button is initially in Enable state");
+                } else {
+                    click(switchShowActivity);
+                    TestUtils.log().info("Show Activity toggle button is set to Enable state");
+                }
+            } else if (switchState.equalsIgnoreCase(MessageConstants.DISABLE_STRING)) {
+                if (switchShowActivity.getAttribute(MessageConstants.CHECKED_MESSAGE).equalsIgnoreCase(MessageConstants.FALSE_MESSAGE)) {
+                    TestUtils.log().info("Show Activity toggle button is initially in Disable state");
+                } else {
+                    click(switchShowActivity);
+                    TestUtils.log().info("Show Activity toggle button is set to Disable state");
+                }
+            } else TestUtils.log().info("Please provide correct input");
+
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while verifying Show Activity button...");
+        }
+    }
+
+    public void clickOnNearbyReaders(){
+        try{
+            scrollUpTillElement(txtNearByReaders, 1000, 0);
+            isElementVisible(txtNearByReaders);
+            click(txtNearByReaders);
+        }catch (Exception e){
+            TestUtils.log().debug("Exception occurred while clicking Nearby Readers tab...");
+        }
+    }
+
+    public void setNearByReaderStatus(String nearByReaderStatus) {
+        try {
+            scrollUpTillElement(txtNearByReaders, 1000, 0);
+            isElementVisible(txtNearByReaders);
+            String strNearByReaderStatusValue = getElementText(getTxtNearbyReaderStatusValue());
+            String nearByReaderToggle = "false";
+            System.out.println(strNearByReaderStatusValue+ "><<<<<M<< M<<");
+            if (nearByReaderStatus.equalsIgnoreCase(strNearByReaderStatusValue)) {
+                TestUtils.log().info("NearBy Reader status is already set as {}",strNearByReaderStatusValue);
+            }else{
+                click(txtNearByReaders);
+                isDisplayed(txtNearbyReadersTitle);
+                String nearByReaderToggleStatus = getElementAttribute(nearByReaderTglBtn,"checked");
+                if(nearByReaderToggleStatus.equalsIgnoreCase("true")){
+                    if(nearByReaderStatus.equalsIgnoreCase("On")){
+                        click(nearByReaderTglBtn);
+                        isDisplayed(nearByReaderAlertTitle);
+                        isDisplayed(nearByReaderAlertContent);
+                        click(nearByReaderAlertYesBtn);
+                    }else{
+                        TestUtils.log().info("NearBy Reader status is already set as Off");
+                    }
+                }else{
+                    TestUtils.log().info("NearBy Reader status is already set as {}",strNearByReaderStatusValue);
+                }
+
+            }
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while setting the NearBy Reader status...");
+        }
+    }
+
+//   ********************************************** code of Surrender sundarraj *********************************************************
+
+    public void checkDiscoverNearbyReaderText() {
+        try {
+            scrollUpTillElement(txtDiscoverNearbyReaders, 1000, 0);
+            isElementVisible(txtDiscoverNearbyReaders);
+            TestUtils.log().debug("DiscoverNearbyReaders Text is Visible...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Discover Nearby Readers tab...");
+        }
+    }
+
+    public void checkSignoReaderText() {
+        try {
+            isElementVisible(txtSignoReader);
+            TestUtils.log().debug("Signo Reader Text is Visible...");
+            isElementVisible(txtSignoReaderCheckbox);
+            TestUtils.log().debug("Signo Reader Checkbox is Visible...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Signo Readers tab...");
+        }
+    }
+
+    public void checkSignoReaderStatus(String SignoReader) {
+        try {
+            isDisplayed(txtSignoReaderCheckbox);
+            String SignoReaderCheckbox = getElementAttribute(txtSignoReaderCheckbox, "checked");
+            if (SignoReaderCheckbox.equalsIgnoreCase(SignoReader)) {
+                TestUtils.log().info("Signo Reader status is already set as Off");
+            } else {
+                TestUtils.log().info("Signo Reader status is already set as On");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Signo Readers Status...");
+        }
+
+
+    }
+
+    public void checkRevEReaderText() {
+        try {
+            isElementVisible(txtRevEReader);
+            TestUtils.log().debug("RivE Reader Text is Visible...");
+            isElementVisible(txtRevEReaderCheckbox);
+            TestUtils.log().debug("RivE Reader Checkbox is Visible...");
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking RivE Readers tab...");
+        }
+    }
+
+    public void checkRevEReaderStatus(String RevEReader) {
+        try {
+            isDisplayed(txtRevEReaderCheckbox);
+            String RevEReaderCheckbox = getElementAttribute(txtRevEReaderCheckbox, "checked");
+            if (RevEReaderCheckbox.equalsIgnoreCase(RevEReader)) {
+                TestUtils.log().info("RevE Reader status is already set as Off");
+            } else {
+                TestUtils.log().info("RevE Reader status is already set as On");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking RevE Readers Status...");
+        }
+
+
+    }
+
+    public void clickRevEReadercheckbox() {
+        try {
+            click(txtRevEReaderCheckbox);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking RevE Reader Checkbox...");
+        }
+    }
+
+    public void disableRevEReadercheckbox() {
+        try {
+            click(txtRevEReaderCheckbox);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while disable RevE Reader Checkbox...");
+        }
+    }
+
+    public void checkAlertTitleText() {
+        try {
+            scrollUpTillElement(txtalertTitle, 1000, 0);
+            if (isElementVisible(txtalertTitle)) {
+                TestUtils.log().debug("AlertTitle pop up Text is Visible...");
+            } else {
+                TestUtils.log().debug("AlertTitle pop up Text is Invisible...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking AlertTitle pop up Text...");
+        }
+
+    }
+
+    public void clickAlertPositiveBtn() {
+        try {
+            click(alertPositiveBtn);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking alertPositiveBtn...");
+        }
+    }
+
+    public void disableSignoReadercheckbox() {
+        try {
+            click(txtSignoReaderCheckbox);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while disable Signo Reader Checkbox...");
+        }
+    }
+
+    public void checkNearbyReaderStatus() {
+        try {
+            scrollUpTillElement(txtalertTitle, 1000, 0);
+            if (isElementVisible(txtalertTitle)) {
+                TestUtils.log().debug("Nearby Reader toggle button is disabled in android device...");
+            } else {
+                TestUtils.log().debug("Nearby Reader toggle button is enabled in android device...");
+
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while checking Nearby Reader Status...");
+        }
+    }
+
+    public void clickOnNearbyReaderSwitch() {
+        try {
+            scrollUpTillElement(nearByReaderTglBtn, 1000, 0);
+            isElementVisible(nearByReaderTglBtn);
+            click(nearByReaderTglBtn);
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking Nearby Readers tab...");
+        }
+    }
+
+    public void clickImgBackBtn() {
+        try {
+//            scrollUpTillElement(txtalertTitle, 1000, 0);
+            if (isElementVisible(ImgBackBtn)) {
+                click(ImgBackBtn);
+                TestUtils.log().debug("Able to click back button in Nearby Readers Page...");
+            } else {
+                TestUtils.log().debug("Unable to click back button in Nearby Readers Page...");
+
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking back button in Nearby Readers Page...");
+        }
+    }
+
+    public void clickImgBackAppPreferencesPage() {
+        try {
+            if (isElementVisible(ImgBackAppPreferences)) {
+                click(ImgBackAppPreferences);
+                TestUtils.log().debug("Able to click back button in App Preferences Page...");
+            } else {
+                TestUtils.log().debug("Unable to click back button in App Preferences Page...");
+            }
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while clicking back button in App Preferences Page...");
+        }
+    }
+
+    //   ********************************************** code of Surrender sundarraj Ends *********************************************************
 }

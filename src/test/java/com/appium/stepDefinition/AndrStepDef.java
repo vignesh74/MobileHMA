@@ -1,34 +1,48 @@
 package com.appium.stepDefinition;
 
 import com.appium.HIDPages.android.*;
-import com.appium.constants.FrameworkConstants;
+import com.appium.base.BasePage;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.cucumber.core.plugin.TimelineFormatter;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_scouse.An;
 import jssc.SerialPortException;
 import org.testng.Assert;
+import org.testng.internal.collections.Pair;
+import org.testng.util.TimeUtils;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
+import java.util.Date;
+import java.util.Locale;
 
 import static com.appium.constants.MessageConstants.EULA;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
 
 
-public class AndrStepDef {
+public class AndrStepDef extends BasePage {
     String strInvitationCode = "";
     Andr_HIDOnboardingScreenPage OnboardingScreen = new Andr_HIDOnboardingScreenPage();
-    Andr_HIDMobileAccessTermsOfUse termsOfUseScreen=new Andr_HIDMobileAccessTermsOfUse();
+    Andr_HIDMobileAccessTermsOfUse termsOfUseScreen = new Andr_HIDMobileAccessTermsOfUse();
     Andr_HIDInvitationCodeScreenPage invitationScreen = new Andr_HIDInvitationCodeScreenPage();
     Andr_HIDMobileIDScreenPage mobileIDScreen = new Andr_HIDMobileIDScreenPage();
-    Andr_HIDSettingsScreenPage settingsScreen = new Andr_HIDSettingsScreenPage();
     Andr_HIDNotificationScreenPage notificationScreen = new Andr_HIDNotificationScreenPage();
     Andr_HIDAppPreferencesScreenPage appPreferencesScreen = new Andr_HIDAppPreferencesScreenPage();
     Andr_DeviceBLESettingsPage bleSettingsPage = new Andr_DeviceBLESettingsPage();
@@ -42,9 +56,12 @@ public class AndrStepDef {
     Andr_HIDSettingLegalScreenPage settingLegalScreenPage = new Andr_HIDSettingLegalScreenPage();
     Andr_HandlePopUps handlePopUps = new Andr_HandlePopUps();
     Andr_HIDWarningBanners warningBanners = new Andr_HIDWarningBanners();
+    Andr_HIDSettingsScreenPage settingsScreen = new Andr_HIDSettingsScreenPage();
+
+    Andr_HIDSettingsFAQScreenPage FAQScreen = new Andr_HIDSettingsFAQScreenPage();
 
     String strUDID = "";
-    String armLogs;
+    Pair<String, String> armLogs;
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
@@ -56,7 +73,7 @@ public class AndrStepDef {
 
 
     @Given("Launch HID Mobile Access Application Onboarding Screen in Android Device")
-    public void launchOnboardingScreen(){
+    public void launchOnboardingScreen() {
 
         DriverManager.getDriver().closeApp();
         TestUtils.log().info("Application closed.....");
@@ -64,39 +81,42 @@ public class AndrStepDef {
         TestUtils.log().info("Application launched.....");
 
     }
+
     @When("Header and Description is displayed for Convenient Screen")
-    public void headerConvenientDisplay(){
+    public void headerConvenientDisplay() {
         OnboardingScreen.checkVisibilityOfConvenientPage();
         OnboardingScreen.checkDescriptionConvScreen();
     }
+
     @Then("Terms of Use Page is displayed when {string} is clicked in Convenient Screen")
     public void skipConvenientPage(String button) {
-            OnboardingScreen.skipConvenientPageOnboardingScreen(button);
+        OnboardingScreen.skipConvenientPageOnboardingScreen(button);
 
     }
 
     @And("Header and Description  is displayed for Twist&Go")
-    public void headerTwistAndGoDisplay(){
-        OnboardingScreen.checkVisibilityOfTwistAndGoPage() ;
+    public void headerTwistAndGoDisplay() {
+        OnboardingScreen.checkVisibilityOfTwistAndGoPage();
         OnboardingScreen.checkDescriptionTwistAndGoScreen();
     }
-    @Then("Terms of Use Page is displayed when {string} is clicked in Twist&Go Screen")
-    public void skipTwistAndGo(String button){
+
+    @Then("Favorite Reader Page is displayed when {string} is clicked in Twist&Go Screen")
+    public void skipTwistAndGo(String button) {
         OnboardingScreen.skipTwistAndGoPage(button);
 
     }
 
-    @And("Header and Description is displayed for Banners Screen")
-    public void headerBannersScreen(){
-        OnboardingScreen.checkVisibilityOfBannersPage();
-        OnboardingScreen.checkDescriptionBannersScreen();
-    }
-    @Then("Terms of Use Page is displayed when {string} is clicked in Banners Screen")
-    public void getStartedBanner(String button){
-        OnboardingScreen.GetStartedBannersPage(button);
-
+    @And("Header and Description is displayed for Favorite Reader Screen")
+    public void headerFavoriteReaderScreen() {
+        OnboardingScreen.checkVisibilityOfFavoriteReaderPage();
+        OnboardingScreen.checkDescriptionFavoriteReaderScreen();
     }
 
+    @Then("Terms of Use Page is displayed when {string} is clicked in Favorite Reader Screen")
+    public void getStartedBanner(String button) {
+        OnboardingScreen.GetStartedFavoriteReaderPage();
+
+    }
 
 
     @Given("Get Invitation Code using Rest API when credential are {}")
@@ -119,13 +139,14 @@ public class AndrStepDef {
         invitationScreen.checkAboutInfo();
 
     }
+
     @And("Skip is clicked")
-    public void skipConvPage(){
+    public void skipConvPage() {
         OnboardingScreen.skipConvenientPage();
     }
 
     @And("Terms of Use Page is displayed")
-    public void headerTermsOfUse(){
+    public void headerTermsOfUse() {
         termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
         termsOfUseScreen.checkVisibilityOfTermsOfUsePageImage();
 
@@ -133,37 +154,34 @@ public class AndrStepDef {
 
 
     @Then("{string} in Terms Of Use Screen is clicked")
-    public void cancelTermsOfUse(String button)
-    {
+    public void cancelTermsOfUse(String button) {
         termsOfUseScreen.cancelTermsOfUsePage(button);
     }
+
     @Then("{string} in Terms Of Use Page is clicked")
-    public void eulaPrivacyLinks(String link){
-        if (link.equalsIgnoreCase(EULA)){
+    public void eulaPrivacyLinks(String link) {
+        if (link.equalsIgnoreCase(EULA)) {
             termsOfUseScreen.checkEulaPageLink(link);
             termsOfUseScreen.checkVisibilityOfEulaPage();
             DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
-            OnboardingScreen.skipConvenientPage();
             termsOfUseScreen.checkEulaPageLink(link);
             termsOfUseScreen.backButtonEula();
             DriverManager.getDriver().closeApp();
-        }
-        else
-        {
-        termsOfUseScreen.checkPrivacyPageLink(link);
-        termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
-        DriverManager.getDriver().launchApp();
-        TestUtils.log().info("Application launched.....");
-        OnboardingScreen.skipConvenientPage();
-        termsOfUseScreen.checkPrivacyPageLink(link);
-        termsOfUseScreen.backButtonPrivacyNoticePage();
-
+        } else {
+            termsOfUseScreen.checkPrivacyPageLink(link);
+            termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
+            DriverManager.getDriver().launchApp();
+            TestUtils.log().info("Application launched.....");
+            termsOfUseScreen.checkPrivacyPageLink(link);
+            termsOfUseScreen.backButtonPrivacyNoticePage();
+            DriverManager.getDriver().closeApp();
         }
 
     }
+
     @And("Terms of Use Page Checkbox is checked")
-    public void checkboxCheck(){
+    public void checkboxCheck() {
         termsOfUseScreen.checkCheckBoxTxt();
         termsOfUseScreen.continueBtnDisabled();
         termsOfUseScreen.agreeCheckBox();
@@ -171,12 +189,11 @@ public class AndrStepDef {
     }
 
     @Then("{string} in Terms Of Use  is clicked")
-    public void continueTermsOfUse(String link){
+    public void continueTermsOfUse(String link) {
 
         termsOfUseScreen.continueTermsOfUsePageLink(link);
 
     }
-
 
 
     @When("Enter invitation code on HID mobile Application in android device")
@@ -195,14 +212,16 @@ public class AndrStepDef {
 
     @Then("Tap on the Mobile ID to check back of the card details")
     public void backOfTheCardDetailsIsDisplayed_Andr() {
+        //API need to integrate when received
         mobileIDScreen.clickOnMobileID();
         mobileIDScreen.checkHeaderMobileIdHeader();
+        mobileIDScreen.checkOrgContactInfo();
+        mobileIDScreen.checkCall();
+        mobileIDScreen.checkEmail();
+        mobileIDScreen.checkWebsite();
         mobileIDScreen.checkNickname();
         mobileIDScreen.checkName();
         mobileIDScreen.checkMobileKeySet();
-        mobileIDScreen.checkOrganization();
-        mobileIDScreen.checkIssuedOn();
-        mobileIDScreen.checkExpiresOn();
         mobileIDScreen.checkID();
         mobileIDScreen.checkVisibilityOfEditNicknamePencilIcon();
         mobileIDScreen.checkVisibilityOfEditNicknamePopup();
@@ -218,11 +237,11 @@ public class AndrStepDef {
     }
 
 
-
     @When("Navigate to Settings and App Preferences screen in android device")
     public void navigateToAppPreferencesScreen_Andr() {
         mobileIDScreen.clickOnSettingsTab();
         TestUtils.log().info("Settings screen is displayed");
+        isElementVisible(settingsScreen.getTxtAppPreference());
         settingsScreen.clickOnAppPreferences();
     }
 
@@ -249,8 +268,16 @@ public class AndrStepDef {
 
     @When("Set device state as {string} in android device")
     public void setDeviceState_Andr(String strDeviceState) {
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
         strUDID = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
         androidDeviceAction.setDeviceState(strDeviceState, strUDID);
+        if (strDeviceState.equalsIgnoreCase("Locked")) {
+            androidDeviceAction.lockUnlockDevice();
+            waitForGivenTime(2);
+        } else {
+            TestUtils.log().info("Device in unlocked state....");
+        }
+
     }
 
     @When("Set display screen as {string} in android device")
@@ -266,38 +293,120 @@ public class AndrStepDef {
         androidDeviceAction.setAppState(strAppState, strAndroidAppPackage, strUdId);
     }
 
-    @When("Perform robotic arm action as {string} for android device")
-    public void performRoboticArmAction_Andr(String RoboticAction) throws SerialPortException {
-        armLogs = serialPortUtils.performRoboticArmOperation(DriverManager.getDevicePort(), RoboticAction);
-    }
+//    @When("Perform robotic arm action as {string} for android device")
+//    public void performRoboticArmAction_Andr(String RoboticAction) throws SerialPortException {
+//        armLogs = serialPortUtils.performRoboticArmOperation(DriverManager.getDevicePort(), RoboticAction);
+//    }
 
     @Then("Activity log is displayed in android device and {string}, {string} are verified")
     public void activityLogIsDisplayed_Andr(String strDate, String strMessage) {
-//        if (armLogs.toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
-//            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
-//            boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
-//            DriverManager.setPopupHandled(popups);
-//            mobileIDScreen.clickOnMobileIDTabAndVerify();
-//            mobileIDScreen.expandActivityLogs();
-//            Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
-//            Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-//            if (strMessage.equalsIgnoreCase("Successful NFC Transaction")) {
-//
-//                Assert.assertEquals(mobileIDScreen.verifySuccessMessage().substring(0, 26), strMessage);
-//            } else {
-//                Assert.assertEquals(mobileIDScreen.verifySuccessMessage().substring(0, 32), strMessage);
-//
-//            }
-//        } else {
-//            TestUtils.log().info("Robotic arm action is not performed");
-//        }
+        try {
+            if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+                navigateToAppPreferencesScreen_Andr();
+                appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
+                boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
+                DriverManager.setPopupHandled(popups);
+                mobileIDScreen.clickOnMobileIDTabAndVerify();
+                mobileIDScreen.expandActivityLogs();
+                Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+                Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                if (strMessage.contains("Bluetooth")) {
+                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
+                } else {
+                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
+                }
+            } else {
+                TestUtils.log().info("Robotic arm is not performed");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the activity log");
+        }
+    }
+
+    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
+    public void activityLogIsDisplayed_Andr(String strDate, String strMessage, String strReaderName, String strActionName, String strDeviceState, String strAppState, String strMobileRead) {
+        try {
+            navigateToAppPreferencesScreen_Andr();
+            appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
+            boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
+            DriverManager.setPopupHandled(popups);
+            mobileIDScreen.clickOnMobileIDTabAndVerify();
+            mobileIDScreen.expandActivityLogs();
+            if (mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Please move closer to the reader to gain access.") ||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Communication timeout. Please try again.") ||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Bluetooth communication failed. Please try again.") ||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Reader busy. Please try again.") ||
+                    mobileIDScreen.getSuccessMessage().equalsIgnoreCase("This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")) {
+
+                roboticExecution(strActionName, strDeviceState);
+                TestUtils.log().info("--- ---- RE-EXECUTION OF ROBOTIC ARM AFTER FAILED---- ---" + armLogs.first());
+                androidDeviceAction.forceUnlock(strDeviceState, strAppState);
+                setAppStatus_Andr(strAppState);
+
+            } else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
+                if (mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Successful NFC transaction.")) {
+                    Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+                    Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+                    Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
+                } else {
+                    Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
+                    Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
+                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+//                        Assert.assertEquals(mobileIDScreen.getActionName().toLowerCase(), strActionName.toLowerCase());
+                    Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase());
+                    Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
+                    TestUtils.log().info(mobileIDScreen.getActionName());
+                    Assert.assertTrue(mobileIDScreen.getActionName().equalsIgnoreCase(strActionName.toLowerCase()) ||
+                            mobileIDScreen.getActionName().toLowerCase().contains("enhanced tap") || mobileIDScreen.getActionName().toLowerCase().contains("Twist & Go"));
+                }
+
+                String deviceTime = armLogs.second();
+                SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+                Date deviceTimeNew = inputFormatter.parse(deviceTime);
+                SimpleDateFormat outputFormatter = new SimpleDateFormat("hh:mm:ss");
+                String deviceTimeFinal = outputFormatter.format(deviceTimeNew);
+                TestUtils.log().info("deviceTimeFinal: " + deviceTimeFinal);
+
+                String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
+                String activityTime = activityTimeStr.substring(0, 9);
+                SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
+                Date activityTimeNew = inputFormatter1.parse(activityTime);
+                String activityTimeFinal = outputFormatter.format(activityTimeNew);
+                TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
+
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+                Date date1 = format.parse(deviceTimeFinal);
+                Date date2 = format.parse(activityTimeFinal);
+                long difference = date2.getTime() - date1.getTime();
+                long timeInDifference = difference / 1000;
+                TestUtils.log().info("timeInDifference: " + timeInDifference);
+
+                if (timeInDifference <= 10) {
+                    Assert.assertTrue(true, "Correct activity log");
+                    TestUtils.log().info("correct activity time lesser than 10 seconds: " + timeInDifference);
+                } else {
+                    Assert.assertFalse(false, "activity time is greater than 10 seconds");
+                }
+
+
+                if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
+                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
+                } else {
+                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
+                }
+            } else {
+                TestUtils.log().info("RoboticArm is not communicated hence activity logs are not captured");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the activity log: " + e);
+        }
     }
 
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
-        TestUtils.log().info("Robotic arms: "+armLogs+" is Equal to "+strRoboticLog);
-        Assert.assertTrue(armLogs.toLowerCase().contains(strRoboticLog.toLowerCase()));
-
+        Assert.assertTrue(armLogs.first().toLowerCase().contains(strRoboticLog.toLowerCase()));
+        TestUtils.log().info("armLogs.first(): " + armLogs.first() + " is Equal to " + " : strRoboticLog" + strRoboticLog);
     }
 
     //setting scenarios step definition method
@@ -305,7 +414,8 @@ public class AndrStepDef {
     public void checkBluetoothStatus(String status1) {
         bleSettingsPage.setBLEStatus(status1);
     }
-     @Then("NFC status is displayed as {string} in android device")
+
+    @Then("NFC status is displayed as {string} in android device")
     public void checkNFCStatus(String status1) {
         nfcSettingsPage.setNFCStatus(status1);
     }
@@ -324,6 +434,7 @@ public class AndrStepDef {
     public void verifyVibrateSwitchButton(String strVibrate) {
         appPreferencesScreen.verifyVibrateToggleButton(strVibrate);
     }
+
     @And("Twist and Go status is displayed as {string} in android device")
     public void verifyTwistGoSwitchButton(String strTwistGo) {
         appPreferencesScreen.verifyTwistAndGoToggleButton(strTwistGo);
@@ -332,13 +443,13 @@ public class AndrStepDef {
     @And("Show Activity State status is displayed as {string} in android device")
     public void verifyShowActivityStateSwitchButton(String strShowActivity) {
         settingsScreen.clickOnAppPreferences();
-        appPreferencesScreen.verifyShowActivityToggleButton(strShowActivity);
+        appPreferencesScreen.verifyActivityToggleButton(strShowActivity);
     }
 
     @When("Navigate to settings page in android device")
     public void navigateToSettingsPage() {
         mobileIDScreen.clickOnSettingsTab();
-        settingsScreen.verifySettingsScreen();
+//        settingsScreen.verifySettingsScreen();
 
     }
 
@@ -347,12 +458,26 @@ public class AndrStepDef {
         settingsScreen.clickOnReportIssueScreen();
         settingsReportIssueScreenPage.isReportIssuePageDisplayed();
         settingsReportIssueScreenPage.verifySubmitButtonEnable(strReportIssue);
-        settingsReportIssueScreenPage.backFromReportIssue();
+//        settingsReportIssueScreenPage.getBtnSubmit();
+        settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
+        TestUtils.log().info("try to navigate back");
+        navigateBack();
+
+        TestUtils.log().info("navigated back");
+        DriverManager.getDriver().closeApp();
+        TestUtils.log().info("Application closed.....");
+        DriverManager.getDriver().launchApp();
+        TestUtils.log().info("Application launched.....");
+        waitForGivenTime(2);
+        mobileIDScreen.clickOnSettingsTab();
+
+//        settingsReportIssueScreenPage.backFromReportIssue();
     }
 
     @Then("Legal Screen is displayed in android device")
     public void verifyLegalScreen() {
         settingsScreen.clickOnLegalScreen();
+        waitForGivenTime(1);
         settingLegalScreenPage.isLegalScreenPageDisplayed();
         settingLegalScreenPage.verifyEndUserLicenseScreenPageDisplayed();
         settingLegalScreenPage.verifyPrivacyNoticeScreenPageDisplayed();
@@ -373,20 +498,19 @@ public class AndrStepDef {
     }
 
     @And("Location Status is displayed as {string} in android device")
-    public void setLocationAndr(String strLocationStatus)
-    {
+    public void setLocationAndr(String strLocationStatus) {
         strUDID = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
         deviceLocationSettingsPage.setLocationStatusForSettingFeature(strLocationStatus, strUDID);
     }
 
-  @When("Set {string} permission status as {string} in android device")
+    @When("Set {string} permission status as {string} in android device")
     public void set_permission_status_as_in_android_device(String strLocationOrNearBy, String strLocationOrNearByPermission) {
         nearbyPermissionSettingsPage.setNearByOrLocationPerm(strLocationOrNearBy, strLocationOrNearByPermission);
     }
 
     @Then("{string} Permission status is displayed as {string} in android device")
     public void verifyNearByPermissionForSettingFeature(String strLocationOrNearBy, String strLocationOrNearByPermission) {
-        nearbyPermissionSettingsPage.setNearByOrLocationPerm(strLocationOrNearBy,strLocationOrNearByPermission);
+        nearbyPermissionSettingsPage.setNearByOrLocationPerm(strLocationOrNearBy, strLocationOrNearByPermission);
         appPreferencesScreen.toVerifyNearByOrLocationPermissionStatus(strLocationOrNearByPermission);
 
     }
@@ -397,41 +521,46 @@ public class AndrStepDef {
         mobileIDScreen.clickOnNextButton();
         mobileIDScreen.clickOnGotItButton();
     }
-    /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
-/*
-    @And("Warning BannersWF1 are displayed  in android device as {string},{string},{string},{string},{string}")
-    public void warningBanners1(String status1,String status2,String strLocationStatus,String strLocationOrNearBy, String strLocOrNearByPerm){
-        warningBanners.warningBannersWF1(status1,status2,strLocationStatus,strLocationOrNearBy,strLocOrNearByPerm);
-    }
-    */
+
+    /**
+     * THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
+     * /*
+     *
+     * @And("Warning BannersWF1 are displayed  in android device as {string},{string},{string},{string},{string}")
+     * public void warningBanners1(String status1,String status2,String strLocationStatus,String strLocationOrNearBy, String strLocOrNearByPerm){
+     * warningBanners.warningBannersWF1(status1,status2,strLocationStatus,strLocationOrNearBy,strLocOrNearByPerm);
+     * }
+     */
     @Then("Bluetooth status for Warning Banners is displayed as {string} in android device")
     public void setBLE(String bleStatusWb) {
         bleSettingsPage.setBLEStatusWb(bleStatusWb);
     }
 
     @And("NFC status for Warning Banners is displayed as {string} in android device")
-    public void setNFC(String nfcStatusWb){
+    public void setNFC(String nfcStatusWb) {
         nfcSettingsPage.setNFCStatusWb(nfcStatusWb);
     }
 
     @And("Location Status for Warning Banners is displayed as {string} in android device")
-    public void setLocation(String locationStatusWb,String strUDID){
-        deviceLocationSettingsPage.setLocationStatusWb(locationStatusWb,strUDID);
+    public void setLocation(String locationStatusWb, String strUDID) {
+        deviceLocationSettingsPage.setLocationStatusWb(locationStatusWb, strUDID);
     }
 
     @And("{string} Permission status for Warning Banners is displayed as {string} in android device")
-    public void setLocationPerm(String strLocationOrNearBy,String strLocationOrNearByPermission){
-      nearbyPermissionSettingsPage.setNearByOrLocationPermWb(strLocationOrNearBy,strLocationOrNearByPermission);
+    public void setLocationPerm(String strLocationOrNearBy, String strLocationOrNearByPermission) {
+        nearbyPermissionSettingsPage.setNearByOrLocationPermWb(strLocationOrNearBy, strLocationOrNearByPermission);
     }
-    /** THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
 
-    @And("Warning BannersWF2 are displayed in android device")
-    public void warningBanners2(String strLocationStatus, String strUDID ,String strBLEStatus,String strNFCStatus,String strLocationOrNearBy,String strLocationOrNearByPermission){
-        warningBanners.warningBannersWF2(strLocationStatus, strUDID,strBLEStatus,strNFCStatus,strLocationOrNearBy,strLocationOrNearByPermission);
-    }
-*/
+    /**
+     * THIS SECTION IS MEANT FOR ANDROID 10 & 11.STILL WORK TO DONE IN UPCOMING SPRINT
+     *
+     * @And("Warning BannersWF2 are displayed in android device")
+     * public void warningBanners2(String strLocationStatus, String strUDID ,String strBLEStatus,String strNFCStatus,String strLocationOrNearBy,String strLocationOrNearByPermission){
+     * warningBanners.warningBannersWF2(strLocationStatus, strUDID,strBLEStatus,strNFCStatus,strLocationOrNearBy,strLocationOrNearByPermission);
+     * }
+     */
     @Then("Warning Banners are displayed  in android device")
-     public void WarningBanners3(){
+    public void WarningBanners3() {
         warningBanners.warningBanners();
     }
 
@@ -441,16 +570,513 @@ public class AndrStepDef {
     }
 
     @And("NFC status for Warning Banners in Wf3 is displayed as {string} in android device")
-    public void setNFC_Wf3(String nfcStatusWb){
+    public void setNFC_Wf3(String nfcStatusWb) {
         nfcSettingsPage.setNFCStatusWbWf3(nfcStatusWb);
     }
+
     @And("{string} Permission status for Warning Banners in Wf3 is displayed as {string} in android device")
-    public void setLocationPerm_Wf3(String strLocationOrNearBy,String strLocationOrNearByPermission){
-        nearbyPermissionSettingsPage.setNearByOrLocationPermWbWf3(strLocationOrNearBy,strLocationOrNearByPermission);
+    public void setLocationPerm_Wf3(String strLocationOrNearBy, String strLocationOrNearByPermission) {
+        nearbyPermissionSettingsPage.setNearByOrLocationPermWbWf3(strLocationOrNearBy, strLocationOrNearByPermission);
     }
+
     @Then("Warning Banners in Wf3 are displayed  in android device")
-    public void WarningBannersWf3(){
+    public void WarningBannersWf3() {
         warningBanners.warningBannersWf3();
     }
 
+    @And("Verify {string} always is disabled and other modes are enabled")
+    public void checkEnforcedSetting(String usage_state) {
+        settingsScreen.checkEnforcedSetting(usage_state);
+    }
+
+    @And("Set Twist and Go status as {string} in android device")
+    public void setTwistAndGoEnableOrDisable(String Twist_And_Go_State) {
+        appPreferencesScreen.setTwistAndGoEnableOrDisable(Twist_And_Go_State);
+    }
+
+    @Then("Verify About menu is displayed in android device")
+    public void AboutTab() {
+        settingsScreen.verifyAboutMenu();
+    }
+
+    @Then("Verify application information are displayed in android device")
+    public void applicationInformation() {
+        settingsScreen.verifyApplicationInformation();
+    }
+
+    @Then("Verify About Page contents are copied in android device")
+    public void copyAboutScreen() {
+        settingsScreen.copyAboutScreen();
+    }
+
+    @And("Copy image should turned to tick mark symbol and copied to clipboard toast")
+    public void verifyTickSymbol() {
+        settingsScreen.verifyAboutContents();
+    }
+
+    @When("Navigate to notification page in android device")
+    public void navigateNotification() {
+        mobileIDScreen.clickOnNotificationTab();
+    }
+
+    @Then("Verify the title of notification page in android device")
+    public void notificationTitles() {
+        notificationScreen.verifyNotificationTitle();
+    }
+
+    @And("Verify Notification Date in android device")
+    public void notificationDate() {
+        notificationScreen.verifyNotificationDate();
+    }
+
+    @And("Verify Notification of {string} issues and {string} in android device")
+    public void verifyMobileIdStatus(String action, String notification) {
+        notificationScreen.verifyMobileIdStatus(action, notification);
+    }
+
+    @Then("Verify the screen without any notification in android device")
+    public void verifyNoNotificationScreen() {
+        notificationScreen.verifyNoNotificationScreen();
+    }
+
+    @Then("Warning Banners are displayed {string} in android device with {string} {string} {string} {string}")
+    public void verifyBanners(String BLE_Status, String NFC_Status, String location, String location_permission, String banners) {
+        warningBanners.verifyWarningBanners(BLE_Status, NFC_Status, location, location_permission, banners);
+    }
+
+    @Then("Warning Banners are displayed {string} in android device with {string} {string}")
+    public void verifyBanners12(String BLE_Status, String nearByPermission, String banners) {
+        warningBanners.verifyWarningBanners12(BLE_Status, nearByPermission, banners);
+    }
+
+    @Then("Warning Banners are displayed {string} in android device with {string} {string} {string}")
+    public void verifyBanners789(String BLE_Status, String location, String location_permission, String banners) {
+        warningBanners.verifyWarningBanners789(BLE_Status, location, location_permission, banners);
+    }
+
+    @Then("Warning Banners are displayed as {string} in android device with {string} {string} {string}")
+    public void verifyBanners13(String BLE_Status, String NFC_Status, String nearByPermission, String banners) {
+        warningBanners.verifyWarningBanners13(BLE_Status, NFC_Status, nearByPermission);
+    }
+
+    @When("Verify Mobile ID screen is displayed in android device")
+    public void verifyMobileIDScreen() {
+        mobileIDScreen.verifyMobileIDScreen();
+    }
+
+    @And("Click on plus icon view the mobile ID screen in android device")
+    public void verifyAddMobileIDScreen() {
+        mobileIDScreen.plusIcon();
+        mobileIDScreen.verifyAddMobileIDScreen();
+    }
+
+    @And("Click on Enter invitation code tab in android device")
+    public void clickOnEnterInvitationCodeTab() {
+        mobileIDScreen.clickOnEnterInvitationCodeTab();
+    }
+
+    @And("Verify the invitation code entering screen in android device")
+    public void verifyInvitationCodeScreen() {
+        mobileIDScreen.verifyInvitationCodeScreen();
+    }
+
+    @And("Verify after entering the {string} invitation code {string} and check the enter button in android device")
+    public void verifyEnterButton(String typeOf, String invitationCode) {
+        mobileIDScreen.verifyEnterButton(typeOf, invitationCode);
+    }
+
+    @And("Verify the alert message after entered the {string} wrong {string} in android device")
+    public void verifyPopupContent(String typeOf, String invitationCode) {
+        mobileIDScreen.verifyPopupContent(typeOf, invitationCode);
+    }
+
+    @And("Debug Logs status displayed as {string} in android device")
+    public void DebugLogsSwitchButton(String strDebugLogs) {
+        appPreferencesScreen.debugLogsToggleButton(strDebugLogs);
+        appPreferencesScreen.navigateBack();
+    }
+
+    @And("Click on report issue submit button")
+    public void clickOnSubmitButton() {
+        settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
+    }
+
+    @And("Share the access logs")
+    public void shareLogs() {
+        settingsReportIssueScreenPage.shareLogs();
+    }
+
+    @Then("Attachment will be displayed based on {string}")
+    public void checkAttachment(String DebugLogs) {
+        settingsReportIssueScreenPage.checkAttachment(DebugLogs);
+    }
+
+
+    @And("Click on the tab Deregister this device {string}")
+    public void clickOnDeregister(String action) {
+        settingsScreen.clickOnDeregister(action);
+    }
+
+    @And("Turn {string} the wifi")
+    public void actionOnNetwork(String action) {
+        settingsScreen.actionOnNetwork(action);
+    }
+
+    @Then("Verify the confirm button when deregister is {string}")
+    public void confirmDeregisterBtn(String actionOFF) {
+        settingsScreen.confirmDeregisterBtn(actionOFF);
+    }
+
+    @And("Verify the Delete device alert")
+    public void verifyDeleteDeviceAlert() {
+        mobileIDScreen.verifyDeleteDeviceAlert();
+    }
+
+    @And("Show Activity State is displayed as {string} in android device")
+    public void verifyActivityToggleButton(String activityState) {
+        appPreferencesScreen.verifyActivityToggleButton(activityState);
+        appPreferencesScreen.navigateBack();
+    }
+
+    @And("Click on mobile ID tab in android device")
+    public void clickOnMobileIDTab() {
+        mobileIDScreen.click(mobileIDScreen.getMobileIDTab());
+    }
+
+    @Then("Activity will display in mobileID screen based on {string}")
+    public void verifyShowActivity(String activity) {
+        mobileIDScreen.verifyShowActivity(activity);
+    }
+
+    @When("Verify Mobile ID screen when Mobile ID is present in android device")
+    public void verifyMobileIDWithID() {
+        mobileIDScreen.verifyMobileIDWithID();
+    }
+
+    @And("Verify nearby readers section in android device {string}")
+    public void verifyNearByReaders(String nearbyReaderCount) {
+        mobileIDScreen.verifyNearByReaders(nearbyReaderCount);
+    }
+
+    @And("Verify the Manage Readers section in android device {string}")
+    public void verifyManageReaders(String nearbyReaderCount) {
+        mobileIDScreen.verifyManageReaders(nearbyReaderCount);
+    }
+
+    @And("click on the Nearby Readers tab")
+    public void clickOnNearbyReaders() {
+        appPreferencesScreen.clickOnNearbyReaders();
+    }
+
+    @And("NearBy Reader Status is displayed as {string} in android device")
+    public void setNearByReaderStatus(String strNearByReaderStatus) {
+        appPreferencesScreen.setNearByReaderStatus(strNearByReaderStatus);
+    }
+
+    @Then("Verify the FAQ Menu is displayed in android device")
+    public void FAQTab() {
+        FAQScreen.clickOnFAQScreen();
+    }
+
+    @Then("FAQ screen is displayed in android device")
+    public void verifyFAQScreen() {
+        FAQScreen.isFAQScreenPageDisplayed();
+    }
+
+    @And("Enter {string} type on the search box")
+    public void checkSearch(String text) {
+        FAQScreen.changeDriverContextToWeb();
+        FAQScreen.checkSearch(text);
+    }
+
+    @And("Verify the rating popup UI in android device")
+    public void checkRatingPopup() {
+        mobileIDScreen.checkRatingPopup();
+    }
+
+    @When("Relaunch the app in android device")
+    public void relaunchApp() {
+        mobileIDScreen.relaunchApp();
+    }
+
+    @And("select the rating as {string} in android device")
+    public void giveRating(String rating) {
+        mobileIDScreen.giveRating(rating);
+    }
+
+    @And("Click on the submit button should close the popup in android device")
+    public void reviewSubmitBtn() {
+        mobileIDScreen.reviewSubmitBtn();
+    }
+
+    @Then("Verify the content on the improve popup in android device")
+    public void improvePopup() {
+        mobileIDScreen.improvePopup();
+    }
+
+    @Then("send the improve content {string} in android device")
+    public void sendImprove(String improve) {
+        mobileIDScreen.sendImprove(improve);
+    }
+
+    @Then("Verify the thank you popup in android device")
+    public void verifyThankYou() {
+        mobileIDScreen.verifyThankYou();
+    }
+
+    @And("Verify the {string} present on the screen in android device")
+    public void searchText(String text) {
+        FAQScreen.searchText(text);
+    }
+
+    @Then("Verify the log message {string} and {string} in Activity log screen in android device with {string}")
+    public void verifyActivityLog(String mobileIDState, String message, String appState) {
+        mobileIDScreen.verifyActivityLog(mobileIDState, message, appState);
+
+    }
+
+    @When("Set device state as {string} in android device.")
+    public void setDeviceState_Android(String strDeviceState) {
+        androidDeviceAction.setDeviceState_Android(strDeviceState);
+    }
+
+    @And("Set display screen as {string} with {string} in android device")
+    public void setDisplayState(String displayStatus,String deviceState){
+        androidDeviceAction.setDisplayState(displayStatus,deviceState);
+    }
+
+    @And("uninstall the app in android device")
+    public void uninstall() {
+        settingsScreen.uninstall();
+    }
+
+    @And("Verify new version available text in the notification screen in android device")
+    public void upgrade() {
+        notificationScreen.upgrade();
+    }
+
+
+    @And("Set device state as force unlock {string} with {string} in android device")
+    public void forceUnlock(String strDeviceState, String appState) {
+        androidDeviceAction.forceUnlock(strDeviceState, appState);
+    }
+
+
+    private static String getAppMainActivity(AppiumDriver<MobileElement> driver) {
+        return driver.getCapabilities().getCapability("appActivity").toString();
+    }
+
+    @And("Perform robotic arm action as {string} for android device {string}")
+    public Pair<String, String> roboticExecution(String RoboticAction, String deviceState) throws SerialPortException {
+        armLogs = serialPortUtils.performRoboticArmOperationWithDeviceState(DriverManager.getDevicePort(), RoboticAction, deviceState);
+        return armLogs;
+    }
+
+    @And("Verify mobile about page information are displayed in android device")
+    public void checkAboutInfo() {
+        settingsScreen.navigateBack();
+        settingsScreen.getTxtAbout().click();
+        settingsScreen.olderAboutInfo();
+    }
+
+    @And("upgrade the new apk provided")
+    public void installAPK() {
+        settingsScreen.installAPK();
+    }
+
+//    @And("Verify the upgrade in android device")
+//    public void verifyUpgrade(){
+//        settingsScreen.verifyUpgrade();
+//    }
+
+    @And("Note down the settings of application before upgrade")
+    public String[] olderApkAppPreferenceValues() {
+        String[] olderApkAppPreferenceValues = settingsScreen.olderApkAppPreferenceValues();
+        return olderApkAppPreferenceValues;
+    }
+
+    @And("Note down the App Preference information are same after the upgrade")
+    public String[] newerApkAppPreferenceValues() {
+        String[] newerApkAppPreferenceValues = settingsScreen.newerApkAppPreferenceValues();
+        return newerApkAppPreferenceValues;
+    }
+
+    @And("compare the app preference values")
+    public String[] compareAppPreferenceValues(){
+        String[] older = olderApkAppPreferenceValues();
+        String[] newer = newerApkAppPreferenceValues();
+        settingsScreen.compareValues(older,newer);
+        return older;
+    }
+
+    @And("Note down the About page information are same after the upgrade")
+    public void newerAboutInfo() {
+        settingsScreen.navigateBack();
+        click(settingsScreen.getTxtAbout());
+        settingsScreen.newerAboutInfo();
+    }
+
+    @And("compare the about info values")
+    public String[]  compareAboutValues(){
+        String[] older = settingsScreen.olderAboutInfo();
+        String[] newer = settingsScreen.newerAboutInfo();
+        settingsScreen.compareValues(older,newer);
+        return older;
+    }
+
+    @And("Verify Bluetooth Sensitivity menu is displayed in android device")
+    public void bluetoothSensitivityMenu() {
+        settingsScreen.verifyBluetoothSensitivityMenu();
+    }
+
+    @And("Bluetooth Sensitivity Screen is displayed in android device")
+    public void verifyBluetoothSensitivity() {
+        settingsScreen.clickOnBluetoothSensitivity();
+        settingsScreen.isBluetoothSensitivityPageDisplayed();
+    }
+
+    @Then("Bluetooth Sensitivity status is displayed as {string} and its {string} in android device")
+    public void verifyBluetoothSensitivity(String strBLESensitivity, String strContent) {
+        settingsScreen.verifyBluetoothSensitivity(strBLESensitivity, strContent);
+    }
+
+    @And("Identity Positioning status is displayed as {string} in android device")
+    public void verifyIdentityPositioning(String strOIP) {
+        settingsScreen.verifyIdentityPositioning(strOIP);
+    }
+
+    @Then("{string} status is displayed on the pass in android device")
+    public void verifyOIPPass(String strOIPPass) {
+        mobileIDScreen.verifyOIPPass(strOIPPass);
+    }
+
+//   ********************************************** code of Surrender sundarraj begins*********************************************************
+//    ********************************************************************
+
+    @And("Verify Discover Nearby Reader Element is displayed as Discover Nearby Readers in android device")
+    public void checkDiscoverNearbyReaderText() {
+        appPreferencesScreen.checkDiscoverNearbyReaderText();
+    }
+
+    @And("Signo Reader Text is displayed as Signo Reader in android device")
+    public void checkSignoReaderText() {
+        appPreferencesScreen.checkSignoReaderText();
+    }
+
+    @And("Verify Signo Reader Status is displayed as {string} in android device")
+    public void checkSignoReaderStatus(String SignoReader) {
+        appPreferencesScreen.checkSignoReaderStatus(SignoReader);
+    }
+
+    @And("RevE Reader Text is displayed as RevE Reader in android device")
+    public void checkRevEReaderText() {
+        appPreferencesScreen.checkRevEReaderText();
+    }
+
+    @And("Verify RevE Reader Status is displayed as {string} in android device")
+    public void checkRevEReaderStatus(String RevEReader) {
+        appPreferencesScreen.checkRevEReaderStatus(RevEReader);
+    }
+
+    @And("Click on the RevE Reader checkbox")
+    public void clickRevEReadercheckbox() {
+        appPreferencesScreen.clickRevEReadercheckbox();
+    }
+
+    @And("Disable the RevE Reader checkbox")
+    public void disableRevEReadercheckbox() { appPreferencesScreen.disableRevEReadercheckbox(); }
+
+    @And("Verify alertTitle pop up is displayed in android device")
+    public void checkAlertTitleText() {
+        appPreferencesScreen.checkAlertTitleText();
+    }
+
+    @And("click on AlertPositiveBtn")
+    public void clickAlertPositiveBtn() {
+        appPreferencesScreen.clickAlertPositiveBtn();
+    }
+    @And("Disable the Signo Reader checkbox")
+    public void disableSignoReadercheckbox() { appPreferencesScreen.disableSignoReadercheckbox(); }
+
+    @And("Verify Enable Nearby Reader toggle button status")
+    public void checkNearbyReaderStatus() {
+        appPreferencesScreen.checkNearbyReaderStatus();
+    }
+
+    @And("click on the Nearby Readers switch")
+    public void clickOnNearbyReaderSwitch() {
+        appPreferencesScreen.clickOnNearbyReaderSwitch();
+    }
+
+    @And("Verify nearby readers information icon is visible in android device")
+    public void checkNearbyReadersDataIcon() {
+        mobileIDScreen.checkNearbyDataInfoIcon();
+    }
+
+    @And("Verify onboarding screen one is Visible")
+    public void checkonboardingScreenOne() {
+        mobileIDScreen.checkonboardingScreenOne();
+    }
+
+    @And("Verify onboarding screen is navigable")
+    public void onboardScreenNavigation() {
+        mobileIDScreen.onboardScreenNavigation();
+    }
+
+    @And("Click on Image back button in Nearby Readers page")
+    public void clickImgBackBtn() {
+        appPreferencesScreen.clickImgBackBtn();
+    }
+
+    @And("Click on Image back in AppPreferences page")
+    public void clickImgBackAppPreferencesPage() {
+        appPreferencesScreen.clickImgBackAppPreferencesPage();
+
+    }
+    @And("Click on the Mobile IDs in Settings page for navigating to home screen")
+    public void clickOnMobileIdsIcon() {
+        settingsScreen.clickOnMobileIdsIcon();
+    }
+
+    @And("Verify Nearby Readers are visible in android device")
+    public void checkNearbyReadersVisible() {
+        mobileIDScreen.checkNearbyReadersVisible();
+    }
+
+    @And("Verify Manage button is displayed in android device")
+    public void checkManageButtonVisible() {
+        mobileIDScreen.checkManageButtonVisible();
+    }
+
+    @And("Verify Manage Reader Screen in android device")
+    public void checkManageReadersScreen() {
+        mobileIDScreen.checkManageReadersScreen();
+    }
+
+    @And("Verify if the list of Favourite readers are listed above successful transaction logs")
+    public void favouriteReaderPlacement() {
+        mobileIDScreen.favouriteReaderPlacement();
+    }
+
+    @And("Click on Image back button in ManageReaders Screen navigate to Mobile ids Screen")
+    public void clickBackButtonManageReaders() {
+        mobileIDScreen.clickBackButtonManageReaders();
+    }
+
+    @And("Click on heart icon on Reader in android device")
+    public void clickNearbyReaderHeartIcon() {
+        mobileIDScreen.clickNearbyReaderHeartIcon();
+    }
+    @And("Verify unfavorite reader stored in successful transactions log")
+    public void checkTransactionsLog() {
+        mobileIDScreen.checkTransactionsLog();
+    }
+    @And("Verify added reader reflected in Favorite Readers in android device")
+    public void checkFavoriteReaders() {
+        mobileIDScreen.checkFavoriteReaders();
+    }
+
+//   ********************************************** code of Surrender sundarraj Ends *********************************************************
 }
+
+

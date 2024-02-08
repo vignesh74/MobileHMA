@@ -38,6 +38,7 @@ public class ConfigLoader {
     private static final String ANDROID_APP_ACTIVITY = "androidAppActivity";
     private static final String ANDROID_APP_LOCATION = "androidAppLocation";
 
+    private static final String ANDROID_APP_LOCATION_NEW = "androidAppLocationNew";
     private static final String IOS_AUTOMATION_NAME = "iOSAutomationName";
     private static final String IOS_BUNDLE_ID = "iOSBundleId";
     private static final String IOS_HOME_BUNDLE_ID = "iOSHomeBundleId";
@@ -46,6 +47,10 @@ public class ConfigLoader {
     private static final String CONFIG_PROPERTIES = "config.properties";
     private static ConfigLoader configLoader;
     private Properties properties;
+
+    private static final String ADB_PATH = "adbPath";
+
+    private static final String ANDROID_MOBILE_PIN = "androidMobilePin";
 
     /**
      * ConfigLoader- Constructor load the config.properties Date-02/11/2022
@@ -145,6 +150,10 @@ public class ConfigLoader {
      */
     public String getAndroidApplocation() {
         return getPropertyValue(ANDROID_APP_LOCATION);
+    }
+
+    public String getAndroidAppLocationNew(){
+        return getPropertyValue(ANDROID_APP_LOCATION_NEW);
     }
 
     /**
@@ -281,6 +290,14 @@ public class ConfigLoader {
      */
     public String getiOSHomeBundleId() {
         return getPropertyValue(IOS_HOME_BUNDLE_ID);
+    }
+
+    public String getAdbPath(){
+        return getPropertyValue(ADB_PATH);
+    }
+
+    public String getAndroidMobilePin(){
+        return getPropertyValue(ANDROID_MOBILE_PIN);
     }
 
 }

@@ -26,9 +26,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']")
     private MobileElement txtLocation;
-    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(xpath = "//*[@text='Nearby devices']", priority = 0)
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']", priority = 1)
+    @AndroidFindBy(xpath = "//*[@text='Nearby devices']")
     private MobileElement txtNearByDevices;
     @AndroidFindBy(id = "com.android.permissioncontroller:id/allow_radio_button")
     private MobileElement rdoAllow;
@@ -195,6 +193,15 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
         }
     }
 
+    public void clickOnLocationTab(){
+        try {
+            click(locTab);
+            TestUtils.log().info("Successfully click to location button");
+        } catch (Exception e) {
+            TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE,e.getMessage());
+        }
+    }
+
     /**
      * setLocationPermissionAsAllow- This method is used to set location permission as allow for android version 11 Date-03/02/2023
      */
@@ -271,10 +278,11 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
     public void setNearByOrLocationPerm(String strLocationOrNearBy, String strLocOrNearByPerm) {
         try {
             String strDevicePlatformVersion = DriverManager.getPlatformVersion();
-            String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
+
 
             switch (strDevicePlatformVersion) {
                 case "9" -> {
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnLocationPermission();
                         waitForGivenTime(1);
@@ -298,6 +306,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                 }
                 case "7", "8" -> {
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
 
                         appPrefencesScreenPage.clickOnLocationPermission();
@@ -314,45 +323,63 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         TestUtils.log().info("Location Permission is already set as {}",strLocOrNearByPerm);
 
                 }
-                default -> {
+
+                case "10", "11" -> {
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
+                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
+                        appPrefencesScreenPage.clickOnLocationPermission();
+                        clickOnPermissionTab();
+                        clickOnLocationTab();
+                        switch (strLocationOrNearBy) {
+                            case "Location" -> {
+                                if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow") || strLocOrNearByPerm.equalsIgnoreCase("Deny")) {
+                                    selectRadioButton(rdoDeny);
+                                    TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow all the time")) {
+                                    selectRadioButton(rdoAllowAllTheTime);
+                                    TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow only while using app") || strLocOrNearByPerm.equalsIgnoreCase("Allow only while using the app")) {
+                                    selectRadioButton(rdoAllowOnlyWhileUsingApp);
+                                    TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Ask every time")) {
+                                    selectRadioButton(rdoAskEveryTime);
+                                    TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                                } else
+                                    TestUtils.log().info("Please provide correct permission option.");
+
+                            }
+                        }
+                    }
+                }
+                case "12","13" -> {
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtNearByPermissionStatusValue());
                     appPrefencesScreenPage.clickOnNearByPermission();
                     clickOnPermissionTab();
                     clickOnNearByDevices();
-                    switch (strLocationOrNearBy) {
-                        case "Location" -> {
-                            if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow") || strLocOrNearByPerm.equalsIgnoreCase("Deny")) {
-                                selectRadioButton(rdoDeny);
-                                TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
-                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow all the time")) {
-                                selectRadioButton(rdoAllowAllTheTime);
-                                TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
-                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow only while using app")) {
-                                selectRadioButton(rdoAllowOnlyWhileUsingApp);
-                                TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
-                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Ask every time")) {
-                                selectRadioButton(rdoAskEveryTime);
-                                TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
-                            } else
-                                TestUtils.log().info("Please provide correct permission option");
-
-                        }
-                        case "NearBy" -> {
-                            if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
-                                selectRadioButton(rdoAllow);
-                                TestUtils.log().info("NearBy Devices Permission set as {}",strLocOrNearByPerm);
-                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
-                                selectRadioButton(rdoDeny);
-                                TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
-                            } else
-                                TestUtils.log().info("Please provide correct permission option");
-
-                        }
-                        default ->
-                            TestUtils.log().info("Please provide correct permission option for execution");
+                        if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
+                            selectRadioButton(rdoAllow);
+                            TestUtils.log().info("NearBy Devices Permission set as {}",strLocOrNearByPerm);
+                        } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
+                            selectRadioButton(rdoDeny);
+                            TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
+                        } else
+                            TestUtils.log().info("Please provide correct permission option.");
 
                     }
+                default -> {
+                    appPrefencesScreenPage.getTxtNearByPermissionStatusValue().click();
+                    clickOnPermissionTab();
+                    clickOnNearByDevices();
+                            if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
+                                selectRadioButton(rdoAllow);
+                                TestUtils.log().info("NearBy Devices Permission set as {}", strLocOrNearByPerm);
+                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
+                                selectRadioButton(rdoDeny);
+                                TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                            } else
+                                TestUtils.log().info("Please provide correct permission option");
+                    }
                 }
-            }
             loopHandle(txtAppPreferences, NAVIGATE_BACK, 10);
         } catch (Exception e) {
             TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE,e.getMessage());
@@ -534,11 +561,11 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                 }
                 default -> {
                     /**THESE METHODS WILL BE USED WITH ANDROID 10 & 11 WHICH WILL BE TAKEN UP LATER */
-                    // appPreferencesScreenPage.clickOnLocationPermission();
-                    //waitForGivenTime(2);
-                    // handlePermissionMsg();
-                    //clickOnPermissionTab();
-                    //click(locTab);
+                    appPrefencesScreenPage.clickOnLocationPermission();
+                    waitForGivenTime(2);
+                     handlePermissionMsg();
+                    clickOnPermissionTab();
+                    click(locTab);
 
                     loopHandle(mobileIDScreenPage.getTxtMobileIdsTab(), "navigateBack", 10);
                     if (isDisplayed(nearByPermissionDisabled)) {

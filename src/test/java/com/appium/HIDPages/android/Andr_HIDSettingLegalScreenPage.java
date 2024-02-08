@@ -116,6 +116,7 @@ public class Andr_HIDSettingLegalScreenPage extends BasePage {
 
     public void isLegalScreenPageDisplayed() {
         try {
+            waitForGivenTime(1);
             waitForVisibility(txtThirdPartyLicenses);
             Assert.assertTrue(isElementVisible(txtLegalHeaderTitle));
             Assert.assertTrue(isElementVisible(txtEndUserLicenseAgreement));

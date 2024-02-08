@@ -31,6 +31,9 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Use Bluetooth']",priority = 2)
     private MobileElement btnOnOff;
 
+    @AndroidFindBy(id="com.android.settings:id/switch_widget")
+    private MobileElement btnBLEOnOff;
+
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(xpath = "//*[@text='Connection preferences']",priority = 1)
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Connection preferences']",priority = 0)
@@ -115,10 +118,20 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                             click(tglBtnBLE);
                             String strAttr = getElementAttribute(tglBtnBLE, "Checked");
                             if (strAttr.equalsIgnoreCase("false")) {
-                                TestUtils.log().info("BLE Status set as {}",strBLEStatus);
+                                TestUtils.log().info("BLE Status set as {}", strBLEStatus);
                             }
                             loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
                         }
+                        case "13" ->{
+                            System.out.println("Entered");
+                            click(btnBLEOnOff);
+                            String strAttr = getElementAttribute(btnBLEOnOff, "Checked");
+                            if (strAttr.equalsIgnoreCase("false")) {
+                                TestUtils.log().info("BLE Status set as {}", strBLEStatus);
+                            }
+                            loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
+                        }
+
                         default -> {
                             click(btnOnOff);
                             String strActualBLEStatus = getElementText(txtSwitchOnOff);

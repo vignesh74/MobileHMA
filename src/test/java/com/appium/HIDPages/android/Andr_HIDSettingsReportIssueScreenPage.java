@@ -27,6 +27,15 @@ public class Andr_HIDSettingsReportIssueScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/btnSubmit")
     private MobileElement btnSubmit;
 
+    @AndroidFindBy(id = "android:id/button_once")
+    private MobileElement justOnce;
+
+    @AndroidFindBy(xpath = "//android.widget.EditText")
+    private MobileElement txtEdit;
+
+    @AndroidFindBy(id = "com.google.android.gm:id/attachment_tile_title")
+    private MobileElement txtAttachement;
+
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-13/02/2023
      */
@@ -49,6 +58,18 @@ public class Andr_HIDSettingsReportIssueScreenPage extends BasePage {
 
     public MobileElement getBtnSubmit() {
         return btnSubmit;
+    }
+
+    public MobileElement getJustOnce() {
+        return justOnce;
+    }
+
+    public MobileElement getTxtEdit() {
+        return txtEdit;
+    }
+
+    public MobileElement getTxtAttachement() {
+        return txtAttachement;
     }
 
     /**
@@ -98,5 +119,37 @@ public class Andr_HIDSettingsReportIssueScreenPage extends BasePage {
             TestUtils.log().debug("Exception occurred while coming back from Report Screen...");
         }
     }
+
+    public void shareLogs(){
+        try{
+            click(getJustOnce());
+            getTxtEdit().getText().contains("Issue Description");
+        }catch (Exception e){
+            TestUtils.log().debug("Exception occurred while sharing the logs");
+        }
+    }
+
+    public void checkAttachment(String DebugLogs){
+        try{
+            if(DebugLogs.equalsIgnoreCase("Enable")){
+                hideKeyboard();
+                scrollDownTillElement( 80000, 5);
+                waitForVisibility(txtAttachement);
+                Assert.assertTrue(isElementVisible(txtAttachement));
+                getTxtAttachement().getText().contains(".log");
+                TestUtils.log().debug("Attachment is visible");
+
+            }else if(DebugLogs.equalsIgnoreCase("Disable")){
+                hideKeyboard();
+                if(!isElementVisible(txtAttachement)){
+                    TestUtils.log().debug("Attachment is not visible");
+                }
+            }
+
+        }catch (Exception e){
+            TestUtils.log().debug("Exception occurred while checking the attachment.");
+        }
+    }
+
 
 }

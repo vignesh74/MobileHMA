@@ -14,16 +14,16 @@
     <test name="Tests_on_Android_12">
         <parameter name="emulator" value="false"></parameter>
         <parameter name="platformName" value="Android"></parameter>
-        <parameter name="platformVersion" value="12"></parameter>
-        <parameter name="udid" value="R58N310ZXLR"></parameter>
-        <parameter name="installApp" value="False"></parameter>
-        <parameter name="deviceName" value="TestPhone-ANDROID"></parameter>
+        <parameter name="platformVersion" value="13"></parameter>
+        <parameter name="udid" value="RZCW91MYNLT"></parameter>
+        <parameter name="installApp" value="false"></parameter>
+        <parameter name="deviceName" value="Galaxy M34"></parameter>
         <parameter name="systemPort" value="2301"/>
         <parameter name="chromeDriverPort" value="11033"/>
         <parameter name="wdaLocalPort" value=""/>
         <parameter name="webkitDebugProxyPort" value="9228"/>
         <parameter name="userId" value="12443213"/>
-        <parameter name="comPort" value="24601"/>
+        <parameter name="comPort" value="11601"/>
         <parameter name="roboticArmX" value="1900"/>
         <parameter name="roboticArmY" value="500"/>
 
