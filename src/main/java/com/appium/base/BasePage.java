@@ -1417,6 +1417,7 @@ public class BasePage {
 
     public String getADBPath() {
         String androidHome = System.getenv("ANDROID_HOME");
+        TestUtils.log().info("ADB executable not found in androidHome" + androidHome);
         if (androidHome != null && !androidHome.isEmpty()) {
             File platformToolsDir = new File(androidHome, "platform-tools");
             if (platformToolsDir.exists()) {
