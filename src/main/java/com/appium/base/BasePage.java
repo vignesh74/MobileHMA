@@ -1423,8 +1423,17 @@ public class BasePage {
                 File adbExecutable = new File(platformToolsDir, isWindows() ? "adb.exe" : "adb");
                 if (adbExecutable.exists()) {
                     return adbExecutable.getAbsolutePath();
+                } else {
+                    System.err.println("ADB executable not found in " + platformToolsDir.getAbsolutePath());
+                    TestUtils.log().info("ADB executable not found in " + platformToolsDir.getAbsolutePath());
                 }
+            } else {
+                System.err.println("Platform tools directory not found: " + platformToolsDir.getAbsolutePath());
+                TestUtils.log().info("Platform tools directory not found: " + platformToolsDir.getAbsolutePath());
             }
+        } else {
+            System.err.println("ANDROID_HOME environment variable is not set.");
+            TestUtils.log().info("ANDROID_HOME environment variable is not set.");
         }
         return null;
     }

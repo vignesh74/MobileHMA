@@ -863,6 +863,7 @@ public class AndroidDeviceAction {
     public void unlockDeviceWithPin(String pin){
         String adbPath = basePage.getADBPath();
         try {
+            TestUtils.log().info("Entering %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
             // Run ADB commands
             executeCommand(adbPath, "shell", "input", "keyevent", "82");
             executeCommand(adbPath, "shell", "input", "text", pin);
