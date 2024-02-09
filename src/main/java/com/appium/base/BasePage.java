@@ -1418,25 +1418,20 @@ public class BasePage {
     public String getADBPath() {
         TestUtils.log().info("Entered &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         String androidHome = System.getenv("ANDROID_HOME");
-        TestUtils.log().info("%%%%%%%%%%%%%%%%%%%%%%%%%%%" + androidHome);
+
+        // If ANDROID_HOME is set and not empty
         if (androidHome != null && !androidHome.isEmpty()) {
-            File platformToolsDir = new File(androidHome, "platform-tools");
-            if (platformToolsDir.exists()) {
-                File adbExecutable = new File(platformToolsDir, isWindows() ? "adb.exe" : "adb");
-                if (adbExecutable.exists()) {
-                    return adbExecutable.getAbsolutePath();
-                } else {
-                    System.err.println("ADB executable not found in " + platformToolsDir.getAbsolutePath());
-                    TestUtils.log().info("ADB executable not found in " + platformToolsDir.getAbsolutePath());
-                }
-            } else {
-                System.err.println("Platform tools directory not found: " + platformToolsDir.getAbsolutePath());
-                TestUtils.log().info("Platform tools directory not found: " + platformToolsDir.getAbsolutePath());
+            // Construct the path to the ADB executable
+            File adbExecutable = new File(androidHome, "platform-tools/adb");
+
+            // Check if the ADB executable exists
+            if (adbExecutable.exists()) {
+                // Return the absolute path to the ADB executable
+                return adbExecutable.getAbsolutePath();
             }
-        } else {
-            System.err.println("ANDROID_HOME environment variable is not set.");
-            TestUtils.log().info("ANDROID_HOME environment variable is not set.");
         }
+
+        // If ADB path is not found, return null
         return null;
     }
 

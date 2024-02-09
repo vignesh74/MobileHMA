@@ -862,6 +862,11 @@ public class AndroidDeviceAction {
 
     public void unlockDeviceWithPin(String pin){
         String adbPath = basePage.getADBPath();
+        if (adbPath != null) {
+            System.out.println("ADB Path: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" + adbPath);
+        } else {
+            System.out.println("ADB Path not found. ********************************");
+        }
         try {
             TestUtils.log().info("Entering %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
             // Run ADB commands
