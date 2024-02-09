@@ -1422,16 +1422,21 @@ public class BasePage {
         // If ANDROID_HOME is set and not empty
         if (androidHome != null && !androidHome.isEmpty()) {
             // Construct the path to the ADB executable
-            File adbExecutable = new File(androidHome, "platform-tools/adb");
+            File platformToolsDir = new File(androidHome, "platform-tools");
 
-            // Check if the ADB executable exists
-            if (adbExecutable.exists()) {
-                // Return the absolute path to the ADB executable
-                return adbExecutable.getAbsolutePath();
+            // Check if the platform-tools directory exists
+            if (platformToolsDir.exists()) {
+                File adbExecutable = new File(platformToolsDir, "adb");
+
+                // Check if the ADB executable exists
+                if (adbExecutable.exists()) {
+                    // Return the absolute path to the ADB executable
+                    return adbExecutable.getAbsolutePath();
+                }
             }
         }
 
-        // If ADB path is not found, return null
+        // If ADB path is not found, return null or handle accordingly
         return null;
     }
 
