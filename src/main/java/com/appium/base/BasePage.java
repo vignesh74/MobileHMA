@@ -1416,6 +1416,7 @@ public class BasePage {
     }
 
     public String getADBPath() {
+        TestUtils.log().info("Entered &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         String androidHome = System.getenv("ANDROID_HOME");
         TestUtils.log().info("ADB executable not found in androidHome" + androidHome);
         if (androidHome != null && !androidHome.isEmpty()) {
