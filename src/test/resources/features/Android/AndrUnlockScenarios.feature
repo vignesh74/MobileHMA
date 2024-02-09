@@ -17,7 +17,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     And   Set Application status as "<app_state>" in android device
     And   Set device state as "<device_state>" in android device.
     And   Set display screen as "<display_status>" with "<device_state>" in android device
-    And   Perform robotic arm action as "<action_name>" for android device "<device_state>"
+    And   Perform robotic arm action as "<action_name>" for android device "<device_state>" in android device
     And   Set device state as force unlock "<device_state>" with "<app_state>" in android device
     And   Set Application status as "Foreground" in android device
     And   Activity log is displayed in android device and "<date>", "<message>", "<reader_name>", "<action_name>", "<device_state>","<app_state>","<mobile_read>" are verified
@@ -374,7 +374,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     And   Set Application status as "<app_state>" in android device
     And   Set device state as "<device_state>" in android device.
     And   Set display screen as "<display_status>" with "<device_state>" in android device
-    And   Perform robotic arm action as "<action_name>" for android device "<device_state>"
+    And   Perform robotic arm action as "<action_name>" for android device "<device_state>" in android device
     And   Set device state as force unlock "<device_state>" with "<app_state>" in android device
     And   Set Application status as "Foreground" in android device
     And   Activity log is displayed in android device and "<date>", "<message>", "<reader_name>", "<action_name>", "<device_state>","<app_state>","<mobile_read>" are verified
@@ -775,7 +775,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     And   Set Application status as "<app_state>" in android device
     And   Set device state as "<device_state>" in android device.
     And   Set display screen as "<display_status>" with "<device_state>" in android device
-    And   Perform robotic arm action as "<action_name>" for android device "<device_state>"
+    And   Perform robotic arm action as "<action_name>" for android device "<device_state>" in android device
     And   Set device state as "ForcedUnlock" in android device.
     And   Set Application status as "Foreground" in android device
     And   Activity log is displayed in android device and "<date>", "<message>", "<reader_name>", "<action_name>", "<device_state>","<app_state>","<mobile_read>" are verified

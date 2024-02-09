@@ -82,44 +82,44 @@ public class AndrStepDef extends BasePage {
 
     }
 
-    @When("Header and Description is displayed for Convenient Screen")
+    @When("Header and Description is displayed for Convenient Screen in android device")
     public void headerConvenientDisplay() {
         OnboardingScreen.checkVisibilityOfConvenientPage();
         OnboardingScreen.checkDescriptionConvScreen();
     }
 
-    @Then("Terms of Use Page is displayed when {string} is clicked in Convenient Screen")
+    @Then("Terms of Use Page is displayed when {string} is clicked in Convenient Screen in android device")
     public void skipConvenientPage(String button) {
         OnboardingScreen.skipConvenientPageOnboardingScreen(button);
 
     }
 
-    @And("Header and Description  is displayed for Twist&Go")
+    @And("Header and Description  is displayed for Twist&Go in android device")
     public void headerTwistAndGoDisplay() {
         OnboardingScreen.checkVisibilityOfTwistAndGoPage();
         OnboardingScreen.checkDescriptionTwistAndGoScreen();
     }
 
-    @Then("Favorite Reader Page is displayed when {string} is clicked in Twist&Go Screen")
+    @Then("Favorite Reader Page is displayed when {string} is clicked in Twist&Go Screen in android device")
     public void skipTwistAndGo(String button) {
         OnboardingScreen.skipTwistAndGoPage(button);
 
     }
 
-    @And("Header and Description is displayed for Favorite Reader Screen")
+    @And("Header and Description is displayed for Favorite Reader Screen in android device")
     public void headerFavoriteReaderScreen() {
         OnboardingScreen.checkVisibilityOfFavoriteReaderPage();
         OnboardingScreen.checkDescriptionFavoriteReaderScreen();
     }
 
-    @Then("Terms of Use Page is displayed when {string} is clicked in Favorite Reader Screen")
+    @Then("Terms of Use Page is displayed when {string} is clicked in Favorite Reader Screen in android device")
     public void getStartedBanner(String button) {
         OnboardingScreen.GetStartedFavoriteReaderPage();
 
     }
 
 
-    @Given("Get Invitation Code using Rest API when credential are {}")
+    @Given("Get Invitation Code using Rest API when credential are {} in android device")
     public void createInvitationCode_Andr(String assigned) throws AutomationException, IOException {
         boolean assign = true;
         strInvitationCode = createInvitationAPI(DriverManager.getUserId(), assign);
@@ -140,12 +140,12 @@ public class AndrStepDef extends BasePage {
 
     }
 
-    @And("Skip is clicked")
+    @And("Skip is clicked in android device")
     public void skipConvPage() {
         OnboardingScreen.skipConvenientPage();
     }
 
-    @And("Terms of Use Page is displayed")
+    @And("Terms of Use Page is displayed in android device")
     public void headerTermsOfUse() {
         termsOfUseScreen.checkVisibilityOfTermsOfUsePage();
         termsOfUseScreen.checkVisibilityOfTermsOfUsePageImage();
@@ -153,12 +153,12 @@ public class AndrStepDef extends BasePage {
     }
 
 
-    @Then("{string} in Terms Of Use Screen is clicked")
+    @Then("{string} in Terms Of Use Screen is clicked in android device")
     public void cancelTermsOfUse(String button) {
         termsOfUseScreen.cancelTermsOfUsePage(button);
     }
 
-    @Then("{string} in Terms Of Use Page is clicked")
+    @Then("{string} in Terms Of Use Page is clicked in android device")
     public void eulaPrivacyLinks(String link) {
         if (link.equalsIgnoreCase(EULA)) {
             termsOfUseScreen.checkEulaPageLink(link);
@@ -180,7 +180,7 @@ public class AndrStepDef extends BasePage {
 
     }
 
-    @And("Terms of Use Page Checkbox is checked")
+    @And("Terms of Use Page Checkbox is checked in android device")
     public void checkboxCheck() {
         termsOfUseScreen.checkCheckBoxTxt();
         termsOfUseScreen.continueBtnDisabled();
@@ -188,7 +188,7 @@ public class AndrStepDef extends BasePage {
 
     }
 
-    @Then("{string} in Terms Of Use  is clicked")
+    @Then("{string} in Terms Of Use  is clicked in android device")
     public void continueTermsOfUse(String link) {
 
         termsOfUseScreen.continueTermsOfUsePageLink(link);
@@ -584,7 +584,7 @@ public class AndrStepDef extends BasePage {
         warningBanners.warningBannersWf3();
     }
 
-    @And("Verify {string} always is disabled and other modes are enabled")
+    @And("Verify {string} always is disabled and other modes are enabled in android device")
     public void checkEnforcedSetting(String usage_state) {
         settingsScreen.checkEnforcedSetting(usage_state);
     }
@@ -609,7 +609,7 @@ public class AndrStepDef extends BasePage {
         settingsScreen.copyAboutScreen();
     }
 
-    @And("Copy image should turned to tick mark symbol and copied to clipboard toast")
+    @And("Copy image should turned to tick mark symbol and copied to clipboard toast in android device")
     public void verifyTickSymbol() {
         settingsScreen.verifyAboutContents();
     }
@@ -639,22 +639,22 @@ public class AndrStepDef extends BasePage {
         notificationScreen.verifyNoNotificationScreen();
     }
 
-    @Then("Warning Banners are displayed {string} in android device with {string} {string} {string} {string}")
+    @Then("Warning Banners are displayed {string} in android device with {string} {string} {string} {string} in android device")
     public void verifyBanners(String BLE_Status, String NFC_Status, String location, String location_permission, String banners) {
         warningBanners.verifyWarningBanners(BLE_Status, NFC_Status, location, location_permission, banners);
     }
 
-    @Then("Warning Banners are displayed {string} in android device with {string} {string}")
+    @Then("Warning Banners are displayed {string} in android device with {string} {string} in android device")
     public void verifyBanners12(String BLE_Status, String nearByPermission, String banners) {
         warningBanners.verifyWarningBanners12(BLE_Status, nearByPermission, banners);
     }
 
-    @Then("Warning Banners are displayed {string} in android device with {string} {string} {string}")
+    @Then("Warning Banners are displayed {string} in android device with {string} {string} {string} in android device")
     public void verifyBanners789(String BLE_Status, String location, String location_permission, String banners) {
         warningBanners.verifyWarningBanners789(BLE_Status, location, location_permission, banners);
     }
 
-    @Then("Warning Banners are displayed as {string} in android device with {string} {string} {string}")
+    @Then("Warning Banners are displayed as {string} in android device with {string} {string} {string} in android device")
     public void verifyBanners13(String BLE_Status, String NFC_Status, String nearByPermission, String banners) {
         warningBanners.verifyWarningBanners13(BLE_Status, NFC_Status, nearByPermission);
     }
@@ -696,38 +696,38 @@ public class AndrStepDef extends BasePage {
         appPreferencesScreen.navigateBack();
     }
 
-    @And("Click on report issue submit button")
+    @And("Click on report issue submit button in android device")
     public void clickOnSubmitButton() {
         settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
     }
 
-    @And("Share the access logs")
+    @And("Share the access logs in android device")
     public void shareLogs() {
         settingsReportIssueScreenPage.shareLogs();
     }
 
-    @Then("Attachment will be displayed based on {string}")
+    @Then("Attachment will be displayed based on {string} in android device")
     public void checkAttachment(String DebugLogs) {
         settingsReportIssueScreenPage.checkAttachment(DebugLogs);
     }
 
 
-    @And("Click on the tab Deregister this device {string}")
+    @And("Click on the tab Deregister this device {string} in android device")
     public void clickOnDeregister(String action) {
         settingsScreen.clickOnDeregister(action);
     }
 
-    @And("Turn {string} the wifi")
+    @And("Turn {string} the wifi in android device")
     public void actionOnNetwork(String action) {
         settingsScreen.actionOnNetwork(action);
     }
 
-    @Then("Verify the confirm button when deregister is {string}")
+    @Then("Verify the confirm button when deregister is {string} in android device")
     public void confirmDeregisterBtn(String actionOFF) {
         settingsScreen.confirmDeregisterBtn(actionOFF);
     }
 
-    @And("Verify the Delete device alert")
+    @And("Verify the Delete device alert in android device")
     public void verifyDeleteDeviceAlert() {
         mobileIDScreen.verifyDeleteDeviceAlert();
     }
@@ -743,7 +743,7 @@ public class AndrStepDef extends BasePage {
         mobileIDScreen.click(mobileIDScreen.getMobileIDTab());
     }
 
-    @Then("Activity will display in mobileID screen based on {string}")
+    @Then("Activity will display in mobileID screen based on {string} in android device")
     public void verifyShowActivity(String activity) {
         mobileIDScreen.verifyShowActivity(activity);
     }
@@ -753,17 +753,17 @@ public class AndrStepDef extends BasePage {
         mobileIDScreen.verifyMobileIDWithID();
     }
 
-    @And("Verify nearby readers section in android device {string}")
+    @And("Verify nearby readers section in android device {string} in android device")
     public void verifyNearByReaders(String nearbyReaderCount) {
         mobileIDScreen.verifyNearByReaders(nearbyReaderCount);
     }
 
-    @And("Verify the Manage Readers section in android device {string}")
+    @And("Verify the Manage Readers section in android device {string} in android device")
     public void verifyManageReaders(String nearbyReaderCount) {
         mobileIDScreen.verifyManageReaders(nearbyReaderCount);
     }
 
-    @And("click on the Nearby Readers tab")
+    @And("click on the Nearby Readers tab in android device")
     public void clickOnNearbyReaders() {
         appPreferencesScreen.clickOnNearbyReaders();
     }
@@ -783,7 +783,7 @@ public class AndrStepDef extends BasePage {
         FAQScreen.isFAQScreenPageDisplayed();
     }
 
-    @And("Enter {string} type on the search box")
+    @And("Enter {string} type on the search box in android device")
     public void checkSearch(String text) {
         FAQScreen.changeDriverContextToWeb();
         FAQScreen.checkSearch(text);
@@ -829,7 +829,7 @@ public class AndrStepDef extends BasePage {
         FAQScreen.searchText(text);
     }
 
-    @Then("Verify the log message {string} and {string} in Activity log screen in android device with {string}")
+    @Then("Verify the log message {string} and {string} in Activity log screen in android device with {string} in android device")
     public void verifyActivityLog(String mobileIDState, String message, String appState) {
         mobileIDScreen.verifyActivityLog(mobileIDState, message, appState);
 
@@ -866,7 +866,7 @@ public class AndrStepDef extends BasePage {
         return driver.getCapabilities().getCapability("appActivity").toString();
     }
 
-    @And("Perform robotic arm action as {string} for android device {string}")
+    @And("Perform robotic arm action as {string} for android device {string} in android device")
     public Pair<String, String> roboticExecution(String RoboticAction, String deviceState) throws SerialPortException {
         armLogs = serialPortUtils.performRoboticArmOperationWithDeviceState(DriverManager.getDevicePort(), RoboticAction, deviceState);
         return armLogs;
@@ -889,19 +889,19 @@ public class AndrStepDef extends BasePage {
 //        settingsScreen.verifyUpgrade();
 //    }
 
-    @And("Note down the settings of application before upgrade")
+    @And("Note down the settings of application before upgrade in android device")
     public String[] olderApkAppPreferenceValues() {
         String[] olderApkAppPreferenceValues = settingsScreen.olderApkAppPreferenceValues();
         return olderApkAppPreferenceValues;
     }
 
-    @And("Note down the App Preference information are same after the upgrade")
+    @And("Note down the App Preference information are same after the upgrade in android device")
     public String[] newerApkAppPreferenceValues() {
         String[] newerApkAppPreferenceValues = settingsScreen.newerApkAppPreferenceValues();
         return newerApkAppPreferenceValues;
     }
 
-    @And("compare the app preference values")
+    @And("compare the app preference values in android device")
     public String[] compareAppPreferenceValues(){
         String[] older = olderApkAppPreferenceValues();
         String[] newer = newerApkAppPreferenceValues();
@@ -909,14 +909,14 @@ public class AndrStepDef extends BasePage {
         return older;
     }
 
-    @And("Note down the About page information are same after the upgrade")
+    @And("Note down the About page information are same after the upgrade in android device")
     public void newerAboutInfo() {
         settingsScreen.navigateBack();
         click(settingsScreen.getTxtAbout());
         settingsScreen.newerAboutInfo();
     }
 
-    @And("compare the about info values")
+    @And("compare the about info values in android device")
     public String[]  compareAboutValues(){
         String[] older = settingsScreen.olderAboutInfo();
         String[] newer = settingsScreen.newerAboutInfo();
@@ -978,12 +978,12 @@ public class AndrStepDef extends BasePage {
         appPreferencesScreen.checkRevEReaderStatus(RevEReader);
     }
 
-    @And("Click on the RevE Reader checkbox")
+    @And("Click on the RevE Reader checkbox in android device")
     public void clickRevEReadercheckbox() {
         appPreferencesScreen.clickRevEReadercheckbox();
     }
 
-    @And("Disable the RevE Reader checkbox")
+    @And("Disable the RevE Reader checkbox in android device")
     public void disableRevEReadercheckbox() { appPreferencesScreen.disableRevEReadercheckbox(); }
 
     @And("Verify alertTitle pop up is displayed in android device")
@@ -991,19 +991,19 @@ public class AndrStepDef extends BasePage {
         appPreferencesScreen.checkAlertTitleText();
     }
 
-    @And("click on AlertPositiveBtn")
+    @And("click on AlertPositiveBtn in android device")
     public void clickAlertPositiveBtn() {
         appPreferencesScreen.clickAlertPositiveBtn();
     }
-    @And("Disable the Signo Reader checkbox")
+    @And("Disable the Signo Reader checkbox in android device")
     public void disableSignoReadercheckbox() { appPreferencesScreen.disableSignoReadercheckbox(); }
 
-    @And("Verify Enable Nearby Reader toggle button status")
+    @And("Verify Enable Nearby Reader toggle button status in android device")
     public void checkNearbyReaderStatus() {
         appPreferencesScreen.checkNearbyReaderStatus();
     }
 
-    @And("click on the Nearby Readers switch")
+    @And("click on the Nearby Readers switch in android device")
     public void clickOnNearbyReaderSwitch() {
         appPreferencesScreen.clickOnNearbyReaderSwitch();
     }
@@ -1013,27 +1013,27 @@ public class AndrStepDef extends BasePage {
         mobileIDScreen.checkNearbyDataInfoIcon();
     }
 
-    @And("Verify onboarding screen one is Visible")
+    @And("Verify onboarding screen one is Visible in android device")
     public void checkonboardingScreenOne() {
         mobileIDScreen.checkonboardingScreenOne();
     }
 
-    @And("Verify onboarding screen is navigable")
+    @And("Verify onboarding screen is navigable in android device")
     public void onboardScreenNavigation() {
         mobileIDScreen.onboardScreenNavigation();
     }
 
-    @And("Click on Image back button in Nearby Readers page")
+    @And("Click on Image back button in Nearby Readers page in android device")
     public void clickImgBackBtn() {
         appPreferencesScreen.clickImgBackBtn();
     }
 
-    @And("Click on Image back in AppPreferences page")
+    @And("Click on Image back in AppPreferences page in android device")
     public void clickImgBackAppPreferencesPage() {
         appPreferencesScreen.clickImgBackAppPreferencesPage();
 
     }
-    @And("Click on the Mobile IDs in Settings page for navigating to home screen")
+    @And("Click on the Mobile IDs in Settings page for navigating to home screen in android device")
     public void clickOnMobileIdsIcon() {
         settingsScreen.clickOnMobileIdsIcon();
     }
@@ -1053,21 +1053,21 @@ public class AndrStepDef extends BasePage {
         mobileIDScreen.checkManageReadersScreen();
     }
 
-    @And("Verify if the list of Favourite readers are listed above successful transaction logs")
+    @And("Verify if the list of Favourite readers are listed above successful transaction logs in android device")
     public void favouriteReaderPlacement() {
         mobileIDScreen.favouriteReaderPlacement();
     }
 
-    @And("Click on Image back button in ManageReaders Screen navigate to Mobile ids Screen")
+    @And("Click on Image back button in ManageReaders Screen navigate to Mobile ids Screen in android device")
     public void clickBackButtonManageReaders() {
         mobileIDScreen.clickBackButtonManageReaders();
     }
 
-    @And("Click on heart icon on Reader in android device")
+    @And("Click on heart icon on Reader in android device in android device")
     public void clickNearbyReaderHeartIcon() {
         mobileIDScreen.clickNearbyReaderHeartIcon();
     }
-    @And("Verify unfavorite reader stored in successful transactions log")
+    @And("Verify unfavorite reader stored in successful transactions log in android device")
     public void checkTransactionsLog() {
         mobileIDScreen.checkTransactionsLog();
     }
