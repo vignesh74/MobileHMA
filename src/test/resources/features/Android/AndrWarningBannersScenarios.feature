@@ -148,7 +148,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     And  NFC status is displayed as "<NFC_Status>" in android device
     And  Location Status is displayed as "<Location_Status>" in android device
     And  "Location" Permission status is displayed as "<Location_Permission>" in android device
-    Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<NFC_Status>" "<Location_Status>" "<Location_Permission>"
+    Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<NFC_Status>" "<Location_Status>" "<Location_Permission>" in android device
 
     Examples:
       | TC_ID  | BLE_Status | NFC_Status | Location_Status | Location_Permission            | Warning_Banners                                      |
@@ -190,7 +190,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     When Navigate to Settings and App Preferences screen in android device
     Then Bluetooth status is displayed as "<BLE_Status>" in android device
     And  "NearBy" Permission status is displayed as "<NearBy_Permission>" in android device
-    Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<Nearby_Permission>"
+    Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<Nearby_Permission>" in android device
     Examples:
       | TC_ID  | BLE_Status | NearBy_Permission | Warning_Banners                               |
       | _TC-01 | Off        | Allow             | Bluetooth Disabled                            |
@@ -204,7 +204,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     Then Bluetooth status is displayed as "<BLE_Status>" in android device
     And  Location Status is displayed as "<Location_Status>" in android device
     And  "Location" Permission status is displayed as "<Location_Permission>" in android device
-    Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<Location_Status>" "<Location_Permission>"
+    Then Warning Banners are displayed "<Warning_Banners>" in android device with "<BLE_Status>" "<Location_Status>" "<Location_Permission>" in android device
 
     Examples:
       | TC_ID  | BLE_Status | Location_Status | Location_Permission | Warning_Banners                        |
@@ -223,7 +223,7 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
     Then Bluetooth status is displayed as "<BLE_Status>" in android device
     And  NFC status is displayed as "<NFC_Status>" in android device
     And  "NearBy" Permission status is displayed as "<NearBy_Permission>" in android device
-    Then Warning Banners are displayed as "<Warning_Banners>" in android device with "<BLE_Status>" "<NFC_Status>" "<NearBy_Permission>"
+    Then Warning Banners are displayed as "<Warning_Banners>" in android device with "<BLE_Status>" "<NFC_Status>" "<NearBy_Permission>" in android device
 
     Examples:
       | TC_ID  | BLE_Status | NFC_Status | NearBy_Permission | Warning_Banners                                            |

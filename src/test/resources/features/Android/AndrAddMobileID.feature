@@ -20,8 +20,8 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
   @ANDR_AddMobileID_2 @ANDR_AddMobileID
   Scenario Outline:ANDR_AddMobileID_2<TC_ID>: Verify the mobile ID screen when Mobile ID is present
     When Verify Mobile ID screen when Mobile ID is present in android device
-    And Verify nearby readers section in android device "<nearByReader>"
-    And Verify the Manage Readers section in android device "<nearByReader>"
+    And Verify nearby readers section in android device "<nearByReader>" in android device
+    And Verify the Manage Readers section in android device "<nearByReader>" in android device
 
     Examples:
       | TC_ID | nearByReader |
@@ -64,7 +64,7 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
   @ANDR_AddMobileID_31 @ANDR_AddMobileID
   Scenario Outline:ANDR_AddMobileID_3<TC_ID>: Verify Nearby readers onboarding screens are displayed on clicking information icon
     When Verify Mobile ID screen when Mobile ID is present in android device
-    And Verify nearby readers section in android device "<nearByReader>"
+    And Verify nearby readers section in android device "<nearByReader>" in android device
     And Verify nearby readers information icon is visible in android device
     And Verify onboarding screen one is Visible
 
@@ -75,7 +75,7 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
   @ANDR_AddMobileID_41 @ANDR_AddMobileID
   Scenario Outline:ANDR_AddMobileID_4<TC_ID>: Verify Get Started navigates to Nearby readers screen in android device
     When Verify Mobile ID screen when Mobile ID is present in android device
-    And Verify nearby readers section in android device "<nearByReader>"
+    And Verify nearby readers section in android device "<nearByReader>" in android device
     And Verify nearby readers information icon is visible in android device
     And Verify onboarding screen one is Visible
     And Verify onboarding screen is navigable
@@ -91,18 +91,18 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
     When Navigate to Settings and App Preferences screen in android device
     And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
     And click on the Nearby Readers tab
-    And Verify Enable Nearby Reader toggle button status
+    And Verify Enable Nearby Reader toggle button status in android device
 #    And click on the Nearby Readers switch
-    And Verify Enable Nearby Reader toggle button status
+    And Verify Enable Nearby Reader toggle button status in android device
     And Verify Discover Nearby Reader Element is displayed as Discover Nearby Readers in android device
 #    And Signo Reader Text is displayed as Signo Reader in android device
     And Verify Signo Reader Status is displayed as "<Signo Reader>" in android device
     And Verify RevE Reader Status is displayed as "<RevE Reader>" in android device
     And Click on Image back button in Nearby Readers page
-    And Click on Image back in AppPreferences page
+    And Click on Image back in AppPreferences page in android device
     And Click on the Mobile IDs in Settings page for navigating to home screen
     And Verify Nearby Readers are visible in android device
-    And Verify nearby readers section in android device "<nearByReader>"
+    And Verify nearby readers section in android device "<nearByReader>" in android device
     Examples:
       | TC_ID | nearByReader | NearByReader_Status | RevE Reader | Signo Reader |
       | _TC-1 | 1            | On                  | On          | On           |
@@ -110,10 +110,10 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
   @ANDR_AddMobileID_6 @ANDR_AddMobileID
   Scenario Outline:ANDR_AddMobileID_6<TC_ID>: Verify if the Manage screen has all UI with appropriate texts.
     When Verify Mobile ID screen when Mobile ID is present in android device
-    And Verify nearby readers section in android device "<nearByReader>"
+    And Verify nearby readers section in android device "<nearByReader>" in android device
     And Verify Manage button is displayed in android device
     And Verify Manage Reader Screen in android device
-    And Verify if the list of Favourite readers are listed above successful transaction logs
+    And Verify if the list of Favourite readers are listed above successful transaction logs in android device
     Examples:
       | TC_ID | nearByReader | nearbyReaderCount |
       | _TC-1 | 1            | 0                 |
@@ -121,10 +121,10 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
   @ANDR_AddMobileID_7 @ANDR_AddMobileID
   Scenario Outline:ANDR_AddMobileID_7<TC_ID>:Verify if back button helps to navigate back to Mobile IDs screen.
     When Verify Mobile ID screen when Mobile ID is present in android device
-    And Verify nearby readers section in android device "<nearByReader>"
+    And Verify nearby readers section in android device "<nearByReader>" in android device
     And Verify Manage button is displayed in android device
     And Verify Manage Reader Screen in android device
-    And Click on Image back button in ManageReaders Screen navigate to Mobile ids Screen
+    And Click on Image back button in ManageReaders Screen navigate to Mobile ids Screen in android device
     Examples:
       | TC_ID | nearByReader |
       | _TC-1 | 1            |
@@ -132,12 +132,12 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
   @ANDR_AddMobileID_8 @ANDR_AddMobileID
   Scenario Outline: Verify if the favourite reader can be removed and it gets reflected in successful transaction logs
     When Verify Mobile ID screen when Mobile ID is present in android device
-    And Verify nearby readers section in android device "<nearByReader>"
+    And Verify nearby readers section in android device "<nearByReader>" in android device
     And Verify Nearby Readers are visible in android device
-    And Click on heart icon on Reader in android device
+    And Click on heart icon on Reader in android device in android device
     And Verify Manage button is displayed in android device
     And Verify Manage Reader Screen in android device
-    And Verify unfavorite reader stored in successful transactions log
+    And Verify unfavorite reader stored in successful transactions log in android device
 
     Examples:
       | TC_ID | nearByReader |
@@ -146,7 +146,7 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
   @ANDR_AddMobileID_9 @ANDR_AddMobileID
   Scenario Outline: Verify if the reader under successful transaction logs can be added as favourite and it gets reflected in favourite readers.
     When Verify Mobile ID screen when Mobile ID is present in android device
-    And Verify nearby readers section in android device "<nearByReader>"
+    And Verify nearby readers section in android device "<nearByReader>" in android device
     And Verify Nearby Readers are visible in android device
     And Verify Manage button is displayed in android device
     And Verify Manage Reader Screen in android device

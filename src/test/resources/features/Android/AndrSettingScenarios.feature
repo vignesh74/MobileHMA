@@ -189,7 +189,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And  Debug Logs status displayed as "<Debug_Logs>" in android device
     Then Report issue by entering text "Application is not working" in android device
     And Share the access logs
-    Then Attachment will be displayed based on "<Debug_Logs>"
+    Then Attachment will be displayed based on "<Debug_Logs>" in android device
 
     Examples:
       | TC_ID  | Debug_Logs |
@@ -200,8 +200,8 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
   Scenario Outline: ANDR_11_10_Settings_Deregister<TC_ID>: Verify the Deregister in android device
     When Navigate to settings page in android device
     And Turn "<action>" the wifi
-    And Click on the tab Deregister this device "<action>"
-    Then Verify the confirm button when deregister is "OFF"
+    And Click on the tab Deregister this device "<action>" in android device
+    Then Verify the confirm button when deregister is "OFF" in android device
 
     Examples:
       | TC_ID  | action |
@@ -215,7 +215,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And  About Screen is displayed in android device
     And Verify application information are displayed in android device
     Then Verify About Page contents are copied in android device
-    And Copy image should turned to tick mark symbol and copied to clipboard toast
+    And Copy image should turned to tick mark symbol and copied to clipboard toast in android device
 
   @ANDR_Settings_Notification
   Scenario Outline:ANDR_Settings_Notification<TC_ID>:Verify Notification screen and its functionalities in android device
@@ -240,7 +240,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     When Navigate to Settings and App Preferences screen in android device
     And  Show Activity State is displayed as "<Show_Activity>" in android device
     And Click on mobile ID tab in android device
-    Then Activity will display in mobileID screen based on "<Show_Activity>"
+    Then Activity will display in mobileID screen based on "<Show_Activity>" in android device
 
     Examples:
       | TC_ID  | Show_Activity |
@@ -263,7 +263,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     When Navigate to settings page in android device
     Then Verify the FAQ Menu is displayed in android device
     And FAQ screen is displayed in android device
-    And Enter "<input>" type on the search box
+    And Enter "<input>" type on the search box in android device
     And Verify the "<input>" present on the screen in android device
 
     Examples:
@@ -285,15 +285,15 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
   @ANDR_upgrade
   Scenario: ANDR_11_10_upgrade: Verify the upgrade of app
     When Navigate to Settings and App Preferences screen in android device
-    And Note down the settings of application before upgrade
+    And Note down the settings of application before upgrade in android device
     And Verify mobile about page information are displayed in android device
     And upgrade the new apk provided
     Given Launch HID Access Mobile Application in android device
     When Navigate to Settings and App Preferences screen in android device
-    And Note down the App Preference information are same after the upgrade
-    And compare the app preference values
-    And Note down the About page information are same after the upgrade
-    And compare the about info values
+    And Note down the App Preference information are same after the upgrade in android device
+    And compare the app preference values in android device
+    And Note down the About page information are same after the upgrade in android device
+    And compare the about info values in android device
 
   @ANDR_Bluetooth_Sensitivity
   Scenario Outline: ANDR_11_10_Bluetooth_Sensitivity: Verify the Bluetooth sensitivity is "<BLE_Sensitivity>"
@@ -394,10 +394,10 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And Verify Signo Reader Status is displayed as "<Signo Reader>" in android device
     And Disable the RevE Reader checkbox
     And Verify alertTitle pop up is displayed in android device
-    And click on AlertPositiveBtn
+    And click on AlertPositiveBtn in android device
     And Disable the Signo Reader checkbox
-    And click on AlertPositiveBtn
-    And Verify Enable Nearby Reader toggle button status
+    And click on AlertPositiveBtn in android device
+    And Verify Enable Nearby Reader toggle button status in android device
     Examples:
       | TC_ID | NearByReader_Status | RevE Reader | Signo Reader |
       | TC_01 | On                  | On          | On           |
@@ -408,9 +408,9 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     When Navigate to Settings and App Preferences screen in android device
     And NearBy Reader Status is displayed as "<NearByReader_Status>" in android device
     And click on the Nearby Readers tab
-    And Verify Enable Nearby Reader toggle button status
+    And Verify Enable Nearby Reader toggle button status in android device
     And click on the Nearby Readers switch
-    And Verify Enable Nearby Reader toggle button status
+    And Verify Enable Nearby Reader toggle button status in android device
     And Verify Discover Nearby Reader Element is displayed as Discover Nearby Readers in android device
     And Signo Reader Text is displayed as Signo Reader in android device
     And Verify Signo Reader Status is displayed as "<Signo Reader>" in android device
