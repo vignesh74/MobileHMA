@@ -32,6 +32,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -1391,7 +1392,7 @@ public class BasePage {
     /**
      * swipeUp()- It swipe left device screen by provided swipe count
      *
-     * @param swipeLeft-int
+     * @param swipeLeftCount-int
      *         Date-02/05/2023
      */
     public void  swipeLeft(int swipeLeftCount) {
@@ -1412,6 +1413,25 @@ public class BasePage {
         } catch (Exception e) {
             TestUtils.log().debug("Getting exception while performing swipe left operation");
         }
+    }
+
+    public String getADBPath() {
+        String androidHome = System.getenv("ANDROID_HOME");
+        if (androidHome != null && !androidHome.isEmpty()) {
+            File platformToolsDir = new File(androidHome, "platform-tools");
+            if (platformToolsDir.exists()) {
+                File adbExecutable = new File(platformToolsDir, isWindows() ? "adb.exe" : "adb");
+                if (adbExecutable.exists()) {
+                    return adbExecutable.getAbsolutePath();
+                }
+            }
+        }
+        return null;
+    }
+
+    public static boolean isWindows() {
+        String os = System.getProperty("os.name").toLowerCase();
+        return os.contains("win");
     }
 }
 

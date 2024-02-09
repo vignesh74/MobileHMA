@@ -641,8 +641,7 @@ public class AndroidDeviceAction {
         try {
             String appPackage = ConfigLoader.getInstance().getAndroidAppPackage();
             String udid = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
-            //String adbPath = "/opt/homebrew/bin/adb";
-            String adbPath = ConfigLoader.getInstance().getAdbPath();
+            String adbPath = basePage.getADBPath();
             String[] command = { adbPath, "-s", udid, "shell", "monkey", "-p", appPackage, "1" };
 
             ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -776,9 +775,8 @@ public class AndroidDeviceAction {
 //    }
 //
     private void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
-//        String adbPath = "/Users/vigneshrajesh/Library/Android/sdk/platform-tools/adb";
-//        String adbPath = "/opt/homebrew/bin/adb";
-        String adbPath = ConfigLoader.getInstance().getAdbPath();
+
+        String adbPath = basePage.getADBPath();
         String appMainActivity = getAppMainActivity(driver);
 //        String adbCommand = String.format("%s shell am start -n %s/.%s", adbPath, appPackage, appMainActivity);
         ProcessBuilder processBuilder = new ProcessBuilder(adbPath, "shell", "am", "start", "-n", appPackage + "/." + appMainActivity);
@@ -863,7 +861,7 @@ public class AndroidDeviceAction {
     }
 
     public void unlockDeviceWithPin(String pin){
-        String adbPath = ConfigLoader.getInstance().getAdbPath();
+        String adbPath = basePage.getADBPath();
         try {
             // Run ADB commands
             executeCommand(adbPath, "shell", "input", "keyevent", "82");

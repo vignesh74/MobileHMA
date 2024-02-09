@@ -48,8 +48,6 @@ public class ConfigLoader {
     private static ConfigLoader configLoader;
     private Properties properties;
 
-    private static final String ADB_PATH = "adbPath";
-
     private static final String ANDROID_MOBILE_PIN = "androidMobilePin";
 
     /**
@@ -290,10 +288,6 @@ public class ConfigLoader {
      */
     public String getiOSHomeBundleId() {
         return getPropertyValue(IOS_HOME_BUNDLE_ID);
-    }
-
-    public String getAdbPath(){
-        return getPropertyValue(ADB_PATH);
     }
 
     public String getAndroidMobilePin(){
