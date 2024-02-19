@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test_Suite_HID_Automation_Android_iOS">
+
+    <!-- systemPort and chromeDriverPort must be unique for Parallel execution -->
+    <listeners>
+        <listener class-name="com.appium.listeners.ListenerClass"></listener>
+        <listener class-name="com.appium.listeners.AnnotationTransformer"></listener>
+        <listener class-name="com.appium.listeners.MethodInterceptor"></listener>
+    </listeners>
+
+    <parameter name="runLocation" value="local"></parameter>
+
+    <test name="Tests_on_Android_12">
+        <parameter name="emulator" value="false"></parameter>
+        <parameter name="platformName" value="Android"></parameter>
+        <parameter name="platformVersion" value="13"></parameter>
+        <parameter name="udid" value="RZCW91MYNLT"></parameter>
+        <parameter name="installApp" value="False"></parameter>
+        <parameter name="deviceName" value="Galaxy M34 5G"></parameter>
+        <parameter name="systemPort" value="2301"/>
+        <parameter name="chromeDriverPort" value="11033"/>
+        <parameter name="wdaLocalPort" value=""/>
+        <parameter name="webkitDebugProxyPort" value="9228"/>
+        <parameter name="userId" value="12443213"/>
+        <parameter name="comPort" value="11601"/>
+        <parameter name="roboticArmX" value="1900"/>
+        <parameter name="roboticArmY" value="500"/>
+
+        <classes>
+            <class name="com.appium.runners.Android.Andr12_DeviceEnforcement_TwistAndGo_Runner"></class>
+        </classes>
+    </test>
+</suite>
