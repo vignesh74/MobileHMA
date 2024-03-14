@@ -14,10 +14,10 @@
     <test name="Tests_on_Android_12">
         <parameter name="emulator" value="false"></parameter>
         <parameter name="platformName" value="Android"></parameter>
-        <parameter name="platformVersion" value="11"></parameter>
-        <parameter name="udid" value="e465bed2"></parameter>
+        <parameter name="platformVersion" value="13"></parameter>
+        <parameter name="udid" value="RZCW91MYNLT"></parameter>
         <parameter name="installApp" value="False"></parameter>
-        <parameter name="deviceName" value="One Plus 6T"></parameter>
+        <parameter name="deviceName" value="Galaxy M34 5G"></parameter>
         <parameter name="systemPort" value="8205"/>
         <parameter name="chromeDriverPort" value="11033"/>
         <parameter name="wdaLocalPort" value=""/>
