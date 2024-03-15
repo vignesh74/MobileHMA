@@ -1093,7 +1093,7 @@ public class BasePage {
                 element.click();
                 TestUtils.log().info("Selected the radio button for element: {}", element.getText());
             } else {
-                TestUtils.log().info("Radio button for element '{}' is already selected", element.getText());
+                TestUtils.log().info("Radio button for element {} is already selected", element.getText());
             }
         } catch (Exception e) {
             TestUtils.log().info("Unable to select the radio button for element {}", element.getText(), e);
