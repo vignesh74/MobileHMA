@@ -1071,19 +1071,32 @@ public class BasePage {
      * @param element
      * @return- boolean Date-29/12/2022
      */
-    public boolean selectRadioButton(MobileElement element) {
-        boolean flag = false;
+//    public boolean selectRadioButton(MobileElement element) {
+//        boolean flag = false;
+//        try {
+//            if (!element.isSelected()) {
+//                element.click();
+//                TestUtils.log().info("{} Select the radio button for element", element.getText());
+//                flag = true;
+//            }
+//            return flag;
+//        } catch (Exception e) {
+//            TestUtils.log().info("Unable to select the radio button for element");
+//            TestUtils.log().debug("Getting exception to unable to select the radio button for element");
+//            return flag;
+//        }
+//    }
+
+    public void selectRadioButton(MobileElement element) {
         try {
             if (!element.isSelected()) {
                 element.click();
-                TestUtils.log().info("{} Select the radio button for element", element.getText());
-                flag = true;
+                TestUtils.log().info("Selected the radio button for element: {}", element.getText());
+            } else {
+                TestUtils.log().info("Radio button for element '{}' is already selected", element.getText());
             }
-            return flag;
         } catch (Exception e) {
-            TestUtils.log().info("Unable to select the radio button for element");
-            TestUtils.log().debug("Getting exception to unable to select the radio button for element");
-            return flag;
+            TestUtils.log().error("Unable to select the radio button for element '{}'", element.getText(), e);
         }
     }
 
