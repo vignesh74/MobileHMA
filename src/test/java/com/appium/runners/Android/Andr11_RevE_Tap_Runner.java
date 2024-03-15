@@ -15,7 +15,7 @@ import io.cucumber.testng.CucumberOptions;
         , dryRun = false
         , monochrome = true
 //        , tags = "@Android11_10_RevE")
-        , tags = "@Android11_RevE_Tap")
+        , tags = "@Android11_10_RevE_Tap")
 //        , tags = "@Android11_RevE")
 
 public class Andr11_RevE_Tap_Runner extends BaseTest {
