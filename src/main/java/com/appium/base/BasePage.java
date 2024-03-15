@@ -1089,7 +1089,7 @@ public class BasePage {
 
     public void selectRadioButton(MobileElement element) {
         try {
-            if (!element.isSelected()) {
+            if (!element.getAttribute("checked").equals("true")) {
                 element.click();
                 TestUtils.log().info("Selected the radio button for element: {}", element.getText());
             } else {
