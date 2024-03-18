@@ -18,12 +18,14 @@
         <parameter name="udid" value="ZD2226CTQG"></parameter>
         <parameter name="installApp" value="true"></parameter>
         <parameter name="deviceName" value="Moto G60"></parameter>
-        <parameter name="systemPort" value="10031"/>
+        <parameter name="systemPort" value="8205"/>
         <parameter name="chromeDriverPort" value="11033"/>
-        <parameter name="wdaLocalPort" value="1002"/>
+        <parameter name="wdaLocalPort" value=""/>
         <parameter name="webkitDebugProxyPort" value="9228"/>
-        <parameter name="userId" value="12154274"/>
-        <parameter name="comPort" value=""/>
+        <parameter name="userId" value="12443213"/>
+        <parameter name="comPort" value="11401"/>
+        <parameter name="roboticArmX" value="1900"/>
+        <parameter name="roboticArmY" value="500"/>
         <classes>
             <class name="com.appium.runners.Android.Andr12_WarningBanners_Runner"></class>
         </classes>
