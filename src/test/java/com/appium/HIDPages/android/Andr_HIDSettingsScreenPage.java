@@ -491,7 +491,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             String alwaysText = txtAlways.getText();
             Assert.assertEquals(alwaysText, usage_state);
             String enforcedAlways = enforcedAlwaysTxt.getText();
-            Assert.assertEquals(enforcedAlways, "Enforced by your organization.");
+            Assert.assertEquals(enforcedAlways, "The new Device Policy for your organization permits HID Mobile Access to only operate in Mobile Unlocked mode or Foreground mode.");
             String alwaysAttribute = chkMode.getAttribute("enabled");
             Assert.assertEquals(alwaysAttribute, "false");
         } else if (usage_state == "Foreground") {
