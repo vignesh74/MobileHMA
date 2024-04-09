@@ -474,6 +474,7 @@ public class AndrStepDef extends BasePage {
         DriverManager.getDriver().launchApp();
         TestUtils.log().info("Application launched.....");
         waitForGivenTime(1);
+        waitForElement(mobileIDScreen.getSettingsTab());
         waitForVisibility(mobileIDScreen.getSettingsTab());
         mobileIDScreen.clickOnSettingsTab();
 
