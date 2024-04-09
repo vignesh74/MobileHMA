@@ -447,7 +447,8 @@ public class AndrStepDef extends BasePage {
     @And("Show Activity State status is displayed as {string} in android device")
     public void verifyShowActivityStateSwitchButton(String strShowActivity) {
         settingsScreen.clickOnAppPreferences();
-        appPreferencesScreen.verifyActivityToggleButton(strShowActivity);
+//        appPreferencesScreen.verifyActivityToggleButton(strShowActivity);
+        appPreferencesScreen.verifyShowActivityToggleButton(strShowActivity);
     }
 
     @When("Navigate to settings page in android device")
