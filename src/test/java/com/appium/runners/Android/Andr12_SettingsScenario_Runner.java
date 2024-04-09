@@ -16,6 +16,7 @@ import io.cucumber.testng.CucumberOptions;
         , monochrome = true
         , tags = "@ANDR_Settings_12_WF4")
 
+
 public class Andr12_SettingsScenario_Runner extends BaseTest {
 
 }
