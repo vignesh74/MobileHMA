@@ -453,6 +453,7 @@ public class AndrStepDef extends BasePage {
 
     @When("Navigate to settings page in android device")
     public void navigateToSettingsPage() {
+        isElementVisible(mobileIDScreen.getSettingsTab());
         mobileIDScreen.clickOnSettingsTab();
 //        settingsScreen.verifySettingsScreen();
 
@@ -476,6 +477,7 @@ public class AndrStepDef extends BasePage {
         waitForGivenTime(1);
         waitForElement(mobileIDScreen.getSettingsTab());
         waitForVisibility(mobileIDScreen.getSettingsTab());
+        isElementVisible(mobileIDScreen.getSettingsTab());
         mobileIDScreen.clickOnSettingsTab();
 
 //        settingsReportIssueScreenPage.backFromReportIssue();
