@@ -50,10 +50,10 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
   @ANDR_Settings_12_WF4 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline: ANDR_12_Settings_WF4<TC_ID>: Verify the page of ReportIssue, Legal, About, and Toggle button of DebugLogs and ShowActivity as Enable/Disable
     When Navigate to settings page in android device
-    Then Report issue by entering text "Testing the application in automation" in android device
     And  Legal Screen is displayed in android device
     And  About Screen is displayed in android device
     And  Show Activity State status is displayed as "<Show_Activity_State>" in android device
+    Then Report issue by entering text "Testing the application in automation" in android device
     And  Debug Logs status is displayed as "<Debug_Logs>" in android device
 
     Examples:
