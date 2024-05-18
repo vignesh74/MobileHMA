@@ -51,6 +51,9 @@ public class ConfigLoader {
     private static final String ADB_PATH = "adbPath";
 
     private static final String ANDROID_MOBILE_PIN = "androidMobilePin";
+    private static final String BASE_URL_TESTRAIL = "baseUrlTestRail";
+    private static final String USERNAME_TESTRAIL = "usernameTestRail";
+    private static final String APIKEY_TESTRAIL = "APIkeyTestRail";
 
     /**
      * ConfigLoader- Constructor load the config.properties Date-02/11/2022
@@ -298,6 +301,16 @@ public class ConfigLoader {
 
     public String getAndroidMobilePin(){
         return getPropertyValue(ANDROID_MOBILE_PIN);
+    }
+
+    public String getBaseUrlTestRail(){
+        return getPropertyValue(BASE_URL_TESTRAIL);
+    }
+
+    public String getUsernameTestRail(){
+        return getPropertyValue(USERNAME_TESTRAIL);
+    }
+    public String getApikeyTestRail(){ return getPropertyValue(APIKEY_TESTRAIL);
     }
 
 }

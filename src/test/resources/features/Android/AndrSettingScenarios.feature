@@ -57,8 +57,9 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And  Debug Logs status is displayed as "<Debug_Logs>" in android device
 
     Examples:
-      | TC_ID  | Show_Activity_State | Debug_Logs     |
-      | _TC-13 | Enable/Disable      | Enable/Disable |
+      | TC_ID       | Show_Activity_State | Debug_Logs     |
+      | _TC-8435009 | Enable/Disable      | Enable/Disable |
+  # | _TC-8435010 | Enable/Disable      | Enable/Disable |
 
   #android version 11 setting scenarios
   Scenario Outline:ANDR_11_10_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>

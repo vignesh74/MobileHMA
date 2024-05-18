@@ -9,10 +9,7 @@ package com.appium.base;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.manager.DriverFactory;
 import com.appium.manager.DriverManager;
-import com.appium.utils.AppiumServerUtils;
-import com.appium.utils.ConfigLoader;
-import com.appium.utils.SerialPortUtils;
-import com.appium.utils.TestUtils;
+import com.appium.utils.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileElement;
@@ -122,6 +119,8 @@ public class BaseTest extends AbstractTestNGCucumberTests {
      */
     @AfterTest
     public void afterTest() {
+        TestRailUpdater obj=new TestRailUpdater();
+        obj.updateStatus();
         DriverManager.getDriver().quit();
     }
 

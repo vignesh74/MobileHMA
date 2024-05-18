@@ -6,10 +6,7 @@ import com.appium.base.BasePage;
 import com.appium.constants.MessageConstants;
 import com.appium.enums.AuthorType;
 import com.appium.manager.DriverManager;
-import com.appium.utils.ApplicationInfoUtils;
-import com.appium.utils.ConfigLoader;
-import com.appium.utils.ScreenshotUtils;
-import com.appium.utils.VideoRecordUtils;
+import com.appium.utils.*;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
@@ -81,7 +78,7 @@ public class Hooks {
     @Before
     public void beforeScenario(Scenario scenario) {
         scenario.log("Application Name:" + ApplicationInfoUtils.getApplicationName() + " Application Version:" + ApplicationInfoUtils.getVersionName());
-        ExtentCucumberAdapter.getCurrentScenario().assignAuthor(String.valueOf(AuthorType.BRIJESH));
+        ExtentCucumberAdapter.getCurrentScenario().assignAuthor(String.valueOf(AuthorType.AUTOMATION));
         ExtentCucumberAdapter.getCurrentScenario().assignDevice(DriverManager.getPlatform() + ":" + DriverManager.getDeviceName() + ":V-" + DriverManager.getPlatformVersion());
         VideoRecordUtils.startRecording();
     }

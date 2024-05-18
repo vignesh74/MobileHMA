@@ -37,7 +37,7 @@ package com.appium.enums;
 
 public enum AuthorType {
 
-	BRIJESH, 
+	AUTOMATION,
 	NISHANT, 
 	VIJYETA, 
 	ROHIT
