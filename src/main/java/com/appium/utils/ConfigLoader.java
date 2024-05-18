@@ -53,7 +53,8 @@ public class ConfigLoader {
     private static final String ANDROID_MOBILE_PIN = "androidMobilePin";
     private static final String BASE_URL_TESTRAIL = "baseUrlTestRail";
     private static final String USERNAME_TESTRAIL = "usernameTestRail";
-    private static final String APIKEY_TESTRAIL = "APIkeyTestRail";
+    private static final String APIKEY_TESTRAIL = "apiKeyTestRail";
+    private static final String TESTRUN_TESTRAIL = "testRunTestRail";
 
     /**
      * ConfigLoader- Constructor load the config.properties Date-02/11/2022
@@ -311,6 +312,8 @@ public class ConfigLoader {
         return getPropertyValue(USERNAME_TESTRAIL);
     }
     public String getApikeyTestRail(){ return getPropertyValue(APIKEY_TESTRAIL);
+    }
+    public String getTestRunTestRail(){ return getPropertyValue(TESTRUN_TESTRAIL);
     }
 
 }

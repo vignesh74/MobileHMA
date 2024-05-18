@@ -119,8 +119,8 @@ public class BaseTest extends AbstractTestNGCucumberTests {
      */
     @AfterTest
     public void afterTest() {
-        TestRailUpdater obj=new TestRailUpdater();
-        obj.updateStatus();
+        TestRailUpdater testRailUpdaterObj=new TestRailUpdater();
+        testRailUpdaterObj.updateStatus();
         DriverManager.getDriver().quit();
     }
 

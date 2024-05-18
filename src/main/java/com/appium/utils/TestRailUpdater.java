@@ -5,34 +5,27 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import com.appium.testrail.APIClient;
 
 public class TestRailUpdater {
 
-    private static final int PASSED_STATUS_ID = 1; // Replace with the actual TestRail status ID for passed tests
-    private static final int FAILED_STATUS_ID = 5; // Replace with the actual TestRail status ID for failed tests
-    private static final int UNTESTED_STATUS_ID = 3; // Replace with the actual TestRail status ID for untested tests
+    private static final String PASSED_STATUS_ID = "1"; // Replace with the actual TestRail status ID for passed tests
+    private static final String FAILED_STATUS_ID = "5"; // Replace with the actual TestRail status ID for failed tests
+    private static final String UNTESTED_STATUS_ID = "3"; // Replace with the actual TestRail status ID for untested tests
     public void updateStatus() {
         try {
             APIClient testRailClient = new APIClient(ConfigLoader.getInstance().getBaseUrlTestRail());
             testRailClient.setUser(ConfigLoader.getInstance().getUsernameTestRail());
             testRailClient.setPassword(ConfigLoader.getInstance().getApikeyTestRail());
-
             // Parse the Cucumber JSON report
-
-            Map<Integer, Integer> testRailResults = new HashMap<>();
-
+            Map<Integer, String> testRailResults = new HashMap<>();
             JsonReader reader = null;
             try {
                 reader = new JsonReader(new FileReader("target/cucumber-reports/cucumber-json-report/cucumber.json"));
@@ -40,15 +33,12 @@ public class TestRailUpdater {
                 throw new RuntimeException(e);
             }
             JsonArray features = new Gson().fromJson(reader, JsonArray.class);
-
             for (JsonElement featureElement : features) {
                 JsonObject feature = featureElement.getAsJsonObject();
                 JsonArray elements = feature.getAsJsonArray("elements");
-
                 for (JsonElement elementElement : elements) {
                     JsonObject element = elementElement.getAsJsonObject();
                     String scenarioName = element.get("name").getAsString();
-
                     if (scenarioName.contains("_TC-")) {
                         JsonArray steps = element.getAsJsonArray("steps");
                         for (JsonElement stepElement : steps) {
@@ -61,10 +51,11 @@ public class TestRailUpdater {
                                     // Test passed
                                     int testCaseId = getTestCaseId(scenarioName);
                                     testRailResults.put(testCaseId, PASSED_STATUS_ID);
-                                } else if (result.equals("failed")) {
+                                } else if (result.get("status").getAsString().equals("failed")) {
                                     // Test failed
                                     int testCaseId = getTestCaseId(scenarioName);
-                                    testRailResults.put(testCaseId, FAILED_STATUS_ID);
+                                    testRailResults.put(testCaseId, FAILED_STATUS_ID+"|"+result.get("error_message").getAsString());
+                                    break;
                                 } else {
                                     // Test untested
                                     int testCaseId = getTestCaseId(scenarioName);
@@ -75,20 +66,23 @@ public class TestRailUpdater {
                     }
                 }
             }
-            // testRailResults.put(8435009, PASSED_STATUS_ID);
-
-            // Update TestRail with test results
-            int testRunId = 119126; // Replace with the actual TestRail test run ID
-            for (Map.Entry<Integer, Integer> entry : testRailResults.entrySet()) {
+            for (Map.Entry<Integer, String> entry : testRailResults.entrySet()) {
                 int testCaseId = entry.getKey();
-                int statusId = entry.getValue();
+               String errorComments=null;
+                int statusId =0;
+                if((entry.getValue()).contains("|")){
+                    statusId= Integer.parseInt(entry.getValue().split("|")[0]);
+                    errorComments=entry.getValue();
+                    errorComments=errorComments.replace("5|","");
+                }else {
+                     statusId = Integer.parseInt(entry.getValue());
+                    errorComments="Executed by Automation";
+                }
                 JSONObject data = new JSONObject();
                 data.put("status_id", statusId);
-                data.put("comment", "Executed by Automation");
-                testRailClient.sendPost("add_result_for_case/" + testRunId + "/" + testCaseId, data);
+                data.put("comment", errorComments);
+                testRailClient.sendPost("add_result_for_case/" + ConfigLoader.getInstance().getTestRunTestRail() + "/" + testCaseId, data);
             }
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -99,7 +93,6 @@ public class TestRailUpdater {
         try {
             // Assuming scenario names follow a convention like "TC123: Scenario description"
             // Regex pattern to extract the numeric ID following "TC-"
-
             Pattern pattern = Pattern.compile("(?<=TC-)\\d+");
             Matcher matcher = pattern.matcher(scenarioName);
 
@@ -114,6 +107,5 @@ public class TestRailUpdater {
         }
         return Integer.parseInt(testId);
     }
-
 }
 
