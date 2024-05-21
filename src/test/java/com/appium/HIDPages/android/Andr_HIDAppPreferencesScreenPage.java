@@ -492,7 +492,9 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      * backToMobileIdScreen- This method used to navigate back to the mobile id screen Date- 25/01/2023
      */
     public void backToMobileIdScreen() {
-        loopHandle(txtViewMobileIdCard, "navigateBack", 5);
+//        loopHandle(txtViewMobileIdCard, "navigateBack", 5);
+        navigateBack();
+        navigateBack();
     }
 
     /**
