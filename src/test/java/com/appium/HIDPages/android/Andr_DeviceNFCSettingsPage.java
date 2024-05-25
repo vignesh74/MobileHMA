@@ -10,6 +10,8 @@ import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import org.testng.Assert;
 
+import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
+
 public class Andr_DeviceNFCSettingsPage extends BasePage {
     /**
      * object created to access methods from page classes Date- 25/01/2023
@@ -33,6 +35,9 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
     @AndroidFindBy(xpath="//android.widget.TextView[@text='NFC']")
     private MobileElement nfcTab;
 
+    @AndroidFindBy(id="com.android.settings:id/switch_widget")
+    private MobileElement btnNFCOnOff;
+
     /**
      * These mobile elements are used for validating NFC Warning Banners
      */
@@ -52,6 +57,10 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
 
     public MobileElement getBtnOnOff() {
         return btnOnOff;
+    }
+
+    public MobileElement getBtnNFCOnOff() {
+        return btnNFCOnOff;
     }
 
     /**
@@ -88,6 +97,52 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
                 waitForGivenTime(1);
                 Assert.assertTrue(strNFCStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtNFCStatusValue().getText()));
                 TestUtils.log().info("NFC has been set as {}",appPrefencesScreenPage.getTxtNFCStatusValue().getText());
+            } else {
+                TestUtils.log().info("NFC is already set as {}",strNFCStatus);
+            }
+
+        } catch (Exception e) {
+            TestUtils.log().debug("Exception occurred while setting the NFC status...{}",e.getMessage());
+        }
+
+    }
+
+    public void setNFCStatus1(String strNFCStatus) {
+        try {
+            String strPlatformVersion = DriverManager.getPlatformVersion();
+            String strNFCStatusValue = getElementText(appPrefencesScreenPage.getTxtNFCStatusValue());
+            if (!strNFCStatus.equalsIgnoreCase(strNFCStatusValue)) {
+                appPrefencesScreenPage.clickOnNFCTab();
+                switch (strPlatformVersion) {
+                    case "9","00" -> {
+                        click(btnNFCOnOff);
+                        String strAttr = getElementAttribute(btnNFCOnOff, "Checked");
+                        if (strAttr.equalsIgnoreCase("false")) {
+                            TestUtils.log().info("NFC Status set as {}", btnNFCOnOff);
+                        }
+                        loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
+                    }
+                    case "19" ->{
+                        System.out.println("Entered");
+                        click(btnNFCOnOff);
+                        String strAttr = getElementAttribute(btnNFCOnOff, "Checked");
+                        if (strAttr.equalsIgnoreCase("false")) {
+                            TestUtils.log().info("NFC Status set as {}", strNFCStatus);
+                        }
+                        loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
+                    }
+
+                    default -> {
+                        click(btnNFCOnOff);
+                        String strActualNFCStatus = getElementText(txtSwitchOnOff);
+                        TestUtils.log().info("NFC has been set as {}",strActualNFCStatus);
+                        System.out.println("strActualNFCStatus  "+ strActualNFCStatus);
+                        Assert.assertTrue(strNFCStatus.equalsIgnoreCase(strActualNFCStatus));
+                        loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
+                        Assert.assertTrue(strActualNFCStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtNFCStatusValue().getText()));
+                    }
+                }
+
             } else {
                 TestUtils.log().info("NFC is already set as {}",strNFCStatus);
             }
