@@ -14,10 +14,10 @@ public class Andr_HIDSettingLegalScreenPage extends BasePage {
      * mobile elements - These are mobile elements which is present in legal page Date-13/02/2023
      */
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtLegal")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Legal']")
     private MobileElement txtLegalHeaderTitle;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgBackLegal")
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"back_icon\"]")
     private MobileElement imgBackFromLegal;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='End User License Agreement']")

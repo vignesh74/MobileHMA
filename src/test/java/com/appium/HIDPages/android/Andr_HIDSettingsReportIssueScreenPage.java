@@ -12,19 +12,19 @@ public class Andr_HIDSettingsReportIssueScreenPage extends BasePage {
      * mobile elements - These are mobile elements which is present in Report Issue Screen Page Date-Date-13/02/2023
      */
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtReportIssue")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Report Issue']")
     private MobileElement txtReportIssueHeadline;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgBackButton")
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Back Arrow\"]")
     private MobileElement imgBackFromReportIssue;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtDescription")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Description']")
     private MobileElement txtDescription;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/edtTxtIssueDescription")
+    @AndroidFindBy(xpath = "//android.widget.EditText")
     private MobileElement tbxDescription;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/btnSubmit")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='SUBMIT']")
     private MobileElement btnSubmit;
 
     @AndroidFindBy(id = "android:id/button_once")
@@ -93,16 +93,12 @@ public class Andr_HIDSettingsReportIssueScreenPage extends BasePage {
 
     public void verifySubmitButtonEnable(String text) {
         try {
-            if (!btnSubmit.isEnabled()) {
-                isElementVisible(tbxDescription);
-                sendKeys(tbxDescription, text);
-                hideKeyboard();
-                Assert.assertTrue(btnSubmit.isEnabled());
-            } else {
-                TestUtils.log().info("Fail to Enable the submit button");
-            }
+            sendKeys(tbxDescription, text);
+            hideKeyboard();
+            String attr = getElementAttribute(btnSubmit,"enabled");
+            Assert.assertEquals(attr,"true");
+
         } catch (Exception e) {
-            
             TestUtils.log().debug("Exception occurred while enable and verifying Submit button...");
         }
     }

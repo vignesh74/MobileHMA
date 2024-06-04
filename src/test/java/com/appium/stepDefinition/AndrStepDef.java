@@ -460,7 +460,7 @@ public class AndrStepDef extends BasePage {
         settingsScreen.clickOnReportIssueScreen();
         settingsReportIssueScreenPage.isReportIssuePageDisplayed();
         settingsReportIssueScreenPage.verifySubmitButtonEnable(strReportIssue);
-//        settingsReportIssueScreenPage.getBtnSubmit();
+        settingsReportIssueScreenPage.getBtnSubmit();
         settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
         TestUtils.log().info("try to navigate back");
         navigateBack();
@@ -472,8 +472,6 @@ public class AndrStepDef extends BasePage {
         TestUtils.log().info("Application launched.....");
         waitForGivenTime(2);
         mobileIDScreen.clickOnSettingsTab();
-
-//        settingsReportIssueScreenPage.backFromReportIssue();
     }
 
     @Then("Legal Screen is displayed in android device")

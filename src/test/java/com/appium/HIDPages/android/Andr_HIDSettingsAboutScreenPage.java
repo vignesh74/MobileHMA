@@ -11,7 +11,7 @@ public class Andr_HIDSettingsAboutScreenPage extends BasePage {
     /**
      * mobile elements - These are mobile elements which is present in About Screen Page Date-13/02/2023
      */
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtAppPreferences")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='About']")
     private MobileElement txtAboutHeadline;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='APPLICATION INFO']")
@@ -20,7 +20,7 @@ public class Andr_HIDSettingsAboutScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='ENDPOINT INFO']")
     private MobileElement txtEndPointInfo;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgBackAbout")
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Back Arrow\"]")
     private MobileElement imgBackFromAbout;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='About']")
