@@ -412,12 +412,12 @@ public class AndrStepDef extends BasePage {
     //setting scenarios step definition method
     @Then("Bluetooth status is displayed as {string} in android device")
     public void checkBluetoothStatus(String status1) {
-        bleSettingsPage.setBLEStatus1(status1);
+        bleSettingsPage.setBLEStatus(status1);
     }
 
     @Then("NFC status is displayed as {string} in android device")
     public void checkNFCStatus(String status1) {
-        nfcSettingsPage.setNFCStatus1(status1);
+        nfcSettingsPage.setNFCStatus(status1);
     }
 
     @Then("Usage State status is displayed as {string} in android device")
