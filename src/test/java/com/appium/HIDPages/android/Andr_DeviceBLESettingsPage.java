@@ -39,6 +39,10 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Connection preferences']",priority = 0)
     private MobileElement txtConnectionRef;
 
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(xpath = "//*[@text='Bluetooth']",priority = 0)
+    private MobileElement txtConnectionRefBluetooth;
+
     @AndroidFindBy(id = "android:id/checkbox")
     private MobileElement tglBtnBLE;
 
@@ -87,70 +91,75 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
         return txtConnectionRef;
     }
 
+    public MobileElement getTxtConnectionRefBluetooth() {
+        return txtConnectionRefBluetooth;
+    }
+
+
     /**
      * setBLEStatus- This method is used to set BLE status
      *
      * @param -strBLEStatus-String
      *         Date-25/01/2023
      */
+//    public void setBLEStatus(String strBLEStatus) {
+//        try {
+//            String strBLEStatusValue = getElementText(appPrefencesScreenPage.getTxtBluetoothStatusValue());
+//            String strPlatformVersion = DriverManager.getPlatformVersion();
+//            if (!strBLEStatus.equalsIgnoreCase(strBLEStatusValue)) {
+//                appPrefencesScreenPage.clickOnBLETab();
+//                if (isDisplayed(txtConnectionRef)) {
+//                    txtConnectionRef.click();
+//                    waitForVisibility(appPrefencesScreenPage.getTxtBluetooth());
+//                    appPrefencesScreenPage.clickOnBLETab();
+//                    waitForVisibility(btnOnOff);
+//                    click(btnOnOff);
+//
+//                    /**LOCATORS ARE NOT MODIFIED.THE OUTPUT IS NOT AS EXPECTED**/
+//                    //   String strActualBLEStatus = getElementText(txtSwitchOnOff);
+//                   // TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
+//
+//                    loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
+//                    Assert.assertTrue(strBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
+//                } else {
+//                    switch (strPlatformVersion) {
+//                        case "9","00" -> {
+//                            click(tglBtnBLE);
+//                            String strAttr = getElementAttribute(tglBtnBLE, "Checked");
+//                            if (strAttr.equalsIgnoreCase("false")) {
+//                                TestUtils.log().info("BLE Status set as {}", strBLEStatus);
+//                            }
+//                            loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
+//                        }
+//                        case "13" ->{
+//                            System.out.println("Entered");
+//                            click(btnBLEOnOff);
+//                            String strAttr = getElementAttribute(btnBLEOnOff, "Checked");
+//                            if (strAttr.equalsIgnoreCase("false")) {
+//                                TestUtils.log().info("BLE Status set as {}", strBLEStatus);
+//                            }
+//                            loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
+//                        }
+//
+//                        default -> {
+//                            click(btnOnOff);
+//                            String strActualBLEStatus = getElementText(txtSwitchOnOff);
+//                            TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
+//                            Assert.assertTrue(strBLEStatus.equalsIgnoreCase(strActualBLEStatus));
+//                            loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
+//                            Assert.assertTrue(strActualBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
+//                        }
+//                    }
+//                }
+//            } else {
+//                TestUtils.log().info("BLE  is  already set as {}",strBLEStatus);
+//            }
+//        } catch (Exception e) {
+//            TestUtils.log().info("Exception occurred while setting the BLE status...");
+//        }
+//    }
+
     public void setBLEStatus(String strBLEStatus) {
-        try {
-            String strBLEStatusValue = getElementText(appPrefencesScreenPage.getTxtBluetoothStatusValue());
-            String strPlatformVersion = DriverManager.getPlatformVersion();
-            if (!strBLEStatus.equalsIgnoreCase(strBLEStatusValue)) {
-                appPrefencesScreenPage.clickOnBLETab();
-                if (isDisplayed(txtConnectionRef)) {
-                    txtConnectionRef.click();
-                    waitForVisibility(appPrefencesScreenPage.getTxtBluetooth());
-                    appPrefencesScreenPage.clickOnBLETab();
-                    waitForVisibility(btnOnOff);
-                    click(btnOnOff);
-
-                    /**LOCATORS ARE NOT MODIFIED.THE OUTPUT IS NOT AS EXPECTED**/
-                    //   String strActualBLEStatus = getElementText(txtSwitchOnOff);
-                   // TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
-
-                    loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
-                    Assert.assertTrue(strBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
-                } else {
-                    switch (strPlatformVersion) {
-                        case "9","00" -> {
-                            click(tglBtnBLE);
-                            String strAttr = getElementAttribute(tglBtnBLE, "Checked");
-                            if (strAttr.equalsIgnoreCase("false")) {
-                                TestUtils.log().info("BLE Status set as {}", strBLEStatus);
-                            }
-                            loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
-                        }
-                        case "13" ->{
-                            System.out.println("Entered");
-                            click(btnBLEOnOff);
-                            String strAttr = getElementAttribute(btnBLEOnOff, "Checked");
-                            if (strAttr.equalsIgnoreCase("false")) {
-                                TestUtils.log().info("BLE Status set as {}", strBLEStatus);
-                            }
-                            loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
-                        }
-
-                        default -> {
-                            click(btnOnOff);
-                            String strActualBLEStatus = getElementText(txtSwitchOnOff);
-                            TestUtils.log().info("BLE has been set as {}",strActualBLEStatus);
-                            Assert.assertTrue(strBLEStatus.equalsIgnoreCase(strActualBLEStatus));
-                            loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
-                            Assert.assertTrue(strActualBLEStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtBluetoothStatusValue().getText()));
-                        }
-                    }
-                }
-            } else {
-                TestUtils.log().info("BLE  is  already set as {}",strBLEStatus);
-            }
-        } catch (Exception e) {
-            TestUtils.log().info("Exception occurred while setting the BLE status...");
-        }
-    }
-
-    public void setBLEStatus1(String strBLEStatus) {
         try {
             String strBLEStatusValue = getElementText(appPrefencesScreenPage.getTxtBluetoothStatusValue());
             String strPlatformVersion = DriverManager.getPlatformVersion();
@@ -160,15 +169,17 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                     case "9","00" -> {
                         click(tglBtnBLE);
                         String strAttr = getElementAttribute(tglBtnBLE, "Checked");
-                        if (strAttr.equalsIgnoreCase("false")) {
+                        if (strAttr.equalsIgnoreCase("true")) {
                             TestUtils.log().info("BLE Status set as {}", strBLEStatus);
                         }
                         loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
                     }
-                    case "19" ->{
-                        click(btnBLEOnOff);
-                        String strAttr = getElementAttribute(btnBLEOnOff, "Checked");
-                        if (strAttr.equalsIgnoreCase("false")) {
+                    case "12" ->{
+                        click(txtConnectionRef);
+                        click(txtConnectionRefBluetooth);
+                        click(btnOnOff);
+                        String strAttr = getElementAttribute(btnOnOff, "Checked");
+                        if (strAttr.equalsIgnoreCase("true")) {
                             TestUtils.log().info("BLE Status set as {}", strBLEStatus);
                         }
                         loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);

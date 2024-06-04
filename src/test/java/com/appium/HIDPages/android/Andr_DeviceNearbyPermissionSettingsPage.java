@@ -353,9 +353,10 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                 }
                 case "12","13" -> {
                     String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtNearByPermissionStatusValue());
-                    appPrefencesScreenPage.clickOnNearByPermission();
-                    clickOnPermissionTab();
-                    clickOnNearByDevices();
+                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
+                        appPrefencesScreenPage.clickOnNearByPermission();
+                        clickOnPermissionTab();
+                        clickOnNearByDevices();
                         if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
                             selectRadioButton(rdoAllow);
                             TestUtils.log().info("NearBy Devices Permission set as {}",strLocOrNearByPerm);
@@ -364,8 +365,10 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                             TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
                         } else
                             TestUtils.log().info("Please provide correct permission option.");
-
+                    }else{
+                        TestUtils.log().info("Location Permission is already set as {}",strLocOrNearByPerm);
                     }
+                }
                 default -> {
                     appPrefencesScreenPage.getTxtNearByPermissionStatusValue().click();
                     clickOnPermissionTab();
