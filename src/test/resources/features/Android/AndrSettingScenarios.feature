@@ -37,15 +37,15 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-10 | Foreground  |
       | _TC-11 | Unlocked    |
 
-  @ANDR_Settings_12_WF3 @ANDR_Settings_12_WF @ANDR_SmokeRun
+  @ANDR_Settings_12_WF4 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline:ANDR_12_Settings_WF3<TC_ID>: Verify toggle button Enable/Disable for PlaySound, Vibrate and TwistAndGo
     When Navigate to Settings and App Preferences screen in android device
     Then Play Sound status is displayed as "<Play_Sound_State>" in android device
     And  Vibrate status is displayed as "<Vibrate_State>" in android device
     And  Twist and Go status is displayed as "<Twist_And_Go>" in android device
     Examples:
-      | TC_ID  | Play_Sound_State | Vibrate_State  | Twist_And_Go   |
-      | _TC-12 | Disable/Enable   | Disable/Enable | Disable/Enable |
+      | TC_ID       | Play_Sound_State | Vibrate_State  | Twist_And_Go   |
+      | _TC-8530733 | Disable/Enable   | Disable/Enable | Disable/Enable |
 
   @ANDR_Settings_12_WF4 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline: ANDR_12_Settings_WF4<TC_ID>: Verify the page of ReportIssue, Legal, About, and Toggle button of DebugLogs and ShowActivity as Enable/Disable
@@ -59,7 +59,6 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     Examples:
       | TC_ID       | Show_Activity_State | Debug_Logs     |
       | _TC-8435009 | Enable/Disable      | Enable/Disable |
-  # | _TC-8435010 | Enable/Disable      | Enable/Disable |
 
   #android version 11 setting scenarios
   Scenario Outline:ANDR_11_10_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>
