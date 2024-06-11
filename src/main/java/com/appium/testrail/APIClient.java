@@ -84,7 +84,11 @@ public class APIClient
 	 * Arguments:
 	 *
 	 * uri                  The API method to call including parameters
+	 *
 	 *                      (e.g. get_case/1)
+	 *
+	 * data                 The data to submit as part of the request (e.g.,
+	 *                       a map)
 	 *
 	 * Returns the parsed JSON response as standard object which can
 	 * either be an instance of JSONObject or JSONArray (depending on the
