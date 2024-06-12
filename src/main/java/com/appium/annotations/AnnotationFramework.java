@@ -1,5 +1,4 @@
 /**
- * @author- Brijesh Mishra
  * AnnotationFramework- This Interface provides custom annotation for author and category of the test cases
  * Date-24/11/2022
  **/

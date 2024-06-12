@@ -1,5 +1,5 @@
 /**
- * @author - Vijyeta Gohil ConfigLoader- This class contains the methods to load config.properties file Date-02/11/2022
+ *ConfigLoader- This class contains the methods to load config.properties file Date-02/11/2022
  */
 
 package com.appium.utils;

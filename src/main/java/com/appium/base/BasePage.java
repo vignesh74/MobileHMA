@@ -1,5 +1,5 @@
 /**
- * @author -Brijesh Mishra BasePage class -It used to initializes the appium driver. method used for the various operations perform on real devices/emulator/simulator Date-02/11/2022
+ * BasePage class -It used to initializes the appium driver. method used for the various operations perform on real devices/emulator/simulator Date-02/11/2022
  */
 package com.appium.base;
 

@@ -1,5 +1,5 @@
 /**
- * @author-Brijesh Mishra AndroidDriverManager- This class used to initialize appium driver for android platform Date- 04/11/2022
+ * AndroidDriverManager- This class used to initialize appium driver for android platform Date- 04/11/2022
  */
 package com.appium.manager;
 

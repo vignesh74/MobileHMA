@@ -1,5 +1,4 @@
 /**
- * @author - Brijesh Mishra
  * ApplicationInfoUtils-This class contains the utility of the application information
  * Date-28/11/2022
  */

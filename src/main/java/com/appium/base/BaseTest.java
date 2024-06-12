@@ -1,5 +1,5 @@
 /**
- * @author-Brijesh Mishra BaseTest -This class includes all testNG annotations which have all desired capabilities. Date-02/11/2022
+ * BaseTest -This class includes all testNG annotations which have all desired capabilities. Date-02/11/2022
  */
 package com.appium.base;
 

@@ -1,5 +1,4 @@
 /**
- * @author- Brijesh Mishra
  * AutomationException- This class handles the automation exception of the its super class.
  * Date-24/11/2022
  */

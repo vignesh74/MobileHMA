@@ -1,5 +1,4 @@
 /**
- * @author -Rohit Deokar
  * AppiumServerUtils-This class contains the utilities of appium server
  * Date-02/11/2022 
  */

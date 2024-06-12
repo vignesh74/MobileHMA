@@ -1,5 +1,5 @@
 /**
- * @author- Nishant Rithe AndroidDeviceAction- This class provides action for android like wifi, gps, bluetooth and data ON/OFF Date-24/11/2022
+ * AndroidDeviceAction- This class provides action for android like wifi, gps, bluetooth and data ON/OFF Date-24/11/2022
  **/
 
 package com.appium.deviceinfo_action;
