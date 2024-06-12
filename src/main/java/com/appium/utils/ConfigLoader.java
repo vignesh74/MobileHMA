@@ -1,8 +1,5 @@
 /**
- * # MIT License # # Organization   eInfochips # Copyright      COPYRIGHT 2022 EINFOCHIPS ALL RIGHTS RESERVED. # # Permission is hereby granted, free of charge, to any person obtaining a copy # of this software and associated documentation files (the "Software"), to deal # in the Software without restriction, including without limitation the rights # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell # copies of the Software, and to permit persons to whom the Software is # furnished to do so, subject to the following conditions: # # The above copyright notice and this permission notice shall be included in all # copies or substantial portions of the Software. # # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER #
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE # SOFTWARE. # #              EINFOCHIPS #             2025 Gateway Place, Suite #238, #              San Jose, CA 95110 #------------------------------------------------------------------------------------
- *
- * @author - Vijyeta Gohil ConfigLoader- This class contains the methods to load config.properties file Date-02/11/2022
+ *ConfigLoader- This class contains the methods to load config.properties file Date-02/11/2022
  */
 
 package com.appium.utils;
@@ -51,6 +48,10 @@ public class ConfigLoader {
     private static final String ADB_PATH = "adbPath";
 
     private static final String ANDROID_MOBILE_PIN = "androidMobilePin";
+    private static final String BASE_URL_TESTRAIL = "baseUrlTestRail";
+    private static final String USERNAME_TESTRAIL = "usernameTestRail";
+    private static final String APIKEY_TESTRAIL = "apiKeyTestRail";
+    private static final String TESTRUN_TESTRAIL = "testRunTestRail";
 
     /**
      * ConfigLoader- Constructor load the config.properties Date-02/11/2022
@@ -298,6 +299,18 @@ public class ConfigLoader {
 
     public String getAndroidMobilePin(){
         return getPropertyValue(ANDROID_MOBILE_PIN);
+    }
+
+    public String getBaseUrlTestRail(){
+        return getPropertyValue(BASE_URL_TESTRAIL);
+    }
+
+    public String getUsernameTestRail(){
+        return getPropertyValue(USERNAME_TESTRAIL);
+    }
+    public String getApikeyTestRail(){ return getPropertyValue(APIKEY_TESTRAIL);
+    }
+    public String getTestRunTestRail(){ return getPropertyValue(TESTRUN_TESTRAIL);
     }
 
 }
