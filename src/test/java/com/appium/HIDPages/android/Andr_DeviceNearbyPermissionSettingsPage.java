@@ -353,14 +353,19 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                 }
                 case "12","13" -> {
                     String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtNearByPermissionStatusValue());
+                    if(strLocOrNearByPerm.equals("Allow")){
+                        strLocOrNearByPerm = "Granted always";
+                    }else if(strLocOrNearByPerm.equals("Don't allow")){
+                        strLocOrNearByPerm = "Denied";
+                    }
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnNearByPermission();
                         clickOnPermissionTab();
                         clickOnNearByDevices();
-                        if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
+                        if (strLocOrNearByPerm.equalsIgnoreCase("Granted always")) {
                             selectRadioButton(rdoAllow);
                             TestUtils.log().info("NearBy Devices Permission set as {}",strLocOrNearByPerm);
-                        } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
+                        } else if (strLocOrNearByPerm.equalsIgnoreCase("Denied")) {
                             selectRadioButton(rdoDeny);
                             TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
                         } else
@@ -370,17 +375,28 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                 }
                 default -> {
-                    appPrefencesScreenPage.getTxtNearByPermissionStatusValue().click();
-                    clickOnPermissionTab();
-                    clickOnNearByDevices();
-                            if (strLocOrNearByPerm.equalsIgnoreCase("Allow")) {
-                                selectRadioButton(rdoAllow);
-                                TestUtils.log().info("NearBy Devices Permission set as {}", strLocOrNearByPerm);
-                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
-                                selectRadioButton(rdoDeny);
-                                TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
-                            } else
-                                TestUtils.log().info("Please provide correct permission option");
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtNearByPermissionStatusValue());
+                    if(strLocOrNearByPerm.equals("Allow")){
+                        strLocOrNearByPerm = "Granted always";
+                    }else if(strLocOrNearByPerm.equals("Don't allow")){
+                        strLocOrNearByPerm = "Denied";
+                    }
+                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
+                        appPrefencesScreenPage.getTxtNearByPermissionStatusValue().click();
+                        clickOnPermissionTab();
+                        clickOnNearByDevices();
+                        if (strLocOrNearByPerm.equalsIgnoreCase("Granted always")) {
+                            selectRadioButton(rdoAllow);
+                            TestUtils.log().info("NearBy Devices Permission set as {}", strLocOrNearByPerm);
+                        } else if (strLocOrNearByPerm.equalsIgnoreCase("Denied")) {
+                            selectRadioButton(rdoDeny);
+                            TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                        } else
+                            TestUtils.log().info("Please provide correct permission option");
+                    }else{
+                        TestUtils.log().info("Location Permission is already set as {}",strLocOrNearByPerm);
+                    }
+
                     }
                 }
             loopHandle(txtAppPreferences, NAVIGATE_BACK, 10);
