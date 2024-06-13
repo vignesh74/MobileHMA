@@ -174,6 +174,12 @@ public class Andr_DeviceBLESettingsPage extends BasePage {
                         }
                         loopHandle(appPrefencesScreenPage.getTxtAppPreferences(), NAVIGATE_BACK, 10);
                     }
+
+                    case "11" -> {
+                        click(btnBLEOnOff);
+                        loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
+                    }
+
                     case "12" ->{
                         click(txtConnectionRef);
                         click(txtConnectionRefBluetooth);

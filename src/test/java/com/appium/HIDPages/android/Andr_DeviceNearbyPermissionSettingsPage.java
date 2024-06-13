@@ -278,11 +278,11 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
     public void setNearByOrLocationPerm(String strLocationOrNearBy, String strLocOrNearByPerm) {
         try {
             String strDevicePlatformVersion = DriverManager.getPlatformVersion();
-
-
+            String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
+            TestUtils.log().info("txtLocationPermStatusValuetxtLocationPermStatusValuetxtLocationPermStatusValue....."+txtLocationPermStatusValue);
+            TestUtils.log().info("strLocOrNearByPermstrLocOrNearByPermstrLocOrNearByPermstrLocOrNearByPerm....."+strLocOrNearByPerm);
             switch (strDevicePlatformVersion) {
                 case "9" -> {
-                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnLocationPermission();
                         waitForGivenTime(1);
@@ -305,45 +305,35 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
                     }
                 }
-                case "7", "8" -> {
-                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
-                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
-
-                        appPrefencesScreenPage.clickOnLocationPermission();
-                        loopHandle(txtPermission, "swipeDown", 5);
-                        if (isDisplayed(btnAppPermission)) {
-                            click(btnAppPermission);
-                        }
-                        click(tglBtnLocationPermission);
-                        String strCheckedValue = getElementAttribute(tglBtnLocationPermission, CHECKED_MESSAGE);
-                        if (strCheckedValue.equalsIgnoreCase(FALSE_MESSAGE)) {
-                            TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
-                        }
-                    } else
-                        TestUtils.log().info("Location Permission is already set as {}",strLocOrNearByPerm);
-
-                }
 
                 case "10", "11" -> {
-                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
+//                    if(strLocOrNearByPerm.equals("Allow all the time")){
+//                        strLocOrNearByPerm = "Always";
+//                    }else if(strLocOrNearByPerm.equals("Allow only while using the app")){
+//                        strLocOrNearByPerm = "While using the app";
+//                    }else if(strLocOrNearByPerm.equals("Ask every time")){
+//                        strLocOrNearByPerm = "Denied";
+//                    }else if(strLocOrNearByPerm.equals("Don't allow")){
+//                        strLocOrNearByPerm = "Denied";
+//                    }
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnLocationPermission();
                         clickOnPermissionTab();
                         clickOnLocationTab();
                         switch (strLocationOrNearBy) {
                             case "Location" -> {
-                                if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow") || strLocOrNearByPerm.equalsIgnoreCase("Deny")) {
-                                    selectRadioButton(rdoDeny);
-                                    TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
-                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow all the time")) {
-                                    selectRadioButton(rdoAllowAllTheTime);
-                                    TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
-                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow only while using app") || strLocOrNearByPerm.equalsIgnoreCase("Allow only while using the app")) {
-                                    selectRadioButton(rdoAllowOnlyWhileUsingApp);
-                                    TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                                if (strLocOrNearByPerm.equalsIgnoreCase("Allow all the time")) {
+                                    click(rdoAllowAllTheTime);
+                                    TestUtils.log().info("Location Permission set as :: {}"+ strLocOrNearByPerm);
+                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow only while using the app")) {
+                                    click(rdoAllowOnlyWhileUsingApp);
+                                    TestUtils.log().info("Location Permission set as :: {}"+ strLocOrNearByPerm);
                                 } else if (strLocOrNearByPerm.equalsIgnoreCase("Ask every time")) {
-                                    selectRadioButton(rdoAskEveryTime);
-                                    TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                                    click(rdoAskEveryTime);
+                                    TestUtils.log().info("Location Permission set as :: {}"+ strLocOrNearByPerm);
+                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
+                                    click(rdoDonotAllow);
+                                    TestUtils.log().info("Location Permission set as :: {}"+ strLocOrNearByPerm);
                                 } else
                                     TestUtils.log().info("Please provide correct permission option.");
 
@@ -352,7 +342,6 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                 }
                 case "12","13" -> {
-                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtNearByPermissionStatusValue());
                     if(strLocOrNearByPerm.equals("Allow")){
                         strLocOrNearByPerm = "Granted always";
                     }else if(strLocOrNearByPerm.equals("Don't allow")){
@@ -375,7 +364,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                 }
                 default -> {
-                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtNearByPermissionStatusValue());
+
                     if(strLocOrNearByPerm.equals("Allow")){
                         strLocOrNearByPerm = "Granted always";
                     }else if(strLocOrNearByPerm.equals("Don't allow")){

@@ -53,33 +53,51 @@ public class Andr_DeviceLocationSettingsPage extends BasePage {
      * @param -strLocationStatus-String
      * @param -strUDID-String           Date-25/01/2023
      */
+//    public void setLocationStatus(String strLocationStatus, String strUDID) {
+//        try {
+//            if (appPreferencesScreenPage.isDisplayed(appPreferencesScreenPage.getTxtLocation())) {
+//                if (getElementText(appPreferencesScreenPage.getTxtLocationStatusValue()).equalsIgnoreCase(strLocationStatus)) {
+//                    TestUtils.log().info("Location status is already set as {}",strLocationStatus);
+//                } else {
+//                    click(appPreferencesScreenPage.getTxtLocation());
+//                    waitForGivenTime(1);
+//                    click(btnLocationOnOff);
+//                    String strCheckedAttrValue = getElementAttribute(btnLocationOnOff, "checked");
+//                    if (strCheckedAttrValue.equalsIgnoreCase("true")) {
+//                        TestUtils.log().info("Location status is set as on");
+//                    } else if (strCheckedAttrValue.equalsIgnoreCase("false")) {
+//                        TestUtils.log().info("Location status is set as off");
+//                    }
+//                    loopHandle(appPreferencesScreenPage.getTxtLocationStatusValue(), "navigateBack", 10);
+//                    Assert.assertTrue(strLocationStatus.equalsIgnoreCase(appPreferencesScreenPage.getTxtLocationStatusValue().getText()));
+//                }
+//            } else {
+//                if (strLocationStatus.equalsIgnoreCase("On")) {
+//                    androidDeviceAction.turnOnGpsLocation(strUDID);
+//                    TestUtils.log().info("Location is set as On");
+//                } else if (strLocationStatus.equalsIgnoreCase("Off")) {
+//                    androidDeviceAction.turnOffGpsLocation(strUDID);
+//                    TestUtils.log().info("Location is set as Off");
+//                }
+//            }
+//        } catch (Exception e) {
+//            TestUtils.log().debug("Exception occurred while setting the Location status...");
+//        }
+//    }
+
+
     public void setLocationStatus(String strLocationStatus, String strUDID) {
         try {
-            if (appPreferencesScreenPage.isDisplayed(appPreferencesScreenPage.getTxtLocation())) {
-                if (getElementText(appPreferencesScreenPage.getTxtLocationStatusValue()).equalsIgnoreCase(strLocationStatus)) {
-                    TestUtils.log().info("Location status is already set as {}",strLocationStatus);
-                } else {
-                    click(appPreferencesScreenPage.getTxtLocation());
-                    waitForGivenTime(1);
-                    click(btnLocationOnOff);
-                    String strCheckedAttrValue = getElementAttribute(btnLocationOnOff, "checked");
-                    if (strCheckedAttrValue.equalsIgnoreCase("true")) {
-                        TestUtils.log().info("Location status is set as on");
-                    } else if (strCheckedAttrValue.equalsIgnoreCase("false")) {
-                        TestUtils.log().info("Location status is set as off");
-                    }
-                    loopHandle(appPreferencesScreenPage.getTxtLocationStatusValue(), "navigateBack", 10);
-                    Assert.assertTrue(strLocationStatus.equalsIgnoreCase(appPreferencesScreenPage.getTxtLocationStatusValue().getText()));
-                }
-            } else {
-                if (strLocationStatus.equalsIgnoreCase("On")) {
-                    androidDeviceAction.turnOnGpsLocation(strUDID);
-                    TestUtils.log().info("Location is set as On");
-                } else if (strLocationStatus.equalsIgnoreCase("Off")) {
-                    androidDeviceAction.turnOffGpsLocation(strUDID);
-                    TestUtils.log().info("Location is set as Off");
-                }
+            String strLocationStatusValue = getElementText(appPreferencesScreenPage.getTxtLocationStatusValue());
+            String strPlatformVersion = DriverManager.getPlatformVersion();
+            if (!strLocationStatusValue.equalsIgnoreCase(strLocationStatus)) {
+                click(appPreferencesScreenPage.getTxtLocation());
+                click(btnLocationOnOff);
+            }else{
+                TestUtils.log().info("Location is already set as {}",strLocationStatus);
             }
+            loopHandle(appPreferencesScreenPage.getTxtLocationStatusValue(), "navigateBack", 10);
+
         } catch (Exception e) {
             TestUtils.log().debug("Exception occurred while setting the Location status...");
         }

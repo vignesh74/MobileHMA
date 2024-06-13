@@ -58,7 +58,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']/following-sibling::android.widget.TextView")
     private MobileElement txtLocationStatusValue;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location Permission']/following-sibling::android.widget.TextView")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/child::android.widget.TextView[2]")
     private MobileElement txtLocationPermissionStatusValue;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Nearby Permission']/following-sibling::android.widget.TextView")
@@ -463,9 +463,8 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      */
     public void clickOnLocationPermission() {
         try {
-            click(imgLocationPermission);
+            click(txtLocationPermissionStatusValue);
         } catch (Exception e) {
-            
             TestUtils.log().debug("Exception occurred while clicking on Location Permission...");
         }
     }
@@ -502,7 +501,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      */
     public void enableActivityLogsAndNavigateToMobileIDScreen() {
         try {
-//            clickOnShowActivity();
+            clickOnShowActivity();
             backToMobileIdScreen();
         } catch (Exception e) {
             

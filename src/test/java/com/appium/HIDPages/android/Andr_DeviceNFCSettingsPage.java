@@ -34,8 +34,9 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
 
     @AndroidFindBy(xpath="//android.widget.TextView[@text='NFC']")
     private MobileElement nfcTab;
-
-    @AndroidFindBy(id="com.android.settings:id/switch_widget")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(id="com.android.settings:id/switch_widget",priority = 0)
+    @AndroidFindBy(id="android:id/switch_widget",priority = 1)
     private MobileElement btnNFCOnOff;
 
     /**
@@ -145,6 +146,15 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
                             TestUtils.log().info("NFC Status set as {}", btnNFCOnOff);
                         }
                         loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
+                    }
+
+                    case "11" ->{
+                        click(btnNFCOnOff);
+                        String strActualNFCStatus = getElementText(btnNFCOnOff);
+                        TestUtils.log().info("NFC has been set as {}",strActualNFCStatus);
+                        Assert.assertTrue(strNFCStatus.equalsIgnoreCase(strActualNFCStatus));
+                        loopHandle(appPrefencesScreenPage.getTxtBluetoothStatusValue(), NAVIGATE_BACK, 10);
+                        Assert.assertTrue(strActualNFCStatus.equalsIgnoreCase(appPrefencesScreenPage.getTxtNFCStatusValue().getText()));
                     }
                     case "12" ->{
                         click(txtConnectionRefNFC);
