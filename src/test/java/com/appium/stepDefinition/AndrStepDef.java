@@ -326,7 +326,7 @@ public class AndrStepDef extends BasePage {
     @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
     public void activityLogIsDisplayed_Andr(String strDate, String strMessage, String strReaderName, String strActionName, String strDeviceState, String strAppState, String strMobileRead) {
         try {
-            if(strAppState.equalsIgnoreCase("Background")){
+            if(strAppState.equalsIgnoreCase("Background")||strAppState.equalsIgnoreCase("Killed")){
                 navigateToAppPreferencesScreen_Andr();
             }
             appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
