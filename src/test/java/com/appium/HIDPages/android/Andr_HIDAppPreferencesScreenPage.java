@@ -338,11 +338,11 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     public void selectUsageType(String usageType) {
         try {
             if (usageType.equalsIgnoreCase(MessageConstants.ALWAYS_STRING)) {
-                selectRadioButton(rdoUsageAlways);
+                click(rdoUsageAlways);
             } else if (usageType.equalsIgnoreCase(MessageConstants.FOREGROUND_STRING)) {
-                selectRadioButton(rdoUsageForeground);
+                click(rdoUsageForeground);
             } else if (usageType.equalsIgnoreCase(MessageConstants.UNLOCKED_STRING)) {
-                selectRadioButton(rdoUsageUnlocked);
+                click(rdoUsageUnlocked);
             } else {
                 TestUtils.log().info("Please select correct usage type");
             }
