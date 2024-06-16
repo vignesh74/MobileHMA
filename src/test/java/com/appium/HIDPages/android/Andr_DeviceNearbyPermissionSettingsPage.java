@@ -278,11 +278,12 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
     public void setNearByOrLocationPerm(String strLocationOrNearBy, String strLocOrNearByPerm) {
         try {
             String strDevicePlatformVersion = DriverManager.getPlatformVersion();
-            String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
-            TestUtils.log().info("txtLocationPermStatusValuetxtLocationPermStatusValuetxtLocationPermStatusValue....."+txtLocationPermStatusValue);
+
+//            TestUtils.log().info("txtLocationPermStatusValuetxtLocationPermStatusValuetxtLocationPermStatusValue....."+txtLocationPermStatusValue);
             TestUtils.log().info("strLocOrNearByPermstrLocOrNearByPermstrLocOrNearByPermstrLocOrNearByPerm....."+strLocOrNearByPerm);
             switch (strDevicePlatformVersion) {
                 case "9" -> {
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnLocationPermission();
                         waitForGivenTime(1);
@@ -316,6 +317,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
 //                    }else if(strLocOrNearByPerm.equals("Don't allow")){
 //                        strLocOrNearByPerm = "Denied";
 //                    }
+                    String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnLocationPermission();
                         clickOnPermissionTab();
@@ -347,7 +349,8 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }else if(strLocOrNearByPerm.equals("Don't allow")){
                         strLocOrNearByPerm = "Denied";
                     }
-                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
+                    String txtNearbyPermStatusValue = getElementText(getTxtNearbyPermissionStatusValue());
+                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtNearbyPermStatusValue)) {
                         appPrefencesScreenPage.clickOnNearByPermission();
                         clickOnPermissionTab();
                         clickOnNearByDevices();
@@ -370,7 +373,8 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }else if(strLocOrNearByPerm.equals("Don't allow")){
                         strLocOrNearByPerm = "Denied";
                     }
-                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
+                    String txtNearbyPermStatusValue = getElementText(getTxtNearbyPermissionStatusValue());
+                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtNearbyPermStatusValue)) {
                         appPrefencesScreenPage.getTxtNearByPermissionStatusValue().click();
                         clickOnPermissionTab();
                         clickOnNearByDevices();
