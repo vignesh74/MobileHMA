@@ -838,32 +838,68 @@ public class AndroidDeviceAction {
     }
 
 
-    public void forceUnlock(String strDeviceState,String appState) {
-        try{
+//    public void forceUnlock(String strDeviceState,String appState) {
+//        try{
+//            String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
+//            String appPackage = ConfigLoader.getInstance().getAndroidAppPackage();
+//            if (strDeviceState.equalsIgnoreCase("Locked")) {
+//                unlockDeviceWithPin(mobilePin);
+//                TestUtils.log().info("Device is now in unlocked state....");
+//                basePage.waitForGivenTime(1);
+//            } else if (strDeviceState.equalsIgnoreCase("Unlocked")) {
+//                TestUtils.log().info("Device is already in unlocked state....");
+//            } else if(appState.equalsIgnoreCase("Killed")){
+//                DriverManager.getDriver().activateApp(appPackage);
+//                TestUtils.log().info("Application is launched again....");
+//            }else {
+//                TestUtils.log().info("Please provide correct input....");
+//            }
+//            basePage.waitForGivenTime(1);
+//
+//        }catch(Exception e){
+//            TestUtils.log().info("exception.....",e);
+//            TestUtils.log().info("Exception While force unlocking the device");
+//        }
+//
+//    }
+
+    public void forceUnlock(String strDeviceState, String appState) {
+        String appPackage = null;
+        try {
             String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
-            String appPackage = ConfigLoader.getInstance().getAndroidAppPackage();
+            appPackage = ConfigLoader.getInstance().getAndroidAppPackage();
+
+            // Check if driver session is valid
+            if (DriverManager.getDriver() == null) {
+                TestUtils.log().info("Driver session is not initialized.");
+                return;
+            }
+
             if (strDeviceState.equalsIgnoreCase("Locked")) {
                 unlockDeviceWithPin(mobilePin);
                 TestUtils.log().info("Device is now in unlocked state....");
                 basePage.waitForGivenTime(1);
             } else if (strDeviceState.equalsIgnoreCase("Unlocked")) {
                 TestUtils.log().info("Device is already in unlocked state....");
-            } else if(appState.equalsIgnoreCase("Killed")){
-//                DriverManager.getDriver().launchApp();
+            } else {
+                TestUtils.log().info("Please provide correct input....");
+            }
+
+            if (appState.equalsIgnoreCase("Killed")) {
                 DriverManager.getDriver().activateApp(appPackage);
                 TestUtils.log().info("Application is launched again....");
-            }else {
-                TestUtils.log().info("Please provide correct input....");
             }
             basePage.waitForGivenTime(1);
 
-        }catch(Exception e){
-//            e.printStackTrace();
-            TestUtils.log().info("exception.....",e);
-            TestUtils.log().info("Exception While force unlocking the device");
+        } catch (org.openqa.selenium.NoSuchSessionException e) {
+            TestUtils.log().info("No active session found: ", e);
+            DriverManager.getDriver().activateApp(appPackage);
+        } catch (Exception e) {
+            TestUtils.log().info("exception.....", e);
+            TestUtils.log().info("Exception while force unlocking the device");
         }
-
     }
+
 
     public void unlockDeviceWithPin(String pin){
 //        String adbPath = basePage.getADBPath();
