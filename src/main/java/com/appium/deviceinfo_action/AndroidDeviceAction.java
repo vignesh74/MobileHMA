@@ -859,6 +859,7 @@ public class AndroidDeviceAction {
 
         }catch(Exception e){
 //            e.printStackTrace();
+            TestUtils.log().info("exception....."e);
             TestUtils.log().info("Exception While force unlocking the device");
         }
 
