@@ -619,7 +619,8 @@ public class AndroidDeviceAction {
                     }
 
                     case "Killed" -> {
-                        DriverManager.getDriver().closeApp();
+//                        DriverManager.getDriver().closeApp();
+                        DriverManager.getDriver().activateApp(strAppPackage);
                         TestUtils.log().info("Application is killed");
                     }
 
@@ -840,6 +841,7 @@ public class AndroidDeviceAction {
     public void forceUnlock(String strDeviceState,String appState) {
         try{
             String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
+            String appPackage = ConfigLoader.getInstance().getAndroidAppPackage();
             if (strDeviceState.equalsIgnoreCase("Locked")) {
                 unlockDeviceWithPin(mobilePin);
                 TestUtils.log().info("Device is now in unlocked state....");
@@ -851,7 +853,8 @@ public class AndroidDeviceAction {
             }
             basePage.waitForGivenTime(1);
             if(appState.equalsIgnoreCase("Killed")){
-                DriverManager.getDriver().launchApp();
+//                DriverManager.getDriver().launchApp();
+                DriverManager.getDriver().activateApp(appPackage);
                 TestUtils.log().info("Application is launched again....");
             }
         }catch(Exception e){
