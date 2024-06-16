@@ -620,7 +620,7 @@ public class AndroidDeviceAction {
 
                     case "Killed" -> {
 //                        DriverManager.getDriver().closeApp();
-                        DriverManager.getDriver().activateApp(strAppPackage);
+                        DriverManager.getDriver().terminateApp(strAppPackage);
                         TestUtils.log().info("Application is killed");
                     }
 
