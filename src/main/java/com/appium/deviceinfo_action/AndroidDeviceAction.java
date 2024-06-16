@@ -858,7 +858,7 @@ public class AndroidDeviceAction {
             basePage.waitForGivenTime(1);
 
         }catch(Exception e){
-            e.printStackTrace();
+//            e.printStackTrace();
             TestUtils.log().info("Exception While force unlocking the device");
         }
 
