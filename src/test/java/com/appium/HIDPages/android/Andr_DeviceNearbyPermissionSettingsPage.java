@@ -363,7 +363,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         } else
                             TestUtils.log().info("Please provide correct permission option.");
                     }else{
-                        TestUtils.log().info("Location Permission is already set as {}",strLocOrNearByPerm);
+                        TestUtils.log().info("Nearby Permission is already set as {}",strLocOrNearByPerm);
                     }
                 }
                 default -> {
@@ -387,7 +387,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         } else
                             TestUtils.log().info("Please provide correct permission option");
                     }else{
-                        TestUtils.log().info("Location Permission is already set as {}",strLocOrNearByPerm);
+                        TestUtils.log().info("Nearby Permission is already set as {}",strLocOrNearByPerm);
                     }
 
                     }
