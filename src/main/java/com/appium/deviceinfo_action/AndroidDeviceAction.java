@@ -848,15 +848,15 @@ public class AndroidDeviceAction {
                 basePage.waitForGivenTime(1);
             } else if (strDeviceState.equalsIgnoreCase("Unlocked")) {
                 TestUtils.log().info("Device is already in unlocked state....");
-            } else {
-                TestUtils.log().info("Please provide correct input....");
-            }
-            basePage.waitForGivenTime(1);
-            if(appState.equalsIgnoreCase("Killed")){
+            } else if(appState.equalsIgnoreCase("Killed")){
 //                DriverManager.getDriver().launchApp();
                 DriverManager.getDriver().activateApp(appPackage);
                 TestUtils.log().info("Application is launched again....");
+            }else {
+                TestUtils.log().info("Please provide correct input....");
             }
+            basePage.waitForGivenTime(1);
+
         }catch(Exception e){
             e.printStackTrace();
             TestUtils.log().info("Exception While force unlocking the device");
