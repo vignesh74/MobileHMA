@@ -820,7 +820,7 @@ public class AndroidDeviceAction {
                     TestUtils.log().info("Display state is already OFF....");
                 }
             }else{
-                TestUtils.log().info("Device is already in unlocked state....");
+                TestUtils.log().info("Device is already in unlocked state and display is ON....");
             }
         }catch(Exception e){
             TestUtils.log().info("Exception while setting the display state....");
