@@ -872,7 +872,7 @@ public class AndroidDeviceAction {
             // Check if driver session is valid
             if (DriverManager.getDriver() == null) {
                 TestUtils.log().info("Driver session is not initialized.");
-                return;
+                DriverManager.getDriver().activateApp(appPackage);
             }
 
             if (strDeviceState.equalsIgnoreCase("Locked")) {
