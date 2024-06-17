@@ -201,7 +201,7 @@ public class SerialPortUtils {
     }
 
 
-    public Pair<String, String> performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
+    /*public Pair<String, String> performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
         String roboticArmLogs = "";
         SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem" + deviceCOMPort.trim());
         String currentTime;
@@ -271,9 +271,106 @@ public class SerialPortUtils {
             TestUtils.log().info("+++++++++++++++++++++++++++++++++++++++++++++++");
             TestUtils.log().info("Serial Port got closed in finally block");
             TestUtils.log().info("+++++++++++++++++++++++++++++++++++++++++++++++");
+
         }
         return new Pair<>(roboticArmLogs.trim(), deviceTime);
+    }*/
+
+    public Pair<String, String> performRoboticArmOperationWithDeviceState(String deviceCOMPort, String actionName, String deviceState) throws SerialPortException {
+        String roboticArmLogs = "";
+        SerialPort jsscSerialPort = new SerialPort("/dev/tty.usbmodem" + deviceCOMPort.trim());
+        String currentTime;
+        String deviceTime = "";  // Initialize deviceTime with a default value
+        String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
+
+        int retryCount = 0;
+        final int maxRetries = 3;
+
+        while (retryCount < maxRetries) {
+            try {
+                // Define COM Port
+                jsscSerialPort.openPort();
+                jsscSerialPort.setParams(SerialPort.BAUDRATE_115200, 8, 1, 0);
+                basePage.waitForGivenTime(2);
+
+                if (actionName.equals("Twist & Go")) {
+                    jsscSerialPort.writeString("$G," + DriverManager.getRoboticArmX() + "," + DriverManager.getRoboticArmY() + ",&");
+                } else if (actionName.equalsIgnoreCase("TAP")) {
+                    jsscSerialPort.writeString("$T," + DriverManager.getRoboticArmX() + "," + DriverManager.getRoboticArmY() + ",&");
+                } else if (actionName.equalsIgnoreCase("Both")) {
+                    jsscSerialPort.writeString("$B," + DriverManager.getRoboticArmX() + "," + DriverManager.getRoboticArmY() + ",&");
+                } else {
+                    TestUtils.log().info("Action is not valid");
+                }
+
+                AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+                deviceTime = driver.getDeviceTime();
+
+                currentTime = getCurrentTime().toString();
+                TestUtils.log().info("currentTime " + currentTime);
+                TestUtils.log().info("deviceTime " + deviceTime);
+
+                // Wait time
+                basePage.waitForGivenTime(15); // wait till arm got any message
+
+                // Receive Response
+                roboticArmLogs = jsscSerialPort.readString();
+                TestUtils.log().info("Robotic Arm message: {}", roboticArmLogs);
+
+                if (roboticArmLogs != null) {
+                    if (roboticArmLogs.equalsIgnoreCase("TAP:ENABLE;\r\n")) {
+                        roboticArmLogs = roboticArmLogs.trim().substring(0, 10);
+                        TestUtils.log().info("This is my Robotic Arm message: {}", roboticArmLogs.substring(0, 10));
+                    } else if (roboticArmLogs.equalsIgnoreCase("TAP:DISABLE;\r\n")) {
+                        TestUtils.log().info(MessageConstants.TWO_BRACKETS, MessageConstants.ROBOTIC_ARM_MESSAGE, roboticArmLogs.substring(0, 11));
+                        roboticArmLogs = roboticArmLogs.substring(0, 11);
+                    } else if ((roboticArmLogs.equalsIgnoreCase("TWIST_AND_GO=:ENABLE;\r\n"))) {
+                        roboticArmLogs = roboticArmLogs.trim().substring(0, 20);
+                        TestUtils.log().info(MessageConstants.TWO_BRACKETS, MessageConstants.ROBOTIC_ARM_MESSAGE, roboticArmLogs.substring(0, 20));
+                    } else if ((roboticArmLogs.equalsIgnoreCase("TWIST_AND_GO:DISABLE;\r\n"))) {
+                        TestUtils.log().info(MessageConstants.TWO_BRACKETS, MessageConstants.ROBOTIC_ARM_MESSAGE, roboticArmLogs.substring(0, 20));
+                        roboticArmLogs = roboticArmLogs.substring(0, 20);
+                    }
+                }
+
+                basePage.waitForGivenTime(1);
+
+                if (actionName.equals("Twist & Go") && (deviceState.equalsIgnoreCase("Locked"))) {
+                    try {
+                        androidDeviceAction.unlockDeviceWithPin(mobilePin);
+                    } catch (Exception e) {
+                        TestUtils.log().debug("Getting exception while lock or unlock ....");
+                    }
+                }
+
+                // If roboticArmLogs is not null, break the loop
+                if (roboticArmLogs != null) {
+                    break;
+                }
+
+            } catch (Exception e) {
+                if (retryCount == maxRetries - 1) {
+                    throw new AutomationException("Error occurred: Not able to perform Arm operation " + e.getMessage());
+                }
+            } finally {
+                jsscSerialPort.closePort();
+                TestUtils.log().info("+++++++++++++++++++++++++++++++++++++++++++++++");
+                TestUtils.log().info("Serial Port got closed in finally block");
+                TestUtils.log().info("+++++++++++++++++++++++++++++++++++++++++++++++");
+            }
+
+            retryCount++;
+            TestUtils.log().info("Retrying... Attempt " + (retryCount + 1));
+        }
+
+        if (roboticArmLogs == null) {
+            throw new AutomationException("Failed to receive valid robotic arm logs after " + maxRetries + " attempts.");
+        }
+
+        return new Pair<>(roboticArmLogs.trim(), deviceTime);
     }
+
+
 
     private static String getCurrentTime() {
         // Get the current time using the Date class
