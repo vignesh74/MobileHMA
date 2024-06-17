@@ -359,7 +359,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                             TestUtils.log().info("NearBy Devices Permission set as {}",strLocOrNearByPerm);
                         } else if (strLocOrNearByPerm.equalsIgnoreCase("Denied")) {
                             selectRadioButton(rdoDeny);
-                            TestUtils.log().info("Location Permission set as :: {}",strLocOrNearByPerm);
+                            TestUtils.log().info("NearBy Devices Permission set as :: {}",strLocOrNearByPerm);
                         } else
                             TestUtils.log().info("Please provide correct permission option.");
                     }else{

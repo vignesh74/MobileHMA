@@ -348,7 +348,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
             }
         } catch (Exception e) {
             
-            TestUtils.log().debug("Exception occurred while selecting the usage type....");
+            TestUtils.log().debug("Exception occurred while selecting the usage type....",e);
         }
     }
 
