@@ -32,7 +32,7 @@ public class Hooks {
      * @throws IOException
      *         Date- 06/03/2023
      **/
-    @AfterStep
+    /*@AfterStep
     public static void addScreenshotForScenario(Scenario scenario) {
         try{
 
@@ -67,6 +67,54 @@ public class Hooks {
             System.out.println("addScreenshotForScenario "+e);
         }
 
+    }*/
+
+    @AfterStep
+    public static void addScreenshotForScenario(Scenario scenario) {
+        try {
+            basePage.waitForGivenTime(1);
+            String status = String.valueOf(scenario.getStatus());
+
+            // Declare the screenshot variable here
+            byte[] screenshot = null;
+
+            // Capture screenshot only if the scenario name doesn't match the specific case
+            if (!scenario.getName().equalsIgnoreCase("ANDR_11_10_upgrade: Verify the upgrade of app")) {
+                screenshot = DriverManager.getDriver().getScreenshotAs(OutputType.BYTES);
+            }
+
+            // Determine if screenshot is needed based on status and configuration
+            boolean shouldAttachScreenshot = false;
+            String base64Image = null;
+
+            if (ConfigLoader.getInstance().getPassedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("PASSED")) {
+                shouldAttachScreenshot = true;
+                if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
+                    base64Image = ScreenshotUtils.getBase64Image();
+                    ExtentCucumberAdapter.getCurrentStep().log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(base64Image).build());
+                }
+            } else if (ConfigLoader.getInstance().getFailedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("FAILED")) {
+                shouldAttachScreenshot = true;
+                if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
+                    base64Image = ScreenshotUtils.getBase64Image();
+                    ExtentCucumberAdapter.getCurrentStep().log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(base64Image).build());
+                }
+            } else if (ConfigLoader.getInstance().getSkippedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("SKIPPED")) {
+                shouldAttachScreenshot = true;
+                if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
+                    base64Image = ScreenshotUtils.getBase64Image();
+                    ExtentCucumberAdapter.getCurrentStep().log(Status.SKIP, MediaEntityBuilder.createScreenCaptureFromBase64String(base64Image).build());
+                }
+            }
+
+            // Attach screenshot if needed and not in base64 format
+            if (shouldAttachScreenshot && base64Image == null && screenshot != null) {
+                scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
+            }
+
+        } catch (Exception e) {
+            System.out.println("addScreenshotForScenario " + e);
+        }
     }
 
     /**
