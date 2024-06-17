@@ -1072,7 +1072,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while clicking on Notification tab...");
+            TestUtils.log().debug("Exception occurred while clicking on Notification tab...",e);
         }
     }
 
@@ -1084,7 +1084,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             click(tabSettings);
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while clicking on Settings tab...");
+            TestUtils.log().debug("Exception occurred while clicking on Settings tab...",e);
         }
     }
 
@@ -1098,7 +1098,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             }
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while navigating back to Mobile ID screen...");
+            TestUtils.log().debug("Exception occurred while navigating back to Mobile ID screen...",e);
         }
     }
 
@@ -1115,7 +1115,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             }
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while expanding activity logs...");
+            TestUtils.log().debug("Exception occurred while expanding activity logs...",e);
         }
 
     }
@@ -1134,7 +1134,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             }
         } catch (Exception e) {
 
-            TestUtils.log().debug("Exception occurred while verifying date...");
+            TestUtils.log().debug("Exception occurred while verifying date...",e);
         }
         return date;
     }
