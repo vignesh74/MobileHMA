@@ -34,7 +34,7 @@ public class Hooks {
      * @throws IOException
      *         Date- 06/03/2023
      **/
-    @AfterStep
+   /* @AfterStep
     public static void addScreenshotForScenario(Scenario scenario) {
         String status = String.valueOf(scenario.getStatus());
         byte[] screenshot = DriverManager.getDriver().getScreenshotAs(OutputType.BYTES);
@@ -57,7 +57,44 @@ public class Hooks {
                 scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
             }
         }
+    }*/
+
+    @AfterStep
+    public static void addScreenshotForScenario(Scenario scenario) {
+        try {
+            String status = String.valueOf(scenario.getStatus());
+
+            // Ensure WebDriver session is active before taking a screenshot
+            if (DriverManager.getDriver() != null) {
+                byte[] screenshot = DriverManager.getDriver().getScreenshotAs(OutputType.BYTES);
+
+                if (ConfigLoader.getInstance().getPassedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("PASSED")) {
+                    if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
+                        ExtentCucumberAdapter.getCurrentStep().log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenshotUtils.getBase64Image()).build());
+                    } else {
+                        scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
+                    }
+                } else if (ConfigLoader.getInstance().getFailedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("FAILED")) {
+                    if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
+                        ExtentCucumberAdapter.getCurrentStep().log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenshotUtils.getBase64Image()).build());
+                    } else {
+                        scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
+                    }
+                } else if (ConfigLoader.getInstance().getSkippedStepsScreenshot().equalsIgnoreCase(YES) && status.equalsIgnoreCase("SKIPPED")) {
+                    if (ConfigLoader.getInstance().getBase64Screenshot().equalsIgnoreCase(YES)) {
+                        ExtentCucumberAdapter.getCurrentStep().log(Status.SKIP, MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenshotUtils.getBase64Image()).build());
+                    } else {
+                        scenario.attach(screenshot, MessageConstants.IMAGE_PNG_STRING, "");
+                    }
+                }
+            } else {
+                System.out.println("WebDriver session is not active. Skipping screenshot capture.");
+            }
+        } catch (Exception e) {
+            System.out.println("addScreenshotForScenario " + e);
+        }
     }
+
 
     /**
      * beforeScenario- This method is used to set application details to the extent report
