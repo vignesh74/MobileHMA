@@ -630,7 +630,7 @@ public class AndroidDeviceAction {
                 }
             }
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while app is running in {} .... ", strAppState);
+            TestUtils.log().debug("Getting exception while app is running in {} .... ", strAppState,e);
         }
     }
 

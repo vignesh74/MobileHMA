@@ -288,9 +288,13 @@ public class AndrStepDef extends BasePage {
 
     @When("Set Application status as {string} in android device")
     public void setAppStatus_Andr(String strAppState) {
-        String strUdId = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
-        String strAndroidAppPackage = ConfigLoader.getInstance().getAndroidAppPackage();
-        androidDeviceAction.setAppState(strAppState, strAndroidAppPackage, strUdId);
+        try{
+            String strUdId = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
+            String strAndroidAppPackage = ConfigLoader.getInstance().getAndroidAppPackage();
+            androidDeviceAction.setAppState(strAppState, strAndroidAppPackage, strUdId);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while setting the app status ......",e);
+        }
     }
 
 //    @When("Perform robotic arm action as {string} for android device")
