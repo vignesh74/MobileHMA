@@ -1259,7 +1259,7 @@ public class BasePage {
             }
             TestUtils.log().info("{} : operation successfully done", actionType);
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while performing : {}", actionType);
+            TestUtils.log().debug("Getting exception while performing : {}", e);
         }
     }
 
