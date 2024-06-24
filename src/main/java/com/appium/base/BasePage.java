@@ -115,6 +115,27 @@ public class BasePage {
      * @param swipeCount-int
      *         Date-02/11/2022
      */
+//    public void swipeDown(int swipeCount) {
+//        try {
+//            Dimension dimension = DriverManager.getDriver().manage().window().getSize();
+//            int startX = dimension.width / 2;
+//            int endX = startX;
+//            int startY = (int) (dimension.height * 0.9);
+//            int endY = (int) (dimension.height * 0.1);
+//            for (int i = 0; i < swipeCount; i++) {
+//                touchAction = new TouchAction<>(DriverManager.getDriver());
+//                touchAction.press(point(startX, startY)).
+//                        /* It'll take 2 seconds to complete swipe operation */
+//                                waitAction(waitOptions(ofMillis(2000))).
+//                        // moveTo(PointOption.point(494, 386))
+//                                moveTo(point(endX, endY)).release().perform();
+//                TestUtils.log().debug("Swipe is performed successfully");
+//            }
+//        } catch (Exception e) {
+//            TestUtils.log().debug("Getting exception while performing swipe down operation",e);
+//        }
+//    }
+
     public void swipeDown(int swipeCount) {
         try {
             Dimension dimension = DriverManager.getDriver().manage().window().getSize();
