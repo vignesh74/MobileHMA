@@ -8,7 +8,9 @@ import com.appium.manager.DriverManager;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.TestUtils;
 import com.appium.utils.VerificationUtils;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.util.concurrent.Uninterruptibles;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -115,26 +117,50 @@ public class BasePage {
      * @param swipeCount-int
      *         Date-02/11/2022
      */
+//    public void swipeDown(int swipeCount) {
+//        try {
+//            Dimension dimension = DriverManager.getDriver().manage().window().getSize();
+//            int startX = dimension.width / 2;
+//            int endX = startX;
+//            int startY = (int) (dimension.height * 0.9);
+//            int endY = (int) (dimension.height * 0.1);
+//            for (int i = 0; i < swipeCount; i++) {
+//                touchAction = new TouchAction<>(DriverManager.getDriver());
+//                touchAction.press(point(startX, startY)).
+//                        /* It'll take 2 seconds to complete swipe operation */
+//                                waitAction(waitOptions(ofMillis(2000))).
+//                        // moveTo(PointOption.point(494, 386))
+//                                moveTo(point(endX, endY)).release().perform();
+//                TestUtils.log().debug("Swipe is performed successfully");
+//            }
+//        } catch (Exception e) {
+//            TestUtils.log().debug("Getting exception while performing swipe down operation",e);
+//        }
+//    }
+
     public void swipeDown(int swipeCount) {
         try {
-            Dimension dimension = DriverManager.getDriver().manage().window().getSize();
+            AppiumDriver driver = DriverManager.getDriver();
+            Dimension dimension = driver.manage().window().getSize();
             int startX = dimension.width / 2;
-            int endX = startX;
-            int startY = (int) (dimension.height * 0.9);
-            int endY = (int) (dimension.height * 0.1);
+            int startY = (int) (dimension.height * 0.8);
+            int endY = (int) (dimension.height * 0.2);
+
             for (int i = 0; i < swipeCount; i++) {
-                touchAction = new TouchAction<>(DriverManager.getDriver());
-                touchAction.press(point(startX, startY)).
-                        /* It'll take 2 seconds to complete swipe operation */
-                                waitAction(waitOptions(ofMillis(2000))).
-                        // moveTo(PointOption.point(494, 386))
-                                moveTo(point(endX, endY)).release().perform();
+                TouchAction touchAction = new TouchAction(driver);
+                touchAction.press(point(startX, startY))
+                        .waitAction(waitOptions(ofMillis(1000)))
+                        .moveTo(point(startX, endY))
+                        .release()
+                        .perform();
+                Thread.sleep(2000); // To simulate the wait
                 TestUtils.log().debug("Swipe is performed successfully");
             }
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while performing swipe down operation",e);
+            TestUtils.log().debug("Getting exception while performing swipe down operation", e);
         }
     }
+
 
     /**
      * swipeUp()- It swipe up device screen by provided swipe count
