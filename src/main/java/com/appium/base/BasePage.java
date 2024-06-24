@@ -132,7 +132,7 @@ public class BasePage {
                 TestUtils.log().debug("Swipe is performed successfully");
             }
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while performing swipe down operation");
+            TestUtils.log().debug("Getting exception while performing swipe down operation",e);
         }
     }
 
@@ -158,7 +158,7 @@ public class BasePage {
                 TestUtils.log().debug("Swipe Up is performed successfully");
             }
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while performing swipe up operation");
+            TestUtils.log().debug("Getting exception while performing swipe up operation",e);
         }
     }
 
@@ -174,7 +174,7 @@ public class BasePage {
             TestUtils.log().debug("{} is clicked", mobileElement.getText());
             mobileElement.click();
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while performing click operation");
+            TestUtils.log().debug("Getting exception while performing click operation",e);
         }
     }
 
@@ -192,7 +192,7 @@ public class BasePage {
             TestUtils.log().debug("{} is clicked", elementName);
             mobileElement.click();
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while performing click operation");
+            TestUtils.log().debug("Getting exception while performing click operation",e);
         }
     }
 
@@ -210,7 +210,7 @@ public class BasePage {
             TestUtils.log().debug("Clearing: {}", elementName);
             mobileElement.clear();
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while performing clear operation");
+            TestUtils.log().debug("Getting exception while performing clear operation",e);
         }
     }
 
@@ -229,7 +229,7 @@ public class BasePage {
             clear(mobileElement, txt);
             mobileElement.sendKeys(txt);
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while performing sendkeys operation");
+            TestUtils.log().debug("Getting exception while performing sendkeys operation",e);
         }
     }
 
@@ -250,7 +250,7 @@ public class BasePage {
             clear(mobileElement, elementName);
             mobileElement.sendKeys(txt);
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while performing sendkeys operation");
+            TestUtils.log().debug("Getting exception while performing sendkeys operation",e);
         }
     }
 
@@ -266,7 +266,7 @@ public class BasePage {
             waitForVisibility(mobileElement);
             TestUtils.log().debug("Attribute:{} value for{} is {}", attribute, mobileElement.getText(), mobileElement.getAttribute(attribute));
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while getting element's attribute value");
+            TestUtils.log().debug("Getting exception while getting element's attribute value",e);
         }
         return mobileElement.getAttribute(attribute);
     }
@@ -343,7 +343,7 @@ public class BasePage {
             VerificationUtils.validate(isDisplayed(mobileElement), true, elementName + " presence");
             TestUtils.log().debug("{} is displayed on the screen ", mobileElement);
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while checking element is present");
+            TestUtils.log().debug("Getting exception while checking element is present",e);
         }
     }
 
