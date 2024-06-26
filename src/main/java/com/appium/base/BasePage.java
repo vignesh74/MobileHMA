@@ -138,32 +138,9 @@ public class BasePage {
 //        }
 //    }
 
-//    public void swipeDown(int swipeCount) {  //Working code
-//        try {
-//            AppiumDriver driver = DriverManager.getDriver();
-//            Dimension dimension = driver.manage().window().getSize();
-//            int startX = dimension.width / 2;
-//            int startY = (int) (dimension.height * 0.8);
-//            int endY = (int) (dimension.height * 0.2);
-//
-//            for (int i = 0; i < swipeCount; i++) {
-//                TouchAction touchAction = new TouchAction(driver);
-//                touchAction.press(point(startX, startY))
-//                        .waitAction(waitOptions(ofMillis(1000)))
-//                        .moveTo(point(startX, endY))
-//                        .release()
-//                        .perform();
-//                Thread.sleep(2000); // To simulate the wait
-//                TestUtils.log().debug("Swipe is performed successfully");
-//            }
-//        } catch (Exception e) {
-//            TestUtils.log().debug("Getting exception while performing swipe down operation", e);
-//        }
-//    }
-
-    public void swipeDown(int swipeCount) {
+    public void swipeDown(int swipeCount) {  //Working code
         try {
-            AppiumDriver<MobileElement> driver = DriverManager.getDriver();
+            AppiumDriver driver = DriverManager.getDriver();
             Dimension dimension = driver.manage().window().getSize();
             int startX = dimension.width / 2;
             int startY = (int) (dimension.height * 0.8);
@@ -171,9 +148,9 @@ public class BasePage {
 
             for (int i = 0; i < swipeCount; i++) {
                 TouchAction touchAction = new TouchAction(driver);
-                touchAction.press(PointOption.point(startX, startY))
-                        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
-                        .moveTo(PointOption.point(startX, endY))
+                touchAction.press(point(startX, startY))
+                        .waitAction(waitOptions(ofMillis(1000)))
+                        .moveTo(point(startX, endY))
                         .release()
                         .perform();
                 Thread.sleep(2000); // To simulate the wait
@@ -183,6 +160,7 @@ public class BasePage {
             TestUtils.log().debug("Getting exception while performing swipe down operation", e);
         }
     }
+
 
 
     /**
