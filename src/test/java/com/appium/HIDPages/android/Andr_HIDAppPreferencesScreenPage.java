@@ -501,7 +501,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      */
     public void enableActivityLogsAndNavigateToMobileIDScreen() {
         try {
-            clickOnShowActivity();
+//            clickOnShowActivity();
             backToMobileIdScreen();
         } catch (Exception e) {
             
