@@ -474,7 +474,8 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      */
     public void clickOnShowActivity() {
         try {
-            loopHandle(btnShowActivity, "swipeDown", 5);
+//            loopHandle(btnShowActivity, "swipeDown", 5);
+            swipeDowne("Show Activity");
             String statusShowActivity = getElementAttribute(btnShowActivity, MessageConstants.CHECKED_MESSAGE);
             if (statusShowActivity.equalsIgnoreCase(MessageConstants.FALSE_MESSAGE))
                 click(btnShowActivity);
@@ -501,7 +502,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      */
     public void enableActivityLogsAndNavigateToMobileIDScreen() {
         try {
-//            clickOnShowActivity();
+            clickOnShowActivity();
             backToMobileIdScreen();
         } catch (Exception e) {
             

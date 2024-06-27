@@ -161,6 +161,17 @@ public class BasePage {
         }
     }
 
+    public void swipeDowne(String text) {  //Working code
+        try {
+            AppiumDriver driver = DriverManager.getDriver();
+            MobileElement element = (MobileElement) driver.findElement(MobileBy.AndroidUIAutomator(
+                    "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                            ".scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
+        } catch (Exception e) {
+            TestUtils.log().debug("Getting exception while performing swipe down operation", e);
+        }
+    }
+
 
 
     /**
@@ -1276,7 +1287,7 @@ public class BasePage {
                             TestUtils.log().info("Doing Swipe up !!!!!!");
                         }
                         case "swipeDown" -> {
-                            swipeDown(1);
+//                            swipeDown(1);
                             TestUtils.log().info("Doing Swipe Down !!!!!!");
                         }
 
