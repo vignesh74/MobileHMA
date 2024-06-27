@@ -1081,7 +1081,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
      */
     public void clickOnSettingsTab() {
         try {
-            click(tabSettings);
+            if(isDisplayed(tabSettings)){
+                click(tabSettings);
+            }
         } catch (Exception e) {
 
             TestUtils.log().debug("Exception occurred while clicking on Settings tab...",e);

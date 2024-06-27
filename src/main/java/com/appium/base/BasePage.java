@@ -209,7 +209,7 @@ public class BasePage {
     public void click(MobileElement mobileElement) {
         try {
             waitForVisibility(mobileElement);
-            TestUtils.log().debug("{} is clicked", mobileElement.getText());
+//            TestUtils.log().debug("{} is clicked", mobileElement.getText());
             mobileElement.click();
         } catch (Exception e) {
             TestUtils.log().debug("Getting exception while performing click operation",e);
