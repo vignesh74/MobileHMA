@@ -875,6 +875,11 @@ public class AndroidDeviceAction {
                 DriverManager.getDriver().activateApp(appPackage);
             }
 
+            if (appState.equalsIgnoreCase("Killed")) {
+                DriverManager.getDriver().activateApp(appPackage);
+                TestUtils.log().info("Application is launched again....");
+            }
+
             if (strDeviceState.equalsIgnoreCase("Locked")) {
                 unlockDeviceWithPin(mobilePin);
                 TestUtils.log().info("Device is now in unlocked state....");
@@ -885,10 +890,7 @@ public class AndroidDeviceAction {
                 TestUtils.log().info("Please provide correct input....");
             }
 
-            if (appState.equalsIgnoreCase("Killed")) {
-                DriverManager.getDriver().activateApp(appPackage);
-                TestUtils.log().info("Application is launched again....");
-            }
+
             basePage.waitForGivenTime(1);
 
         } catch (org.openqa.selenium.NoSuchSessionException e) {
