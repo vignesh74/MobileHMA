@@ -182,7 +182,7 @@ public class Andr_DeviceNFCSettingsPage extends BasePage {
             }
 
         } catch (Exception e) {
-            TestUtils.log().debug("Exception occurred while setting the NFC status...{}",e.getMessage());
+            TestUtils.log().debug("Exception occurred while setting the NFC status...{}");
         }
 
     }

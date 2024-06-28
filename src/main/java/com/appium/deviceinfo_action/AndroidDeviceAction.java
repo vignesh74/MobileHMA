@@ -630,7 +630,7 @@ public class AndroidDeviceAction {
                 }
             }
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while app is running in {} .... ", strAppState,e);
+            TestUtils.log().debug("Getting exception while app is running in {} .... ", strAppState);
         }
     }
 
@@ -892,10 +892,10 @@ public class AndroidDeviceAction {
             basePage.waitForGivenTime(1);
 
         } catch (org.openqa.selenium.NoSuchSessionException e) {
-            TestUtils.log().info("No active session found: ", e);
+            TestUtils.log().info("No active session found: ");
             DriverManager.getDriver().activateApp(appPackage);
         } catch (Exception e) {
-            TestUtils.log().info("exception.....", e);
+            TestUtils.log().info("exception.....");
             TestUtils.log().info("Exception while force unlocking the device");
         }
     }

@@ -293,7 +293,7 @@ public class AndrStepDef extends BasePage {
             String strAndroidAppPackage = ConfigLoader.getInstance().getAndroidAppPackage();
             androidDeviceAction.setAppState(strAppState, strAndroidAppPackage, strUdId);
         }catch(Exception e){
-            TestUtils.log().info("Exception while setting the app status ......",e);
+            TestUtils.log().info("Exception while setting the app status ......");
         }
     }
 
@@ -409,7 +409,7 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("RoboticArm is not communicated hence activity logs are not captured");
             }
         } catch (Exception e) {
-            TestUtils.log().info("Exception occurred while verifying the activity log: " + e);
+            TestUtils.log().info("Exception occurred while verifying the activity log: ");
         }
     }
 
