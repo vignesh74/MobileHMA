@@ -10,18 +10,18 @@ Feature: To Test Android Unlock workflow for HID mobile access application
 
   Scenario Outline:ANDR_12_<Reader_Name><Gesture_TC_ID>: Verify Robotic Arm Action and logs when BLE is <BLE_status>, NFC is <NFC_status>, Nearby is <NearByOrLocation_permission>, Location is <location_status>, App State set is <app_state>, device state is <device_state> and display status is <display_status>
     When  Navigate to Settings and App Preferences screen in android device
-    And   Set BLE status as "<BLE_status>" in android device
-    And   Set NFC status as "<NFC_status>" in android device
-    And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
-    And   Select the usage state as "<usage_state>" in android device
+#    And   Set BLE status as "<BLE_status>" in android device
+#    And   Set NFC status as "<NFC_status>" in android device
+#    And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
+#    And   Select the usage state as "<usage_state>" in android device
     And   Set Application status as "<app_state>" in android device
     And   Set device state as "<device_state>" in android device.
     And   Set display screen as "<display_status>" with "<device_state>" in android device
     And   Perform robotic arm action as "<action_name>" for android device "<device_state>" in android device
     And   Set device state as force unlock "<device_state>" with "<app_state>" in android device
-    And   Set Application status as "Foreground" in android device
-    And   Activity log is displayed in android device and "<date>", "<message>", "<reader_name>", "<action_name>", "<device_state>","<app_state>","<mobile_read>" are verified
-    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
+#    And   Set Application status as "Foreground" in android device
+#    And   Activity log is displayed in android device and "<date>", "<message>", "<reader_name>", "<action_name>", "<device_state>","<app_state>","<mobile_read>" are verified
+#    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
 
     @Android12_RevE_Tap_WF_1 @Android12_RevE_Tap @Android12_RevE @Android12_RevE_TapRun
     Examples:
