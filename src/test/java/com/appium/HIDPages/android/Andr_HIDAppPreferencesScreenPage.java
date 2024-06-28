@@ -37,16 +37,18 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc='Right arrow'])[3])")
     private MobileElement txtNearByPermissionTabin13;
-
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Always']/following-sibling::android.widget.RadioButton")
-//    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]")
-//    @AndroidFindBy(xpath = "(//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[7]/android.widget.TextView[@text=‘Always’]/following-sibling::android.widget.RadioButton[2]")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Always']/following-sibling::android.widget.RadioButton", priority = 0)
+    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]", priority = 1)
+    @AndroidFindBy(xpath = "(//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[7]/android.widget.TextView[@text=‘Always’]/following-sibling::android.widget.RadioButton[2]", priority = 2)
     private MobileElement rdoUsageAlways;
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Foreground']/following-sibling::android.widget.RadioButton")
-    //@AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Foreground']/following-sibling::android.widget.RadioButton", priority = 0)
+    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]", priority = 1)
     private MobileElement rdoUsageForeground;
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Unlocked']/following-sibling::android.widget.RadioButton")
-//    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[3]")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Unlocked']/following-sibling::android.widget.RadioButton", priority = 0)
+    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[3]", priority = 1)
     private MobileElement rdoUsageUnlocked;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bluetooth']/following-sibling::android.widget.TextView")
@@ -474,7 +476,6 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      */
     public void clickOnShowActivity() {
         try {
-//            loopHandle(btnShowActivity, "swipeDown", 5);
             swipeDowne("Show Activity");
             String statusShowActivity = getElementAttribute(btnShowActivity, MessageConstants.CHECKED_MESSAGE);
             if (statusShowActivity.equalsIgnoreCase(MessageConstants.FALSE_MESSAGE))
