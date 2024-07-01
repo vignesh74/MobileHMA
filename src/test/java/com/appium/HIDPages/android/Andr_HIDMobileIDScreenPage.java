@@ -1617,7 +1617,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 TestUtils.log().info("MobileIDRead is not displayed");
             }
         } catch (Exception e) {
-            TestUtils.log().info("Exception occurred while verifying the MobileIDRead....");
+            TestUtils.log().info("Exception occurred while verifying the MobileIDRead...."+e);
         }
         return mobileRead;
     }
@@ -1646,7 +1646,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 TestUtils.log().info("activity actionName is not displayed");
             }
         }catch(Exception e){
-            TestUtils.log().info("Exception occurred while verifying the activity name.....");
+            TestUtils.log().info("Exception occurred while verifying the activity name....."+e);
         }
         return actionName;
     }
@@ -1661,7 +1661,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 TestUtils.log().info("activity readerName is not displayed");
             }
         }catch(Exception e){
-            TestUtils.log().info("Exception occurred while verifying the activity reader name....");
+            TestUtils.log().info("Exception occurred while verifying the activity reader name...."+e);
         }
         return readerName;
     }
