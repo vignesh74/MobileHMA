@@ -619,9 +619,9 @@ public class AndroidDeviceAction {
                     }
 
                     case "Killed" -> {
-//                        DriverManager.getDriver().closeApp();
-                        DriverManager.getDriver().terminateApp(strAppPackage);
-                        TestUtils.log().info("Application is killed");
+                        DriverManager.getDriver().closeApp();
+//                        DriverManager.getDriver().terminateApp(strAppPackage);
+//                        TestUtils.log().info("Application is killed");
                     }
 
                     default -> {
@@ -894,7 +894,7 @@ public class AndroidDeviceAction {
 
         } catch (org.openqa.selenium.NoSuchSessionException e) {
             TestUtils.log().info("No active session found: ");
-            DriverManager.getDriver().activateApp(appPackage);
+            DriverManager.getDriver().launchApp();
         } catch (Exception e) {
             TestUtils.log().info("exception.....");
             TestUtils.log().info("Exception while force unlocking the device");
