@@ -14,6 +14,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.appmanagement.ApplicationState;
+import org.openqa.selenium.By;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -619,8 +620,10 @@ public class AndroidDeviceAction {
                     }
 
                     case "Killed" -> {
-                        DriverManager.getDriver().closeApp();
-//                        DriverManager.getDriver().terminateApp(strAppPackage);
+                        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+                        driver.pressKey(new KeyEvent(AndroidKey.HOME));
+                        driver.pressKey(new KeyEvent(AndroidKey.APP_SWITCH));
+                        driver.findElement(By.id("com.sec.android.app.launcher:id/clear_all_button")).click();
                         TestUtils.log().info("Application is killed.....");
                     }
 
@@ -630,7 +633,7 @@ public class AndroidDeviceAction {
                 }
             }
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while app is running in {} .... ", strAppState);
+            TestUtils.log().debug("Getting exception while app is running in {} .... ", strAppState,e);
         }
     }
 
@@ -940,5 +943,6 @@ public class AndroidDeviceAction {
             throw new RuntimeException("Command execution failed with exit code: " + exitCode);
         }
     }
+
 }
 
