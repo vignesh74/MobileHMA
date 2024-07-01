@@ -619,9 +619,9 @@ public class AndroidDeviceAction {
                     }
 
                     case "Killed" -> {
-                        DriverManager.getDriver().closeApp();
-//                        DriverManager.getDriver().terminateApp(strAppPackage);
-//                        TestUtils.log().info("Application is killed");
+//                        DriverManager.getDriver().closeApp();
+                        DriverManager.getDriver().terminateApp(strAppPackage);
+                        TestUtils.log().info("Application is killed");
                     }
 
                     default -> {

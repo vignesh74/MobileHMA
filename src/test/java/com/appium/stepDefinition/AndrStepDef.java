@@ -879,6 +879,7 @@ public class AndrStepDef extends BasePage {
     @And("Perform robotic arm action as {string} for android device {string} in android device")
     public Pair<String, String> roboticExecution(String RoboticAction, String deviceState) throws SerialPortException {
         armLogs = serialPortUtils.performRoboticArmOperationWithDeviceState(DriverManager.getDevicePort(), RoboticAction, deviceState);
+        TestUtils.log().info("Come out of the robotic arm action...........");
         return armLogs;
     }
 
