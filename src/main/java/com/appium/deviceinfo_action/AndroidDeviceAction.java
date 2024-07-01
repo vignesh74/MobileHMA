@@ -887,6 +887,7 @@ public class AndroidDeviceAction {
 
             if (appState.equalsIgnoreCase("Killed")) {
                 TestUtils.log().info("log .... if killed");
+                unlockDeviceWithPin(mobilePin);
                 DriverManager.getDriver().launchApp();
                 //DriverManager.getDriver().activateApp(appPackage);
                 TestUtils.log().info("Application is launched again..........");
