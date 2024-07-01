@@ -10,28 +10,28 @@ Feature: To Test Android Unlock workflow for HID mobile access application
 
   Scenario Outline:ANDR_12_<Reader_Name><Gesture_TC_ID>: Verify Robotic Arm Action and logs when BLE is <BLE_status>, NFC is <NFC_status>, Nearby is <NearByOrLocation_permission>, Location is <location_status>, App State set is <app_state>, device state is <device_state> and display status is <display_status>
     When  Navigate to Settings and App Preferences screen in android device
-#    And   Set BLE status as "<BLE_status>" in android device
-#    And   Set NFC status as "<NFC_status>" in android device
-#    And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
-#    And   Select the usage state as "<usage_state>" in android device
+    And   Set BLE status as "<BLE_status>" in android device
+    And   Set NFC status as "<NFC_status>" in android device
+    And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
+    And   Select the usage state as "<usage_state>" in android device
     And   Set Application status as "<app_state>" in android device
     And   Set device state as "<device_state>" in android device.
     And   Set display screen as "<display_status>" with "<device_state>" in android device
     And   Perform robotic arm action as "<action_name>" for android device "<device_state>" in android device
     And   Set device state as force unlock "<device_state>" with "<app_state>" in android device
-#    And   Set Application status as "Foreground" in android device
-#    And   Activity log is displayed in android device and "<date>", "<message>", "<reader_name>", "<action_name>", "<device_state>","<app_state>","<mobile_read>" are verified
-#    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
+    And   Set Application status as "Foreground" in android device
+    And   Activity log is displayed in android device and "<date>", "<message>", "<reader_name>", "<action_name>", "<device_state>","<app_state>","<mobile_read>" are verified
+    Then  Robotic arms log "<robotic_arm_log>" is displayed for android device
 
     @Android12_RevE_Tap_WF_1 @Android12_RevE_Tap @Android12_RevE @Android12_RevE_TapRun
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-#      | RevE        | _TC-8810206   | Always      | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-8810206   | Always      | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 #      | RevE        | _TC-7285067   | Always      | On         | Off        | Allow                       | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 #      | RevE        | _TC-7285068   | Always      | On         | Off        | Allow                       | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 #      | RevE        | _TC-7285069   | Always      | On         | Off        | Allow                       | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 #      | RevE        | _TC-7285070   | Always      | On         | Off        | Allow                       | On              | Locked       | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | _TC-7285071   | Always      | On         | Off        | Allow                       | On              | Unlocked     | On             | Killed     | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+#      | RevE        | _TC-7285071   | Always      | On         | Off        | Allow                       | On              | Unlocked     | On             | Killed     | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 #      | RevE        | _TC-7285072   | Always      | On         | Off        | Allow                       | On              | Locked       | Off            | Killed     | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 #      | RevE        | _TC-7285073   | Always      | On         | Off        | Allow                       | On              | Locked       | On             | Killed     | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
