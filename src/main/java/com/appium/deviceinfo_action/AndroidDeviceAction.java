@@ -621,7 +621,7 @@ public class AndroidDeviceAction {
                     case "Killed" -> {
 //                        DriverManager.getDriver().closeApp();
                         DriverManager.getDriver().terminateApp(strAppPackage);
-                        TestUtils.log().info("Application is killed");
+                        TestUtils.log().info("Application is killed.....");
                     }
 
                     default -> {
@@ -886,7 +886,7 @@ public class AndroidDeviceAction {
             }
 
             if (appState.equalsIgnoreCase("Killed")) {
-                TestUtils.log().info("Please provide correct input.... if killed");
+                TestUtils.log().info("log .... if killed");
                 DriverManager.getDriver().launchApp();
                 //DriverManager.getDriver().activateApp(appPackage);
                 TestUtils.log().info("Application is launched again..........");
