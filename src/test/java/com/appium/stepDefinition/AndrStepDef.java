@@ -409,7 +409,7 @@ public class AndrStepDef extends BasePage {
                 TestUtils.log().info("RoboticArm is not communicated hence activity logs are not captured");
             }
         } catch (Exception e) {
-            TestUtils.log().info("Exception occurred while verifying the activity log: ");
+            TestUtils.log().info("Exception occurred while verifying the activity log: ",e);
         }
     }
 
