@@ -340,10 +340,13 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     public void selectUsageType(String usageType) {
         try {
             if (usageType.equalsIgnoreCase(MessageConstants.ALWAYS_STRING)) {
+                waitForVisibility(rdoUsageAlways);
                 click(rdoUsageAlways);
             } else if (usageType.equalsIgnoreCase(MessageConstants.FOREGROUND_STRING)) {
+                waitForVisibility(rdoUsageForeground);
                 click(rdoUsageForeground);
             } else if (usageType.equalsIgnoreCase(MessageConstants.UNLOCKED_STRING)) {
+                waitForVisibility(rdoUsageUnlocked);
                 click(rdoUsageUnlocked);
             } else {
                 TestUtils.log().info("Please select correct usage type");

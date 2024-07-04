@@ -9,18 +9,24 @@ import com.appium.manager.DriverManager;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.appmanagement.ApplicationState;
-import org.openqa.selenium.By;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.Duration;
+import java.util.List;
 
 import static com.appium.constants.FrameworkConstants.*;
 import static com.appium.constants.MessageConstants.EXCEPTION_OCCURRED_MESSAGE;
@@ -28,6 +34,12 @@ import static com.appium.manager.DriverManager.driver;
 
 public class AndroidDeviceAction {
     BasePage basePage = new BasePage();
+
+    @AndroidFindBy(id="com.sec.android.app.launcher:id/clear_all")
+    public MobileElement clearAll;
+
+    @AndroidFindBy(id="com.sec.android.app.launcher:id/clear_all_button")
+    public MobileElement closeAll;
 
     /**
      * turnOnWifi- This method will turn On the Wifi
@@ -618,13 +630,9 @@ public class AndroidDeviceAction {
                         sendAppToBackground(strUdid);
                         TestUtils.log().info("Application running  in {}", strAppState);
                     }
-
                     case "Killed" -> {
-                        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-                        driver.pressKey(new KeyEvent(AndroidKey.HOME));
-                        driver.pressKey(new KeyEvent(AndroidKey.APP_SWITCH));
-                        driver.findElement(By.id("com.sec.android.app.launcher:id/clear_all_button")).click();
-                        TestUtils.log().info("Application is killed.....");
+                        KillApp();
+                        TestUtils.log().info("Application running  in {}", strAppState);
                     }
 
                     default -> {
@@ -636,6 +644,43 @@ public class AndroidDeviceAction {
             TestUtils.log().debug("Getting exception while app is running in {} .... ", strAppState,e);
         }
     }
+
+    private final Object lock = new Object();
+
+    private void KillApp() {
+        try {
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+            driver.pressKey(new KeyEvent(AndroidKey.APP_SWITCH));
+            synchronized (lock) {
+                lock.wait(1000); // Wait for 1 second
+            }
+            String platformVersion = DriverManager.getPlatformVersion();
+            TestUtils.log().info("Platform Version: " + platformVersion);
+
+            if (platformVersion.equalsIgnoreCase("14")) {
+                MobileElement clear14 = (MobileElement) driver.findElement(By.id("com.sec.android.app.launcher:id/clear_all"));
+                basePage.waitForVisibility(clear14);
+                clear14.click();
+            } else if (platformVersion.equalsIgnoreCase("13")) {
+                MobileElement clear13 = (MobileElement) driver.findElement(By.id("com.sec.android.app.launcher:id/clear_all_button"));
+                basePage.waitForVisibility(clear13);
+                clear13.click();
+            } else if (platformVersion.equalsIgnoreCase("12")) {
+                driver.closeApp();
+            }else {
+                TestUtils.log().info("Please provide correct input..");
+            }
+
+            TestUtils.log().info("Application is killed.....");
+        } catch (NoSuchElementException e) {
+            TestUtils.log().info("Element not found: ", e);
+        } catch (IllegalMonitorStateException e) {
+            TestUtils.log().info("Illegal Monitor State Exception: ", e);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurs on killing the app....", e);
+        }
+    }
+
 
     public void sendAppToForeground(String strAppPackage, String strUdid) {
         StringBuilder info = new StringBuilder();
@@ -721,46 +766,6 @@ public class AndroidDeviceAction {
         }catch (Exception e){
             TestUtils.log().debug("Getting exception while app is moving to Background ....");
         }
-
-//        StringBuilder info = new StringBuilder();
-//        try {
-//            // Separate the adb command and its arguments into individual elements of an array
-//            String[] command = { "adb", "-s", udid, "shell", "input", "keyevent", "3" };
-//
-//            ProcessBuilder processBuilder = new ProcessBuilder(command);
-//            processBuilder.redirectErrorStream(true); // Redirect error stream to input stream
-//
-//            Process process = processBuilder.start();
-//            int exitCode = process.waitFor(); // Wait for the process to complete
-//
-//            if (exitCode == 0) {
-//                InputStream is = process.getInputStream();
-//                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-//
-//                String line;
-//                while ((line = reader.readLine()) != null) {
-//                    info.append(line).append("\n");
-//                }
-//
-//                is.close();
-//                TestUtils.log().info("Application is successfully sent to the background");
-//            } else {
-//                // Capture error stream
-//                InputStream errorStream = process.getErrorStream();
-//                BufferedReader errorReader = new BufferedReader(new InputStreamReader(errorStream));
-//
-//                String errorLine;
-//                while ((errorLine = errorReader.readLine()) != null) {
-//                    TestUtils.log().error("Error: {}", errorLine);
-//                }
-//
-//                TestUtils.log().error("Failed to send app to background. Exit code: {}", exitCode);
-//            }
-//        } catch (Exception e) {
-//            TestUtils.log().error("Exception while sending app to background: ", e);
-//        }
-//
-//        return info.toString();
     }
 
 
@@ -872,13 +877,18 @@ public class AndroidDeviceAction {
             String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
             appPackage = ConfigLoader.getInstance().getAndroidAppPackage();
 
+            // Log input values
+            TestUtils.log().info("Device State: " + strDeviceState);
+            TestUtils.log().info("App State: " + appState);
+
             // Check if driver session is valid
             if (DriverManager.getDriver() == null) {
                 TestUtils.log().info("Driver session is not initialized.");
                 DriverManager.getDriver().activateApp(appPackage);
             }
 
-            if (strDeviceState.equalsIgnoreCase("Locked")) {
+            if (strDeviceState.trim().equalsIgnoreCase("Locked")) {
+                TestUtils.log().info("Device is locked, attempting to unlock with PIN.");
                 unlockDeviceWithPin(mobilePin);
                 TestUtils.log().info("Device is now in unlocked state....");
                 basePage.waitForGivenTime(1);
@@ -889,39 +899,35 @@ public class AndroidDeviceAction {
             }
 
             if (appState.equalsIgnoreCase("Killed")) {
-                TestUtils.log().info("log .... if killed");
+                TestUtils.log().info("App is killed, attempting to launch again.");
                 unlockDeviceWithPin(mobilePin);
                 DriverManager.getDriver().launchApp();
-//                DriverManager.getDriver().activateApp(appPackage);
                 TestUtils.log().info("Application is launched again..........");
             }
             basePage.waitForGivenTime(1);
 
         } catch (org.openqa.selenium.NoSuchSessionException e) {
-            TestUtils.log().info("No active session found: ");
+            TestUtils.log().info("No active session found: ", e);
             DriverManager.getDriver().launchApp();
         } catch (Exception e) {
-            TestUtils.log().info("exception.....");
-            TestUtils.log().info("Exception while force unlocking the device");
+            TestUtils.log().info("Exception while force unlocking the device: ", e);
         }
     }
 
 
+
     public void unlockDeviceWithPin(String pin){
-//        String adbPath = basePage.getADBPath();
-//        String adbPath = "/opt/homebrew/bin/adb";
-        String adbPath = ConfigLoader.getInstance().getAdbPath();
-        if (adbPath != null) {
-            System.out.println("ADB Path: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" + adbPath);
-        } else {
-            System.out.println("ADB Path not found. ********************************");
-        }
-        try {
-            TestUtils.log().info("Entering %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-            // Run ADB commands
-            executeCommand(adbPath, "shell", "input", "keyevent", "82");
-            executeCommand(adbPath, "shell", "input", "text", pin);
-            executeCommand(adbPath, "shell", "input", "keyevent", "66");
+        try{
+            String adbPath = ConfigLoader.getInstance().getAdbPath();
+            if (adbPath != null) {
+                System.out.println("ADB Path: " + adbPath);
+            } else {
+                System.out.println("ADB Path not found.");
+            }
+                executeCommand(adbPath, "shell", "input", "keyevent", "82");
+                executeCommand(adbPath, "shell", "input", "text", pin);
+                executeCommand(adbPath, "shell", "input", "keyevent", "66");
+
         } catch (Exception e) {
             TestUtils.log().info("Exception While force unlocking the device  "+e);
         }

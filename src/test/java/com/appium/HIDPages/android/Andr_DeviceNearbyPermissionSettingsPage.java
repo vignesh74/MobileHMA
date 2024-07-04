@@ -34,6 +34,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
     private MobileElement rdoDonotAllow;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='App Preferences']")
     private MobileElement txtAppPreferences;
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(id = "com.android.permissioncontroller:id/allow_always_radio_button", priority = 0)
     @AndroidFindBy(xpath = "//android.widget.RadioButton[@text=\"Allow all the time\"]", priority = 1)
     private MobileElement rdoAllowAllTheTime;
@@ -279,7 +280,6 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
         try {
             String strDevicePlatformVersion = DriverManager.getPlatformVersion();
 
-//            TestUtils.log().info("txtLocationPermStatusValuetxtLocationPermStatusValuetxtLocationPermStatusValue....."+txtLocationPermStatusValue);
             TestUtils.log().info("strLocOrNearByPermstrLocOrNearByPermstrLocOrNearByPermstrLocOrNearByPerm....."+strLocOrNearByPerm);
             switch (strDevicePlatformVersion) {
                 case "9" -> {
@@ -308,15 +308,15 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                 }
 
                 case "10", "11" -> {
-//                    if(strLocOrNearByPerm.equals("Allow all the time")){
-//                        strLocOrNearByPerm = "Always";
-//                    }else if(strLocOrNearByPerm.equals("Allow only while using the app")){
-//                        strLocOrNearByPerm = "While using the app";
-//                    }else if(strLocOrNearByPerm.equals("Ask every time")){
-//                        strLocOrNearByPerm = "Denied";
-//                    }else if(strLocOrNearByPerm.equals("Don't allow")){
-//                        strLocOrNearByPerm = "Denied";
-//                    }
+                    if(strLocOrNearByPerm.equals("Allow all the time")){
+                        strLocOrNearByPerm = "Always";
+                    }else if(strLocOrNearByPerm.equals("Allow only while using the app")){
+                        strLocOrNearByPerm = "While using the app";
+                    }else if(strLocOrNearByPerm.equals("Ask every time")){
+                        strLocOrNearByPerm = "Denied";
+                    }else if(strLocOrNearByPerm.equals("Don't allow")){
+                        strLocOrNearByPerm = "Denied";
+                    }
                     String txtLocationPermStatusValue = getElementText(appPrefencesScreenPage.getTxtLocationPermStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtLocationPermStatusValue)) {
                         appPrefencesScreenPage.clickOnLocationPermission();
