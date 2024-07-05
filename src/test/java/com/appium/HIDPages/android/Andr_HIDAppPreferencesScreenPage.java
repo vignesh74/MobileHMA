@@ -489,7 +489,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
             }
         } catch (Exception e) {
             
-            TestUtils.log().debug("Exception occurred while clicking on Show Activity...",e);
+            TestUtils.log().debug("Exception occurred while clicking on Show Activity....",e);
         }
     }
 
