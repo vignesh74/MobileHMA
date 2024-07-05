@@ -37,8 +37,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Mobile IDs\"]/android.widget.FrameLayout/android.widget.ImageView")
     private MobileElement tabMobileID;
-
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Settings\"]/android.widget.FrameLayout/android.widget.ImageView")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Settings\"]/android.widget.FrameLayout/android.widget.ImageView", priority = 0)
+    @AndroidFindBy(xpath = "//*[@text='Notifications']", priority = 1)
     private MobileElement tabSettings;
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertPositiveBtn")
@@ -1086,7 +1087,6 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 click(tabSettings);
             }
         } catch (Exception e) {
-
             TestUtils.log().debug("Exception occurred while clicking on Settings tab...",e);
         }
     }
