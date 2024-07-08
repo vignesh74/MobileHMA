@@ -337,9 +337,6 @@ public class AndrStepDef extends BasePage {
             if(strAppState.equalsIgnoreCase("Background")||strAppState.equalsIgnoreCase("Killed")){
                 navigateToAppPreferencesScreen_Andr();
             }
-            if(strActionName.toLowerCase().contains(("Twist & Go"))){
-                navigateToAppPreferencesScreen_Andr();
-            }
             appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
             boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
             DriverManager.setPopupHandled(popups);
