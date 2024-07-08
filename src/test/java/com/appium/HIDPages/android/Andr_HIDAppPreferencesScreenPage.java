@@ -482,6 +482,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      */
     public void clickOnShowActivity() {
         try {
+            waitForVisibility(txtBluetooth);
             swipeDowne("Show Activity");
 //            loopHandle(btnShowActivity, "swipeDown", 5);
             String statusShowActivity = getElementAttribute(btnShowActivity, MessageConstants.CHECKED_MESSAGE);
