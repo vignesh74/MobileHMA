@@ -335,14 +335,14 @@ public class SerialPortUtils {
 
                 basePage.waitForGivenTime(1);
 
-                if (actionName.equals("Twist & Go") && (deviceState.equalsIgnoreCase("Locked"))) {
-                    try {
-                        androidDeviceAction.unlockDeviceWithPin(mobilePin);
-                        TestUtils.log().info("Action is TG in arm....");
-                    } catch (Exception e) {
-                        TestUtils.log().debug("Getting exception while lock or unlock ....");
-                    }
-                }
+//                if (actionName.equals("Twist & Go") && (deviceState.equalsIgnoreCase("Locked"))) {
+//                    try {
+//                        androidDeviceAction.unlockDeviceWithPin(mobilePin);
+//                        TestUtils.log().info("Action is TG in arm....");
+//                    } catch (Exception e) {
+//                        TestUtils.log().debug("Getting exception while lock or unlock ....");
+//                    }
+//                }
 
                 // If roboticArmLogs is not null, break the loop
                 if (roboticArmLogs != null) {
