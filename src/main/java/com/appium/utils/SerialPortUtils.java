@@ -338,6 +338,7 @@ public class SerialPortUtils {
                 if (actionName.equals("Twist & Go") && (deviceState.equalsIgnoreCase("Locked"))) {
                     try {
                         androidDeviceAction.unlockDeviceWithPin(mobilePin);
+                        TestUtils.log().info("Action is TG in arm....");
                     } catch (Exception e) {
                         TestUtils.log().debug("Getting exception while lock or unlock ....");
                     }
