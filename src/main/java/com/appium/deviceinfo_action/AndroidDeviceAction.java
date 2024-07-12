@@ -824,6 +824,7 @@ public class AndroidDeviceAction {
                 if(displayState.equalsIgnoreCase("On")){
                     AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
                     driver.pressKey(new KeyEvent(AndroidKey.POWER));
+                    TestUtils.log().info("Display state is enabled ON....");
                 }else{
                     TestUtils.log().info("Display state is already OFF....");
                 }
