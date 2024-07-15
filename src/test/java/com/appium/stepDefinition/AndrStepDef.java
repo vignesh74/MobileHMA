@@ -330,13 +330,7 @@ public class AndrStepDef extends BasePage {
     @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
     public void activityLogIsDisplayed_Andr(String strDate, String strMessage, String strReaderName, String strActionName, String strDeviceState, String strAppState, String strMobileRead) {
         try {
-            String strPlatformVersion = DriverManager.getPlatformVersion();
-            if(strPlatformVersion.equalsIgnoreCase("11")){
-                navigateToAppPreferencesScreen_Andr();
-            }
-            if(strAppState.equalsIgnoreCase("Background")||strAppState.equalsIgnoreCase("Killed")){
-                navigateToAppPreferencesScreen_Andr();
-            }
+            navigateToAppPreferencesScreen_Andr();
             appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
             boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
             DriverManager.setPopupHandled(popups);
