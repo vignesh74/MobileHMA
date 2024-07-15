@@ -3,11 +3,16 @@ package com.appium.HIDPages.android;
 import com.appium.base.BasePage;
 import com.appium.manager.DriverManager;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import java.util.List;
 
 import static com.appium.constants.MessageConstants.*;
 
@@ -376,8 +381,15 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     String txtNearbyPermStatusValue = getElementText(getTxtNearbyPermissionStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtNearbyPermStatusValue)) {
                         appPrefencesScreenPage.getTxtNearByPermissionStatusValue().click();
-                        clickOnPermissionTab();
-                        clickOnNearByDevices();
+                        By permissionLocator = By.xpath("//android.widget.TextView[@text='Permissions']");
+                        AppiumDriver driver = DriverManager.getDriver();
+                        List<WebElement> elements = driver.findElements(permissionLocator);
+                        if(elements.isEmpty()){
+                            clickOnNearByDevices();
+                        }else{
+                            clickOnPermissionTab();
+                            clickOnNearByDevices();
+                        }
                         if (strLocOrNearByPerm.equalsIgnoreCase("Granted always")) {
                             selectRadioButton(rdoAllow);
                             TestUtils.log().info("NearBy Devices Permission set as {}", strLocOrNearByPerm);
