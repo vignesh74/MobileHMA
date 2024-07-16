@@ -330,7 +330,17 @@ public class AndrStepDef extends BasePage {
     @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
     public void activityLogIsDisplayed_Andr(String strDate, String strMessage, String strReaderName, String strActionName, String strDeviceState, String strAppState, String strMobileRead) {
         try {
-            navigateToAppPreferencesScreen_Andr();
+            if(strDeviceState.equalsIgnoreCase("Locked")&&(strAppState.equalsIgnoreCase("Foreground"))){
+                TestUtils.log().info("App is in locked & foreground mode");
+            }else if(strDeviceState.equalsIgnoreCase("Locked")&&strAppState.equalsIgnoreCase("Background")){
+                navigateToAppPreferencesScreen_Andr();
+            }else if(strDeviceState.equalsIgnoreCase("Unlocked")&&(strAppState.equalsIgnoreCase("Foreground"))){
+                TestUtils.log().info("App is in locked & foreground mode");
+            }else if(strDeviceState.equalsIgnoreCase("Unlocked")&&(strAppState.equalsIgnoreCase("Background"))){
+                navigateToAppPreferencesScreen_Andr();
+            }else{
+                navigateToAppPreferencesScreen_Andr();
+            }
             appPreferencesScreen.enableActivityLogsAndNavigateToMobileIDScreen();
             boolean popups = handlePopUps.enableAllPopUps("endTestPopupsHandling");
             DriverManager.setPopupHandled(popups);
