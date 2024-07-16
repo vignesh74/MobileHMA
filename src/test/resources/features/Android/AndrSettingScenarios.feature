@@ -11,7 +11,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
 #    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
   @ANDR_Settings_12_WF1 @ANDR_Settings_12_WF @ANDR_SmokeRun
-  Scenario Outline:ANDR_12_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>
+  Scenario Outline:ANDR_Settings_12_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>
     When Navigate to Settings and App Preferences screen in android device
     And   Set BLE status as "<BLE_status>" in android device
     And   Set NFC status as "<NFC_status>" in android device
@@ -28,7 +28,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-08 | Off        | On         | Don't allow       |
 
   @ANDR_Settings_12_WF2 @ANDR_Settings_12_WF @ANDR_SmokeRun
-  Scenario Outline:ANDR_12_Settings_WF2<TC_ID>: Verify Usage State status is <Usage_State>
+  Scenario Outline:ANDR_Settings_12_WF2<TC_ID>: Verify Usage State status is <Usage_State>
     When Navigate to Settings and App Preferences screen in android device
     Then Usage State status is displayed as "<Usage_State>" in android device
     Examples:
@@ -37,8 +37,8 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-10 | Foreground  |
       | _TC-11 | Unlocked    |
 
-  @ANDR_Settings_12_WF4 @ANDR_Settings_12_WF @ANDR_SmokeRun
-  Scenario Outline:ANDR_12_Settings_WF3<TC_ID>: Verify toggle button Enable/Disable for PlaySound, Vibrate and TwistAndGo
+  @ANDR_Settings_12_WF3 @ANDR_Settings_12_WF @ANDR_SmokeRun
+  Scenario Outline:ANDR_Settings_12_WF3<TC_ID>: Verify toggle button Enable/Disable for PlaySound, Vibrate and TwistAndGo
     When Navigate to Settings and App Preferences screen in android device
     Then Play Sound status is displayed as "<Play_Sound_State>" in android device
     And  Vibrate status is displayed as "<Vibrate_State>" in android device
@@ -48,13 +48,12 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-8530733 | Disable/Enable   | Disable/Enable | Disable/Enable |
 
   @ANDR_Settings_12_WF4 @ANDR_Settings_12_WF @ANDR_SmokeRun
-  Scenario Outline: ANDR_12_Settings_WF4<TC_ID>: Verify the page of ReportIssue, Legal, About, and Toggle button of DebugLogs and ShowActivity as Enable/Disable
+  Scenario Outline: ANDR_Settings_12_WF4<TC_ID>: Verify the page of ReportIssue, Legal, About, and Toggle button of DebugLogs and ShowActivity as Enable/Disable
     When Navigate to settings page in android device
     Then Report issue by entering text "Testing the application in automation" in android device
     And  Legal Screen is displayed in android device
     And  About Screen is displayed in android device
     And  Show Activity State status is displayed as "<Show_Activity_State>" in android device
-
     And  Debug Logs status is displayed as "<Debug_Logs>" in android device
 
     Examples:
