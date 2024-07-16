@@ -47,7 +47,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _TC-7285090   | Foreground  | On         | Off        | Allow                       | On              | Locked       | Off            | Killed     | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
       | RevE        | _TC-7285091   | Foreground  | On         | Off        | Allow                       | On              | Locked       | On             | Killed     | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
-    @Android12_RevE_Tap_WF_3 @Android12_RevE_Tap @Android12_RevE @Android12_RevE_TapRun
+    @Android12_RevE_Tap_WF_3 @Android12_RevE_Tap @Android12_RevE @Android12_RevE_TapRun @ANDR_SmokeRun
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
       | RevE        | _TC-8816329   | Unlocked    | On         | Off        | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
@@ -170,7 +170,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
 
 ## NFC
 
-    @Android12_RevE_Tap_WF_13 @Android12_RevE_NFCTap @Android12_RevE @Android12_RevE_TapRun
+    @Android12_RevE_Tap_WF_13 @Android12_RevE_NFCTap @Android12_RevE @Android12_RevE_TapRun @ANDR_SmokeRun
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
       | RevE        | _TC-8816340   | Always      | On         | On         | Allow                       | On              | Locked       | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
@@ -341,7 +341,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _TC-7293293   | Foreground  | On         | On         | Don't allow                 | On              | Locked       | Off            | Killed     | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
       | RevE        | _TC-7293294   | Foreground  | On         | On         | Don't allow                 | On              | Locked       | On             | Killed     | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
 
-    @Android12_RevE_TwistGo_WF_9 @Android12_RevE_TwistGo @Android12_RevE
+    @Android12_RevE_TwistGo_WF_9 @Android12_RevE_TwistGo @Android12_RevE @ANDR_SmokeRun
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
       | RevE        | _TC-8816364   | Unlocked    | On         | On         | Don't allow                 | On              | Locked       | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
