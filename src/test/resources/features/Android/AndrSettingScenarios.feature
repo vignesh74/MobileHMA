@@ -16,9 +16,6 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And   Set BLE status as "<BLE_status>" in android device
     And   Set NFC status as "<NFC_status>" in android device
     And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
-#    Then Bluetooth status is displayed as "<BLE_Status>" in android device
-#    And  NFC status is displayed as "<NFC_Status>" in android device
-#    When Set "NearBy" permission status as "<NearBy_Permission>" in android device
     Examples:
       | TC_ID  | BLE_status | NFC_status | NearByOrLocation_permission |
       | _TC-01 | On         | On         | Allow             |
