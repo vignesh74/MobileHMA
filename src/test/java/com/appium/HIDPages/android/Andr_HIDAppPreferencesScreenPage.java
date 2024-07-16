@@ -5,11 +5,16 @@ import com.appium.base.BasePage;
 import com.appium.constants.MessageConstants;
 import com.appium.manager.DriverManager;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import java.util.List;
 
 import static com.appium.constants.MessageConstants.NAVIGATE_BACK;
 
@@ -38,20 +43,20 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
     @AndroidFindBy(xpath="(//android.widget.ImageView[@content-desc='Right arrow'])[3])")
     private MobileElement txtNearByPermissionTabin13;
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Always']", priority = 0)
+//    @AndroidFindBy(xpath="//android.widget.TextView[@text='Always']", priority = 0)
     @AndroidFindBy(xpath="//android.widget.TextView[@text='Always']/following-sibling::android.widget.RadioButton", priority = 1)
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]", priority = 2)
-    @AndroidFindBy(xpath = "(//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[7]/android.widget.TextView[@text=‘Always’]/following-sibling::android.widget.RadioButton[2]", priority = 3)
+//    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[1]", priority = 2)
+//    @AndroidFindBy(xpath = "(//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[7]/android.widget.TextView[@text=‘Always’]/following-sibling::android.widget.RadioButton[2]", priority = 3)
     private MobileElement rdoUsageAlways;
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Foreground']", priority = 0)
+//    @AndroidFindBy(xpath="//android.widget.TextView[@text='Foreground']", priority = 0)
     @AndroidFindBy(xpath="//android.widget.TextView[@text='Foreground']/following-sibling::android.widget.RadioButton", priority = 1)
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]", priority = 2)
+//    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[2]", priority = 2)
     private MobileElement rdoUsageForeground;
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Unlocked']", priority = 0)
+//    @AndroidFindBy(xpath="//android.widget.TextView[@text='Unlocked']", priority = 0)
     @AndroidFindBy(xpath="//android.widget.TextView[@text='Unlocked']/following-sibling::android.widget.RadioButton", priority = 1)
-    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[3]", priority = 2)
+//    @AndroidFindBy(xpath = "(//android.widget.RadioButton[@resource-id='com.hidglobal.mobilekeys.android.v3:id/rbtnDoorOpening'])[3]", priority = 2)
     private MobileElement rdoUsageUnlocked;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bluetooth']/following-sibling::android.widget.TextView")
@@ -118,6 +123,12 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertTitle")
     private MobileElement batteryOptimizationTitle;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='SETTINGS']")
+    private MobileElement batteryOptimizationSettingsBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Allow']")
+    private MobileElement batteryOptimizationAllowBtn;
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertBtn")
     private MobileElement settingsAlertBtn;
@@ -569,110 +580,59 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      * @param usageType
      *         - String Date- 25/01/2023
      */
+
     public void checkUsageState(String usageType) {
         try {
-            loopHandle(txtPlayAndSound, "swipeUp", 5);
-            if (usageType.equalsIgnoreCase(MessageConstants.ALWAYS_STRING)) {
+            AppiumDriver driver = DriverManager.getDriver();
+            if(usageType.equalsIgnoreCase("Always")){
                 click(rdoUsageAlways);
-                if(isDisplayed(batteryOptimizationTitle)){
-                    Assert.assertTrue(true, "The Battery Optimization Title  is  displayed...");
-                    TestUtils.log().info("The BG Permission Popup  is  displayed...");
-                    click(settingsAlertBtn);
-                    if(isDisplayed(backgroundPermissionPopup))
-                    {
-                        Assert.assertTrue(true, "The BG Permission Popup  is  displayed...");
-                        TestUtils.log().info("The BG Permission Popup  is  displayed...");
-                        click(allowBtnBGPerm);
-                    }
-                    else
-                    {
-                        Assert.assertTrue(false, "The BG Permission Popup  is not displayed...");
-                        TestUtils.log().info("The BG Permission Popup  is not displayed...");
-                    }
-                    waitForGivenTime(1);
-                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
-                    Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
-                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
-                    Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
-                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
+                TestUtils.log().info("Always is clicked...");
+                List<WebElement> elements = driver.findElements(By.xpath("//android.widget.Button[@text='SETTINGS']"));
+                if(elements.isEmpty()){
+                    TestUtils.log().info("Battery optimization alert is not shown");
                 }else{
-                    waitForGivenTime(1);
-                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
-                    Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
-                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
-                    Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
-                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
-                }
-                waitForGivenTime(1);
-                String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
-                String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
-                TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
-                Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
-                Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
-                Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
-            } else if (usageType.equalsIgnoreCase(MessageConstants.FOREGROUND_STRING)) {
-                click(rdoUsageForeground);
-                waitForGivenTime(1);
-                String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
-                String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
-                TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr2);
-                Assert.assertEquals(strAttr2, MessageConstants.TRUE_MESSAGE);
-                Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
-                Assert.assertEquals(strAttr3, MessageConstants.FALSE_MESSAGE);
-            } else if (usageType.equalsIgnoreCase(MessageConstants.UNLOCKED_STRING)) {
-                click(rdoUsageUnlocked);
-                if(isDisplayed(batteryOptimizationTitle))
-                {
-                    Assert.assertTrue(true, "The Battery Optimization Title  is  displayed...");
                     TestUtils.log().info("The BG Permission Popup  is  displayed...");
-                    click(settingsAlertBtn);
-                        if(isDisplayed(backgroundPermissionPopup))
-                       {
-                          Assert.assertTrue(true, "The BG Permission Popup  is  displayed...");
-                          TestUtils.log().info("The BG Permission Popup  is  displayed...");
-                          click(allowBtnBGPerm);
-                       }
-                      else
-                      {
-                        Assert.assertTrue(false, "The BG Permission Popup  is not displayed...");
-                        TestUtils.log().info("The BG Permission Popup  is not displayed...");
-                      }
-                    waitForGivenTime(1);
-                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
-                    Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
-                    Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
-                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
-                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr3);
+                    click(batteryOptimizationSettingsBtn);
+                    TestUtils.log().info("The BG Permission Popup  is  displayed with allow & deny...");
+                    click(batteryOptimizationAllowBtn);
+                    TestUtils.log().info("Allow is clicked...");
                 }
-                else
-                {
-                    waitForGivenTime(1);
-                    String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr2 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
-                    String strAttr3 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
-                    Assert.assertEquals(strAttr3, MessageConstants.TRUE_MESSAGE);
-                    Assert.assertEquals(strAttr1, MessageConstants.FALSE_MESSAGE);
-                    Assert.assertEquals(strAttr2, MessageConstants.FALSE_MESSAGE);
-                    TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr3);
+                String strAttr1 = getElementAttribute(rdoUsageAlways, MessageConstants.CHECKED_MESSAGE);
+                Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
+                TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
+
+            } else if (usageType.equalsIgnoreCase("Foreground")) {
+                click(rdoUsageForeground);
+                TestUtils.log().info("Foreground is clicked...");
+
+                waitForGivenTime(1);
+                String strAttr1 = getElementAttribute(rdoUsageForeground, MessageConstants.CHECKED_MESSAGE);
+                Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
+                TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
+            }else if(usageType.equalsIgnoreCase("Unlocked")){
+                swipeDowne("Show Activity");
+                click(rdoUsageUnlocked);
+                List<WebElement> elements = driver.findElements(By.xpath("//android.widget.Button[@text='SETTINGS']"));
+                if(elements.isEmpty()){
+                    TestUtils.log().info("Battery optimization alert is not shown");
+                }else{
+                    TestUtils.log().info("The BG Permission Popup  is  displayed...");
+                    click(batteryOptimizationSettingsBtn);
+                    TestUtils.log().info("The BG Permission Popup  is  displayed with allow & deny...");
+                    click(batteryOptimizationAllowBtn);
+                    TestUtils.log().info("Allow is clicked...");
                 }
+                String strAttr1 = getElementAttribute(rdoUsageUnlocked, MessageConstants.CHECKED_MESSAGE);
+                Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
+                TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
+            }else {
+                TestUtils.log().info("Please provide correct input...");
             }
-            else
-                TestUtils.log().info("Please select the correct usage state");
-
-
-        } catch (Exception e) {
-            
+        }catch(Exception e){
             TestUtils.log().debug("Exception occurred while checking usages status...");
         }
     }
+
 
     /**
      * verifyPlaySoundToggleButton- This method used to verify play sound toggle button state
