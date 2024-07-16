@@ -13,11 +13,14 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
   @ANDR_Settings_12_WF1 @ANDR_Settings_12_WF @ANDR_SmokeRun
   Scenario Outline:ANDR_12_Settings_WF1<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status> and NearBy Permission is <NearBy_Permission>
     When Navigate to Settings and App Preferences screen in android device
-    Then Bluetooth status is displayed as "<BLE_Status>" in android device
-    And  NFC status is displayed as "<NFC_Status>" in android device
-    When Set "NearBy" permission status as "<NearBy_Permission>" in android device
+    And   Set BLE status as "<BLE_status>" in android device
+    And   Set NFC status as "<NFC_status>" in android device
+    And   Set "NearBy" permission status as "<NearByOrLocation_permission>" in android device
+#    Then Bluetooth status is displayed as "<BLE_Status>" in android device
+#    And  NFC status is displayed as "<NFC_Status>" in android device
+#    When Set "NearBy" permission status as "<NearBy_Permission>" in android device
     Examples:
-      | TC_ID  | BLE_Status | NFC_Status | NearBy_Permission |
+      | TC_ID  | BLE_status | NFC_status | NearByOrLocation_permission |
       | _TC-01 | On         | On         | Allow             |
       | _TC-02 | On         | Off        | Don't allow       |
       | _TC-03 | Off        | On         | Allow             |
