@@ -362,6 +362,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 click(rdoUsageForeground);
                 TestUtils.log().info("FOREGROUND is selected ....");
             } else if (usageType.equalsIgnoreCase(MessageConstants.UNLOCKED_STRING)) {
+                swipeDowne("Unlocked");
                 waitForVisibility(rdoUsageUnlocked);
                 click(rdoUsageUnlocked);
                 TestUtils.log().info("UNLOCKED is selected ....");
