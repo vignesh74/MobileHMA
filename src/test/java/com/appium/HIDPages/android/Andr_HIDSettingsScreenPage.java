@@ -180,7 +180,7 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='DEVICE INFO']")
     private MobileElement txtDeviceInfo;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgCopyClipIcon")
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"HID Mobile Access\"]")
     private MobileElement AboutCopyImage;
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgCopyClipIcon")
@@ -540,10 +540,11 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue(isElementVisible(txtSeosID));
             waitForVisibility(txtLastServerComm);
             Assert.assertTrue(isElementVisible(txtLastServerComm));
-            scrollDownTillElement(100, 2);
+            //scrollDownTillElement(100, 2);
+            swipeDowne("Endpoint App Version");
             waitForVisibility(txtEndPointAppVersion);
             Assert.assertTrue(isElementVisible(txtEndPointAppVersion));
-            scrollDownTillElement(100, 2);
+            swipeDowne("Environment");
             waitForVisibility(txtEnvironment);
             Assert.assertTrue(isElementVisible(txtEnvironment));
             waitForVisibility(txtDeviceInfo);
@@ -556,11 +557,11 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
             Assert.assertTrue(isElementVisible(txtNfcInfo));
             waitForVisibility(txtLocationInfo);
             Assert.assertTrue(isElementVisible(txtLocationInfo));
-            scrollDownTillElement(100, 2);
-            if (DriverManager.getPlatformVersion().equalsIgnoreCase("7") || DriverManager.getPlatformVersion().equalsIgnoreCase("8") || DriverManager.getPlatformVersion().equalsIgnoreCase("9") || DriverManager.getPlatformVersion().equalsIgnoreCase("10") || DriverManager.getPlatformVersion().equalsIgnoreCase("11")) {
+            if (DriverManager.getPlatformVersion().equalsIgnoreCase("9") || DriverManager.getPlatformVersion().equalsIgnoreCase("10") || DriverManager.getPlatformVersion().equalsIgnoreCase("11")) {
                 waitForVisibility(txtLocationPermission);
                 Assert.assertTrue(isElementVisible(txtLocationPermission));
             } else {
+                swipeDowne("Nearby Permission");
                 waitForVisibility(txtNearByPermission);
                 Assert.assertTrue(isElementVisible(txtNearByPermission));
             }

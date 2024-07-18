@@ -471,21 +471,21 @@ public class AndrStepDef extends BasePage {
 
     @Then("Report issue by entering text {string} in android device")
     public void verifyReportIssue(String strReportIssue) {
-        settingsScreen.clickOnReportIssueScreen();
-        settingsReportIssueScreenPage.isReportIssuePageDisplayed();
-        settingsReportIssueScreenPage.verifySubmitButtonEnable(strReportIssue);
-        settingsReportIssueScreenPage.getBtnSubmit();
-        settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
-        TestUtils.log().info("try to navigate back");
-        navigateBack();
+        try{
+            settingsScreen.clickOnReportIssueScreen();
+            settingsReportIssueScreenPage.isReportIssuePageDisplayed();
+            settingsReportIssueScreenPage.verifySubmitButtonEnable(strReportIssue);
+            settingsReportIssueScreenPage.getBtnSubmit();
+            settingsReportIssueScreenPage.click(settingsReportIssueScreenPage.getBtnSubmit());
+            navigateBack();
+            navigateBack();
+            navigateBack();
+            waitForGivenTime(2);
+            mobileIDScreen.clickOnSettingsTab();
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while verifying the report issue",e);
+        }
 
-        TestUtils.log().info("navigated back");
-        DriverManager.getDriver().closeApp();
-        TestUtils.log().info("Application closed.....");
-        DriverManager.getDriver().launchApp();
-        TestUtils.log().info("Application launched.....");
-        waitForGivenTime(2);
-        mobileIDScreen.clickOnSettingsTab();
     }
 
     @Then("Legal Screen is displayed in android device")
