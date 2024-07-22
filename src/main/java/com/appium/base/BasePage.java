@@ -167,6 +167,7 @@ public class BasePage {
             MobileElement element = (MobileElement) driver.findElement(MobileBy.AndroidUIAutomator(
                     "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
                             ".scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
+            TestUtils.log().info("Swipping ......to "+text);
         } catch (Exception e) {
             TestUtils.log().debug("Getting exception while performing swipe down operation", e);
         }
