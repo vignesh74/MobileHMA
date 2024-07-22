@@ -1087,6 +1087,12 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         try {
             AppiumDriver driver = DriverManager.getDriver();
             waitForPageLoad(2);
+            String pageSource = driver.getPageSource();
+            if(pageSource.contains("Settings")){
+                TestUtils.log().info("Settings is displayed");
+            }else{
+                click(getNotificationTab());
+            }
             waitForVisibility(tabSettings);
             if(isDisplayed(tabSettings)){
                 click(tabSettings);
