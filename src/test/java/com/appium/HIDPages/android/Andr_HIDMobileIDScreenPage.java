@@ -12,8 +12,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import static com.appium.constants.MessageConstants.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
+
+import java.util.List;
 
 
 public class Andr_HIDMobileIDScreenPage extends BasePage {
@@ -1086,19 +1086,28 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     public void clickOnSettingsTab() {
         try {
             AppiumDriver driver = DriverManager.getDriver();
-            waitForPageLoad(2);
-            String pageSource = driver.getPageSource();
-            if(pageSource.contains("Settings")){
-                TestUtils.log().info("Settings is displayed");
+            waitForPageLoad(1);
+            List<WebElement> settingsEle = driver.findElements(By.xpath("//*[@text='Settings']"));
+            if(settingsEle.size()>0){
+                waitForVisibility(tabSettings);
+                if(isDisplayed(tabSettings)){
+                    click(tabSettings);
+                }
             }else{
-                click(addmobileIDIcon);
-                navigateBackToMobileID();
-                TestUtils.log().info("navigated back to mobileID screen");
+                driver.closeApp();
+                driver.launchApp();
+                clickOnSettingsTab();
+                TestUtils.log().info("App launched again and click on settings");
             }
-            waitForVisibility(tabSettings);
-            if(isDisplayed(tabSettings)){
-                click(tabSettings);
-            }
+//            String pageSource = driver.getPageSource();
+//            if(pageSource.contains("Settings")){
+//                TestUtils.log().info("Settings is displayed");
+//            }else{
+//                click(addmobileIDIcon);
+//                navigateBackToMobileID();
+//                TestUtils.log().info("navigated back to mobileID screen");
+//            }
+
         } catch (Exception e) {
             TestUtils.log().debug("Exception occurred while clicking on Settings tab...",e);
         }
