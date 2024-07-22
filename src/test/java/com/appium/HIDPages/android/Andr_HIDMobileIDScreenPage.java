@@ -1093,9 +1093,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 if(isDisplayed(tabSettings)){
                     click(tabSettings);
                 }
+                TestUtils.log().info("Settings is not displayed in if..");
             }else{
-                driver.closeApp();
-                driver.launchApp();
+                waitForVisibility(tabSettings);
                 clickOnSettingsTab();
                 TestUtils.log().info("App launched again and click on settings");
             }
