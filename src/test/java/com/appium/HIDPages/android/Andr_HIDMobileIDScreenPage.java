@@ -3,6 +3,7 @@ package com.appium.HIDPages.android;
 import com.appium.base.BasePage;
 import com.appium.manager.DriverManager;
 import com.appium.utils.TestUtils;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
@@ -1084,6 +1085,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
      */
     public void clickOnSettingsTab() {
         try {
+            AppiumDriver driver = DriverManager.getDriver();
+            String pageSource = driver.getPageSource();
+            System.out.println("pageSource....."+pageSource);
             waitForPageLoad(2);
             waitForVisibility(tabSettings);
             if(isDisplayed(tabSettings)){
