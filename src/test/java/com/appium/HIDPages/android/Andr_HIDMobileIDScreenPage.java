@@ -16,14 +16,9 @@ import java.awt.event.KeyEvent;
 
 
 public class Andr_HIDMobileIDScreenPage extends BasePage {
-
-    Andr_HIDAppPreferencesScreenPage appPreferencesScreen = new Andr_HIDAppPreferencesScreenPage();
-    Andr_HIDSettingsScreenPage settingsScreen = new Andr_HIDSettingsScreenPage();
-
     /**
      * mobile elements - These are mobile elements which is present in mobile id page Date-25/01/2023
      */
-
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/mobile_ids", priority = 0)
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgMobileIdsContainer", priority = 1)
@@ -43,9 +38,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Mobile IDs\"]/android.widget.FrameLayout/android.widget.ImageView")
     private MobileElement tabMobileID;
 
-//    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-//    @AndroidFindBy(accessibility = "Settings", priority = 0)
-//    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Settings\"]", priority = 1)
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(accessibility = "Settings", priority = 0)
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Settings\"]", priority = 1)
     @AndroidFindBy(xpath = "//*[@text='Settings']", priority = 2)
     private MobileElement tabSettings;
 
@@ -1090,7 +1085,6 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     public void clickOnSettingsTab() {
         try {
             waitForVisibility(tabSettings);
-            waitForVisibility(tabSettings);
             if(isDisplayed(tabSettings)){
                 click(tabSettings);
             }
@@ -1875,19 +1869,6 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             TestUtils.log().info("Exception occurred while verifying Mobile ID screen when having mobile ID");
         }
     }
-
-    public void navigateToAppPreferencesScreen_Andr() {
-        try{
-            clickOnSettingsTab();
-            TestUtils.log().info("Settings screen is displayed");
-            waitForVisibility(settingsScreen.getTxtAppPreference());
-            isElementVisible(settingsScreen.getTxtAppPreference());
-            settingsScreen.clickOnAppPreferences();
-        }catch(Exception e){
-            TestUtils.log().info("Exception occurred while navigating to the app preference screen");
-        }
-    }
-
 
 
 //   ********************************************** code of Surrender sundarraj begins *********************************************************
