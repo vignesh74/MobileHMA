@@ -1091,7 +1091,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             if(pageSource.contains("Settings")){
                 TestUtils.log().info("Settings is displayed");
             }else{
-                click(getNotificationTab());
+                click(addmobileIDIcon);
+                navigateBackToMobileID();
+                TestUtils.log().info("navigated back to mobileID screen");
             }
             waitForVisibility(tabSettings);
             if(isDisplayed(tabSettings)){
