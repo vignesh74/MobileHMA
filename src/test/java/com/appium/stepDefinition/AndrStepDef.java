@@ -241,6 +241,7 @@ public class AndrStepDef extends BasePage {
     public void navigateToAppPreferencesScreen_Andr() {
         mobileIDScreen.clickOnSettingsTab();
         TestUtils.log().info("Settings screen is displayed");
+        waitForVisibility(settingsScreen.getTxtAppPreference());
         isElementVisible(settingsScreen.getTxtAppPreference());
         settingsScreen.clickOnAppPreferences();
     }

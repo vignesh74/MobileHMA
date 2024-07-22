@@ -38,9 +38,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Mobile IDs\"]/android.widget.FrameLayout/android.widget.ImageView")
     private MobileElement tabMobileID;
 
-    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(accessibility = "Settings", priority = 0)
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Settings\"]", priority = 1)
+//    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+//    @AndroidFindBy(accessibility = "Settings", priority = 0)
+//    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Settings\"]", priority = 1)
     @AndroidFindBy(xpath = "//*[@text='Settings']", priority = 2)
     private MobileElement tabSettings;
 
@@ -1084,6 +1084,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
      */
     public void clickOnSettingsTab() {
         try {
+            waitForVisibility(tabSettings);
             waitForVisibility(tabSettings);
             if(isDisplayed(tabSettings)){
                 click(tabSettings);
