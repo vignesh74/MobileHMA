@@ -1084,6 +1084,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
      */
     public void clickOnSettingsTab() {
         try {
+            waitForPageLoad(2);
             waitForVisibility(tabSettings);
             if(isDisplayed(tabSettings)){
                 click(tabSettings);
