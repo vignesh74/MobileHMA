@@ -358,6 +358,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 click(rdoUsageAlways);
                 TestUtils.log().info("ALWAYS is selected ....");
             } else if (usageType.equalsIgnoreCase(MessageConstants.FOREGROUND_STRING)) {
+                swipeDowne("Foreground");
                 waitForVisibility(rdoUsageForeground);
                 click(rdoUsageForeground);
                 TestUtils.log().info("FOREGROUND is selected ....");
