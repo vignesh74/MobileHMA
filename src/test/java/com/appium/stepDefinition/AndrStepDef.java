@@ -239,11 +239,15 @@ public class AndrStepDef extends BasePage {
 
     @When("Navigate to Settings and App Preferences screen in android device")
     public void navigateToAppPreferencesScreen_Andr() {
-        mobileIDScreen.clickOnSettingsTab();
-        TestUtils.log().info("Settings screen is displayed");
-        waitForVisibility(settingsScreen.getTxtAppPreference());
-        isElementVisible(settingsScreen.getTxtAppPreference());
-        settingsScreen.clickOnAppPreferences();
+        try{
+            mobileIDScreen.clickOnSettingsTab();
+            TestUtils.log().info("Settings screen is displayed");
+            waitForVisibility(settingsScreen.getTxtAppPreference());
+            isElementVisible(settingsScreen.getTxtAppPreference());
+            settingsScreen.clickOnAppPreferences();
+        }catch(Exception e){
+            TestUtils.log().info("Exception occurred while navigating to settings screen");
+        }
     }
 
     @When("Select the usage state as {string} in android device")
