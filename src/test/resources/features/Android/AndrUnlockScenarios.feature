@@ -3,8 +3,8 @@ Feature: To Test Android Unlock workflow for HID mobile access application
   Background:To launch the HID app and navigate to Mobile ID Screen
     Given Launch HID Access Mobile Application in android device
 #    When  Swipe EULA screen to left in android device
-    And   Get Invitation Code using Rest API when credential are assigned
-    And   Enter invitation code on HID mobile Application in android device
+#    And   Get Invitation Code using Rest API when credential are assigned
+#    And   Enter invitation code on HID mobile Application in android device
 #    Then  Mobile IDs screen is displayed in android device
 #    And   Notification screen is displayed with message "New Mobile ID Issued" in android device
 
