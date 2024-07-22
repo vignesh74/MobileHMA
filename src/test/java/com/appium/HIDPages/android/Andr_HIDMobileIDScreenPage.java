@@ -37,9 +37,11 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Mobile IDs\"]/android.widget.FrameLayout/android.widget.ImageView")
     private MobileElement tabMobileID;
+
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Settings\"]/android.widget.FrameLayout/android.widget.ImageView", priority = 0)
-    @AndroidFindBy(xpath = "//*[@text='Settings']", priority = 1)
+    @AndroidFindBy(accessibility = "Settings", priority = 0)
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Settings\"]", priority = 1)
+    @AndroidFindBy(xpath = "//*[@text='Settings']", priority = 2)
     private MobileElement tabSettings;
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertPositiveBtn")
