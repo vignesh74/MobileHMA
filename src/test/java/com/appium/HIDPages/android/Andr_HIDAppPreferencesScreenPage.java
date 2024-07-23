@@ -353,6 +353,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
      */
     public void selectUsageType(String usageType) {
         try {
+            AppiumDriver driver = DriverManager.getDriver();
             if (usageType.equalsIgnoreCase(MessageConstants.ALWAYS_STRING)) {
                 waitForVisibility(rdoUsageAlways);
                 click(rdoUsageAlways);
@@ -364,9 +365,17 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 TestUtils.log().info("FOREGROUND is selected ....");
             } else if (usageType.equalsIgnoreCase(MessageConstants.UNLOCKED_STRING)) {
                 swipeDowne("Unlocked");
-                waitForVisibility(rdoUsageUnlocked);
-                click(rdoUsageUnlocked);
-                TestUtils.log().info("UNLOCKED is selected ....");
+                List<WebElement> ele = driver.findElements(By.xpath("//android.widget.TextView[@text='Unlocked']/following-sibling::android.widget.RadioButton"));
+                if(ele.size()>0){
+                    waitForVisibility(rdoUsageUnlocked);
+                    click(rdoUsageUnlocked);
+                    TestUtils.log().info("UNLOCKED is selected ....in if");
+                }else{
+                    waitForVisibility(rdoUsageUnlocked);
+                    click(rdoUsageUnlocked);
+                    TestUtils.log().info("UNLOCKED is selected ....");
+                }
+
             } else {
                 TestUtils.log().info("Please select correct usage type");
             }
