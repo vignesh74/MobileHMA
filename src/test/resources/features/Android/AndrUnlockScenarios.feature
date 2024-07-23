@@ -572,8 +572,8 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
       | RevE        | _TC-6838478   | Unlocked    | On         | Off        | Allow all the time          | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | _TC-6838476   | Unlocked    | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | _TC-6838477   | Unlocked    | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838476   | Unlocked    | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838477   | Unlocked    | On         | Off        | Allow all the time          | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android11_10_RevE_Tap_WF_4 @Android11_10_RevE_Tap @Android11_10_RevE
     Examples:
@@ -642,15 +642,15 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission    | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
       | RevE        | _TC-6838511   | Always      | Off        | On         | Allow only while using the app | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | _TC-6838509   | Always      | Off        | On         | Allow only while using the app | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838509   | Always      | Off        | On         | Allow only while using the app | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
       | RevE        | _TC-6838510   | Always      | Off        | On         | Allow only while using the app | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android11_10_RevE_Tap_WF_14 @Android11_10_RevE_Tap @Android11_10_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission    | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | _TC-6838514   | Foreground  | Off        | On         | Allow only while using the app | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838514   | Foreground  | Off        | On         | Allow only while using the app | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
       | RevE        | _TC-6838512   | Foreground  | Off        | On         | Allow only while using the app | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | _TC-6838513   | Foreground  | Off        | On         | Allow only while using the app | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838513   | Foreground  | Off        | On         | Allow only while using the app | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android11_10_RevE_Tap_WF_15 @Android11_10_RevE_Tap @Android11_10_RevE
     Examples:
@@ -663,22 +663,22 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
       | RevE        | _TC-6838520   | Always      | Off        | On         | Don't allow                 | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | _TC-6838518   | Always      | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838518   | Always      | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
       | RevE        | _TC-6838519   | Always      | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android11_10_RevE_Tap_WF_17 @Android11_10_RevE_Tap @Android11_10_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
       | RevE        | _TC-6838523   | Foreground  | Off        | On         | Don't allow                 | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | _TC-6838521   | Foreground  | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838521   | Foreground  | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
       | RevE        | _TC-6838522   | Foreground  | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android11_10_RevE_Tap_WF_18 @Android11_10_RevE_Tap @Android11_10_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
       | RevE        | _TC-6838526   | Unlocked    | Off        | On         | Don't allow                 | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | _TC-6838524   | Unlocked    | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | _TC-6838525   | Unlocked    | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838524   | Unlocked    | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838525   | Unlocked    | Off        | On         | Don't allow                 | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
 
 
@@ -963,301 +963,277 @@ Feature: To Test Android Unlock workflow for HID mobile access application
     @Android9_8_7_RevE_Tap_WF_1 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838414      | Always      | On         | Off        | Always                      | On              | Locked       | OFF            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838410      | Always      | On         | Off        | Always                      | On              | Unlocked     | ON             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838413      | Always      | On         | Off        | Always                      | On              | Unlocked     | ON             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838414   | Always      | On         | Off        | Always                      | On              | Locked       | OFF            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838410   | Always      | On         | Off        | Always                      | On              | Unlocked     | ON             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838413   | Always      | On         | Off        | Always                      | On              | Unlocked     | ON             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_2 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838417      | Always      | On         | Off        | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838415      | Always      | On         | Off        | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838416      | Always      | On         | Off        | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838417   | Foreground  | On         | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838415   | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838416   | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_3 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838420      | Unlocked    | On         | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838418      | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838419      | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838420   | Unlocked    | On         | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838418   | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838419   | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_4 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838423      | Unlocked    | On         | Off        | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838421      | Unlocked    | On         | Off        | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838422      | Unlocked    | On         | Off        | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838423   | Unlocked    | Off        | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838421   | Unlocked    | Off        | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838422   | Unlocked    | Off        | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_5 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838426      | Foreground  | On         | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838424      | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838425      | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838427   | Foreground  | Off        | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838425   | Foreground  | Off        | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838426   | Foreground  | Off        | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_6 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838429      | Foreground  | On         | Off        | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838427      | Foreground  | On         | Off        | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838428      | Foreground  | On         | Off        | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838430   | Unlocked    | Off        | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838428   | Unlocked    | Off        | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838429   | Unlocked    | Off        | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_7 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838432      | Always      | On         | On         | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838430      | Always      | On         | On         | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838431      | Always      | On         | On         | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838435   | Always      | On         | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838431   | Always      | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838432   | Always      | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_8 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838435      | Always      | On         | On         | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838433      | Always      | On         | On         | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838434      | Always      | On         | On         | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838438   | Foreground  | On         | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838436   | Foreground  | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838437   | Foreground  | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_9 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838438      | Unlocked    | On         | On         | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838436      | Unlocked    | On         | On         | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838437      | Unlocked    | On         | On         | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838441   | Unlocked    | On         | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838439   | Unlocked    | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838440   | Unlocked    | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_10 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838441      | Unlocked    | On         | On         | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838439      | Unlocked    | On         | On         | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838440      | Unlocked    | On         | On         | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838444   | Always      | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838442   | Always      | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838443   | Always      | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_11 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838444      | Foreground  | On         | On         | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838442      | Foreground  | On         | On         | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838443      | Foreground  | On         | On         | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838447   | Foreground  | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838445   | Foreground  | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838446   | Foreground  | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_Tap_WF_12 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838447      | Foreground  | On         | On         | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838445      | Foreground  | On         | On         | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838446      | Foreground  | On         | On         | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-
-    @Android9_8_7_RevE_Tap_WF_13 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
-    Examples:
-      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838450      | Always      | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838448      | Always      | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838449      | Always      | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-
-    @Android9_8_7_RevE_Tap_WF_14 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
-    Examples:
-      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838453      | Unlocked    | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838451      | Unlocked    | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838452      | Unlocked    | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-
-    @Android9_8_7_RevE_Tap_WF_15 @Android9_8_7_RevE_Tap @Android9_8_7_RevE
-    Examples:
-      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | RevE        | C6838456      | Foreground  | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | RevE        | C6838454      | Foreground  | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | RevE        | C6838455      | Foreground  | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-
+      | RevE        | _TC-6838450   | Unlocked    | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838448   | Unlocked    | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6838449   | Unlocked    | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
 
 #Twist and Go flow
     @Android9_8_7_RevE_TwistGo_WF_1 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF1_TC-02 | Always      | On         | Off        | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF1_TC-03 | Always      | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF1_TC-04 | Always      | On         | Off        | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839213   | Always      | On         | Off        | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839211   | Always      | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839212   | Always      | On         | Off        | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_2 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF2_TC-06 | Always      | On         | Off        | Always                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF2_TC-07 | Always      | On         | Off        | Always                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF2_TC-08 | Always      | On         | Off        | Always                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839216   | Foreground  | On         | Off        | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839214   | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839215   | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_3 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF3_TC-10 | Unlocked    | On         | Off        | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF3_TC-11 | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF3_TC-12 | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839219   | Unlocked    | On         | Off        | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839217   | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839218   | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_4 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF4_TC-14 | Unlocked    | On         | Off        | Always                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF4_TC-15 | Unlocked    | On         | Off        | Always                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF4_TC-16 | Unlocked    | On         | Off        | Always                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839222   | Always      | Off        | Off        | Denied                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839220   | Always      | Off        | Off        | Denied                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839221   | Always      | Off        | Off        | Denied                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_5 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF5_TC-18 | Foreground  | On         | Off        | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF5_TC-19 | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF5_TC-20 | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839225   | Foreground  | Off        | Off        | Denied                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839223   | Foreground  | Off        | Off        | Denied                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839224   | Foreground  | Off        | Off        | Denied                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_6 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF6_TC-22 | Foreground  | On         | Off        | Always                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF6_TC-23 | Foreground  | On         | Off        | Always                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF6_TC-24 | Foreground  | On         | Off        | Always                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839228   | Unlocked    | Off        | Off        | Denied                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839226   | Unlocked    | Off        | Off        | Denied                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839227   | Unlocked    | Off        | Off        | Denied                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_7 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF7_TC-26 | Always      | On         | On         | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF7_TC-27 | Always      | On         | On         | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF7_TC-28 | Always      | On         | On         | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839231   | Always      | On         | On         | Denied                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839229   | Always      | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839230   | Always      | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_8 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF8_TC-30 | Always      | On         | On         | Always                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF8_TC-31 | Always      | On         | On         | Always                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF8_TC-32 | Always      | On         | On         | Always                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839234   | Foreground  | On         | On         | Denied                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839232   | Foreground  | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839233   | Foreground  | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_9 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF9_TC-34 | Unlocked    | On         | On         | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF9_TC-35 | Unlocked    | On         | On         | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF9_TC-36 | Unlocked    | On         | On         | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839237   | Unlocked    | On         | On         | Denied                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839235   | Unlocked    | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839236   | Unlocked    | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_10 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF10_TC-38 | Unlocked    | On         | On         | Always                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF10_TC-39 | Unlocked    | On         | On         | Always                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF10_TC-40 | Unlocked    | On         | On         | Always                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
+      | RevE        | _TC-6839240   | Always      | Off        | On         | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839238   | Always      | Off        | On         | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839239   | Always      | Off        | On         | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_11 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF11_TC-42 | Foreground  | On         | On         | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF11_TC-43 | Foreground  | On         | On         | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF11_TC-44 | Foreground  | On         | On         | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
+      | RevE        | _TC-6839243   | Foreground  | Off        | On         | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839241   | Foreground  | Off        | On         | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839242   | Foreground  | Off        | On         | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
 
     @Android9_8_7_RevE_TwistGo_WF_12 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
     Examples:
-      | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
-      | RevE        | _TG_WF12_TC-46 | Foreground  | On         | On         | Denied                      | Off             | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF12_TC-47 | Foreground  | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
-      | RevE        | _TG_WF12_TC-48 | Foreground  | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
+      | RevE        | _TC-6839246   | Unlocked    | Off        | On         | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839244   | Unlocked    | Off        | On         | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839245   | Unlocked    | Off        | On         | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+
+    @Android9_8_7_RevE_TwistGo_WF_13 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
+    Examples:
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
+      | RevE        | _TC-6839249   | Always      | Off        | On         | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839247   | Always      | Off        | On         | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839248   | Always      | Off        | On         | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+
+    @Android9_8_7_RevE_TwistGo_WF_14 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
+    Examples:
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
+      | RevE        | _TC-6839252   | Foreground  | Off        | On         | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839250   | Foreground  | Off        | On         | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839251   | Foreground  | Off        | On         | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+
+    @Android9_8_7_RevE_TwistGo_WF_15 @Android9_8_7_RevE_TwistGo @Android9_8_7_RevE
+    Examples:
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log      | mobile_read    | reader_name |
+      | RevE        | _TC-6839255   | Unlocked    | Off        | On         | Always                      | On              | Locked       | Off            | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839253   | Unlocked    | Off        | On         | Always                      | On              | Unlocked     | On             | Foreground | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO=:ENABLE | Mobile ID Read | FavR2       |
+      | RevE        | _TC-6839254   | Unlocked    | Off        | On         | Always                      | On              | Unlocked     | On             | Background | Twist & Go  | TODAY | Successful Bluetooth transaction. | TWIST_AND_GO:DISABLE | Mobile ID Read | FavR2       |
 
   #Enhanced tap flow
     @Android9_8_7_Signo_EnhancedTap_WF_1 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF1_TC-02 | Always      | ON         | OFF        | Always                      | ON              | Locked       | OFF            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF1_TC-03 | Always      | ON         | OFF        | Always                      | ON              | Unlocked     | ON             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF1_TC-04 | Always      | ON         | OFF        | Always                      | ON              | Unlocked     | ON             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838775   | Always      | On         | Off        | Always                      | On              | Locked       | OFF            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838773   | Always      | On         | Off        | Always                      | On              | Unlocked     | ON             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838774   | Always      | On         | Off        | Always                      | On              | Unlocked     | ON             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_2 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF2_TC-06 | Always      | ON         | OFF        | Always                      | OFF             | Locked       | OFF            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF2_TC-07 | Always      | ON         | OFF        | Always                      | OFF             | Unlocked     | ON             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF2_TC-08 | Always      | ON         | OFF        | Always                      | OFF             | Unlocked     | ON             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838778   | Foreground  | On         | Off        | Always                      | On              | Locked       | OFF            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838776   | Foreground  | On         | Off        | Always                      | On              | Unlocked     | ON             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838777   | Foreground  | On         | Off        | Always                      | On              | Unlocked     | ON             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_3 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF3_TC-10 | Unlocked    | On         | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF3_TC-11 | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF3_TC-12 | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838781   | Unlocked    | On         | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838779   | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838780   | Unlocked    | On         | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_4 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF4_TC-14 | Unlocked    | On         | Off        | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF4_TC-15 | Unlocked    | On         | Off        | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF4_TC-16 | Unlocked    | On         | Off        | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838784   | Always      | Off        | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838782   | Always      | Off        | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838783   | Always      | Off        | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_5 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF5_TC-18 | Foreground  | On         | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF5_TC-19 | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF5_TC-20 | Foreground  | On         | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838787   | Foreground  | Off        | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838785   | Foreground  | Off        | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838786   | Foreground  | Off        | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_6 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                           | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF6_TC-22 | Foreground  | On         | Off        | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF6_TC-23 | Foreground  | On         | Off        | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF6_TC-24 | Foreground  | On         | Off        | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838790   | Unlocked    | Off        | Off        | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838788   | Unlocked    | Off        | Off        | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838789   | Unlocked    | Off        | Off        | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_7 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF7_TC-26 | Always      | On         | On         | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF7_TC-27 | Always      | On         | On         | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF7_TC-28 | Always      | On         | On         | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838793   | Always      | On         | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838791   | Always      | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838792   | Always      | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
 
     @Android9_8_7_Signo_EnhancedTap_WF_8 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF8_TC-30 | Always      | On         | On         | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF8_TC-31 | Always      | On         | On         | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF8_TC-32 | Always      | On         | On         | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838796   | Foreground  | On         | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838794   | Foreground  | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838795   | Foreground  | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_9 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF9_TC-34 | Unlocked    | On         | On         | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF9_TC-35 | Unlocked    | On         | On         | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF9_TC-36 | Unlocked    | On         | On         | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838799   | Unlocked    | On         | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838797   | Unlocked    | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838798   | Unlocked    | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_10 @Android9_8_7_Signo_EnhancedTap
     Examples:
-      | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF10_TC-38 | Unlocked    | On         | On         | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF10_TC-39 | Unlocked    | On         | On         | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF10_TC-40 | Unlocked    | On         | On         | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
+      | Signo       | _TC-6838802   | Always      | Off        | On         | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838800   | Always      | Off        | On         | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838801   | Always      | Off        | On         | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_11 @Android9_8_7_Signo_EnhancedTap
     Examples:
-      | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF11_TC-42 | Foreground  | On         | On         | Always                      | On              | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF11_TC-43 | Foreground  | On         | On         | Always                      | On              | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF11_TC-44 | Foreground  | On         | On         | Always                      | On              | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
+      | Signo       | _TC-6838805   | Foreground  | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838803   | Foreground  | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838804   | Foreground  | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
     @Android9_8_7_Signo_EnhancedTap_WF_12 @Android9_8_7_Signo_EnhancedTap
     Examples:
-      | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF12_TC-46 | Foreground  | On         | On         | Always                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF12_TC-47 | Foreground  | On         | On         | Always                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF12_TC-48 | Foreground  | On         | On         | Always                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-
-
-    @Android9_8_7_Signo_EnhancedTap_WF_13 @Android9_8_7_Signo_EnhancedTap
-    Examples:
-      | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF13_TC-50 | Always      | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF13_TC-51 | Always      | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF13_TC-52 | Always      | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-
-    @Android9_8_7_Signo_EnhancedTap_WF_14 @Android9_8_7_Signo_EnhancedTap
-    Examples:
-      | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF14_TC-54 | Unlocked    | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF14_TC-55 | Unlocked    | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF14_TC-56 | Unlocked    | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-
-    @Android9_8_7_Signo_EnhancedTap_WF_15 @Android9_8_7_Signo_EnhancedTap
-    Examples:
-      | Reader_Name | Gesture_TC_ID  | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
-      | Signo       | _ET_WF15_TC-58 | Foreground  | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF15_TC-59 | Foreground  | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
-      | Signo       | _ET_WF15_TC-60 | Foreground  | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
-
+      | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |
+      | Signo       | _TC-6838808   | Unlocked    | Off        | On         | Denied                      | Off             | Locked       | Off            | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838806   | Unlocked    | Off        | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
+      | Signo       | _TC-6838807   | Unlocked    | Off        | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
