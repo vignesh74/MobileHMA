@@ -1097,16 +1097,8 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             }else{
                 waitForVisibility(tabSettings);
                 clickOnSettingsTab();
-                TestUtils.log().info("App launched again and click on settings");
+                TestUtils.log().info("Settings displayed in else");
             }
-//            String pageSource = driver.getPageSource();
-//            if(pageSource.contains("Settings")){
-//                TestUtils.log().info("Settings is displayed");
-//            }else{
-//                click(addmobileIDIcon);
-//                navigateBackToMobileID();
-//                TestUtils.log().info("navigated back to mobileID screen");
-//            }
 
         } catch (Exception e) {
             TestUtils.log().debug("Exception occurred while clicking on Settings tab...",e);
