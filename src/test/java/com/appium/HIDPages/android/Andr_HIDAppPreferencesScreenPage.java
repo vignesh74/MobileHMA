@@ -612,7 +612,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
                 Assert.assertEquals(strAttr1, MessageConstants.TRUE_MESSAGE);
                 TestUtils.log().info("Status for usage: {} is: {} ",usageType, strAttr1);
             }else if(usageType.equalsIgnoreCase("Unlocked")){
-                swipeDowne("Show Activity");
+                swipeDowne("Unlocked");
                 click(rdoUsageUnlocked);
                 List<WebElement> elements = driver.findElements(By.xpath("//android.widget.Button[@text='SETTINGS']"));
                 if(elements.isEmpty()){
