@@ -318,7 +318,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }else if(strLocOrNearByPerm.equals("Allow only while using the app")){
                         strLocOrNearByPerm = "While using the app";
                     }else if(strLocOrNearByPerm.equals("Ask every time")){
-                        strLocOrNearByPerm = "Denied";
+                        strLocOrNearByPerm = "DeniedEveryTime";
                     }else if(strLocOrNearByPerm.equals("Don't allow")){
                         strLocOrNearByPerm = "Denied";
                     }
@@ -327,27 +327,25 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         appPrefencesScreenPage.clickOnLocationPermission();
                         clickOnPermissionTab();
                         clickOnLocationTab();
-                        switch (strLocationOrNearBy) {
-                            case "Location" -> {
-                                if (strLocOrNearByPerm.equalsIgnoreCase("Allow all the time")) {
-                                    click(rdoAllowAllTheTime);
-                                    TestUtils.log().info("Location Permission set as :: {}"+ strLocOrNearByPerm);
-                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Allow only while using the app")) {
-                                    click(rdoAllowOnlyWhileUsingApp);
-                                    TestUtils.log().info("Location Permission set as :: {}"+ strLocOrNearByPerm);
-                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Ask every time")) {
-                                    click(rdoAskEveryTime);
-                                    TestUtils.log().info("Location Permission set as :: {}"+ strLocOrNearByPerm);
-                                } else if (strLocOrNearByPerm.equalsIgnoreCase("Don't allow")) {
-                                    click(rdoDonotAllow);
-                                    TestUtils.log().info("Location Permission set as :: {}"+ strLocOrNearByPerm);
-                                } else
-                                    TestUtils.log().info("Please provide correct permission option.");
 
+                            if (strLocOrNearByPerm.equalsIgnoreCase("Always")) {
+                                click(rdoAllowAllTheTime);
+                                TestUtils.log().info("Location Permission set as :: {}" + strLocOrNearByPerm);
+                            } else if (strLocOrNearByPerm.equalsIgnoreCase("While using the app")) {
+                                click(rdoAllowOnlyWhileUsingApp);
+                                TestUtils.log().info("Location Permission set as :: {}" + strLocOrNearByPerm);
+                            } else if (strLocOrNearByPerm.equalsIgnoreCase("DeniedEveryTime")) {
+                                click(rdoAskEveryTime);
+                                TestUtils.log().info("Location Permission set as :: {}" + strLocOrNearByPerm);
+                            } else if (strLocOrNearByPerm.equalsIgnoreCase("Denied")) {
+                                click(rdoDonotAllow);
+                                TestUtils.log().info("Location Permission set as :: {}" + strLocOrNearByPerm);
+                            } else {
+                                TestUtils.log().info("Please provide correct permission option.");
                             }
                         }
-                    }
                 }
+
                 case "12","13" -> {
                     if(strLocOrNearByPerm.equals("Allow")){
                         strLocOrNearByPerm = "Granted always";
