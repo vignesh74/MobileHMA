@@ -498,7 +498,7 @@ public class Andr_HIDAppPreferencesScreenPage extends BasePage {
         try {
             click(txtLocationPermissionStatusValue);
         } catch (Exception e) {
-            TestUtils.log().debug("Exception occurred while clicking on Location Permission...");
+            TestUtils.log().debug("Exception occurred while clicking on Location Permission....");
         }
     }
 
