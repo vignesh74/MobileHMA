@@ -16,7 +16,6 @@ import io.cucumber.testng.CucumberOptions;
         , monochrome = true
         , tags = "@Android12_RevE_TwistGo")
 
-
 public class Andr12_RevTwistAndGo_Runner extends BaseTest {
 
 }
