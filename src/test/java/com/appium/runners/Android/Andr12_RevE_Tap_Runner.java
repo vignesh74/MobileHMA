@@ -16,7 +16,6 @@ import io.cucumber.testng.CucumberOptions;
         , monochrome = true
         , tags = "@Android12_RevE_Tap")
 
-
 public class Andr12_RevE_Tap_Runner extends BaseTest {
 
 
