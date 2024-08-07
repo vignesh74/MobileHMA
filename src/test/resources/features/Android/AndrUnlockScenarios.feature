@@ -1201,7 +1201,6 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | Signo       | _TC-6838791   | Always      | On         | On         | Denied                      | Off             | Unlocked     | On             | Foreground | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
       | Signo       | _TC-6838792   | Always      | On         | On         | Denied                      | Off             | Unlocked     | On             | Background | TAP         | TODAY | Successful NFC transaction. | TAP:ENABLE      | Mobile ID Read | FavR2       |
 
-
     @Android9_8_7_Signo_EnhancedTap_WF_8 @Android9_8_7_Signo_EnhancedTap
     Examples:
       | Reader_Name | Gesture_TC_ID | usage_state | BLE_status | NFC_status | NearByOrLocation_permission | location_status | device_state | display_status | app_state  | action_name | date  | message                     | robotic_arm_log | mobile_read    | reader_name |

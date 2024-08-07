@@ -195,8 +195,8 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
       | TC_ID  | BLE_Status | NearBy_Permission | Warning_Banners                               |
       | _TC-01 | Off        | Allow             | Bluetooth Disabled                            |
       | _TC-02 | Off        | Don't Allow       | Bluetooth Disabled&Nearby permission Disabled |
-      | _TC-05 | On         | Allow             | ccc                                           |
-      | _TC-06 | On         | Don't Allow       | Nearby permission Disabled                    |
+      | _TC-03 | On         | Allow             | ccc                                           |
+      | _TC-04 | On         | Don't Allow       | Nearby permission Disabled                    |
 
   @ANDR_7_8_9_WarningBanners @ANDR_WarningBanners
   Scenario Outline:@ANDR_7_8_9_WarningBanners<TC_ID>: Verify that BLE status is <BLE_Status>, Location is <Location_Status>,Location Permission is <Location_Permission>
@@ -210,12 +210,12 @@ Feature: To Test Android Warning Banners Scenario Workflow for HID mobile access
       | TC_ID  | BLE_Status | Location_Status | Location_Permission | Warning_Banners                        |
       | _TC-01 | Off        | Off             | Always              | GPS Disabled&Bluetooth Disabled        |
       | _TC-02 | Off        | Off             | Denied              | Location Permission&Bluetooth Disabled |
-      | _TC-05 | On         | Off             | Always              | GPS Disabled                           |
-      | _TC-06 | On         | Off             | Denied              | Location Permission                    |
-      | _TC-09 | Off        | On              | Always              | Bluetooth Disabled  GPS Disabled       |
-      | _TC-10 | Off        | On              | Denied              | Location Permission&Bluetooth Disabled |
-      | _TC-25 | On         | On              | Always              | GPS Disabled                           |
-      | _TC-26 | On         | On              | Denied              | No                                     |
+      | _TC-03 | On         | Off             | Always              | GPS Disabled                           |
+      | _TC-04 | On         | Off             | Denied              | Location Permission                    |
+      | _TC-05 | Off        | On              | Always              | Bluetooth Disabled  GPS Disabled       |
+      | _TC-06 | Off        | On              | Denied              | Location Permission&Bluetooth Disabled |
+      | _TC-07 | On         | On              | Always              | GPS Disabled                           |
+      | _TC-08 | On         | On              | Denied              | No                                     |
 
   @ANDR_13_WarningBanners
   Scenario Outline:ANDR_13_WarningBanners<TC_ID>: Verify that BLE status is <BLE_Status>, NFC status is <NFC_Status>,NearBy Permission is <NearBy_Permission>
