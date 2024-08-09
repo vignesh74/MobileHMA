@@ -59,6 +59,38 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
 #      | _TC-50 | Reader Range           | Please move closer to the reader to gain access                                       | Enable              |
 #      | _TC-51 | Anti-Passback Detected | This reader is anti-passback enabled. Please make sure your Mobile ID is not misused. | Enable              |
 
+
+  @ANDR_12_Google_Wallet
+    Scenario:  ANDR_12_Google_Wallet<TC_ID>: Verify the redemption of Google Wallet Pass
+      And Click on plus icon view the mobile ID screen in android device
+      And Click on Enter invitation code tab in android device
+      And Get Google Wallet issuance token using Rest API when credential are assigned
+      And click on Add to Google Wallet button
+      Then verify the activated card in Google Wallet
+      Then verify the Google wallet card in MobileID's
+
+  @ANDR_12_Google_Wallet_Card_Status
+    Scenario: ANDR_12_Google_Wallet_Card_Status: Verify the card status of Google Wallet Pass
+      And Click on plus icon view the mobile ID screen in android device
+      And Click on Enter invitation code tab in android device
+      And Get Google Wallet issuance token using Rest API when credential are assigned
+      And click on Add to Google Wallet button
+      Then verify the activated card in Google Wallet
+      Then verify the Google wallet card in MobileID's
+      And suspend the card via Rest API and check the card status over the card
+      And Resume the card via Rest API and check the card status over the card
+      And Revoke the card via Rest API and check the card status over the card
+
+
+
+  @ANDR_12_Wallet_SSO
+  Scenario:  ANDR_12_Wallet_SSO<TC_ID>: Verify the redemption of Google Wallet Pass using SSO
+    And Click on plus icon view the mobile ID screen in android device
+    And click on the SSO button
+    And enter the email address to sign in
+
+
+
 # **************************code of surrender sundarraj begins  ************************
 
   @ANDR_AddMobileID_31 @ANDR_AddMobileID

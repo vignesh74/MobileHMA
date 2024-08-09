@@ -5,6 +5,8 @@ import com.appium.base.BasePage;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
+import com.appium.restAPI.AuthenticationAPI;
+import com.appium.restAPI.CreateUserAPI;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
@@ -30,7 +32,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import static com.appium.constants.MessageConstants.EULA;
@@ -689,6 +693,16 @@ public class AndrStepDef extends BasePage {
         mobileIDScreen.verifyAddMobileIDScreen();
     }
 
+    @And("click on the SSO button")
+    public void clickOnSSO(){
+        mobileIDScreen.clickOnSSO();
+    }
+
+    @And("enter the email address to sign in")
+    public void clickOnSignin(){
+        mobileIDScreen.signin();
+    }
+
     @And("Click on Enter invitation code tab in android device")
     public void clickOnEnterInvitationCodeTab() {
         mobileIDScreen.clickOnEnterInvitationCodeTab();
@@ -969,6 +983,46 @@ public class AndrStepDef extends BasePage {
     public void verifyOIPPass(String strOIPPass) {
         mobileIDScreen.verifyOIPPass(strOIPPass);
     }
+
+    @And("Get Google Wallet issuance token using Rest API when credential are assigned")
+    public void getGoogleWalletToken()
+    {
+        mobileIDScreen.getGoogleWalletToken();
+    }
+
+    @And("click on Add to Google Wallet button")
+    public void addToGoogleWallet(){
+        mobileIDScreen.addToGoogleWallet();
+    }
+
+    @Then("verify the activated card in Google Wallet")
+    public void verifyTheCardInGW(){
+        mobileIDScreen.verifyTheCardInGW();
+    }
+
+    @Then("verify the Google wallet card in MobileID's")
+    public void verifyTheCardInHMAApp(){
+        mobileIDScreen.verifyTheCardInHMAApp();
+    }
+
+    @And("suspend the card via Rest API and check the card status over the card")
+    public void suspendGW(){
+        mobileIDScreen.suspendGW();
+    }
+
+    @And("Resume the card via Rest API and check the card status over the card")
+    public void resumeGW(){
+        mobileIDScreen.resumeGW();
+    }
+
+    @And("Revoke the card via Rest API and check the card status over the card")
+    public void revokeGW(){
+        mobileIDScreen.revokeGW();
+
+    }
+
+
+
 
 //   ********************************************** code of Surrender sundarraj begins*********************************************************
 //    ********************************************************************

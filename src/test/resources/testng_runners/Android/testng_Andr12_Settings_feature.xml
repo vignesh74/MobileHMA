@@ -14,10 +14,12 @@
     <test name="Tests_on_Android_12">
         <parameter name="emulator" value="false"></parameter>
         <parameter name="platformName" value="Android"></parameter>
-        <parameter name="platformVersion" value="13"></parameter>
-        <parameter name="udid" value="RZCW91MYNLT"></parameter>
+        <parameter name="platformVersion" value="14"></parameter>
+<!--        <parameter name="udid" value="RZCW91MYNLT"></parameter>-->
+        <parameter name="udid" value="RZCT91ZBXMP"></parameter>
+<!--        <parameter name="udid" value="RZCTB0QM7VB"></parameter>-->
         <parameter name="installApp" value="false"></parameter>
-        <parameter name="deviceName" value="Galaxy M34"></parameter>
+        <parameter name="deviceName" value="Galaxy S22"></parameter>
         <parameter name="systemPort" value="2301"/>
         <parameter name="chromeDriverPort" value="11033"/>
         <parameter name="wdaLocalPort" value=""/>
@@ -26,6 +28,7 @@
         <parameter name="comPort" value="11601"/>
         <parameter name="roboticArmX" value="1900"/>
         <parameter name="roboticArmY" value="500"/>
+        <parameter name="chromedriver_autodownload" value="true"/>
 
         <classes>
             <class name="com.appium.runners.Android.Andr12_SettingsScenario_Runner"></class>

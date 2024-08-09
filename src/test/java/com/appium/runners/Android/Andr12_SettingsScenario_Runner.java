@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
         , glue = "com.appium.stepDefinition"
         , dryRun = false
         , monochrome = true
-        , tags = "@ANDR_Settings_12_WF1")
+        , tags = "@ANDR_12_Google_Wallet_Card_Status")
 
 
 public class Andr12_SettingsScenario_Runner extends BaseTest {

@@ -2,6 +2,8 @@ package com.appium.HIDPages.android;
 
 import com.appium.base.BasePage;
 import com.appium.manager.DriverManager;
+import com.appium.restAPI.AuthenticationAPI;
+import com.appium.restAPI.CreateUserAPI;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -10,13 +12,17 @@ import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import static com.appium.constants.MessageConstants.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class Andr_HIDMobileIDScreenPage extends BasePage {
+
+    Andr_HIDSettingsFAQScreenPage FAQScreen = new Andr_HIDSettingsFAQScreenPage();
     /**
      * mobile elements - These are mobile elements which is present in mobile id page Date-25/01/2023
      */
@@ -293,16 +299,16 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgNoMobileIdImage")
     private MobileElement noMobileIDImage;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtMobileIDs")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add Mobile ID']")
     private MobileElement txtAddMobileIDTitle;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtEnterInvitationCode")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Enter Invitation Code']")
     private MobileElement txtEnterInvitationCodeTab;
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtInviteCode")
     private MobileElement txtInvitationCode;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/edInviteCode")
+    @AndroidFindBy(className = "android.widget.EditText")
     private MobileElement invitationCodeTxtBox;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='XXXX-XXXX-XXXX-XXXX']")
@@ -317,8 +323,29 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.Button[@enabled='true']")
     private MobileElement enabledEnterBtn;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/txtScanQrCode")
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Google Wallet\"]")
+    private MobileElement addToGoogleWalletBtn;
+
+    @AndroidFindBy(id = "com.google.android.gms:id/PrimaryButton")
+    private MobileElement acceptAndContinueBtn;
+
+    @AndroidFindBy(id = "com.google.android.gms:id/PrimaryButton")
+    private MobileElement viewInWalletBtn;
+
+    @AndroidFindBy(id = "com.google.android.gms:id/ClosedLoopNfcIcon")
+    private MobileElement activatedcardSymbol;
+
+    @AndroidFindBy(id = "email")
+    private MobileElement signinTxtBox;
+
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"View in Google Wallet button\"]")
+    private MobileElement viewinGoogleWalletBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Scan QR Code']")
     private MobileElement txtScanQRCodeTab;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Sign in with SSO']")
+    private MobileElement btnSSO;
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertMessage")
     private MobileElement wrongInvitationCodeAlert;
@@ -326,7 +353,8 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertBtn")
     private MobileElement wrongInvitationCodeAlertBtn;
 
-    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgAdd")
+//    @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/imgAdd")
+    @AndroidFindBy(xpath="//android.widget.ImageView[@content-desc=\"add Icon\"]")
     private MobileElement addmobileIDIcon;
 
     @AndroidFindBy(id = "com.hidglobal.mobilekeys.android.v3:id/alertTitle")
@@ -591,6 +619,10 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public MobileElement getTxtActivityTime(){
         return txtActivityTime;
+    }
+
+    public MobileElement getBtnSSO(){
+        return btnSSO;
     }
 
 
@@ -1439,6 +1471,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             isDisplayed(txtAddMobileIDTitle);
             isDisplayed(txtEnterInvitationCodeTab);
             isDisplayed(txtScanQRCodeTab);
+            isDisplayed(btnSSO);
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while verifying the Add mobileID screen");
         }
@@ -1879,6 +1912,140 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
         } catch (Exception e) {
             TestUtils.log().info("Exception occurred while verifying Mobile ID screen when having mobile ID");
+        }
+    }
+
+    public void clickOnSSO(){
+        try{
+            click(btnSSO);
+
+        }catch(Exception e){
+            TestUtils.log().info("Exception while click on the SSO button",e);
+        }
+    }
+
+    public void enterGWToken(String token) {
+        try{
+            click(invitationCodeTxtBox);
+            invitationCodeTxtBox.sendKeys(token);
+            click(enabledEnterBtn);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while entering the GW token",e);
+        }
+    }
+
+    public void addToGoogleWallet() {
+        try{
+            waitForVisibility(addToGoogleWalletBtn);
+            click(addToGoogleWalletBtn);
+            waitForVisibility(acceptAndContinueBtn);
+            click(acceptAndContinueBtn);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while click on Add to Google Wallet Button",e);
+        }
+    }
+
+    public void verifyTheCardInGW() {
+        try{
+            waitForVisibility(viewInWalletBtn);
+            click(viewInWalletBtn);
+            waitForVisibility(activatedcardSymbol);
+            waitForGivenTime(5);
+            navigateBack();
+        }catch(Exception e){
+            TestUtils.log().info("Exception while verifying the card in Google Wallet",e);
+        }
+    }
+
+    public void verifyTheCardInHMAApp() {
+        try{
+            do{
+                swipeLeft(5);
+                swipeLeft(5);
+                swipeLeft(5);
+            }while(!isElementVisible(viewinGoogleWalletBtn));
+            waitForVisibility(viewinGoogleWalletBtn);
+            click(viewinGoogleWalletBtn);
+            waitForVisibility(activatedcardSymbol);
+            navigateBack();
+        }catch(Exception e){
+            TestUtils.log().info("Exception while verifying the card in HMA App",e);
+        }
+    }
+
+    public void signin() {
+        try{
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("chromedriver_autodownload", true);
+            FAQScreen.changeDriverContextToWebSSO();
+            waitForVisibility(signinTxtBox);
+            signinTxtBox.sendKeys("origo.prod2@hidglobal.com");
+        }catch(Exception e){
+            TestUtils.log().info("Exception while signing in SSO",e);
+        }
+    }
+
+    public void suspendGW(){
+        try{
+            List<String> details = CreateUserAPI.getCardDetails();
+
+            String token = details.get(0);
+            String createPassID = details.get(1);
+            String token_type = details.get(2);
+            String access_token = details.get(3);
+            List<String> suspendDetails = new ArrayList<>();
+            suspendDetails.add(createPassID);
+            suspendDetails.add(token_type);
+            suspendDetails.add(access_token);
+            CreateUserAPI.suspendGWPass(suspendDetails);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while suspending the GW",e);
+        }
+    }
+
+    public void getGoogleWalletToken(){
+        try{
+            List<String> apiInfo  = AuthenticationAPI.getGWToken();
+            String token = apiInfo.get(0);
+            String passID = apiInfo.get(2);
+            System.out.println("passID "+passID);
+            enterGWToken(token);
+        }catch(Exception e){
+
+        }
+    }
+
+    public void resumeGW(){
+        try{
+            List<String> details = CreateUserAPI.getCardDetails();
+            String token = details.get(0);
+            String createPassID = details.get(1);
+            String token_type = details.get(2);
+            String access_token = details.get(3);
+            List<String> resumeDetails = new ArrayList<>();
+            resumeDetails.add(createPassID);
+            resumeDetails.add(token_type);
+            resumeDetails.add(access_token);
+            CreateUserAPI.resumeGWPass(resumeDetails);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while resuming the GW",e);
+        }
+    }
+
+    public void revokeGW(){
+        try{
+            List<String> details = CreateUserAPI.getCardDetails();
+            String token = details.get(0);
+            String createPassID = details.get(1);
+            String token_type = details.get(2);
+            String access_token = details.get(3);
+            List<String> revokeDetails = new ArrayList<>();
+            revokeDetails.add(createPassID);
+            revokeDetails.add(token_type);
+            revokeDetails.add(access_token);
+            CreateUserAPI.revokeGWPass(revokeDetails);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while revoking the GW",e);
         }
     }
 

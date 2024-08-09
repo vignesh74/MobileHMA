@@ -152,5 +152,16 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
 
     }
 
+    public static void changeDriverContextToWebSSO() {
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+        Set<String> contextNames = driver.getContextHandles();
+        for (String contextName : contextNames) {
+            System.out.println(contextName);
+            if (contextName.contains("WEBVIEW")) {
+                driver.context(contextName);
+            }
+
+        }
+    }
 
 }
