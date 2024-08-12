@@ -84,7 +84,6 @@ public class CreateUserAPI {
     public static List<String> createGWUser(String access_token, String id_token, String token_type) throws IOException {
         List<String> token = null;
         try {
-            System.out.println("***********************************************");
             String createUserParam = "/scim/organization/7512113/users";
 
             JSONObject requestBody = new org.json.JSONObject();
@@ -202,8 +201,6 @@ public class CreateUserAPI {
         List cardDetails = null;
         try {
 
-            System.out.println("@@@@@@@@@@@@@@@@@@@@");
-
             String createPassBasicRequestParam = "/organization/7512113/pass";
             baseURI = "https://credential-management.api.origo.hidglobal.com";
             JSONObject requestBody1 = new JSONObject();
@@ -235,13 +232,6 @@ public class CreateUserAPI {
             cardDetails.add(access_token);
 
             setCardDetails(token, createPassID, token_type, access_token);
-
-
-            System.out.println("createPassID "+createPassID);
-            System.out.println("token_type "+token_type);
-            System.out.println("access_token "+access_token);
-
-            System.out.println(token);
         } catch (Exception e) {
             System.out.println("xxxxx " + e);
         }
@@ -249,7 +239,6 @@ public class CreateUserAPI {
     }
 
     private static void setCardDetails(String token, String createPassID, String token_type, String access_token) {
-
         cardDetails.add(token);
         cardDetails.add(createPassID);
         cardDetails.add(token_type);
@@ -262,14 +251,9 @@ public class CreateUserAPI {
 
     public static void suspendGWPass(List<String> input){
         try{
-            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
             String createPassID = input.get(0);
             String token_type = input.get(1);
             String access_token = input.get(2);
-
-            System.out.println(createPassID);
-            System.out.println(token_type);
-            System.out.println(access_token);
 
             baseURI = "https://credential-management.api.origo.hidglobal.com";
             String suspendPassParam = "/organization/7512113/pass/"+createPassID+"/status";
@@ -287,8 +271,6 @@ public class CreateUserAPI {
                     .put(suspendPassParam)
                     .then().assertThat().statusCode(202).toString();
 
-            System.out.println("suspendPass   "+suspendPass);
-
         }catch(Exception e){
             System.out.println(e);
         }
@@ -296,7 +278,6 @@ public class CreateUserAPI {
 
     public static void resumeGWPass(List<String> input){
         try{
-            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
             String createPassID = input.get(0);
             String token_type = input.get(1);
             String access_token = input.get(2);
@@ -321,8 +302,6 @@ public class CreateUserAPI {
                     .put(resumePassParam)
                     .then().assertThat().statusCode(202).toString();
 
-            System.out.println("resumePass   "+resumePass);
-
         }catch(Exception e){
             System.out.println(e);
         }
@@ -330,14 +309,9 @@ public class CreateUserAPI {
 
     public static void revokeGWPass(List<String> input){
         try{
-            System.out.println("####################################");
             String createPassID = input.get(0);
             String token_type = input.get(1);
             String access_token = input.get(2);
-
-            System.out.println(createPassID);
-            System.out.println(token_type);
-            System.out.println(access_token);
 
             baseURI = "https://credential-management.api.origo.hidglobal.com";
             String revokePassParam = "/organization/7512113/pass/"+createPassID;
@@ -349,8 +323,6 @@ public class CreateUserAPI {
                     .when()
                     .delete(revokePassParam)
                     .then().assertThat().statusCode(202).toString();
-
-            System.out.println("revokePass   "+revokePass);
 
         }catch(Exception e){
             System.out.println(e);

@@ -49,9 +49,6 @@ public class AuthenticationAPI {
             String token_type = js.getString("token_type");
 
             result = CreateUserAPI.createGWUser(access_token, id_token, token_type);
-            System.out.println(result.get(0));
-            System.out.println(result.get(1));
-            System.out.println(result.get(2));
 
 //            System.out.println("token 1 "+token);
 

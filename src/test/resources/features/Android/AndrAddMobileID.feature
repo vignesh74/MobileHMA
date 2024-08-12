@@ -82,7 +82,6 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
       And Revoke the card via Rest API and check the card status over the card
 
 
-
   @ANDR_12_Wallet_SSO
   Scenario:  ANDR_12_Wallet_SSO<TC_ID>: Verify the redemption of Google Wallet Pass using SSO
     And Click on plus icon view the mobile ID screen in android device
