@@ -49,7 +49,7 @@ public class AndroidDriverManager implements IDriver {
             capabilities.setCapability(PLATFORM_NAME, MobilePlatform.ANDROID);
             capabilities.setCapability(AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
             capabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
-            capabilities.setCapability("adbExecTimeout", 50000);
+//            capabilities.setCapability("adbExecTimeout", 50000);
            // capabilities.setCapability("appWaitDuration",30000);
             if (Boolean.TRUE.equals(emulator)) {
                 capabilities.setCapability("avd", deviceName);
