@@ -28,7 +28,7 @@
         <parameter name="comPort" value="11601"/>
         <parameter name="roboticArmX" value="1900"/>
         <parameter name="roboticArmY" value="500"/>
-        <parameter name="chromedriver_autodownload" value="true"/>
+<!--        <parameter name="chromedriver_autodownload" value="true"/>-->
 
         <classes>
             <class name="com.appium.runners.Android.Andr12_SettingsScenario_Runner"></class>
