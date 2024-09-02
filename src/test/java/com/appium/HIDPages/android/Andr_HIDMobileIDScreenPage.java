@@ -1156,6 +1156,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
      */
     public void expandActivityLogs() {
         try {
+            waitForVisibility(btnActivityExpander);
             if (isDisplayed(btnActivityExpander)) {
                 click(btnActivityExpander);
                 TestUtils.log().info("Activity Log button is expanded");
