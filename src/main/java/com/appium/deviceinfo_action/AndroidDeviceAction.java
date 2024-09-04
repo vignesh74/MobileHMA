@@ -927,7 +927,7 @@ public class AndroidDeviceAction {
             }
                 executeCommand(adbPath, "shell", "input", "keyevent", "82");
                 executeCommand(adbPath, "shell", "input", "text", pin);
-                wait(1);
+                Thread.sleep(1);
                 executeCommand(adbPath, "shell", "input", "keyevent", "66");
 
         } catch (Exception e) {
