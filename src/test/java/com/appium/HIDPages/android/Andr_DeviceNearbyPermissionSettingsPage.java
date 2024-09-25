@@ -347,7 +347,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         }
                 }
 
-                case "12","13" -> {
+                case "12" -> {
                     if(strLocOrNearByPerm.equals("Allow")){
                         strLocOrNearByPerm = "Granted always";
                     }else if(strLocOrNearByPerm.equals("Don't allow")){
@@ -371,6 +371,38 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         TestUtils.log().info("Nearby Permission is already set as {}",strLocOrNearByPerm);
                     }
                 }
+                case "13" -> {
+
+                    if(strLocOrNearByPerm.equals("Allow")){
+                        strLocOrNearByPerm = "Granted always";
+                    }else if(strLocOrNearByPerm.equals("Don't allow")){
+                        strLocOrNearByPerm = "Denied";
+                    }
+                    String txtNearbyPermStatusValue = getElementText(getTxtNearbyPermissionStatusValue());
+                    if (!strLocOrNearByPerm.equalsIgnoreCase(txtNearbyPermStatusValue)) {
+                        appPrefencesScreenPage.clickOnNearByPermission();
+                        By permissionLocator = By.xpath("//android.widget.TextView[@text='Permissions']");
+                        AppiumDriver driver = DriverManager.getDriver();
+                        List<WebElement> elements = driver.findElements(permissionLocator);
+                        if(elements.isEmpty()){
+                            clickOnNearByDevices();
+                        }else{
+                            clickOnPermissionTab();
+                            clickOnNearByDevices();
+                        }
+                        if (strLocOrNearByPerm.equalsIgnoreCase("Granted always")) {
+                            selectRadioButton(rdoAllow);
+                            TestUtils.log().info("NearBy Devices Permission set as {}", strLocOrNearByPerm);
+                        } else if (strLocOrNearByPerm.equalsIgnoreCase("Denied")) {
+                            selectRadioButton(rdoDeny);
+                            TestUtils.log().info("Location Permission set as :: {}", strLocOrNearByPerm);
+                        } else
+                            TestUtils.log().info("Please provide correct permission option");
+                    }else{
+                        TestUtils.log().info("Nearby Permission is already set as {}",strLocOrNearByPerm);
+                    }
+
+                    }
                 default -> {
 
                     if(strLocOrNearByPerm.equals("Allow")){
@@ -402,7 +434,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                         TestUtils.log().info("Nearby Permission is already set as {}",strLocOrNearByPerm);
                     }
 
-                    }
+                }
                 }
             loopHandle(txtAppPreferences, NAVIGATE_BACK, 10);
         } catch (Exception e) {
