@@ -192,6 +192,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
      */
     public void clickOnNearByDevices() {
         try {
+            waitForVisibility(txtNearByDevices);
             click(txtNearByDevices);
             TestUtils.log().info("Successfully click to near by devices button");
         } catch (Exception e) {
@@ -355,6 +356,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     String txtNearbyPermStatusValue = getElementText(getTxtNearbyPermissionStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtNearbyPermStatusValue)) {
                         appPrefencesScreenPage.clickOnNearByPermission();
+                        waitForGivenTime(1);
                         clickOnPermissionTab();
                         clickOnNearByDevices();
                         if (strLocOrNearByPerm.equalsIgnoreCase("Granted always")) {
