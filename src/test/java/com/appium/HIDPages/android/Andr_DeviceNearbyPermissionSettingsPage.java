@@ -372,7 +372,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                 }
                 case "13" -> {
-
+                        System.out.println("13.............");
                     if(strLocOrNearByPerm.equals("Allow")){
                         strLocOrNearByPerm = "Granted always";
                     }else if(strLocOrNearByPerm.equals("Don't allow")){
@@ -380,14 +380,18 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     }
                     String txtNearbyPermStatusValue = getElementText(getTxtNearbyPermissionStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtNearbyPermStatusValue)) {
+                        System.out.println("111111111111111.............");
                         appPrefencesScreenPage.clickOnNearByPermission();
+                        System.out.println("222222222222222.............");
                         By permissionLocator = By.xpath("//android.widget.TextView[@text='Permissions']");
                         AppiumDriver driver = DriverManager.getDriver();
                         List<WebElement> elements = driver.findElements(permissionLocator);
                         if(elements.isEmpty()){
                             clickOnNearByDevices();
+                            System.out.println("3333333333333333.............");
                         }else{
                             clickOnPermissionTab();
+                            System.out.println("4444444444444444.............");
                             clickOnNearByDevices();
                         }
                         if (strLocOrNearByPerm.equalsIgnoreCase("Granted always")) {
