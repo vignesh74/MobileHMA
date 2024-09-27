@@ -192,8 +192,15 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
      */
     public void clickOnNearByDevices() {
         try {
+            System.out.println("clickOnNearByDevices. function entered..................");
+            TestUtils.log().info("clickOnNearByDevices. function entered..................");
             waitForVisibility(txtNearByDevices);
+            System.out.println("clickOnNearByDevices.11111 function entered..................");
+            TestUtils.log().info("clickOnNearByDevices.11111 function entered..................");
             click(txtNearByDevices);
+            System.out.println("clickOnNearByDevices.22222 function entered..................");
+            TestUtils.log().info("clickOnNearByDevices.22222 function entered..................");
+
             TestUtils.log().info("Successfully click to near by devices button");
         } catch (Exception e) {
             TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE,e.getMessage());
@@ -373,6 +380,7 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                 }
                 case "13" -> {
                         System.out.println("13.............");
+                    TestUtils.log().info("13.............");
                     if(strLocOrNearByPerm.equals("Allow")){
                         strLocOrNearByPerm = "Granted always";
                     }else if(strLocOrNearByPerm.equals("Don't allow")){
@@ -381,17 +389,21 @@ public class Andr_DeviceNearbyPermissionSettingsPage extends BasePage {
                     String txtNearbyPermStatusValue = getElementText(getTxtNearbyPermissionStatusValue());
                     if (!strLocOrNearByPerm.equalsIgnoreCase(txtNearbyPermStatusValue)) {
                         System.out.println("111111111111111.............");
+                        TestUtils.log().info("111111111111111.............");
                         appPrefencesScreenPage.clickOnNearByPermission();
                         System.out.println("222222222222222.............");
+                        TestUtils.log().info("222222222222222.............");
                         By permissionLocator = By.xpath("//android.widget.TextView[@text='Permissions']");
                         AppiumDriver driver = DriverManager.getDriver();
                         List<WebElement> elements = driver.findElements(permissionLocator);
                         if(elements.isEmpty()){
                             clickOnNearByDevices();
                             System.out.println("3333333333333333.............");
+                            TestUtils.log().info("3333333333333333.............");
                         }else{
                             clickOnPermissionTab();
                             System.out.println("4444444444444444.............");
+                            TestUtils.log().info("4444444444444444.............");
                             clickOnNearByDevices();
                         }
                         if (strLocOrNearByPerm.equalsIgnoreCase("Granted always")) {
