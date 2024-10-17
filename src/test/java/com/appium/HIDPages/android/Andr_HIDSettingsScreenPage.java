@@ -637,8 +637,8 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
         if (action.equalsIgnoreCase("ON")) {
             ConnectionState state = driver.setConnection(new ConnectionStateBuilder().withWiFiEnabled().build());
             Assert.assertTrue(state.isWiFiEnabled(), "Wifi is not switched on");
+            waitForGivenTime(10);
             TestUtils.log().info("WiFi turned on");
-            waitForGivenTime(3);
         } else if (action.equalsIgnoreCase("OFF")) {
             ConnectionState state = driver.setConnection(new ConnectionStateBuilder().withWiFiDisabled().build());
             Assert.assertFalse(state.isWiFiEnabled(), "Wifi is not switched off");

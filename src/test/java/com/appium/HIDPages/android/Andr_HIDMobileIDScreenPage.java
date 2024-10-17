@@ -7,6 +7,9 @@ import com.appium.restAPI.CreateUserAPI;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.connection.ConnectionState;
+import io.appium.java_client.android.connection.ConnectionStateBuilder;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
@@ -323,16 +326,25 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.Button[@enabled='true']")
     private MobileElement enabledEnterBtn;
 
+    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"Negative Button\"]")
+    private MobileElement cancelButton;
+
     @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Google Wallet\"]")
     private MobileElement addToGoogleWalletBtn;
 
-    @AndroidFindBy(id = "com.google.android.gms:id/PrimaryButton")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(id = "com.google.android.gms:id/PrimaryButton",priority = 0)
+    @AndroidFindBy(id = "com.google.android.gms.policy_pay:id/PrimaryButton",priority = 1)
     private MobileElement acceptAndContinueBtn;
 
-    @AndroidFindBy(id = "com.google.android.gms:id/PrimaryButton")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(id = "com.google.android.gms:id/PrimaryButton",priority = 0)
+    @AndroidFindBy(id = "com.google.android.gms.policy_pay:id/PrimaryButton",priority = 1)
     private MobileElement viewInWalletBtn;
 
-    @AndroidFindBy(id = "com.google.android.gms:id/ClosedLoopNfcIcon")
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+    @AndroidFindBy(id = "com.google.android.gms:id/ClosedLoopNfcIcon",priority = 0)
+    @AndroidFindBy(id = "com.google.android.gms.policy_pay:id/ClosedLoopNfcIcon",priority = 1)
     private MobileElement activatedcardSymbol;
 
     @AndroidFindBy(id = "email")
@@ -1929,7 +1941,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         try{
             click(invitationCodeTxtBox);
             invitationCodeTxtBox.sendKeys(token);
-            click(enabledEnterBtn);
+//            click(enabledEnterBtn);
         }catch(Exception e){
             TestUtils.log().info("Exception while entering the GW token",e);
         }
@@ -1944,6 +1956,21 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         }catch(Exception e){
             TestUtils.log().info("Exception while click on Add to Google Wallet Button",e);
         }
+    }
+
+    public void actionOnNetwork(String action){
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+
+        if (action.equalsIgnoreCase("ON")) {
+            ConnectionState state = driver.setConnection(new ConnectionStateBuilder().withWiFiEnabled().build());
+            Assert.assertTrue(state.isWiFiEnabled(), "Wifi is not switched on");
+            TestUtils.log().info("WiFi turned on");
+            waitForGivenTime(3);
+        } else if (action.equalsIgnoreCase("OFF")) {
+            ConnectionState state = driver.setConnection(new ConnectionStateBuilder().withWiFiDisabled().build());
+            Assert.assertFalse(state.isWiFiEnabled(), "Wifi is not switched off");
+            TestUtils.log().info("WiFi turned off");
+        } else TestUtils.log().info("Incorrect action");
     }
 
     public void verifyTheCardInGW() {
@@ -2047,6 +2074,22 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             CreateUserAPI.revokeGWPass(revokeDetails);
         }catch(Exception e){
             TestUtils.log().info("Exception while revoking the GW",e);
+        }
+    }
+
+    public void clickEnter(){
+        try{
+            click(enabledEnterBtn);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while clicking on Enter button",e);
+        }
+    }
+
+    public void clickCancel(){
+        try{
+            click(cancelButton);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while clicking on Cancel button",e);
         }
     }
 

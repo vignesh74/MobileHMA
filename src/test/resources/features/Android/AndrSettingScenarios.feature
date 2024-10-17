@@ -199,7 +199,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
   @ANDR_11_10_Settings_Deregister
   Scenario Outline: ANDR_11_10_Settings_Deregister<TC_ID>: Verify the Deregister in android device
     When Navigate to settings page in android device
-    And Turn "<action>" the wifi
+    And Turn "<action>" the wifi in android device
     And Click on the tab Deregister this device "<action>" in android device
     Then Verify the confirm button when deregister is "OFF" in android device
 

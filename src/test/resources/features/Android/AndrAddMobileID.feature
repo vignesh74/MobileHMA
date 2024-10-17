@@ -61,10 +61,15 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
 
 
   @ANDR_12_Google_Wallet
-    Scenario:  ANDR_12_Google_Wallet<TC_ID>: Verify the redemption of Google Wallet Pass
+    Scenario: ANDR_12_Google_Wallet<TC_ID>: Verify the redemption of Google Wallet Pass
       And Click on plus icon view the mobile ID screen in android device
       And Click on Enter invitation code tab in android device
       And Get Google Wallet issuance token using Rest API when credential are assigned
+      And Turn "OFF" the wifi in android device
+      Then click on enter button in android device
+      Then click on cancel button in android device
+      And Turn "ON" the wifi in android device
+      Then click on enter button in android device
       And click on Add to Google Wallet button
       Then verify the activated card in Google Wallet
       Then verify the Google wallet card in MobileID's
@@ -74,13 +79,13 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
       And Click on plus icon view the mobile ID screen in android device
       And Click on Enter invitation code tab in android device
       And Get Google Wallet issuance token using Rest API when credential are assigned
+      Then click on enter button in android device
       And click on Add to Google Wallet button
       Then verify the activated card in Google Wallet
       Then verify the Google wallet card in MobileID's
       And suspend the card via Rest API and check the card status over the card
       And Resume the card via Rest API and check the card status over the card
       And Revoke the card via Rest API and check the card status over the card
-
 
   @ANDR_12_Wallet_SSO
   Scenario:  ANDR_12_Wallet_SSO<TC_ID>: Verify the redemption of Google Wallet Pass using SSO

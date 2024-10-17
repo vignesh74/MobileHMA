@@ -990,6 +990,16 @@ public class AndrStepDef extends BasePage {
         mobileIDScreen.getGoogleWalletToken();
     }
 
+    @Then("click on enter button in android device")
+    public void clickEnter(){
+        mobileIDScreen.clickEnter();
+    }
+
+    @Then("click on cancel button in android device")
+    public void clickCancelInAlert(){
+        mobileIDScreen.clickCancel();
+    }
+
     @And("click on Add to Google Wallet button")
     public void addToGoogleWallet(){
         mobileIDScreen.addToGoogleWallet();
