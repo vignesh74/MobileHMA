@@ -242,6 +242,7 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _TC-7293636   | Unlocked    | Off        | On         | Don't allow                 | On              | Locked       | Off            | Killed     | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
       | RevE        | _TC-7293637   | Unlocked    | Off        | On         | Don't allow                 | On              | Locked       | On             | Killed     | TAP         | TODAY | Successful NFC transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
+
 # Twist & Go
 
     @Android12_RevE_TwistGo_WF_1 @Android12_RevE_TwistGo @Android12_RevE
