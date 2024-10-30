@@ -167,7 +167,6 @@ Feature: To Test Android Unlock workflow for HID mobile access application
       | RevE        | _TC-7293218   | Unlocked    | Off        | Off        | Allow                       | On              | Locked       | Off            | Killed     | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
       | RevE        | _TC-7293219   | Unlocked    | Off        | Off        | Allow                       | On              | Locked       | On             | Killed     | TAP         | TODAY | Successful Bluetooth transaction. | TAP:DISABLE     | Mobile ID Read | FavR2       |
 
-
 ## NFC
 
     @Android12_RevE_Tap_WF_13 @Android12_RevE_NFCTap @Android12_RevE @Android12_RevE_TapRun @ANDR_SmokeRun
