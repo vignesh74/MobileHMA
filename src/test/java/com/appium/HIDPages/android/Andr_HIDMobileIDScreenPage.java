@@ -21,6 +21,8 @@ import static com.appium.constants.MessageConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 public class Andr_HIDMobileIDScreenPage extends BasePage {
@@ -326,8 +328,16 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.Button[@enabled='true']")
     private MobileElement enabledEnterBtn;
 
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Sign out']")
+    private MobileElement signOutBtn;
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"Negative Button\"]")
     private MobileElement cancelButton;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"Positive Button\"]")
+    private MobileElement OKButton;
+
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"View in Google Wallet button\"]/")
+    private MobileElement txtDeviceAdded;
 
     @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Google Wallet\"]")
     private MobileElement addToGoogleWalletBtn;
@@ -335,16 +345,19 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(id = "com.google.android.gms:id/PrimaryButton",priority = 0)
     @AndroidFindBy(id = "com.google.android.gms.policy_pay:id/PrimaryButton",priority = 1)
+    @AndroidFindBy(id = "com.google.android.gms.optional_pay:id/PrimaryButton",priority = 2)
     private MobileElement acceptAndContinueBtn;
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(id = "com.google.android.gms:id/PrimaryButton",priority = 0)
     @AndroidFindBy(id = "com.google.android.gms.policy_pay:id/PrimaryButton",priority = 1)
+    @AndroidFindBy(id = "com.google.android.gms.optional_pay:id/PrimaryButton",priority = 2)
     private MobileElement viewInWalletBtn;
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(id = "com.google.android.gms:id/ClosedLoopNfcIcon",priority = 0)
     @AndroidFindBy(id = "com.google.android.gms.policy_pay:id/ClosedLoopNfcIcon",priority = 1)
+    @AndroidFindBy(id = "com.google.android.gms.optional_pay:id/Checkmark",priority = 2)
     private MobileElement activatedcardSymbol;
 
     @AndroidFindBy(id = "email")
@@ -1949,8 +1962,21 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public void addToGoogleWallet() {
         try{
+            waitForGivenTime(5);
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+            Set<String> contextNames = driver.getContextHandles();
+            for (String contextName : contextNames) {
+                System.out.println(contextName);
+                if (contextName.contains("NATIVE_APP")) {
+                    driver.context(contextName);
+                    break;
+                }
+                System.out.println("After switch:"+contextName);
+            }
+            System.out.println("Page Source " + driver.getPageSource());
             waitForVisibility(addToGoogleWalletBtn);
             click(addToGoogleWalletBtn);
+            waitForGivenTime(5);
             waitForVisibility(acceptAndContinueBtn);
             click(acceptAndContinueBtn);
         }catch(Exception e){
@@ -1975,6 +2001,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public void verifyTheCardInGW() {
         try{
+            waitForGivenTime(5);
             waitForVisibility(viewInWalletBtn);
             click(viewInWalletBtn);
             waitForVisibility(activatedcardSymbol);
@@ -2003,11 +2030,15 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public void signin() {
         try{
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("chromedriver_autodownload", true);
             FAQScreen.changeDriverContextToWebSSO();
-            waitForVisibility(signinTxtBox);
-            signinTxtBox.sendKeys("origo.prod2@hidglobal.com");
+        }catch(Exception e){
+            TestUtils.log().info("Exception while signing in SSO",e);
+        }
+    }
+
+    public void signinnonOrg(String user, String password){
+        try{
+            FAQScreen.changeDriverContextToWebSSONonOrg(user,password);
         }catch(Exception e){
             TestUtils.log().info("Exception while signing in SSO",e);
         }
@@ -2090,6 +2121,25 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             click(cancelButton);
         }catch(Exception e){
             TestUtils.log().info("Exception while clicking on Cancel button",e);
+        }
+    }
+
+    public void verifyDeviceAdded(){
+        try{
+            isElementVisible(txtDeviceAdded);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while verifying the device added",e);
+        }
+    }
+
+    public void signout(){
+        try{
+            isElementVisible(signOutBtn);
+            click(signOutBtn);
+            isElementVisible(OKButton);
+            click(OKButton);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while signingout the device",e);
         }
     }
 

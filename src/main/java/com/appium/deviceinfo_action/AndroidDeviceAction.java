@@ -35,10 +35,10 @@ import static com.appium.manager.DriverManager.driver;
 public class AndroidDeviceAction {
     BasePage basePage = new BasePage();
 
-    @AndroidFindBy(id="com.sec.android.app.launcher:id/clear_all")
+    @AndroidFindBy(id = "com.sec.android.app.launcher:id/clear_all")
     public MobileElement clearAll;
 
-    @AndroidFindBy(id="com.sec.android.app.launcher:id/clear_all_button")
+    @AndroidFindBy(id = "com.sec.android.app.launcher:id/clear_all_button")
     public MobileElement closeAll;
 
     /**
@@ -262,7 +262,7 @@ public class AndroidDeviceAction {
             is.close();
 
         } catch (Exception e) {
-            TestUtils.log().debug("check1sleep "+e);
+            TestUtils.log().debug("check1sleep " + e);
             TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE);
         }
         return info.toString();
@@ -291,7 +291,7 @@ public class AndroidDeviceAction {
             is.close();
 
         } catch (Exception e) {
-            TestUtils.log().debug("check2 wake "+e);
+            TestUtils.log().debug("check2 wake " + e);
             TestUtils.log().debug(EXCEPTION_OCCURRED_MESSAGE);
         }
         return info.toString();
@@ -641,7 +641,7 @@ public class AndroidDeviceAction {
                 }
             }
         } catch (Exception e) {
-            TestUtils.log().debug("Getting exception while app is running in {} .... ", strAppState,e);
+            TestUtils.log().debug("Getting exception while app is running in {} .... ", strAppState, e);
         }
     }
 
@@ -667,7 +667,7 @@ public class AndroidDeviceAction {
                 clear13.click();
             } else if (platformVersion.equalsIgnoreCase("12")) {
                 driver.closeApp();
-            }else {
+            } else {
                 TestUtils.log().info("Please provide correct input..");
             }
 
@@ -690,7 +690,7 @@ public class AndroidDeviceAction {
 //            String adbPath = basePage.getADBPath();
 //            String adbPath = "/opt/homebrew/bin/adb";
             String adbPath = ConfigLoader.getInstance().getAdbPath();
-            String[] command = { adbPath, "-s", udid, "shell", "monkey", "-p", appPackage, "1" };
+            String[] command = {adbPath, "-s", udid, "shell", "monkey", "-p", appPackage, "1"};
 
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.redirectErrorStream(true); // Redirect error stream to input stream
@@ -727,9 +727,6 @@ public class AndroidDeviceAction {
     }
 
 
-
-
-
     /**
      * sendAppToBackground-This method is used to send application in background state
      *
@@ -758,19 +755,17 @@ public class AndroidDeviceAction {
 //        }
 //        return info.toString();
 //    }
-
     public void sendAppToBackground(String udid) {
-        try{
+        try {
             AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
             driver.pressKey(new KeyEvent(AndroidKey.HOME));
-        }catch (Exception e){
+        } catch (Exception e) {
             TestUtils.log().debug("Getting exception while app is moving to Background ....");
         }
     }
 
 
-
-//    public void appState(String appState, AndroidDriver driver){
+    //    public void appState(String appState, AndroidDriver driver){
 //        if(appState.equalsIgnoreCase("Background")){
 //            driver.runAppInBackground(Duration.ofSeconds(5));
 //            TestUtils.log().info("App is running in background state....");
@@ -818,20 +813,20 @@ public class AndroidDeviceAction {
         }
     }
 
-    public void setDisplayState(String displayState,String deviceState){
-        try{
-            if(deviceState.equalsIgnoreCase("Locked")){
-                if(displayState.equalsIgnoreCase("On")){
+    public void setDisplayState(String displayState, String deviceState) {
+        try {
+            if (deviceState.equalsIgnoreCase("Locked")) {
+                if (displayState.equalsIgnoreCase("On")) {
                     AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
                     driver.pressKey(new KeyEvent(AndroidKey.POWER));
                     TestUtils.log().info("Display state is enabled ON....");
-                }else{
+                } else {
                     TestUtils.log().info("Display state is already OFF....");
                 }
-            }else{
+            } else {
                 TestUtils.log().info("Device is already in unlocked state and display is ON....");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             TestUtils.log().info("Exception while setting the display state....");
         }
 
@@ -915,42 +910,63 @@ public class AndroidDeviceAction {
         }
     }
 
+//    public void getAdbPath() {
+//        try {
+//// Create a ProcessBuilder to run the 'which adb' command
+//            ProcessBuilderprocessBuilder = newProcessBuilder("which", "adb");
+//            processBuilder.redirectErrorStream(true);  // Redirect errors if any// Start the processProcessprocess= processBuilder.start();
+//// Read the output
+//            BufferedReaderreader = newBufferedReader(newInputStreamReader(process.getInputStream()));
+//            StringadbPath = reader.readLine(); // The first line should be the adb path// Check if we got the pathif (adbPath != null && !adbPath.isEmpty()) {
+//            System.out.println("ADB Path: " + adbPath);
+//        } else{
+//            System.out.println("ADB not found");
+//        }
+//
+//        // Close the reader
+//        reader.close();
+//// Wait for the process to exit
+//        process.waitFor();
+//    } catch(IOException |InterruptedException e){
+//        e.printStackTrace();
+//    }
 
 
-    public void unlockDeviceWithPin(String pin){
+
+public void unlockDeviceWithPin(String pin){
         try{
-            String adbPath = ConfigLoader.getInstance().getAdbPath();
-            if (adbPath != null) {
-                System.out.println("ADB Path: " + adbPath);
-            } else {
-                System.out.println("ADB Path not found.");
-            }
-                executeCommand(adbPath, "shell", "input", "keyevent", "82");
-                executeCommand(adbPath, "shell", "input", "text", pin);
-                Thread.sleep(1);
-                executeCommand(adbPath, "shell", "input", "keyevent", "66");
-
-        } catch (Exception e) {
-            TestUtils.log().info("Exception While force unlocking the device  "+e);
+        String adbPath=ConfigLoader.getInstance().getAdbPath();
+        if(adbPath!=null){
+        System.out.println("ADB Path: "+adbPath);
+        }else{
+        System.out.println("ADB Path not found.");
         }
-    }
+        executeCommand(adbPath,"shell","input","keyevent","82");
+        executeCommand(adbPath,"shell","input","text",pin);
+        Thread.sleep(1);
+        executeCommand(adbPath,"shell","input","keyevent","66");
 
-    private static void executeCommand(String... command) throws IOException, InterruptedException {
-        ProcessBuilder processBuilder = new ProcessBuilder(command);
-        Process process = processBuilder.start();
+        }catch(Exception e){
+        TestUtils.log().info("Exception While force unlocking the device  "+e);
+        }
+        }
+
+private static void executeCommand(String...command)throws IOException,InterruptedException{
+        ProcessBuilder processBuilder=new ProcessBuilder(command);
+        Process process=processBuilder.start();
 
         // Read the output (if needed)
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        BufferedReader reader=new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+        while((line=reader.readLine())!=null){
+        System.out.println(line);
         }
 
-        int exitCode = process.waitFor();
-        if (exitCode != 0) {
-            throw new RuntimeException("Command execution failed with exit code: " + exitCode);
+        int exitCode=process.waitFor();
+        if(exitCode!=0){
+        throw new RuntimeException("Command execution failed with exit code: "+exitCode);
         }
-    }
+        }
 
-}
+        }
 

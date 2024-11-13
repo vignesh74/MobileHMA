@@ -16,11 +16,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.openqa.selenium.remote.RemoteWebElement;
 
 import javax.naming.Context;
+import java.util.Map;
 import java.util.Set;
+
+import static com.appium.constants.FrameworkConstants.EXPLICIT_WAIT;
 
 public class Andr_HIDSettingsFAQScreenPage extends BasePage {
 
@@ -48,6 +53,9 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.widget.TextView[1]")
     private MobileElement txtNoResultsFound;
 
+    @AndroidFindBy(id = "email")
+    private MobileElement signinTxtBox;
+
     /**
      * getter methods - These are getter method for above mentioned mobile elements Date-13/02/2023
      */
@@ -74,6 +82,10 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
 
     public MobileElement getTxtNoResultsFound() {
         return txtNoResultsFound;
+    }
+
+    public MobileElement signinTxtBox(){
+        return signinTxtBox();
     }
 
 
@@ -152,16 +164,56 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
 
     }
 
-    public static void changeDriverContextToWebSSO() {
+    public void changeDriverContextToWebSSO() {
+        waitForGivenTime(10);
         AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+
         Set<String> contextNames = driver.getContextHandles();
         for (String contextName : contextNames) {
             System.out.println(contextName);
             if (contextName.contains("WEBVIEW")) {
                 driver.context(contextName);
+                break;
             }
-
+            System.out.println("After switch:"+contextName);
         }
+
+//        System.out.println("Page Source " + driver.getPageSource());
+        waitForGivenTime(8);
+        driver.findElement(By.xpath("//input[@name=\"LoginId\"]")).sendKeys("deep11@yopmail.com");
+        waitForGivenTime(2);
+        driver.findElement(By.xpath("//button[contains(@class, 'hid-button') and contains(text(), 'Next')]\n")).click();
+        waitForGivenTime(8);
+        driver.findElement(By.xpath("//input[@name=\"password\"]")).sendKeys("Welcome@123");
+        waitForGivenTime(2);
+        driver.findElement(By.xpath("//button[@name=\"action\"]")).click();
+
+    }
+
+    public void changeDriverContextToWebSSONonOrg(String user, String password) {
+        waitForGivenTime(10);
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+
+        Set<String> contextNames = driver.getContextHandles();
+        for (String contextName : contextNames) {
+            System.out.println(contextName);
+            if (contextName.contains("WEBVIEW")) {
+                driver.context(contextName);
+                break;
+            }
+            System.out.println("After switch:"+contextName);
+        }
+
+        System.out.println("Page Source " + driver.getPageSource());
+        waitForGivenTime(8);
+        driver.findElement(By.xpath("//input[@name=\"LoginId\"]")).sendKeys(user);
+        waitForGivenTime(2);
+        driver.findElement(By.xpath("//button[contains(@class, 'hid-button') and contains(text(), 'Next')]\n")).click();
+        waitForGivenTime(1);
+        String nonUser =  driver.findElement(By.xpath("//h5")).getText();
+        System.out.println(nonUser);
+        Assert.assertEquals("nonUser","The requested user not found");
+
     }
 
 }

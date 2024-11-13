@@ -703,6 +703,11 @@ public class AndrStepDef extends BasePage {
         mobileIDScreen.signin();
     }
 
+    @And("enter the email address to sign in non org {string} and {string}")
+    public void signinnonOrg(String user, String password){
+        mobileIDScreen.signinnonOrg(user,password);
+    }
+
     @And("Click on Enter invitation code tab in android device")
     public void clickOnEnterInvitationCodeTab() {
         mobileIDScreen.clickOnEnterInvitationCodeTab();
@@ -1013,6 +1018,16 @@ public class AndrStepDef extends BasePage {
     @Then("verify the Google wallet card in MobileID's")
     public void verifyTheCardInHMAApp(){
         mobileIDScreen.verifyTheCardInHMAApp();
+    }
+
+    @Then("click on the signout button")
+    public void signout(){
+        mobileIDScreen.signout();
+    }
+
+    @And("verify device added information below view in google wallet in android device")
+    public void verifyDeviceAdded(){
+        mobileIDScreen.verifyDeviceAdded();
     }
 
     @And("suspend the card via Rest API and check the card status over the card")

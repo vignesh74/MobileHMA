@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.appium.utils.TestUtils;
+import com.google.common.collect.ImmutableMap;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.appium.constants.FrameworkConstants;
@@ -60,6 +61,9 @@ public class AndroidDriverManager implements IDriver {
             capabilities.setCapability("noReset", true);
             capabilities.setCapability("skipDeviceInitialization", true);
             capabilities.setCapability("appium:maxInstances", 1);
+            capabilities.setCapability("appium:chromedriver_autodownload", true);
+            capabilities.setCapability("newCommandTimeout", 3000);
+            capabilities.setCapability("chromeOptions", ImmutableMap.of("w3c", false));
 //                    "skipServerInstallation": true,
 
             if (Boolean.TRUE.equals(installApp)) {
