@@ -777,27 +777,27 @@ public class AndroidDeviceAction {
 //        }
 //    }
 //
-    private void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
-
-//        String adbPath = basePage.getADBPath();
-//        String adbPath = "/opt/homebrew/bin/adb";
-        String adbPath = ConfigLoader.getInstance().getAdbPath();
-        String appMainActivity = getAppMainActivity(driver);
-//        String adbCommand = String.format("%s shell am start -n %s/.%s", adbPath, appPackage, appMainActivity);
-        ProcessBuilder processBuilder = new ProcessBuilder(adbPath, "shell", "am", "start", "-n", appPackage + "/." + appMainActivity);
-        try {
-            Process process = processBuilder.start();
-            int exitCode = process.waitFor();
-
-            if (exitCode == 0) {
-                System.out.println("Application brought to foreground successfully.");
-            } else {
-                System.err.println("Failed to bring the application to foreground. Exit code: " + exitCode);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private void bringAppToForeground(AppiumDriver<MobileElement> driver, String appPackage) {
+//
+////        String adbPath = basePage.getADBPath();
+////        String adbPath = "/opt/homebrew/bin/adb";
+//        String adbPath = ConfigLoader.getInstance().getAdbPath();
+//        String appMainActivity = getAppMainActivity(driver);
+////        String adbCommand = String.format("%s shell am start -n %s/.%s", adbPath, appPackage, appMainActivity);
+//        ProcessBuilder processBuilder = new ProcessBuilder(adbPath, "shell", "am", "start", "-n", appPackage + "/." + appMainActivity);
+//        try {
+//            Process process = processBuilder.start();
+//            int exitCode = process.waitFor();
+//
+//            if (exitCode == 0) {
+//                System.out.println("Application brought to foreground successfully.");
+//            } else {
+//                System.err.println("Failed to bring the application to foreground. Exit code: " + exitCode);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public String getAppMainActivity(AppiumDriver<MobileElement> driver) {
         return driver.getCapabilities().getCapability("appActivity").toString();
