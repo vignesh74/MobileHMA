@@ -328,6 +328,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.Button[@enabled='true']")
     private MobileElement enabledEnterBtn;
 
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
+    private MobileElement errorOKBtn;
+
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Sign out']")
     private MobileElement signOutBtn;
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"Negative Button\"]")
@@ -648,6 +651,10 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public MobileElement getBtnSSO(){
         return btnSSO;
+    }
+
+    public MobileElement getErrorOKBtn(){
+        return errorOKBtn;
     }
 
 
@@ -1976,11 +1983,18 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             System.out.println("Page Source " + driver.getPageSource());
             waitForVisibility(addToGoogleWalletBtn);
             click(addToGoogleWalletBtn);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while click on Add to Google Wallet Button",e);
+        }
+    }
+
+    public void acceptAndContinue(){
+        try{
             waitForGivenTime(5);
             waitForVisibility(acceptAndContinueBtn);
             click(acceptAndContinueBtn);
         }catch(Exception e){
-            TestUtils.log().info("Exception while click on Add to Google Wallet Button",e);
+            TestUtils.log().info("Exception while click on Accept & Continue Button",e);
         }
     }
 
@@ -2036,9 +2050,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         }
     }
 
-    public void signinnonOrg(String user, String password){
+    public void signinnonOrg(String user, String password, String error){
         try{
-            FAQScreen.changeDriverContextToWebSSONonOrg(user,password);
+            FAQScreen.changeDriverContextToWebSSONonOrg(user,password,error);
         }catch(Exception e){
             TestUtils.log().info("Exception while signing in SSO",e);
         }
@@ -2140,6 +2154,15 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             click(OKButton);
         }catch(Exception e){
             TestUtils.log().info("Exception while signingout the device",e);
+        }
+    }
+
+    public void clickOKBtn(){
+        try{
+            isElementVisible(getErrorOKBtn());
+            click(getErrorOKBtn());
+        }catch(Exception e){
+            TestUtils.log().info("Exception while clicking OK button",e);
         }
     }
 

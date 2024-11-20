@@ -161,7 +161,7 @@ public class BasePage {
         }
     }
 
-    public void swipeDowne(String text) {  //Working code
+    public void swipeDowne(String text) {
         try {
             AppiumDriver driver = DriverManager.getDriver();
             MobileElement element = (MobileElement) driver.findElement(MobileBy.AndroidUIAutomator(

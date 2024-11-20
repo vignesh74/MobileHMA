@@ -190,7 +190,7 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
 
     }
 
-    public void changeDriverContextToWebSSONonOrg(String user, String password) {
+    public void changeDriverContextToWebSSONonOrg(String user, String password, String error) {
         waitForGivenTime(10);
         AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
 
@@ -209,10 +209,10 @@ public class Andr_HIDSettingsFAQScreenPage extends BasePage {
         driver.findElement(By.xpath("//input[@name=\"LoginId\"]")).sendKeys(user);
         waitForGivenTime(2);
         driver.findElement(By.xpath("//button[contains(@class, 'hid-button') and contains(text(), 'Next')]\n")).click();
-        waitForGivenTime(1);
-        String nonUser =  driver.findElement(By.xpath("//h5")).getText();
-        System.out.println(nonUser);
-        Assert.assertEquals("nonUser","The requested user not found");
+        waitForGivenTime(4);
+        String actualError =  driver.findElement(By.xpath("//h5")).getText();
+        System.out.println(actualError);
+        Assert.assertEquals(actualError,error);
 
     }
 

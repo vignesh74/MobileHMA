@@ -703,9 +703,9 @@ public class AndrStepDef extends BasePage {
         mobileIDScreen.signin();
     }
 
-    @And("enter the email address to sign in non org {string} and {string}")
-    public void signinnonOrg(String user, String password){
-        mobileIDScreen.signinnonOrg(user,password);
+    @And("enter the email address to sign in {string} and {string} and respective {string}")
+    public void signinnonOrg(String user, String password, String error){
+        mobileIDScreen.signinnonOrg(user,password,error);
     }
 
     @And("Click on Enter invitation code tab in android device")
@@ -998,6 +998,13 @@ public class AndrStepDef extends BasePage {
     @Then("click on enter button in android device")
     public void clickEnter(){
         mobileIDScreen.clickEnter();
+        waitForGivenTime(5);
+    }
+
+    @Then("click on OK button in android device")
+    public void clickOKBtn(){
+        mobileIDScreen.clickOKBtn();
+        waitForGivenTime(5);
     }
 
     @Then("click on cancel button in android device")
@@ -1008,6 +1015,11 @@ public class AndrStepDef extends BasePage {
     @And("click on Add to Google Wallet button")
     public void addToGoogleWallet(){
         mobileIDScreen.addToGoogleWallet();
+    }
+
+    @And("click on Accept and Continue button in android device")
+    public void acceptAndContinue(){
+        mobileIDScreen.acceptAndContinue();
     }
 
     @Then("verify the activated card in Google Wallet")
