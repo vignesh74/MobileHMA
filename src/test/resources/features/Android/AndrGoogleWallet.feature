@@ -15,14 +15,12 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
     Then click on enter button in android device
     And Turn "OFF" the wifi in android device
     And click on Add to Google Wallet button
-    Then click on OK button in android device
     And Turn "ON" the wifi in android device
-    And click on Add to Google Wallet button
+    Then click on OK button in android device
     And Turn "OFF" the wifi in android device
     And click on Accept and Continue button in android device
-    Then click on cancel button in android device
     And Turn "ON" the wifi in android device
-    And click on Accept and Continue button in android device
+    Then click on OK button in android device
     Then verify the activated card in Google Wallet
     Then verify the Google wallet card in MobileID's
     And verify device added information below view in google wallet in android device
