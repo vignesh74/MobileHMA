@@ -339,7 +339,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"Positive Button\"]")
     private MobileElement OKButton;
 
-    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"View in Google Wallet button\"]/")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Device Added']")
     private MobileElement txtDeviceAdded;
 
     @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Google Wallet\"]")
@@ -361,7 +361,17 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(id = "com.google.android.gms:id/ClosedLoopNfcIcon",priority = 0)
     @AndroidFindBy(id = "com.google.android.gms.policy_pay:id/ClosedLoopNfcIcon",priority = 1)
     @AndroidFindBy(id = "com.google.android.gms.optional_pay:id/Checkmark",priority = 2)
+    @AndroidFindBy(id = "com.google.android.gms.optional_pay:id/ClosedLoopNfcIcon",priority = 3)
     private MobileElement activatedcardSymbol;
+
+    @AndroidFindBy(xpath="//android.widget.Button[@content-desc=\"Details\"]")
+    private MobileElement walletDetailIcon;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Remove']")
+    private MobileElement walletRemoveIcon;
+
+    @AndroidFindBy(id="com.google.android.gms.optional_pay:id/tp_dialog_positive_button")
+    public MobileElement removeBtn;
 
     @AndroidFindBy(id = "email")
     private MobileElement signinTxtBox;
@@ -655,6 +665,18 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public MobileElement getErrorOKBtn(){
         return errorOKBtn;
+    }
+
+    public MobileElement getWalletDetailIcon(){
+        return walletDetailIcon;
+    }
+
+    public MobileElement getWalletRemoveIcon(){
+        return walletRemoveIcon;
+    }
+
+    public MobileElement getRemoveBtn(){
+        return removeBtn;
     }
 
 
@@ -2026,6 +2048,32 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         }
     }
 
+    public void verifyGoogleWalletBtn(){
+        try{
+            waitForGivenTime(1);
+            if (!isElementVisible(viewinGoogleWalletBtn)) {
+                TestUtils.log().info("View in Google wallet button is not visible");
+            }
+        }catch(Exception e){
+            TestUtils.log().info("Exception while verifying the view in Google Wallet",e);
+        }
+    }
+
+    public void removeTheCardFromWallet(){
+        try{
+            waitForGivenTime(5);
+            waitForVisibility(walletDetailIcon);
+            click(walletDetailIcon);
+            iOSScrollDownTillElement(walletRemoveIcon);
+            click(walletRemoveIcon);
+            waitForGivenTime(1);
+            click(removeBtn);
+            click(removeBtn);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while removing the card from Google Wallet",e);
+        }
+    }
+
     public void verifyTheCardInHMAApp() {
         try{
             do{
@@ -2036,7 +2084,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             waitForVisibility(viewinGoogleWalletBtn);
             click(viewinGoogleWalletBtn);
             waitForVisibility(activatedcardSymbol);
-            navigateBack();
+//            navigateBack();
         }catch(Exception e){
             TestUtils.log().info("Exception while verifying the card in HMA App",e);
         }
@@ -2140,6 +2188,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public void verifyDeviceAdded(){
         try{
+            waitForGivenTime(5);
             isElementVisible(txtDeviceAdded);
         }catch(Exception e){
             TestUtils.log().info("Exception while verifying the device added",e);

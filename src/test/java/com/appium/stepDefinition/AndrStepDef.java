@@ -1027,9 +1027,24 @@ public class AndrStepDef extends BasePage {
         mobileIDScreen.verifyTheCardInGW();
     }
 
+    @Then("remove the card from the wallet app")
+    public void removeTheCardFromWallet(){
+        mobileIDScreen.removeTheCardFromWallet();
+    }
+
+    @Then("verify the absence of view in Google Wallet button")
+    public void verifyGoogleWalletBtn(){
+        mobileIDScreen.verifyGoogleWalletBtn();
+    }
+
     @Then("verify the Google wallet card in MobileID's")
     public void verifyTheCardInHMAApp(){
         mobileIDScreen.verifyTheCardInHMAApp();
+    }
+
+    @Then("navigate back")
+    public void navigateBack(){
+        mobileIDScreen.navigateBack();
     }
 
     @Then("click on the signout button")

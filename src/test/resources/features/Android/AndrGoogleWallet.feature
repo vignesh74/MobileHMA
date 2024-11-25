@@ -46,6 +46,7 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
     And click on Add to Google Wallet button
     Then verify the activated card in Google Wallet
     Then verify the Google wallet card in MobileID's
+    Then navigate back
     And Click on plus icon view the mobile ID screen in android device
     Then click on the signout button
 
@@ -59,3 +60,17 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
       | TC_ID | user                 | password    | error                        |
       | _TC-1 | vigneshhid@gmail.com | Welcome@123 | The requested user not found |
       | _TC-2 |                      |             |                              |
+
+  @ANDR_12_Wallet_Removal
+  Scenario: @ANDR_12_Wallet_Removal: Verify the removal of Google Wallet Pass
+    And Click on plus icon view the mobile ID screen in android device
+    And Click on Enter invitation code tab in android device
+    And Get Google Wallet issuance token using Rest API when credential are assigned
+    Then click on enter button in android device
+    And click on Add to Google Wallet button
+    And click on Accept and Continue button in android device
+    Then verify the activated card in Google Wallet
+    Then verify the Google wallet card in MobileID's
+    Then remove the card from the wallet app
+    Given Launch HID Access Mobile Application in android device
+    Then verify the absence of view in Google Wallet button
