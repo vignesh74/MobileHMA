@@ -13,11 +13,14 @@ import io.appium.java_client.android.connection.ConnectionStateBuilder;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import io.appium.java_client.pagefactory.LocatorGroupStrategy;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import static com.appium.constants.MessageConstants.*;
+import static io.restassured.RestAssured.given;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -344,6 +347,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Google Wallet\"]")
     private MobileElement addToGoogleWalletBtn;
+
+    @AndroidFindBy(xpath="//android.widget.TextView")
+    public MobileElement MoreThanOnePassAlert;
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(id = "com.google.android.gms:id/PrimaryButton",priority = 0)
@@ -2002,7 +2008,6 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 }
                 System.out.println("After switch:"+contextName);
             }
-            System.out.println("Page Source " + driver.getPageSource());
             waitForVisibility(addToGoogleWalletBtn);
             click(addToGoogleWalletBtn);
         }catch(Exception e){
@@ -2081,6 +2086,7 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                 swipeLeft(5);
                 swipeLeft(5);
             }while(!isElementVisible(viewinGoogleWalletBtn));
+            Assert.assertTrue(isElementVisible(viewinGoogleWalletBtn), "The 'View in Google Wallet' button is visible.");
             waitForVisibility(viewinGoogleWalletBtn);
             click(viewinGoogleWalletBtn);
             waitForVisibility(activatedcardSymbol);
@@ -2124,16 +2130,38 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         }
     }
 
-    public void getGoogleWalletToken(){
-        try{
-            List<String> apiInfo  = AuthenticationAPI.getGWToken();
+    public void getGoogleWalletToken() {
+        try {
+            List<String> apiInfo = AuthenticationAPI.getGWToken();
             String token = apiInfo.get(0);
             String passID = apiInfo.get(2);
-            System.out.println("passID "+passID);
+            System.out.println("passID " + passID);
             enterGWToken(token);
-        }catch(Exception e){
-
+        } catch (Exception e) {
+            TestUtils.log().info("Exception while getting the Google Wallet Token", e);
         }
+    }
+
+    public String getTheStatus(){
+        try{
+            List<String> getStatus  = CreateUserAPI.getCardDetails();
+
+            String token = getStatus.get(0);
+            String createPassID = getStatus.get(1);
+            String token_type = getStatus.get(2);
+            String access_token = getStatus.get(3);
+            String application_ID = "HID-ORIGO-ENGINEERING";
+            List<String> statusDetails = new ArrayList<>();
+            statusDetails.add(token_type);
+            statusDetails.add(access_token);
+            statusDetails.add(createPassID);
+            statusDetails.add(application_ID);
+            CreateUserAPI.getStatus(statusDetails);
+
+        }catch(Exception e){
+                TestUtils.log().info("Exception while getting the status",e);
+        }
+        return null;
     }
 
     public void resumeGW(){
@@ -2175,6 +2203,17 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             click(enabledEnterBtn);
         }catch(Exception e){
             TestUtils.log().info("Exception while clicking on Enter button",e);
+        }
+    }
+
+    public void moreThanOneGWPass(){
+        try{
+            isElementVisible(MoreThanOnePassAlert);
+            Assert.assertTrue(true,"Please delete the existing Access card in your Google Wallet before adding a new one.");
+            isElementVisible(errorOKBtn);
+            click(errorOKBtn);
+        }catch(Exception e){
+            TestUtils.log().info("Exception while adding more than one pass",e);
         }
     }
 

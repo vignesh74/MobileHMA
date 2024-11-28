@@ -5,15 +5,12 @@ import com.appium.base.BasePage;
 import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
-import com.appium.restAPI.AuthenticationAPI;
-import com.appium.restAPI.CreateUserAPI;
 import com.appium.utils.ConfigLoader;
 import com.appium.utils.SerialPortUtils;
 import com.appium.utils.TestUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.cucumber.core.plugin.TimelineFormatter;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -21,21 +18,10 @@ import io.cucumber.java.en.When;
 import jssc.SerialPortException;
 import org.testng.Assert;
 import org.testng.internal.collections.Pair;
-import org.testng.util.TimeUtils;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.Temporal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 import static com.appium.constants.MessageConstants.EULA;
 import static com.appium.restAPI.CreateInvitationAPI.createInvitationAPI;
@@ -990,15 +976,26 @@ public class AndrStepDef extends BasePage {
     }
 
     @And("Get Google Wallet issuance token using Rest API when credential are assigned")
-    public void getGoogleWalletToken()
-    {
+    public void getGoogleWalletToken(){
         mobileIDScreen.getGoogleWalletToken();
+        getTheStatus();
+    }
+
+    @And("get the status")
+    public void getTheStatus(){
+        String status = mobileIDScreen.getTheStatus();
     }
 
     @Then("click on enter button in android device")
     public void clickEnter(){
         mobileIDScreen.clickEnter();
         waitForGivenTime(5);
+        getTheStatus();
+    }
+
+    @Then("verify that it cannot add more than one pass")
+    public void moreThanOneGWPass(){
+        mobileIDScreen.moreThanOneGWPass();
     }
 
     @Then("click on OK button in android device")
@@ -1015,11 +1012,13 @@ public class AndrStepDef extends BasePage {
     @And("click on Add to Google Wallet button")
     public void addToGoogleWallet(){
         mobileIDScreen.addToGoogleWallet();
+        getTheStatus();
     }
 
     @And("click on Accept and Continue button in android device")
     public void acceptAndContinue(){
         mobileIDScreen.acceptAndContinue();
+        getTheStatus();
     }
 
     @Then("verify the activated card in Google Wallet")
@@ -1040,6 +1039,7 @@ public class AndrStepDef extends BasePage {
     @Then("verify the Google wallet card in MobileID's")
     public void verifyTheCardInHMAApp(){
         mobileIDScreen.verifyTheCardInHMAApp();
+        getTheStatus();
     }
 
     @Then("navigate back")
@@ -1060,17 +1060,19 @@ public class AndrStepDef extends BasePage {
     @And("suspend the card via Rest API and check the card status over the card")
     public void suspendGW(){
         mobileIDScreen.suspendGW();
+        getTheStatus();
     }
 
     @And("Resume the card via Rest API and check the card status over the card")
     public void resumeGW(){
         mobileIDScreen.resumeGW();
+        getTheStatus();
     }
 
     @And("Revoke the card via Rest API and check the card status over the card")
     public void revokeGW(){
         mobileIDScreen.revokeGW();
-
+        getTheStatus();
     }
 
 

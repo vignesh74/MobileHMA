@@ -328,4 +328,31 @@ public class CreateUserAPI {
             System.out.println(e);
         }
     }
+
+    public static void getStatus(List<String> input){
+        try{
+            String token_type = input.get(0);
+            String access_token = input.get(1);
+            String pass_ID = input.get(2);
+            String application_ID = input.get(3);
+            String organization_ID = "7512113";
+            baseURI = "https://credential-management.api.origo.hidglobal.com";
+            String getPassParam = "/organization/7512113/pass/"+pass_ID;
+
+            String getStatus = given()
+                    .header("Authorization", token_type+ " " + access_token)
+                    .header("Application-ID", "HID-ORIGO-ENGINEERING")
+                    .header("Content-Type", "application/json")
+                    .when()
+                    .get(getPassParam)
+                    .then().assertThat().statusCode(200).extract().response().asString();
+            JsonPath js11 = new JsonPath(getStatus);
+            String id = js11.getString("statusid");
+            String userid = js11.getString("userId");
+            String status = js11.getString("status");
+            System.out.println("****** "+status+" *****" );
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
 }

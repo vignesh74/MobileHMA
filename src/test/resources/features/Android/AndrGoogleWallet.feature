@@ -62,7 +62,7 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
       | _TC-2 |                      |             |                              |
 
   @ANDR_12_Wallet_Removal
-  Scenario: @ANDR_12_Wallet_Removal: Verify the removal of Google Wallet Pass
+  Scenario: ANDR_12_Wallet_Removal: Verify the removal of Google Wallet Pass
     And Click on plus icon view the mobile ID screen in android device
     And Click on Enter invitation code tab in android device
     And Get Google Wallet issuance token using Rest API when credential are assigned
@@ -74,3 +74,42 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
     Then remove the card from the wallet app
     Given Launch HID Access Mobile Application in android device
     Then verify the absence of view in Google Wallet button
+
+    @ANDR_12_Wallet_more
+    Scenario: ANDR_12_Wallet_more: verify if more than one pass is added
+      And Click on plus icon view the mobile ID screen in android device
+      And Click on Enter invitation code tab in android device
+      And Get Google Wallet issuance token using Rest API when credential are assigned
+      Then click on enter button in android device
+      And click on Add to Google Wallet button
+      And click on Accept and Continue button in android device
+      Then verify the activated card in Google Wallet
+      Then verify the Google wallet card in MobileID's
+      Then navigate back
+      And Click on plus icon view the mobile ID screen in android device
+      And Click on Enter invitation code tab in android device
+      And Get Google Wallet issuance token using Rest API when credential are assigned
+      Then click on enter button in android device
+      Then verify that it cannot add more than one pass
+
+  @ANDR_12_Wallet_card_status
+  Scenario: ANDR_12_Wallet_card_status: verify the different status of the pass in Google Wallet
+    And Click on plus icon view the mobile ID screen in android device
+    And Click on Enter invitation code tab in android device
+    And Get Google Wallet issuance token using Rest API when credential are assigned
+    Then click on enter button in android device
+    And click on Add to Google Wallet button
+    And click on Accept and Continue button in android device
+    Then verify the activated card in Google Wallet
+    Then verify the Google wallet card in MobileID's
+    And suspend the card via Rest API and check the card status over the card
+    And Resume the card via Rest API and check the card status over the card
+    And Revoke the card via Rest API and check the card status over the card
+
+
+
+
+
+
+
+
