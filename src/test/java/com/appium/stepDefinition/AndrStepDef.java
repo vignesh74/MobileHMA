@@ -978,19 +978,16 @@ public class AndrStepDef extends BasePage {
     @And("Get Google Wallet issuance token using Rest API when credential are assigned")
     public void getGoogleWalletToken(){
         mobileIDScreen.getGoogleWalletToken();
-        getTheStatus();
-    }
-
-    @And("get the status")
-    public void getTheStatus(){
         String status = mobileIDScreen.getTheStatus();
+        Assert.assertEquals(status,"CREATED");
     }
 
     @Then("click on enter button in android device")
     public void clickEnter(){
         mobileIDScreen.clickEnter();
         waitForGivenTime(5);
-        getTheStatus();
+        String status = mobileIDScreen.getTheStatus();
+        Assert.assertEquals(status,"ISSUE_INITIATED");
     }
 
     @Then("verify that it cannot add more than one pass")
@@ -1012,18 +1009,22 @@ public class AndrStepDef extends BasePage {
     @And("click on Add to Google Wallet button")
     public void addToGoogleWallet(){
         mobileIDScreen.addToGoogleWallet();
-        getTheStatus();
+        String status = mobileIDScreen.getTheStatus();
+        Assert.assertEquals(status,"ISSUE_INITIATED");
     }
 
     @And("click on Accept and Continue button in android device")
     public void acceptAndContinue(){
         mobileIDScreen.acceptAndContinue();
-        getTheStatus();
+        String status = mobileIDScreen.getTheStatus();
+        Assert.assertEquals(status,"ISSUE_INITIATED");
     }
 
     @Then("verify the activated card in Google Wallet")
     public void verifyTheCardInGW(){
         mobileIDScreen.verifyTheCardInGW();
+        String status = mobileIDScreen.getTheStatus();
+        Assert.assertEquals(status,"ACTIVE");
     }
 
     @Then("remove the card from the wallet app")
@@ -1039,7 +1040,8 @@ public class AndrStepDef extends BasePage {
     @Then("verify the Google wallet card in MobileID's")
     public void verifyTheCardInHMAApp(){
         mobileIDScreen.verifyTheCardInHMAApp();
-        getTheStatus();
+        String status = mobileIDScreen.getTheStatus();
+        Assert.assertEquals(status,"ACTIVE");
     }
 
     @Then("navigate back")
@@ -1060,19 +1062,22 @@ public class AndrStepDef extends BasePage {
     @And("suspend the card via Rest API and check the card status over the card")
     public void suspendGW(){
         mobileIDScreen.suspendGW();
-        getTheStatus();
+        String status = mobileIDScreen.getTheStatus();
+        Assert.assertEquals(status,"SUSPENDED");
     }
 
     @And("Resume the card via Rest API and check the card status over the card")
     public void resumeGW(){
         mobileIDScreen.resumeGW();
-        getTheStatus();
+        String status = mobileIDScreen.getTheStatus();
+        Assert.assertEquals(status,"ACTIVE");
     }
 
     @And("Revoke the card via Rest API and check the card status over the card")
     public void revokeGW(){
         mobileIDScreen.revokeGW();
-        getTheStatus();
+        String status = mobileIDScreen.getTheStatus();
+        Assert.assertEquals(status,"REVOKED");
     }
 
 

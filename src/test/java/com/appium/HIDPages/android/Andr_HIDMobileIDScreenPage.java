@@ -2006,7 +2006,6 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
                     driver.context(contextName);
                     break;
                 }
-                System.out.println("After switch:"+contextName);
             }
             waitForVisibility(addToGoogleWalletBtn);
             click(addToGoogleWalletBtn);
@@ -2135,16 +2134,17 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             List<String> apiInfo = AuthenticationAPI.getGWToken();
             String token = apiInfo.get(0);
             String passID = apiInfo.get(2);
-            System.out.println("passID " + passID);
             enterGWToken(token);
+            getTheStatus();
         } catch (Exception e) {
             TestUtils.log().info("Exception while getting the Google Wallet Token", e);
         }
     }
 
-    public String getTheStatus(){
-        try{
-            List<String> getStatus  = CreateUserAPI.getCardDetails();
+    public String getTheStatus() {
+        String status = null;
+        try {
+            List<String> getStatus = CreateUserAPI.getCardDetails();
 
             String token = getStatus.get(0);
             String createPassID = getStatus.get(1);
@@ -2156,12 +2156,11 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
             statusDetails.add(access_token);
             statusDetails.add(createPassID);
             statusDetails.add(application_ID);
-            CreateUserAPI.getStatus(statusDetails);
-
-        }catch(Exception e){
-                TestUtils.log().info("Exception while getting the status",e);
+            status = CreateUserAPI.getStatus(statusDetails);
+        } catch (Exception e) {
+            TestUtils.log().info("Exception while getting the status", e);
         }
-        return null;
+        return status;
     }
 
     public void resumeGW(){

@@ -281,18 +281,11 @@ public class CreateUserAPI {
             String createPassID = input.get(0);
             String token_type = input.get(1);
             String access_token = input.get(2);
-
-            System.out.println(createPassID);
-            System.out.println(token_type);
-            System.out.println(access_token);
-
             baseURI = "https://credential-management.api.origo.hidglobal.com";
             String resumePassParam = "/organization/7512113/pass/"+createPassID+"/status";
-
             JSONObject requestBody3 = new JSONObject();
             requestBody3.put("action","RESUME");
             requestBody3.put("reason","User has resumed");
-
             String resumePass = given()
                     .header("Authorization", token_type+ " " + access_token)
                     .header("Application-ID", "HID-ORIGO-ENGINEERING")
@@ -329,18 +322,19 @@ public class CreateUserAPI {
         }
     }
 
-    public static void getStatus(List<String> input){
-        try{
+    public static String getStatus(List<String> input) {
+        String status = null;
+        try {
             String token_type = input.get(0);
             String access_token = input.get(1);
             String pass_ID = input.get(2);
             String application_ID = input.get(3);
             String organization_ID = "7512113";
             baseURI = "https://credential-management.api.origo.hidglobal.com";
-            String getPassParam = "/organization/7512113/pass/"+pass_ID;
+            String getPassParam = "/organization/7512113/pass/" + pass_ID;
 
             String getStatus = given()
-                    .header("Authorization", token_type+ " " + access_token)
+                    .header("Authorization", token_type + " " + access_token)
                     .header("Application-ID", "HID-ORIGO-ENGINEERING")
                     .header("Content-Type", "application/json")
                     .when()
@@ -349,10 +343,11 @@ public class CreateUserAPI {
             JsonPath js11 = new JsonPath(getStatus);
             String id = js11.getString("statusid");
             String userid = js11.getString("userId");
-            String status = js11.getString("status");
-            System.out.println("****** "+status+" *****" );
-        }catch(Exception e){
+            status = js11.getString("status");
+            System.out.println("****** " + status + " *****");
+        } catch (Exception e) {
             System.out.println(e);
         }
+        return status;
     }
 }
