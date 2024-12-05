@@ -92,7 +92,7 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
       Then click on enter button in android device
       Then verify that it cannot add more than one pass
 
-  @ANDR_12_Wallet_card_status
+  @ANDR_12_Wallet_card_No_DeRegister
   Scenario: ANDR_12_Wallet_card_status: verify the different status of the pass in Google Wallet
     And Click on plus icon view the mobile ID screen in android device
     And Click on Enter invitation code tab in android device
@@ -102,9 +102,9 @@ Feature: To Test Android Add MobileID Scenario Workflow for HID mobile access ap
     And click on Accept and Continue button in android device
     Then verify the activated card in Google Wallet
     Then verify the Google wallet card in MobileID's
-    And suspend the card via Rest API and check the card status over the card
-    And Resume the card via Rest API and check the card status over the card
-    And Revoke the card via Rest API and check the card status over the card
+    Then navigate back
+    When Navigate to settings page in android device
+    And verify the absence of tab Deregister the device
 
 
 

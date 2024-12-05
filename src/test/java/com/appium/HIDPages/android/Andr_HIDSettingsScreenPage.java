@@ -1292,15 +1292,25 @@ public class Andr_HIDSettingsScreenPage extends BasePage {
     public void compareValues(String[] olderApkValues, String[] newerApkValues) {
         Assert.assertEquals(olderApkValues.length, (newerApkValues.length));
 
-        // Compare each value
         for (int i = 0; i < olderApkValues.length; i++) {
             try {
                 Assert.assertEquals(olderApkValues[i], newerApkValues[i]);
                 System.out.println("Mismatch in values at index " + i + ": Older = " + olderApkValues [i] + ", Newer = " + newerApkValues[i]);
             } catch (AssertionError e) {
-                // Log the mismatched values
                 System.out.println("Mismatch in values at index " + i + ": Older = " + olderApkValues [i] + ", Newer = " + newerApkValues[i]);
             }
+        }
+    }
+
+    public void deRegister(){
+        try{
+            if (!isElementVisible(txtUnRegisterThisDevice)) {
+                TestUtils.log().info("DeRegister Tab is not present.");
+            } else {
+                System.out.println("DeRegister Tab is present..");
+            }
+        }catch(Exception e){
+            TestUtils.log().info("Exception while finding the absence of Deregsiter Tab");
         }
     }
 

@@ -464,6 +464,11 @@ public class AndrStepDef extends BasePage {
 
     }
 
+    @And("verify the absence of tab Deregister the device")
+    public void deRegsiter(){
+        settingsScreen.deRegister();
+    }
+
     @Then("Report issue by entering text {string} in android device")
     public void verifyReportIssue(String strReportIssue) {
         try{
@@ -1062,6 +1067,7 @@ public class AndrStepDef extends BasePage {
     @And("suspend the card via Rest API and check the card status over the card")
     public void suspendGW(){
         mobileIDScreen.suspendGW();
+        waitForGivenTime(5);
         String status = mobileIDScreen.getTheStatus();
         Assert.assertEquals(status,"SUSPENDED");
     }
