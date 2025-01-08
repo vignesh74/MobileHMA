@@ -76,7 +76,7 @@ public class AndroidDriverManager implements IDriver {
                 capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,
                         ConfigLoader.getInstance().getAndroidAppActivity());
             }
-            capabilities.setCapability("autoGrantPermissions", "true");
+            capabilities.setCapability("autoGrantPermissions", true);
 
             driver = new AndroidDriver<>(new URL(appiumUrl()), capabilities);
         } catch (MalformedURLException e) {
