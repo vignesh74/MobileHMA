@@ -14,8 +14,8 @@
     <test name="Tests_on_Android_12">
         <parameter name="emulator" value="false"></parameter>
         <parameter name="platformName" value="Android"></parameter>
-        <parameter name="platformVersion" value="13"></parameter>
-        <parameter name="udid" value="RZCTB0QM7VB"></parameter>
+        <parameter name="platformVersion" value="14"></parameter>
+        <parameter name="udid" value="RZCT91ZBXMP"></parameter>
         <parameter name="installApp" value="False"></parameter>
         <parameter name="deviceName" value="Galaxy A53"></parameter>
         <parameter name="systemPort" value="2301"/>
