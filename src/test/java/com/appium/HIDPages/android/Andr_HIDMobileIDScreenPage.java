@@ -128,6 +128,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     private MobileElement txtActivityMsg;
 
     @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[2]")
+    private MobileElement txtActivityMsgNFC;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[2]")
     private MobileElement txtActivityActionName;
 
     @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[4]")
@@ -1736,6 +1739,20 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
         try {
             if(isDisplayed(txtActivityMsg)){
                  actMsg = getElementText(txtActivityMsg);
+            }else {
+                TestUtils.log().info("activity msg is not displayed");
+            }
+        } catch (Exception e) {
+            TestUtils.log().info("Exception occurred while verifying the activity msg.... "+ e);
+        }
+        return actMsg;
+    }
+
+    public String getSuccessMessageNFC() {
+        String actMsg = "";
+        try {
+            if(isDisplayed(txtActivityMsgNFC)){
+                actMsg = getElementText(txtActivityMsgNFC);
             }else {
                 TestUtils.log().info("activity msg is not displayed");
             }

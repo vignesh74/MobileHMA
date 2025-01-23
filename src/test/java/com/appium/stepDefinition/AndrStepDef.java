@@ -356,7 +356,7 @@ public class AndrStepDef extends BasePage {
                 if (mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Successful NFC transaction.")) {
                     Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                     Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
-                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase());
+                    Assert.assertEquals(mobileIDScreen.getSuccessMessageNFC().toLowerCase(), strMessage.toLowerCase());
                     Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase());
                 } else {
                     Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
