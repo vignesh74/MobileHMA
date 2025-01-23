@@ -50,9 +50,6 @@ public class AndroidDriverManager implements IDriver {
             capabilities.setCapability(PLATFORM_NAME, MobilePlatform.ANDROID);
             capabilities.setCapability(AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
             capabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
-//            capabilities.setCapability("adbExecTimeout", 50000);
-           // capabilities.setCapability("appWaitDuration",30000);
-//            capabilities.setCapability("appWaitForLaunch",false);
             if (Boolean.TRUE.equals(emulator)) {
                 capabilities.setCapability("avd", deviceName);
                 capabilities.setCapability(AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, 180000);
@@ -76,6 +73,8 @@ public class AndroidDriverManager implements IDriver {
                 capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,
                         ConfigLoader.getInstance().getAndroidAppActivity());
             }
+            capabilities.setCapability("appium:appWaitForLaunch", "false");
+            capabilities.setCapability("adbExecTimeout", "60000");
             capabilities.setCapability("autoGrantPermissions", true);
 
             driver = new AndroidDriver<>(new URL(appiumUrl()), capabilities);
