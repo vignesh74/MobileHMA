@@ -73,8 +73,8 @@ public class AndroidDriverManager implements IDriver {
                 capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,
                         ConfigLoader.getInstance().getAndroidAppActivity());
             }
-            capabilities.setCapability("appium:appWaitForLaunch", "false");
-            capabilities.setCapability("adbExecTimeout", "60000");
+//            capabilities.setCapability("appium:appWaitForLaunch", "false");
+//            capabilities.setCapability("adbExecTimeout", "60000");
             capabilities.setCapability("autoGrantPermissions", true);
 
             driver = new AndroidDriver<>(new URL(appiumUrl()), capabilities);
