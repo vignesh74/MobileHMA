@@ -402,7 +402,7 @@ public class AndrStepDef extends BasePage {
                 if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
                     Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 33), strMessage);
                 } else {
-                    Assert.assertEquals(mobileIDScreen.getSuccessMessage().substring(0, 27), strMessage);
+                    Assert.assertEquals(mobileIDScreen.getSuccessMessageNFC().substring(0, 27), strMessage);
                 }
             } else {
                 TestUtils.log().info("RoboticArm is not communicated hence activity logs are not captured");
