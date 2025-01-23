@@ -127,13 +127,13 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[3]")
     private MobileElement txtActivityMsg;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[4]")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[2]")
     private MobileElement txtActivityActionName;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[5]")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[4]")
     private MobileElement txtActivityReaderName;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[2]")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[5]")
     private MobileElement txtActivityTime;
 
     @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[6]")
