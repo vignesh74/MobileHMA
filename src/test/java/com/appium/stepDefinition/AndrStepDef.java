@@ -384,6 +384,19 @@ public class AndrStepDef extends BasePage {
                     Date activityTimeNew = inputFormatter1.parse(activityTime);
                     String activityTimeFinal = outputFormatter.format(activityTimeNew);
                     TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+                    Date date1 = format.parse(deviceTimeFinal);
+                    Date date2 = format.parse(activityTimeFinal);
+                    long difference = date2.getTime() - date1.getTime();
+                    long timeInDifference = difference / 1000;
+                    TestUtils.log().info("timeInDifference: " + timeInDifference);
+
+                    if (timeInDifference <= 10) {
+                        Assert.assertTrue(true, "Correct activity log");
+                        TestUtils.log().info("correct activity time lesser than 10 seconds: " + timeInDifference);
+                    } else {
+                        Assert.assertFalse(false, "activity time is greater than 10 seconds");
+                    }
                 }else{
                     String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
                     String activityTime = activityTimeStr.substring(0, 9);
@@ -391,21 +404,22 @@ public class AndrStepDef extends BasePage {
                     Date activityTimeNew = inputFormatter1.parse(activityTime);
                     String activityTimeFinal = outputFormatter.format(activityTimeNew);
                     TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+                    Date date1 = format.parse(deviceTimeFinal);
+                    Date date2 = format.parse(activityTimeFinal);
+                    long difference = date2.getTime() - date1.getTime();
+                    long timeInDifference = difference / 1000;
+                    TestUtils.log().info("timeInDifference: " + timeInDifference);
+
+                    if (timeInDifference <= 10) {
+                        Assert.assertTrue(true, "Correct activity log");
+                        TestUtils.log().info("correct activity time lesser than 10 seconds: " + timeInDifference);
+                    } else {
+                        Assert.assertFalse(false, "activity time is greater than 10 seconds");
+                    }
                 }
 
-                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-                Date date1 = format.parse(deviceTimeFinal);
-                Date date2 = format.parse(activityTimeFinal);
-                long difference = date2.getTime() - date1.getTime();
-                long timeInDifference = difference / 1000;
-                TestUtils.log().info("timeInDifference: " + timeInDifference);
 
-                if (timeInDifference <= 10) {
-                    Assert.assertTrue(true, "Correct activity log");
-                    TestUtils.log().info("correct activity time lesser than 10 seconds: " + timeInDifference);
-                } else {
-                    Assert.assertFalse(false, "activity time is greater than 10 seconds");
-                }
 
 
                 if (mobileIDScreen.getSuccessMessage().contains("Bluetooth")) {
