@@ -377,12 +377,21 @@ public class AndrStepDef extends BasePage {
                 String deviceTimeFinal = outputFormatter.format(deviceTimeNew);
                 TestUtils.log().info("deviceTimeFinal: " + deviceTimeFinal);
 
-                String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
-                String activityTime = activityTimeStr.substring(0, 9);
-                SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
-                Date activityTimeNew = inputFormatter1.parse(activityTime);
-                String activityTimeFinal = outputFormatter.format(activityTimeNew);
-                TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
+                if (mobileIDScreen.getSuccessMessageNFC().equalsIgnoreCase("Successful NFC transaction.")) {
+                    String activityTimeStr = mobileIDScreen.getTxtActivityTimeNFC().getText();
+                    String activityTime = activityTimeStr.substring(0, 9);
+                    SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
+                    Date activityTimeNew = inputFormatter1.parse(activityTime);
+                    String activityTimeFinal = outputFormatter.format(activityTimeNew);
+                    TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
+                }else{
+                    String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
+                    String activityTime = activityTimeStr.substring(0, 9);
+                    SimpleDateFormat inputFormatter1 = new SimpleDateFormat("HH:mm:ss");
+                    Date activityTimeNew = inputFormatter1.parse(activityTime);
+                    String activityTimeFinal = outputFormatter.format(activityTimeNew);
+                    TestUtils.log().info("activityTimeFinal: " + activityTimeFinal);
+                }
 
                 SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
                 Date date1 = format.parse(deviceTimeFinal);

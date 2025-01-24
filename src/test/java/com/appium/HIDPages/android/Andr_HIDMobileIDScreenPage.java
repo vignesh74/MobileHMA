@@ -139,6 +139,9 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
     @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[5]")
     private MobileElement txtActivityTime;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[3]")
+    private MobileElement txtActivityTimeNFC;
+
     @AndroidFindBy(xpath="//android.widget.TextView[@text='TODAY']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]/android.widget.TextView[6]")
     private MobileElement txtActivityDuration;
 
@@ -666,6 +669,10 @@ public class Andr_HIDMobileIDScreenPage extends BasePage {
 
     public MobileElement getTxtActivityTime(){
         return txtActivityTime;
+    }
+
+    public MobileElement getTxtActivityTimeNFC(){
+        return txtActivityTimeNFC;
     }
 
     public MobileElement getBtnSSO(){
