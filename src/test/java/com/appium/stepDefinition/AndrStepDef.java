@@ -353,7 +353,7 @@ public class AndrStepDef extends BasePage {
                 setAppStatus_Andr(strAppState);
 
             } else if (armLogs.first().toLowerCase().contains(("TAP:ENABLE").toLowerCase()) || armLogs.first().toLowerCase().contains(("TWIST_AND_GO=:ENABLE").toLowerCase())) {
-                if (mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Successful NFC transaction.")) {
+                if (mobileIDScreen.getSuccessMessageNFC().equalsIgnoreCase("Successful NFC transaction.")) {
                     Assert.assertTrue(mobileIDScreen.verifySuccessIcon());
                     Assert.assertEquals(mobileIDScreen.verifyDate(), strDate);
                     Assert.assertEquals(mobileIDScreen.getSuccessMessageNFC().toLowerCase(), strMessage.toLowerCase());
