@@ -322,8 +322,8 @@ public class AndrStepDef extends BasePage {
         }
     }
 
-    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string} are verified")
-    public void activityLogIsDisplayed_Andr(String strDate, String strMessage, String strReaderName, String strActionName, String strDeviceState, String strAppState, String strMobileRead) {
+    @And("Activity log is displayed in android device and {string}, {string}, {string}, {string}, {string},{string},{string},{string} are verified")
+    public void activityLogIsDisplayed_Andr(String strDate, String strMessage, String strReaderName, String strActionName, String strDeviceState, String strAppState, String strMobileRead, String display_status) {
         try {
             if(strDeviceState.equalsIgnoreCase("Locked")&&(strAppState.equalsIgnoreCase("Foreground"))){
                 TestUtils.log().info("App is in locked & foreground mode");
@@ -346,7 +346,7 @@ public class AndrStepDef extends BasePage {
                     mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Bluetooth communication failed. Please try again.") ||
                     mobileIDScreen.getSuccessMessage().equalsIgnoreCase("Reader busy. Please try again.") ||
                     mobileIDScreen.getSuccessMessage().equalsIgnoreCase("This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")) {
-
+                androidDeviceAction.setDisplayState(display_status,strDeviceState);
                 roboticExecution(strActionName, strDeviceState);
                 TestUtils.log().info("--- ---- RE-EXECUTION OF ROBOTIC ARM AFTER FAILED---- ---" + armLogs.first());
                 androidDeviceAction.forceUnlock(strDeviceState, strAppState);
