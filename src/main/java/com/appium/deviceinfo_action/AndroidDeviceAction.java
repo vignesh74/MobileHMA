@@ -916,23 +916,183 @@ public class AndroidDeviceAction {
     }
 
 
+//
+//    public void unlockDeviceWithPin(String pin){
+//        try{
+//            String adbPath = ConfigLoader.getInstance().getAdbPath();
+//            if (adbPath != null) {
+//                System.out.println("ADB Path: " + adbPath);
+//            } else {
+//                System.out.println("ADB Path not found.");
+//            }
+//                executeCommand(adbPath, "shell", "input", "keyevent", "82");
+//                executeCommand(adbPath, "shell", "input", "text", pin);
+//                Thread.sleep(1);
+//                executeCommand(adbPath, "shell", "input", "keyevent", "66");
+//
+//        } catch (Exception e) {
+//            TestUtils.log().info("Exception While force unlocking the device  "+e);
+//        }
+//    }
+//
 
-    public void unlockDeviceWithPin(String pin){
-        try{
-            String adbPath = ConfigLoader.getInstance().getAdbPath();
-            if (adbPath != null) {
-                System.out.println("ADB Path: " + adbPath);
-            } else {
-                System.out.println("ADB Path not found.");
+    public void unlockDeviceWithPin(String pin) {
+        int retryCount = 3;  // Set the number of retries
+        int retryDelay = 2000; // Set delay between retries (in milliseconds)
+
+        while (retryCount > 0) {
+            try {
+                String adbPath = ConfigLoader.getInstance().getAdbPath();
+
+                if (adbPath != null) {
+                    System.out.println("ADB Path: " + adbPath);
+                } else {
+                    System.out.println("ADB Path not found.");
+                    break;  // Exit if ADB Path is not found
+                }
+
+                // Check the phone's lock type and status (PIN or Swipe)
+                if (isPhoneLocked(adbPath)) {
+                    System.out.println("Phone is locked, proceeding to unlock.");
+
+                    // If PIN lock is detected, unlock using PIN
+                    if (isPinLock(adbPath)) {
+                        unlockWithPin(adbPath, pin);
+                    } else {
+                        unlockWithSwipe(adbPath);
+                    }
+
+                    System.out.println("Device unlocked successfully.");
+                    break;  // Exit loop if successful
+                } else {
+                    System.out.println("Phone is not locked, no need to unlock.");
+                    break;  // Exit if no unlocking is needed
+                }
+
+            } catch (Exception e) {
+                retryCount--;
+                TestUtils.log().info("Error while unlocking the device: " + e);
+
+                if (retryCount > 0) {
+                    TestUtils.log().info("Retrying... Remaining attempts: " + retryCount);
+                    try {
+                        Thread.sleep(retryDelay);  // Wait before retrying
+                    } catch (InterruptedException ie) {
+                        TestUtils.log().error("Error during sleep: " + ie);
+                    }
+                } else {
+                    TestUtils.log().error("Failed to unlock the device after retries.");
+                }
             }
-                executeCommand(adbPath, "shell", "input", "keyevent", "82");
-                executeCommand(adbPath, "shell", "input", "text", pin);
-                Thread.sleep(1);
-                executeCommand(adbPath, "shell", "input", "keyevent", "66");
+        }
+    }
+
+    /**
+     * Helper method to check if the phone is locked.
+     */
+    private boolean isPhoneLocked(String adbPath) {
+        try {
+            // Check if the phone is locked by querying the status (screen lock status)
+            String command = adbPath + " shell dumpsys window | grep mCurrentFocus";
+            String result = executeCommandAndGetOutput(command); // Modify to capture output of the command
+
+            // Check the result of the command to see if the device is locked
+            if (result.contains("Keyguard")) {
+                System.out.println("Phone is locked.");
+                return true;  // Phone is locked
+            } else {
+                System.out.println("Phone is unlocked.");
+                return false;  // Phone is unlocked
+            }
 
         } catch (Exception e) {
-            TestUtils.log().info("Exception While force unlocking the device  "+e);
+            TestUtils.log().error("Error checking phone status: " + e);
+            return false;  // Default to not locked in case of error
         }
+    }
+
+    /**
+     * Helper method to determine if the phone is locked with a PIN.
+     */
+    private boolean isPinLock(String adbPath) {
+        try {
+            // Use the 'dumpsys' to determine if PIN is set as a lock type (this could vary based on device)
+            String command = adbPath + " shell dumpsys keyguard | grep 'mSecurity'";  // Look for PIN or Swipe
+            String result = executeCommandAndGetOutput(command);
+
+            // If it contains 'PIN', it's locked with a PIN; else it's likely swipe or pattern
+            if (result.contains("PIN")) {
+                System.out.println("Phone is locked with a PIN.");
+                return true;
+            } else {
+                System.out.println("Phone is locked with Swipe/Pattern.");
+                return false;
+            }
+        } catch (Exception e) {
+            TestUtils.log().error("Error checking lock type: " + e);
+            return false;  // Default to swipe if error occurs
+        }
+    }
+
+    /**
+     * Unlock method using PIN.
+     */
+    private void unlockWithPin(String adbPath, String pin) {
+        try {
+            // Wake up the device (keyevent 82 = Power button)
+            executeCommand(adbPath, "shell", "input", "keyevent", "82");
+
+            // Enter the PIN
+            executeCommand(adbPath, "shell", "input", "text", pin);
+
+            // Optional sleep to ensure PIN input is processed
+            Thread.sleep(1000);
+
+            // Confirm the PIN input (keyevent 66 = Enter)
+            executeCommand(adbPath, "shell", "input", "keyevent", "66");
+
+        } catch (Exception e) {
+            TestUtils.log().error("Error unlocking with PIN: " + e);
+        }
+    }
+
+    /**
+     * Unlock method using swipe.
+     */
+    private void unlockWithSwipe(String adbPath) {
+        try {
+            // Wake up the device (keyevent 82 = Power button)
+            executeCommand(adbPath, "shell", "input", "keyevent", "82");
+
+            // Simulate swipe action (this may vary based on device)
+            executeCommand(adbPath, "shell", "input", "swipe", "500", "1000", "500", "500");
+
+            // Optional sleep to ensure the swipe input is processed
+            Thread.sleep(1000);
+
+        } catch (Exception e) {
+            TestUtils.log().error("Error unlocking with swipe: " + e);
+        }
+    }
+
+    /**
+     * Helper method to execute a command and return its output.
+     */
+    private String executeCommandAndGetOutput(String... command) throws IOException, InterruptedException {
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        processBuilder.redirectErrorStream(true);
+        Process process = processBuilder.start();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        StringBuilder output = new StringBuilder();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            output.append(line).append("\n");
+        }
+
+        process.waitFor();
+        return output.toString();
     }
 
     private static void executeCommand(String... command) throws IOException, InterruptedException {
@@ -951,6 +1111,8 @@ public class AndroidDeviceAction {
             throw new RuntimeException("Command execution failed with exit code: " + exitCode);
         }
     }
+
+
 
 }
 
