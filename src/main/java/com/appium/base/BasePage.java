@@ -38,6 +38,7 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import static com.appium.constants.FrameworkConstants.*;
+import static com.appium.utils.SerialPortUtils.basePage;
 import static io.appium.java_client.touch.TapOptions.tapOptions;
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.ElementOption.element;
@@ -1425,32 +1426,52 @@ public class BasePage {
         }
         return bnFlag;
     }
-
-    // Method to check if the device is locked using ADB
-    private boolean isDeviceLocked() {
+    public boolean isDeviceLocked() {
         try {
-            // First, try checking keyguard status using dumpsys
-            String command = ConfigLoader.getInstance().getAdbPath() + " shell dumpsys window | grep mShowingLockscreen";
-            String result = AndroidDeviceAction.executeCommandAndGetOutput(command);
-
-            if (result.toLowerCase().contains("mShowingLockscreen=true")) {
-                return true; // Device is locked
-            }
-
-            // If the first check fails, try an alternative approach
-            command = "adb shell dumpsys keyguard | grep 'mDeviceLocked'";
-            result = AndroidDeviceAction.executeCommandAndGetOutput(command);
-
-            if (result.toLowerCase().contains("mDeviceLocked=true")) {
-                return true; // Device is locked
-            }
-
-            return false; // Device is not locked
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+            return driver.isDeviceLocked();
         } catch (Exception e) {
-            TestUtils.log().error("Error checking device lock state: " + e.getMessage(), e);
-            return false; // Assume unlocked in case of an error
+            TestUtils.log().error("Error checking device lock state, retrying...", e);
+            waitForGivenTime(2);
+            return retryCheckLockState();  // Call a retry method
         }
     }
+
+    private boolean retryCheckLockState() {
+        try {
+            AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
+            return driver.isDeviceLocked();
+        } catch (Exception e) {
+            TestUtils.log().error("Retry failed. Device lock state unknown.", e);
+            return false;
+        }
+    }
+
+    // Method to check if the device is locked using ADB
+//    private boolean isDeviceLocked() {
+//        try {
+//            // First, try checking keyguard status using dumpsys
+//            String command = ConfigLoader.getInstance().getAdbPath() + " shell dumpsys window | grep mShowingLockscreen";
+//            String result = AndroidDeviceAction.executeCommandAndGetOutput(command);
+//
+//            if (result.toLowerCase().contains("mShowingLockscreen=true")) {
+//                return true; // Device is locked
+//            }
+//
+//            // If the first check fails, try an alternative approach
+//            command = "adb shell dumpsys keyguard | grep 'mDeviceLocked'";
+//            result = AndroidDeviceAction.executeCommandAndGetOutput(command);
+//
+//            if (result.toLowerCase().contains("mDeviceLocked=true")) {
+//                return true; // Device is locked
+//            }
+//
+//            return false; // Device is not locked
+//        } catch (Exception e) {
+//            TestUtils.log().error("Error checking device lock state: " + e.getMessage(), e);
+//            return false; // Assume unlocked in case of an error
+//        }
+//    }
 
     /**
      * swipeUp()- It swipe left device screen by provided swipe count
