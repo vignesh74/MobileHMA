@@ -818,23 +818,42 @@ public class AndroidDeviceAction {
         }
     }
 
-    public void setDisplayState(String displayState,String deviceState){
-        try{
-            if(deviceState.equalsIgnoreCase("Locked")){
-                if(displayState.equalsIgnoreCase("On")){
-                    AndroidDriver driver = (AndroidDriver) DriverManager.getDriver();
-                    driver.pressKey(new KeyEvent(AndroidKey.POWER));
-                    TestUtils.log().info("Display state is enabled ON....");
-                }else{
-                    TestUtils.log().info("Display state is already OFF....");
-                }
-            }else{
-                TestUtils.log().info("Device is already in unlocked state and display is ON....");
-            }
-        }catch(Exception e){
-            TestUtils.log().info("Exception while setting the display state....");
-        }
+    public void setDisplayState(String displayState, String deviceState) {
+        try {
+            AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) DriverManager.getDriver();
 
+            if (deviceState.equalsIgnoreCase("Locked")) {
+                boolean isScreenOn = isScreenTurnedOn();
+
+                if (displayState.equalsIgnoreCase("On") && !isScreenOn) {
+                    driver.pressKey(new KeyEvent(AndroidKey.POWER));
+                    TestUtils.log().info("Display state is set to ON.");
+                } else if (displayState.equalsIgnoreCase("Off") && isScreenOn) {
+                    driver.pressKey(new KeyEvent(AndroidKey.POWER));
+                    TestUtils.log().info("Display state is set to OFF.");
+                } else {
+                    TestUtils.log().info("Display state is already " + displayState + ".");
+                }
+            } else {
+                TestUtils.log().info("Device is already in unlocked state, and the display is ON.");
+            }
+        } catch (Exception e) {
+            TestUtils.log().error("Exception while setting the display state: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Helper method to check if the screen is turned on.
+     */
+    private boolean isScreenTurnedOn() {
+        try {
+            String command = ConfigLoader.getInstance().getAdbPath() + "shell dumpsys power | grep 'Display Power'";
+            String result = executeCommandAndGetOutput(command);
+            return result.toLowerCase().contains("state=on");
+        } catch (Exception e) {
+            TestUtils.log().error("Error checking display state: " + e.getMessage(), e);
+            return false; // Default to false in case of error
+        }
     }
 
     public void lockUnlockDevice() {
