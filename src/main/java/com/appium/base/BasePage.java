@@ -3,6 +3,7 @@
  */
 package com.appium.base;
 
+import com.appium.deviceinfo_action.AndroidDeviceAction;
 import com.appium.exceptions.AutomationException;
 import com.appium.manager.DriverManager;
 import com.appium.utils.ConfigLoader;
@@ -1408,11 +1409,10 @@ public class BasePage {
         boolean bnFlag = false;
         try {
             if (DriverManager.getPlatform().equalsIgnoreCase(PLATFORM_ANDROID)) {
-                AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) DriverManager.getDriver();
-                if (driver.isDeviceLocked()) {
-                    TestUtils.log().info("***** Device is Locked *****");
-                    bnFlag = true;
-                }
+                    if (isDeviceLocked()) {
+                        TestUtils.log().info("***** Device is Locked *****");
+                        bnFlag = true;
+                    }
             } else {
                 IOSDriver<MobileElement> driver = (IOSDriver<MobileElement>) DriverManager.getDriver();
                 if (driver.isDeviceLocked()) {
@@ -1424,6 +1424,19 @@ public class BasePage {
             TestUtils.log().debug("Getting exception while performing to get device locked state");
         }
         return bnFlag;
+    }
+
+    // Method to check if the device is locked using ADB
+    private boolean isDeviceLocked() {
+        try {
+            String command = "adb shell dumpsys window | grep mCurrentFocus";
+            String result = AndroidDeviceAction.executeCommandAndGetOutput(command);
+            // Check if the result contains 'Keyguard' or other lock-related strings
+            return result.toLowerCase().contains("keyguard");
+        } catch (Exception e) {
+            TestUtils.log().info("Error checking device lock state: " + e.getMessage());
+            return false; // Default to false in case of error
+        }
     }
     /**
      * swipeUp()- It swipe left device screen by provided swipe count
