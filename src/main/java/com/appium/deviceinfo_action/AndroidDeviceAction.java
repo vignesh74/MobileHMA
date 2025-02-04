@@ -1037,7 +1037,7 @@ public class AndroidDeviceAction {
     }
 
     /**
-     * Unlock method using PIN.
+     * Unlock method using PIN, ensuring the device is on the keypad page before entering the PIN.
      */
     private void unlockWithPin(String adbPath, String pin) {
         try {
@@ -1049,21 +1049,53 @@ public class AndroidDeviceAction {
                 TestUtils.log().info("Screen is already ON.");
             }
 
-            // Dismiss the lock screen if necessary
-            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "82"); // Menu button to unlock screen
+            // Ensure the device is in the PIN entry screen
+            if (!isOnKeypadScreen(adbPath)) {
+                TestUtils.log().info("Device is not on the keypad screen. Attempting to navigate...");
 
-            // Enter the PIN
-            executeCommandAndGetOutput(adbPath, "shell", "input", "text", pin);
-            Thread.sleep(1000); // Ensure PIN input is processed
+                // Swipe up to reveal the keypad
+                executeCommandAndGetOutput(adbPath, "shell", "input", "swipe", "500", "1500", "500", "500");
+                Thread.sleep(1000);
 
-            // Press Enter to confirm the PIN
-            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "66"); // Enter key
+                // Press MENU key to dismiss the lock screen if necessary
+                executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "82");
+                Thread.sleep(1000);
+            }
 
-            TestUtils.log().info("Device unlocked successfully.");
+            // Re-check if we are now on the keypad screen
+            if (isOnKeypadScreen(adbPath)) {
+                TestUtils.log().info("Device is on the PIN entry screen. Entering PIN...");
+
+                // Enter the PIN
+                executeCommandAndGetOutput(adbPath, "shell", "input", "text", pin);
+                Thread.sleep(1000); // Ensure PIN input is processed
+
+                // Press Enter to confirm the PIN
+                executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "66"); // Enter key
+                TestUtils.log().info("Device unlocked successfully.");
+            } else {
+                TestUtils.log().error("Failed to navigate to PIN entry screen. Unlock attempt aborted.");
+            }
         } catch (Exception e) {
             TestUtils.log().error("Error unlocking with PIN: " + e.getMessage(), e);
         }
     }
+
+    /**
+     * Checks if the device is on the PIN entry screen.
+     */
+    private boolean isOnKeypadScreen(String adbPath) {
+        try {
+            String output = executeCommandAndGetOutput(adbPath, "shell", "dumpsys", "window", "windows");
+            return output.contains("com.android.systemui/com.android.keyguard.KeyguardPasswordView") ||
+                    output.contains("com.android.systemui/com.android.keyguard.KeyguardPatternView") ||
+                    output.contains("Keyguard");
+        } catch (Exception e) {
+            TestUtils.log().error("Error checking if device is on PIN entry screen: ", e);
+            return false;
+        }
+    }
+
 
 
     /**
