@@ -909,32 +909,15 @@ public class AndroidDeviceAction {
 
         } catch (org.openqa.selenium.NoSuchSessionException e) {
             TestUtils.log().info("No active session found: ", e);
-            DriverManager.getDriver().launchApp();
+            try {
+                DriverManager.getDriver().launchApp();
+            } catch (Exception ex) {
+                TestUtils.log().error("Failed to launch the application: ", ex);
+            }
         } catch (Exception e) {
             TestUtils.log().info("Exception while force unlocking the device: ", e);
         }
     }
-
-
-//
-//    public void unlockDeviceWithPin(String pin){
-//        try{
-//            String adbPath = ConfigLoader.getInstance().getAdbPath();
-//            if (adbPath != null) {
-//                System.out.println("ADB Path: " + adbPath);
-//            } else {
-//                System.out.println("ADB Path not found.");
-//            }
-//                executeCommand(adbPath, "shell", "input", "keyevent", "82");
-//                executeCommand(adbPath, "shell", "input", "text", pin);
-//                Thread.sleep(1);
-//                executeCommand(adbPath, "shell", "input", "keyevent", "66");
-//
-//        } catch (Exception e) {
-//            TestUtils.log().info("Exception While force unlocking the device  "+e);
-//        }
-//    }
-//
 
     public void unlockDeviceWithPin(String pin) {
         int retryCount = 3;  // Set the number of retries
@@ -1040,16 +1023,16 @@ public class AndroidDeviceAction {
     private void unlockWithPin(String adbPath, String pin) {
         try {
             // Wake up the device (keyevent 82 = Power button)
-            executeCommand(adbPath, "shell", "input", "keyevent", "82");
+            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "82");
 
             // Enter the PIN
-            executeCommand(adbPath, "shell", "input", "text", pin);
+            executeCommandAndGetOutput(adbPath, "shell", "input", "text", pin);
 
             // Optional sleep to ensure PIN input is processed
             Thread.sleep(1000);
 
             // Confirm the PIN input (keyevent 66 = Enter)
-            executeCommand(adbPath, "shell", "input", "keyevent", "66");
+            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "66");
 
         } catch (Exception e) {
             TestUtils.log().error("Error unlocking with PIN: " + e);
@@ -1062,10 +1045,10 @@ public class AndroidDeviceAction {
     private void unlockWithSwipe(String adbPath) {
         try {
             // Wake up the device (keyevent 82 = Power button)
-            executeCommand(adbPath, "shell", "input", "keyevent", "82");
+            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "82");
 
             // Simulate swipe action (this may vary based on device)
-            executeCommand(adbPath, "shell", "input", "swipe", "500", "1000", "500", "500");
+            executeCommandAndGetOutput(adbPath, "shell", "input", "swipe", "500", "1000", "500", "500");
 
             // Optional sleep to ensure the swipe input is processed
             Thread.sleep(1000);
@@ -1076,43 +1059,44 @@ public class AndroidDeviceAction {
     }
 
     /**
-     * Helper method to execute a command and return its output.
+     * Executes a command and returns its output.
+     * Supports both regular commands and piped (`|`) commands.
+     *
+     * @param command Command to execute (single or piped)
+     * @return Output of the command
+     * @throws IOException If an I/O error occurs
+     * @throws InterruptedException If the process is interrupted
      */
-    private String executeCommandAndGetOutput(String... command) throws IOException, InterruptedException {
-        ProcessBuilder processBuilder = new ProcessBuilder(command);
-        processBuilder.redirectErrorStream(true);
-        Process process = processBuilder.start();
+    public static String executeCommandAndGetOutput(String... command) throws IOException, InterruptedException {
+        ProcessBuilder processBuilder;
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        StringBuilder output = new StringBuilder();
-        String line;
-
-        while ((line = reader.readLine()) != null) {
-            output.append(line).append("\n");
+        if (command.length == 1) {
+            // If command contains pipes (`|`), run it using /bin/bash
+            processBuilder = new ProcessBuilder("/bin/bash", "-c", command[0]);
+        } else {
+            // If no pipes, execute normally
+            processBuilder = new ProcessBuilder(command);
         }
 
-        process.waitFor();
-        return output.toString();
-    }
-
-    private static void executeCommand(String... command) throws IOException, InterruptedException {
-        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        processBuilder.redirectErrorStream(true);  // Merge error output with standard output
         Process process = processBuilder.start();
 
-        // Read the output (if needed)
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+        // Read process output
+        StringBuilder output = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
         }
 
         int exitCode = process.waitFor();
         if (exitCode != 0) {
             throw new RuntimeException("Command execution failed with exit code: " + exitCode);
         }
+
+        return output.toString().trim();
     }
-
-
 
 }
 
