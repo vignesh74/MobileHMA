@@ -275,7 +275,7 @@ public class BaseTest extends AbstractTestNGCucumberTests {
      */
     private boolean isScreenAwake() {
         try {
-            String output = executeCommandAndGetOutput("adb", "shell", "dumpsys", "power");
+            String output = executeCommandAndGetOutput(ConfigLoader.getInstance().getAdbPath(), "shell", "dumpsys", "power");
             return output.contains("mWakefulness=Awake") || output.contains("Display Power: state=ON");
         } catch (Exception e) {
             TestUtils.log().error("Error checking screen state: ", e);
@@ -289,7 +289,7 @@ public class BaseTest extends AbstractTestNGCucumberTests {
     private void wakeUpScreen() {
         try {
             TestUtils.log().info("Waking up the device...");
-            executeCommandAndGetOutput("adb", "shell", "input", "keyevent", "26"); // POWER button
+            executeCommandAndGetOutput(ConfigLoader.getInstance().getAdbPath(), "shell", "input", "keyevent", "26"); // POWER button
             Thread.sleep(1000);
         } catch (Exception e) {
             TestUtils.log().error("Error waking up screen: ", e);
