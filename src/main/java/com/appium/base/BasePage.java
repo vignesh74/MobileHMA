@@ -1429,15 +1429,29 @@ public class BasePage {
     // Method to check if the device is locked using ADB
     private boolean isDeviceLocked() {
         try {
-            String command = ConfigLoader.getInstance().getAdbPath() + "shell dumpsys window | grep mCurrentFocus";
+            // First, try checking keyguard status using dumpsys
+            String command = ConfigLoader.getInstance().getAdbPath() + " shell dumpsys window | grep mShowingLockscreen";
             String result = AndroidDeviceAction.executeCommandAndGetOutput(command);
-            // Check if the result contains 'Keyguard' or other lock-related strings
-            return result.toLowerCase().contains("keyguard");
+
+            if (result.toLowerCase().contains("mShowingLockscreen=true")) {
+                return true; // Device is locked
+            }
+
+            // If the first check fails, try an alternative approach
+            command = "adb shell dumpsys keyguard | grep 'mDeviceLocked'";
+            result = AndroidDeviceAction.executeCommandAndGetOutput(command);
+
+            if (result.toLowerCase().contains("mDeviceLocked=true")) {
+                return true; // Device is locked
+            }
+
+            return false; // Device is not locked
         } catch (Exception e) {
-            TestUtils.log().info("Error checking device lock state: " + e.getMessage());
-            return false; // Default to false in case of error
+            TestUtils.log().error("Error checking device lock state: " + e.getMessage(), e);
+            return false; // Assume unlocked in case of an error
         }
     }
+
     /**
      * swipeUp()- It swipe left device screen by provided swipe count
      *
