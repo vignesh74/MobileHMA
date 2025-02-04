@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.InputStream;
 
 import static com.appium.constants.FrameworkConstants.*;
+import static com.appium.deviceinfo_action.AndroidDeviceAction.executeCommandAndGetOutput;
 
 public class BaseTest extends AbstractTestNGCucumberTests {
 
@@ -203,33 +204,95 @@ public class BaseTest extends AbstractTestNGCucumberTests {
     public void verifyDeviceStateAndUnlockDevice() {
         try {
             BasePage basePage = new BasePage();
-            String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
+            String platform = DriverManager.getPlatform();
+            TestUtils.log().info("Verifying device state on platform: " + platform);
+
+            if (platform.equalsIgnoreCase(PLATFORM_ANDROID)) {
+                unlockAndroidDevice(basePage);
+            } else if (platform.equalsIgnoreCase(PLATFORM_IOS)) {
+                unlockiOSDevice(basePage);
+            } else {
+                TestUtils.log().warn("Unsupported platform detected: " + platform);
+            }
+
+        } catch (Exception e) {
+            TestUtils.log().error("Exception occurred while verifying device state: ", e);
+        }
+    }
+
+    /**
+     * Unlocks an Android device if it's locked.
+     */
+    private void unlockAndroidDevice(BasePage basePage) {
+        try {
             AndroidDeviceAction androidDeviceAction = new AndroidDeviceAction();
-            if ((DriverManager.getPlatform().equalsIgnoreCase(PLATFORM_ANDROID))) {
-                String strUdId = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
+            String mobilePin = ConfigLoader.getInstance().getAndroidMobilePin();
+            String strUdId = (String) DriverManager.getDriver().getCapabilities().getCapability("udid");
+
+            if (!isScreenAwake()) {
+                wakeUpScreen();
+            }
+
+            if (basePage.toKnowDeviceLockedState()) {
+                TestUtils.log().info("Device is locked, attempting to unlock...");
+                androidDeviceAction.unlockDeviceWithPin(mobilePin);
+                basePage.waitForGivenTime(2);
+
+                // Re-check lock state after unlock attempt
                 if (basePage.toKnowDeviceLockedState()) {
-                    //androidDeviceAction.toUnlockDevice(strUdId);
+                    TestUtils.log().warn("Unlock attempt failed, retrying...");
                     androidDeviceAction.unlockDeviceWithPin(mobilePin);
                     basePage.waitForGivenTime(2);
-                    if (basePage.toKnowDeviceLockedState()) {
-                        //androidDeviceAction.toUnlockDevice(strUdId);
-                        androidDeviceAction.unlockDeviceWithPin(mobilePin);
-                        basePage.waitForGivenTime(2);
-                        TestUtils.log().info("Device is unlocked and ready for execution");
-                    }
-                } else {
-                    TestUtils.log().info("Device is already in unlocked state");
                 }
-            } else if ((DriverManager.getPlatform().equalsIgnoreCase(PLATFORM_IOS))) {
-                if (basePage.toKnowDeviceLockedState()) {
-                    basePage.toUnlock();
-                    TestUtils.log().info("Device is unlocked and ready for execution");
-                } else {
-                    TestUtils.log().info("Device is already in unlocked state");
-                }
+                TestUtils.log().info("Device is unlocked and ready for execution");
+            } else {
+                TestUtils.log().info("Device is already in an unlocked state.");
             }
         } catch (Exception e) {
-            TestUtils.log().debug("Exception occurred while verifying the device state...{}", e.getMessage());
+            TestUtils.log().error("Error while unlocking Android device: ", e);
+        }
+    }
+
+    /**
+     * Unlocks an iOS device if it's locked.
+     */
+    private void unlockiOSDevice(BasePage basePage) {
+        try {
+            if (basePage.toKnowDeviceLockedState()) {
+                TestUtils.log().info("iOS device is locked, unlocking...");
+                basePage.toUnlock();
+                TestUtils.log().info("iOS device is unlocked and ready for execution");
+            } else {
+                TestUtils.log().info("iOS device is already in an unlocked state.");
+            }
+        } catch (Exception e) {
+            TestUtils.log().error("Error while unlocking iOS device: ", e);
+        }
+    }
+
+    /**
+     * Checks if the Android screen is awake.
+     */
+    private boolean isScreenAwake() {
+        try {
+            String output = executeCommandAndGetOutput("adb", "shell", "dumpsys", "power");
+            return output.contains("mWakefulness=Awake") || output.contains("Display Power: state=ON");
+        } catch (Exception e) {
+            TestUtils.log().error("Error checking screen state: ", e);
+            return false;
+        }
+    }
+
+    /**
+     * Wakes up the Android screen.
+     */
+    private void wakeUpScreen() {
+        try {
+            TestUtils.log().info("Waking up the device...");
+            executeCommandAndGetOutput("adb", "shell", "input", "keyevent", "26"); // POWER button
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            TestUtils.log().error("Error waking up screen: ", e);
         }
     }
 

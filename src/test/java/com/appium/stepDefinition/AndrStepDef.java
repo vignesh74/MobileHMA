@@ -358,6 +358,7 @@ public class AndrStepDef extends BasePage {
                 validateActivityLog(strDate, strMessage, strReaderName, strActionName, strMobileRead);
             } else {
                 TestUtils.log().info("RoboticArm is not communicated, hence activity logs are not captured");
+
             }
         } catch (ParseException pe) {
             TestUtils.log().error("Date parsing error: ", pe);
