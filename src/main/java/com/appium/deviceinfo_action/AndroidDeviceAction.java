@@ -1041,41 +1041,68 @@ public class AndroidDeviceAction {
      */
     private void unlockWithPin(String adbPath, String pin) {
         try {
-            // Wake up the device (keyevent 82 = Power button)
-            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "82");
+            if (!isScreenAwake(adbPath)) {
+                TestUtils.log().info("Screen is OFF. Waking up the device...");
+                executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "26");  // Power button to wake up
+                Thread.sleep(1000);
+            } else {
+                TestUtils.log().info("Screen is already ON.");
+            }
+
+            // Dismiss the lock screen if necessary
+            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "82"); // Menu button to unlock screen
 
             // Enter the PIN
             executeCommandAndGetOutput(adbPath, "shell", "input", "text", pin);
+            Thread.sleep(1000); // Ensure PIN input is processed
 
-            // Optional sleep to ensure PIN input is processed
-            Thread.sleep(1000);
+            // Press Enter to confirm the PIN
+            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "66"); // Enter key
 
-            // Confirm the PIN input (keyevent 66 = Enter)
-            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "66");
-
+            TestUtils.log().info("Device unlocked successfully.");
         } catch (Exception e) {
-            TestUtils.log().error("Error unlocking with PIN: " + e);
+            TestUtils.log().error("Error unlocking with PIN: " + e.getMessage(), e);
         }
     }
+
 
     /**
      * Unlock method using swipe.
      */
     private void unlockWithSwipe(String adbPath) {
         try {
-            // Wake up the device (keyevent 82 = Power button)
-            executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "82");
+            if (!isScreenAwake(adbPath)) {
+                // Wake up the device if the screen is off
+                TestUtils.log().info("Waking up the device...");
+                executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "26"); // Press POWER button
+                Thread.sleep(1000); // Allow time for wake-up
+            } else {
+                TestUtils.log().info("Screen is already awake.");
+            }
 
-            // Simulate swipe action (this may vary based on device)
+            // Perform swipe unlock
+            TestUtils.log().info("Swiping to unlock...");
             executeCommandAndGetOutput(adbPath, "shell", "input", "swipe", "500", "1000", "500", "500");
-
-            // Optional sleep to ensure the swipe input is processed
-            Thread.sleep(1000);
+            Thread.sleep(1000); // Ensure swipe is processed
 
         } catch (Exception e) {
-            TestUtils.log().error("Error unlocking with swipe: " + e);
+            TestUtils.log().error("Error unlocking with swipe: ", e);
         }
     }
+
+    /**
+     * Checks if the device screen is awake.
+     */
+    private boolean isScreenAwake(String adbPath) {
+        try {
+            String output = executeCommandAndGetOutput(adbPath, "shell", "dumpsys", "power");
+            return output.contains("mWakefulness=Awake") || output.contains("Display Power: state=ON");
+        } catch (Exception e) {
+            TestUtils.log().error("Error checking screen state: ", e);
+            return false; // Assume screen is off if check fails
+        }
+    }
+
 
     /**
      * Executes a command and returns its output.
