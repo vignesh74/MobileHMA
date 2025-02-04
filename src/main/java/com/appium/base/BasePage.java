@@ -1429,7 +1429,7 @@ public class BasePage {
     // Method to check if the device is locked using ADB
     private boolean isDeviceLocked() {
         try {
-            String command = "adb shell dumpsys window | grep mCurrentFocus";
+            String command = ConfigLoader.getInstance().getAdbPath() + "shell dumpsys window | grep mCurrentFocus";
             String result = AndroidDeviceAction.executeCommandAndGetOutput(command);
             // Check if the result contains 'Keyguard' or other lock-related strings
             return result.toLowerCase().contains("keyguard");
