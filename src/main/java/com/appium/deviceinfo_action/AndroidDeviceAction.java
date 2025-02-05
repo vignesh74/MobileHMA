@@ -823,7 +823,7 @@ public class AndroidDeviceAction {
             AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) DriverManager.getDriver();
 
             if (deviceState.equalsIgnoreCase("Locked")) {
-                boolean isScreenOn = isScreenTurnedOn();
+                boolean isScreenOn = isScreenAwake(ConfigLoader.getInstance().getAdbPath());
 
                 if (displayState.equalsIgnoreCase("On") && !isScreenOn) {
                     driver.pressKey(new KeyEvent(AndroidKey.POWER));
@@ -839,20 +839,6 @@ public class AndroidDeviceAction {
             }
         } catch (Exception e) {
             TestUtils.log().error("Exception while setting the display state: " + e.getMessage(), e);
-        }
-    }
-
-    /**
-     * Helper method to check if the screen is turned on.
-     */
-    private boolean isScreenTurnedOn() {
-        try {
-            String command = ConfigLoader.getInstance().getAdbPath() + "shell dumpsys power | grep 'Display Power'";
-            String result = executeCommandAndGetOutput(command);
-            return result.toLowerCase().contains("state=on");
-        } catch (Exception e) {
-            TestUtils.log().error("Error checking display state: " + e.getMessage(), e);
-            return false; // Default to false in case of error
         }
     }
 
@@ -958,11 +944,11 @@ public class AndroidDeviceAction {
                     System.out.println("Phone is locked, proceeding to unlock.");
 
                     // If PIN lock is detected, unlock using PIN
-                    if (isPinLock(adbPath)) {
-                        unlockWithPin(adbPath, pin);
-                    } else {
+                   // if (isPinLock(adbPath)) {
+                 //       unlockWithPin(adbPath, pin);
+//                    } else {
                         unlockWithSwipe(adbPath);
-                    }
+//                    }
 
                     System.out.println("Device unlocked successfully.");
                     break;  // Exit loop if successful
@@ -993,25 +979,71 @@ public class AndroidDeviceAction {
      * Helper method to check if the phone is locked.
      */
     private boolean isPhoneLocked(String adbPath) {
-        try {
-            // Check if the phone is locked by querying the status (screen lock status)
-            String command = adbPath + " shell dumpsys window | grep mCurrentFocus";
-            String result = executeCommandAndGetOutput(command); // Modify to capture output of the command
+        int maxRetries = 3;
+        int attempt = 0;
 
-            // Check the result of the command to see if the device is locked
-            if (result.contains("Keyguard")) {
-                System.out.println("Phone is locked.");
-                return true;  // Phone is locked
-            } else {
+        while (attempt < maxRetries) {
+            try {
+                attempt++;
+                System.out.println("Checking phone lock status... Attempt: " + attempt);
+
+                // First check: Using "isStatusBarKeyguard"
+                try {
+                    String command1 = adbPath + " shell dumpsys window policy";
+                    String result1 = executeCommandAndGetOutput(command1);
+                    if (result1.contains("isStatusBarKeyguard=true")) {
+                        System.out.println("Phone is locked (Detected via isStatusBarKeyguard).");
+                        return true;
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error executing first lock check: " + e.getMessage());
+                    TestUtils.log().error("Error executing first lock check, proceeding to next check...");
+                }
+
+                // Second check: Using "mShowingLockscreen"
+                try {
+                    String command2 = adbPath + " shell dumpsys window";
+                    String result2 = executeCommandAndGetOutput(command2);
+                    if (result2.contains("mShowingLockscreen=true")) {
+                        System.out.println("Phone is locked (Detected via mShowingLockscreen).");
+                        return true;
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error executing second lock check: " + e.getMessage());
+                    TestUtils.log().error("Error executing second lock check, proceeding to next check...");
+                }
+
+                // Third check: Using "Keyguard" detection in activity stack
+                try {
+                    String command3 = adbPath + " shell dumpsys activity activities";
+                    String result3 = executeCommandAndGetOutput(command3);
+                    if (result3.contains("isKeyguardShowing=true")) {
+                        System.out.println("Phone is locked (Detected via Keyguard Activity).");
+                        return true;
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error executing third lock check: " + e.getMessage());
+                    TestUtils.log().error("Error executing third lock check, retrying... Attempt " + attempt);
+                }
+
+                // If all checks fail to detect lock, assume the phone is unlocked
                 System.out.println("Phone is unlocked.");
-                return false;  // Phone is unlocked
+                return false;
+
+            } catch (Exception e) {
+                System.err.println("Unexpected error checking phone lock status: " + e.getMessage());
+                TestUtils.log().error("Unexpected error checking phone lock status, retrying... Attempt " + attempt);
             }
 
-        } catch (Exception e) {
-            TestUtils.log().error("Error checking phone status: " + e);
-            return false;  // Default to not locked in case of error
+            if (attempt >= maxRetries) {
+                System.err.println("Max retries reached. Assuming phone is unlocked.");
+                return false; // Default assumption if all retries fail
+            }
         }
+
+        return false;
     }
+
 
     /**
      * Helper method to determine if the phone is locked with a PIN.
@@ -1096,31 +1128,40 @@ public class AndroidDeviceAction {
         }
     }
 
-
-
     /**
      * Unlock method using swipe.
      */
     private void unlockWithSwipe(String adbPath) {
-        try {
-            if (!isScreenAwake(adbPath)) {
-                // Wake up the device if the screen is off
-                TestUtils.log().info("Waking up the device...");
-                executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "26"); // Press POWER button
-                Thread.sleep(1000); // Allow time for wake-up
-            } else {
-                TestUtils.log().info("Screen is already awake.");
-            }
+        // Create a TouchAction instance to simulate swipe
+        TouchAction action = new TouchAction(DriverManager.getDriver());
 
-            // Perform swipe unlock
-            TestUtils.log().info("Swiping to unlock...");
-            executeCommandAndGetOutput(adbPath, "shell", "input", "swipe", "500", "1000", "500", "500");
-            Thread.sleep(1000); // Ensure swipe is processed
+        // Perform a swipe (startX, startY, endX, endY) for swipe gesture
+        action.press(PointOption.point(700, 1000))  // Start at (500, 1000)
+                .moveTo(PointOption.point(500, 500))  // Move to (500, 500)
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))) // wait to simulate gesture
+                .release()
+                .perform();  // Perform the swipe action
 
-        } catch (Exception e) {
-            TestUtils.log().error("Error unlocking with swipe: ", e);
-        }
+//        try {
+//            if (!isScreenAwake(adbPath)) {
+//                // Wake up the device if the screen is off
+//                TestUtils.log().info("Waking up the device...");
+//                executeCommandAndGetOutput(adbPath, "shell", "input", "keyevent", "26"); // Press POWER button
+//                Thread.sleep(1000); // Allow time for wake-up
+//            } else {
+//                TestUtils.log().info("Screen is already awake.");
+//            }
+//
+//            // Perform swipe unlock
+//            TestUtils.log().info("Swiping to unlock...");
+//            executeCommandAndGetOutput(adbPath, "shell", "input", "swipe", "500", "1000", "500", "500");
+//            Thread.sleep(1000); // Ensure swipe is processed
+//
+//        } catch (Exception e) {
+//            TestUtils.log().error("Error unlocking with swipe: ", e);
+//        }
     }
+
 
     /**
      * Checks if the device screen is awake.
