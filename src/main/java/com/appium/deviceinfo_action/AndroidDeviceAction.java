@@ -944,11 +944,11 @@ public class AndroidDeviceAction {
                     System.out.println("Phone is locked, proceeding to unlock.");
 
                     // If PIN lock is detected, unlock using PIN
-                   // if (isPinLock(adbPath)) {
-                 //       unlockWithPin(adbPath, pin);
-//                    } else {
-                        unlockWithSwipe(adbPath);
-//                    }
+                  //  if (isPinLock(adbPath)) {
+                        unlockWithPin(adbPath, pin);
+                  //  } else {
+                   //     unlockWithSwipe(adbPath);
+                   // }
 
                     System.out.println("Device unlocked successfully.");
                     break;  // Exit loop if successful
