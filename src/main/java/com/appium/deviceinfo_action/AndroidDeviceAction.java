@@ -978,7 +978,7 @@ public class AndroidDeviceAction {
     /**
      * Helper method to check if the phone is locked.
      */
-    private boolean isPhoneLocked(String adbPath) {
+    public static boolean isPhoneLocked(String adbPath) {
         int maxRetries = 3;
         int attempt = 0;
 
