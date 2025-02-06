@@ -233,21 +233,14 @@ public class BaseTest extends AbstractTestNGCucumberTests {
                 wakeUpScreen();
             }
 
-//            if (basePage.toKnowDeviceLockedState()) {
-//                TestUtils.log().info("Device is locked, attempting to unlock...");
+            if (AndroidDeviceAction.isPhoneLocked(ConfigLoader.getInstance().getAdbPath())) {
+                System.out.println("Phone is locked, proceeding to unlock.");
                 androidDeviceAction.unlockDeviceWithPin(mobilePin);
                 basePage.waitForGivenTime(2);
-
-//                // Re-check lock state after unlock attempt
-//                if (basePage.toKnowDeviceLockedState()) {
-//                    TestUtils.log().warn("Unlock attempt failed, retrying...");
-//                    androidDeviceAction.unlockDeviceWithPin(mobilePin);
-//                    basePage.waitForGivenTime(2);
-//                }
                 TestUtils.log().info("Device is unlocked and ready for execution");
-//            } else {
-//                TestUtils.log().info("Device is already in an unlocked state.");
-//            }
+            } else {
+                TestUtils.log().info("Device is already in an unlocked state.");
+            }
         } catch (Exception e) {
             TestUtils.log().error("Error while unlocking Android device: ", e);
         }
