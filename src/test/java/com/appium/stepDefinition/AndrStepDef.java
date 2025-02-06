@@ -347,14 +347,15 @@ public class AndrStepDef extends BasePage {
             mobileIDScreen.expandActivityLogs();
 
             String successMessage = mobileIDScreen.getSuccessMessage();
-            if (successMessage.matches("Please move closer to the reader to gain access.|Communication timeout. Please try again.|Bluetooth communication failed. Please try again.|Reader busy. Please try again.|This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")) {
-                androidDeviceAction.setDisplayState(display_status, strDeviceState);
-                waitForGivenTime(3);
-                roboticExecution(strActionName, strDeviceState);
-                TestUtils.log().info("Re-executing robotic arm after failure: " + armLogs.first());
-                androidDeviceAction.forceUnlock(strDeviceState, strAppState);
-                setAppStatus_Andr(strAppState);
-            } else if (armLogs.first().toLowerCase().contains("tap:enable") || armLogs.first().toLowerCase().contains("twist_and_go=:enable")) {
+//            if (successMessage.matches("Please move closer to the reader to gain access.|Communication timeout. Please try again.|Bluetooth communication failed. Please try again.|Reader busy. Please try again.|This reader is anti-passback enabled. Please make sure your Mobile ID is not misused.")) {
+//                androidDeviceAction.setDisplayState(display_status, strDeviceState);
+//                waitForGivenTime(3);
+//                roboticExecution(strActionName, strDeviceState);
+//                TestUtils.log().info("Re-executing robotic arm after failure: " + armLogs.first());
+//                androidDeviceAction.forceUnlock(strDeviceState, strAppState);
+//                setAppStatus_Andr(strAppState);
+//            } else
+            if (armLogs.first().toLowerCase().contains("tap:enable") || armLogs.first().toLowerCase().contains("twist_and_go=:enable")) {
                 validateActivityLog(strDate, strMessage, strReaderName, strActionName, strMobileRead);
             } else {
                 TestUtils.log().info("RoboticArm is not communicated, hence activity logs are not captured");
