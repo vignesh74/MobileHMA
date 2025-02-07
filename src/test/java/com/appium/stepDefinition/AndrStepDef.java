@@ -355,6 +355,7 @@ public class AndrStepDef extends BasePage {
 //                androidDeviceAction.forceUnlock(strDeviceState, strAppState);
 //                setAppStatus_Andr(strAppState);
 //            } else
+
             if (armLogs.first().toLowerCase().contains("tap:enable") || armLogs.first().toLowerCase().contains("twist_and_go=:enable")) {
                 validateActivityLog(strDate, strMessage, strReaderName, strActionName, strMobileRead);
             } else {
@@ -392,8 +393,10 @@ public class AndrStepDef extends BasePage {
 
     @Then("Robotic arms log {string} is displayed for android device")
     public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
-        Assert.assertTrue(armLogs.first().toLowerCase().contains(strRoboticLog.toLowerCase()));
+        if (armLogs == null || armLogs.first() == null) {
+            Assert.fail("Error: armLogs is null or empty. No robotic arm logs found.");}
         TestUtils.log().info("armLogs.first(): " + armLogs.first() + " is Equal to " + " : strRoboticLog" + strRoboticLog);
+        Assert.assertTrue(armLogs.first().toLowerCase().contains(strRoboticLog.toLowerCase()));
     }
 
     //setting scenarios step definition method
