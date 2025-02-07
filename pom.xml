@@ -84,6 +84,9 @@
                         <suiteXmlFile>${testNGSourceDirectory}/${suiteFile}.xml</suiteXmlFile>
                         <!--<suiteXmlFile>src/test/resources/runners/testng_iPhone12_iPhone13_Simulator_iPhone13_Android.xml</suiteXmlFile> -->
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <cucumber.options>--plugin json:target/cucumber.json</cucumber.options>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
