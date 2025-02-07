@@ -392,12 +392,29 @@ public class AndrStepDef extends BasePage {
     }
 
     @Then("Robotic arms log {string} is displayed for android device")
-    public void roboticArmsLogIsDisplayed_Andr(String strRoboticLog) {
+    public void roboticArmsLogIsDisplayed_Andr(String expectedLog) {
         if (armLogs == null || armLogs.first() == null) {
-            Assert.fail("Error: armLogs is null or empty. No robotic arm logs found.");}
-        TestUtils.log().info("armLogs.first(): " + armLogs.first() + " is Equal to " + " : strRoboticLog" + strRoboticLog);
-        Assert.assertTrue(armLogs.first().toLowerCase().contains(strRoboticLog.toLowerCase()));
+            String errorMessage = "Error: armLogs is null or empty. No robotic arm logs found.";
+            TestUtils.log().error(errorMessage);
+            Assert.fail(errorMessage);  // Mark step as failed in Cucumber report
+        }
+
+        // Normalize actual log
+        String actualLog = armLogs.first().trim().toLowerCase();
+        expectedLog = expectedLog.trim().toLowerCase();
+
+        TestUtils.log().info("Actual Log: " + actualLog);
+        TestUtils.log().info("Expected Log: " + expectedLog);
+
+        if (!actualLog.contains(expectedLog)) {
+            String errorMessage = "Expected log to contain: '" + expectedLog + "', but found: '" + actualLog + "'";
+            TestUtils.log().error(errorMessage);
+            Assert.fail(errorMessage);  // Fails the step and marks it in Cucumber report
+        }
+
+        TestUtils.log().info("Assertion Passed: Expected log is found.");
     }
+
 
     //setting scenarios step definition method
     @Then("Bluetooth status is displayed as {string} in android device")
