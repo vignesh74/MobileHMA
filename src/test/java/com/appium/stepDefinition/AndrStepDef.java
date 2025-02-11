@@ -372,7 +372,12 @@ public class AndrStepDef extends BasePage {
     private void validateActivityLog(String strDate, String strMessage, String strReaderName, String strActionName, String strMobileRead) throws ParseException {
         Assert.assertTrue(mobileIDScreen.verifySuccessIcon(), "Success icon not found");
         Assert.assertEquals(mobileIDScreen.verifyDate(), strDate, "Date mismatch");
-        Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase(), "Message mismatch");
+        if(strMessage.contains("NFC")){
+            Assert.assertEquals(mobileIDScreen.getSuccessMessageNFC().toLowerCase(), strMessage.toLowerCase(), "Message mismatch");
+        }else{
+            Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase(), "Message mismatch");
+        }
+
         Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase(), "Reader name mismatch");
         Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase(), "Mobile ID read mismatch");
 
