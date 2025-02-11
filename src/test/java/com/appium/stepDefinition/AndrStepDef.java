@@ -378,8 +378,6 @@ public class AndrStepDef extends BasePage {
             Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase(), "Message mismatch");
             Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase(), "Reader name mismatch");
         }
-
-
         Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase(), "Mobile ID read mismatch");
 
         SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
@@ -387,14 +385,24 @@ public class AndrStepDef extends BasePage {
         SimpleDateFormat outputFormatter = new SimpleDateFormat("HH:mm:ss");
         String deviceTimeFinal = outputFormatter.format(deviceTimeNew);
 
-        String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
-        String activityTime = activityTimeStr.substring(0, 9);
-        Date activityTimeNew = new SimpleDateFormat("HH:mm:ss").parse(activityTime);
-        String activityTimeFinal = outputFormatter.format(activityTimeNew);
+        if(strMessage.contains("NFC")){
+            String activityTimeStr = mobileIDScreen.getTxtActivityTimeNFC().getText();
+            String activityTime = activityTimeStr.substring(0, 9);
+            Date activityTimeNew = new SimpleDateFormat("HH:mm:ss").parse(activityTime);
+            String activityTimeFinal = outputFormatter.format(activityTimeNew);
+            long timeInDifference = (activityTimeNew.getTime() - deviceTimeNew.getTime()) / 1000;
+            TestUtils.log().info("Time difference: " + timeInDifference + " seconds");
+            Assert.assertTrue(timeInDifference <= 10, "Activity time is greater than 10 seconds");
+        }else{
+            String activityTimeStr = mobileIDScreen.getTxtActivityTime().getText();
+            String activityTime = activityTimeStr.substring(0, 9);
+            Date activityTimeNew = new SimpleDateFormat("HH:mm:ss").parse(activityTime);
+            String activityTimeFinal = outputFormatter.format(activityTimeNew);
+            long timeInDifference = (activityTimeNew.getTime() - deviceTimeNew.getTime()) / 1000;
+            TestUtils.log().info("Time difference: " + timeInDifference + " seconds");
+            Assert.assertTrue(timeInDifference <= 10, "Activity time is greater than 10 seconds");
+        }
 
-        long timeInDifference = (activityTimeNew.getTime() - deviceTimeNew.getTime()) / 1000;
-        TestUtils.log().info("Time difference: " + timeInDifference + " seconds");
-        Assert.assertTrue(timeInDifference <= 10, "Activity time is greater than 10 seconds");
     }
 
     @Then("Robotic arms log {string} is displayed for android device")
