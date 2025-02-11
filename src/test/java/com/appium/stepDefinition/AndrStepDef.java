@@ -376,9 +376,10 @@ public class AndrStepDef extends BasePage {
             Assert.assertEquals(mobileIDScreen.getSuccessMessageNFC().toLowerCase(), strMessage.toLowerCase(), "Message mismatch");
         }else{
             Assert.assertEquals(mobileIDScreen.getSuccessMessage().toLowerCase(), strMessage.toLowerCase(), "Message mismatch");
+            Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase(), "Reader name mismatch");
         }
 
-        Assert.assertEquals(mobileIDScreen.getReaderName().toLowerCase(), strReaderName.toLowerCase(), "Reader name mismatch");
+
         Assert.assertEquals(mobileIDScreen.getMobileIDRead().toLowerCase(), strMobileRead.toLowerCase(), "Mobile ID read mismatch");
 
         SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
