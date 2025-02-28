@@ -27,7 +27,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-07 | Off        | Off        | Allow             |
       | _TC-08 | Off        | On         | Don't allow       |
 
-  @ANDR_Settings_12_WF2 @ANDR_Settings_12_WF @ANDR_SmokeRun
+  @ANDR_Settings_12_WF2 @ANDR_Settings_12_WF @ANDR_SmokeRun @ANDR_Settings_12_WF
   Scenario Outline:ANDR_Settings_12_WF2<TC_ID>: Verify Usage State status is <Usage_State>
     When Navigate to Settings and App Preferences screen in android device
     Then Usage State status is displayed as "<Usage_State>" in android device
@@ -37,7 +37,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-10 | Foreground  |
       | _TC-11 | Unlocked    |
 
-  @ANDR_Settings_12_WF3 @ANDR_Settings_12_WF @ANDR_SmokeRun
+  @ANDR_Settings_12_WF3 @ANDR_Settings_12_WF @ANDR_SmokeRun @ANDR_Settings_12_WF
   Scenario Outline:ANDR_Settings_12_WF3<TC_ID>: Verify toggle button Enable/Disable for PlaySound, Vibrate and TwistAndGo
     When Navigate to Settings and App Preferences screen in android device
     Then Play Sound status is displayed as "<Play_Sound_State>" in android device
@@ -47,7 +47,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | TC_ID       | Play_Sound_State | Vibrate_State  | Twist_And_Go   |
       | _TC-8530733 | Disable/Enable   | Disable/Enable | Disable/Enable |
 
-  @ANDR_Settings_12_WF4 @ANDR_Settings_12_WF @ANDR_SmokeRun
+  @ANDR_Settings_12_WF4 @ANDR_Settings_12_WF @ANDR_SmokeRunv @ANDR_Settings_12_WF
   Scenario Outline: ANDR_Settings_12_WF4<TC_ID>: Verify the page of ReportIssue, Legal, About, and Toggle button of DebugLogs and ShowActivity as Enable/Disable
     When Navigate to settings page in android device
     Then Report issue by entering text "Testing the application in automation" in android device
@@ -208,7 +208,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-01 | OFF    |
       | _TC-02 | ON     |
 
-  @ANDR_Settings_AboutPage
+  @ANDR_Settings_AboutPage @ANDR_Settings_12_WF
   Scenario: Verify About Page and its functionalities
     When Navigate to settings page in android device
     Then Verify About menu is displayed in android device
@@ -235,7 +235,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     When Navigate to notification page in android device
     And Verify the Delete device alert
 
-  @ANDR_Settings_ShowActivity
+  @ANDR_Settings_ShowActivity @ANDR_Settings_12_WF
   Scenario Outline: ANDR_11_10_Settings_ShowActivity<TC_ID>: Verify the tab of Show activity
     When Navigate to Settings and App Preferences screen in android device
     And  Show Activity State is displayed as "<Show_Activity>" in android device
@@ -258,7 +258,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
       | _TC-02 | Off                 |
 
     #This feature can be run with the debug enabled apk.
-  @ANDR_Settings_FAQ
+  @ANDR_Settings_FAQ @ANDR_Settings_12_WF
   Scenario Outline: ANDR_11_10_Settings_FAQ<TC_ID>: Verify the FAQ section
     When Navigate to settings page in android device
     Then Verify the FAQ Menu is displayed in android device
@@ -295,7 +295,7 @@ Feature: To Test Android Settings Scenario Workflow for HID mobile access applic
     And Note down the About page information are same after the upgrade in android device
     And compare the about info values in android device
 
-  @ANDR_Bluetooth_Sensitivity
+  @ANDR_Bluetooth_Sensitivity @ANDR_Settings_12_WF
   Scenario Outline: ANDR_11_10_Bluetooth_Sensitivity: Verify the Bluetooth sensitivity is "<BLE_Sensitivity>"
     When Navigate to Settings and App Preferences screen in android device
     And Verify Bluetooth Sensitivity menu is displayed in android device
