@@ -58,7 +58,7 @@ public class AndrStepDef extends BasePage {
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
         DriverManager.getDriver().closeApp();
         TestUtils.log().info("Application closed.....");
-        DriverManager.getDriver().launchApp();
+        DriverManager.getDriver().executeScript("mobile: launchApp");
         TestUtils.log().info("Application launched.....");
     }
 
@@ -68,7 +68,7 @@ public class AndrStepDef extends BasePage {
 
         DriverManager.getDriver().closeApp();
         TestUtils.log().info("Application closed.....");
-        DriverManager.getDriver().launchApp();
+        DriverManager.getDriver().executeScript("mobile: launchApp");
         TestUtils.log().info("Application launched.....");
 
     }
@@ -154,7 +154,7 @@ public class AndrStepDef extends BasePage {
         if (link.equalsIgnoreCase(EULA)) {
             termsOfUseScreen.checkEulaPageLink(link);
             termsOfUseScreen.checkVisibilityOfEulaPage();
-            DriverManager.getDriver().launchApp();
+            DriverManager.getDriver().executeScript("mobile: launchApp");
             TestUtils.log().info("Application launched.....");
             termsOfUseScreen.checkEulaPageLink(link);
             termsOfUseScreen.backButtonEula();
@@ -162,7 +162,7 @@ public class AndrStepDef extends BasePage {
         } else {
             termsOfUseScreen.checkPrivacyPageLink(link);
             termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
-            DriverManager.getDriver().launchApp();
+            DriverManager.getDriver().executeScript("mobile: launchApp");
             TestUtils.log().info("Application launched.....");
             termsOfUseScreen.checkPrivacyPageLink(link);
             termsOfUseScreen.backButtonPrivacyNoticePage();

@@ -907,7 +907,7 @@ public class AndroidDeviceAction {
             if (appState.equalsIgnoreCase("Killed")) {
                 TestUtils.log().info("App is killed, attempting to launch again.");
                 unlockDeviceWithPin(mobilePin);
-                DriverManager.getDriver().launchApp();
+                DriverManager.getDriver().executeScript("mobile: launchApp");
                 TestUtils.log().info("Application is launched again..........");
             }
             basePage.waitForGivenTime(1);
@@ -915,7 +915,7 @@ public class AndroidDeviceAction {
         } catch (org.openqa.selenium.NoSuchSessionException e) {
             TestUtils.log().info("No active session found: ", e);
             try {
-                DriverManager.getDriver().launchApp();
+                DriverManager.getDriver().executeScript("mobile: launchApp");
             } catch (Exception ex) {
                 TestUtils.log().error("Failed to launch the application: ", ex);
             }
