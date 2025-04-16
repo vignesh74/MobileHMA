@@ -23,7 +23,7 @@
         <parameter name="wdaLocalPort" value=""/>
         <parameter name="webkitDebugProxyPort" value="9228"/>
         <parameter name="userId" value="12443213"/>
-        <parameter name="comPort" value="11601"/>
+        <parameter name="comPort" value="1401"/>
         <parameter name="roboticArmX" value="1900"/>
         <parameter name="roboticArmY" value="500"/>
         <classes>
