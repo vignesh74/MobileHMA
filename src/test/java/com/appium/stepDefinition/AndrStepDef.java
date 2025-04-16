@@ -56,9 +56,9 @@ public class AndrStepDef extends BasePage {
 
     @Given("Launch HID Access Mobile Application in android device")
     public void launchHidAccessMobileApp_Andr() throws InterruptedException {
-        DriverManager.getDriver().terminateApp(strAndroidAppPackage);
+        DriverManager.getDriver().closeApp();
         TestUtils.log().info("Application closed.....");
-        DriverManager.getDriver().executeScript("mobile: launchApp");
+        DriverManager.getDriver().launchApp();
         TestUtils.log().info("Application launched.....");
     }
 
@@ -66,9 +66,9 @@ public class AndrStepDef extends BasePage {
     @Given("Launch HID Mobile Access Application Onboarding Screen in Android Device")
     public void launchOnboardingScreen() {
 
-        DriverManager.getDriver().terminateApp(strAndroidAppPackage);
+        DriverManager.getDriver().closeApp();
         TestUtils.log().info("Application closed.....");
-        DriverManager.getDriver().executeScript("mobile: launchApp");
+        DriverManager.getDriver().launchApp();
         TestUtils.log().info("Application launched.....");
 
     }
@@ -154,19 +154,19 @@ public class AndrStepDef extends BasePage {
         if (link.equalsIgnoreCase(EULA)) {
             termsOfUseScreen.checkEulaPageLink(link);
             termsOfUseScreen.checkVisibilityOfEulaPage();
-            DriverManager.getDriver().executeScript("mobile: launchApp");
+            DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
             termsOfUseScreen.checkEulaPageLink(link);
             termsOfUseScreen.backButtonEula();
-            DriverManager.getDriver().terminateApp(strAndroidAppPackage);
+            DriverManager.getDriver().closeApp();
         } else {
             termsOfUseScreen.checkPrivacyPageLink(link);
             termsOfUseScreen.checkVisibilityOfPrivacyNoticePage();
-            DriverManager.getDriver().executeScript("mobile: launchApp");
+            DriverManager.getDriver().launchApp();
             TestUtils.log().info("Application launched.....");
             termsOfUseScreen.checkPrivacyPageLink(link);
             termsOfUseScreen.backButtonPrivacyNoticePage();
-            DriverManager.getDriver().terminateApp(strAndroidAppPackage);
+            DriverManager.getDriver().closeApp();
         }
 
     }
